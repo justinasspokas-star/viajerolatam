@@ -133,16 +133,19 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 
-/* ViajeroLatam logo limpio: transparente, sin fondo negro ni efectos raros */
+/* ViajeroLatam logo — transparente y natural */
 .logo{display:inline-flex;align-items:center;text-decoration:none;line-height:0;flex-shrink:0}
-.logo-img{display:block;width:auto;object-fit:contain;background:transparent!important;mix-blend-mode:normal!important;filter:none!important;box-shadow:none!important}
+.logo-img{display:block;width:auto;object-fit:contain;background:transparent!important!important;filter:none!important;box-shadow:none!important}
 .logo-img-header{height:58px;max-width:300px}
 .logo-img-footer{height:54px;max-width:280px}
 nav .logo img.logo-img-header{height:58px;width:auto}
-@media(max-width:700px){.logo-img-header{height:44px;max-width:220px}.logo-img-footer{height:44px;max-width:220px}nav .logo img.logo-img-header{height:44px}}
+@media(max-width:700px){
+  .logo-img-header{height:44px;max-width:220px}
+  .logo-img-footer{height:44px;max-width:220px}
+  nav .logo img.logo-img-header{height:44px}
+}
 
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
     --navy: #0B1F3A;
@@ -555,7 +558,7 @@ nav .logo img.logo-img-header{height:58px;width:auto}
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="logo"><img src="/logo.png" alt="ViajeroLatam — Comparador de seguros de viaje para latinoamericanos" class="logo-img logo-img-header"></a>
+  <a href="#" class="logo"><img src="/logo.png" alt="ViajerosLatam — Comparador de seguros de viaje para latinoamericanos" style="height:54px;width:auto;display:block"></a>
   <div class="nav-links">
     <a href="#como-funciona">¿Cómo funciona?</a>
     <a href="#aseguradoras">Aseguradoras</a>
@@ -984,7 +987,7 @@ nav .logo img.logo-img-header{height:58px;width:auto}
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
-      <a href="#" class="logo" style="margin-bottom:14px;display:flex"><img src="/logo.png" alt="ViajeroLatam — Comparador de seguros de viaje para latinoamericanos" class="logo-img logo-img-header"></a>
+      <a href="#" class="logo" style="margin-bottom:14px;display:flex"><img src="/logo.png" alt="ViajerosLatam — Comparador de seguros de viaje para latinoamericanos" style="height:54px;width:auto;display:block"></a>
       <p>El comparador de seguros de viaje pensado para latinoamericanos que viajan a Europa y Estados Unidos.</p>
       <div class="footer-social">
         <a href="#" class="social-btn">ig</a>
