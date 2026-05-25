@@ -245,6 +245,178 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
 .no-results{text-align:center;padding:60px 20px;color:var(--text-mid)}
 .no-results h3{font-family:var(--font-display);font-size:24px;color:var(--text-dark);margin-bottom:10px}
 </style>
+
+<style id="mobile-fixes">
+/* ════ MOBILE GLOBAL ════ */
+@media (max-width: 600px) {
+
+  /* NAV */
+  nav { height: auto !important; padding: 10px 4% !important; flex-wrap: nowrap; }
+  nav .logo img { height: 44px !important; }
+
+  /* HOMEPAGE SEARCH BOX */
+  .search-box {
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 16px !important;
+    gap: 12px !important;
+    border-radius: 18px !important;
+    margin: 0 8px !important;
+    max-width: calc(100% - 16px) !important;
+  }
+  .sb-field {
+    width: 100% !important;
+    padding: 10px 14px !important;
+    background: var(--sand) !important;
+    border-radius: 10px !important;
+    border: 1px solid var(--sand-dark) !important;
+  }
+  .sb-divider { display: none !important; }
+  .sb-field select,
+  .sb-field input[type="date"] {
+    width: 100% !important;
+    font-size: 15px !important;
+  }
+  .sb-btn {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 14px !important;
+    font-size: 15px !important;
+    border-radius: 50px !important;
+  }
+  #sb-duracion-display {
+    font-size: 12px !important;
+    padding: 8px 12px !important;
+  }
+
+  /* HERO */
+  .hero { padding: 80px 4% 40px !important; }
+  .hero h1 { font-size: 32px !important; }
+  .hero-sub { font-size: 15px !important; }
+  .hero-trust {
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+    justify-content: center !important;
+  }
+  .trust-item { font-size: 12px !important; }
+
+  /* HERO INNER (colombia page) */
+  .hero-inner { grid-template-columns: 1fr !important; gap: 28px !important; }
+  .hero-card { display: none !important; } /* Hide sidebar card on mobile */
+  .hero-stats { grid-template-columns: repeat(3,1fr) !important; gap: 8px !important; }
+  .hstat-val { font-size: 20px !important; }
+  .hero-badges { gap: 6px !important; }
+  .hbadge { font-size: 11px !important; padding: 5px 10px !important; }
+
+  /* STATS ROW */
+  .stats-inner {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+    padding: 0 4% !important;
+  }
+  .stat-num { font-size: 26px !important; }
+
+  /* COUNTRIES STRIP */
+  .countries-strip { padding: 14px 4% !important; gap: 8px !important; }
+  .country-badge { font-size: 12px !important; padding: 5px 10px !important; }
+  .strip-label { display: none !important; }
+
+  /* HOW IT WORKS */
+  .steps-grid { grid-template-columns: 1fr !important; gap: 14px !important; }
+  .step-card { padding: 24px 20px !important; }
+
+  /* INSURERS */
+  .insurers-grid { grid-template-columns: 1fr 1fr !important; gap: 10px !important; }
+  .insurer-card { padding: 16px 14px !important; }
+  .insurer-name { font-size: 13px !important; }
+
+  /* AUDIENCE */
+  .audience-inner { grid-template-columns: 1fr !important; gap: 32px !important; }
+  .card-stack { display: none !important; }
+  .audience-tags { gap: 6px !important; }
+
+  /* VISA SECTION */
+  .visa-inner { grid-template-columns: 1fr !important; gap: 32px !important; }
+
+  /* TESTIMONIALS */
+  .test-grid { grid-template-columns: 1fr !important; gap: 12px !important; }
+
+  /* SCHENGEN BANNER (colombia page) */
+  .schengen-banner,
+  .sch-grid { grid-template-columns: 1fr 1fr !important; gap: 10px !important; }
+
+  /* COMPARATIVA TABLE (colombia page) */
+  .comp-table th:nth-child(3),
+  .comp-table td:nth-child(3) { display: none !important; }
+  .comp-table { font-size: 12px !important; }
+  .price-big { font-size: 18px !important; }
+  .ins-name { font-size: 13px !important; }
+  .btn-contract-sm { padding: 7px 12px !important; font-size: 11px !important; }
+
+  /* COTIZADOR FORM (colombia page) */
+  .sec-body > div[style*="grid-template-columns: 1fr 1fr"] {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+
+  /* GUIDE STEPS */
+  .guide-step { gap: 10px !important; }
+  .gs-num { width: 24px !important; height: 24px !important; font-size: 11px !important; }
+
+  /* RESULTS PAGE */
+  .page { grid-template-columns: 1fr !important; padding: 16px 4% !important; }
+  .sidebar { display: none !important; }
+  .card-body {
+    grid-template-columns: auto 1fr !important;
+    gap: 12px !important;
+  }
+  .card-price-block {
+    grid-column: span 2 !important;
+    align-items: flex-start !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+    align-items: center !important;
+  }
+  .price-main { font-size: 28px !important; }
+  .btn-contract,
+  .btn-contract.btn-contract-big-m { width: 100% !important; margin-top: 8px !important; }
+  .search-bar { overflow-x: auto !important; }
+  .search-inner { flex-wrap: nowrap !important; padding: 0 4% !important; overflow-x: auto !important; }
+  .search-pill { flex-shrink: 0 !important; font-size: 12px !important; padding: 6px 12px !important; }
+  .best-banner { padding: 12px 16px !important; font-size: 13px !important; }
+  .schengen-callout { flex-wrap: wrap !important; gap: 10px !important; }
+  .sc-btn { width: 100% !important; text-align: center !important; }
+
+  /* FOOTER */
+  .footer-grid { grid-template-columns: 1fr 1fr !important; gap: 24px !important; }
+  footer { padding: 36px 4% 24px !important; }
+
+  /* SECTIONS PADDING */
+  section { padding: 56px 4% !important; }
+  .page-body { padding: 20px 4% !important; }
+
+  /* TRUST BAR */
+  div[style*="repeat(4,1fr)"] {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+  }
+}
+
+/* ════ TABLET ════ */
+@media (max-width: 768px) and (min-width: 601px) {
+  .hero-inner { grid-template-columns: 1fr !important; }
+  .hero-card { display: none !important; }
+  .search-box {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+  }
+  .search-box .sb-btn { grid-column: span 2 !important; }
+}
+</style>
+
 </head>
 <body>
 
@@ -260,19 +432,19 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
 <!-- SEARCH BAR -->
 <div class="search-bar">
   <div class="search-inner">
-    <div class="search-pill">
+    <div class="search-pill" onclick="toggleEditPanel()" style="cursor:pointer">
       <div><div class="pill-label">Desde</div><div class="pill-val">Colombia 🇨🇴</div></div>
     </div>
-    <div class="search-pill">
+    <div class="search-pill" onclick="toggleEditPanel()" style="cursor:pointer">
       <div><div class="pill-label">Destino</div><div class="pill-val">España / Schengen 🇪🇺</div></div>
     </div>
-    <div class="search-pill">
+    <div class="search-pill" onclick="toggleEditPanel()" style="cursor:pointer">
       <div><div class="pill-label">Fechas</div><div class="pill-val">12 jun → 27 jun</div></div>
     </div>
-    <div class="search-pill">
+    <div class="search-pill" onclick="toggleEditPanel()" style="cursor:pointer">
       <div><div class="pill-label">Viajeros</div><div class="pill-val">1 adulto</div></div>
     </div>
-    <button class="pill-btn" style="margin-left:auto" onclick="window.location.href='/'" onclick="window.location.href=\'/\'">
+    <button class="pill-btn" style="margin-left:auto" onclick="toggleEditPanel()" onclick="window.location.href=\'/\'">
       <svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
       Editar búsqueda
     </button>
@@ -282,6 +454,91 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
     </button>
   </div>
 </div>
+
+<!-- EDIT SEARCH PANEL -->
+<div id="edit-panel" style="display:none;background:var(--white);border-bottom:2px solid var(--teal);padding:20px 5%;animation:slideDown .25s ease">
+  <div style="max-width:1200px;margin:0 auto">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+      <h3 style="font-size:15px;font-weight:600;color:var(--navy)">✏️ Editar búsqueda</h3>
+      <button onclick="closeEditPanel()" style="background:none;border:none;font-size:20px;cursor:pointer;color:var(--text-light);line-height:1">✕</button>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr auto;gap:12px;align-items:end">
+
+      <!-- Desde -->
+      <div>
+        <label style="font-size:11px;font-weight:700;color:var(--text-light);text-transform:uppercase;letter-spacing:0.05em;display:block;margin-bottom:6px">Voy desde</label>
+        <select id="ep-origen" style="width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:10px;font-family:var(--font-body);font-size:14px;font-weight:600;color:var(--text-dark);background:var(--white);outline:none;cursor:pointer" onfocus="this.style.borderColor='var(--teal)'" onblur="this.style.borderColor='var(--border)'">
+          <option value="colombia">🇨🇴 Colombia</option>
+          <option value="mexico">🇲🇽 México</option>
+          <option value="argentina">🇦🇷 Argentina</option>
+          <option value="venezuela">🇻🇪 Venezuela</option>
+          <option value="peru">🇵🇪 Perú</option>
+          <option value="chile">🇨🇱 Chile</option>
+          <option value="ecuador">🇪🇨 Ecuador</option>
+          <option value="bolivia">🇧🇴 Bolivia</option>
+          <option value="republica-dominicana">🇩🇴 R. Dominicana</option>
+          <option value="panama">🇵🇦 Panamá</option>
+          <option value="uruguay">🇺🇾 Uruguay</option>
+        </select>
+      </div>
+
+      <!-- Destino -->
+      <div>
+        <label style="font-size:11px;font-weight:700;color:var(--text-light);text-transform:uppercase;letter-spacing:0.05em;display:block;margin-bottom:6px">Destino</label>
+        <select id="ep-destino" style="width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:10px;font-family:var(--font-body);font-size:14px;font-weight:600;color:var(--text-dark);background:var(--white);outline:none;cursor:pointer" onfocus="this.style.borderColor='var(--teal)'" onblur="this.style.borderColor='var(--border)'">
+          <option value="espana-schengen">🇪🇺 España / Schengen</option>
+          <option value="europa">🌍 Europa (toda)</option>
+          <option value="estados-unidos">🇺🇸 Estados Unidos</option>
+          <option value="eeuu-canada">🇺🇸🇨🇦 EEUU + Canadá</option>
+          <option value="mundial">🌎 Mundial</option>
+        </select>
+      </div>
+
+      <!-- Fechas -->
+      <div>
+        <label style="font-size:11px;font-weight:700;color:var(--text-light);text-transform:uppercase;letter-spacing:0.05em;display:block;margin-bottom:6px">Fecha ida → vuelta</label>
+        <div style="display:flex;align-items:center;gap:6px">
+          <input type="date" id="ep-ida" style="flex:1;padding:10px 10px;border:1.5px solid var(--border);border-radius:10px;font-family:var(--font-body);font-size:13px;font-weight:600;color:var(--text-dark);background:var(--white);outline:none" onfocus="this.style.borderColor='var(--teal)'" onblur="this.style.borderColor='var(--border)'" onchange="epDateChange()">
+          <span style="color:var(--text-light);font-size:14px">→</span>
+          <input type="date" id="ep-vuelta" style="flex:1;padding:10px 10px;border:1.5px solid var(--border);border-radius:10px;font-family:var(--font-body);font-size:13px;font-weight:600;color:var(--text-dark);background:var(--white);outline:none" onfocus="this.style.borderColor='var(--teal)'" onblur="this.style.borderColor='var(--border)'" onchange="epDateChange()">
+        </div>
+        <div id="ep-dias-label" style="font-size:11px;color:var(--teal-dark);font-weight:600;margin-top:4px"></div>
+      </div>
+
+      <!-- Viajeros -->
+      <div>
+        <label style="font-size:11px;font-weight:700;color:var(--text-light);text-transform:uppercase;letter-spacing:0.05em;display:block;margin-bottom:6px">Viajeros</label>
+        <select id="ep-personas" style="width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:10px;font-family:var(--font-body);font-size:14px;font-weight:600;color:var(--text-dark);background:var(--white);outline:none;cursor:pointer" onfocus="this.style.borderColor='var(--teal)'" onblur="this.style.borderColor='var(--border)'">
+          <option value="1">1 persona</option>
+          <option value="2">2 personas</option>
+          <option value="3">3 personas</option>
+          <option value="4">4 personas</option>
+          <option value="5">5+</option>
+        </select>
+      </div>
+
+      <!-- Buscar -->
+      <div>
+        <button onclick="applyEditSearch()" style="width:100%;background:var(--teal);color:var(--navy);border:none;border-radius:50px;padding:11px 22px;font-family:var(--font-body);font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap;transition:background .2s" onmouseover="this.style.background='#009C7F'" onmouseout="this.style.background='var(--teal)'">
+          🔍 Actualizar resultados
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<style>
+@keyframes slideDown { from { opacity:0; transform:translateY(-10px); } to { opacity:1; transform:translateY(0); } }
+@media (max-width:700px) {
+  #edit-panel > div > div:last-child {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+  }
+  #edit-panel > div > div:last-child > div:nth-child(3) { grid-column: span 2; }
+  #edit-panel > div > div:last-child > div:nth-child(5) { grid-column: span 2; }
+}
+</style>
 
 <!-- PAGE -->
 <div class="page">
@@ -361,7 +618,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
         <h4>Todos cumplen los requisitos Schengen</h4>
         <p>Cobertura ≥30.000€ · Repatriación incluida · Sin franquicia · Aseguradora con sede en Europa</p>
       </div>
-      <button class="sc-btn" onclick="window.location.href='/visa-schengen/'">¿Qué es el Schengen?</button>
+      <button class="sc-btn" onclick="(function(){window.location.href='/visa-schengen/';return false;})()">¿Qué es el Schengen?</button>
     </div>
 
     <!-- Best value banner -->
@@ -676,5 +933,107 @@ function contractClick(name, plan) {
 // Initial render
 render(sortData(DATA, 'recomendado'));
 </script>
+
+<script>
+// ── Edit Search Panel
+function getUrlParam(name) {
+  return new URLSearchParams(window.location.search).get(name) || '';
+}
+
+function toggleEditPanel() {
+  var panel = document.getElementById('edit-panel');
+  if (!panel) return;
+  if (panel.style.display === 'none' || panel.style.display === '') {
+    openEditPanel();
+  } else {
+    closeEditPanel();
+  }
+}
+
+function openEditPanel() {
+  var panel = document.getElementById('edit-panel');
+  if (!panel) return;
+  panel.style.display = 'block';
+
+  // Pre-fill from URL params
+  var origen   = getUrlParam('origen')   || 'colombia';
+  var destino  = getUrlParam('destino')  || 'espana-schengen';
+  var personas = getUrlParam('personas') || '1';
+  var ida      = getUrlParam('ida');
+  var vuelta   = getUrlParam('vuelta');
+
+  // Default dates if none in URL
+  if (!ida) {
+    var d = new Date(); ida = d.toISOString().split('T')[0];
+  }
+  if (!vuelta) {
+    var d2 = new Date(); d2.setDate(d2.getDate()+15); vuelta = d2.toISOString().split('T')[0];
+  }
+
+  setSelectValue('ep-origen',   origen);
+  setSelectValue('ep-destino',  destino);
+  setSelectValue('ep-personas', personas);
+
+  var idaEl    = document.getElementById('ep-ida');
+  var vueltaEl = document.getElementById('ep-vuelta');
+  if (idaEl)    { idaEl.value    = ida;    idaEl.min    = new Date().toISOString().split('T')[0]; }
+  if (vueltaEl) { vueltaEl.value = vuelta; vueltaEl.min = ida; }
+
+  epDateChange();
+  panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function closeEditPanel() {
+  var panel = document.getElementById('edit-panel');
+  if (panel) panel.style.display = 'none';
+}
+
+function setSelectValue(id, val) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  for (var i = 0; i < el.options.length; i++) {
+    if (el.options[i].value === val) { el.selectedIndex = i; break; }
+  }
+}
+
+function epDateChange() {
+  var ida    = document.getElementById('ep-ida');
+  var vuelta = document.getElementById('ep-vuelta');
+  var label  = document.getElementById('ep-dias-label');
+  if (!ida || !vuelta || !ida.value || !vuelta.value) return;
+  var d1 = new Date(ida.value), d2 = new Date(vuelta.value);
+  if (d2 <= d1) {
+    var f = new Date(d1); f.setDate(f.getDate()+1);
+    vuelta.value = f.toISOString().split('T')[0]; d2 = f;
+    if (vuelta) vuelta.min = ida.value;
+  }
+  var dias = Math.round((d2-d1)/86400000);
+  if (label) label.textContent = dias + ' días · Desde €' + (1.75*dias).toFixed(2);
+}
+
+function applyEditSearch() {
+  var o  = (document.getElementById('ep-origen')   || {}).value || 'colombia';
+  var d  = (document.getElementById('ep-destino')  || {}).value || 'espana-schengen';
+  var p  = (document.getElementById('ep-personas') || {}).value || '1';
+  var fi = (document.getElementById('ep-ida')      || {}).value || '';
+  var fv = (document.getElementById('ep-vuelta')   || {}).value || '';
+  var dias = 15;
+  if (fi && fv) {
+    var diff = Math.round((new Date(fv)-new Date(fi))/86400000);
+    if (diff > 0) dias = diff;
+  }
+  var url = '/resultados/?origen=' + encodeURIComponent(o)
+    + '&destino=' + encodeURIComponent(d)
+    + '&dias=' + dias + '&personas=' + p
+    + (fi ? '&ida='+fi : '') + (fv ? '&vuelta='+fv : '');
+  window.location.href = url;
+}
+
+// Close panel on Escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeEditPanel();
+});
+</script>
+
 </body>
 </html>

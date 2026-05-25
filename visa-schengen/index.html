@@ -200,6 +200,178 @@ footer{background:var(--navy);padding:44px 5% 26px;margin-top:40px}
 .footer-bottom{border-top:1px solid rgba(255,255,255,0.07);padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 .footer-bottom p{font-size:12px;color:rgba(255,255,255,0.3)}
 </style>
+
+<style id="mobile-fixes">
+/* ════ MOBILE GLOBAL ════ */
+@media (max-width: 600px) {
+
+  /* NAV */
+  nav { height: auto !important; padding: 10px 4% !important; flex-wrap: nowrap; }
+  nav .logo img { height: 44px !important; }
+
+  /* HOMEPAGE SEARCH BOX */
+  .search-box {
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 16px !important;
+    gap: 12px !important;
+    border-radius: 18px !important;
+    margin: 0 8px !important;
+    max-width: calc(100% - 16px) !important;
+  }
+  .sb-field {
+    width: 100% !important;
+    padding: 10px 14px !important;
+    background: var(--sand) !important;
+    border-radius: 10px !important;
+    border: 1px solid var(--sand-dark) !important;
+  }
+  .sb-divider { display: none !important; }
+  .sb-field select,
+  .sb-field input[type="date"] {
+    width: 100% !important;
+    font-size: 15px !important;
+  }
+  .sb-btn {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 14px !important;
+    font-size: 15px !important;
+    border-radius: 50px !important;
+  }
+  #sb-duracion-display {
+    font-size: 12px !important;
+    padding: 8px 12px !important;
+  }
+
+  /* HERO */
+  .hero { padding: 80px 4% 40px !important; }
+  .hero h1 { font-size: 32px !important; }
+  .hero-sub { font-size: 15px !important; }
+  .hero-trust {
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+    justify-content: center !important;
+  }
+  .trust-item { font-size: 12px !important; }
+
+  /* HERO INNER (colombia page) */
+  .hero-inner { grid-template-columns: 1fr !important; gap: 28px !important; }
+  .hero-card { display: none !important; } /* Hide sidebar card on mobile */
+  .hero-stats { grid-template-columns: repeat(3,1fr) !important; gap: 8px !important; }
+  .hstat-val { font-size: 20px !important; }
+  .hero-badges { gap: 6px !important; }
+  .hbadge { font-size: 11px !important; padding: 5px 10px !important; }
+
+  /* STATS ROW */
+  .stats-inner {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+    padding: 0 4% !important;
+  }
+  .stat-num { font-size: 26px !important; }
+
+  /* COUNTRIES STRIP */
+  .countries-strip { padding: 14px 4% !important; gap: 8px !important; }
+  .country-badge { font-size: 12px !important; padding: 5px 10px !important; }
+  .strip-label { display: none !important; }
+
+  /* HOW IT WORKS */
+  .steps-grid { grid-template-columns: 1fr !important; gap: 14px !important; }
+  .step-card { padding: 24px 20px !important; }
+
+  /* INSURERS */
+  .insurers-grid { grid-template-columns: 1fr 1fr !important; gap: 10px !important; }
+  .insurer-card { padding: 16px 14px !important; }
+  .insurer-name { font-size: 13px !important; }
+
+  /* AUDIENCE */
+  .audience-inner { grid-template-columns: 1fr !important; gap: 32px !important; }
+  .card-stack { display: none !important; }
+  .audience-tags { gap: 6px !important; }
+
+  /* VISA SECTION */
+  .visa-inner { grid-template-columns: 1fr !important; gap: 32px !important; }
+
+  /* TESTIMONIALS */
+  .test-grid { grid-template-columns: 1fr !important; gap: 12px !important; }
+
+  /* SCHENGEN BANNER (colombia page) */
+  .schengen-banner,
+  .sch-grid { grid-template-columns: 1fr 1fr !important; gap: 10px !important; }
+
+  /* COMPARATIVA TABLE (colombia page) */
+  .comp-table th:nth-child(3),
+  .comp-table td:nth-child(3) { display: none !important; }
+  .comp-table { font-size: 12px !important; }
+  .price-big { font-size: 18px !important; }
+  .ins-name { font-size: 13px !important; }
+  .btn-contract-sm { padding: 7px 12px !important; font-size: 11px !important; }
+
+  /* COTIZADOR FORM (colombia page) */
+  .sec-body > div[style*="grid-template-columns: 1fr 1fr"] {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+
+  /* GUIDE STEPS */
+  .guide-step { gap: 10px !important; }
+  .gs-num { width: 24px !important; height: 24px !important; font-size: 11px !important; }
+
+  /* RESULTS PAGE */
+  .page { grid-template-columns: 1fr !important; padding: 16px 4% !important; }
+  .sidebar { display: none !important; }
+  .card-body {
+    grid-template-columns: auto 1fr !important;
+    gap: 12px !important;
+  }
+  .card-price-block {
+    grid-column: span 2 !important;
+    align-items: flex-start !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+    align-items: center !important;
+  }
+  .price-main { font-size: 28px !important; }
+  .btn-contract,
+  .btn-contract.btn-contract-big-m { width: 100% !important; margin-top: 8px !important; }
+  .search-bar { overflow-x: auto !important; }
+  .search-inner { flex-wrap: nowrap !important; padding: 0 4% !important; overflow-x: auto !important; }
+  .search-pill { flex-shrink: 0 !important; font-size: 12px !important; padding: 6px 12px !important; }
+  .best-banner { padding: 12px 16px !important; font-size: 13px !important; }
+  .schengen-callout { flex-wrap: wrap !important; gap: 10px !important; }
+  .sc-btn { width: 100% !important; text-align: center !important; }
+
+  /* FOOTER */
+  .footer-grid { grid-template-columns: 1fr 1fr !important; gap: 24px !important; }
+  footer { padding: 36px 4% 24px !important; }
+
+  /* SECTIONS PADDING */
+  section { padding: 56px 4% !important; }
+  .page-body { padding: 20px 4% !important; }
+
+  /* TRUST BAR */
+  div[style*="repeat(4,1fr)"] {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+  }
+}
+
+/* ════ TABLET ════ */
+@media (max-width: 768px) and (min-width: 601px) {
+  .hero-inner { grid-template-columns: 1fr !important; }
+  .hero-card { display: none !important; }
+  .search-box {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+  }
+  .search-box .sb-btn { grid-column: span 2 !important; }
+}
+</style>
+
 </head>
 <body>
 
