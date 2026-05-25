@@ -1,1 +1,2 @@
-Pack listo para GitHub Pages. Sube todos los archivos y carpetas a la raíz del repo.
+Pack final: logo.png transparente + index.html ajustado para usar /logo.png sin mix-blend-mode ni efectos raros.
+Sube estos archivos a la raíz del repo GitHub.
