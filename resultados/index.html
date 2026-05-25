@@ -241,6 +241,8 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
 /* ── NO RESULTS ── */
 .no-results{text-align:center;padding:60px 20px;color:var(--text-mid)}
 .no-results h3{font-family:var(--font-display);font-size:24px;color:var(--text-dark);margin-bottom:10px}
+.search-pill[role="button"]{cursor:pointer}
+.pill-btn{text-decoration:none}
 </style>
 </head>
 <body>
@@ -257,22 +259,21 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
 <!-- SEARCH BAR -->
 <div class="search-bar">
   <div class="search-inner">
-    <div class="search-pill">
+    <div class="search-pill" onclick="window.location.href=\'/\'" role="button" tabindex="0">
       <div><div class="pill-label">Desde</div><div class="pill-val">Colombia 🇨🇴</div></div>
     </div>
-    <div class="search-pill">
+    <div class="search-pill" onclick="window.location.href=\'/\'" role="button" tabindex="0">
       <div><div class="pill-label">Destino</div><div class="pill-val">España / Schengen 🇪🇺</div></div>
     </div>
-    <div class="search-pill">
+    <div class="search-pill" onclick="window.location.href=\'/\'" role="button" tabindex="0">
       <div><div class="pill-label">Fechas</div><div class="pill-val">12 jun → 27 jun</div></div>
     </div>
-    <div class="search-pill">
+    <div class="search-pill" onclick="window.location.href=\'/\'" role="button" tabindex="0">
       <div><div class="pill-label">Viajeros</div><div class="pill-val">1 adulto</div></div>
     </div>
-    <button class="pill-btn" style="margin-left:auto">
-      <svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+    <a href="/" class="pill-btn" style="margin-left:auto;text-decoration:none"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
       Editar búsqueda
-    </button>
+    </a>
     <button class="mobile-filters-btn">
       <svg viewBox="0 0 24 24"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
       Filtros
