@@ -1,0 +1,28 @@
+# Netlify _redirects — ViajerosLatam.com
+
+# Google Search Console verification
+/google562df6fdb8d9394a.html  /google562df6fdb8d9394a.html  200
+
+# Páginas principales
+/resultados/                        /viajerolatam-resultados.html       200
+/resultados                         /viajerolatam-resultados.html       200
+
+# Fichas aseguradoras
+/seguros/heymondo-viaje-premium/    /viajerolatam-detalle.html          200
+/seguros/heymondo-viaje-premium     /viajerolatam-detalle.html          200
+
+# Páginas SEO por país
+/seguro-viaje/colombia-a-espana/    /colombia-espana.html               200
+/seguro-viaje/colombia-a-espana     /colombia-espana.html               200
+
+# Hub Visa Schengen
+/visa-schengen/                     /visa-schengen.html                 200
+/visa-schengen                      /visa-schengen.html                 200
+
+# HTTP → HTTPS
+http://viajerolatam.com/*           https://viajerolatam.com/:splat     301!
+http://www.viajerolatam.com/*       https://viajerolatam.com/:splat     301!
+https://www.viajerolatam.com/*      https://viajerolatam.com/:splat     301!
+
+# 404
+/*  /index.html  404

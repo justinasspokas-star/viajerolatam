@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ViajerosLatam — Compara seguros de viaje para latinoamericanos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0B1F3A;
+    --navy-mid: #1A3558;
+    --teal: #00C4A1;
+    --teal-dark: #009C7F;
+    --teal-glow: rgba(0,196,161,0.15);
+    --sand: #F5F0E8;
+    --sand-dark: #EAE3D5;
+    --white: #FFFFFF;
+    --text-dark: #0B1F3A;
+    --text-mid: #4A647E;
+    --text-light: #8FA4B8;
+    --font-display: 'DM Serif Display', Georgia, serif;
+    --font-body: 'Plus Jakarta Sans', sans-serif;
+    --r-sm: 10px;
+    --r-md: 16px;
+    --r-lg: 24px;
+    --r-xl: 32px;
+    --shadow-card: 0 4px 24px rgba(11,31,58,0.08);
+    --shadow-btn: 0 4px 20px rgba(0,196,161,0.35);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--white);
+    color: var(--text-dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ───── NAV ───── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 5%;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(11,31,58,0.06);
+  }
+  .logo {
+    display: flex; align-items: center; gap: 8px;
+    font-family: var(--font-display); font-size: 22px; color: var(--navy);
+    text-decoration: none;
+  }
+  .logo-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--teal); display: inline-block; }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-links a { font-size: 14px; font-weight: 500; color: var(--text-mid); text-decoration: none; transition: color .2s; }
+  .nav-links a:hover { color: var(--navy); }
+  .nav-cta {
+    background: var(--navy); color: var(--white) !important;
+    padding: 9px 20px; border-radius: 50px; font-size: 14px !important; font-weight: 600 !important;
+    transition: background .2s, transform .15s !important;
+  }
+  .nav-cta:hover { background: var(--navy-mid) !important; transform: translateY(-1px); }
+
+  /* ───── HERO ───── */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(160deg, var(--navy) 0%, var(--navy-mid) 60%, #1E4876 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center;
+    padding: 120px 5% 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 20% 80%, rgba(0,196,161,0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 80% 20%, rgba(0,196,161,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(0,196,161,0.15); border: 1px solid rgba(0,196,161,0.3);
+    border-radius: 50px; padding: 6px 16px;
+    font-size: 13px; font-weight: 600; color: var(--teal);
+    letter-spacing: 0.04em; margin-bottom: 28px;
+    animation: fadeUp .6s ease both;
+  }
+  .eyebrow-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal); }
+  .hero h1 {
+    font-family: var(--font-display); font-size: clamp(40px, 6vw, 72px);
+    color: var(--white); line-height: 1.1; max-width: 780px;
+    margin-bottom: 24px;
+    animation: fadeUp .6s .1s ease both;
+  }
+  .hero h1 em { color: var(--teal); font-style: italic; }
+  .hero-sub {
+    font-size: clamp(16px, 2vw, 19px); color: rgba(255,255,255,0.65);
+    max-width: 540px; margin-bottom: 48px; line-height: 1.65;
+    animation: fadeUp .6s .2s ease both;
+  }
+
+  /* ───── SEARCH WIDGET ───── */
+  .search-box {
+    background: var(--white); border-radius: var(--r-xl);
+    padding: 10px; width: 100%; max-width: 720px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+    display: grid; grid-template-columns: 1fr 1fr 1fr auto;
+    gap: 4px; align-items: center;
+    animation: fadeUp .6s .3s ease both;
+  }
+  .sb-field {
+    display: flex; flex-direction: column;
+    padding: 10px 16px; border-radius: var(--r-md);
+    cursor: pointer; transition: background .15s;
+  }
+  .sb-field:hover { background: var(--sand); }
+  .sb-label { font-size: 10px; font-weight: 600; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+  .sb-value { font-size: 15px; font-weight: 600; color: var(--text-dark); }
+  .sb-divider { width: 1px; height: 36px; background: var(--sand-dark); }
+  .sb-btn {
+    background: var(--teal); color: var(--white);
+    border: none; border-radius: var(--r-md);
+    padding: 16px 28px; font-family: var(--font-body); font-size: 15px; font-weight: 600;
+    cursor: pointer; display: flex; align-items: center; gap: 8px;
+    transition: background .2s, transform .15s, box-shadow .2s;
+    white-space: nowrap;
+  }
+  .sb-btn:hover { background: var(--teal-dark); transform: translateY(-2px); box-shadow: var(--shadow-btn); }
+  .sb-btn svg { width: 16px; height: 16px; }
+
+  .hero-trust {
+    display: flex; align-items: center; gap: 24px; margin-top: 32px;
+    animation: fadeUp .6s .4s ease both;
+  }
+  .trust-item { display: flex; align-items: center; gap: 7px; font-size: 13px; color: rgba(255,255,255,0.55); }
+  .trust-icon { color: var(--teal); font-size: 14px; }
+
+  /* ───── PAÍSES BADGE STRIP ───── */
+  .countries-strip {
+    background: var(--sand); padding: 20px 5%;
+    display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap;
+  }
+  .country-badge {
+    display: flex; align-items: center; gap: 6px;
+    background: var(--white); border: 1px solid var(--sand-dark);
+    border-radius: 50px; padding: 7px 14px;
+    font-size: 13px; font-weight: 500; color: var(--text-mid);
+  }
+  .country-badge span { font-size: 16px; }
+  .strip-label { font-size: 13px; font-weight: 600; color: var(--text-light); letter-spacing: 0.04em; margin-right: 4px; }
+
+  /* ───── SECTIONS ───── */
+  section { padding: 96px 5%; }
+  .section-eyebrow {
+    font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--teal-dark); margin-bottom: 14px;
+  }
+  .section-title {
+    font-family: var(--font-display); font-size: clamp(32px, 4vw, 48px);
+    color: var(--navy); line-height: 1.15; max-width: 600px;
+  }
+  .section-title em { font-style: italic; color: var(--teal-dark); }
+
+  /* ───── HOW IT WORKS ───── */
+  .how { background: var(--white); }
+  .how-header { text-align: center; margin-bottom: 64px; }
+  .how-header .section-title { margin: 0 auto 16px; }
+  .how-header p { color: var(--text-mid); font-size: 17px; max-width: 500px; margin: 0 auto; }
+  .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; max-width: 960px; margin: 0 auto; }
+  .step-card {
+    background: var(--sand); border-radius: var(--r-lg);
+    padding: 36px 32px; position: relative; overflow: hidden;
+    transition: transform .25s, box-shadow .25s;
+  }
+  .step-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-card); }
+  .step-num {
+    font-family: var(--font-display); font-size: 80px; color: rgba(11,31,58,0.06);
+    position: absolute; top: -12px; right: 20px; line-height: 1; pointer-events: none;
+  }
+  .step-icon {
+    width: 48px; height: 48px; border-radius: 14px;
+    background: var(--navy); display: flex; align-items: center; justify-content: center;
+    margin-bottom: 20px;
+  }
+  .step-icon svg { width: 22px; height: 22px; color: var(--teal); fill: none; stroke: currentColor; stroke-width: 1.8; }
+  .step-card h3 { font-size: 18px; font-weight: 600; color: var(--navy); margin-bottom: 10px; }
+  .step-card p { font-size: 14px; color: var(--text-mid); line-height: 1.65; }
+
+  /* ───── ASEGURADORAS ───── */
+  .partners { background: var(--navy); padding: 72px 5%; }
+  .partners-inner { max-width: 1100px; margin: 0 auto; }
+  .partners-top { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 48px; }
+  .partners .section-eyebrow { color: var(--teal); }
+  .partners .section-title { color: var(--white); }
+  .partners-sub { font-size: 15px; color: rgba(255,255,255,0.5); max-width: 280px; text-align: right; line-height: 1.6; }
+  .insurers-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .insurer-card {
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--r-md); padding: 24px 20px;
+    display: flex; flex-direction: column; gap: 12px;
+    transition: background .2s, border-color .2s, transform .2s;
+    cursor: pointer;
+  }
+  .insurer-card:hover { background: rgba(255,255,255,0.1); border-color: rgba(0,196,161,0.4); transform: translateY(-3px); }
+  .insurer-logo {
+    width: 40px; height: 40px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; font-weight: 700; font-family: var(--font-display);
+  }
+  .insurer-name { font-size: 15px; font-weight: 600; color: var(--white); }
+  .insurer-tag { font-size: 11px; color: rgba(255,255,255,0.45); }
+  .insurer-stars { color: var(--teal); font-size: 12px; letter-spacing: 1px; }
+
+  /* ───── PARA QUIEN ───── */
+  .audience { background: var(--sand); }
+  .audience-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: center; }
+  .audience-left .section-title { margin-bottom: 20px; }
+  .audience-left p { color: var(--text-mid); font-size: 16px; line-height: 1.7; margin-bottom: 32px; }
+  .audience-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag {
+    display: flex; align-items: center; gap: 6px;
+    background: var(--white); border: 1px solid var(--sand-dark);
+    border-radius: 50px; padding: 8px 16px;
+    font-size: 13px; font-weight: 500; color: var(--text-dark);
+  }
+  .tag-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--teal); }
+  .card-stack { position: relative; height: 380px; }
+  .profile-card {
+    position: absolute; background: var(--white);
+    border-radius: var(--r-lg); padding: 24px 26px;
+    box-shadow: var(--shadow-card);
+    width: 280px;
+  }
+  .profile-card.card-1 { top: 0; left: 0; }
+  .profile-card.card-2 { top: 80px; right: 0; }
+  .profile-card.card-3 { bottom: 0; left: 40px; }
+  .profile-avatar {
+    width: 44px; height: 44px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; margin-bottom: 14px;
+  }
+  .profile-card h4 { font-size: 15px; font-weight: 600; color: var(--navy); margin-bottom: 3px; }
+  .profile-card .sub { font-size: 12px; color: var(--text-light); margin-bottom: 12px; }
+  .profile-card .saving {
+    font-size: 13px; color: var(--teal-dark); font-weight: 600;
+    background: rgba(0,196,161,0.1); border-radius: 8px; padding: 8px 12px;
+    display: flex; align-items: center; gap: 6px;
+  }
+
+  /* ───── VISA SECTION ───── */
+  .visa-section {
+    background: var(--navy);
+    padding: 72px 5%;
+  }
+  .visa-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+  .visa-content .section-eyebrow { color: var(--teal); }
+  .visa-content .section-title { color: var(--white); margin-bottom: 20px; }
+  .visa-content p { color: rgba(255,255,255,0.6); font-size: 16px; line-height: 1.7; margin-bottom: 32px; }
+  .visa-reqs { display: flex; flex-direction: column; gap: 14px; }
+  .req-item {
+    display: flex; align-items: flex-start; gap: 14px;
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--r-md); padding: 16px 18px;
+  }
+  .req-icon { width: 32px; height: 32px; border-radius: 8px; background: var(--teal-glow); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .req-icon svg { width: 16px; height: 16px; color: var(--teal); fill: none; stroke: currentColor; stroke-width: 2; }
+  .req-text h5 { font-size: 14px; font-weight: 600; color: var(--white); margin-bottom: 3px; }
+  .req-text p { font-size: 12px; color: rgba(255,255,255,0.45); }
+  .visa-cta-box {
+    background: rgba(0,196,161,0.1); border: 1px solid rgba(0,196,161,0.25);
+    border-radius: var(--r-lg); padding: 36px;
+    display: flex; flex-direction: column; align-items: flex-start; gap: 20px;
+  }
+  .visa-cta-box h3 { font-family: var(--font-display); font-size: 26px; color: var(--white); line-height: 1.25; }
+  .visa-cta-box p { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.6; }
+  .btn-teal {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--teal); color: var(--navy);
+    padding: 14px 28px; border-radius: 50px;
+    font-weight: 700; font-size: 15px; text-decoration: none;
+    transition: background .2s, transform .15s, box-shadow .2s;
+  }
+  .btn-teal:hover { background: #00d9b3; transform: translateY(-2px); box-shadow: var(--shadow-btn); }
+
+  /* ───── TESTIMONIOS ───── */
+  .testimonials { background: var(--white); }
+  .test-header { text-align: center; margin-bottom: 56px; }
+  .test-header .section-title { margin: 0 auto 12px; }
+  .test-header p { color: var(--text-mid); font-size: 16px; }
+  .test-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1100px; margin: 0 auto; }
+  .test-card {
+    border: 1px solid var(--sand-dark); border-radius: var(--r-lg);
+    padding: 28px; transition: box-shadow .25s, border-color .25s;
+  }
+  .test-card:hover { box-shadow: var(--shadow-card); border-color: rgba(0,196,161,0.3); }
+  .test-stars { color: #F5A623; font-size: 13px; letter-spacing: 1px; margin-bottom: 14px; }
+  .test-text { font-size: 15px; color: var(--text-mid); line-height: 1.7; margin-bottom: 20px; font-style: italic; }
+  .test-author { display: flex; align-items: center; gap: 12px; }
+  .author-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; font-weight: 700; font-family: var(--font-display);
+    flex-shrink: 0;
+  }
+  .author-name { font-size: 14px; font-weight: 600; color: var(--navy); }
+  .author-country { font-size: 12px; color: var(--text-light); }
+
+  /* ───── STATS ───── */
+  .stats-section { background: var(--sand); padding: 72px 5%; }
+  .stats-inner { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; text-align: center; }
+  .stat-block {}
+  .stat-num { font-family: var(--font-display); font-size: 48px; color: var(--navy); line-height: 1; margin-bottom: 8px; }
+  .stat-num span { color: var(--teal); }
+  .stat-desc { font-size: 14px; color: var(--text-mid); line-height: 1.5; }
+
+  /* ───── FAQ ───── */
+  .faq { background: var(--white); }
+  .faq-inner { max-width: 720px; margin: 0 auto; }
+  .faq-header { text-align: center; margin-bottom: 48px; }
+  .faq-item { border-bottom: 1px solid var(--sand-dark); }
+  .faq-q {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 22px 0; cursor: pointer;
+    font-size: 16px; font-weight: 600; color: var(--navy);
+    transition: color .2s;
+    list-style: none;
+  }
+  .faq-q:hover { color: var(--teal-dark); }
+  .faq-q::marker, .faq-q::-webkit-details-marker { display: none; }
+  .faq-icon { width: 24px; height: 24px; border-radius: 50%; border: 1.5px solid var(--sand-dark); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 16px; color: var(--text-mid); }
+  details[open] .faq-icon { border-color: var(--teal); color: var(--teal); }
+  .faq-a { padding: 0 0 20px; font-size: 15px; color: var(--text-mid); line-height: 1.75; }
+
+  /* ───── CTA FINAL ───── */
+  .final-cta {
+    background: linear-gradient(135deg, var(--navy) 0%, #0F2D50 100%);
+    padding: 100px 5%; text-align: center; position: relative; overflow: hidden;
+  }
+  .final-cta::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 100%, rgba(0,196,161,0.15) 0%, transparent 70%);
+  }
+  .final-cta h2 { font-family: var(--font-display); font-size: clamp(32px, 5vw, 56px); color: var(--white); line-height: 1.15; margin-bottom: 20px; position: relative; }
+  .final-cta h2 em { color: var(--teal); font-style: italic; }
+  .final-cta p { font-size: 18px; color: rgba(255,255,255,0.6); max-width: 480px; margin: 0 auto 40px; line-height: 1.6; position: relative; }
+  .cta-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; position: relative; }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 1.5px solid rgba(255,255,255,0.3); color: var(--white);
+    padding: 14px 28px; border-radius: 50px;
+    font-weight: 600; font-size: 15px; text-decoration: none;
+    transition: border-color .2s, background .2s;
+  }
+  .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.08); }
+
+  /* ───── FOOTER ───── */
+  footer {
+    background: var(--navy); border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 56px 5% 32px;
+  }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+  .footer-brand .logo { font-size: 20px; color: var(--white); text-decoration: none; margin-bottom: 14px; display: flex; }
+  .footer-brand p { font-size: 14px; color: rgba(255,255,255,0.4); line-height: 1.7; max-width: 260px; margin-bottom: 20px; }
+  .footer-social { display: flex; gap: 10px; }
+  .social-btn {
+    width: 36px; height: 36px; border-radius: 10px;
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.1);
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.5); font-size: 13px; font-weight: 700; text-decoration: none;
+    transition: background .2s, color .2s;
+  }
+  .social-btn:hover { background: rgba(0,196,161,0.2); color: var(--teal); }
+  .footer-col h4 { font-size: 13px; font-weight: 700; color: var(--white); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 16px; }
+  .footer-col a { display: block; font-size: 14px; color: rgba(255,255,255,0.45); text-decoration: none; margin-bottom: 10px; transition: color .2s; }
+  .footer-col a:hover { color: var(--teal); }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.07); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .footer-bottom p { font-size: 12px; color: rgba(255,255,255,0.3); }
+
+  /* ───── ANIMATIONS ───── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .reveal {
+    opacity: 0; transform: translateY(20px);
+    transition: opacity .6s ease, transform .6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ───── RESPONSIVE ───── */
+  @media (max-width: 900px) {
+    .search-box { grid-template-columns: 1fr 1fr; }
+    .sb-btn { grid-column: span 2; justify-content: center; }
+    .steps-grid, .insurers-grid, .test-grid { grid-template-columns: 1fr 1fr; }
+    .audience-inner, .visa-inner { grid-template-columns: 1fr; }
+    .card-stack { display: none; }
+    .stats-inner { grid-template-columns: 1fr 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .partners-top { flex-direction: column; gap: 16px; align-items: flex-start; }
+    .partners-sub { text-align: left; }
+  }
+  @media (max-width: 600px) {
+    .steps-grid, .insurers-grid, .test-grid, .stats-inner { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .hero h1 { font-size: 36px; }
+    .search-box { grid-template-columns: 1fr; }
+    .sb-btn { grid-column: 1; }
+    .sb-divider { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">
+    <span class="logo-dot"></span> ViajerosLatam
+  </a>
+  <div class="nav-links">
+    <a href="#como-funciona">¿Cómo funciona?</a>
+    <a href="#aseguradoras">Aseguradoras</a>
+    <a href="#visa">Visa Schengen</a>
+    <a href="#faq">FAQ</a>
+    <a href="#comparar" class="nav-cta">Comparar ahora</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="comparar">
+  <div class="hero-eyebrow">
+    <span class="eyebrow-dot"></span>
+    Comparador #1 para latinoamericanos que viajan a Europa y EEUU
+  </div>
+  <h1>Tu viaje, <em>protegido</em><br>al mejor precio</h1>
+  <p class="hero-sub">Compara seguros de viaje de las mejores aseguradoras. Aprobados para visa Schengen. En español, para ti.</p>
+
+  <div class="search-box">
+    <div class="sb-field">
+      <span class="sb-label">Voy desde</span>
+      <span class="sb-value">Colombia 🇨🇴</span>
+    </div>
+    <div class="sb-divider"></div>
+    <div class="sb-field">
+      <span class="sb-label">Destino</span>
+      <span class="sb-value">España / Schengen</span>
+    </div>
+    <div class="sb-divider"></div>
+    <div class="sb-field">
+      <span class="sb-label">Duración</span>
+      <span class="sb-value">15 días</span>
+    </div>
+    <button class="sb-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      Comparar gratis
+    </button>
+  </div>
+
+  <div class="hero-trust">
+    <div class="trust-item"><span class="trust-icon">✓</span> Sin coste para ti</div>
+    <div class="trust-item"><span class="trust-icon">✓</span> Válido para visa Schengen</div>
+    <div class="trust-item"><span class="trust-icon">✓</span> Soporte en español 24/7</div>
+    <div class="trust-item"><span class="trust-icon">✓</span> +50.000 viajeros protegidos</div>
+  </div>
+</section>
+
+<!-- PAÍS STRIP -->
+<div class="countries-strip">
+  <span class="strip-label">Viajeros de</span>
+  <div class="country-badge"><span>🇨🇴</span> Colombia</div>
+  <div class="country-badge"><span>🇲🇽</span> México</div>
+  <div class="country-badge"><span>🇦🇷</span> Argentina</div>
+  <div class="country-badge"><span>🇵🇪</span> Perú</div>
+  <div class="country-badge"><span>🇨🇱</span> Chile</div>
+  <div class="country-badge"><span>🇻🇪</span> Venezuela</div>
+  <div class="country-badge"><span>🇪🇨</span> Ecuador</div>
+  <div class="country-badge"><span>🇧🇴</span> Bolivia</div>
+  <div class="country-badge"><span>🇩🇴</span> R. Dominicana</div>
+</div>
+
+<!-- STATS -->
+<section class="stats-section">
+  <div class="stats-inner">
+    <div class="stat-block reveal">
+      <div class="stat-num">50<span>K+</span></div>
+      <div class="stat-desc">Viajeros latinoamericanos protegidos</div>
+    </div>
+    <div class="stat-block reveal">
+      <div class="stat-num">12<span>+</span></div>
+      <div class="stat-desc">Aseguradoras comparadas en tiempo real</div>
+    </div>
+    <div class="stat-block reveal">
+      <div class="stat-num">4.9<span>★</span></div>
+      <div class="stat-desc">Valoración media de nuestros usuarios</div>
+    </div>
+    <div class="stat-block reveal">
+      <div class="stat-num">2<span>min</span></div>
+      <div class="stat-desc">Para tener tu seguro contratado</div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="como-funciona">
+  <div class="how-header reveal">
+    <div class="section-eyebrow">Cómo funciona</div>
+    <h2 class="section-title">Simple, rápido y <em>transparente</em></h2>
+    <p>Sin formularios interminables. Sin letra pequeña. Solo el mejor seguro para tu viaje.</p>
+  </div>
+  <div class="steps-grid">
+    <div class="step-card reveal">
+      <div class="step-num">01</div>
+      <div class="step-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+      </div>
+      <h3>Cuéntanos tu viaje</h3>
+      <p>País de origen, destino, fechas y número de viajeros. Son menos de 30 segundos.</p>
+    </div>
+    <div class="step-card reveal">
+      <div class="step-num">02</div>
+      <div class="step-icon">
+        <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+      </div>
+      <h3>Compara al instante</h3>
+      <p>Te mostramos las mejores opciones ordenadas por precio, cobertura y valoración. Filtros claros, sin trampa.</p>
+    </div>
+    <div class="step-card reveal">
+      <div class="step-num">03</div>
+      <div class="step-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <h3>Viaja protegido</h3>
+      <p>Contrata en minutos. Recibes tu póliza al email. Válida para visa Schengen y ESTA de EEUU.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ASEGURADORAS -->
+<section class="partners" id="aseguradoras">
+  <div class="partners-inner">
+    <div class="partners-top reveal">
+      <div>
+        <div class="section-eyebrow">Aseguradoras</div>
+        <h2 class="section-title">Las mejores del mercado,<br>en <em>un solo lugar</em></h2>
+      </div>
+      <p class="partners-sub">Comparamos todas para que no tengas que hacerlo tú. Solo aseguradoras verificadas con cobertura real.</p>
+    </div>
+    <div class="insurers-grid">
+      <div class="insurer-card reveal">
+        <div class="insurer-logo" style="background:rgba(0,196,161,0.15); color:var(--teal); font-size:14px;">HM</div>
+        <div>
+          <div class="insurer-name">Heymondo</div>
+          <div class="insurer-tag">Cobertura ilimitada · App 24/7</div>
+        </div>
+        <div class="insurer-stars">★★★★★</div>
+      </div>
+      <div class="insurer-card reveal">
+        <div class="insurer-logo" style="background:rgba(255,255,255,0.12); color:var(--white); font-size:14px;">IA</div>
+        <div>
+          <div class="insurer-name">IATI Seguros</div>
+          <div class="insurer-tag">Sin franquicia · Gastos ilimitados</div>
+        </div>
+        <div class="insurer-stars">★★★★★</div>
+      </div>
+      <div class="insurer-card reveal">
+        <div class="insurer-logo" style="background:rgba(100,160,255,0.2); color:#7EB5FF; font-size:13px;">IM</div>
+        <div>
+          <div class="insurer-name">Intermundial</div>
+          <div class="insurer-tag">Mejor precio · Multiviaje anual</div>
+        </div>
+        <div class="insurer-stars">★★★★☆</div>
+      </div>
+      <div class="insurer-card reveal">
+        <div class="insurer-logo" style="background:rgba(255,200,100,0.15); color:#F5C84A; font-size:13px;">AX</div>
+        <div>
+          <div class="insurer-name">AXA Travel</div>
+          <div class="insurer-tag">Red global · Asistencia premium</div>
+        </div>
+        <div class="insurer-stars">★★★★☆</div>
+      </div>
+      <div class="insurer-card reveal">
+        <div class="insurer-logo" style="background:rgba(200,100,255,0.15); color:#C878FF; font-size:13px;">CK</div>
+        <div>
+          <div class="insurer-name">Chapka</div>
+          <div class="insurer-tag">Deportes de aventura · Mochilero</div>
+        </div>
+        <div class="insurer-stars">★★★★☆</div>
+      </div>
+      <div class="insurer-card reveal">
+        <div class="insurer-logo" style="background:rgba(255,100,100,0.15); color:#FF8080; font-size:13px;">AL</div>
+        <div>
+          <div class="insurer-name">Allianz Travel</div>
+          <div class="insurer-tag">Marca global · Amplia red</div>
+        </div>
+        <div class="insurer-stars">★★★☆☆</div>
+      </div>
+      <div class="insurer-card reveal">
+        <div class="insurer-logo" style="background:rgba(0,196,161,0.1); color:var(--teal); font-size:13px;">SW</div>
+        <div>
+          <div class="insurer-name">SafetyWing</div>
+          <div class="insurer-tag">Nómadas digitales · Mensual</div>
+        </div>
+        <div class="insurer-stars">★★★★☆</div>
+      </div>
+      <div class="insurer-card reveal" style="border-style:dashed; cursor:default;">
+        <div class="insurer-logo" style="background:rgba(255,255,255,0.05); color:rgba(255,255,255,0.3); font-size:22px;">+</div>
+        <div>
+          <div class="insurer-name" style="color:rgba(255,255,255,0.4);">Y 5 más</div>
+          <div class="insurer-tag">Comparamos continuamente</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARA QUIÉN -->
+<section class="audience">
+  <div class="audience-inner">
+    <div class="audience-left reveal">
+      <div class="section-eyebrow">Para quién</div>
+      <h2 class="section-title">Hecho para el viajero <em>latinoamericano</em></h2>
+      <p>Entendemos tus necesidades: visa Schengen, cobertura médica en EEUU, repatriación, atención en español. No somos un comparador genérico — somos tu comparador.</p>
+      <div class="audience-tags">
+        <div class="tag"><span class="tag-dot"></span>Turistas a Europa</div>
+        <div class="tag"><span class="tag-dot"></span>Estudiantes Erasmus+</div>
+        <div class="tag"><span class="tag-dot"></span>Nómadas digitales</div>
+        <div class="tag"><span class="tag-dot"></span>Viajeros a EEUU / Canadá</div>
+        <div class="tag"><span class="tag-dot"></span>Familias completas</div>
+        <div class="tag"><span class="tag-dot"></span>Visado Schengen obligado</div>
+        <div class="tag"><span class="tag-dot"></span>Mochileros</div>
+        <div class="tag"><span class="tag-dot"></span>Viajes de negocios</div>
+      </div>
+    </div>
+    <div class="card-stack reveal">
+      <div class="profile-card card-1">
+        <div class="profile-avatar" style="background:#E8F4FD; font-size:22px;">👩‍💼</div>
+        <h4>Camila Rojas</h4>
+        <p class="sub">🇨🇴 Bogotá → España · 21 días</p>
+        <div class="saving">✓ Visa Schengen aprobada con seguro de €32</div>
+      </div>
+      <div class="profile-card card-2">
+        <div class="profile-avatar" style="background:#FEF3E2; font-size:22px;">👨‍💻</div>
+        <h4>Diego Méndez</h4>
+        <p class="sub">🇲🇽 CDMX → Nueva York · 10 días</p>
+        <div class="saving">✓ Cobertura médica ilimitada por $48</div>
+      </div>
+      <div class="profile-card card-3">
+        <div class="profile-avatar" style="background:#E8FDF4; font-size:22px;">👨‍👩‍👧</div>
+        <h4>Familia Torres</h4>
+        <p class="sub">🇦🇷 Buenos Aires → Europa · 30 días</p>
+        <div class="saving">✓ Ahorro de €87 vs. contratar directo</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VISA SECTION -->
+<section class="visa-section" id="visa">
+  <div class="visa-inner">
+    <div class="visa-content reveal">
+      <div class="section-eyebrow">Visa Schengen</div>
+      <h2 class="section-title">Lo que exige el consulado, <em>sin sorpresas</em></h2>
+      <p>Para obtener tu visa Schengen necesitas un seguro específico. Te explicamos exactamente qué necesitas y te mostramos solo opciones que cumplen los requisitos.</p>
+      <div class="visa-reqs">
+        <div class="req-item">
+          <div class="req-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <div class="req-text">
+            <h5>Cobertura médica mínima 30.000 €</h5>
+            <p>Gastos médicos y hospitalarios en todo el espacio Schengen</p>
+          </div>
+        </div>
+        <div class="req-item">
+          <div class="req-icon"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+          <div class="req-text">
+            <h5>Repatriación incluida y sin límite</h5>
+            <p>Traslado médico de emergencia y repatriación de restos</p>
+          </div>
+        </div>
+        <div class="req-item">
+          <div class="req-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+          <div class="req-text">
+            <h5>Sin franquicia (cero deducible)</h5>
+            <p>El seguro cubre desde el primer euro, sin que tengas que pagar nada primero</p>
+          </div>
+        </div>
+        <div class="req-item">
+          <div class="req-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+          <div class="req-text">
+            <h5>Aseguradora con sede en Europa</h5>
+            <p>Requisito obligatorio del consulado — todos nuestros socios lo cumplen</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="visa-cta-box reveal">
+      <h3>¿Vas a solicitar<br>la visa Schengen?</h3>
+      <p>Te mostramos únicamente los seguros que cumplen al 100% los requisitos del consulado. Aprobados y usados por miles de latinoamericanos.</p>
+      <a href="#comparar" class="btn-teal">
+        Ver seguros para Schengen
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <div style="display:flex; gap:16px; padding-top:12px; border-top:1px solid rgba(255,255,255,0.1);">
+        <div style="font-size:13px; color:rgba(255,255,255,0.5);">✓ Bolivia · Cuba · Ecuador</div>
+        <div style="font-size:13px; color:rgba(255,255,255,0.5);">✓ R. Dominicana · Otros</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section class="testimonials">
+  <div class="test-header reveal">
+    <div class="section-eyebrow">Testimonios</div>
+    <h2 class="section-title">Lo que dicen nuestros viajeros</h2>
+    <p>Más de 50.000 latinoamericanos ya han comparado y contratado con ViajerosLatam</p>
+  </div>
+  <div class="test-grid">
+    <div class="test-card reveal">
+      <div class="test-stars">★★★★★</div>
+      <p class="test-text">"Necesitaba el seguro sí o sí para la visa. En 5 minutos comparé 8 opciones y elegí Heymondo. Me la aprobaron sin problema. Clarísimo todo."</p>
+      <div class="test-author">
+        <div class="author-avatar" style="background:#E8F4FD; color:#185FA5;">CR</div>
+        <div>
+          <div class="author-name">Carlos Ríos</div>
+          <div class="author-country">🇨🇴 Colombia → Alemania</div>
+        </div>
+      </div>
+    </div>
+    <div class="test-card reveal">
+      <div class="test-stars">★★★★★</div>
+      <p class="test-text">"Los de IATI me atendieron en español cuando tuve una urgencia en Barcelona. Sin burocracia, sin adelantar dinero. ViajerosLatam me salvó el viaje."</p>
+      <div class="test-author">
+        <div class="author-avatar" style="background:#FEF3E2; color:#854F0B;">MA</div>
+        <div>
+          <div class="author-name">María Alvarado</div>
+          <div class="author-country">🇲🇽 México → España</div>
+        </div>
+      </div>
+    </div>
+    <div class="test-card reveal">
+      <div class="test-stars">★★★★★</div>
+      <p class="test-text">"Viajé 30 días por Europa con toda la familia. La comparativa me mostró el seguro familiar más barato que cumplía el Schengen. Ahorré casi €100 vs. contratar directo."</p>
+      <div class="test-author">
+        <div class="author-avatar" style="background:#E8FDF4; color:#0F6E56;">JP</div>
+        <div>
+          <div class="author-name">Juan Paredes</div>
+          <div class="author-country">🇦🇷 Argentina → Europa</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="faq-inner">
+    <div class="faq-header reveal">
+      <div class="section-eyebrow">Preguntas frecuentes</div>
+      <h2 class="section-title">Todo lo que necesitas saber</h2>
+    </div>
+    <details class="faq-item reveal">
+      <summary class="faq-q">¿El comparador es gratuito? <span class="faq-icon">+</span></summary>
+      <p class="faq-a">Sí, completamente gratis para ti. Ganamos una pequeña comisión de las aseguradoras cuando contratas a través de nuestro sitio, pero esto no encarece el precio de tu póliza — es el mismo precio que si contrataras directamente, o incluso más barato gracias a nuestros descuentos negociados.</p>
+    </details>
+    <details class="faq-item reveal">
+      <summary class="faq-q">¿Los seguros son válidos para la visa Schengen? <span class="faq-icon">+</span></summary>
+      <p class="faq-a">Sí. Todos los seguros que marcamos con el sello "Válido Schengen" cumplen los cuatro requisitos del consulado: cobertura médica mínima de 30.000€, repatriación incluida, sin franquicia, y aseguradora con sede en Europa. Solo mostramos opciones aprobadas.</p>
+    </details>
+    <details class="faq-item reveal">
+      <summary class="faq-q">¿Puedo contratar si vivo fuera de España? <span class="faq-icon">+</span></summary>
+      <p class="faq-a">Absolutamente. ViajerosLatam está pensado específicamente para residentes en Latinoamérica que viajan a Europa o EEUU. Las aseguradoras que comparamos (Heymondo, IATI, Intermundial y otras) tienen productos específicos para residentes fuera de España, aunque con distintas tarifas.</p>
+    </details>
+    <details class="faq-item reveal">
+      <summary class="faq-q">¿Qué cubre un seguro de viaje a EEUU? <span class="faq-icon">+</span></summary>
+      <p class="faq-a">Para EEUU recomendamos siempre cobertura médica ilimitada o al menos 1.000.000€ — una hospitalización en Nueva York puede costar +$5.000 por día. También cubre cancelación de vuelos, pérdida de equipaje, retraso, y asistencia en carretera. Usamos tu destino para filtrarte automáticamente las pólizas adecuadas.</p>
+    </details>
+    <details class="faq-item reveal">
+      <summary class="faq-q">¿Cuánto tiempo tarda en llegar la póliza? <span class="faq-icon">+</span></summary>
+      <p class="faq-a">La póliza llega a tu email en menos de 2 minutos tras la contratación. Es un documento PDF válido que puedes presentar directamente al consulado o en el aeropuerto. Algunas aseguradoras también ofrecen app para tenerla siempre disponible en el móvil.</p>
+    </details>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="final-cta">
+  <h2>¿Listo para tu próximo <em>aventura</em>?</h2>
+  <p>Compara gratis en 2 minutos y viaja con la tranquilidad que mereces.</p>
+  <div class="cta-buttons">
+    <a href="#comparar" class="btn-teal">
+      Comparar seguros gratis
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+    <a href="#visa" class="btn-outline">
+      Seguro para visa Schengen
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#" class="logo" style="margin-bottom:14px; font-family:'DM Serif Display',serif;">
+        <span class="logo-dot"></span> ViajerosLatam
+      </a>
+      <p>El comparador de seguros de viaje pensado para latinoamericanos que viajan a Europa y Estados Unidos.</p>
+      <div class="footer-social">
+        <a href="#" class="social-btn">ig</a>
+        <a href="#" class="social-btn">tw</a>
+        <a href="#" class="social-btn">yt</a>
+        <a href="#" class="social-btn">fb</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Comparar</h4>
+      <a href="#">Seguro para España</a>
+      <a href="#">Seguro para Europa</a>
+      <a href="#">Seguro para EEUU</a>
+      <a href="#">Visa Schengen</a>
+      <a href="#">Seguro anual</a>
+    </div>
+    <div class="footer-col">
+      <h4>Por país</h4>
+      <a href="#">Colombia</a>
+      <a href="#">México</a>
+      <a href="#">Argentina</a>
+      <a href="#">Perú</a>
+      <a href="#">Venezuela</a>
+    </div>
+    <div class="footer-col">
+      <h4>Empresa</h4>
+      <a href="#">Sobre nosotros</a>
+      <a href="#">Blog de viajes</a>
+      <a href="#">Afiliados</a>
+      <a href="#">Contacto</a>
+      <a href="#">Aviso legal</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 ViajerosLatam. Todos los derechos reservados.</p>
+    <p>Comparador independiente · No somos aseguradora</p>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 60);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => observer.observe(el));
+
+  // FAQ icon toggle
+  document.querySelectorAll('details').forEach(d => {
+    d.addEventListener('toggle', () => {
+      const icon = d.querySelector('.faq-icon');
+      if (icon) icon.textContent = d.open ? '−' : '+';
+    });
+  });
+
+  // Nav scroll shadow
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    nav.style.boxShadow = window.scrollY > 20 ? '0 2px 20px rgba(11,31,58,0.1)' : 'none';
+  });
+</script>
+</body>
+</html>
