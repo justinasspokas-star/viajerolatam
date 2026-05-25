@@ -1,0 +1,36 @@
+# ViajerosLatam.com — robots.txt
+# https://viajerolatam.com/robots.txt
+
+User-agent: *
+Allow: /
+
+# No indexar páginas de resultados dinámicos (parámetros de búsqueda)
+Disallow: /resultados/?*
+Disallow: /*?q=*
+Disallow: /*?origen=*
+Disallow: /*?destino=*
+
+# No indexar páginas de administración (cuando existan)
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /api/
+
+# Crawl-delay para no sobrecargar el servidor
+Crawl-delay: 1
+
+# Sitemap
+Sitemap: https://viajerolatam.com/sitemap.xml
+
+# Google AdsBot (para campañas de Ads)
+User-agent: AdsBot-Google
+Allow: /
+
+# Bots de análisis de competencia — bloquear
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+User-agent: MJ12bot
+Disallow: /
