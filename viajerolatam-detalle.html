@@ -134,14 +134,17 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 
-/* ViajeroLatam logo limpio: transparente, sin fondo negro ni efectos raros */
+/* ViajeroLatam logo — transparente y natural */
 .logo{display:inline-flex;align-items:center;text-decoration:none;line-height:0;flex-shrink:0}
-.logo-img{display:block;width:auto;object-fit:contain;background:transparent!important;mix-blend-mode:normal!important;filter:none!important;box-shadow:none!important}
+.logo-img{display:block;width:auto;object-fit:contain;background:transparent!important!important;filter:none!important;box-shadow:none!important}
 .logo-img-header{height:58px;max-width:300px}
 .logo-img-footer{height:54px;max-width:280px}
 nav .logo img.logo-img-header{height:58px;width:auto}
-@media(max-width:700px){.logo-img-header{height:44px;max-width:220px}.logo-img-footer{height:44px;max-width:220px}nav .logo img.logo-img-header{height:44px}}
-
+@media(max-width:700px){
+  .logo-img-header{height:44px;max-width:220px}
+  .logo-img-footer{height:44px;max-width:220px}
+  nav .logo img.logo-img-header{height:44px}
+}
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -165,7 +168,7 @@ html{scroll-behavior:smooth}
 body{font-family:var(--font-b);background:var(--bg);color:var(--text-dark);line-height:1.6}
 
 /* ── NAV ── */
-nav{background:var(--navy);min-min-height:68px;display:flex;align-items:center;justify-content:space-between;padding: 0 5%;position:sticky;top:0;z-index:200}
+nav{background:var(--navy);min-height:68px;display:flex;align-items:center;justify-content:space-between;padding: 0 5%;position:sticky;top:0;z-index:200}
 .logo{display:flex;align-items:center;text-decoration:none;display:flex;align-items:center;gap:7px}
 .logo-dot{width:8px;height:8px;border-radius:50%;background:var(--teal)}
 .breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,0.45)}
@@ -345,7 +348,7 @@ details[open] .faq-arrow{border-color:var(--teal);color:var(--teal)}
 
 <!-- NAV -->
 <nav>
-  <a href="/" class="logo"><img src="/logo.png" alt="ViajeroLatam — Comparador de seguros de viaje para latinoamericanos" class="logo-img logo-img-header"></a>
+  <a href="/" class="logo"><img src="/logo.png" alt="ViajerosLatam — Comparador de seguros de viaje para latinoamericanos" style="height:54px;width:auto;display:block"></a>
   <div class="breadcrumb">
     <a href="/">Inicio</a><span>/</span>
     <a href="/resultados/">Resultados</a><span>/</span>
