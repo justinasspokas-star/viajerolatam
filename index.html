@@ -207,19 +207,28 @@ nav .logo img.logo-img-header{height:58px;width:auto}
   /* ───── HERO ───── */
   .hero {
     min-height: 100vh;
-    background: linear-gradient(160deg, var(--navy) 0%, var(--navy-mid) 60%, #1E4876 100%);
+    background:
+      linear-gradient(135deg, rgba(6,18,38,0.88) 0%, rgba(8,28,58,0.82) 55%, rgba(11,41,79,0.84) 100%),
+      url('wide_clean_modern_website_landing_page_hero_scree.png') center center / cover no-repeat;
     display: flex; flex-direction: column; align-items: center; justify-content: center;
     text-align: center;
     padding: 120px 5% 80px;
     position: relative; overflow: hidden;
+    isolation: isolate;
   }
   .hero::before {
     content: '';
     position: absolute; inset: 0;
     background:
-      radial-gradient(ellipse 60% 50% at 20% 80%, rgba(0,196,161,0.12) 0%, transparent 70%),
-      radial-gradient(ellipse 40% 40% at 80% 20%, rgba(0,196,161,0.08) 0%, transparent 70%);
+      radial-gradient(ellipse 60% 50% at 18% 82%, rgba(0,196,161,0.18) 0%, transparent 72%),
+      radial-gradient(ellipse 42% 40% at 85% 18%, rgba(0,196,161,0.12) 0%, transparent 72%),
+      radial-gradient(ellipse 34% 28% at 50% 12%, rgba(120,200,255,0.10) 0%, transparent 75%);
     pointer-events: none;
+    z-index: 0;
+  }
+  .hero > * {
+    position: relative;
+    z-index: 1;
   }
   .hero-eyebrow {
     display: inline-flex; align-items: center; gap: 8px;
