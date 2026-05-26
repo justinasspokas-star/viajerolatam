@@ -14,6 +14,219 @@
 nav .links a, .nav-links a, .nav-menu a{text-decoration:none}
 
 *{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;color:#0B1F3A;line-height:1.65}nav{display:flex;justify-content:space-between;align-items:center;background:#0B1F3A;padding:10px 5%}nav img{height:52px}nav a{color:white;text-decoration:none;margin-left:18px;font-weight:700}.hero{background:linear-gradient(160deg,#0B1F3A,#1A3558);color:white;text-align:center;padding:90px 5%}h1{font-size:clamp(38px,6vw,68px);line-height:1.1;margin:12px 0}h1 em{color:#00C4A1}.hero p{max-width:680px;margin:0 auto 28px;color:rgba(255,255,255,.75);font-size:18px}.btn{display:inline-flex;background:#00C4A1;color:#0B1F3A!important;text-decoration:none;border-radius:999px;padding:15px 28px;font-weight:900}section{padding:65px 5%}.wrap{max-width:1050px;margin:0 auto}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:25px}.card{background:#F5F0E8;border:1px solid #EAE3D5;border-radius:22px;padding:24px}.note{background:rgba(0,196,161,.08);border:1px solid rgba(0,196,161,.25);border-radius:16px;padding:15px;margin-top:24px;color:#4A647E}footer{background:#0B1F3A;color:rgba(255,255,255,.55);padding:35px 5%;font-size:13px}@media(max-width:800px){.grid{grid-template-columns:1fr}nav .links{display:none}}
+
+/* =========================================================
+   ViajeroLatam — fondo azul animado sutil
+   Tema: viaje + seguro + Latinoamérica. Sin perder confianza.
+   ========================================================= */
+:root{
+  --vl-navy:#0B1F3A;
+  --vl-navy-2:#142B4B;
+  --vl-teal:#00C4A1;
+  --vl-mint:#75D8BC;
+  --vl-cream:#F5F0E8;
+}
+
+/* Aplica a heroes oscuros sin romper páginas existentes */
+.hero,
+header.hero,
+section.hero,
+main .hero,
+.results-hero,
+.page-hero{
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(0,196,161,.18), transparent 28%),
+    radial-gradient(circle at 78% 22%, rgba(117,216,188,.11), transparent 26%),
+    linear-gradient(160deg, var(--vl-navy) 0%, var(--vl-navy-2) 55%, #1E3A60 100%) !important;
+}
+
+/* Textura tipo mapa/topografía muy suave */
+.hero::before,
+header.hero::before,
+section.hero::before,
+.results-hero::before,
+.page-hero::before{
+  content:"";
+  position:absolute;
+  inset:-20%;
+  z-index:-2;
+  opacity:.20;
+  background-image:
+    linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px),
+    radial-gradient(circle at 28% 42%, transparent 0 13px, rgba(117,216,188,.16) 14px 15px, transparent 16px),
+    radial-gradient(circle at 70% 62%, transparent 0 18px, rgba(117,216,188,.12) 19px 20px, transparent 21px);
+  background-size:54px 54px,54px 54px,220px 220px,300px 300px;
+  transform:rotate(-7deg) scale(1.08);
+  animation:vlMapDrift 24s linear infinite;
+}
+
+/* Luces flotantes: sensación premium, no infantil */
+.hero::after,
+header.hero::after,
+section.hero::after,
+.results-hero::after,
+.page-hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 12% 76%, rgba(0,196,161,.22) 0 2px, transparent 3px),
+    radial-gradient(circle at 31% 22%, rgba(255,255,255,.22) 0 1px, transparent 2px),
+    radial-gradient(circle at 58% 70%, rgba(117,216,188,.24) 0 2px, transparent 3px),
+    radial-gradient(circle at 82% 35%, rgba(255,255,255,.18) 0 1px, transparent 2px),
+    linear-gradient(110deg, transparent 0 38%, rgba(255,255,255,.06) 48%, transparent 58%);
+  opacity:.75;
+  animation:vlSoftGlow 8s ease-in-out infinite alternate;
+}
+
+/* Pequeño avión/linea de ruta creado por CSS */
+.vl-route-layer{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:-1;
+  overflow:hidden;
+}
+.vl-route-layer::before{
+  content:"";
+  position:absolute;
+  width:360px;
+  height:120px;
+  left:-380px;
+  top:22%;
+  opacity:.42;
+  background:
+    radial-gradient(circle at 98% 50%, var(--vl-mint) 0 4px, transparent 5px),
+    linear-gradient(100deg, transparent 0 6%, rgba(117,216,188,.0) 6% 18%, rgba(117,216,188,.55) 19% 21%, rgba(117,216,188,.0) 22%),
+    radial-gradient(ellipse at 50% 50%, transparent 0 54%, rgba(117,216,188,.42) 55% 56%, transparent 57%);
+  border-radius:50%;
+  transform:rotate(-8deg);
+  animation:vlRouteFly 16s cubic-bezier(.45,.05,.25,1) infinite;
+}
+.vl-route-layer::after{
+  content:"";
+  position:absolute;
+  right:8%;
+  bottom:12%;
+  width:120px;
+  height:120px;
+  opacity:.16;
+  border:1px solid rgba(117,216,188,.55);
+  border-radius:28px;
+  transform:rotate(8deg);
+  background:
+    linear-gradient(135deg, transparent 44%, rgba(117,216,188,.28) 45% 47%, transparent 48%),
+    radial-gradient(circle at 50% 50%, rgba(117,216,188,.12), transparent 58%);
+  animation:vlShieldPulse 5.8s ease-in-out infinite;
+}
+
+/* Tarjetas y formularios con un poco más de vida */
+.search-card,
+.hero-card,
+.card,
+.result-card,
+.comparison-card,
+.insurer-card,
+form{
+  transition:transform .24s ease, box-shadow .24s ease, border-color .24s ease;
+}
+.search-card:hover,
+.hero-card:hover,
+.card:hover,
+.result-card:hover,
+.comparison-card:hover,
+.insurer-card:hover{
+  transform:translateY(-2px);
+  box-shadow:0 18px 42px rgba(11,31,58,.12);
+}
+
+/* Botones: micro-interacción premium */
+.btn,
+.btn-primary,
+.nav-cta,
+button,
+.pill-btn,
+a[class*="btn"]{
+  transition:transform .18s ease, box-shadow .18s ease, filter .18s ease;
+}
+.btn:hover,
+.btn-primary:hover,
+.nav-cta:hover,
+button:hover,
+.pill-btn:hover,
+a[class*="btn"]:hover{
+  transform:translateY(-1px);
+  filter:saturate(1.05);
+}
+
+/* Banderas/LatAm muy sutil con puntos de ruta */
+.vl-latam-dots{
+  position:absolute;
+  left:5%;
+  bottom:8%;
+  width:170px;
+  height:90px;
+  pointer-events:none;
+  opacity:.22;
+  z-index:-1;
+  background:
+    radial-gradient(circle at 18% 70%, var(--vl-mint) 0 3px, transparent 4px),
+    radial-gradient(circle at 34% 50%, var(--vl-mint) 0 2px, transparent 3px),
+    radial-gradient(circle at 52% 65%, var(--vl-mint) 0 3px, transparent 4px),
+    radial-gradient(circle at 70% 42%, var(--vl-mint) 0 2px, transparent 3px),
+    radial-gradient(circle at 86% 58%, var(--vl-mint) 0 3px, transparent 4px),
+    linear-gradient(120deg, transparent 0 14%, rgba(117,216,188,.55) 15% 16%, transparent 17% 32%, rgba(117,216,188,.45) 33% 34%, transparent 35% 55%, rgba(117,216,188,.45) 56% 57%, transparent 58%);
+  animation:vlDotsBreathe 6s ease-in-out infinite;
+}
+
+@keyframes vlMapDrift{
+  0%{transform:rotate(-7deg) scale(1.08) translate3d(0,0,0)}
+  100%{transform:rotate(-7deg) scale(1.08) translate3d(54px,54px,0)}
+}
+@keyframes vlSoftGlow{
+  0%{opacity:.55; transform:translateY(0)}
+  100%{opacity:.86; transform:translateY(-8px)}
+}
+@keyframes vlRouteFly{
+  0%{transform:translateX(0) translateY(20px) rotate(-8deg); opacity:0}
+  12%{opacity:.42}
+  65%{opacity:.42}
+  100%{transform:translateX(calc(100vw + 520px)) translateY(-80px) rotate(-8deg); opacity:0}
+}
+@keyframes vlShieldPulse{
+  0%,100%{transform:rotate(8deg) scale(.96); opacity:.12}
+  50%{transform:rotate(8deg) scale(1.04); opacity:.22}
+}
+@keyframes vlDotsBreathe{
+  0%,100%{opacity:.16; transform:translateY(0)}
+  50%{opacity:.30; transform:translateY(-4px)}
+}
+
+/* Respeta usuarios que prefieren menos movimiento */
+@media (prefers-reduced-motion: reduce){
+  .hero::before,
+  header.hero::before,
+  section.hero::before,
+  .results-hero::before,
+  .page-hero::before,
+  .hero::after,
+  header.hero::after,
+  section.hero::after,
+  .results-hero::after,
+  .page-hero::after,
+  .vl-route-layer::before,
+  .vl-route-layer::after,
+  .vl-latam-dots{
+    animation:none!important;
+  }
+}
+
 </style>
 <!-- Google Analytics 4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-SY86BP2PPT"></script>

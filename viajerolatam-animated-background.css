@@ -1,24 +1,3 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="google-site-verification" content="fnxi-_Liw22SOQakruhikIUAjmf3u6mdT79inMc9x9A">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ETIAS para colombianos y seguro de viaje | ViajeroLatam</title>
-<meta name="description" content="Qué deben saber los colombianos sobre ETIAS, viajes a Europa y seguro de viaje para zona Schengen.">
-<link rel="canonical" href="https://viajerolatam.com/blog/etias-colombianos/">
-<!-- Google Analytics 4 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-SY86BP2PPT"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-SY86BP2PPT');
-</script>
-
-<style>
-body{margin:0;font-family:Arial,sans-serif;color:#0B1F3A;line-height:1.7}nav{display:flex;align-items:center;justify-content:space-between;background:#fff;padding:10px 5%;border-bottom:1px solid #eee}nav img{height:54px}nav a{margin-left:18px;text-decoration:none;color:#0B1F3A;font-weight:700}article{max-width:860px;margin:0 auto;padding:70px 5%}h1{font-size:46px;line-height:1.1}.note{background:#F5F0E8;border-radius:18px;padding:18px;margin:24px 0}.btn{display:inline-flex;background:#00C4A1;color:#0B1F3A;text-decoration:none;padding:13px 22px;border-radius:999px;font-weight:800}
-@media(max-width:760px){nav .links{display:none}h1{font-size:34px}}
 
 /* =========================================================
    ViajeroLatam — fondo azul animado sutil
@@ -231,47 +210,3 @@ a[class*="btn"]:hover{
     animation:none!important;
   }
 }
-
-</style>
-</head>
-<body>
-<nav><a href="/"><img src="/logo.png" alt="ViajeroLatam"></a><div class="links">
-      <a href="/">Inicio</a>
-      <a href="/resultados/">Comparar</a>
-      <a href="/visa-schengen/">Visa Schengen</a>
-      <a href="/blog/">Artículos</a>
-</div></nav>
-<article>
-  <p style="color:#00A989;font-weight:800">Guía para colombianos</p>
-  <h1>ETIAS para colombianos: qué saber antes de viajar a Europa</h1>
-  <p>ETIAS es una autorización de viaje relacionada con entradas a Europa para ciudadanos de países exentos de visa Schengen. Para viajar protegido, además de documentación migratoria, conviene revisar un seguro de viaje adecuado.</p>
-  <div class="note"><strong>Importante:</strong> revisa siempre la información oficial antes de viajar, porque los requisitos pueden cambiar.</div>
-  <h2>¿Necesito seguro de viaje?</h2>
-  <p>Para muchos viajes a Europa, el seguro de viaje es muy recomendable y puede ser necesario según trámite, consulado o situación del viajero.</p>
-  <p><a class="btn" href="/resultados/">Comparar seguros →</a></p>
-</article>
-
-<script>
-document.addEventListener('click', function(e){
-  var link = e.target.closest('a');
-  if(!link || typeof gtag !== 'function') return;
-  var href = link.getAttribute('href') || '';
-  if(href.indexOf('iatiseguros.com') !== -1){
-    gtag('event', 'click_affiliate_iati', {
-      event_category: 'affiliate',
-      event_label: href,
-      page_location: window.location.href
-    });
-  }
-  if(href.indexOf('heymondo') !== -1){
-    gtag('event', 'click_affiliate_heymondo', {
-      event_category: 'affiliate',
-      event_label: href,
-      page_location: window.location.href
-    });
-  }
-});
-</script>
-
-</body>
-</html>
