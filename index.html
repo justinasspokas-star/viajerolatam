@@ -133,11 +133,6 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 
-.affiliate-note{max-width:920px;margin:22px auto 0;padding:14px 18px;border:1px solid rgba(0,196,161,.25);background:rgba(0,196,161,.08);border-radius:16px;color:rgba(255,255,255,.78);font-size:13px;line-height:1.6;text-align:center}
-.affiliate-note strong{color:#00C4A1}
-@media(max-width:768px){.affiliate-note{font-size:12px;margin-top:16px;padding:12px 14px}}
-
-
 /* ViajeroLatam logo — transparente y natural */
 .logo{display:inline-flex;align-items:center;text-decoration:none;line-height:0;flex-shrink:0}
 .logo-img{display:block;width:auto;object-fit:contain;background:transparent!important;filter:none!important;box-shadow:none!important}
@@ -905,13 +900,13 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
 <nav>
   <a href="#" class="logo"><img src="/logo.png" alt="ViajeroLatam — Comparador de seguros de viaje para latinoamericanos" style="height:58px;width:auto;display:block"></a>
   <div class="nav-links">
-    <a href="#como-funciona">¿Cómo funciona?</a>
-    <a href="#aseguradoras">Aseguradoras</a>
-    <a href="/visa-schengen/">Visa Schengen</a>
-    <a href="#faq">FAQ</a>
-    <a href="/blog/">Artículos</a>
-    <a href="/resultados/" class="nav-cta">Comparar ahora</a>
-  </div>
+      <a href="/#como-funciona">¿Cómo funciona?</a>
+      <a href="/#aseguradoras">Aseguradoras</a>
+      <a href="/visa-schengen/">Visa Schengen</a>
+      <a href="/blog/">Artículos</a>
+      <a href="/#faq">FAQ</a>
+      <a href="/resultados/" class="nav-cta">Comparar ahora</a>
+</div>
 
   <button class="mob-btn" onclick="openMobMenu()" aria-label="Menú">
     <span></span><span></span><span></span>
@@ -999,11 +994,6 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
     <div class="trust-item"><span class="trust-icon">✓</span> Soporte en español 24/7</div>
     <div class="trust-item"><span class="trust-icon">✓</span> +50.000 viajeros protegidos</div>
   </div>
-
-  <div class="affiliate-note">
-    <strong>Transparencia:</strong> ViajeroLatam es gratuito para ti. Podemos recibir una comisión si contratas un seguro desde nuestros enlaces, sin coste adicional para ti.
-  </div>
-
 </section>
 
 <!-- PAÍS STRIP -->
@@ -1094,7 +1084,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
           <div class="insurer-name">Heymondo</div>
           <div class="insurer-tag">Cobertura ilimitada · App 24/7</div>
         </div>
-        <div class="insurer-stars">★★★★★</div><a href="https://www.iatiseguros.com?r=84208681926165" target="_blank" rel="nofollow sponsored noopener" style="display:inline-flex;margin-top:10px;color:#00C4A1;text-decoration:none;font-size:12px;font-weight:700">Ver precio en IATI →</a>
+        <div class="insurer-stars">★★★★★</div>
       </div>
       <div class="insurer-card reveal">
         <div class="insurer-logo" style="background:rgba(255,255,255,0.12); color:var(--white); font-size:14px;">IA</div>
@@ -1467,6 +1457,13 @@ document.addEventListener('click', function(e){
   var href = link.getAttribute('href') || '';
   if(href.indexOf('iatiseguros.com') !== -1){
     gtag('event', 'click_affiliate_iati', {
+      event_category: 'affiliate',
+      event_label: href,
+      page_location: window.location.href
+    });
+  }
+  if(href.indexOf('heymondo') !== -1){
+    gtag('event', 'click_affiliate_heymondo', {
       event_category: 'affiliate',
       event_label: href,
       page_location: window.location.href
