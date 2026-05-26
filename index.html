@@ -660,6 +660,95 @@ form.search-card,
   }
 }
 
+
+/* =========================================================
+   FORCE FIX — ViajeroLatam landing background image
+   Este bloque va al final del CSS para ganar a los estilos antiguos.
+   ========================================================= */
+body .hero,
+body header.hero,
+body section.hero,
+body .hero-section,
+body .home-hero,
+body .landing-hero,
+body .page-hero{
+  position:relative !important;
+  overflow:hidden !important;
+  isolation:isolate !important;
+  background-image:
+    linear-gradient(90deg, rgba(11,31,58,.96) 0%, rgba(11,31,58,.82) 40%, rgba(11,31,58,.58) 72%, rgba(11,31,58,.82) 100%),
+    url('/hero-bg-travel-map.png') !important;
+  background-size:cover !important;
+  background-position:center center !important;
+  background-repeat:no-repeat !important;
+  background-color:#0B1F3A !important;
+}
+
+body .hero:before,
+body header.hero:before,
+body section.hero:before,
+body .hero-section:before,
+body .home-hero:before,
+body .landing-hero:before,
+body .page-hero:before{
+  content:"" !important;
+  position:absolute !important;
+  inset:0 !important;
+  z-index:-2 !important;
+  pointer-events:none !important;
+  background:
+    radial-gradient(circle at 28% 24%, rgba(0,196,161,.18), transparent 28%),
+    linear-gradient(180deg, rgba(11,31,58,.08), rgba(11,31,58,.42)) !important;
+}
+
+body .hero:after,
+body header.hero:after,
+body section.hero:after,
+body .hero-section:after,
+body .home-hero:after,
+body .landing-hero:after,
+body .page-hero:after{
+  content:"" !important;
+  position:absolute !important;
+  inset:-25% !important;
+  z-index:-1 !important;
+  pointer-events:none !important;
+  background:linear-gradient(110deg, transparent 0 42%, rgba(117,216,188,.13) 50%, transparent 58%) !important;
+  transform:translateX(-38%) !important;
+  animation:vlHeroSweepForce 12s ease-in-out infinite !important;
+}
+
+body .hero > *,
+body header.hero > *,
+body section.hero > *,
+body .hero-section > *,
+body .home-hero > *,
+body .landing-hero > *,
+body .page-hero > *{
+  position:relative !important;
+  z-index:1 !important;
+}
+
+@keyframes vlHeroSweepForce{
+  0%,100%{transform:translateX(-40%);opacity:.35}
+  50%{transform:translateX(32%);opacity:.70}
+}
+
+@media(max-width:768px){
+  body .hero,
+  body header.hero,
+  body section.hero,
+  body .hero-section,
+  body .home-hero,
+  body .landing-hero,
+  body .page-hero{
+    background-image:
+      linear-gradient(180deg, rgba(11,31,58,.97) 0%, rgba(11,31,58,.88) 58%, rgba(11,31,58,.78) 100%),
+      url('/hero-bg-travel-map.png') !important;
+    background-position:center top !important;
+  }
+}
+
 </style>
 
 
