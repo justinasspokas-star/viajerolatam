@@ -553,46 +553,201 @@ nav .logo img.logo-img-header{height:58px;width:auto}
     .sb-divider { display: none; }
   }
 
-/* LOGO FIX — visible, transparent, no ghost/fade */
-nav .logo,
-.logo{opacity:1!important;filter:none!important;mix-blend-mode:normal!important}
-.logo img,
-.logo-img,
-.logo-img-header,
-nav .logo img{
-  opacity:1!important;
-  filter:none!important;
-  mix-blend-mode:normal!important;
-  background:transparent!important;
-  box-shadow:none!important;
+/* =========================================================
+   ViajeroLatam — hero background premium con mapa de viaje
+   Imagen: //hero-bg-travel-map.png
+   ========================================================= */
+.hero,
+header.hero,
+section.hero,
+main .hero,
+.results-hero,
+.page-hero{
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+  background:
+    linear-gradient(90deg, rgba(11,31,58,.96) 0%, rgba(11,31,58,.82) 42%, rgba(11,31,58,.62) 72%, rgba(11,31,58,.78) 100%),
+    url('//hero-bg-travel-map.png') center center / cover no-repeat !important;
 }
-nav .logo img,
-.logo-img-header{height:58px!important;max-width:300px!important;width:auto!important;object-fit:contain!important}
-@media(max-width:700px){
-  nav .logo img,
-  .logo-img-header{height:44px!important;max-width:220px!important}
+
+/* Overlay para que el texto y el formulario sigan legibles */
+.hero::before,
+header.hero::before,
+section.hero::before,
+.results-hero::before,
+.page-hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-2;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 25% 24%, rgba(0,196,161,.16), transparent 30%),
+    linear-gradient(180deg, rgba(11,31,58,.10) 0%, rgba(11,31,58,.40) 100%);
+}
+
+/* Brillo suave animado, muy sutil */
+.hero::after,
+header.hero::after,
+section.hero::after,
+.results-hero::after,
+.page-hero::after{
+  content:"";
+  position:absolute;
+  inset:-20%;
+  z-index:-1;
+  pointer-events:none;
+  background:linear-gradient(110deg, transparent 0 42%, rgba(117,216,188,.12) 50%, transparent 58%);
+  transform:translateX(-35%);
+  animation:vlHeroLightSweep 11s ease-in-out infinite;
+}
+
+/* Asegura que el contenido quede por encima del fondo */
+.hero > *,
+header.hero > *,
+section.hero > *,
+.results-hero > *,
+.page-hero > *{
+  position:relative;
+  z-index:1;
+}
+
+/* Tarjeta/formulario un poco más premium sobre el mapa */
+.search-card,
+.hero-card,
+form.search-card,
+.hero form,
+.search-panel{
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  box-shadow:0 22px 70px rgba(0,0,0,.24) !important;
+}
+
+/* Ajuste mobile: mapa centrado y texto más legible */
+@media(max-width:768px){
+  .hero,
+  header.hero,
+  section.hero,
+  main .hero,
+  .results-hero,
+  .page-hero{
+    background:
+      linear-gradient(180deg, rgba(11,31,58,.96) 0%, rgba(11,31,58,.88) 58%, rgba(11,31,58,.76) 100%),
+      url('//hero-bg-travel-map.png') center top / cover no-repeat !important;
+  }
+  .hero::after,
+  header.hero::after,
+  section.hero::after,
+  .results-hero::after,
+  .page-hero::after{
+    animation:none;
+  }
+}
+
+@keyframes vlHeroLightSweep{
+  0%,100%{transform:translateX(-40%) rotate(0deg); opacity:.35}
+  50%{transform:translateX(30%) rotate(0deg); opacity:.65}
+}
+
+@media (prefers-reduced-motion: reduce){
+  .hero::after,
+  header.hero::after,
+  section.hero::after,
+  .results-hero::after,
+  .page-hero::after{
+    animation:none!important;
+  }
 }
 
 
-/* HOME ONLY — premium map background without breaking layout */
-body.home-page .hero{
-  background:
-    linear-gradient(90deg, rgba(11,31,58,.90) 0%, rgba(11,31,58,.72) 42%, rgba(11,31,58,.54) 72%, rgba(11,31,58,.76) 100%),
-    url('/hero-bg-travel-map-v2.png') center center / cover no-repeat !important;
-  background-color:#0B1F3A!important;
+/* =========================================================
+   FORCE FIX — ViajeroLatam landing background image
+   Este bloque va al final del CSS para ganar a los estilos antiguos.
+   ========================================================= */
+body .hero,
+body header.hero,
+body section.hero,
+body .hero-section,
+body .home-hero,
+body .landing-hero,
+body .page-hero{
+  position:relative !important;
+  overflow:hidden !important;
+  isolation:isolate !important;
+  background-image:
+    linear-gradient(90deg, rgba(11,31,58,.96) 0%, rgba(11,31,58,.82) 40%, rgba(11,31,58,.58) 72%, rgba(11,31,58,.82) 100%),
+    url('/hero-bg-travel-map.png') !important;
+  background-size:cover !important;
+  background-position:center center !important;
+  background-repeat:no-repeat !important;
+  background-color:#0B1F3A !important;
 }
-body.home-page .hero::before{
+
+body .hero:before,
+body header.hero:before,
+body section.hero:before,
+body .hero-section:before,
+body .home-hero:before,
+body .landing-hero:before,
+body .page-hero:before{
+  content:"" !important;
+  position:absolute !important;
+  inset:0 !important;
+  z-index:-2 !important;
+  pointer-events:none !important;
   background:
-    radial-gradient(ellipse 60% 50% at 20% 80%, rgba(0,196,161,0.08) 0%, transparent 70%),
-    radial-gradient(ellipse 40% 40% at 80% 20%, rgba(0,196,161,0.06) 0%, transparent 70%)!important;
-  opacity:.75!important;
+    radial-gradient(circle at 28% 24%, rgba(0,196,161,.18), transparent 28%),
+    linear-gradient(180deg, rgba(11,31,58,.08), rgba(11,31,58,.42)) !important;
 }
-body.home-page .hero h1,
-body.home-page .hero .hero-sub,
-body.home-page .hero .hero-eyebrow,
-body.home-page .hero .search-box,
-body.home-page .hero .trust-row{position:relative;z-index:2}
-body.home-page .search-box{background:#fff!important}
+
+body .hero:after,
+body header.hero:after,
+body section.hero:after,
+body .hero-section:after,
+body .home-hero:after,
+body .landing-hero:after,
+body .page-hero:after{
+  content:"" !important;
+  position:absolute !important;
+  inset:-25% !important;
+  z-index:-1 !important;
+  pointer-events:none !important;
+  background:linear-gradient(110deg, transparent 0 42%, rgba(117,216,188,.13) 50%, transparent 58%) !important;
+  transform:translateX(-38%) !important;
+  animation:vlHeroSweepForce 12s ease-in-out infinite !important;
+}
+
+body .hero > *,
+body header.hero > *,
+body section.hero > *,
+body .hero-section > *,
+body .home-hero > *,
+body .landing-hero > *,
+body .page-hero > *{
+  position:relative !important;
+  z-index:1 !important;
+}
+
+@keyframes vlHeroSweepForce{
+  0%,100%{transform:translateX(-40%);opacity:.35}
+  50%{transform:translateX(32%);opacity:.70}
+}
+
+@media(max-width:768px){
+  body .hero,
+  body header.hero,
+  body section.hero,
+  body .hero-section,
+  body .home-hero,
+  body .landing-hero,
+  body .page-hero{
+    background-image:
+      linear-gradient(180deg, rgba(11,31,58,.97) 0%, rgba(11,31,58,.88) 58%, rgba(11,31,58,.78) 100%),
+      url('/hero-bg-travel-map.png') !important;
+    background-position:center top !important;
+  }
+}
 
 </style>
 
@@ -875,7 +1030,7 @@ body.home-page .search-box{background:#fff!important}
 </script>
 
 </head>
-<body class="home-page">
+<body>
 <!-- ═══ MOBILE NAV SYSTEM ═══ -->
 <div id="mob-overlay" onclick="closeMobMenu()" style="display:none;position:fixed;inset:0;background:rgba(11,31,58,0.6);z-index:998;backdrop-filter:blur(4px)"></div>
 <div id="mob-drawer" style="display:none;position:fixed;top:0;right:0;bottom:0;width:min(300px,85vw);background:#fff;z-index:999;box-shadow:-8px 0 40px rgba(11,31,58,0.25);flex-direction:column;transform:translateX(100%);transition:transform .28s cubic-bezier(.4,0,.2,1)">
@@ -942,13 +1097,13 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
 <nav>
   <a href="#" class="logo"><img src="/logo.png" alt="ViajeroLatam — Comparador de seguros de viaje para latinoamericanos" style="height:58px;width:auto;display:block"></a>
   <div class="nav-links">
-    <a href="#como-funciona">¿Cómo funciona?</a>
-    <a href="#aseguradoras">Aseguradoras</a>
-    <a href="/visa-schengen/">Visa Schengen</a>
-    <a href="#faq">FAQ</a>
-    <a href="/blog/">Artículos</a>
-    <a href="/resultados/" class="nav-cta">Comparar ahora</a>
-  </div>
+      <a href="/#como-funciona">¿Cómo funciona?</a>
+      <a href="/#aseguradoras">Aseguradoras</a>
+      <a href="/visa-schengen/">Visa Schengen</a>
+      <a href="/blog/">Artículos</a>
+      <a href="/#faq">FAQ</a>
+      <a href="/resultados/" class="nav-cta">Comparar ahora</a>
+</div>
 
   <button class="mob-btn" onclick="openMobMenu()" aria-label="Menú">
     <span></span><span></span><span></span>
@@ -1499,6 +1654,13 @@ document.addEventListener('click', function(e){
   var href = link.getAttribute('href') || '';
   if(href.indexOf('iatiseguros.com') !== -1){
     gtag('event', 'click_affiliate_iati', {
+      event_category: 'affiliate',
+      event_label: href,
+      page_location: window.location.href
+    });
+  }
+  if(href.indexOf('heymondo') !== -1){
+    gtag('event', 'click_affiliate_heymondo', {
       event_category: 'affiliate',
       event_label: href,
       page_location: window.location.href
