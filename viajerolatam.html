@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ViajerosLatam — Compara seguros de viaje para latinoamericanos</title>
+<title>ViajeroLatam — Compara seguros de viaje para latinoamericanos</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -68,9 +68,22 @@
   .nav-cta:hover { background: var(--navy-mid) !important; transform: translateY(-1px); }
 
   /* ───── HERO ───── */
-  .hero{min-height:100vh;background:linear-gradient(160deg,rgba(7,19,41,0.84) 0%,rgba(11,31,58,0.74) 45%,rgba(24,55,91,0.70) 100%),url('/hero-bg-travel-map-v2.png') center/cover no-repeat !important;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 5% 80px;position:relative;overflow:hidden;isolation:isolate}
-  .hero::before{content:';position:absolute;inset:0;background:radial-gradient(circle at 18% 24%,rgba(93,220,201,0.22) 0%,transparent 22%),radial-gradient(circle at 78% 20%,rgba(133,244,220,0.18) 0%,transparent 18%),radial-gradient(circle at 68% 66%,rgba(93,220,201,0.16) 0%,transparent 20%),linear-gradient(180deg,rgba(3,10,24,0.04) 0%,rgba(3,10,24,0.12) 100%);pointer-events:none;z-index:0}
-.hero > *, .hero .hero-inner, .hero .search-box, .hero .hero-card, .hero .req-grid { position: relative; z-index: 1; }
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(160deg, var(--navy) 0%, var(--navy-mid) 60%, #1E4876 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center;
+    padding: 120px 5% 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 20% 80%, rgba(0,196,161,0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 80% 20%, rgba(0,196,161,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
   .hero-eyebrow {
     display: inline-flex; align-items: center; gap: 8px;
     background: rgba(0,196,161,0.15); border: 1px solid rgba(0,196,161,0.3);
@@ -402,14 +415,44 @@
     .sb-btn { grid-column: 1; }
     .sb-divider { display: none; }
   }
+
+/* LOGO FIX — visible, transparent, no ghost/fade */
+nav .logo,
+.logo{opacity:1!important;filter:none!important;mix-blend-mode:normal!important}
+.logo img,
+.logo-img,
+.logo-img-header,
+nav .logo img{
+  opacity:1!important;
+  filter:none!important;
+  mix-blend-mode:normal!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+nav .logo img,
+.logo-img-header{height:58px!important;max-width:300px!important;width:auto!important;object-fit:contain!important}
+@media(max-width:700px){
+  nav .logo img,
+  .logo-img-header{height:44px!important;max-width:220px!important}
+}
+
 </style>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SY86BP2PPT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-SY86BP2PPT');
+</script>
+
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
   <a href="#" class="logo">
-    <span class="logo-dot"></span> ViajerosLatam
+    <span class="logo-dot"></span> ViajeroLatam
   </a>
   <div class="nav-links">
     <a href="#como-funciona">¿Cómo funciona?</a>
@@ -706,7 +749,7 @@
   <div class="test-header reveal">
     <div class="section-eyebrow">Testimonios</div>
     <h2 class="section-title">Lo que dicen nuestros viajeros</h2>
-    <p>Más de 50.000 latinoamericanos ya han comparado y contratado con ViajerosLatam</p>
+    <p>Más de 50.000 latinoamericanos ya han comparado y contratado con ViajeroLatam</p>
   </div>
   <div class="test-grid">
     <div class="test-card reveal">
@@ -722,7 +765,7 @@
     </div>
     <div class="test-card reveal">
       <div class="test-stars">★★★★★</div>
-      <p class="test-text">"Los de IATI me atendieron en español cuando tuve una urgencia en Barcelona. Sin burocracia, sin adelantar dinero. ViajerosLatam me salvó el viaje."</p>
+      <p class="test-text">"Los de IATI me atendieron en español cuando tuve una urgencia en Barcelona. Sin burocracia, sin adelantar dinero. ViajeroLatam me salvó el viaje."</p>
       <div class="test-author">
         <div class="author-avatar" style="background:#FEF3E2; color:#854F0B;">MA</div>
         <div>
@@ -762,7 +805,7 @@
     </details>
     <details class="faq-item reveal">
       <summary class="faq-q">¿Puedo contratar si vivo fuera de España? <span class="faq-icon">+</span></summary>
-      <p class="faq-a">Absolutamente. ViajerosLatam está pensado específicamente para residentes en Latinoamérica que viajan a Europa o EEUU. Las aseguradoras que comparamos (Heymondo, IATI, Intermundial y otras) tienen productos específicos para residentes fuera de España, aunque con distintas tarifas.</p>
+      <p class="faq-a">Absolutamente. ViajeroLatam está pensado específicamente para residentes en Latinoamérica que viajan a Europa o EEUU. Las aseguradoras que comparamos (Heymondo, IATI, Intermundial y otras) tienen productos específicos para residentes fuera de España, aunque con distintas tarifas.</p>
     </details>
     <details class="faq-item reveal">
       <summary class="faq-q">¿Qué cubre un seguro de viaje a EEUU? <span class="faq-icon">+</span></summary>
@@ -795,7 +838,7 @@
   <div class="footer-grid">
     <div class="footer-brand">
       <a href="#" class="logo" style="margin-bottom:14px; font-family:'DM Serif Display',serif;">
-        <span class="logo-dot"></span> ViajerosLatam
+        <span class="logo-dot"></span> ViajeroLatam
       </a>
       <p>El comparador de seguros de viaje pensado para latinoamericanos que viajan a Europa y Estados Unidos.</p>
       <div class="footer-social">
@@ -831,7 +874,7 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <p>© 2026 ViajerosLatam. Todos los derechos reservados.</p>
+    <p>© 2026 ViajeroLatam. Todos los derechos reservados.</p>
     <p>Comparador independiente · No somos aseguradora</p>
   </div>
 </footer>
@@ -863,5 +906,21 @@
     nav.style.boxShadow = window.scrollY > 20 ? '0 2px 20px rgba(11,31,58,0.1)' : 'none';
   });
 </script>
+
+<script>
+document.addEventListener('click', function(e){
+  var link = e.target.closest('a');
+  if(!link || typeof gtag !== 'function') return;
+  var href = link.getAttribute('href') || '';
+  if(href.indexOf('iatiseguros.com') !== -1){
+    gtag('event', 'click_affiliate_iati', {
+      event_category: 'affiliate',
+      event_label: href,
+      page_location: window.location.href
+    });
+  }
+});
+</script>
+
 </body>
 </html>

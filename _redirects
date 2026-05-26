@@ -1,1 +1,19 @@
-# Not used by GitHub Pages; safe to keep.
+# ViajeroLatam.com — clean URLs
+
+/resultados/                         /viajerolatam-resultados.html        200
+/resultados                          /viajerolatam-resultados.html        200
+/visa-schengen/                      /visa-schengen.html                  200
+/visa-schengen                       /visa-schengen.html                  200
+/seguro-viaje/colombia-a-espana/     /colombia-espana.html                200
+/seguro-viaje/colombia-a-espana      /colombia-espana.html                200
+/seguros/heymondo-viaje-premium/     /viajerolatam-detalle.html           200
+/seguros/heymondo-viaje-premium      /viajerolatam-detalle.html           200
+/blog/                               /blog/index.html                     200
+/blog                                /blog/index.html                     200
+/blog/etias-colombianos/             /blog/etias-colombianos/index.html   200
+/blog/etias-colombianos              /blog/etias-colombianos/index.html   200
+/seguros/iati-viaje/                 /seguros/iati-viaje/index.html       200
+/seguros/iati-viaje                  /seguros/iati-viaje/index.html       200
+
+https://www.viajerolatam.com/*       https://viajerolatam.com/:splat      301!
+/*                                   /index.html                          404

@@ -136,7 +136,7 @@
 
 /* ViajeroLatam logo — transparente y natural */
 .logo{display:inline-flex;align-items:center;text-decoration:none;line-height:0;flex-shrink:0}
-.logo-img{display:block;width:auto;object-fit:contain;background:transparent!important!important;filter:none!important;box-shadow:none!important}
+.logo-img{display:block;width:auto;object-fit:contain;background:transparent!important;filter:none!important;box-shadow:none!important}
 .logo-img-header{height:58px;max-width:300px}
 .logo-img-footer{height:54px;max-width:280px}
 nav .logo img.logo-img-header{height:58px;width:auto}
@@ -342,13 +342,43 @@ details[open] .faq-arrow{border-color:var(--teal);color:var(--teal)}
 .section:nth-child(2){animation-delay:.05s}
 .section:nth-child(3){animation-delay:.10s}
 .section:nth-child(4){animation-delay:.15s}
+
+/* LOGO FIX — visible, transparent, no ghost/fade */
+nav .logo,
+.logo{opacity:1!important;filter:none!important;mix-blend-mode:normal!important}
+.logo img,
+.logo-img,
+.logo-img-header,
+nav .logo img{
+  opacity:1!important;
+  filter:none!important;
+  mix-blend-mode:normal!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+nav .logo img,
+.logo-img-header{height:58px!important;max-width:300px!important;width:auto!important;object-fit:contain!important}
+@media(max-width:700px){
+  nav .logo img,
+  .logo-img-header{height:44px!important;max-width:220px!important}
+}
+
 </style>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SY86BP2PPT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-SY86BP2PPT');
+</script>
+
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <a href="/" class="logo"><img src="/logo.png" alt="ViajerosLatam — Comparador de seguros de viaje para latinoamericanos" style="height:54px;width:auto;display:block"></a>
+  <a href="/" class="logo"><img src="/logo.png" alt="ViajeroLatam — Comparador de seguros de viaje para latinoamericanos" style="height:54px;width:auto;display:block"></a>
   <div class="breadcrumb">
     <a href="/">Inicio</a><span>/</span>
     <a href="/resultados/">Resultados</a><span>/</span>
@@ -722,5 +752,21 @@ document.querySelectorAll('details').forEach(d=>{
   });
 });
 </script>
+
+<script>
+document.addEventListener('click', function(e){
+  var link = e.target.closest('a');
+  if(!link || typeof gtag !== 'function') return;
+  var href = link.getAttribute('href') || '';
+  if(href.indexOf('iatiseguros.com') !== -1){
+    gtag('event', 'click_affiliate_iati', {
+      event_category: 'affiliate',
+      event_label: href,
+      page_location: window.location.href
+    });
+  }
+});
+</script>
+
 </body>
 </html>

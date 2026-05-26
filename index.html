@@ -553,74 +553,46 @@ nav .logo img.logo-img-header{height:58px;width:auto}
     .sb-divider { display: none; }
   }
 
-/* =========================================================
-   SAFE FIX — ViajeroLatam hero background v2
-   Mantiene layout original. Solo cambia el fondo.
-   ========================================================= */
-.hero,
-header.hero,
-section.hero,
-.page-hero,
-.results-hero{
+/* LOGO FIX — visible, transparent, no ghost/fade */
+nav .logo,
+.logo{opacity:1!important;filter:none!important;mix-blend-mode:normal!important}
+.logo img,
+.logo-img,
+.logo-img-header,
+nav .logo img{
+  opacity:1!important;
+  filter:none!important;
+  mix-blend-mode:normal!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+nav .logo img,
+.logo-img-header{height:58px!important;max-width:300px!important;width:auto!important;object-fit:contain!important}
+@media(max-width:700px){
+  nav .logo img,
+  .logo-img-header{height:44px!important;max-width:220px!important}
+}
+
+
+/* HOME ONLY — premium map background without breaking layout */
+body.home-page .hero{
   background:
-    linear-gradient(90deg, rgba(11,31,58,.92) 0%, rgba(11,31,58,.76) 44%, rgba(11,31,58,.58) 72%, rgba(11,31,58,.78) 100%),
+    linear-gradient(90deg, rgba(11,31,58,.90) 0%, rgba(11,31,58,.72) 42%, rgba(11,31,58,.54) 72%, rgba(11,31,58,.76) 100%),
     url('/hero-bg-travel-map-v2.png') center center / cover no-repeat !important;
-  background-color:#0B1F3A !important;
+  background-color:#0B1F3A!important;
 }
-
-/* El overlay antiguo queda más suave para que no tape texto ni formulario */
-.hero::before,
-header.hero::before,
-section.hero::before,
-.page-hero::before,
-.results-hero::before{
+body.home-page .hero::before{
   background:
-    radial-gradient(ellipse 55% 45% at 20% 80%, rgba(0,196,161,.08) 0%, transparent 70%),
-    radial-gradient(ellipse 42% 42% at 82% 18%, rgba(0,196,161,.06) 0%, transparent 70%) !important;
-  opacity:.55 !important;
-  pointer-events:none !important;
+    radial-gradient(ellipse 60% 50% at 20% 80%, rgba(0,196,161,0.08) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 80% 20%, rgba(0,196,161,0.06) 0%, transparent 70%)!important;
+  opacity:.75!important;
 }
-
-/* Asegura que títulos/formularios queden visibles */
-.hero h1,
-.hero .hero-sub,
-.hero .hero-eyebrow,
-.hero .search-box,
-.hero .trust-row,
-.hero .hero-inner,
-header.hero h1,
-section.hero h1{
-  position:relative;
-  z-index:2;
-}
-
-/* El formulario mantiene su diseño original */
-.search-box{
-  background:#fff !important;
-  opacity:1 !important;
-}
-
-/* Botón principal del buscador: vuelve a tamaño normal si algún estilo lo afectó */
-.search-box .sb-button,
-.search-box button,
-.hero .sb-button{
-  width:auto;
-  min-height:unset;
-  transform:none;
-}
-
-/* Móvil: fondo visible pero texto claro */
-@media(max-width:768px){
-  .hero,
-  header.hero,
-  section.hero,
-  .page-hero,
-  .results-hero{
-    background:
-      linear-gradient(180deg, rgba(11,31,58,.95) 0%, rgba(11,31,58,.86) 55%, rgba(11,31,58,.78) 100%),
-      url('/hero-bg-travel-map-v2.png') center top / cover no-repeat !important;
-  }
-}
+body.home-page .hero h1,
+body.home-page .hero .hero-sub,
+body.home-page .hero .hero-eyebrow,
+body.home-page .hero .search-box,
+body.home-page .hero .trust-row{position:relative;z-index:2}
+body.home-page .search-box{background:#fff!important}
 
 </style>
 
@@ -903,7 +875,7 @@ section.hero h1{
 </script>
 
 </head>
-<body>
+<body class="home-page">
 <!-- ═══ MOBILE NAV SYSTEM ═══ -->
 <div id="mob-overlay" onclick="closeMobMenu()" style="display:none;position:fixed;inset:0;background:rgba(11,31,58,0.6);z-index:998;backdrop-filter:blur(4px)"></div>
 <div id="mob-drawer" style="display:none;position:fixed;top:0;right:0;bottom:0;width:min(300px,85vw);background:#fff;z-index:999;box-shadow:-8px 0 40px rgba(11,31,58,0.25);flex-direction:column;transform:translateX(100%);transition:transform .28s cubic-bezier(.4,0,.2,1)">
@@ -970,13 +942,13 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
 <nav>
   <a href="#" class="logo"><img src="/logo.png" alt="ViajeroLatam — Comparador de seguros de viaje para latinoamericanos" style="height:58px;width:auto;display:block"></a>
   <div class="nav-links">
-      <a href="/#como-funciona">¿Cómo funciona?</a>
-      <a href="/#aseguradoras">Aseguradoras</a>
-      <a href="/visa-schengen/">Visa Schengen</a>
-      <a href="/blog/">Artículos</a>
-      <a href="/#faq">FAQ</a>
-      <a href="/resultados/" class="nav-cta">Comparar ahora</a>
-</div>
+    <a href="#como-funciona">¿Cómo funciona?</a>
+    <a href="#aseguradoras">Aseguradoras</a>
+    <a href="/visa-schengen/">Visa Schengen</a>
+    <a href="#faq">FAQ</a>
+    <a href="/blog/">Artículos</a>
+    <a href="/resultados/" class="nav-cta">Comparar ahora</a>
+  </div>
 
   <button class="mob-btn" onclick="openMobMenu()" aria-label="Menú">
     <span></span><span></span><span></span>
@@ -1527,13 +1499,6 @@ document.addEventListener('click', function(e){
   var href = link.getAttribute('href') || '';
   if(href.indexOf('iatiseguros.com') !== -1){
     gtag('event', 'click_affiliate_iati', {
-      event_category: 'affiliate',
-      event_label: href,
-      page_location: window.location.href
-    });
-  }
-  if(href.indexOf('heymondo') !== -1){
-    gtag('event', 'click_affiliate_heymondo', {
       event_category: 'affiliate',
       event_label: href,
       page_location: window.location.href

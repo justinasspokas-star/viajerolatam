@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Estrategia SEO — ViajerosLatam</title>
+<title>Estrategia SEO — ViajeroLatam</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -174,16 +174,46 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--text-dark);line-
   .opp-box{-webkit-print-color-adjust:exact;print-color-adjust:exact}
   .sec{page-break-inside:avoid}
 }
+
+/* LOGO FIX — visible, transparent, no ghost/fade */
+nav .logo,
+.logo{opacity:1!important;filter:none!important;mix-blend-mode:normal!important}
+.logo img,
+.logo-img,
+.logo-img-header,
+nav .logo img{
+  opacity:1!important;
+  filter:none!important;
+  mix-blend-mode:normal!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+nav .logo img,
+.logo-img-header{height:58px!important;max-width:300px!important;width:auto!important;object-fit:contain!important}
+@media(max-width:700px){
+  nav .logo img,
+  .logo-img-header{height:44px!important;max-width:220px!important}
+}
+
 </style>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SY86BP2PPT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-SY86BP2PPT');
+</script>
+
 </head>
 <body>
 
 <!-- COVER -->
 <div class="cover">
-  <div class="cover-logo"><img src="logo.png" alt="ViajerosLatam" style="height:44px;width:auto;filter:brightness(0) invert(1)"></div>
+  <div class="cover-logo"><img src="/logo.png" alt="ViajeroLatam" style="height:44px;width:auto;filter:brightness(0) invert(1)"></div>
   <div class="cover-eyebrow">Documento estratégico interno</div>
   <h1>Estrategia SEO &<br><em>Arquitectura</em> de contenidos</h1>
-  <p class="cover-sub">Plan completo para posicionar ViajerosLatam.com como el comparador de seguros de viaje de referencia para latinoamericanos que viajan a Europa y EEUU.</p>
+  <p class="cover-sub">Plan completo para posicionar ViajeroLatam.com como el comparador de seguros de viaje de referencia para latinoamericanos que viajan a Europa y EEUU.</p>
   <div class="cover-meta">
     <div class="meta-item"><div class="meta-label">Fecha</div><div class="meta-val">Mayo 2026</div></div>
     <div class="meta-item"><div class="meta-label">Países objetivo</div><div class="meta-val">9 países LATAM</div></div>
@@ -625,9 +655,25 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--text-dark);line-
 </div>
 
 <div style="background:var(--navy);color:rgba(255,255,255,0.4);text-align:center;padding:24px;font-size:12px;margin-top:48px;border-radius:var(--r-lg)">
-  ViajerosLatam.com · Estrategia SEO interna · Mayo 2026 · Confidencial
+  ViajeroLatam.com · Estrategia SEO interna · Mayo 2026 · Confidencial
 </div>
 
 </div>
+
+<script>
+document.addEventListener('click', function(e){
+  var link = e.target.closest('a');
+  if(!link || typeof gtag !== 'function') return;
+  var href = link.getAttribute('href') || '';
+  if(href.indexOf('iatiseguros.com') !== -1){
+    gtag('event', 'click_affiliate_iati', {
+      event_category: 'affiliate',
+      event_label: href,
+      page_location: window.location.href
+    });
+  }
+});
+</script>
+
 </body>
 </html>
