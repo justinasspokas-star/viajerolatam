@@ -19,6 +19,76 @@
 <style>
 body{margin:0;font-family:Arial,sans-serif;color:#0B1F3A;background:#F5F0E8}nav{display:flex;align-items:center;justify-content:space-between;background:#fff;padding:10px 5%;border-bottom:1px solid #eee}nav img{height:54px}nav a{margin-left:18px;text-decoration:none;color:#0B1F3A;font-weight:700}.wrap{max-width:1050px;margin:0 auto;padding:70px 5%}h1{font-size:48px;line-height:1.1}.card{background:#fff;border-radius:20px;padding:24px;margin-top:22px;border:1px solid #EAE3D5}.btn{display:inline-flex;background:#00C4A1;color:#0B1F3A;text-decoration:none;padding:12px 20px;border-radius:999px;font-weight:800}
 @media(max-width:760px){nav .links{display:none}h1{font-size:36px}}
+
+/* =========================================================
+   SAFE FIX — ViajeroLatam hero background v2
+   Mantiene layout original. Solo cambia el fondo.
+   ========================================================= */
+.hero,
+header.hero,
+section.hero,
+.page-hero,
+.results-hero{
+  background:
+    linear-gradient(90deg, rgba(11,31,58,.92) 0%, rgba(11,31,58,.76) 44%, rgba(11,31,58,.58) 72%, rgba(11,31,58,.78) 100%),
+    url('/hero-bg-travel-map-v2.png') center center / cover no-repeat !important;
+  background-color:#0B1F3A !important;
+}
+
+/* El overlay antiguo queda más suave para que no tape texto ni formulario */
+.hero::before,
+header.hero::before,
+section.hero::before,
+.page-hero::before,
+.results-hero::before{
+  background:
+    radial-gradient(ellipse 55% 45% at 20% 80%, rgba(0,196,161,.08) 0%, transparent 70%),
+    radial-gradient(ellipse 42% 42% at 82% 18%, rgba(0,196,161,.06) 0%, transparent 70%) !important;
+  opacity:.55 !important;
+  pointer-events:none !important;
+}
+
+/* Asegura que títulos/formularios queden visibles */
+.hero h1,
+.hero .hero-sub,
+.hero .hero-eyebrow,
+.hero .search-box,
+.hero .trust-row,
+.hero .hero-inner,
+header.hero h1,
+section.hero h1{
+  position:relative;
+  z-index:2;
+}
+
+/* El formulario mantiene su diseño original */
+.search-box{
+  background:#fff !important;
+  opacity:1 !important;
+}
+
+/* Botón principal del buscador: vuelve a tamaño normal si algún estilo lo afectó */
+.search-box .sb-button,
+.search-box button,
+.hero .sb-button{
+  width:auto;
+  min-height:unset;
+  transform:none;
+}
+
+/* Móvil: fondo visible pero texto claro */
+@media(max-width:768px){
+  .hero,
+  header.hero,
+  section.hero,
+  .page-hero,
+  .results-hero{
+    background:
+      linear-gradient(180deg, rgba(11,31,58,.95) 0%, rgba(11,31,58,.86) 55%, rgba(11,31,58,.78) 100%),
+      url('/hero-bg-travel-map-v2.png') center top / cover no-repeat !important;
+  }
+}
+
 </style>
 </head>
 <body>

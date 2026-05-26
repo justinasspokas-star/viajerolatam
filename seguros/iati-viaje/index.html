@@ -8,6 +8,83 @@
 <meta name="description" content="Consulta seguros de viaje IATI para latinoamericanos que viajan a España, Europa y zona Schengen. Cobertura médica, asistencia 24/7 y contratación online.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://viajerolatam.com/seguros/iati-viaje/">
+<style>
+
+.nav-cta{background:#0B1F3A;color:#fff!important;padding:12px 22px;border-radius:999px;font-weight:800;text-decoration:none}
+nav .links a, .nav-links a, .nav-menu a{text-decoration:none}
+
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;color:#0B1F3A;line-height:1.65}nav{display:flex;justify-content:space-between;align-items:center;background:#0B1F3A;padding:10px 5%}nav img{height:52px}nav a{color:white;text-decoration:none;margin-left:18px;font-weight:700}.hero{background:linear-gradient(160deg,#0B1F3A,#1A3558);color:white;text-align:center;padding:90px 5%}h1{font-size:clamp(38px,6vw,68px);line-height:1.1;margin:12px 0}h1 em{color:#00C4A1}.hero p{max-width:680px;margin:0 auto 28px;color:rgba(255,255,255,.75);font-size:18px}.btn{display:inline-flex;background:#00C4A1;color:#0B1F3A!important;text-decoration:none;border-radius:999px;padding:15px 28px;font-weight:900}section{padding:65px 5%}.wrap{max-width:1050px;margin:0 auto}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:25px}.card{background:#F5F0E8;border:1px solid #EAE3D5;border-radius:22px;padding:24px}.note{background:rgba(0,196,161,.08);border:1px solid rgba(0,196,161,.25);border-radius:16px;padding:15px;margin-top:24px;color:#4A647E}footer{background:#0B1F3A;color:rgba(255,255,255,.55);padding:35px 5%;font-size:13px}@media(max-width:800px){.grid{grid-template-columns:1fr}nav .links{display:none}}
+
+/* =========================================================
+   SAFE FIX — ViajeroLatam hero background v2
+   Mantiene layout original. Solo cambia el fondo.
+   ========================================================= */
+.hero,
+header.hero,
+section.hero,
+.page-hero,
+.results-hero{
+  background:
+    linear-gradient(90deg, rgba(11,31,58,.92) 0%, rgba(11,31,58,.76) 44%, rgba(11,31,58,.58) 72%, rgba(11,31,58,.78) 100%),
+    url('/hero-bg-travel-map-v2.png') center center / cover no-repeat !important;
+  background-color:#0B1F3A !important;
+}
+
+/* El overlay antiguo queda más suave para que no tape texto ni formulario */
+.hero::before,
+header.hero::before,
+section.hero::before,
+.page-hero::before,
+.results-hero::before{
+  background:
+    radial-gradient(ellipse 55% 45% at 20% 80%, rgba(0,196,161,.08) 0%, transparent 70%),
+    radial-gradient(ellipse 42% 42% at 82% 18%, rgba(0,196,161,.06) 0%, transparent 70%) !important;
+  opacity:.55 !important;
+  pointer-events:none !important;
+}
+
+/* Asegura que títulos/formularios queden visibles */
+.hero h1,
+.hero .hero-sub,
+.hero .hero-eyebrow,
+.hero .search-box,
+.hero .trust-row,
+.hero .hero-inner,
+header.hero h1,
+section.hero h1{
+  position:relative;
+  z-index:2;
+}
+
+/* El formulario mantiene su diseño original */
+.search-box{
+  background:#fff !important;
+  opacity:1 !important;
+}
+
+/* Botón principal del buscador: vuelve a tamaño normal si algún estilo lo afectó */
+.search-box .sb-button,
+.search-box button,
+.hero .sb-button{
+  width:auto;
+  min-height:unset;
+  transform:none;
+}
+
+/* Móvil: fondo visible pero texto claro */
+@media(max-width:768px){
+  .hero,
+  header.hero,
+  section.hero,
+  .page-hero,
+  .results-hero{
+    background:
+      linear-gradient(180deg, rgba(11,31,58,.95) 0%, rgba(11,31,58,.86) 55%, rgba(11,31,58,.78) 100%),
+      url('/hero-bg-travel-map-v2.png') center top / cover no-repeat !important;
+  }
+}
+
+</style>
 <!-- Google Analytics 4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-SY86BP2PPT"></script>
 <script>
@@ -17,12 +94,14 @@
   gtag('config', 'G-SY86BP2PPT');
 </script>
 
-<style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;color:#0B1F3A;line-height:1.65}nav{display:flex;justify-content:space-between;align-items:center;background:#0B1F3A;padding:10px 5%}nav img{height:52px}nav a{color:white;text-decoration:none;margin-left:18px;font-weight:700}.hero{min-height:100vh;background:linear-gradient(160deg,rgba(7,19,41,0.84) 0%,rgba(11,31,58,0.74) 45%,rgba(24,55,91,0.70) 100%),url('/hero-bg-travel-map-v2.png') center/cover no-repeat !important;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 5% 80px;position:relative;overflow:hidden;isolation:isolate}h1{font-size:clamp(38px,6vw,68px);line-height:1.1;margin:12px 0}h1 em{color:#00C4A1}.hero p{max-width:680px;margin:0 auto 28px;color:rgba(255,255,255,.75);font-size:18px}.btn{display:inline-flex;background:#00C4A1;color:#0B1F3A!important;text-decoration:none;border-radius:999px;padding:15px 28px;font-weight:900}section{padding:65px 5%}.wrap{max-width:1050px;margin:0 auto}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:25px}.card{background:#F5F0E8;border:1px solid #EAE3D5;border-radius:22px;padding:24px}.note{background:rgba(0,196,161,.08);border:1px solid rgba(0,196,161,.25);border-radius:16px;padding:15px;margin-top:24px;color:#4A647E}footer{background:#0B1F3A;color:rgba(255,255,255,.55);padding:35px 5%;font-size:13px}@media(max-width:800px){.grid{grid-template-columns:1fr}nav .links{display:none}}
-</style>
 </head>
 <body>
-<nav><a href="/"><img src="/logo.png" alt="ViajeroLatam"></a><div class="links"><a href="/">Inicio</a><a href="/resultados/">Comparar</a><a href="/visa-schengen/">Visa Schengen</a></div></nav>
+<nav><a href="/"><img src="/logo.png" alt="ViajeroLatam"></a><div class="links">
+      <a href="/">Inicio</a>
+      <a href="/resultados/">Comparar</a>
+      <a href="/visa-schengen/">Visa Schengen</a>
+      <a href="/blog/">Artículos</a>
+</div></nav>
 <header class="hero"><div style="color:#00C4A1;font-weight:800">Aseguradora destacada</div><h1>IATI seguros de viaje para <em>Latinoamericanos</em></h1><p>Revisa opciones de IATI para viajar a España, Europa y zona Schengen. Compara cobertura médica, asistencia y precio antes de contratar.</p><a class="btn" href="https://www.iatiseguros.com?r=84208681926165" target="_blank" rel="nofollow sponsored noopener">Calcular precio en IATI →</a></header>
 <section><div class="wrap"><h2>¿Por qué mirar IATI para tu viaje?</h2><p>IATI es una aseguradora de viaje conocida en el mercado hispanohablante. Para un viajero latinoamericano, lo importante es elegir una póliza que encaje con destino, duración, requisitos Schengen y presupuesto.</p><div class="grid"><div class="card"><h3>Asistencia en español</h3><p>Útil si necesitas apoyo durante el viaje.</p></div><div class="card"><h3>Opciones para Europa</h3><p>Compara planes con cobertura médica, repatriación y asistencia internacional.</p></div><div class="card"><h3>Contratación online</h3><p>Revisa precio y condiciones directamente en IATI antes de pagar.</p></div></div><div class="note"><strong>Transparencia:</strong> ViajeroLatam es gratuito para ti. Podemos recibir una comisión si contratas desde nuestros enlaces, sin coste adicional para ti.</div></div></section>
 <footer>© 2026 ViajeroLatam. Comparador independiente. Enlaces afiliados marcados como patrocinados.</footer>
