@@ -133,7 +133,6 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 
-/* Affiliate disclosure */
 .affiliate-note{max-width:920px;margin:22px auto 0;padding:14px 18px;border:1px solid rgba(0,196,161,.25);background:rgba(0,196,161,.08);border-radius:16px;color:rgba(255,255,255,.78);font-size:13px;line-height:1.6;text-align:center}
 .affiliate-note strong{color:#00C4A1}
 @media(max-width:768px){.affiliate-note{font-size:12px;margin-top:16px;padding:12px 14px}}
@@ -829,6 +828,15 @@ nav .logo img.logo-img-header{height:58px;width:auto}
 }
 </style>
 
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SY86BP2PPT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-SY86BP2PPT');
+</script>
+
 </head>
 <body>
 <!-- ═══ MOBILE NAV SYSTEM ═══ -->
@@ -1451,5 +1459,21 @@ function goCompare() {
     + (fi ? '&ida=' + fi : '') + (fv ? '&vuelta=' + fv : '');
 }
 </script>
+
+<script>
+document.addEventListener('click', function(e){
+  var link = e.target.closest('a');
+  if(!link || typeof gtag !== 'function') return;
+  var href = link.getAttribute('href') || '';
+  if(href.indexOf('iatiseguros.com') !== -1){
+    gtag('event', 'click_affiliate_iati', {
+      event_category: 'affiliate',
+      event_label: href,
+      page_location: window.location.href
+    });
+  }
+});
+</script>
+
 </body>
 </html>
