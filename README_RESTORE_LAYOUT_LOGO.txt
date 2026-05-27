@@ -4,7 +4,7 @@ Este pack corrige el desastre visual:
 - Restaura layout original de páginas internas como /visa-schengen/.
 - El fondo mapa/rutas queda SOLO en home para no tapar contenido.
 - Logo visible y sin transparencia rara.
-- Mantiene GA4 G-SY86BP2PPT.
+- Mantiene GA4 G-P1Q2TSMVNJ.
 - Mantiene link IATI.
 - Incluye _redirects, sitemap, robots y CNAME.
 
