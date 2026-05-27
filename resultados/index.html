@@ -732,8 +732,23 @@ function toggleDetails(id){
   btn.textContent = isOpen ? 'Ver cobertura completa' : 'Ocultar detalles ↑';
 }
 
-function contractClick(name, plan){
-  alert(`✅ Redirigiendo a ${name} para contratar "${plan}".\n\n(En producción, aquí iría el enlace de afiliado con tracking.)`)
+function contractClick(name, plan) {
+  var urls = {
+    'Heymondo':       'https://www.heymondo.es/travel-insurance/?utm_source=viajerolatam&utm_medium=affiliate&utm_campaign=latam',
+    'IATI Seguros':   'https://www.iatiseguros.com?r=84208681926165',
+    'Intermundial':   'https://www.intermundial.es/?utm_source=viajerolatam&utm_medium=affiliate',
+    'Chapka':         'https://www.chapkadirect.es/?utm_source=viajerolatam&utm_medium=affiliate',
+    'AXA Travel':     'https://www.axa-assistance.es/?utm_source=viajerolatam&utm_medium=affiliate',
+    'SafetyWing':     'https://safetywing.com/nomad-insurance/?referenceID=viajerolatam',
+    'Allianz Travel': 'https://www.allianz-assistance.es/?utm_source=viajerolatam&utm_medium=affiliate',
+    'Europ Assistance':'https://www.europ-assistance.es/?utm_source=viajerolatam&utm_medium=affiliate'
+  };
+  var url = urls[name] || '/resultados/';
+  if (typeof gtag !== 'undefined') {
+    gtag('event', 'click_contratar', { affiliate: name, plan: plan, page: window.location.pathname });
+  }
+  window.open(url, '_blank', 'noopener');
+} para contratar "${plan}".\n\n(En producción, aquí iría el enlace de afiliado con tracking.)`)
 }
 
 // Init slider style
