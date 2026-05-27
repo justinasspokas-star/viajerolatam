@@ -35,22 +35,28 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}:root{--navy:#0B1F3A;--navy2:#1A3558;--teal:#00C4A1;--mint:#75D8BC;--sand:#F5F0E8;--sand2:#EAE3D5;--text:#0B1F3A;--muted:#4A647E;--display:'DM Serif Display',Georgia,serif;--body:'Plus Jakarta Sans',sans-serif}
 body{font-family:var(--body);color:var(--text);background:#fff;line-height:1.7}nav{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:10px 5%;background:rgba(255,255,255,.94);backdrop-filter:blur(12px);border-bottom:1px solid rgba(11,31,58,.08)}nav img{height:54px;width:auto;display:block}.nav-links{display:flex;align-items:center;gap:22px}.nav-links a{text-decoration:none;color:#4A647E;font-size:14px;font-weight:700}.nav-cta{background:#0B1F3A!important;color:#fff!important;padding:10px 18px;border-radius:999px}
-.hero{position:relative;overflow:hidden;padding:86px 5% 70px;background:linear-gradient(135deg,#0B1F3A,#18375B);color:white}.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 18% 22%,rgba(0,196,161,.18),transparent 25%),radial-gradient(circle at 80% 70%,rgba(117,216,188,.14),transparent 25%);pointer-events:none}.hero-inner{position:relative;max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}.eyebrow{display:inline-flex;color:#75D8BC;background:rgba(117,216,188,.12);border:1px solid rgba(117,216,188,.28);border-radius:999px;padding:7px 15px;font-size:13px;font-weight:800;margin-bottom:20px}h1{font-family:var(--display);font-size:clamp(40px,6vw,72px);line-height:1.05;margin-bottom:20px}h1 em{color:#75D8BC;font-style:italic}.hero p{font-size:18px;color:rgba(255,255,255,.74);max-width:680px;margin-bottom:28px}.btn-row{display:flex;gap:12px;flex-wrap:wrap}.btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 24px;border-radius:999px;text-decoration:none;font-weight:900}.btn-primary{background:#00C4A1;color:#0B1F3A}.btn-secondary{border:1px solid rgba(255,255,255,.25);color:white;background:rgba(255,255,255,.06)}.hero-card{background:white;color:#0B1F3A;border-radius:28px;padding:26px;box-shadow:0 24px 70px rgba(0,0,0,.24)}.price{font-size:38px;font-weight:900;color:#0B1F3A;margin:12px 0 8px}.small{font-size:13px;color:#6B7F93}.checklist{list-style:none;display:grid;gap:11px;margin:18px 0}.checklist li{display:flex;gap:9px;color:#4A647E;font-size:14px}.checklist li::before{content:"✓";color:#00A989;font-weight:900}
+.hero{position:relative;position:relative;overflow:hidden;padding:86px 5% 70px;background:linear-gradient(135deg,#0B1F3A,#18375B);color:white}.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 18% 22%,rgba(0,196,161,.18),transparent 25%),radial-gradient(circle at 80% 70%,rgba(117,216,188,.14),transparent 25%);pointer-events:none}.hero-inner{position:relative;max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}.eyebrow{display:inline-flex;color:#75D8BC;background:rgba(117,216,188,.12);border:1px solid rgba(117,216,188,.28);border-radius:999px;padding:7px 15px;font-size:13px;font-weight:800;margin-bottom:20px}h1{font-family:var(--display);font-size:clamp(40px,6vw,72px);line-height:1.05;margin-bottom:20px}h1 em{color:#75D8BC;font-style:italic}.hero p{font-size:18px;color:rgba(255,255,255,.74);max-width:680px;margin-bottom:28px}.btn-row{display:flex;gap:12px;flex-wrap:wrap}.btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 24px;border-radius:999px;text-decoration:none;font-weight:900}.btn-primary{background:#00C4A1;color:#0B1F3A}.btn-secondary{border:1px solid rgba(255,255,255,.25);color:white;background:rgba(255,255,255,.06)}.hero-card{background:white;color:#0B1F3A;border-radius:28px;padding:26px;box-shadow:0 24px 70px rgba(0,0,0,.24)}.price{font-size:38px;font-weight:900;color:#0B1F3A;margin:12px 0 8px}.small{font-size:13px;color:#6B7F93}.checklist{list-style:none;display:grid;gap:11px;margin:18px 0}.checklist li{display:flex;gap:9px;color:#4A647E;font-size:14px}.checklist li::before{content:"✓";color:#00A989;font-weight:900}
 section{padding:72px 5%}.wrap{max-width:1120px;margin:0 auto}.section-kicker{color:#00A989;text-transform:uppercase;letter-spacing:.12em;font-size:12px;font-weight:900;margin-bottom:10px}h2{font-family:var(--display);font-size:clamp(30px,4vw,48px);line-height:1.12;margin-bottom:16px;color:#0B1F3A}.lead{font-size:17px;color:#4A647E;max-width:760px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px}.card{background:#F5F0E8;border:1px solid #EAE3D5;border-radius:22px;padding:24px}.card h3{font-size:18px;margin-bottom:9px}.card p{color:#4A647E;font-size:14px}.compare{background:#0B1F3A;color:white}.compare h2{color:white}.compare .lead{color:rgba(255,255,255,.68)}.table{margin-top:28px;background:white;color:#0B1F3A;border-radius:24px;overflow:hidden}.row{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;border-bottom:1px solid #EAE3D5}.cell{padding:18px 20px;font-size:14px}.head{background:#F5F0E8;font-weight:900}.brand{font-weight:900}.tag{display:inline-flex;background:rgba(0,196,161,.12);color:#007F68;border-radius:999px;padding:5px 10px;font-size:12px;font-weight:900;margin-top:6px}.cta-box{margin-top:34px;padding:26px;border-radius:24px;background:rgba(117,216,188,.12);border:1px solid rgba(117,216,188,.25);display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}.faq details{border-bottom:1px solid #EAE3D5;padding:18px 0}.faq summary{cursor:pointer;font-weight:900;color:#0B1F3A}.faq p{color:#4A647E;margin-top:10px}.notice{margin-top:24px;background:#F5F0E8;border-left:4px solid #00C4A1;padding:16px 18px;border-radius:14px;color:#4A647E;font-size:14px}footer{background:#0B1F3A;color:rgba(255,255,255,.55);padding:38px 5%;font-size:13px}
 @media(max-width:860px){.hero-inner{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.row{grid-template-columns:1fr}.head{display:none}.cell{border-bottom:1px solid #EAE3D5}.nav-links{display:none}h1{font-size:38px}section{padding:56px 5%}}
 </style>
 <style id="travel-bg">
-.travel-icons{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
-.travel-icons *{position:absolute;opacity:0.07;fill:none;stroke:#fff;stroke-width:1.5}
-.travel-icons .plane{animation:floatPlane 18s ease-in-out infinite}
-.travel-icons .plane2{animation:floatPlane 24s ease-in-out infinite reverse}
-.travel-icons .plane3{animation:floatPlane 30s ease-in-out infinite 6s}
-@keyframes floatPlane{0%{transform:translate(0,0) rotate(0deg)}25%{transform:translate(8px,-12px) rotate(3deg)}50%{transform:translate(-5px,-8px) rotate(-2deg)}75%{transform:translate(6px,5px) rotate(2deg)}100%{transform:translate(0,0) rotate(0deg)}}
-.travel-icons .float-slow{animation:floatSlow 22s ease-in-out infinite 3s}
-.travel-icons .float-med{animation:floatSlow 28s ease-in-out infinite}
-@keyframes floatSlow{0%{transform:translate(0,0) rotate(0deg)}33%{transform:translate(-10px,8px) rotate(-4deg)}66%{transform:translate(7px,-6px) rotate(3deg)}100%{transform:translate(0,0) rotate(0deg)}}
-.travel-icons .float-globe{animation:floatGlobe 20s ease-in-out infinite 1s}
-@keyframes floatGlobe{0%{transform:translate(0,0)}50%{transform:translate(5px,-10px)}100%{transform:translate(0,0)}}
+.travel-icons{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1}
+.travel-icons svg{position:absolute;fill:none;stroke:rgba(255,255,255,0.18);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.hero-inner,.hero-inner-wrap{position:relative;z-index:2}
+@keyframes vl-float{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-14px) rotate(4deg)}}
+@keyframes vl-float2{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-10px) rotate(-3deg)}}
+@keyframes vl-float3{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.ti-p1{animation:vl-float 9s ease-in-out infinite}
+.ti-p2{animation:vl-float2 13s ease-in-out infinite 2s}
+.ti-p3{animation:vl-float 17s ease-in-out infinite 5s}
+.ti-pass{animation:vl-float2 11s ease-in-out infinite 1s}
+.ti-globe{animation:vl-float3 14s ease-in-out infinite 3s}
+.ti-suit{animation:vl-float2 16s ease-in-out infinite 4s}
+.ti-pin{animation:vl-float 12s ease-in-out infinite 6s}
+</style>
+<style id="logo-fix">
+nav .logo img { height:58px;width:auto;display:block }
+@media(max-width:768px){ nav .logo img { height:44px!important } }
 </style>
 </head>
 <body>
@@ -95,17 +101,55 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
 </nav>
 <header class="hero">
 <div class="travel-icons" aria-hidden="true">
-  <svg class="plane" width="80" height="80" viewBox="0 0 24 24" style="top:12%;right:8%"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg>
-  <svg class="plane2" width="52" height="52" viewBox="0 0 24 24" style="top:55%;left:4%;transform:rotate(45deg)"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg>
-  <svg class="plane3" width="38" height="38" viewBox="0 0 24 24" style="bottom:15%;right:22%;transform:rotate(-20deg)"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg>
-  <svg class="float-slow" width="48" height="48" viewBox="0 0 24 24" style="top:20%;left:12%"><rect x="4" y="2" width="16" height="20" rx="2"/><circle cx="12" cy="11" r="3"/><path d="M8 6h8M8 17h8"/></svg>
-  <svg class="float-med" width="40" height="40" viewBox="0 0 24 24" style="bottom:22%;left:18%;transform:rotate(15deg)"><rect x="4" y="2" width="16" height="20" rx="2"/><circle cx="12" cy="11" r="3"/></svg>
-  <svg class="float-globe" width="62" height="62" viewBox="0 0 24 24" style="top:8%;left:35%"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><path d="M2 12h20M2 7h20M2 17h20"/></svg>
-  <svg class="float-slow" width="46" height="46" viewBox="0 0 24 24" style="top:65%;right:10%;animation-delay:5s"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-  <svg class="plane" width="42" height="42" viewBox="0 0 24 24" style="top:40%;right:5%;animation-delay:3s"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-  <svg class="plane2" width="50" height="50" viewBox="0 0 24 24" style="bottom:30%;right:15%;animation-delay:8s"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
-  <svg width="100%" height="100%" viewBox="0 0 1000 400" style="opacity:0.035;top:0;left:0;width:100%;height:100%;position:absolute"><path d="M-50 300 Q 200 50 500 200 Q 750 350 1050 100" stroke="#fff" stroke-width="1.5" stroke-dasharray="8,12" fill="none"/><path d="M-50 150 Q 300 350 600 100 Q 800 0 1050 200" stroke="#fff" stroke-width="1" stroke-dasharray="6,14" fill="none"/></svg>
+  <!-- ✈ Plane large - top right -->
+  <svg class="ti-p1" width="90" height="90" viewBox="0 0 24 24" style="top:8%;right:6%">
+    <path d="M22 16.5V15l-9-5.5V3a1.5 1.5 0 0 0-3 0v6.5L1 15v1.5l9-2.75V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-6.25z"/>
+  </svg>
+  <!-- ✈ Plane medium - left -->
+  <svg class="ti-p2" width="58" height="58" viewBox="0 0 24 24" style="top:50%;left:3%;transform:rotate(40deg)">
+    <path d="M22 16.5V15l-9-5.5V3a1.5 1.5 0 0 0-3 0v6.5L1 15v1.5l9-2.75V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-6.25z"/>
+  </svg>
+  <!-- ✈ Plane small - bottom right -->
+  <svg class="ti-p3" width="44" height="44" viewBox="0 0 24 24" style="bottom:12%;right:25%;transform:rotate(-25deg)">
+    <path d="M22 16.5V15l-9-5.5V3a1.5 1.5 0 0 0-3 0v6.5L1 15v1.5l9-2.75V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-6.25z"/>
+  </svg>
+  <!-- 📘 Passport - top left -->
+  <svg class="ti-pass" width="52" height="52" viewBox="0 0 24 24" style="top:15%;left:8%">
+    <rect x="4" y="2" width="16" height="20" rx="2.5"/>
+    <circle cx="12" cy="11" r="3.5"/>
+    <path d="M12 7.5v1M12 14v1M8.5 11h1M14 11h1"/>
+    <path d="M7 5.5h10M7 17.5h10"/>
+  </svg>
+  <!-- 🌍 Globe - center top -->
+  <svg class="ti-globe" width="72" height="72" viewBox="0 0 24 24" style="top:5%;left:38%">
+    <circle cx="12" cy="12" r="10"/>
+    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+    <path d="M2 12h20M2 7.5h20M2 16.5h20"/>
+  </svg>
+  <!-- 🧳 Suitcase - right mid -->
+  <svg class="ti-suit" width="54" height="54" viewBox="0 0 24 24" style="top:60%;right:8%">
+    <rect x="2" y="7" width="20" height="14" rx="2"/>
+    <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+    <line x1="8" y1="14" x2="16" y2="14"/>
+    <line x1="12" y1="11" x2="12" y2="17"/>
+  </svg>
+  <!-- 📍 Pin - bottom left -->
+  <svg class="ti-pin" width="46" height="46" viewBox="0 0 24 24" style="bottom:18%;left:15%">
+    <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/>
+    <circle cx="12" cy="10" r="3"/>
+  </svg>
+  <!-- 🧭 Compass - right top -->
+  <svg class="ti-pass" width="50" height="50" viewBox="0 0 24 24" style="top:20%;right:20%">
+    <circle cx="12" cy="12" r="10"/>
+    <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+  </svg>
+  <!-- Flight path dashes -->
+  <svg style="position:absolute;top:0;left:0;width:100%;height:100%;opacity:0.10" viewBox="0 0 1400 500" preserveAspectRatio="none">
+    <path d="M-100 380 Q 300 80 700 240 Q 1000 380 1500 120" stroke="#fff" stroke-width="1.5" stroke-dasharray="10,16" fill="none"/>
+    <path d="M-100 180 Q 400 420 800 160 Q 1100 20 1500 280" stroke="#fff" stroke-width="1" stroke-dasharray="7,18" fill="none"/>
+  </svg>
 </div>
+
 <div class="hero-inner"><div><div class="eyebrow">🇨🇴 Colombia → 🇪🇸 España</div><h1>Seguro de viaje <em>Colombia a España</em></h1><p>Guía práctica para colombianos que viajan a España: cobertura médica recomendada, requisitos Schengen, qué revisar antes de contratar y cómo comparar opciones.</p><div class="btn-row"><a class="btn btn-primary" href="/resultados/">Comparar seguros →</a><a class="btn btn-secondary" href="https://www.iatiseguros.com?r=84208681926165" target="_blank" rel="nofollow sponsored noopener">Ver precio en IATI →</a></div></div><aside class="hero-card"><div class="small">Precio orientativo</div><div class="price">desde pocos €/día</div><p class="small">El precio real depende de edad, duración, fechas y coberturas elegidas.</p><ul class="checklist"><li>Cobertura médica internacional</li><li>Repatriación y asistencia 24/7</li><li>Opciones útiles para zona Schengen</li><li>Contratación online y póliza por email</li></ul><a class="btn btn-primary" href="/resultados/" style="width:100%">Buscar mi seguro</a></aside></div></header>
 <section><div class="wrap"><div class="section-kicker">Lo esencial</div><h2>¿Qué seguro necesitas para viajar de Colombia a España?</h2><p class="lead">Para un viaje a España, lo importante es que la póliza cubra emergencias médicas, hospitalización, repatriación y asistencia durante todo el viaje. Si tu caso implica visa Schengen o una estancia larga, conviene revisar requisitos específicos antes de pagar.</p><div class="grid"><div class="card"><h3>Cobertura médica</h3><p>Busca una cobertura suficiente para España y Europa. Como referencia Schengen, muchos viajeros usan mínimo 30.000 € de cobertura médica.</p></div><div class="card"><h3>Repatriación</h3><p>Debe incluir traslado sanitario y repatriación. Es una cobertura importante y suele ser revisada en trámites relacionados con Schengen.</p></div><div class="card"><h3>Sin letra pequeña</h3><p>Revisa franquicia, exclusiones, enfermedades preexistentes, deportes, edad máxima, cancelación y límites por cobertura.</p></div></div><div class="notice"><strong>Transparencia:</strong> ViajeroLatam es gratuito para ti. Podemos recibir una comisión si contratas desde nuestros enlaces, sin coste adicional para ti.</div></div></section>
 <section class="compare"><div class="wrap"><div class="section-kicker">Comparativa rápida</div><h2>Opciones para Colombia → España</h2><p class="lead">Empieza comparando cobertura médica, precio, asistencia en español y condiciones de la póliza. Esta tabla es orientativa; confirma siempre el precio final en la aseguradora.</p><div class="table"><div class="row head"><div class="cell">Aseguradora</div><div class="cell">Ideal para</div><div class="cell">Punto fuerte</div><div class="cell">Acción</div></div><div class="row"><div class="cell"><span class="brand">IATI</span><br><span class="tag">Afiliado activo</span></div><div class="cell">Viajeros que quieren contratar online y recibir póliza rápido.</div><div class="cell">Marca conocida, asistencia en español y opciones para Europa.</div><div class="cell"><a class="btn btn-primary" href="https://www.iatiseguros.com?r=84208681926165" target="_blank" rel="nofollow sponsored noopener">Ver precio →</a></div></div><div class="row"><div class="cell"><span class="brand">Heymondo</span></div><div class="cell">Viajeros que priorizan app, asistencia digital y coberturas completas.</div><div class="cell">Buena opción para comparar cuando tengas afiliado activo.</div><div class="cell"><a class="btn btn-secondary" href="/resultados/">Comparar →</a></div></div><div class="row"><div class="cell"><span class="brand">Otras opciones</span></div><div class="cell">Familias, estudiantes o viajes largos.</div><div class="cell">Conviene revisar límites y exclusiones caso por caso.</div><div class="cell"><a class="btn btn-secondary" href="/resultados/">Ver opciones →</a></div></div></div><div class="cta-box"><div><strong>¿Quieres ir directo?</strong><p style="color:rgba(255,255,255,.68);margin-top:4px">Consulta precio oficial en IATI o compara primero en ViajeroLatam.</p></div><div class="btn-row"><a class="btn btn-primary" href="https://www.iatiseguros.com?r=84208681926165" target="_blank" rel="nofollow sponsored noopener">Calcular en IATI →</a><a class="btn btn-secondary" href="/resultados/">Comparar primero →</a></div></div></div></section>
