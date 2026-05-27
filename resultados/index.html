@@ -64,7 +64,7 @@
 
 /* ViajeroLatam logo — transparente y natural */
 .logo{display:inline-flex;align-items:center;text-decoration:none;line-height:0;flex-shrink:0}
-.logo-img{display:block;width:auto;object-fit:contain;background:transparent!important!important;filter:none!important;box-shadow:none!important}
+.logo-img{display:block;width:auto;object-fit:contain;background:transparent!important;filter:none!important;box-shadow:none!important}
 .logo-img-header{height:58px;max-width:300px}
 .logo-img-footer{height:54px;max-width:280px}
 nav .logo img.logo-img-header{height:58px;width:auto}
@@ -244,455 +244,112 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
 /* ── NO RESULTS ── */
 .no-results{text-align:center;padding:60px 20px;color:var(--text-mid)}
 .no-results h3{font-family:var(--font-display);font-size:24px;color:var(--text-dark);margin-bottom:10px}
+
+/* LOGO FIX — visible, transparent, no ghost/fade */
+nav .logo,
+.logo{opacity:1!important;filter:none!important;mix-blend-mode:normal!important}
+.logo img,
+.logo-img,
+.logo-img-header,
+nav .logo img{
+  opacity:1!important;
+  filter:none!important;
+  mix-blend-mode:normal!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+nav .logo img,
+.logo-img-header{height:58px!important;max-width:300px!important;width:auto!important;object-fit:contain!important}
+@media(max-width:700px){
+  nav .logo img,
+  .logo-img-header{height:44px!important;max-width:220px!important}
+}
+
 </style>
-
-
-
-
-<style id="vl-mobile">
-/* ============================================================
-   ViajerosLatam — Mobile Optimizations (max-width: 768px)
-   ============================================================ */
-
-/* ── NAV ── */
-@media (max-width: 768px) {
-  nav {
-    height: auto !important;
-    min-height: 64px !important;
-    padding: 10px 4% !important;
-    flex-wrap: nowrap !important;
-    gap: 0 !important;
-  }
-  nav .logo img { height: 46px !important; }
-  .nav-links { display: none !important; }
-}
-
-/* ── HERO — Homepage ── */
-@media (max-width: 768px) {
-  .hero {
-    padding: 76px 4% 40px !important;
-    text-align: center !important;
-  }
-  .hero h1 { font-size: 32px !important; }
-  .hero-sub { font-size: 15px !important; max-width: 100% !important; }
-  .hero-eyebrow { font-size: 11px !important; }
-
-  /* Search box — stack vertically */
-  .search-box {
-    display: flex !important;
-    flex-direction: column !important;
-    padding: 16px !important;
-    gap: 10px !important;
-    margin: 0 !important;
-    max-width: 100% !important;
-    border-radius: 18px !important;
-  }
-  .sb-field {
-    background: #F5F0E8 !important;
-    border-radius: 10px !important;
-    padding: 10px 14px !important;
-    border: 1px solid #E8E2D8 !important;
-  }
-  .sb-field select,
-  .sb-field input[type="date"] {
-    width: 100% !important;
-    font-size: 15px !important;
-  }
-  .sb-divider { display: none !important; }
-  .sb-btn {
-    width: 100% !important;
-    padding: 14px !important;
-    justify-content: center !important;
-    border-radius: 50px !important;
-  }
-  .search-dates-row {
-    display: grid !important;
-    grid-template-columns: 1fr 1fr !important;
-    gap: 8px !important;
-  }
-  .search-dates-row > div:last-child { grid-column: span 2 !important; }
-  #sb-duracion-display { font-size: 12px !important; }
-
-  /* Trust items */
-  .hero-trust {
-    flex-wrap: wrap !important;
-    gap: 8px !important;
-    justify-content: center !important;
-  }
-  .trust-item { font-size: 12px !important; }
-
-  /* Stats */
-  .stats-section { padding: 40px 4% !important; }
-  .stats-inner {
-    grid-template-columns: 1fr 1fr !important;
-    gap: 10px !important;
-  }
-  .stat-num { font-size: 32px !important; }
-
-  /* Country strip */
-  .countries-strip { padding: 12px 4% !important; gap: 6px !important; justify-content: flex-start !important; overflow-x: auto !important; flex-wrap: nowrap !important; }
-  .strip-label { display: none !important; }
-  .country-badge { font-size: 12px !important; padding: 5px 10px !important; white-space: nowrap !important; flex-shrink: 0 !important; }
-
-  /* How it works */
-  .how { padding: 52px 4% !important; }
-  .steps-grid { grid-template-columns: 1fr !important; gap: 12px !important; }
-  .step-card { padding: 24px 20px !important; }
-
-  /* Partners/Insurers */
-  .partners { padding: 52px 4% !important; }
-  .insurers-grid { grid-template-columns: 1fr 1fr !important; gap: 10px !important; }
-  .insurer-card { padding: 14px 12px !important; }
-  .partners-top { flex-direction: column !important; align-items: flex-start !important; gap: 12px !important; }
-  .partners-sub { text-align: left !important; max-width: 100% !important; }
-
-  /* Audience */
-  .audience { padding: 52px 4% !important; }
-  .audience-inner { grid-template-columns: 1fr !important; gap: 24px !important; }
-  .card-stack { display: none !important; }
-  .audience-tags { gap: 6px !important; }
-  .tag { font-size: 12px !important; padding: 6px 12px !important; }
-
-  /* Visa section */
-  .visa-section { padding: 52px 4% !important; }
-  .visa-inner { grid-template-columns: 1fr !important; gap: 24px !important; }
-  .visa-reqs { gap: 10px !important; }
-
-  /* Testimonials */
-  .testimonials { padding: 52px 4% !important; }
-  .test-grid { grid-template-columns: 1fr !important; gap: 12px !important; }
-
-  /* FAQ */
-  .faq { padding: 52px 4% !important; }
-
-  /* Final CTA */
-  .final-cta { padding: 60px 4% !important; }
-  .cta-buttons { flex-direction: column !important; align-items: center !important; }
-  .btn-teal, .btn-outline { width: 100% !important; justify-content: center !important; }
-
-  /* Footer */
-  footer { padding: 40px 4% 24px !important; }
-  .footer-grid { grid-template-columns: 1fr 1fr !important; gap: 24px !important; }
-  .footer-brand { grid-column: span 2 !important; }
-  .footer-bottom { flex-direction: column !important; gap: 6px !important; }
-  section { padding: 52px 4% !important; }
-}
-
-/* ── RESULTS PAGE ── */
-@media (max-width: 768px) {
-  .page { grid-template-columns: 1fr !important; padding: 16px 4% !important; }
-  .sidebar { display: none !important; }
-  .search-bar { padding: 10px 4% !important; }
-  .search-inner { gap: 6px !important; overflow-x: auto !important; flex-wrap: nowrap !important; padding-bottom: 4px !important; }
-  .search-pill { flex-shrink: 0 !important; font-size: 12px !important; padding: 6px 12px !important; }
-  .pill-btn { font-size: 12px !important; padding: 8px 14px !important; white-space: nowrap !important; flex-shrink: 0 !important; }
-  .results-header { flex-wrap: wrap !important; gap: 8px !important; }
-  .card-body {
-    grid-template-columns: auto 1fr !important;
-    gap: 12px !important;
-    padding: 14px 14px !important;
-  }
-  .card-price-block {
-    grid-column: span 2 !important;
-    display: flex !important;
-    flex-wrap: wrap !important;
-    align-items: center !important;
-    gap: 10px !important;
-  }
-  .card-price-block .btn-contract { width: 100% !important; }
-  .card-price-block .btn-details { width: 100% !important; }
-  .price-main { font-size: 30px !important; }
-  .best-banner { font-size: 13px !important; padding: 12px 14px !important; }
-  .schengen-callout { flex-wrap: wrap !important; }
-  .sc-btn { width: 100% !important; }
-  .details-grid { grid-template-columns: 1fr 1fr !important; }
-  #edit-panel > div > div:last-child {
-    grid-template-columns: 1fr 1fr !important;
-    gap: 10px !important;
-  }
-  #edit-panel > div > div:last-child > div:nth-child(3),
-  #edit-panel > div > div:last-child > div:nth-child(5) {
-    grid-column: span 2 !important;
-  }
-  #edit-panel { padding: 16px 4% !important; }
-}
-
-/* ── COLOMBIA & CITY PAGES ── */
-@media (max-width: 768px) {
-  .hero-inner { grid-template-columns: 1fr !important; gap: 28px !important; }
-  .hcard { display: none !important; }
-  .hero-stats { grid-template-columns: repeat(3, 1fr) !important; }
-  .hstat-val { font-size: 20px !important; }
-  .hero-badges { gap: 6px !important; justify-content: flex-start !important; }
-  .hbadge { font-size: 11px !important; padding: 5px 10px !important; }
-
-  /* Schengen/info boxes */
-  .schengen-banner { grid-template-columns: 1fr 1fr !important; gap: 10px !important; }
-  .sch-grid { grid-template-columns: 1fr 1fr !important; gap: 10px !important; }
-
-  /* Comparativa table */
-  .comp-table { font-size: 12px !important; }
-  .comp-table th:nth-child(3),
-  .comp-table td:nth-child(3) { display: none !important; }
-  .comp-table th:nth-child(2),
-  .comp-table td:nth-child(2) { display: none !important; }
-  .btn-contract-sm { padding: 7px 11px !important; font-size: 11px !important; }
-  .price-big { font-size: 17px !important; }
-
-  /* Cotizador form */
-  .sec-body div[style*="grid-template-columns: 1fr 1fr 1fr"],
-  .sec-body div[style*="grid-template-columns:1fr 1fr 1fr"] {
-    grid-template-columns: 1fr 1fr !important;
-  }
-  div[style*="grid-column:span 2"] { grid-column: span 2 !important; }
-
-  /* Guide steps */
-  .guide-step { gap: 10px !important; }
-  .gs-num { width: 24px !important; height: 24px !important; font-size: 11px !important; flex-shrink: 0 !important; }
-
-  /* Reviews */
-  .rv-stars { margin-left: 0 !important; }
-
-  /* Trust bar */
-  div[style*="repeat(4,1fr)"] { grid-template-columns: 1fr 1fr !important; }
-
-  /* Page body */
-  .page-body { grid-template-columns: 1fr !important; padding: 20px 4% !important; }
-  .sticky-cta { display: none !important; }
-
-  /* Sidebar */
-  .sidebar { display: none !important; }
-
-  /* Pros/cons */
-  .pros-cons { grid-template-columns: 1fr !important; }
-  .inc-grid { grid-template-columns: 1fr !important; }
-  .plans-grid { grid-template-columns: 1fr !important; }
-}
-
-/* ── BLOG PAGE ── */
-@media (max-width: 768px) {
-  .grid { grid-template-columns: 1fr !important; gap: 12px !important; }
-  .featured { grid-template-columns: 1fr !important; padding: 22px !important; }
-  .newsletter { grid-template-columns: 1fr !important; padding: 22px !important; }
-  .nl-form { flex-direction: column !important; }
-  .nl-input { min-width: unset !important; }
-}
-
-/* ── VISA SCHENGEN PAGE ── */
-@media (max-width: 768px) {
-  .req-grid { grid-template-columns: 1fr 1fr !important; }
-  .paises-table th:nth-child(4),
-  .paises-table td:nth-child(4) { display: none !important; }
-  .dest-grid { grid-template-columns: 1fr !important; }
-  .visa-cta-box { padding: 22px !important; }
-}
-
-/* ── ETIAS BLOG PAGE ── */
-@media (max-width: 768px) {
-  .etias-vs { grid-template-columns: 1fr !important; }
-  .req-grid { grid-template-columns: 1fr !important; }
-  .cta-banner { grid-template-columns: 1fr !important; padding: 22px !important; }
-  .related-grid { grid-template-columns: 1fr !important; }
-  .tl-item { padding-left: 8px !important; }
-}
-
-/* ── GLOBAL MOBILE FIXES ── */
-@media (max-width: 768px) {
-  html, body { overflow-x: hidden !important; }
-  img { max-width: 100% !important; }
-  .section { border-radius: 14px !important; }
-  .fg { grid-template-columns: 1fr 1fr !important; }
-}
-</style>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P1Q2TSMVNJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-P1Q2TSMVNJ');
+</script>
 
 </head>
 <body>
-<!-- ═══ MOBILE NAV SYSTEM ═══ -->
+<!-- MOBILE NAV -->
 <div id="mob-overlay" onclick="closeMobMenu()" style="display:none;position:fixed;inset:0;background:rgba(11,31,58,0.6);z-index:998;backdrop-filter:blur(4px)"></div>
 <div id="mob-drawer" style="display:none;position:fixed;top:0;right:0;bottom:0;width:min(300px,85vw);background:#fff;z-index:999;box-shadow:-8px 0 40px rgba(11,31,58,0.25);flex-direction:column;transform:translateX(100%);transition:transform .28s cubic-bezier(.4,0,.2,1)">
   <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:#0B1F3A;flex-shrink:0">
     <img src="/logo.png" alt="ViajerosLatam" style="height:42px;width:auto">
-    <button onclick="closeMobMenu()" style="width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,0.12);border:none;color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1">✕</button>
+    <button onclick="closeMobMenu()" style="width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.12);border:none;color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center">✕</button>
   </div>
   <div style="flex:1;overflow-y:auto">
     <a href="/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">🏠 Inicio</a>
-    <a href="/#como-funciona" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">❓ ¿Cómo funciona?</a>
-    <a href="/#aseguradoras" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">🏢 Aseguradoras</a>
-    <a href="/visa-schengen/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">🛂 Visa Schengen</a>
     <a href="/blog/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">📚 Artículos</a>
-    <a href="/#faq" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">💬 FAQ</a>
-    <a href="/seguro-viaje/colombia-a-espana/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">🇨🇴 Colombia → España</a>
+    <a href="/visa-schengen/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">🛂 Visa Schengen</a>
     <a href="/blog/etias-colombianos/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">⚡ ETIAS 2026</a>
+    <a href="/seguro-viaje/colombia-a-espana/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">🇨🇴 Colombia → España</a>
+    <a href="/seguro-viaje/bogota-a-espana/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">🏙️ Bogotá → España</a>
+    <a href="/seguro-viaje/medellin-a-espana/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">🏙️ Medellín → España</a>
+    <a href="/seguro-viaje/cali-a-espana/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">🏙️ Cali → España</a>
+    <a href="/#faq" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">💬 FAQ</a>
   </div>
   <div style="padding:16px 18px;border-top:1px solid #E4EDF5;flex-shrink:0">
     <a href="/resultados/" onclick="closeMobMenu()" style="display:flex;align-items:center;justify-content:center;gap:8px;background:#00C4A1;color:#0B1F3A;padding:14px;border-radius:50px;font-size:15px;font-weight:700;text-decoration:none">🔍 Comparar seguros gratis</a>
-    <p style="font-size:11px;color:#8FA4B8;text-align:center;margin-top:8px">Sin coste · Póliza en 2 minutos</p>
   </div>
 </div>
-
 <style>
-.mob-btn{display:none;flex-direction:column;justify-content:center;gap:5px;width:40px;height:40px;padding:8px;border-radius:10px;border:1.5px solid rgba(11,31,58,0.15);background:rgba(11,31,58,0.06);cursor:pointer;flex-shrink:0}
-.mob-btn span{display:block;height:2px;width:100%;background:#0B1F3A;border-radius:2px;transition:all .25s ease}
+.mob-btn{display:none;flex-direction:column;justify-content:center;gap:5px;width:40px;height:40px;padding:8px;border-radius:10px;border:1.5px solid rgba(11,31,58,.15);background:rgba(11,31,58,.06);cursor:pointer;flex-shrink:0}
+.mob-btn span{display:block;height:2px;width:100%;background:#0B1F3A;border-radius:2px;transition:all .25s}
 .mob-btn.is-open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .mob-btn.is-open span:nth-child(2){opacity:0;transform:scaleX(0)}
 .mob-btn.is-open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 #mob-drawer.is-open{transform:translateX(0)!important}
 @media(max-width:768px){.mob-btn{display:flex!important}}
 </style>
-
 <script>
-function openMobMenu(){
-  var d=document.getElementById('mob-drawer');
-  var o=document.getElementById('mob-overlay');
-  var b=document.querySelector('.mob-btn');
-  if(!d)return;
-  d.style.display='flex';
-  o.style.display='block';
-  requestAnimationFrame(function(){
-    d.classList.add('is-open');
-    if(b)b.classList.add('is-open');
-  });
-  document.body.style.overflow='hidden';
-}
-function closeMobMenu(){
-  var d=document.getElementById('mob-drawer');
-  var o=document.getElementById('mob-overlay');
-  var b=document.querySelector('.mob-btn');
-  if(!d)return;
-  d.classList.remove('is-open');
-  if(b)b.classList.remove('is-open');
-  document.body.style.overflow='';
-  setTimeout(function(){d.style.display='none';o.style.display='none';},280);
-}
+function openMobMenu(){var d=document.getElementById('mob-drawer'),o=document.getElementById('mob-overlay'),b=document.querySelector('.mob-btn');if(!d)return;d.style.display='flex';o.style.display='block';requestAnimationFrame(function(){d.classList.add('is-open');if(b)b.classList.add('is-open');});document.body.style.overflow='hidden';}
+function closeMobMenu(){var d=document.getElementById('mob-drawer'),o=document.getElementById('mob-overlay'),b=document.querySelector('.mob-btn');if(!d)return;d.classList.remove('is-open');if(b)b.classList.remove('is-open');document.body.style.overflow='';setTimeout(function(){d.style.display='none';o.style.display='none';},280);}
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu();});
 </script>
-<!-- ═══ END MOBILE NAV ═══ -->
-
 
 <!-- NAV -->
 <nav>
-  <a href="/" class="logo"><img src="/logo.png" alt="ViajerosLatam — Comparador de seguros de viaje para latinoamericanos" style="height:58px;width:auto;display:block"></a>
-  <a href="/" class="nav-back" onclick="event.preventDefault(); window.location.href='/'">
+  <a href="/" class="logo"><img src="/logo.png" alt="ViajeroLatam — Comparador de seguros de viaje para latinoamericanos" style="height:54px;width:auto;display:block"></a>
+  <a href="/" class="nav-back">
     <svg viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
     Nueva búsqueda
   </a>
-  <a href="/blog/" style="font-size:13px;font-weight:500;color:rgba(255,255,255,0.6);text-decoration:none;margin-right:8px" onmouseover="this.style.color='var(--teal)'" onmouseout="this.style.color='rgba(255,255,255,0.6)'">Artículos</a>
 
-  <button class="mob-btn" onclick="openMobMenu()" aria-label="Menú">
-    <span></span><span></span><span></span>
-  </button>
+  <button class="mob-btn" onclick="openMobMenu()" aria-label="Menú"><span></span><span></span><span></span></button>
 </nav>
 
 <!-- SEARCH BAR -->
 <div class="search-bar">
   <div class="search-inner">
-    <div class="search-pill" onclick="toggleEditPanel()" style="cursor:pointer">
+    <div class="search-pill">
       <div><div class="pill-label">Desde</div><div class="pill-val">Colombia 🇨🇴</div></div>
     </div>
-    <div class="search-pill" onclick="toggleEditPanel()" style="cursor:pointer">
+    <div class="search-pill">
       <div><div class="pill-label">Destino</div><div class="pill-val">España / Schengen 🇪🇺</div></div>
     </div>
-    <div class="search-pill" onclick="toggleEditPanel()" style="cursor:pointer">
+    <div class="search-pill">
       <div><div class="pill-label">Fechas</div><div class="pill-val">12 jun → 27 jun</div></div>
     </div>
-    <div class="search-pill" onclick="toggleEditPanel()" style="cursor:pointer">
+    <div class="search-pill">
       <div><div class="pill-label">Viajeros</div><div class="pill-val">1 adulto</div></div>
     </div>
-    <button class="pill-btn" style="margin-left:auto" onclick="toggleEditPanel()" onclick="window.location.href=\'/\'">
+    <button class="pill-btn" style="margin-left:auto">
       <svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
       Editar búsqueda
     </button>
-    <button class="mobile-filters-btn" onclick="toggleMobileFilters()">
+    <button class="mobile-filters-btn">
       <svg viewBox="0 0 24 24"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
       Filtros
     </button>
   </div>
 </div>
-
-<!-- EDIT SEARCH PANEL -->
-<div id="edit-panel" style="display:none;background:var(--white);border-bottom:2px solid var(--teal);padding:20px 5%;animation:slideDown .25s ease">
-  <div style="max-width:1200px;margin:0 auto">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
-      <h3 style="font-size:15px;font-weight:600;color:var(--navy)">✏️ Editar búsqueda</h3>
-      <button onclick="closeEditPanel()" style="background:none;border:none;font-size:20px;cursor:pointer;color:var(--text-light);line-height:1">✕</button>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr auto;gap:12px;align-items:end">
-
-      <!-- Desde -->
-      <div>
-        <label style="font-size:11px;font-weight:700;color:var(--text-light);text-transform:uppercase;letter-spacing:0.05em;display:block;margin-bottom:6px">Voy desde</label>
-        <select id="ep-origen" style="width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:10px;font-family:var(--font-body);font-size:14px;font-weight:600;color:var(--text-dark);background:var(--white);outline:none;cursor:pointer" onfocus="this.style.borderColor='var(--teal)'" onblur="this.style.borderColor='var(--border)'">
-          <option value="colombia">🇨🇴 Colombia</option>
-          <option value="mexico">🇲🇽 México</option>
-          <option value="argentina">🇦🇷 Argentina</option>
-          <option value="venezuela">🇻🇪 Venezuela</option>
-          <option value="peru">🇵🇪 Perú</option>
-          <option value="chile">🇨🇱 Chile</option>
-          <option value="ecuador">🇪🇨 Ecuador</option>
-          <option value="bolivia">🇧🇴 Bolivia</option>
-          <option value="republica-dominicana">🇩🇴 R. Dominicana</option>
-          <option value="panama">🇵🇦 Panamá</option>
-          <option value="uruguay">🇺🇾 Uruguay</option>
-        </select>
-      </div>
-
-      <!-- Destino -->
-      <div>
-        <label style="font-size:11px;font-weight:700;color:var(--text-light);text-transform:uppercase;letter-spacing:0.05em;display:block;margin-bottom:6px">Destino</label>
-        <select id="ep-destino" style="width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:10px;font-family:var(--font-body);font-size:14px;font-weight:600;color:var(--text-dark);background:var(--white);outline:none;cursor:pointer" onfocus="this.style.borderColor='var(--teal)'" onblur="this.style.borderColor='var(--border)'">
-          <option value="espana-schengen">🇪🇺 España / Schengen</option>
-          <option value="europa">🌍 Europa (toda)</option>
-          <option value="estados-unidos">🇺🇸 Estados Unidos</option>
-          <option value="eeuu-canada">🇺🇸🇨🇦 EEUU + Canadá</option>
-          <option value="mundial">🌎 Mundial</option>
-        </select>
-      </div>
-
-      <!-- Fechas -->
-      <div>
-        <label style="font-size:11px;font-weight:700;color:var(--text-light);text-transform:uppercase;letter-spacing:0.05em;display:block;margin-bottom:6px">Fecha ida → vuelta</label>
-        <div style="display:flex;align-items:center;gap:6px">
-          <input type="date" id="ep-ida" style="flex:1;padding:10px 10px;border:1.5px solid var(--border);border-radius:10px;font-family:var(--font-body);font-size:13px;font-weight:600;color:var(--text-dark);background:var(--white);outline:none" onfocus="this.style.borderColor='var(--teal)'" onblur="this.style.borderColor='var(--border)'" onchange="epDateChange()">
-          <span style="color:var(--text-light);font-size:14px">→</span>
-          <input type="date" id="ep-vuelta" style="flex:1;padding:10px 10px;border:1.5px solid var(--border);border-radius:10px;font-family:var(--font-body);font-size:13px;font-weight:600;color:var(--text-dark);background:var(--white);outline:none" onfocus="this.style.borderColor='var(--teal)'" onblur="this.style.borderColor='var(--border)'" onchange="epDateChange()">
-        </div>
-        <div id="ep-dias-label" style="font-size:11px;color:var(--teal-dark);font-weight:600;margin-top:4px"></div>
-      </div>
-
-      <!-- Viajeros -->
-      <div>
-        <label style="font-size:11px;font-weight:700;color:var(--text-light);text-transform:uppercase;letter-spacing:0.05em;display:block;margin-bottom:6px">Viajeros</label>
-        <select id="ep-personas" style="width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:10px;font-family:var(--font-body);font-size:14px;font-weight:600;color:var(--text-dark);background:var(--white);outline:none;cursor:pointer" onfocus="this.style.borderColor='var(--teal)'" onblur="this.style.borderColor='var(--border)'">
-          <option value="1">1 persona</option>
-          <option value="2">2 personas</option>
-          <option value="3">3 personas</option>
-          <option value="4">4 personas</option>
-          <option value="5">5+</option>
-        </select>
-      </div>
-
-      <!-- Buscar -->
-      <div>
-        <button onclick="applyEditSearch()" style="width:100%;background:var(--teal);color:var(--navy);border:none;border-radius:50px;padding:11px 22px;font-family:var(--font-body);font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap;transition:background .2s" onmouseover="this.style.background='#009C7F'" onmouseout="this.style.background='var(--teal)'">
-          🔍 Actualizar resultados
-        </button>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<style>
-@keyframes slideDown { from { opacity:0; transform:translateY(-10px); } to { opacity:1; transform:translateY(0); } }
-@media (max-width:700px) {
-  #edit-panel > div > div:last-child {
-    grid-template-columns: 1fr 1fr !important;
-    gap: 10px !important;
-  }
-  #edit-panel > div > div:last-child > div:nth-child(3) { grid-column: span 2; }
-  #edit-panel > div > div:last-child > div:nth-child(5) { grid-column: span 2; }
-}
-</style>
 
 <!-- PAGE -->
 <div class="page">
@@ -772,7 +429,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
         <h4>Todos cumplen los requisitos Schengen</h4>
         <p>Cobertura ≥30.000€ · Repatriación incluida · Sin franquicia · Aseguradora con sede en Europa</p>
       </div>
-      <button class="sc-btn" onclick="(function(){window.location.href='/visa-schengen/';return false;})()">¿Qué es el Schengen?</button>
+      <button class="sc-btn">¿Qué es el Schengen?</button>
     </div>
 
     <!-- Best value banner -->
@@ -1062,19 +719,8 @@ function toggleDetails(id){
   btn.textContent = isOpen ? 'Ver cobertura completa' : 'Ocultar detalles ↑';
 }
 
-function contractClick(name, plan) {
-  var urls = {
-    'Heymondo': 'https://www.heymondo.es/travel-insurance/?utm_source=viajerolatam&utm_medium=affiliate',
-    'IATI Seguros': 'https://www.iati.es/seguro-viaje/?utm_source=viajerolatam&utm_medium=affiliate',
-    'Intermundial': 'https://www.intermundial.es/?utm_source=viajerolatam&utm_medium=affiliate',
-    'Chapka': 'https://www.chapkadirect.es/?utm_source=viajerolatam&utm_medium=affiliate',
-    'AXA Travel': 'https://www.axa-assistance.es/?utm_source=viajerolatam&utm_medium=affiliate',
-    'SafetyWing': 'https://safetywing.com/nomad-insurance/?referenceID=viajerolatam',
-    'Allianz Travel': 'https://www.allianz-assistance.es/?utm_source=viajerolatam&utm_medium=affiliate',
-    'Europ Assistance': 'https://www.europ-assistance.es/?utm_source=viajerolatam&utm_medium=affiliate'
-  };
-  var url = urls[name] || '/resultados/';
-  window.open(url, '_blank');
+function contractClick(name, plan){
+  alert(`✅ Redirigiendo a ${name} para contratar "${plan}".\n\n(En producción, aquí iría el enlace de afiliado con tracking.)`)
 }
 
 // Init slider style
@@ -1089,103 +735,17 @@ render(sortData(DATA, 'recomendado'));
 </script>
 
 <script>
-// ── Edit Search Panel
-function getUrlParam(name) {
-  return new URLSearchParams(window.location.search).get(name) || '';
-}
-
-function toggleEditPanel() {
-  var panel = document.getElementById('edit-panel');
-  if (!panel) return;
-  if (panel.style.display === 'none' || panel.style.display === '') {
-    openEditPanel();
-  } else {
-    closeEditPanel();
+document.addEventListener('click', function(e){
+  var link = e.target.closest('a');
+  if(!link || typeof gtag !== 'function') return;
+  var href = link.getAttribute('href') || '';
+  if(href.indexOf('iatiseguros.com') !== -1){
+    gtag('event', 'click_affiliate_iati', {
+      event_category: 'affiliate',
+      event_label: href,
+      page_location: window.location.href
+    });
   }
-}
-
-function openEditPanel() {
-  var panel = document.getElementById('edit-panel');
-  if (!panel) return;
-  panel.style.display = 'block';
-
-  // Pre-fill from URL params
-  var origen   = getUrlParam('origen')   || 'colombia';
-  var destino  = getUrlParam('destino')  || 'espana-schengen';
-  var personas = getUrlParam('personas') || '1';
-  var ida      = getUrlParam('ida');
-  var vuelta   = getUrlParam('vuelta');
-
-  // Default dates if none in URL
-  if (!ida) {
-    var d = new Date(); ida = d.toISOString().split('T')[0];
-  }
-  if (!vuelta) {
-    var d2 = new Date(); d2.setDate(d2.getDate()+15); vuelta = d2.toISOString().split('T')[0];
-  }
-
-  setSelectValue('ep-origen',   origen);
-  setSelectValue('ep-destino',  destino);
-  setSelectValue('ep-personas', personas);
-
-  var idaEl    = document.getElementById('ep-ida');
-  var vueltaEl = document.getElementById('ep-vuelta');
-  if (idaEl)    { idaEl.value    = ida;    idaEl.min    = new Date().toISOString().split('T')[0]; }
-  if (vueltaEl) { vueltaEl.value = vuelta; vueltaEl.min = ida; }
-
-  epDateChange();
-  panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-
-function closeEditPanel() {
-  var panel = document.getElementById('edit-panel');
-  if (panel) panel.style.display = 'none';
-}
-
-function setSelectValue(id, val) {
-  var el = document.getElementById(id);
-  if (!el) return;
-  for (var i = 0; i < el.options.length; i++) {
-    if (el.options[i].value === val) { el.selectedIndex = i; break; }
-  }
-}
-
-function epDateChange() {
-  var ida    = document.getElementById('ep-ida');
-  var vuelta = document.getElementById('ep-vuelta');
-  var label  = document.getElementById('ep-dias-label');
-  if (!ida || !vuelta || !ida.value || !vuelta.value) return;
-  var d1 = new Date(ida.value), d2 = new Date(vuelta.value);
-  if (d2 <= d1) {
-    var f = new Date(d1); f.setDate(f.getDate()+1);
-    vuelta.value = f.toISOString().split('T')[0]; d2 = f;
-    if (vuelta) vuelta.min = ida.value;
-  }
-  var dias = Math.round((d2-d1)/86400000);
-  if (label) label.textContent = dias + ' días · Desde €' + (1.75*dias).toFixed(2);
-}
-
-function applyEditSearch() {
-  var o  = (document.getElementById('ep-origen')   || {}).value || 'colombia';
-  var d  = (document.getElementById('ep-destino')  || {}).value || 'espana-schengen';
-  var p  = (document.getElementById('ep-personas') || {}).value || '1';
-  var fi = (document.getElementById('ep-ida')      || {}).value || '';
-  var fv = (document.getElementById('ep-vuelta')   || {}).value || '';
-  var dias = 15;
-  if (fi && fv) {
-    var diff = Math.round((new Date(fv)-new Date(fi))/86400000);
-    if (diff > 0) dias = diff;
-  }
-  var url = '/resultados/?origen=' + encodeURIComponent(o)
-    + '&destino=' + encodeURIComponent(d)
-    + '&dias=' + dias + '&personas=' + p
-    + (fi ? '&ida='+fi : '') + (fv ? '&vuelta='+fv : '');
-  window.location.href = url;
-}
-
-// Close panel on Escape key
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') closeEditPanel();
 });
 </script>
 

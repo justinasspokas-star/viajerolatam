@@ -187,6 +187,14 @@ footer{background:var(--navy);padding:40px 5% 24px;margin-top:40px}
   .fg{grid-template-columns:1fr 1fr!important}
 }
 </style>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P1Q2TSMVNJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-P1Q2TSMVNJ');
+</script>
 </head>
 <body>
 
@@ -349,7 +357,7 @@ footer{background:var(--navy);padding:40px 5% 24px;margin-top:40px}
             <td><strong>Ilimitada</strong></td>
             <td><span style="color:var(--amber);font-size:12px">Opcional</span></td>
             <td><div class="price-n">€31.50</div><div class="price-d">€2.10/día</div></td>
-            <td><button class="btn-sm" onclick="window.open('https://www.heymondo.es/travel-insurance/?utm_source=viajerolatam&utm_medium=affiliate&utm_campaign=medellin-espana','_blank')">Contratar →</button></td>
+            <td><button class="btn-sm" onclick="if(typeof gtag!='undefined')gtag('event','click_contratar',{affiliate:'heymondo',page:location.pathname});window.open('https://www.heymondo.es/travel-insurance/?utm_source=viajerolatam&utm_medium=affiliate&utm_campaign=medellin-espana','_blank')">Contratar →</button></td>
           </tr>
           <tr>
             <td><div style="display:flex;align-items:center;gap:9px"><div class="ins-logo" style="background:#E6F1FB;color:#185FA5">IA</div><div><div class="ins-name">IATI Estrella</div><div class="ins-sub">Pago directo</div></div></div></td>
