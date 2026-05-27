@@ -552,6 +552,44 @@ nav .logo img.logo-img-header{height:58px;width:auto}
     .sb-btn { grid-column: 1; }
     .sb-divider { display: none; }
   }
+
+/* IATI card click fix */
+.iati-card-link{
+  display:block;
+  color:inherit;
+  text-decoration:none;
+}
+.iati-card-link .insurer-card,
+.iati-card-link .carrier-card,
+.iati-card-link .aseguradora-card,
+.iati-card-link .feature-card,
+.iati-card-link .card{
+  cursor:pointer;
+}
+.iati-card-link .insurer-card::after,
+.iati-card-link .carrier-card::after,
+.iati-card-link .aseguradora-card::after,
+.iati-card-link .feature-card::after,
+.iati-card-link .card::after{
+  content:"Ver precio en IATI →";
+  display:inline-flex;
+  margin-top:14px;
+  background:#75D8BC;
+  color:#0B1F3A;
+  padding:10px 16px;
+  border-radius:999px;
+  font-weight:900;
+  font-size:13px;
+}
+.iati-card-link:hover .insurer-card,
+.iati-card-link:hover .carrier-card,
+.iati-card-link:hover .aseguradora-card,
+.iati-card-link:hover .feature-card,
+.iati-card-link:hover .card{
+  transform:translateY(-2px);
+  border-color:#75D8BC!important;
+}
+
 </style>
 
 
@@ -1078,7 +1116,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
       <p class="partners-sub">Comparamos todas para que no tengas que hacerlo tú. Solo aseguradoras verificadas con cobertura real.</p>
     </div>
     <div class="insurers-grid">
-      <div class="insurer-card reveal">
+      <a class="iati-card-link" href="https://www.iatiseguros.com?r=84208681926165" target="_blank" rel="nofollow sponsored noopener"><div class="insurer-card reveal">
         <div class="insurer-logo" style="background:rgba(0,196,161,0.15); color:var(--teal); font-size:14px;">HM</div>
         <div>
           <div class="insurer-name">Heymondo</div>
@@ -1089,7 +1127,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
       <div class="insurer-card reveal">
         <div class="insurer-logo" style="background:rgba(255,255,255,0.12); color:var(--white); font-size:14px;">IA</div>
         <div>
-          <div class="insurer-name">IATI Seguros</div>
+          <div class="insurer-name">IATI Seguros</div></a><!-- /iati-card-link -->
           <div class="insurer-tag">Sin franquicia · Gastos ilimitados</div>
         </div>
         <div class="insurer-stars">★★★★★</div>
