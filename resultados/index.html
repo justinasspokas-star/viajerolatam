@@ -275,6 +275,19 @@ nav .logo img,
   gtag('config', 'G-P1Q2TSMVNJ');
 </script>
 
+<style id="travel-bg">
+.travel-icons{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.travel-icons *{position:absolute;opacity:0.07;fill:none;stroke:#fff;stroke-width:1.5}
+.travel-icons .plane{animation:floatPlane 18s ease-in-out infinite}
+.travel-icons .plane2{animation:floatPlane 24s ease-in-out infinite reverse}
+.travel-icons .plane3{animation:floatPlane 30s ease-in-out infinite 6s}
+@keyframes floatPlane{0%{transform:translate(0,0) rotate(0deg)}25%{transform:translate(8px,-12px) rotate(3deg)}50%{transform:translate(-5px,-8px) rotate(-2deg)}75%{transform:translate(6px,5px) rotate(2deg)}100%{transform:translate(0,0) rotate(0deg)}}
+.travel-icons .float-slow{animation:floatSlow 22s ease-in-out infinite 3s}
+.travel-icons .float-med{animation:floatSlow 28s ease-in-out infinite}
+@keyframes floatSlow{0%{transform:translate(0,0) rotate(0deg)}33%{transform:translate(-10px,8px) rotate(-4deg)}66%{transform:translate(7px,-6px) rotate(3deg)}100%{transform:translate(0,0) rotate(0deg)}}
+.travel-icons .float-globe{animation:floatGlobe 20s ease-in-out infinite 1s}
+@keyframes floatGlobe{0%{transform:translate(0,0)}50%{transform:translate(5px,-10px)}100%{transform:translate(0,0)}}
+</style>
 </head>
 <body>
 <!-- MOBILE NAV -->
