@@ -16,7 +16,7 @@
   <meta property="og:title" content="Comparar seguros de viaje Colombia a España">
   <meta property="og:description" content="Comparativa clara entre IATI e InterMundial para colombianos que viajan a España o zona Schengen.">
   <meta property="og:url" content="https://viajerolatam.com/comparar-seguros-viaje-colombia-espana/">
-  <meta property="og:image" content="https://viajerolatam.com/logo.png">
+  <meta property="og:image" content="https://viajerolatam.com/logo-vl-original-20260528.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -261,11 +261,25 @@ nav a.brand-logo img, nav a.logo img{
   }
 }
 
+
+/* CACHE-BUSTER LOGO FIX */
+a.brand-logo, a.logo, .mobile-logo, .footer-logo {opacity:1 !important; filter:none !important;}
+a.brand-logo img, a.logo img, .mobile-logo img, .footer-logo img, header img[src*="logo"]{
+  opacity:1 !important;
+  filter:none !important;
+  mix-blend-mode:normal !important;
+  object-fit:contain !important;
+  image-rendering:auto !important;
+  background:transparent !important;
+}
+nav a.brand-logo img, nav a.logo img{height:64px !important; width:auto !important; max-width:320px !important;}
+@media (max-width:768px){ nav a.brand-logo img, nav a.logo img, .mobile-logo img{height:44px !important; max-width:220px !important;} }
+
 </style>
 </head>
 <body>
   <nav>
-    <a href="/" class="brand-logo" aria-label="ViajeroLatam inicio"><img src="/logo.png" alt="ViajeroLatam"></a>
+    <a href="/" class="brand-logo" aria-label="ViajeroLatam inicio"><img src="/logo-vl-original-20260528.png" alt="ViajeroLatam"></a>
     <div class="nav-links">
       <a href="/seguro-viaje/colombia-a-espana/">Colombia → España</a>
       <a href="/visa-schengen/">Visa Schengen</a>

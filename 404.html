@@ -167,6 +167,20 @@ nav a.brand-logo img, nav a.logo img{
   }
 }
 
+
+/* CACHE-BUSTER LOGO FIX */
+a.brand-logo, a.logo, .mobile-logo, .footer-logo {opacity:1 !important; filter:none !important;}
+a.brand-logo img, a.logo img, .mobile-logo img, .footer-logo img, header img[src*="logo"]{
+  opacity:1 !important;
+  filter:none !important;
+  mix-blend-mode:normal !important;
+  object-fit:contain !important;
+  image-rendering:auto !important;
+  background:transparent !important;
+}
+nav a.brand-logo img, nav a.logo img{height:64px !important; width:auto !important; max-width:320px !important;}
+@media (max-width:768px){ nav a.brand-logo img, nav a.logo img, .mobile-logo img{height:44px !important; max-width:220px !important;} }
+
 </style>
 <!-- Google Analytics 4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-P1Q2TSMVNJ"></script>
@@ -179,7 +193,7 @@ nav a.brand-logo img, nav a.logo img{
 </head>
 <body>
 <div class="box">
-  <img src="/logo.png" alt="ViajeroLatam">
+  <img src="/logo-vl-original-20260528.png" alt="ViajeroLatam">
   <h1>Página no encontrada</h1>
   <p>La página que buscas no existe. Vuelve al inicio y compara seguros de viaje para latinoamericanos.</p>
   <a class="btn" href="/">← Volver al inicio</a>

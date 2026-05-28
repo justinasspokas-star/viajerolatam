@@ -22,7 +22,7 @@
 <meta property="og:title" content="Seguro de viaje Colombia a España">
 <meta property="og:description" content="Guía para colombianos que viajan a España: requisitos, cobertura médica, Schengen y cómo comparar seguros de viaje.">
 <meta property="og:url" content="https://viajerolatam.com/seguro-viaje/colombia-a-espana/">
-<meta property="og:image" content="https://viajerolatam.com/logo.png">
+<meta property="og:image" content="https://viajerolatam.com/logo-vl-original-20260528.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -210,6 +210,20 @@ nav a.brand-logo img, nav a.logo img{
   }
 }
 
+
+/* CACHE-BUSTER LOGO FIX */
+a.brand-logo, a.logo, .mobile-logo, .footer-logo {opacity:1 !important; filter:none !important;}
+a.brand-logo img, a.logo img, .mobile-logo img, .footer-logo img, header img[src*="logo"]{
+  opacity:1 !important;
+  filter:none !important;
+  mix-blend-mode:normal !important;
+  object-fit:contain !important;
+  image-rendering:auto !important;
+  background:transparent !important;
+}
+nav a.brand-logo img, nav a.logo img{height:64px !important; width:auto !important; max-width:320px !important;}
+@media (max-width:768px){ nav a.brand-logo img, nav a.logo img, .mobile-logo img{height:44px !important; max-width:220px !important;} }
+
 </style>
 </head>
 <body>
@@ -217,7 +231,7 @@ nav a.brand-logo img, nav a.logo img{
 <div id="mob-overlay" onclick="closeMobMenu()" style="display:none;position:fixed;inset:0;background:rgba(11,31,58,0.6);z-index:998;backdrop-filter:blur(4px)"></div>
 <div id="mob-drawer" style="display:none;position:fixed;top:0;right:0;bottom:0;width:min(300px,85vw);background:#fff;z-index:999;box-shadow:-8px 0 40px rgba(11,31,58,0.25);flex-direction:column;transform:translateX(100%);transition:transform .28s cubic-bezier(.4,0,.2,1)">
   <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:#0B1F3A;flex-shrink:0">
-    <img src="/logo.png" alt="ViajeroLatam">
+    <img src="/logo-vl-original-20260528.png" alt="ViajeroLatam">
     <button onclick="closeMobMenu()" style="width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.12);border:none;color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center">✕</button>
   </div>
   <div style="flex:1;overflow-y:auto">
@@ -249,7 +263,7 @@ function openMobMenu(){var d=document.getElementById('mob-drawer'),o=document.ge
 function closeMobMenu(){var d=document.getElementById('mob-drawer'),o=document.getElementById('mob-overlay'),b=document.querySelector('.mob-btn');if(!d)return;d.classList.remove('is-open');if(b)b.classList.remove('is-open');document.body.style.overflow='';setTimeout(function(){d.style.display='none';o.style.display='none';},280);}
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu();});
 </script>
-<nav><a href="/" class="brand-logo" aria-label="ViajeroLatam inicio"><img src="/logo.png" alt="ViajeroLatam"></a><div class="nav-links"><a href="/#como-funciona">¿Cómo funciona?</a><a href="/#aseguradoras">Aseguradoras</a><a href="/visa-schengen/">Visa Schengen</a><a href="/blog/">Artículos</a><a href="/resultados/" class="nav-cta">Comparar ahora</a></div>
+<nav><a href="/" class="brand-logo" aria-label="ViajeroLatam inicio"><img src="/logo-vl-original-20260528.png" alt="ViajeroLatam"></a><div class="nav-links"><a href="/#como-funciona">¿Cómo funciona?</a><a href="/#aseguradoras">Aseguradoras</a><a href="/visa-schengen/">Visa Schengen</a><a href="/blog/">Artículos</a><a href="/resultados/" class="nav-cta">Comparar ahora</a></div>
   <button class="mob-btn" onclick="openMobMenu()" aria-label="Menú"><span></span><span></span><span></span></button>
 </nav>
 <header class="hero"><div class="hero-inner"><div><div class="eyebrow">🇨🇴 Colombia → 🇪🇸 España</div><h1>Seguro de viaje <em>Colombia a España</em></h1><p>Guía práctica para colombianos que viajan a España: cobertura médica recomendada, requisitos Schengen, qué revisar antes de contratar y cómo comparar opciones.</p><div class="btn-row"><a class="btn btn-primary" href="/resultados/">Comparar seguros →</a><a class="btn btn-secondary" href="https://www.iatiseguros.com?r=84208681926165" target="_blank" rel="nofollow sponsored noopener">Ver precio en IATI →</a></div></div><aside class="hero-card"><div class="small">Precio orientativo</div><div class="price">desde pocos €/día</div><p class="small">El precio real depende de edad, duración, fechas y coberturas elegidas.</p><ul class="checklist"><li>Cobertura médica internacional</li><li>Repatriación y asistencia 24/7</li><li>Opciones útiles para zona Schengen</li><li>Contratación online y póliza por email</li></ul><a class="btn btn-primary" href="/resultados/" style="width:100%">Buscar mi seguro</a></aside></div></header>
