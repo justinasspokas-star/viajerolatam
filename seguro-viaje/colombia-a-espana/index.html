@@ -110,6 +110,51 @@ section{padding:72px 5%}.wrap{max-width:1120px;margin:0 auto}.section-kicker{col
 .vl-coupon-mini{display:inline-flex;background:#fff;color:#0B1F3A;border:1px dashed #00A989;border-radius:10px;padding:6px 10px;font-weight:900;font-size:13px;margin-top:8px}
 @media(max-width:800px){.vl-trust-grid{grid-template-columns:1fr}.vl-cta-comparison{align-items:flex-start}.vl-cta-buttons{width:100%}.vl-cta-btn{width:100%}}
 
+
+/* ViajeroLatam original logo — desktop/mobile fix */
+.site-header .brand-logo,
+nav .brand-logo{
+  display:inline-flex;
+  align-items:center;
+  flex:0 0 auto;
+  min-width:170px;
+  max-width:260px;
+  height:62px;
+  text-decoration:none;
+}
+.site-header .brand-logo picture,
+nav .brand-logo picture{display:flex;align-items:center;height:100%}
+.site-header .brand-logo img,
+nav .brand-logo img,
+.brand-logo img{
+  display:block!important;
+  width:auto!important;
+  height:56px!important;
+  max-width:250px!important;
+  object-fit:contain!important;
+}
+@media(max-width:768px){
+  .site-header .brand-logo,
+  nav .brand-logo{
+    min-width:138px;
+    max-width:180px;
+    height:54px;
+  }
+  .site-header .brand-logo img,
+  nav .brand-logo img,
+  .brand-logo img{
+    height:46px!important;
+    max-width:178px!important;
+  }
+}
+@media(max-width:380px){
+  .site-header .brand-logo,
+  nav .brand-logo{max-width:155px;min-width:125px}
+  .site-header .brand-logo img,
+  nav .brand-logo img,
+  .brand-logo img{height:40px!important;max-width:155px!important}
+}
+
 </style>
 <style>@font-face{font-display:swap}</style>
 <style id="mobile-master">

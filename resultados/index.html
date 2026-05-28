@@ -312,6 +312,51 @@ nav .logo img,
   font-weight:900;
 }
 
+
+/* ViajeroLatam original logo — desktop/mobile fix */
+.site-header .brand-logo,
+nav .brand-logo{
+  display:inline-flex;
+  align-items:center;
+  flex:0 0 auto;
+  min-width:170px;
+  max-width:260px;
+  height:62px;
+  text-decoration:none;
+}
+.site-header .brand-logo picture,
+nav .brand-logo picture{display:flex;align-items:center;height:100%}
+.site-header .brand-logo img,
+nav .brand-logo img,
+.brand-logo img{
+  display:block!important;
+  width:auto!important;
+  height:56px!important;
+  max-width:250px!important;
+  object-fit:contain!important;
+}
+@media(max-width:768px){
+  .site-header .brand-logo,
+  nav .brand-logo{
+    min-width:138px;
+    max-width:180px;
+    height:54px;
+  }
+  .site-header .brand-logo img,
+  nav .brand-logo img,
+  .brand-logo img{
+    height:46px!important;
+    max-width:178px!important;
+  }
+}
+@media(max-width:380px){
+  .site-header .brand-logo,
+  nav .brand-logo{max-width:155px;min-width:125px}
+  .site-header .brand-logo img,
+  nav .brand-logo img,
+  .brand-logo img{height:40px!important;max-width:155px!important}
+}
+
 </style>
 <!-- Google Analytics 4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-P1Q2TSMVNJ"></script>
