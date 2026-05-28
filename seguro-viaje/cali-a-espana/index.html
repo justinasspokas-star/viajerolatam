@@ -197,21 +197,20 @@ nav img{height:58px!important;width:auto!important;display:block!important}
 </style>
 <style id="travel-bg">
 .travel-icons{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1}
+.travel-icons svg{position:absolute}
 #travel-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
-@keyframes vl-f1{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-18px) rotate(6deg)}}
-@keyframes vl-f2{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-12px) rotate(-4deg)}}
-@keyframes vl-f3{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+@keyframes vl-f1{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-10px) rotate(3deg)}}
+@keyframes vl-f2{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-7px) rotate(-3deg)}}
 @keyframes vl-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
-@keyframes vl-pulse{0%,100%{opacity:.7}50%{opacity:1}}
 .ti-a{animation:vl-f1 9s ease-in-out infinite}
 .ti-b{animation:vl-f2 13s ease-in-out infinite 2s}
-.ti-c{animation:vl-f1 18s ease-in-out infinite 5s}
+.ti-c{animation:vl-f1 17s ease-in-out infinite 5s}
 .ti-d{animation:vl-f2 11s ease-in-out infinite 1s}
-.ti-e{animation:vl-spin 50s linear infinite}
-.ti-f{animation:vl-f3 14s ease-in-out infinite 3s}
-.ti-g{animation:vl-f1 12s ease-in-out infinite 6s}
-.ti-h{animation:vl-f2 15s ease-in-out infinite 4s}
-.ti-i{animation:vl-f1 10s ease-in-out infinite 7s}
+.ti-e{animation:vl-spin 55s linear infinite}
+.ti-f{animation:vl-f1 14s ease-in-out infinite 3s}
+.ti-g{animation:vl-f2 12s ease-in-out infinite 6s}
+.ti-h{animation:vl-f1 15s ease-in-out infinite 4s}
+.ti-i{animation:vl-f2 10s ease-in-out infinite 7s}
 </style>
 </head>
 <body>
@@ -258,6 +257,287 @@ nav img{height:58px!important;width:auto!important;display:block!important}
 </div>
 
 <div class="hero">
+<div class="travel-icons" aria-hidden="true">
+<svg xmlns="http://www.w3.org/2000/svg" style="width:0;height:0;position:absolute">
+  <defs>
+    <linearGradient id="gP" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:rgba(255,255,255,0.22)"/>
+      <stop offset="100%" style="stop-color:rgba(255,255,255,0.04)"/>
+    </linearGradient>
+    <linearGradient id="gT" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:rgba(0,196,161,0.2)"/>
+      <stop offset="100%" style="stop-color:rgba(0,196,161,0.04)"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<!-- PLANE — large, top-right corner, well away from content -->
+<svg class="ti-a" width="80" height="66" viewBox="0 0 110 90"
+     style="top:10%;right:4%;opacity:.18">
+  <ellipse cx="55" cy="45" rx="38" ry="10" fill="url(#gP)" stroke="rgba(255,255,255,0.5)" stroke-width="1.2"/>
+  <ellipse cx="88" cy="45" rx="8" ry="7" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+  <ellipse cx="83" cy="42" rx="3" ry="2.5" fill="rgba(0,196,161,0.7)"/>
+  <ellipse cx="76" cy="41" rx="2.5" ry="2" fill="rgba(255,255,255,0.3)"/>
+  <ellipse cx="69" cy="41" rx="2.5" ry="2" fill="rgba(255,255,255,0.3)"/>
+  <polygon points="65,45 42,20 16,38 16,52 42,70" fill="url(#gP)" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+  <line x1="42" y1="20" x2="16" y2="45" stroke="rgba(255,255,255,0.15)" stroke-width=".6"/>
+  <polygon points="22,45 18,31 10,38 10,52 18,59" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.25)" stroke-width=".8"/>
+  <polygon points="20,40 17,27 14,40" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.2)" stroke-width=".7"/>
+  <ellipse cx="40" cy="55" rx="7" ry="3.5" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.25)" stroke-width=".7"/>
+  <line x1="90" y1="45" x2="20" y2="45" stroke="rgba(0,196,161,0.35)" stroke-width=".8" stroke-dasharray="3,5"/>
+</svg>
+
+<!-- PASSPORT — small, left side, lower down -->
+<svg class="ti-d" width="46" height="58" viewBox="0 0 72 90"
+     style="top:55%;left:4%;opacity:.16">
+  <rect x="9" y="7" width="56" height="76" rx="5" fill="rgba(0,0,0,0.1)"/>
+  <rect x="6" y="4" width="56" height="76" rx="5" fill="url(#gT)" stroke="rgba(0,196,161,0.55)" stroke-width="1.5"/>
+  <rect x="6" y="4" width="8" height="76" rx="4" fill="rgba(0,196,161,0.12)"/>
+  <rect x="18" y="12" width="36" height="2.5" rx="1.2" fill="rgba(255,255,255,0.25)"/>
+  <rect x="22" y="17" width="28" height="1.5" rx=".75" fill="rgba(255,255,255,0.15)"/>
+  <circle cx="34" cy="38" r="14" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+  <ellipse cx="34" cy="38" rx="6" ry="14" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width=".8"/>
+  <line x1="20" y1="38" x2="48" y2="38" stroke="rgba(255,255,255,0.18)" stroke-width=".7"/>
+  <rect x="16" y="58" width="40" height="2" rx="1" fill="rgba(255,255,255,0.15)"/>
+  <rect x="16" y="63" width="40" height="2" rx="1" fill="rgba(255,255,255,0.1)"/>
+  <circle cx="52" cy="62" r="10" fill="none" stroke="rgba(0,196,161,0.4)" stroke-width="1.2" stroke-dasharray="2,2"/>
+</svg>
+
+<!-- GLOBE — spinning, positioned far right mid -->
+<svg class="ti-e" width="58" height="58" viewBox="0 0 84 84"
+     style="top:35%;right:6%;opacity:.14">
+  <circle cx="42" cy="42" r="38" fill="none" stroke="rgba(0,196,161,0.2)" stroke-width="1.5"/>
+  <circle cx="42" cy="42" r="32" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.28)" stroke-width="1"/>
+  <ellipse cx="42" cy="42" rx="32" ry="11" fill="none" stroke="rgba(255,255,255,0.14)" stroke-width=".7"/>
+  <ellipse cx="42" cy="42" rx="32" ry="21" fill="none" stroke="rgba(255,255,255,0.09)" stroke-width=".6"/>
+  <ellipse cx="42" cy="42" rx="13" ry="32" fill="none" stroke="rgba(255,255,255,0.11)" stroke-width=".7"/>
+  <ellipse cx="42" cy="42" rx="25" ry="32" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width=".6"/>
+  <line x1="10" y1="42" x2="74" y2="42" stroke="rgba(255,255,255,0.2)" stroke-width=".9"/>
+  <path d="M30 26 Q34 22 40 24 Q45 22 47 27 Q49 33 46 37 Q41 39 37 37 Q30 34 30 26Z" fill="rgba(0,196,161,0.2)" stroke="rgba(0,196,161,0.4)" stroke-width=".7"/>
+  <path d="M47 30 Q52 26 56 29 Q58 34 55 38 Q51 40 47 38 Q45 35 47 30Z" fill="rgba(0,196,161,0.14)" stroke="rgba(0,196,161,0.3)" stroke-width=".6"/>
+  <path d="M25 42 Q27 37 31 39 Q33 44 31 48 Q27 50 25 46Z" fill="rgba(0,196,161,0.12)" stroke="rgba(0,196,161,0.25)" stroke-width=".6"/>
+</svg>
+
+<!-- SUITCASE — bottom right, small -->
+<svg class="ti-f" width="54" height="50" viewBox="0 0 78 72"
+     style="bottom:18%;right:7%;opacity:.15">
+  <ellipse cx="39" cy="68" rx="26" ry="2.5" fill="rgba(0,0,0,0.1)"/>
+  <rect x="8" y="16" width="62" height="46" rx="7" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.32)" stroke-width="1.2"/>
+  <path d="M27 16 L27 8 Q27 4 31 4 L47 4 Q51 4 51 8 L51 16" fill="none" stroke="rgba(255,255,255,0.38)" stroke-width="1.8" stroke-linecap="round"/>
+  <rect x="8" y="34" width="62" height="7" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.12)" stroke-width=".7"/>
+  <rect x="32" y="34" width="14" height="7" rx="2" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.28)" stroke-width=".8"/>
+  <circle cx="39" cy="37.5" r="2.5" fill="rgba(0,196,161,0.5)" stroke="rgba(0,196,161,0.8)" stroke-width=".7"/>
+  <rect x="13" y="22" width="18" height="24" rx="4" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.14)" stroke-width=".7"/>
+  <rect x="47" y="22" width="18" height="24" rx="4" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.14)" stroke-width=".7"/>
+  <circle cx="18" cy="60" r="3.5" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.28)" stroke-width="1"/>
+  <circle cx="60" cy="60" r="3.5" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.28)" stroke-width="1"/>
+</svg>
+
+<!-- MAP PIN — bottom left, small -->
+<svg class="ti-g" width="36" height="48" viewBox="0 0 52 68"
+     style="bottom:22%;left:8%;opacity:.17">
+  <circle cx="26" cy="26" r="20" fill="rgba(0,196,161,0.05)"/>
+  <path d="M26 4 C14 4 6 12 6 24 C6 36 26 64 26 64 C26 64 46 36 46 24 C46 12 38 4 26 4Z"
+        fill="rgba(0,196,161,0.14)" stroke="rgba(0,196,161,0.55)" stroke-width="1.5"/>
+  <circle cx="26" cy="24" r="9" fill="rgba(0,196,161,0.18)" stroke="rgba(0,196,161,0.5)" stroke-width="1.2"/>
+  <circle cx="26" cy="24" r="4.5" fill="rgba(0,196,161,0.35)" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+  <circle cx="26" cy="24" r="1.8" fill="rgba(255,255,255,0.5)"/>
+  <ellipse cx="20" cy="18" rx="3.5" ry="2.5" fill="rgba(255,255,255,0.12)" transform="rotate(-20,20,18)"/>
+</svg>
+
+<!-- COMPASS — top left mid, small -->
+<svg class="ti-h" width="50" height="50" viewBox="0 0 68 68"
+     style="top:18%;left:6%;opacity:.14">
+  <circle cx="34" cy="34" r="30" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.22)" stroke-width="1.2"/>
+  <circle cx="34" cy="34" r="24" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width=".7"/>
+  <line x1="34" y1="5" x2="34" y2="11" stroke="rgba(255,255,255,0.45)" stroke-width="1.5"/>
+  <line x1="34" y1="57" x2="34" y2="63" stroke="rgba(255,255,255,0.22)" stroke-width="1"/>
+  <line x1="5" y1="34" x2="11" y2="34" stroke="rgba(255,255,255,0.22)" stroke-width="1"/>
+  <line x1="57" y1="34" x2="63" y2="34" stroke="rgba(255,255,255,0.22)" stroke-width="1"/>
+  <text x="34" y="20" text-anchor="middle" font-size="6.5" font-weight="bold" fill="rgba(0,196,161,0.8)" font-family="sans-serif">N</text>
+  <text x="34" y="53" text-anchor="middle" font-size="5.5" fill="rgba(255,255,255,0.3)" font-family="sans-serif">S</text>
+  <text x="15" y="37" text-anchor="middle" font-size="5.5" fill="rgba(255,255,255,0.3)" font-family="sans-serif">W</text>
+  <text x="53" y="37" text-anchor="middle" font-size="5.5" fill="rgba(255,255,255,0.3)" font-family="sans-serif">E</text>
+  <polygon points="34,13 37,34 34,31 31,34" fill="rgba(0,196,161,0.7)" stroke="rgba(0,196,161,0.9)" stroke-width=".5"/>
+  <polygon points="34,55 37,34 34,37 31,34" fill="rgba(255,255,255,0.22)" stroke="rgba(255,255,255,0.35)" stroke-width=".5"/>
+  <circle cx="34" cy="34" r="3" fill="rgba(255,255,255,0.35)" stroke="rgba(0,196,161,0.7)" stroke-width="1"/>
+  <circle cx="34" cy="34" r="1.2" fill="rgba(0,196,161,0.8)"/>
+</svg>
+
+<!-- BOARDING PASS — small, far right bottom -->
+<svg class="ti-i" width="62" height="36" viewBox="0 0 88 50"
+     style="bottom:30%;right:3%;opacity:.13">
+  <rect x="2" y="3" width="80" height="40" rx="5" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+  <rect x="2" y="3" width="20" height="40" rx="5" fill="rgba(0,196,161,0.1)"/>
+  <line x1="22" y1="3" x2="22" y2="43" stroke="rgba(255,255,255,0.18)" stroke-width="1" stroke-dasharray="3,3"/>
+  <circle cx="22" cy="3" r="3" fill="#0B1F3A"/>
+  <circle cx="22" cy="43" r="3" fill="#0B1F3A"/>
+  <text x="12" y="18" text-anchor="middle" font-size="6" fill="rgba(0,196,161,0.7)" font-family="sans-serif" font-weight="bold">4A</text>
+  <circle cx="12" cy="28" r="5" fill="rgba(0,196,161,0.18)" stroke="rgba(0,196,161,0.45)" stroke-width=".8"/>
+  <text x="38" y="17" text-anchor="middle" font-size="6.5" fill="rgba(255,255,255,0.45)" font-family="sans-serif">BOG</text>
+  <line x1="45" y1="15" x2="52" y2="15" stroke="rgba(255,255,255,0.3)" stroke-width=".8"/>
+  <polygon points="52,13 55,15 52,17" fill="rgba(255,255,255,0.3)"/>
+  <text x="62" y="17" text-anchor="middle" font-size="6.5" fill="rgba(255,255,255,0.45)" font-family="sans-serif">MAD</text>
+  <rect x="26" y="22" width="56" height="1.8" rx=".9" fill="rgba(255,255,255,0.12)"/>
+  <rect x="26" y="27" width="40" height="1.5" rx=".75" fill="rgba(255,255,255,0.08)"/>
+  <rect x="26" y="32" width="6" height="8" rx=".5" fill="rgba(255,255,255,0.18)"/>
+  <rect x="34" y="32" width="3" height="8" rx=".5" fill="rgba(255,255,255,0.13)"/>
+  <rect x="39" y="32" width="5" height="8" rx=".5" fill="rgba(255,255,255,0.18)"/>
+  <rect x="46" y="32" width="3" height="8" rx=".5" fill="rgba(255,255,255,0.13)"/>
+  <rect x="51" y="32" width="4" height="8" rx=".5" fill="rgba(255,255,255,0.18)"/>
+  <rect x="57" y="32" width="2.5" height="8" rx=".5" fill="rgba(255,255,255,0.13)"/>
+  <rect x="61" y="32" width="5" height="8" rx=".5" fill="rgba(255,255,255,0.18)"/>
+  <rect x="68" y="32" width="3" height="8" rx=".5" fill="rgba(255,255,255,0.13)"/>
+  <rect x="73" y="32" width="4" height="8" rx=".5" fill="rgba(255,255,255,0.18)"/>
+</svg>
+
+<!-- PLANE 2 — small, left, rotated -->
+<svg class="ti-b" width="44" height="44" viewBox="0 0 110 90"
+     style="top:65%;left:3%;transform:rotate(30deg);opacity:.12">
+  <ellipse cx="55" cy="45" rx="38" ry="10" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+  <ellipse cx="88" cy="45" rx="8" ry="7" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+  <ellipse cx="83" cy="42" rx="3" ry="2.5" fill="rgba(0,196,161,0.45)"/>
+  <polygon points="65,45 42,20 16,38 16,52 42,70" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.22)" stroke-width="1"/>
+  <polygon points="22,45 18,31 10,38 10,52 18,59" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.16)" stroke-width=".8"/>
+</svg>
+
+<!-- PLANE 3 — tiny, bottom right -->
+<svg class="ti-c" width="36" height="36" viewBox="0 0 110 90"
+     style="bottom:8%;right:28%;transform:rotate(-18deg);opacity:.1">
+  <ellipse cx="55" cy="45" rx="38" ry="10" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.22)" stroke-width="1"/>
+  <ellipse cx="88" cy="45" rx="8" ry="7" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.22)" stroke-width="1"/>
+  <polygon points="65,45 42,20 16,38 16,52 42,70" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.16)" stroke-width=".8"/>
+</svg>
+
+<!-- Subtle route lines + city dots — low opacity -->
+<svg style="position:absolute;top:0;left:0;width:100%;height:100%;opacity:.07"
+     viewBox="0 0 1400 500" preserveAspectRatio="none">
+  <path d="M-60 400 Q 300 80 620 250 Q 920 400 1240 130 Q 1380 60 1500 160"
+        stroke="rgba(0,196,161,1)" stroke-width="1.5" stroke-dasharray="10,18" fill="none"/>
+  <path d="M-60 160 Q 380 460 720 180 Q 1020 30 1500 320"
+        stroke="white" stroke-width="1" stroke-dasharray="7,20" fill="none" opacity=".7"/>
+  <path d="M300 -10 Q 480 280 640 160 Q 820 40 1100 380"
+        stroke="white" stroke-width=".8" stroke-dasharray="5,24" fill="none" opacity=".5"/>
+  <!-- origin dot COL -->
+  <circle cx="190" cy="370" r="4.5" fill="rgba(0,196,161,1)"/>
+  <circle cx="190" cy="370" r="9" fill="rgba(0,196,161,0.25)"/>
+  <!-- destination dot MAD -->
+  <circle cx="620" cy="250" r="4" fill="rgba(0,196,161,0.9)"/>
+  <circle cx="620" cy="250" r="8" fill="rgba(0,196,161,0.2)"/>
+  <!-- other cities -->
+  <circle cx="930" cy="330" r="3" fill="rgba(0,196,161,0.7)"/>
+  <circle cx="1240" cy="130" r="4" fill="rgba(0,196,161,0.85)"/>
+  <circle cx="1240" cy="130" r="8" fill="rgba(0,196,161,0.18)"/>
+  <circle cx="400" cy="430" r="2.5" fill="rgba(255,255,255,0.5)"/>
+  <circle cx="720" cy="180" r="2.5" fill="rgba(255,255,255,0.45)"/>
+  <circle cx="1020" cy="70" r="2.5" fill="rgba(255,255,255,0.4)"/>
+</svg>
+</div>
+
+<!-- FULL PAGE CANVAS — very subtle floating micro elements -->
+<canvas id="travel-canvas" aria-hidden="true" style="opacity:.35"></canvas>
+<script id="travel-canvas-js">
+(function(){
+  var c=document.getElementById('travel-canvas');
+  if(!c)return;
+  var ctx=c.getContext('2d');
+  var W,H,t=0;
+  function resize(){
+    W=c.width=window.innerWidth;
+    H=c.height=Math.max(document.body.scrollHeight,window.innerHeight);
+  }
+  resize();
+  window.addEventListener('resize',resize);
+  setTimeout(resize,800);
+
+  var icons=[];
+  var n=Math.min(18,Math.floor(window.innerWidth/80));
+  var typeList=['plane','dot','cross','plane','dot'];
+  for(var i=0;i<n;i++){
+    icons.push({
+      x:Math.random(),y:Math.random()+.05,
+      type:typeList[i%typeList.length],
+      sz:Math.random()*7+4,
+      op:Math.random()*.05+.015,
+      vy:-(Math.random()*.00035+.00008),
+      floatA:Math.random()*14+5,
+      floatS:Math.random()*.01+.005,
+      phase:Math.random()*Math.PI*2,
+      rot:Math.random()*Math.PI*2,
+      rotV:(Math.random()-.5)*.003
+    });
+  }
+
+  function drawPlane(px,py,ang,sz,op){
+    ctx.save();ctx.translate(px,py);ctx.rotate(ang);ctx.globalAlpha=op;
+    ctx.fillStyle='rgba(255,255,255,.85)';
+    ctx.beginPath();ctx.moveTo(sz,0);ctx.lineTo(-sz*.75,sz*.45);ctx.lineTo(-sz*.5,0);ctx.lineTo(-sz*.75,-sz*.45);ctx.closePath();ctx.fill();
+    ctx.fillStyle='rgba(255,255,255,.4)';
+    ctx.beginPath();ctx.moveTo(sz*.05,0);ctx.lineTo(-sz*.4,-sz*.8);ctx.lineTo(-sz*.65,0);ctx.closePath();ctx.fill();
+    ctx.beginPath();ctx.moveTo(sz*.05,0);ctx.lineTo(-sz*.4,sz*.8);ctx.lineTo(-sz*.65,0);ctx.closePath();ctx.fill();
+    ctx.restore();
+  }
+
+  // Two main animated flights
+  var flights=[
+    {pt:0,ax:.04,ay:.2,bx:.96,by:.12,cpx:.5,cpy:.04,sp:.002,sz:8,op:.09},
+    {pt:.55,ax:.03,ay:.7,bx:.97,by:.62,cpx:.5,cpy:.52,sp:.0016,sz:6,op:.06},
+  ];
+
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+
+    icons.forEach(function(ic){
+      ic.y+=ic.vy;
+      if(ic.y<-0.06)ic.y=1.06;
+      ic.rot+=ic.rotV;
+      var px=ic.x*W,py=ic.y*H+Math.sin(t*ic.floatS+ic.phase)*ic.floatA;
+
+      if(ic.type==='plane'){
+        drawPlane(px,py,ic.rot,ic.sz,ic.op);
+      } else if(ic.type==='dot'){
+        ctx.save();ctx.translate(px,py);ctx.globalAlpha=ic.op*(Math.sin(t*.04+ic.phase)*.3+.7);
+        ctx.fillStyle='rgba(0,196,161,.8)';ctx.beginPath();ctx.arc(0,0,ic.sz*.28,0,Math.PI*2);ctx.fill();
+        ctx.restore();
+      } else {
+        ctx.save();ctx.translate(px,py);ctx.rotate(ic.rot);ctx.globalAlpha=ic.op*.65;
+        ctx.strokeStyle='rgba(255,255,255,.6)';ctx.lineWidth=.7;
+        ctx.beginPath();ctx.moveTo(-ic.sz*.35,0);ctx.lineTo(ic.sz*.35,0);ctx.stroke();
+        ctx.beginPath();ctx.moveTo(0,-ic.sz*.35);ctx.lineTo(0,ic.sz*.35);ctx.stroke();
+        ctx.restore();
+      }
+    });
+
+    // Animated flights
+    flights.forEach(function(fl){
+      fl.pt=(fl.pt+fl.sp)%1;
+      var mt=1-fl.pt;
+      var cpxW=fl.cpx*W,cpyH=fl.cpy*H;
+      var px=mt*mt*fl.ax*W+2*mt*fl.pt*cpxW+fl.pt*fl.pt*fl.bx*W;
+      var py=mt*mt*fl.ay*H+2*mt*fl.pt*cpyH+fl.pt*fl.pt*fl.by*H;
+      var pt2=Math.min(fl.pt+.015,1),mt2=1-pt2;
+      var px2=mt2*mt2*fl.ax*W+2*mt2*pt2*cpxW+pt2*pt2*fl.bx*W;
+      var py2=mt2*mt2*fl.ay*H+2*mt2*pt2*cpyH+pt2*pt2*fl.by*H;
+      var ang=Math.atan2(py2-py,px2-px);
+
+      // subtle trail
+      for(var tr=1;tr<=12;tr++){
+        var tp=Math.max(0,fl.pt-tr*.005);var mtp=1-tp;
+        var tx=mtp*mtp*fl.ax*W+2*mtp*tp*cpxW+tp*tp*fl.bx*W;
+        var ty=mtp*mtp*fl.ay*H+2*mtp*tp*cpyH+tp*tp*fl.by*H;
+        ctx.beginPath();ctx.arc(tx,ty,1,0,Math.PI*2);
+        ctx.fillStyle='rgba(0,196,161,'+(1-tr/12)*.12+')';ctx.fill();
+      }
+      drawPlane(px,py,ang,fl.sz,fl.op);
+    });
+
+    t++;
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+</script>
+
 <div class="travel-icons" aria-hidden="true">
 <svg xmlns="http://www.w3.org/2000/svg" style="width:0;height:0;position:absolute">
   <defs>
@@ -540,7 +820,6 @@ nav img{height:58px!important;width:auto!important;display:block!important}
 </div>
 
 <!-- FULL PAGE CANVAS -->
-<canvas id="travel-canvas" aria-hidden="true"></canvas>
 <script id="travel-canvas-js">
 (function(){
   var c=document.getElementById('travel-canvas');
@@ -660,276 +939,6 @@ nav img{height:58px!important;width:auto!important;display:block!important}
       }
       drawPlane(px,py,ang,fl.sz,fl.op);
     });
-
-    t++;
-    requestAnimationFrame(draw);
-  }
-  draw();
-})();
-</script>
-
-<div class="travel-icons" aria-hidden="true">
-
-  <!-- ✈ PLANE 1 — large, detailed, top right -->
-  <svg class="ti-fly" width="100" height="100" viewBox="0 0 48 48"
-       style="top:7%;right:5%;stroke:rgba(255,255,255,.2);stroke-width:1.2;fill:rgba(255,255,255,.06)">
-    <path d="M44 20v-3L28 8V4a4 4 0 0 0-8 0v4L4 17v3l16-4v10l-4 3v4l8-2 8 2v-4l-4-3V16z"/>
-    <line x1="8" y1="38" x2="40" y2="38" stroke-dasharray="3,4"/>
-    <circle cx="24" cy="40" r="1.5" fill="rgba(255,255,255,.15)"/>
-  </svg>
-
-  <!-- ✈ PLANE 2 — medium, left mid -->
-  <svg class="ti-fly2" width="72" height="72" viewBox="0 0 48 48"
-       style="top:48%;left:3%;transform:rotate(35deg);stroke:rgba(255,255,255,.15);stroke-width:1.2;fill:rgba(255,255,255,.05)">
-    <path d="M44 20v-3L28 8V4a4 4 0 0 0-8 0v4L4 17v3l16-4v10l-4 3v4l8-2 8 2v-4l-4-3V16z"/>
-  </svg>
-
-  <!-- ✈ PLANE 3 — small, bottom right -->
-  <svg class="ti-fly3" width="52" height="52" viewBox="0 0 48 48"
-       style="bottom:12%;right:22%;transform:rotate(-18deg);stroke:rgba(255,255,255,.12);stroke-width:1.2;fill:rgba(255,255,255,.04)">
-    <path d="M44 20v-3L28 8V4a4 4 0 0 0-8 0v4L4 17v3l16-4v10l-4 3v4l8-2 8 2v-4l-4-3V16z"/>
-  </svg>
-
-  <!-- 📘 PASSPORT — detailed, top left -->
-  <svg class="ti-pass" width="58" height="58" viewBox="0 0 48 48"
-       style="top:14%;left:7%;stroke:rgba(255,255,255,.18);stroke-width:1.2;fill:rgba(255,255,255,.05)">
-    <rect x="8" y="4" width="32" height="40" rx="4"/>
-    <rect x="12" y="4" width="24" height="40" rx="2" fill="rgba(255,255,255,.03)"/>
-    <circle cx="24" cy="20" r="6"/>
-    <path d="M24 14v2M24 26v2M18 20h2M28 20h2"/>
-    <path d="M16 10h16M16 32h16M16 36h10"/>
-    <path d="M20 38l4-2 4 2"/>
-  </svg>
-
-  <!-- 🌍 GLOBE — spinning, center top -->
-  <svg class="ti-globe" width="76" height="76" viewBox="0 0 48 48"
-       style="top:5%;left:36%;stroke:rgba(255,255,255,.16);stroke-width:1.1;fill:rgba(255,255,255,.04)">
-    <circle cx="24" cy="24" r="20"/>
-    <ellipse cx="24" cy="24" rx="8" ry="20"/>
-    <ellipse cx="24" cy="24" rx="20" ry="8"/>
-    <path d="M4 24h40M24 4v40"/>
-    <path d="M8 14h32M8 34h32"/>
-  </svg>
-
-  <!-- 🧳 SUITCASE — detailed, right mid -->
-  <svg class="ti-suit" width="60" height="60" viewBox="0 0 48 48"
-       style="top:58%;right:7%;stroke:rgba(255,255,255,.17);stroke-width:1.2;fill:rgba(255,255,255,.05)">
-    <rect x="6" y="16" width="36" height="26" rx="4"/>
-    <path d="M18 16v-4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v4"/>
-    <line x1="6" y1="28" x2="42" y2="28"/>
-    <line x1="22" y1="24" x2="22" y2="32"/>
-    <line x1="26" y1="24" x2="26" y2="32"/>
-    <rect x="10" y="34" width="6" height="4" rx="1" fill="rgba(255,255,255,.08)"/>
-    <rect x="32" y="34" width="6" height="4" rx="1" fill="rgba(255,255,255,.08)"/>
-    <circle cx="24" cy="28" r="2"/>
-  </svg>
-
-  <!-- 📍 PIN — bottom left -->
-  <svg class="ti-pin" width="52" height="52" viewBox="0 0 48 48"
-       style="bottom:18%;left:12%;stroke:rgba(255,255,255,.16);stroke-width:1.2;fill:rgba(255,255,255,.05)">
-    <path d="M24 4C16.27 4 10 10.27 10 18c0 10.5 14 26 14 26S38 28.5 38 18C38 10.27 31.73 4 24 4z"/>
-    <circle cx="24" cy="18" r="5"/>
-    <circle cx="24" cy="18" r="2" fill="rgba(255,255,255,.15)"/>
-  </svg>
-
-  <!-- 🧭 COMPASS — top right mid -->
-  <svg class="ti-compass" width="56" height="56" viewBox="0 0 48 48"
-       style="top:20%;right:18%;stroke:rgba(255,255,255,.15);stroke-width:1.2;fill:rgba(255,255,255,.04)">
-    <circle cx="24" cy="24" r="20"/>
-    <circle cx="24" cy="24" r="2" fill="rgba(255,255,255,.2)"/>
-    <polygon points="24,6 28,24 24,22 20,24" fill="rgba(255,255,255,.15)"/>
-    <polygon points="24,42 20,24 24,26 28,24" fill="rgba(255,255,255,.08)"/>
-    <line x1="4" y1="24" x2="44" y2="24"/>
-    <line x1="24" y1="4" x2="24" y2="44" stroke-dasharray="2,6"/>
-  </svg>
-
-  <!-- 🎫 TICKET — bottom center -->
-  <svg class="ti-ticket" width="66" height="40" viewBox="0 0 66 40"
-       style="bottom:22%;right:35%;stroke:rgba(255,255,255,.15);stroke-width:1.2;fill:rgba(255,255,255,.04)">
-    <rect x="2" y="6" width="62" height="28" rx="4"/>
-    <line x1="18" y1="6" x2="18" y2="34" stroke-dasharray="3,3"/>
-    <line x1="48" y1="6" x2="48" y2="34" stroke-dasharray="3,3"/>
-    <circle cx="2" cy="20" r="5" fill="#0B1F3A"/>
-    <circle cx="64" cy="20" r="5" fill="#0B1F3A"/>
-    <line x1="22" y1="14" x2="44" y2="14"/>
-    <line x1="22" y1="20" x2="44" y2="20"/>
-    <line x1="22" y1="26" x2="34" y2="26"/>
-    <circle cx="9" cy="20" r="2" fill="rgba(255,255,255,.15)"/>
-    <circle cx="57" cy="20" r="2" fill="rgba(255,255,255,.15)"/>
-  </svg>
-
-  <!-- 🪙 STAMP — top center left -->
-  <svg class="ti-stamp" width="54" height="54" viewBox="0 0 48 48"
-       style="top:10%;left:22%;stroke:rgba(255,255,255,.13);stroke-width:1.2;fill:rgba(255,255,255,.04)">
-    <rect x="6" y="6" width="36" height="36" rx="3"/>
-    <rect x="10" y="10" width="28" height="28" rx="2"/>
-    <circle cx="24" cy="22" r="6"/>
-    <path d="M16 32h16M18 36h12"/>
-    <path d="M6 6l4 4M42 6l-4 4M6 42l4-4M42 42l-4-4"/>
-  </svg>
-
-  <!-- Flight route dashes -->
-  <svg style="position:absolute;top:0;left:0;width:100%;height:100%;opacity:.09"
-       viewBox="0 0 1400 600" preserveAspectRatio="none">
-    <path d="M-80 480 Q 200 120 560 300 Q 860 460 1200 160 Q 1350 80 1500 200"
-          stroke="white" stroke-width="1.5" stroke-dasharray="12,18" fill="none"/>
-    <path d="M-80 200 Q 350 500 700 220 Q 1000 60 1500 350"
-          stroke="white" stroke-width="1" stroke-dasharray="8,20" fill="none"/>
-    <path d="M200 -20 Q 400 300 600 180 Q 800 60 1100 400"
-          stroke="white" stroke-width=".8" stroke-dasharray="5,16" fill="none"/>
-    <!-- Small dot markers on routes -->
-    <circle cx="200" cy="380" r="3" fill="rgba(0,196,161,.4)"/>
-    <circle cx="560" cy="300" r="3" fill="rgba(0,196,161,.4)"/>
-    <circle cx="860" cy="350" r="3" fill="rgba(0,196,161,.3)"/>
-    <circle cx="1200" cy="160" r="3" fill="rgba(0,196,161,.4)"/>
-    <circle cx="350" cy="460" r="2" fill="rgba(255,255,255,.3)"/>
-    <circle cx="700" cy="220" r="2" fill="rgba(255,255,255,.3)"/>
-    <circle cx="1000" cy="100" r="2" fill="rgba(255,255,255,.3)"/>
-  </svg>
-
-</div>
-
-<!-- FULL-PAGE CANVAS ANIMATION -->
-<canvas id="travel-canvas" aria-hidden="true"></canvas>
-<script id="travel-canvas-js">
-(function(){
-  var c = document.getElementById('travel-canvas');
-  if(!c) return;
-  var ctx = c.getContext('2d');
-  var W, H, t = 0;
-
-  function resize(){
-    W = c.width = window.innerWidth;
-    H = c.height = document.body.scrollHeight || window.innerHeight;
-  }
-  resize();
-  window.addEventListener('resize', function(){ resize(); });
-
-  // Floating micro-icons across full page
-  var icons = [];
-  var types = ['plane','passport','pin','star','dot'];
-  var count = Math.min(28, Math.floor(window.innerWidth / 50));
-  for(var i = 0; i < count; i++){
-    icons.push({
-      x: Math.random(),
-      y: Math.random(),
-      type: types[Math.floor(Math.random()*types.length)],
-      size: Math.random() * 10 + 6,
-      opacity: Math.random() * 0.1 + 0.04,
-      speed: Math.random() * 0.0003 + 0.0001,
-      floatAmp: Math.random() * 20 + 8,
-      floatSpeed: Math.random() * 0.015 + 0.008,
-      phase: Math.random() * Math.PI * 2,
-      rot: Math.random() * Math.PI * 2,
-      rotSpeed: (Math.random() - 0.5) * 0.005,
-    });
-  }
-
-  // Animated plane on flight path
-  var planePt = 0;
-  var pathPts = [
-    {x:0.05, y:0.6}, {cx:0.3, cy:0.15}, {x:0.55, y:0.35},
-  ];
-
-  function drawMiniPlane(px, py, ang, sz, op){
-    ctx.save();
-    ctx.translate(px, py); ctx.rotate(ang);
-    ctx.globalAlpha = op;
-    ctx.fillStyle = 'rgba(255,255,255,0.9)';
-    ctx.strokeStyle = 'rgba(255,255,255,0.5)';
-    ctx.lineWidth = 0.5;
-    ctx.beginPath();
-    ctx.moveTo(sz, 0); ctx.lineTo(-sz*.8, sz*.5); ctx.lineTo(-sz*.5, 0); ctx.lineTo(-sz*.8, -sz*.5);
-    ctx.closePath(); ctx.fill(); ctx.stroke();
-    // wings
-    ctx.beginPath();
-    ctx.moveTo(sz*.1, 0); ctx.lineTo(-sz*.4, -sz*.9); ctx.lineTo(-sz*.7, 0); ctx.closePath(); ctx.fill();
-    ctx.beginPath();
-    ctx.moveTo(sz*.1, 0); ctx.lineTo(-sz*.4, sz*.9); ctx.lineTo(-sz*.7, 0); ctx.closePath(); ctx.fill();
-    ctx.restore();
-  }
-
-  function drawMiniPassport(px, py, sz, op){
-    ctx.save(); ctx.translate(px, py); ctx.globalAlpha = op;
-    ctx.fillStyle = 'rgba(255,255,255,0.08)';
-    ctx.strokeStyle = 'rgba(255,255,255,0.4)'; ctx.lineWidth = 0.8;
-    ctx.beginPath(); ctx.roundRect(-sz*.4, -sz*.56, sz*.8, sz*1.12, sz*.08); ctx.fill(); ctx.stroke();
-    ctx.beginPath(); ctx.arc(0, -sz*.1, sz*.22, 0, Math.PI*2); ctx.stroke();
-    ctx.restore();
-  }
-
-  function drawMiniPin(px, py, sz, op){
-    ctx.save(); ctx.translate(px, py); ctx.globalAlpha = op;
-    ctx.fillStyle = 'rgba(255,255,255,0.08)';
-    ctx.strokeStyle = 'rgba(255,255,255,0.4)'; ctx.lineWidth = 0.8;
-    ctx.beginPath();
-    ctx.arc(0, -sz*.3, sz*.5, 0, Math.PI*2);
-    ctx.fill(); ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(-sz*.4, -sz*.3); ctx.lineTo(0, sz*.7); ctx.lineTo(sz*.4, -sz*.3);
-    ctx.fill(); ctx.stroke();
-    ctx.restore();
-  }
-
-  function draw(){
-    ctx.clearRect(0, 0, W, H);
-
-    // Floating micro icons
-    icons.forEach(function(ic){
-      ic.y -= ic.speed;
-      if(ic.y < -0.05) ic.y = 1.05;
-      ic.rot += ic.rotSpeed;
-      var px = ic.x * W;
-      var py = ic.y * H + Math.sin(t * ic.floatSpeed + ic.phase) * ic.floatAmp;
-
-      ctx.save(); ctx.rotate(ic.rot);
-      if(ic.type === 'plane') drawMiniPlane(px, py, ic.rot, ic.size, ic.opacity);
-      else if(ic.type === 'passport') drawMiniPassport(px, py, ic.size, ic.opacity);
-      else if(ic.type === 'pin') drawMiniPin(px, py, ic.size, ic.opacity);
-      else if(ic.type === 'star'){
-        ctx.save(); ctx.translate(px, py); ctx.globalAlpha = ic.opacity * (Math.sin(t*.04 + ic.phase) * .4 + .6);
-        ctx.fillStyle = 'rgba(255,255,255,.9)';
-        ctx.beginPath(); ctx.arc(0, 0, ic.size*.3, 0, Math.PI*2); ctx.fill();
-        ctx.restore();
-      } else {
-        ctx.save(); ctx.translate(px, py); ctx.globalAlpha = ic.opacity * .6;
-        ctx.fillStyle = 'rgba(255,255,255,.8)';
-        ctx.beginPath(); ctx.arc(0, 0, ic.size*.25, 0, Math.PI*2); ctx.fill();
-        ctx.restore();
-      }
-      ctx.restore();
-    });
-
-    // Main animated plane on bezier path
-    planePt = (planePt + 0.0018) % 1;
-    var ax=W*.05, ay=H*.25, bx=W*.95, by=H*.15;
-    var cpx=W*.5, cpy=H*.05;
-    var mt=1-planePt;
-    var ppx=mt*mt*ax+2*mt*planePt*cpx+planePt*planePt*bx;
-    var ppy=mt*mt*ay+2*mt*planePt*cpy+planePt*planePt*by;
-    var pt2=Math.min(planePt+.015,1); var mt2=1-pt2;
-    var ppx2=mt2*mt2*ax+2*mt2*pt2*cpx+pt2*pt2*bx;
-    var ppy2=mt2*mt2*ay+2*mt2*pt2*cpy+pt2*pt2*by;
-    var ang=Math.atan2(ppy2-ppy,ppx2-ppx);
-
-    // Trail
-    for(var tr=1;tr<=16;tr++){
-      var tp=Math.max(0,planePt-tr*.006);var mtp=1-tp;
-      var tx=mtp*mtp*ax+2*mtp*tp*cpx+tp*tp*bx;
-      var ty=mtp*mtp*ay+2*mtp*tp*cpy+tp*tp*by;
-      ctx.beginPath();ctx.arc(tx,ty,1.5,0,Math.PI*2);
-      ctx.fillStyle='rgba(0,196,161,'+(1-tr/16)*.25+')';ctx.fill();
-    }
-    drawMiniPlane(ppx, ppy, ang, 9, 0.12);
-
-    // Second plane, different path
-    var p2=(planePt+.5)%1;
-    var ax2=W*.02,ay2=H*.75,bx2=W*.98,by2=H*.65;
-    var cpx2=W*.5,cpy2=H*.55;
-    var mt3=1-p2;
-    var px2=mt3*mt3*ax2+2*mt3*p2*cpx2+p2*p2*bx2;
-    var py2=mt3*mt3*ay2+2*mt3*p2*cpy2+p2*p2*by2;
-    drawMiniPlane(px2, py2, 0.05, 7, 0.07);
 
     t++;
     requestAnimationFrame(draw);
