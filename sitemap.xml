@@ -34,4 +34,10 @@
     <changefreq>monthly</changefreq>
     <priority>0.86</priority>
   </url>
+  <url>
+    <loc>https://viajerolatam.com/blog/ses-ees-colombianos-europa-2026/</loc>
+    <lastmod>2026-05-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
