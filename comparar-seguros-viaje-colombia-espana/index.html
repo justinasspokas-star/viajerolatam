@@ -178,11 +178,61 @@ nav .brand-logo img,
   .brand-logo img{height:40px!important;max-width:155px!important}
 }
 
+
+/* LOGO FIX — exact original logo, larger and clearer on desktop/mobile */
+a.brand-logo, a.logo, .mobile-logo, .footer-logo{
+  display:inline-flex !important;
+  align-items:center !important;
+  text-decoration:none !important;
+}
+nav a.brand-logo, nav a.logo{
+  flex:0 0 auto !important;
+  min-width:220px !important;
+  max-width:320px !important;
+  height:72px !important;
+}
+nav a.brand-logo img, nav a.logo img,
+.mobile-logo img, .footer-logo img, .fl img{
+  display:block !important;
+  width:auto !important;
+  height:64px !important;
+  max-width:320px !important;
+  object-fit:contain !important;
+  opacity:1 !important;
+  filter:none !important;
+  mix-blend-mode:normal !important;
+}
+@media (max-width: 768px){
+  nav{min-height:74px !important}
+  nav a.brand-logo, nav a.logo{
+    min-width:150px !important;
+    max-width:220px !important;
+    height:58px !important;
+  }
+  nav a.brand-logo img, nav a.logo img,
+  .mobile-logo img, .footer-logo img, .fl img{
+    height:48px !important;
+    max-width:210px !important;
+  }
+}
+@media (max-width: 420px){
+  nav a.brand-logo, nav a.logo{
+    min-width:135px !important;
+    max-width:190px !important;
+    height:52px !important;
+  }
+  nav a.brand-logo img, nav a.logo img,
+  .mobile-logo img, .footer-logo img, .fl img{
+    height:42px !important;
+    max-width:185px !important;
+  }
+}
+
 </style>
 </head>
 <body>
   <nav>
-    <a href="/" class="brand-logo" aria-label="ViajeroLatam inicio"><picture><source srcset="/logo.webp" type="image/webp"><img src="/logo.png" alt="ViajeroLatam" width="900" height="260" loading="eager" decoding="async"></picture></a>
+    <a href="/" class="brand-logo" aria-label="ViajeroLatam inicio"><img src="/logo.png" alt="ViajeroLatam" width="1567" height="490" loading="eager" fetchpriority="high" decoding="async"></a>
     <div class="nav-links">
       <a href="/seguro-viaje/colombia-a-espana/">Colombia → España</a>
       <a href="/visa-schengen/">Visa Schengen</a>
