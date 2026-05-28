@@ -452,118 +452,237 @@ nav a.brand-logo img, nav a.logo img{height:64px !important; width:auto !importa
 
 </style>
 <style>@font-face{font-display:swap}</style>
-<style id="bg-fix">
-/* Replace hero gradient with travel background image */
-.hero,header.hero,section.hero{
-  background:url('/hero-bg.jpg') center center/cover no-repeat !important;
-}
-/* Keep overlay for text readability — same z-index as original */
-.hero::before{
-  background:rgba(5,12,40,0.55) !important;
-}
-/* Remove dynamic icons — image has them already */
-.travel-icons,.travel-icons *,#travel-canvas{display:none !important;}
-/* Mobile: keep image filling screen */
-@media(max-width:768px){
-  .hero,header.hero,section.hero{
-    background:url('/hero-bg.jpg') center center/cover no-repeat !important;
-  }
-  .hero::before{background:rgba(5,12,40,0.65) !important;}
-}
-</style>
 <meta property="og:type" content="article">
 <meta property="og:locale" content="es_CO">
 <meta property="og:site_name" content="ViajeroLatam">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://viajerolatam.com/og-image.jpg">
-<style id="vl-mobile-universal">
-/* ── PREVENT HORIZONTAL SCROLL ── */
-html,body{overflow-x:hidden!important;max-width:100vw}
-*{box-sizing:border-box}
-img,svg,video,iframe{max-width:100%!important;height:auto}
+<style id="vl-mobile-master-v2">
+/* ═══════════════════════════════════════
+   VIAJEROLATAM — MASTER MOBILE CSS v2
+   Breakpoints: 768px | 480px | 380px
+   ═══════════════════════════════════════ */
 
-/* ── NAV LINKS HIDDEN ON MOBILE ── */
+/* BASE */
+html,body{overflow-x:hidden!important}
+*,*::before,*::after{box-sizing:border-box;max-width:100%}
+img,svg,video,iframe,canvas{max-width:100%!important;height:auto}
+canvas{display:none!important}
+.travel-icons,.travel-icons *{display:none!important}
+#travel-canvas{display:none!important}
+
 @media(max-width:768px){
-  .nav-links{display:none!important}
-  #mob-btn{display:flex!important}
 
-  /* HERO */
-  .hero,header.hero,section.hero{overflow:hidden!important;position:relative!important}
-  .hero-inner,.hero-inner-wrap{position:relative!important;z-index:5!important}
-  .travel-icons,#travel-canvas{display:none!important}
-  .hero h1{font-size:clamp(24px,7vw,38px)!important;line-height:1.15!important}
-  .hero p,.hero-desc{font-size:14px!important}
-  .hcard,.hero-card,aside.hero-card{display:none!important}
+/* ── NAV ── */
+nav{padding:0 4%!important;height:60px!important;flex-wrap:nowrap!important}
+.nav-links{display:none!important}
+#mob-btn{display:flex!important}
+nav img,nav .logo img,.brand-logo img{height:40px!important;width:auto!important}
 
-  /* BUTTONS */
-  .btn-row,.cta-row{flex-direction:column!important;gap:10px!important;width:100%!important}
-  .btn,.btn-cta,.btn-teal,.btn-primary,.btn-secondary{width:100%!important;justify-content:center!important;text-align:center!important}
+/* ── HERO ── */
+.hero,section.hero,header.hero{
+  padding:64px 4% 36px!important;
+  min-height:auto!important;
+  text-align:center!important;
+  overflow:hidden!important;
+}
+.hero-inner,.hero-text,.hero-content{
+  position:relative!important;
+  z-index:5!important;
+  max-width:100%!important;
+  padding:0!important;
+}
+.hero h1,h1{font-size:clamp(22px,7.5vw,36px)!important;line-height:1.2!important}
+.hero p,.hero-sub,.hero-desc{font-size:14px!important;line-height:1.6!important}
+.hero-eyebrow,.eyebrow{font-size:11px!important;margin-bottom:12px!important}
+.hcard,.hero-card,aside.hero-card,.hero-sidebar{display:none!important}
+.hero-stats,.stats-row{grid-template-columns:repeat(3,1fr)!important;gap:8px!important}
 
-  /* GRIDS → 1 col */
-  .cards-grid,.steps-grid,.insurers-grid,.inc-grid,.req-grid,.sch-grid,
-  .profiles,.related-grid,.two-col,.grid-3,.grid-4,.pros-cons,
-  .verdict,.calc-results,.stats-inner{grid-template-columns:1fr!important;gap:12px!important}
-
-  /* 2-col on mobile for small cards */
-  .partner-grid,.badge-grid{grid-template-columns:1fr 1fr!important;gap:8px!important}
-
-  /* PAGE LAYOUT */
-  .page,.page-body,.article-layout{grid-template-columns:1fr!important;padding:16px 4%!important}
-  .sidebar,aside.sidebar,.sticky-sidebar{display:none!important}
-
-  /* SECTIONS */
-  section,.section{padding:36px 4%!important}
-  .wrap,.inner,.container{max-width:100%!important;padding-left:4%!important;padding-right:4%!important}
-
-  /* TABLES */
-  table,.price-table,.comp-table,.paises-table{display:block!important;overflow-x:auto!important;-webkit-overflow-scrolling:touch!important;font-size:12px!important;width:100%!important}
-  th,td{white-space:nowrap!important;padding:8px 10px!important;min-width:80px}
-
-  /* SEARCH/FORM */
-  .search-box,.sb-inner,.search-form{flex-direction:column!important;gap:10px!important;padding:14px!important}
-  .sb-field,.search-field{width:100%!important}
-  .sb-btn,.search-btn{width:100%!important;text-align:center!important}
-
-  /* STICKY + EXIT */
-  #sticky-mob{display:block!important}
-  body{padding-bottom:84px!important}
-  #exit-box{padding:24px 18px!important;margin:12px!important}
-  .exit-title{font-size:20px!important}
-
-  /* BREADCRUMB */
-  .bc-inner{font-size:11px!important;flex-wrap:wrap!important}
-
-  /* FOOTER */
-  .fg,footer .fg{grid-template-columns:1fr 1fr!important;gap:16px!important}
-  .fl,.footer-brand{grid-column:1/-1!important}
-
-  /* BLOG CARDS */
-  .featured{padding:16px!important}
-  .featured .btn{width:100%!important;text-align:center!important}
-
-  /* HEADINGS */
-  h2{font-size:clamp(20px,6vw,30px)!important}
-  h3{font-size:clamp(17px,5vw,22px)!important}
-
-  /* TRUST STRIP */
-  .trust,.hero-badges,.badges-row{flex-wrap:wrap!important;gap:8px!important;justify-content:center!important}
-  .trust span,.hbadge{font-size:11px!important}
-
-  /* DIAS SELECTOR */
-  .dias-selector{gap:6px!important;flex-wrap:wrap!important}
-  .dias-btn{font-size:12px!important;padding:7px 10px!important}
-
-  /* NEWSLETTER */
-  .nl-form{flex-direction:column!important;gap:8px!important}
-  .nl-input,.nl-btn{width:100%!important}
+/* ── BUTTONS / CTA ── */
+.btn-row,.cta-row,.hero-cta,.vl-cta-buttons{
+  flex-direction:column!important;
+  gap:10px!important;
+  width:100%!important;
+  align-items:stretch!important;
+}
+.btn,.btn-cta,.btn-teal,.btn-primary,.btn-secondary,
+a.btn,button.btn,.vl-cta-btn,.sb-btn,
+.leer-btn,.featured .btn{
+  width:100%!important;
+  text-align:center!important;
+  justify-content:center!important;
 }
 
-/* SMALL PHONES */
+/* ── GRID SYSTEMS — all fixed-col → single col ── */
+.req-grid,.sch-grid,.inc-grid,.steps-grid,
+.cards-grid,.grid-3,.grid-4,.partner-grid,
+.profiles,.related-grid,.insurers-grid,
+.pros-cons,.verdict,.two-col,.calc-results,
+.vl-cta-comparison{
+  grid-template-columns:1fr!important;
+  gap:12px!important;
+}
+/* 2-col exceptions */
+.badge-grid,.trust-grid,.mini-grid{
+  grid-template-columns:1fr 1fr!important;
+  gap:8px!important;
+}
+
+/* ── LAYOUT WITH SIDEBAR ── */
+.page,.page-body,.article-layout,.article-inner,
+[class*="page-grid"],[class*="layout-"]{
+  grid-template-columns:1fr!important;
+  padding:16px 4%!important;
+  gap:16px!important;
+}
+.sidebar,.sticky-sidebar,aside.sidebar,
+.sidebar-wrap,.article-aside{display:none!important}
+
+/* Fixed right-col sidebar patterns */
+[style*="1fr 320px"],[style*="1fr 300px"],
+[style*="1fr 280px"],[style*="minmax(0,1fr) 320px"]{
+  grid-template-columns:1fr!important;
+}
+
+/* ── COMPARISON TABLE (comp-row) ── */
+.comp-row,.comp-header{
+  grid-template-columns:1.6fr 1fr 1fr!important;
+  gap:6px!important;
+  font-size:11px!important;
+}
+.comp-row>*:nth-child(n+4),
+.comp-header>*:nth-child(n+4){display:none!important}
+
+/* ── TABLES — horizontal scroll ── */
+table,.price-table,.paises-table,.comp-table,
+.table-wrap,.table-scroll{
+  display:block!important;
+  overflow-x:auto!important;
+  -webkit-overflow-scrolling:touch!important;
+  width:100%!important;
+  font-size:12px!important;
+}
+th,td{padding:8px 10px!important;white-space:nowrap!important;min-width:70px!important}
+
+/* ── SEARCH WIDGET ── */
+.search-box,.sb-inner,.search-form{
+  padding:14px!important;
+  border-radius:14px!important;
+}
+.sb-row,.search-row,.search-dates-row{
+  grid-template-columns:1fr 1fr!important;
+  gap:8px!important;
+}
+.sb-field,.search-field{width:100%!important;min-width:0!important}
+.sb-field.full,.sb-full{grid-column:1/-1!important}
+.sb-btn{grid-column:1/-1!important;width:100%!important}
+
+/* ── RESULTADOS / COMPARADOR ── */
+.filters-col,.filters-wrap{display:none!important}
+.results-col,.results-wrap{width:100%!important}
+.card-body{overflow:hidden!important}
+.card-actions{flex-direction:column!important;gap:8px!important}
+.card-actions .btn{width:100%!important}
+.edit-panel .edit-grid{grid-template-columns:1fr 1fr!important;gap:8px!important}
+#edit-panel .edit-grid>*{min-width:0!important}
+
+/* ── BLOG / ARTICLES ── */
+.featured{padding:16px!important}
+.featured .meta-row{flex-wrap:wrap!important;gap:6px!important}
+.featured .leer-btn{width:100%!important;margin-top:8px!important}
+.article-grid,.blog-grid{grid-template-columns:1fr!important;gap:16px!important}
+.article-card{flex-direction:column!important}
+.article-card img{width:100%!important;height:160px!important;object-fit:cover!important}
+
+/* ── CALCULATOR ── */
+.calc-grid,.dias-selector{flex-wrap:wrap!important;gap:6px!important}
+.dias-btn{font-size:12px!important;padding:7px 10px!important}
+.calc-results{grid-template-columns:1fr!important}
+
+/* ── SECTIONS ── */
+section,.section{padding:36px 4%!important}
+.wrap,.inner,.container,.content-wrap{
+  max-width:100%!important;
+  padding-left:4%!important;
+  padding-right:4%!important;
+}
+h2,.section-title{font-size:clamp(20px,6vw,28px)!important}
+h3{font-size:clamp(16px,5vw,20px)!important}
+h4{font-size:15px!important}
+
+/* ── BREADCRUMB ── */
+.bc,.breadcrumb,.bc-inner{
+  font-size:11px!important;
+  white-space:nowrap!important;
+  overflow-x:auto!important;
+  -webkit-overflow-scrolling:touch!important;
+  padding:8px 4%!important;
+}
+
+/* ── FOOTER ── */
+footer,.footer{padding:32px 4% 20px!important}
+.footer-grid,.fg{grid-template-columns:1fr 1fr!important;gap:16px!important}
+.footer-grid>*:first-child,.fl,.footer-brand{grid-column:1/-1!important}
+.footer-bottom,.fb{flex-direction:column!important;gap:6px!important;text-align:center!important}
+
+/* ── STICKY CTA ── */
+#sticky-mob{display:block!important}
+body{padding-bottom:84px!important}
+
+/* ── EXIT POPUP ── */
+#exit-box{padding:24px 16px!important;margin:10px!important;max-width:calc(100vw - 20px)!important}
+.exit-title{font-size:20px!important}
+.exit-proof{gap:8px!important;flex-wrap:wrap!important}
+.exit-proof span{font-size:11px!important}
+
+/* ── MOB DRAWER ── */
+#mob-drawer{width:min(290px,88vw)!important}
+
+/* ── NEWSLETTER ── */
+.nl-form{flex-direction:column!important;gap:8px!important}
+.nl-input,.nl-btn{width:100%!important}
+
+/* ── TRUST STRIP ── */
+.trust,.hero-badges{flex-wrap:wrap!important;gap:8px!important;justify-content:center!important}
+.trust span,.hbadge,.trust-item{font-size:11px!important}
+
+/* ── VL COMPARISON BLOCK ── */
+.vl-cta-comparison{flex-direction:column!important;padding:16px!important}
+.vl-cta-buttons{width:100%!important;flex-direction:column!important;gap:8px!important}
+.vl-cta-btn{width:100%!important;text-align:center!important;padding:12px!important}
+
+/* ── INLINE FIXED GRIDS (from style attr) ── */
+[style*="grid-template-columns:1fr 300px"],
+[style*="grid-template-columns:1fr 320px"],
+[style*="grid-template-columns:1fr 280px"],
+[style*="grid-template-columns:minmax(0,1fr) 320px"],
+[style*="grid-template-columns: 1fr 300px"],
+[style*="grid-template-columns: 1fr 320px"]{
+  grid-template-columns:1fr!important;
+}
+[style*="display:grid"],[style*="display: grid"]{
+  max-width:100%!important;
+}
+} /* end 768px */
+
+/* ── SMALL PHONES 480px ── */
+@media(max-width:480px){
+  .hero h1,h1{font-size:clamp(20px,7vw,28px)!important}
+  h2,.section-title{font-size:clamp(18px,6vw,24px)!important}
+  .req-grid,.badge-grid,.trust-grid,.mini-grid{grid-template-columns:1fr!important}
+  .comp-row,.comp-header{grid-template-columns:1.8fr 1fr!important}
+  .comp-row>*:nth-child(n+3),.comp-header>*:nth-child(n+3){display:none!important}
+  th,td{font-size:11px!important;padding:6px 8px!important}
+  .dias-btn{font-size:11px!important;padding:6px 8px!important}
+  .sb-row,.search-dates-row{grid-template-columns:1fr!important}
+  section,.section{padding:28px 4%!important}
+}
+
+/* ── VERY SMALL 380px ── */
 @media(max-width:380px){
-  .hero h1{font-size:22px!important}
-  h2{font-size:19px!important}
-  .partner-grid,.badge-grid{grid-template-columns:1fr!important}
-  th,td{min-width:60px!important;font-size:11px!important}
+  nav img,.brand-logo img{height:34px!important}
+  .hero h1,h1{font-size:20px!important}
+  .featured{padding:12px!important}
 }
 </style>
 </head>
