@@ -442,6 +442,64 @@ img, svg, video { max-width: 100%; }
   .comp-table th:nth-child(4), .comp-table td:nth-child(4) { display: none !important; }
 }
 </style>
+<style id="hero-bg-override">
+/* ── HERO BACKGROUND IMAGE ── */
+.hero,
+header.hero,
+section.hero {
+  background-image: url('/hero-bg.jpg') !important;
+  background-size: cover !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+/* Semi-transparent overlay for text readability */
+.hero::before {
+  content: '' !important;
+  position: absolute !important;
+  inset: 0 !important;
+  background: rgba(5, 15, 45, 0.62) !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
+}
+/* All hero content above overlay */
+.hero > *:not(.travel-icons) {
+  position: relative !important;
+  z-index: 2 !important;
+}
+.hero-inner, .hero-inner-wrap {
+  position: relative !important;
+  z-index: 3 !important;
+}
+.travel-icons {
+  display: none !important;
+}
+/* Nav: slight tint when over hero */
+nav {
+  background: rgba(5, 15, 45, 0.92) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  border-bottom: 1px solid rgba(0,196,161,0.15) !important;
+}
+/* Mobile: shift background position to keep icons visible */
+@media (max-width: 768px) {
+  .hero,
+  header.hero,
+  section.hero {
+    background-position: 35% center !important;
+    background-size: cover !important;
+  }
+  .hero::before {
+    background: rgba(5, 15, 45, 0.68) !important;
+  }
+}
+@media (max-width: 480px) {
+  .hero::before {
+    background: rgba(5, 15, 45, 0.72) !important;
+  }
+}
+</style>
 </head>
 <body>
 
