@@ -1,10 +1,1760 @@
-# ViajeroLatam.com — robots.txt
-User-agent: *
-Allow: /
-Disallow: /*?q=*
-Disallow: /*?origen=*
-Disallow: /*?destino=*
-Disallow: /admin/
-Disallow: /dashboard/
-Disallow: /api/
-Sitemap: https://viajerolatam.com/sitemap.xml
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<!-- Travelpayouts Drive -->
+<script nowpocket data-noptimize="1" data-cfasync="false" data-wpfc-render="false" seraph-accel-crit="1" data-no-defer="1">
+  (function () {
+    var script = document.createElement("script");
+    script.async = 1;
+    script.src = 'https://emrldtp.cc/NTMzNzMw.js?t=533730';
+    document.head.appendChild(script);
+  })();
+</script>
+  <meta charset="UTF-8">
+  <meta name="google-site-verification" content="fnxi-_Liw22SOQakruhikIUAjmf3u6mdT79inMc9x9A">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Seguro de Viaje Medellín a España 2026 — Compara desde €1.75/día | ViajeroLatam</title>
+  <meta name="description" content="Compara los mejores seguros de viaje de Medellín a España 2026. Vuelos desde José María Córdova (MDE) a Madrid o Barcelona. Cobertura médica ilimitada desde €1.75/día. Sin visa requerida.">
+  <meta name="keywords" content="seguro viaje Medellín España, seguro viaje Medellín Madrid, seguro viaje Medellín Barcelona, seguro médico Medellín España, seguro antioqueños España 2026, seguro vuelo MDE España">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://viajerolatam.com/seguro-viaje/medellin-a-espana/">
+  <link rel="alternate" hreflang="es-CO" href="https://viajerolatam.com/seguro-viaje/medellin-a-espana/">
+  <link rel="alternate" hreflang="es" href="https://viajerolatam.com/seguro-viaje/medellin-a-espana/">
+  <link rel="alternate" hreflang="x-default" href="https://viajerolatam.com/seguro-viaje/medellin-a-espana/">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://viajerolatam.com/seguro-viaje/medellin-a-espana/">
+  <meta property="og:title" content="Seguro de Viaje Medellín → España 2026 — Desde €1.75/día">
+  <meta property="og:description" content="El mejor seguro de viaje para paisas que vuelan a Madrid o Barcelona. Sin visa requerida. Cobertura ilimitada y asistencia en español 24/7.">
+  <meta property="og:image" content="https://viajerolatam.com/og-image.jpg">
+  <meta property="og:site_name" content="ViajeroLatam">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Inicio","item":"https://viajerolatam.com/"},
+    {"@type":"ListItem","position":2,"name":"Colombia → España","item":"https://viajerolatam.com/seguro-viaje/colombia-a-espana/"},
+    {"@type":"ListItem","position":3,"name":"Medellín a España","item":"https://viajerolatam.com/seguro-viaje/medellin-a-espana/"}
+  ]}</script>
+
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"¿Necesito seguro para volar de Medellín a España?",
+     "acceptedAnswer":{"@type":"Answer","text":"No es obligatorio legalmente — los colombianos de Medellín no necesitan visa para España. Pero es muy recomendable: una urgencia médica en España puede costar €5.000–€30.000 sin seguro. Con seguro desde €1.75/día tienes cobertura total."}},
+    {"@type":"Question","name":"¿Desde qué aeropuerto salen los vuelos de Medellín a España?",
+     "acceptedAnswer":{"@type":"Answer","text":"Los vuelos internacionales desde Medellín salen del Aeropuerto Internacional José María Córdova (MDE), ubicado en Rionegro, a 45 minutos del centro de Medellín. No confundir con el Aeropuerto Olaya Herrera (EOH) que es solo para vuelos nacionales."}},
+    {"@type":"Question","name":"¿Cuánto tarda el vuelo de Medellín a Madrid?",
+     "acceptedAnswer":{"@type":"Answer","text":"No hay vuelo directo de Medellín a Madrid. Los vuelos van con una escala, normalmente en Bogotá, Panamá, Miami o Lisboa. La duración total es de 12 a 16 horas dependiendo de la escala. Avianca y Copa tienen las rutas más frecuentes."}},
+    {"@type":"Question","name":"¿Los paisas necesitan visa para viajar a España?",
+     "acceptedAnswer":{"@type":"Answer","text":"No. Los colombianos, incluyendo los de Medellín, pueden entrar a España sin visa hasta 90 días. Desde Q4 2026 necesitarán el ETIAS (€7, online, válido 3 años) pero no es una visa — es una autorización electrónica."}},
+    {"@type":"Question","name":"¿Cuál es el mejor seguro para antioqueños que van a España?",
+     "acceptedAnswer":{"@type":"Answer","text":"Para paisas que viajan a España,  Direct (€2.10/día, gastos ilimitados, app en español) e IATI Estrella (€2.33/día, pago directo sin adelantar dinero) son las opciones mejor valoradas. Para el mejor precio, Intermundial desde €1.75/día."}}
+  ]}</script>
+
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+<link rel="dns-prefetch" href="https://fonts.gstatic.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
+
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0B1F3A;--navy-mid:#1A3558;--teal:#00C4A1;--teal-dark:#009C7F;
+  --teal-pale:rgba(0,196,161,0.10);--sand:#F5F0E8;--sand-dark:#E8E2D8;
+  --white:#fff;--bg:#F0F4F8;--text-dark:#0B1F3A;--text-mid:#4A647E;
+  --text-light:#8FA4B8;--border:#E4EDF5;
+  --green-pale:#E8FDF4;--green:#0F6E56;
+  --amber-pale:#FEF3E2;--amber:#854F0B;
+  --font-d:'DM Serif Display',Georgia,serif;
+  --font-b:'Plus Jakarta Sans',sans-serif;
+  --r-md:14px;--r-lg:20px;--r-xl:28px;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-b);color:var(--text-dark);background:var(--bg);line-height:1.6;font-size:15px}
+nav{background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 5%;height:68px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.logo{display:flex;align-items:center;text-decoration:none}
+.logo img{height:58px;width:auto}
+.nav-links{display:flex;align-items:center;gap:24px}
+.nav-links a{font-size:14px;font-weight:500;color:var(--text-mid);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--navy)}
+.nav-cta{background:var(--navy);color:var(--white)!important;padding:9px 20px;border-radius:50px;font-weight:600!important}
+.bc-bar{background:var(--white);border-bottom:1px solid var(--border);padding:10px 5%}
+.bc-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-light);flex-wrap:wrap}
+.bc-inner a{color:var(--text-mid);text-decoration:none}
+.hero{position:relative;background: url('/hero-bg.jpg') center center / cover no-repeat;padding:52px 5% 44px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background: rgba(5,12,40,0.55);pointer-events:none}
+.hero-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 320px;gap:40px;align-items:start}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:7px;background:rgba(0,196,161,0.15);border:1px solid rgba(0,196,161,0.3);border-radius:50px;padding:5px 14px;font-size:12px;font-weight:600;color:var(--teal);margin-bottom:18px}
+.hero h1{font-family:var(--font-d);font-size:clamp(28px,4.5vw,48px);color:var(--white);line-height:1.1;margin-bottom:14px}
+.hero h1 em{color:var(--teal);font-style:italic}
+.hero-desc{font-size:15px;color:rgba(255,255,255,0.65);line-height:1.7;margin-bottom:24px;max-width:540px}
+.hero-badges{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:28px}
+.hbadge{display:flex;align-items:center;gap:5px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);border-radius:50px;padding:5px 12px;font-size:12px;font-weight:500;color:rgba(255,255,255,0.85)}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.hstat{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);border-radius:var(--r-md);padding:12px;text-align:center}
+.hstat-val{font-family:var(--font-d);font-size:24px;color:var(--white);line-height:1;margin-bottom:3px}
+.hstat-val span{color:var(--teal)}
+.hstat-label{font-size:11px;color:rgba(255,255,255,0.5)}
+.hcard{background:var(--white);border-radius:var(--r-xl);overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.25)}
+.hcard-top{background:var(--navy);padding:16px 20px}
+.hcard-title{font-size:14px;font-weight:600;color:var(--white);margin-bottom:2px}
+.hcard-sub{font-size:11px;color:rgba(255,255,255,0.5)}
+.hcard-body{padding:18px}
+.hcard-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px}
+.hcard-row:last-of-type{border-bottom:none;padding-bottom:0}
+.hcard-label{color:var(--text-mid)}
+.hcard-val{font-weight:600;color:var(--text-dark)}
+.btn-cta{width:100%;background:var(--teal);color:var(--navy);border:none;border-radius:50px;padding:14px;font-family:var(--font-b);font-size:15px;font-weight:700;cursor:pointer;margin-top:14px;display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;transition:background .2s}
+.btn-cta:hover{background:var(--teal-dark)}
+.page{max-width:1100px;margin:0 auto;padding:32px 5%;display:grid;grid-template-columns:1fr 280px;gap:28px;align-items:start}
+.section{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;margin-bottom:18px}
+.sec-head{padding:15px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
+.sec-icon{width:30px;height:30px;border-radius:9px;background:var(--sand);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.sec-title{font-size:15px;font-weight:700;color:var(--navy)}
+.sec-body{padding:20px}
+.vuelos-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.vuelo-card{border:1px solid var(--border);border-radius:var(--r-md);padding:14px}
+.vuelo-ruta{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:6px}
+.vuelo-info{font-size:12px;color:var(--text-mid);line-height:1.7}
+.vuelo-info strong{color:var(--text-dark)}
+.alert-warn{background:var(--amber-pale);border-radius:var(--r-md);padding:12px 16px;font-size:13px;color:var(--amber);display:flex;gap:8px;margin-top:12px}
+.alert-ok{background:var(--green-pale);border-radius:var(--r-md);padding:12px 16px;font-size:13px;color:var(--green);display:flex;gap:8px;margin-top:12px}
+.comp-table{width:100%;border-collapse:collapse;font-size:13px}
+.comp-table th{padding:9px 12px;font-size:11px;font-weight:700;color:var(--text-light);text-transform:uppercase;letter-spacing:0.05em;background:var(--sand);text-align:left;border-bottom:1px solid var(--border)}
+.comp-table td{padding:12px;border-bottom:1px solid var(--border);vertical-align:middle}
+.comp-table tr:last-child td{border-bottom:none}
+.comp-table tr.winner td{background:rgba(0,196,161,0.04);border-left:3px solid var(--teal)}
+.ins-logo{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-family:var(--font-d);font-size:13px}
+.ins-name{font-size:13px;font-weight:700;color:var(--navy)}
+.ins-sub{font-size:10px;color:var(--text-light)}
+.price-n{font-family:var(--font-d);font-size:20px;color:var(--navy)}
+.price-d{font-size:10px;color:var(--text-light)}
+.check-ok{color:var(--green)}
+.btn-sm{background:var(--navy);color:var(--white);border:none;border-radius:50px;padding:7px 14px;font-family:var(--font-b);font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap;transition:background .2s}
+.btn-sm:hover{background:var(--navy-mid)}
+.comp-table tr.winner .btn-sm{background:var(--teal);color:var(--navy)}
+.profile-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.profile-card{border:1px solid var(--border);border-radius:var(--r-md);padding:16px;text-align:center}
+.profile-emoji{font-size:28px;margin-bottom:8px}
+.profile-title{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:4px}
+.profile-seg{font-size:12px;color:var(--teal-dark);font-weight:600;margin-bottom:4px}
+.profile-price{font-size:11px;color:var(--text-light)}
+details{border-bottom:1px solid var(--border)}
+details:last-child{border-bottom:none}
+details summary{padding:14px 0;font-size:14px;font-weight:600;color:var(--text-dark);cursor:pointer;display:flex;justify-content:space-between;align-items:center;list-style:none}
+details summary::marker,details summary::-webkit-details-marker{display:none}
+.fi{width:22px;height:22px;border-radius:50%;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--text-mid);flex-shrink:0}
+details[open] .fi{border-color:var(--teal);color:var(--teal)}
+.fa{font-size:13px;color:var(--text-mid);line-height:1.75;padding-bottom:14px}
+.fa strong{color:var(--text-dark)}
+.fa a{color:var(--teal-dark);text-decoration:none}
+.sidebar{position:sticky;top:88px;display:flex;flex-direction:column;gap:12px}
+.sb-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden}
+.sb-head{background:var(--navy);padding:14px 16px}
+.sb-title{font-size:13px;font-weight:600;color:var(--white)}
+.sb-sub{font-size:11px;color:rgba(255,255,255,0.5)}
+.sb-body{padding:14px 16px}
+.sb-row{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);font-size:12px}
+.sb-row:last-child{border-bottom:none}
+.sb-label{color:var(--text-mid)}
+.sb-val{font-weight:600;color:var(--text-dark)}
+.btn-sb{width:100%;background:var(--teal);color:var(--navy);border:none;border-radius:50px;padding:11px;font-family:var(--font-b);font-size:13px;font-weight:700;cursor:pointer;margin-top:10px;display:block;text-align:center;text-decoration:none;transition:background .2s}
+.btn-sb:hover{background:var(--teal-dark)}
+.inote{background:var(--sand);border-radius:var(--r-md);padding:11px 13px;font-size:12px;color:var(--text-mid);line-height:1.6;border-left:3px solid var(--teal)}
+.inote strong{color:var(--text-dark);display:block;margin-bottom:3px}
+footer{background:var(--navy);padding:40px 5% 24px;margin-top:40px}
+.fg{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:36px;margin-bottom:28px}
+.fl img{height:42px;margin-bottom:10px}
+.fl p{font-size:13px;color:rgba(255,255,255,0.4);line-height:1.7}
+.fc h4{font-size:11px;font-weight:700;color:var(--white);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px}
+.fc a{display:block;font-size:13px;color:rgba(255,255,255,0.45);text-decoration:none;margin-bottom:7px}
+.fc a:hover{color:var(--teal)}
+.fb{max-width:1100px;margin:0 auto;border-top:1px solid rgba(255,255,255,0.07);padding-top:18px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.fb p{font-size:11px;color:rgba(255,255,255,0.3)}
+/* Mobile */
+.mob-btn{display:none;flex-direction:column;justify-content:center;gap:5px;width:40px;height:40px;padding:8px;border-radius:10px;border:1.5px solid rgba(11,31,58,0.15);background:rgba(11,31,58,0.06);cursor:pointer;flex-shrink:0}
+.mob-btn span{display:block;height:2px;width:100%;background:#0B1F3A;border-radius:2px;transition:all .25s}
+.mob-btn.is-open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.mob-btn.is-open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.mob-btn.is-open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+#mob-drawer.is-open{transform:translateX(0)!important}
+@media(max-width:768px){
+  .mob-btn{display:flex!important}
+  .nav-links{display:none!important}
+  nav{height:auto!important;min-height:64px!important;padding:10px 4%!important}
+  nav .logo img{height:46px!important}
+  .hero-inner{grid-template-columns:1fr!important}
+  .hcard{display:none!important}
+  .hero h1{font-size:30px!important}
+  .hero-stats{grid-template-columns:repeat(3,1fr)!important}
+  .hstat-val{font-size:18px!important}
+  .page{grid-template-columns:1fr!important;padding:16px 4%!important}
+  .sidebar{display:none!important}
+  .vuelos-grid{grid-template-columns:1fr!important}
+  .profile-grid{grid-template-columns:1fr!important}
+  .comp-table th:nth-child(3),.comp-table td:nth-child(3){display:none!important}
+  .fg{grid-template-columns:1fr 1fr!important}
+}
+
+/* InterMundial affiliate CTA */
+.intermundial-affiliate-box{
+  margin-top:24px;
+  padding:22px;
+  border-radius:22px;
+  border:1px solid rgba(0,196,161,.25);
+  background:linear-gradient(135deg,rgba(0,196,161,.10),rgba(245,240,232,.72));
+}
+.intermundial-affiliate-box h3{margin:0 0 8px;color:#0B1F3A}
+.intermundial-affiliate-box p{margin:0 0 14px;color:#4A647E}
+.intermundial-coupon{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  background:#fff;
+  border:1px dashed #00A989;
+  color:#0B1F3A;
+  padding:8px 12px;
+  border-radius:12px;
+  font-weight:900;
+  margin:0 0 14px;
+}
+.intermundial-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  background:#0B1F3A;
+  color:#fff!important;
+  text-decoration:none!important;
+  padding:13px 22px;
+  border-radius:999px;
+  font-weight:900;
+}
+
+
+/* Trust checklist + conversion blocks */
+.vl-trust-block{margin:34px auto;padding:26px;border-radius:26px;background:#F5F0E8;border:1px solid #EAE3D5;max-width:1120px}
+.vl-trust-block h2,.vl-trust-block h3{color:#0B1F3A;margin-bottom:12px}
+.vl-trust-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+.vl-trust-item{background:#fff;border:1px solid #EAE3D5;border-radius:18px;padding:18px}
+.vl-trust-item strong{display:block;color:#0B1F3A;margin-bottom:5px}
+.vl-trust-item p{color:#4A647E;font-size:14px;line-height:1.6;margin:0}
+.vl-affiliate-transparency{margin:26px auto;padding:18px 20px;border-left:4px solid #00C4A1;background:rgba(0,196,161,.08);border-radius:16px;color:#4A647E;max-width:1120px;font-size:14px;line-height:1.65}
+.vl-cta-comparison{margin:30px auto;padding:28px;border-radius:26px;background:linear-gradient(135deg,#0B1F3A,#1A3558);color:#fff;max-width:1120px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.vl-cta-comparison h3{font-size:24px;margin:0 0 6px;color:#fff}
+.vl-cta-comparison p{color:rgba(255,255,255,.7);margin:0}
+.vl-cta-buttons{display:flex;gap:10px;flex-wrap:wrap}
+.vl-cta-btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 20px;border-radius:999px;text-decoration:none!important;font-weight:900}
+.vl-cta-btn.primary{background:#00C4A1;color:#0B1F3A!important}
+.vl-cta-btn.secondary{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.22);color:#fff!important}
+.vl-coupon-mini{display:inline-flex;background:#fff;color:#0B1F3A;border:1px dashed #00A989;border-radius:10px;padding:6px 10px;font-weight:900;font-size:13px;margin-top:8px}
+@media(max-width:800px){.vl-trust-grid{grid-template-columns:1fr}.vl-cta-comparison{align-items:flex-start}.vl-cta-buttons{width:100%}.vl-cta-btn{width:100%}}
+
+</style>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P1Q2TSMVNJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-P1Q2TSMVNJ');
+</script>
+<style>@font-face{font-display:swap}</style>
+<style id="mobile-master">
+/* ============================================================
+   MOBILE MASTER FIX — viajerolatam.com
+   Breakpoint: 768px
+   ============================================================ */
+
+/* ── BASE: prevent horizontal scroll on any page ── */
+html, body {
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+}
+* { box-sizing: border-box; }
+img, svg, video { max-width: 100%; }
+
+/* ── CANVAS: never above content ── */
+#travel-canvas { z-index: 0 !important; pointer-events: none !important; }
+
+/* ── HERO: contain travel icons ── */
+.hero, header.hero, section.hero, .hero-section {
+  overflow: hidden !important;
+  position: relative !important;
+}
+.hero-inner, .hero-inner-wrap {
+  position: relative !important;
+  z-index: 2 !important;
+}
+.travel-icons { z-index: 1 !important; overflow: hidden !important; }
+
+/* ── MOBILE BREAKPOINT ── */
+@media (max-width: 768px) {
+
+  /* NAV */
+  nav {
+    height: auto !important;
+    min-height: 60px !important;
+    padding: 10px 4% !important;
+    flex-wrap: nowrap !important;
+  }
+  nav .logo img, nav img.logo-img { height: 44px !important; width: auto !important; }
+  .nav-links { display: none !important; }
+  .mob-btn { display: flex !important; }
+
+  /* HERO — base */
+  .hero, header.hero {
+    padding: 72px 4% 36px !important;
+    text-align: center !important;
+  }
+  .hero h1 { font-size: clamp(26px, 8vw, 36px) !important; line-height: 1.15 !important; }
+  .hero-eyebrow, .eyebrow { font-size: 11px !important; margin-bottom: 12px !important; }
+  .hero p, .hero-desc, .hero .sub { font-size: 14px !important; margin-bottom: 16px !important; }
+
+  /* HERO — two-column inner → one column */
+  .hero-inner {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+    max-width: 100% !important;
+  }
+  /* Hide right-side hero card on mobile */
+  .hcard, .hero-card, aside.hero-card { display: none !important; }
+
+  /* HERO stats row */
+  .hero-stats, .stats-row {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 8px !important;
+  }
+  .hstat-val, .stat-val { font-size: 18px !important; }
+  .hstat-label, .stat-label { font-size: 10px !important; }
+
+  /* HERO badges */
+  .hero-badges, .badges-row {
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+    justify-content: center !important;
+  }
+  .hbadge, .badge-item { font-size: 11px !important; padding: 4px 10px !important; }
+
+  /* HERO CTA buttons */
+  .btn-row, .hero .btn-row, .cta-row {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 10px !important;
+    width: 100% !important;
+  }
+  .btn, .btn-cta, .btn-teal, .btn-primary, .btn-secondary {
+    width: 100% !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+
+  /* VS BADGES (comparativa page) */
+  .vs-badges { gap: 10px !important; }
+  .vs-sep { display: none !important; }
+  .vs-badge { min-width: 120px !important; padding: 10px 14px !important; }
+
+  /* SEARCH WIDGET */
+  .search-box, .sb-inner, form.search-form {
+    flex-direction: column !important;
+    gap: 10px !important;
+    padding: 14px !important;
+  }
+  .sb-field, .search-field { width: 100% !important; }
+  .sb-btn, .search-btn { width: 100% !important; justify-content: center !important; }
+  .search-dates-row { grid-template-columns: 1fr 1fr !important; gap: 8px !important; }
+
+  /* PAGE LAYOUT — kill sidebars */
+  .page, .page-body, .article-layout {
+    grid-template-columns: 1fr !important;
+    padding: 16px 4% !important;
+    gap: 16px !important;
+  }
+  .sidebar, .sticky-sidebar, aside.sidebar { display: none !important; }
+
+  /* GRIDS */
+  .grid, .cards-grid, .steps-grid, .profile-grid,
+  .vuelos-grid, .req-grid, .sch-grid, .inc-grid,
+  .pros-cons, .related-grid, .profiles, .two-col {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+  .insurers-grid, .partner-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+  }
+
+  /* VERDICT GRID (comparativa) */
+  .verdict { grid-template-columns: 1fr !important; gap: 16px !important; padding: 18px !important; }
+
+  /* COMPARISON TABLE */
+  .comp-table { font-size: 11px !important; }
+  .comp-table th, .comp-table td { padding: 8px 8px !important; }
+  .comp-table th:nth-child(3), .comp-table td:nth-child(3) { display: none !important; }
+  .comp-header { grid-template-columns: 1.2fr 1fr 1fr !important; }
+  .comp-row { grid-template-columns: 1.2fr 1fr 1fr !important; }
+
+  /* CALCULATOR */
+  .calc-results { grid-template-columns: 1fr !important; gap: 10px !important; }
+  .dias-selector { gap: 6px !important; flex-wrap: wrap !important; }
+  .dias-btn { font-size: 12px !important; padding: 7px 12px !important; }
+
+  /* FOOTER */
+  footer { padding: 32px 4% 20px !important; }
+  .fg, footer .fg { grid-template-columns: 1fr 1fr !important; gap: 20px !important; }
+  .fl, .footer-brand { grid-column: span 2 !important; }
+  .fb, footer .fb { flex-direction: column !important; gap: 4px !important; text-align: center !important; }
+
+  /* STICKY CTA */
+  #sticky-mob { display: block !important; }
+  body { padding-bottom: 88px !important; }
+
+  /* EXIT POPUP */
+  #exit-box { padding: 24px 20px !important; margin: 10px !important; }
+  .exit-title { font-size: 22px !important; }
+  .exit-proof { gap: 8px !important; }
+  .exit-proof span { font-size: 11px !important; }
+
+  /* MOB DRAWER */
+  #mob-drawer { width: min(300px, 88vw) !important; }
+
+  /* TABLES — horizontal scroll on mobile */
+  .price-table, .paises-table {
+    display: block !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    font-size: 12px !important;
+  }
+  .price-table th, .price-table td { padding: 8px 10px !important; white-space: nowrap !important; }
+
+  /* BREADCRUMB */
+  .bc-inner { font-size: 11px !important; }
+
+  /* SECTIONS */
+  section { padding: 40px 4% !important; }
+  .wrap { max-width: 100% !important; padding: 0 !important; }
+
+  /* TRUST STRIP */
+  .trust { gap: 12px !important; flex-wrap: wrap !important; justify-content: center !important; }
+  .trust span { font-size: 12px !important; }
+
+  /* STATS */
+  .stats-inner { grid-template-columns: 1fr 1fr !important; gap: 8px !important; }
+  .stat-num { font-size: 28px !important; }
+
+  /* TRAVEL ICONS on mobile — reduce size */
+  .travel-icons svg { transform: scale(0.75) !important; transform-origin: center center !important; }
+
+  /* Prevent travel icons stacking on content */
+  .hero-inner { position: relative !important; z-index: 5 !important; }
+
+  /* SECTION headings */
+  h2.section-h, h2.sh { font-size: 22px !important; margin: 20px 0 10px !important; }
+  h2 { font-size: clamp(22px, 6vw, 32px) !important; }
+
+  /* CARD body overflow */
+  .card-body { overflow: hidden !important; }
+
+  /* BLOG CARDS */
+  .featured { padding: 18px !important; }
+  .featured .btn, .leer-btn { width: 100% !important; }
+
+  /* NEWSLETTER */
+  .nl-form { flex-direction: column !important; gap: 8px !important; }
+  .nl-input { min-width: unset !important; width: 100% !important; }
+  .nl-btn { width: 100% !important; }
+}
+
+/* VERY SMALL SCREENS (< 380px) */
+@media (max-width: 380px) {
+  .hero h1 { font-size: 24px !important; }
+  .insurers-grid { grid-template-columns: 1fr !important; }
+  .hero-stats { grid-template-columns: 1fr 1fr !important; }
+  .comp-table th:nth-child(4), .comp-table td:nth-child(4) { display: none !important; }
+}
+</style>
+<style id="bg-fix">
+/* Replace hero gradient with travel background image */
+.hero,header.hero,section.hero{
+  background:url('/hero-bg.jpg') center center/cover no-repeat !important;
+}
+/* Keep overlay for text readability — same z-index as original */
+.hero::before{
+  background:rgba(5,12,40,0.55) !important;
+}
+/* Remove dynamic icons — image has them already */
+.travel-icons,.travel-icons *,#travel-canvas{display:none !important;}
+/* Mobile: keep image filling screen */
+@media(max-width:768px){
+  .hero,header.hero,section.hero{
+    background:url('/hero-bg.jpg') center center/cover no-repeat !important;
+  }
+  .hero::before{background:rgba(5,12,40,0.65) !important;}
+}
+</style>
+</head>
+<body>
+
+<!-- MOBILE NAV -->
+<div id="mob-overlay" onclick="closeMobMenu()" style="display:none;position:fixed;inset:0;background:rgba(11,31,58,0.6);z-index:998;backdrop-filter:blur(4px)"></div>
+<div id="mob-drawer" style="display:none;position:fixed;top:0;right:0;bottom:0;width:min(300px,85vw);background:#fff;z-index:999;box-shadow:-8px 0 40px rgba(11,31,58,0.25);flex-direction:column;transform:translateX(100%);transition:transform .28s cubic-bezier(.4,0,.2,1)">
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:#0B1F3A;flex-shrink:0">
+    <img src="/logo.png" alt="ViajeroLatam" style="height:42px;width:auto;display:block">
+    <button onclick="closeMobMenu()" style="width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,0.12);border:none;color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center">✕</button>
+  </div>
+  <div style="flex:1;overflow-y:auto">
+    <a href="/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">🏠 Inicio</a>
+    <a href="/blog/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">📚 Artículos</a>
+    <a href="/visa-schengen/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">🛂 Visa Schengen</a>
+    <a href="/blog/etias-colombianos/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">⚡ ETIAS 2026</a>
+    <a href="/seguro-viaje/colombia-a-espana/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">🇨🇴 Colombia → España</a>
+    <a href="/seguro-viaje/bogota-a-espana/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">🏙️ Bogotá → España</a>
+  </div>
+  <div style="padding:16px 18px;border-top:1px solid #E4EDF5;flex-shrink:0">
+    <a href="/resultados/" onclick="closeMobMenu()" style="display:flex;align-items:center;justify-content:center;gap:8px;background:#00C4A1;color:#0B1F3A;padding:14px;border-radius:50px;font-size:15px;font-weight:700;text-decoration:none">🔍 Comparar seguros gratis</a>
+    <p style="font-size:11px;color:#8FA4B8;text-align:center;margin-top:8px">Sin coste · Póliza en 2 minutos</p>
+  </div>
+</div>
+
+<nav>
+  <a href="/" class="logo"><img src="/logo.png" alt="ViajeroLatam" style="height:58px;width:auto;display:block"></a>
+  <div class="nav-links">
+    <a href="/">Inicio</a>
+    <a href="/blog/">Artículos</a>
+    <a href="/visa-schengen/">Visa Schengen</a>
+    <a href="/seguro-viaje/colombia-a-espana/">Colombia → España</a>
+    <a href="/resultados/" class="nav-cta">Comparar ahora</a>
+  </div>
+  <button class="mob-btn" onclick="openMobMenu()" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="bc-bar">
+  <div class="bc-inner">
+    <a href="/">Inicio</a><span>/</span>
+    <a href="/seguro-viaje/colombia-a-espana/">Colombia → España</a><span>/</span>
+    <span>Medellín a España</span>
+  </div>
+</div>
+
+<div class="hero">
+<div class="travel-icons" aria-hidden="true">
+<svg xmlns="http://www.w3.org/2000/svg" style="width:0;height:0;position:absolute">
+  <defs>
+    <linearGradient id="gP" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:rgba(255,255,255,0.22)"/>
+      <stop offset="100%" style="stop-color:rgba(255,255,255,0.04)"/>
+    </linearGradient>
+    <linearGradient id="gT" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:rgba(0,196,161,0.2)"/>
+      <stop offset="100%" style="stop-color:rgba(0,196,161,0.04)"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<!-- PLANE — large, top-right corner, well away from content -->
+<svg class="ti-a" width="80" height="66" viewBox="0 0 110 90"
+     style="top:10%;right:4%;opacity:.18">
+  <ellipse cx="55" cy="45" rx="38" ry="10" fill="url(#gP)" stroke="rgba(255,255,255,0.5)" stroke-width="1.2"/>
+  <ellipse cx="88" cy="45" rx="8" ry="7" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+  <ellipse cx="83" cy="42" rx="3" ry="2.5" fill="rgba(0,196,161,0.7)"/>
+  <ellipse cx="76" cy="41" rx="2.5" ry="2" fill="rgba(255,255,255,0.3)"/>
+  <ellipse cx="69" cy="41" rx="2.5" ry="2" fill="rgba(255,255,255,0.3)"/>
+  <polygon points="65,45 42,20 16,38 16,52 42,70" fill="url(#gP)" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+  <line x1="42" y1="20" x2="16" y2="45" stroke="rgba(255,255,255,0.15)" stroke-width=".6"/>
+  <polygon points="22,45 18,31 10,38 10,52 18,59" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.25)" stroke-width=".8"/>
+  <polygon points="20,40 17,27 14,40" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.2)" stroke-width=".7"/>
+  <ellipse cx="40" cy="55" rx="7" ry="3.5" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.25)" stroke-width=".7"/>
+  <line x1="90" y1="45" x2="20" y2="45" stroke="rgba(0,196,161,0.35)" stroke-width=".8" stroke-dasharray="3,5"/>
+</svg>
+
+<!-- PASSPORT — small, left side, lower down -->
+<svg class="ti-d" width="46" height="58" viewBox="0 0 72 90"
+     style="top:55%;left:4%;opacity:.16">
+  <rect x="9" y="7" width="56" height="76" rx="5" fill="rgba(0,0,0,0.1)"/>
+  <rect x="6" y="4" width="56" height="76" rx="5" fill="url(#gT)" stroke="rgba(0,196,161,0.55)" stroke-width="1.5"/>
+  <rect x="6" y="4" width="8" height="76" rx="4" fill="rgba(0,196,161,0.12)"/>
+  <rect x="18" y="12" width="36" height="2.5" rx="1.2" fill="rgba(255,255,255,0.25)"/>
+  <rect x="22" y="17" width="28" height="1.5" rx=".75" fill="rgba(255,255,255,0.15)"/>
+  <circle cx="34" cy="38" r="14" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+  <ellipse cx="34" cy="38" rx="6" ry="14" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width=".8"/>
+  <line x1="20" y1="38" x2="48" y2="38" stroke="rgba(255,255,255,0.18)" stroke-width=".7"/>
+  <rect x="16" y="58" width="40" height="2" rx="1" fill="rgba(255,255,255,0.15)"/>
+  <rect x="16" y="63" width="40" height="2" rx="1" fill="rgba(255,255,255,0.1)"/>
+  <circle cx="52" cy="62" r="10" fill="none" stroke="rgba(0,196,161,0.4)" stroke-width="1.2" stroke-dasharray="2,2"/>
+</svg>
+
+<!-- GLOBE — spinning, positioned far right mid -->
+<svg class="ti-e" width="58" height="58" viewBox="0 0 84 84"
+     style="top:35%;right:6%;opacity:.14">
+  <circle cx="42" cy="42" r="38" fill="none" stroke="rgba(0,196,161,0.2)" stroke-width="1.5"/>
+  <circle cx="42" cy="42" r="32" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.28)" stroke-width="1"/>
+  <ellipse cx="42" cy="42" rx="32" ry="11" fill="none" stroke="rgba(255,255,255,0.14)" stroke-width=".7"/>
+  <ellipse cx="42" cy="42" rx="32" ry="21" fill="none" stroke="rgba(255,255,255,0.09)" stroke-width=".6"/>
+  <ellipse cx="42" cy="42" rx="13" ry="32" fill="none" stroke="rgba(255,255,255,0.11)" stroke-width=".7"/>
+  <ellipse cx="42" cy="42" rx="25" ry="32" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width=".6"/>
+  <line x1="10" y1="42" x2="74" y2="42" stroke="rgba(255,255,255,0.2)" stroke-width=".9"/>
+  <path d="M30 26 Q34 22 40 24 Q45 22 47 27 Q49 33 46 37 Q41 39 37 37 Q30 34 30 26Z" fill="rgba(0,196,161,0.2)" stroke="rgba(0,196,161,0.4)" stroke-width=".7"/>
+  <path d="M47 30 Q52 26 56 29 Q58 34 55 38 Q51 40 47 38 Q45 35 47 30Z" fill="rgba(0,196,161,0.14)" stroke="rgba(0,196,161,0.3)" stroke-width=".6"/>
+  <path d="M25 42 Q27 37 31 39 Q33 44 31 48 Q27 50 25 46Z" fill="rgba(0,196,161,0.12)" stroke="rgba(0,196,161,0.25)" stroke-width=".6"/>
+</svg>
+
+<!-- SUITCASE — bottom right, small -->
+<svg class="ti-f" width="54" height="50" viewBox="0 0 78 72"
+     style="bottom:18%;right:7%;opacity:.15">
+  <ellipse cx="39" cy="68" rx="26" ry="2.5" fill="rgba(0,0,0,0.1)"/>
+  <rect x="8" y="16" width="62" height="46" rx="7" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.32)" stroke-width="1.2"/>
+  <path d="M27 16 L27 8 Q27 4 31 4 L47 4 Q51 4 51 8 L51 16" fill="none" stroke="rgba(255,255,255,0.38)" stroke-width="1.8" stroke-linecap="round"/>
+  <rect x="8" y="34" width="62" height="7" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.12)" stroke-width=".7"/>
+  <rect x="32" y="34" width="14" height="7" rx="2" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.28)" stroke-width=".8"/>
+  <circle cx="39" cy="37.5" r="2.5" fill="rgba(0,196,161,0.5)" stroke="rgba(0,196,161,0.8)" stroke-width=".7"/>
+  <rect x="13" y="22" width="18" height="24" rx="4" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.14)" stroke-width=".7"/>
+  <rect x="47" y="22" width="18" height="24" rx="4" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.14)" stroke-width=".7"/>
+  <circle cx="18" cy="60" r="3.5" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.28)" stroke-width="1"/>
+  <circle cx="60" cy="60" r="3.5" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.28)" stroke-width="1"/>
+</svg>
+
+<!-- MAP PIN — bottom left, small -->
+<svg class="ti-g" width="36" height="48" viewBox="0 0 52 68"
+     style="bottom:22%;left:8%;opacity:.17">
+  <circle cx="26" cy="26" r="20" fill="rgba(0,196,161,0.05)"/>
+  <path d="M26 4 C14 4 6 12 6 24 C6 36 26 64 26 64 C26 64 46 36 46 24 C46 12 38 4 26 4Z"
+        fill="rgba(0,196,161,0.14)" stroke="rgba(0,196,161,0.55)" stroke-width="1.5"/>
+  <circle cx="26" cy="24" r="9" fill="rgba(0,196,161,0.18)" stroke="rgba(0,196,161,0.5)" stroke-width="1.2"/>
+  <circle cx="26" cy="24" r="4.5" fill="rgba(0,196,161,0.35)" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+  <circle cx="26" cy="24" r="1.8" fill="rgba(255,255,255,0.5)"/>
+  <ellipse cx="20" cy="18" rx="3.5" ry="2.5" fill="rgba(255,255,255,0.12)" transform="rotate(-20,20,18)"/>
+</svg>
+
+<!-- COMPASS — top left mid, small -->
+<svg class="ti-h" width="50" height="50" viewBox="0 0 68 68"
+     style="top:18%;left:6%;opacity:.14">
+  <circle cx="34" cy="34" r="30" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.22)" stroke-width="1.2"/>
+  <circle cx="34" cy="34" r="24" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width=".7"/>
+  <line x1="34" y1="5" x2="34" y2="11" stroke="rgba(255,255,255,0.45)" stroke-width="1.5"/>
+  <line x1="34" y1="57" x2="34" y2="63" stroke="rgba(255,255,255,0.22)" stroke-width="1"/>
+  <line x1="5" y1="34" x2="11" y2="34" stroke="rgba(255,255,255,0.22)" stroke-width="1"/>
+  <line x1="57" y1="34" x2="63" y2="34" stroke="rgba(255,255,255,0.22)" stroke-width="1"/>
+  <text x="34" y="20" text-anchor="middle" font-size="6.5" font-weight="bold" fill="rgba(0,196,161,0.8)" font-family="sans-serif">N</text>
+  <text x="34" y="53" text-anchor="middle" font-size="5.5" fill="rgba(255,255,255,0.3)" font-family="sans-serif">S</text>
+  <text x="15" y="37" text-anchor="middle" font-size="5.5" fill="rgba(255,255,255,0.3)" font-family="sans-serif">W</text>
+  <text x="53" y="37" text-anchor="middle" font-size="5.5" fill="rgba(255,255,255,0.3)" font-family="sans-serif">E</text>
+  <polygon points="34,13 37,34 34,31 31,34" fill="rgba(0,196,161,0.7)" stroke="rgba(0,196,161,0.9)" stroke-width=".5"/>
+  <polygon points="34,55 37,34 34,37 31,34" fill="rgba(255,255,255,0.22)" stroke="rgba(255,255,255,0.35)" stroke-width=".5"/>
+  <circle cx="34" cy="34" r="3" fill="rgba(255,255,255,0.35)" stroke="rgba(0,196,161,0.7)" stroke-width="1"/>
+  <circle cx="34" cy="34" r="1.2" fill="rgba(0,196,161,0.8)"/>
+</svg>
+
+<!-- BOARDING PASS — small, far right bottom -->
+<svg class="ti-i" width="62" height="36" viewBox="0 0 88 50"
+     style="bottom:30%;right:3%;opacity:.13">
+  <rect x="2" y="3" width="80" height="40" rx="5" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+  <rect x="2" y="3" width="20" height="40" rx="5" fill="rgba(0,196,161,0.1)"/>
+  <line x1="22" y1="3" x2="22" y2="43" stroke="rgba(255,255,255,0.18)" stroke-width="1" stroke-dasharray="3,3"/>
+  <circle cx="22" cy="3" r="3" fill="#0B1F3A"/>
+  <circle cx="22" cy="43" r="3" fill="#0B1F3A"/>
+  <text x="12" y="18" text-anchor="middle" font-size="6" fill="rgba(0,196,161,0.7)" font-family="sans-serif" font-weight="bold">4A</text>
+  <circle cx="12" cy="28" r="5" fill="rgba(0,196,161,0.18)" stroke="rgba(0,196,161,0.45)" stroke-width=".8"/>
+  <text x="38" y="17" text-anchor="middle" font-size="6.5" fill="rgba(255,255,255,0.45)" font-family="sans-serif">BOG</text>
+  <line x1="45" y1="15" x2="52" y2="15" stroke="rgba(255,255,255,0.3)" stroke-width=".8"/>
+  <polygon points="52,13 55,15 52,17" fill="rgba(255,255,255,0.3)"/>
+  <text x="62" y="17" text-anchor="middle" font-size="6.5" fill="rgba(255,255,255,0.45)" font-family="sans-serif">MAD</text>
+  <rect x="26" y="22" width="56" height="1.8" rx=".9" fill="rgba(255,255,255,0.12)"/>
+  <rect x="26" y="27" width="40" height="1.5" rx=".75" fill="rgba(255,255,255,0.08)"/>
+  <rect x="26" y="32" width="6" height="8" rx=".5" fill="rgba(255,255,255,0.18)"/>
+  <rect x="34" y="32" width="3" height="8" rx=".5" fill="rgba(255,255,255,0.13)"/>
+  <rect x="39" y="32" width="5" height="8" rx=".5" fill="rgba(255,255,255,0.18)"/>
+  <rect x="46" y="32" width="3" height="8" rx=".5" fill="rgba(255,255,255,0.13)"/>
+  <rect x="51" y="32" width="4" height="8" rx=".5" fill="rgba(255,255,255,0.18)"/>
+  <rect x="57" y="32" width="2.5" height="8" rx=".5" fill="rgba(255,255,255,0.13)"/>
+  <rect x="61" y="32" width="5" height="8" rx=".5" fill="rgba(255,255,255,0.18)"/>
+  <rect x="68" y="32" width="3" height="8" rx=".5" fill="rgba(255,255,255,0.13)"/>
+  <rect x="73" y="32" width="4" height="8" rx=".5" fill="rgba(255,255,255,0.18)"/>
+</svg>
+
+<!-- PLANE 2 — small, left, rotated -->
+<svg class="ti-b" width="44" height="44" viewBox="0 0 110 90"
+     style="top:65%;left:3%;transform:rotate(30deg);opacity:.12">
+  <ellipse cx="55" cy="45" rx="38" ry="10" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+  <ellipse cx="88" cy="45" rx="8" ry="7" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+  <ellipse cx="83" cy="42" rx="3" ry="2.5" fill="rgba(0,196,161,0.45)"/>
+  <polygon points="65,45 42,20 16,38 16,52 42,70" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.22)" stroke-width="1"/>
+  <polygon points="22,45 18,31 10,38 10,52 18,59" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.16)" stroke-width=".8"/>
+</svg>
+
+<!-- PLANE 3 — tiny, bottom right -->
+<svg class="ti-c" width="36" height="36" viewBox="0 0 110 90"
+     style="bottom:8%;right:28%;transform:rotate(-18deg);opacity:.1">
+  <ellipse cx="55" cy="45" rx="38" ry="10" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.22)" stroke-width="1"/>
+  <ellipse cx="88" cy="45" rx="8" ry="7" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.22)" stroke-width="1"/>
+  <polygon points="65,45 42,20 16,38 16,52 42,70" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.16)" stroke-width=".8"/>
+</svg>
+
+<!-- Subtle route lines + city dots — low opacity -->
+<svg style="position:absolute;top:0;left:0;width:100%;height:100%;opacity:.07"
+     viewBox="0 0 1400 500" preserveAspectRatio="none">
+  <path d="M-60 400 Q 300 80 620 250 Q 920 400 1240 130 Q 1380 60 1500 160"
+        stroke="rgba(0,196,161,1)" stroke-width="1.5" stroke-dasharray="10,18" fill="none"/>
+  <path d="M-60 160 Q 380 460 720 180 Q 1020 30 1500 320"
+        stroke="white" stroke-width="1" stroke-dasharray="7,20" fill="none" opacity=".7"/>
+  <path d="M300 -10 Q 480 280 640 160 Q 820 40 1100 380"
+        stroke="white" stroke-width=".8" stroke-dasharray="5,24" fill="none" opacity=".5"/>
+  <!-- origin dot COL -->
+  <circle cx="190" cy="370" r="4.5" fill="rgba(0,196,161,1)"/>
+  <circle cx="190" cy="370" r="9" fill="rgba(0,196,161,0.25)"/>
+  <!-- destination dot MAD -->
+  <circle cx="620" cy="250" r="4" fill="rgba(0,196,161,0.9)"/>
+  <circle cx="620" cy="250" r="8" fill="rgba(0,196,161,0.2)"/>
+  <!-- other cities -->
+  <circle cx="930" cy="330" r="3" fill="rgba(0,196,161,0.7)"/>
+  <circle cx="1240" cy="130" r="4" fill="rgba(0,196,161,0.85)"/>
+  <circle cx="1240" cy="130" r="8" fill="rgba(0,196,161,0.18)"/>
+  <circle cx="400" cy="430" r="2.5" fill="rgba(255,255,255,0.5)"/>
+  <circle cx="720" cy="180" r="2.5" fill="rgba(255,255,255,0.45)"/>
+  <circle cx="1020" cy="70" r="2.5" fill="rgba(255,255,255,0.4)"/>
+</svg>
+</div>
+
+<!-- FULL PAGE CANVAS — very subtle floating micro elements -->
+<script id="travel-canvas-js">
+(function(){
+  var c=document.getElementById('travel-canvas');
+  if(!c)return;
+  var ctx=c.getContext('2d');
+  var W,H,t=0;
+  function resize(){
+    W=c.width=window.innerWidth;
+    H=c.height=Math.max(document.body.scrollHeight,window.innerHeight);
+  }
+  resize();
+  window.addEventListener('resize',resize);
+  setTimeout(resize,800);
+
+  var icons=[];
+  var n=Math.min(18,Math.floor(window.innerWidth/80));
+  var typeList=['plane','dot','cross','plane','dot'];
+  for(var i=0;i<n;i++){
+    icons.push({
+      x:Math.random(),y:Math.random()+.05,
+      type:typeList[i%typeList.length],
+      sz:Math.random()*7+4,
+      op:Math.random()*.05+.015,
+      vy:-(Math.random()*.00035+.00008),
+      floatA:Math.random()*14+5,
+      floatS:Math.random()*.01+.005,
+      phase:Math.random()*Math.PI*2,
+      rot:Math.random()*Math.PI*2,
+      rotV:(Math.random()-.5)*.003
+    });
+  }
+
+  function drawPlane(px,py,ang,sz,op){
+    ctx.save();ctx.translate(px,py);ctx.rotate(ang);ctx.globalAlpha=op;
+    ctx.fillStyle='rgba(255,255,255,.85)';
+    ctx.beginPath();ctx.moveTo(sz,0);ctx.lineTo(-sz*.75,sz*.45);ctx.lineTo(-sz*.5,0);ctx.lineTo(-sz*.75,-sz*.45);ctx.closePath();ctx.fill();
+    ctx.fillStyle='rgba(255,255,255,.4)';
+    ctx.beginPath();ctx.moveTo(sz*.05,0);ctx.lineTo(-sz*.4,-sz*.8);ctx.lineTo(-sz*.65,0);ctx.closePath();ctx.fill();
+    ctx.beginPath();ctx.moveTo(sz*.05,0);ctx.lineTo(-sz*.4,sz*.8);ctx.lineTo(-sz*.65,0);ctx.closePath();ctx.fill();
+    ctx.restore();
+  }
+
+  // Two main animated flights
+  var flights=[
+    {pt:0,ax:.04,ay:.2,bx:.96,by:.12,cpx:.5,cpy:.04,sp:.002,sz:8,op:.09},
+    {pt:.55,ax:.03,ay:.7,bx:.97,by:.62,cpx:.5,cpy:.52,sp:.0016,sz:6,op:.06},
+  ];
+
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+
+    icons.forEach(function(ic){
+      ic.y+=ic.vy;
+      if(ic.y<-0.06)ic.y=1.06;
+      ic.rot+=ic.rotV;
+      var px=ic.x*W,py=ic.y*H+Math.sin(t*ic.floatS+ic.phase)*ic.floatA;
+
+      if(ic.type==='plane'){
+        drawPlane(px,py,ic.rot,ic.sz,ic.op);
+      } else if(ic.type==='dot'){
+        ctx.save();ctx.translate(px,py);ctx.globalAlpha=ic.op*(Math.sin(t*.04+ic.phase)*.3+.7);
+        ctx.fillStyle='rgba(0,196,161,.8)';ctx.beginPath();ctx.arc(0,0,ic.sz*.28,0,Math.PI*2);ctx.fill();
+        ctx.restore();
+      } else {
+        ctx.save();ctx.translate(px,py);ctx.rotate(ic.rot);ctx.globalAlpha=ic.op*.65;
+        ctx.strokeStyle='rgba(255,255,255,.6)';ctx.lineWidth=.7;
+        ctx.beginPath();ctx.moveTo(-ic.sz*.35,0);ctx.lineTo(ic.sz*.35,0);ctx.stroke();
+        ctx.beginPath();ctx.moveTo(0,-ic.sz*.35);ctx.lineTo(0,ic.sz*.35);ctx.stroke();
+        ctx.restore();
+      }
+    });
+
+    // Animated flights
+    flights.forEach(function(fl){
+      fl.pt=(fl.pt+fl.sp)%1;
+      var mt=1-fl.pt;
+      var cpxW=fl.cpx*W,cpyH=fl.cpy*H;
+      var px=mt*mt*fl.ax*W+2*mt*fl.pt*cpxW+fl.pt*fl.pt*fl.bx*W;
+      var py=mt*mt*fl.ay*H+2*mt*fl.pt*cpyH+fl.pt*fl.pt*fl.by*H;
+      var pt2=Math.min(fl.pt+.015,1),mt2=1-pt2;
+      var px2=mt2*mt2*fl.ax*W+2*mt2*pt2*cpxW+pt2*pt2*fl.bx*W;
+      var py2=mt2*mt2*fl.ay*H+2*mt2*pt2*cpyH+pt2*pt2*fl.by*H;
+      var ang=Math.atan2(py2-py,px2-px);
+
+      // subtle trail
+      for(var tr=1;tr<=12;tr++){
+        var tp=Math.max(0,fl.pt-tr*.005);var mtp=1-tp;
+        var tx=mtp*mtp*fl.ax*W+2*mtp*tp*cpxW+tp*tp*fl.bx*W;
+        var ty=mtp*mtp*fl.ay*H+2*mtp*tp*cpyH+tp*tp*fl.by*H;
+        ctx.beginPath();ctx.arc(tx,ty,1,0,Math.PI*2);
+        ctx.fillStyle='rgba(0,196,161,'+(1-tr/12)*.12+')';ctx.fill();
+      }
+      drawPlane(px,py,ang,fl.sz,fl.op);
+    });
+
+    t++;
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+</script>
+
+<div class="travel-icons" aria-hidden="true">
+<svg xmlns="http://www.w3.org/2000/svg" style="width:0;height:0;position:absolute">
+  <defs>
+    <linearGradient id="gPlane" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:rgba(255,255,255,0.35)"/>
+      <stop offset="100%" style="stop-color:rgba(255,255,255,0.08)"/>
+    </linearGradient>
+    <linearGradient id="gPass" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:rgba(0,196,161,0.25)"/>
+      <stop offset="100%" style="stop-color:rgba(0,196,161,0.06)"/>
+    </linearGradient>
+    <linearGradient id="gGlobe" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:rgba(255,255,255,0.2)"/>
+      <stop offset="100%" style="stop-color:rgba(255,255,255,0.04)"/>
+    </linearGradient>
+    <linearGradient id="gCase" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:rgba(255,255,255,0.22)"/>
+      <stop offset="100%" style="stop-color:rgba(255,255,255,0.05)"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow2">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+</svg>
+
+<!-- ✈ PLANE — large, top right, detailed fuselage+wings+engines -->
+<svg class="ti-a" width="110" height="90" viewBox="0 0 110 90"
+     style="top:6%;right:5%" filter="url(#glow)">
+  <!-- fuselage -->
+  <ellipse cx="55" cy="45" rx="38" ry="10" fill="url(#gPlane)" stroke="rgba(255,255,255,0.35)" stroke-width="1"/>
+  <!-- nose -->
+  <ellipse cx="88" cy="45" rx="8" ry="7" fill="rgba(255,255,255,0.22)" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+  <!-- cockpit windows -->
+  <ellipse cx="84" cy="42" rx="3" ry="2.5" fill="rgba(0,196,161,0.5)" stroke="rgba(0,196,161,0.8)" stroke-width=".7"/>
+  <ellipse cx="78" cy="41" rx="2.5" ry="2" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.5)" stroke-width=".6"/>
+  <ellipse cx="72" cy="41" rx="2.5" ry="2" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.5)" stroke-width=".6"/>
+  <ellipse cx="66" cy="41" rx="2.5" ry="2" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.5)" stroke-width=".6"/>
+  <!-- main wings -->
+  <polygon points="65,45 45,22 18,38 18,52 45,68" fill="url(#gPlane)" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+  <!-- wing detail lines -->
+  <line x1="45" y1="22" x2="18" y2="45" stroke="rgba(255,255,255,0.15)" stroke-width=".6"/>
+  <line x1="52" y1="32" x2="22" y2="45" stroke="rgba(255,255,255,0.1)" stroke-width=".5"/>
+  <!-- tail wings -->
+  <polygon points="22,45 18,32 10,38 10,52 18,58" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.2)" stroke-width=".8"/>
+  <!-- vertical tail fin -->
+  <polygon points="20,40 17,28 14,40" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.25)" stroke-width=".8"/>
+  <!-- engines -->
+  <ellipse cx="42" cy="54" rx="8" ry="4" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.3)" stroke-width=".8"/>
+  <ellipse cx="42" cy="54" rx="4" ry="2.5" fill="rgba(0,196,161,0.2)"/>
+  <ellipse cx="30" cy="50" rx="6" ry="3" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.25)" stroke-width=".7"/>
+  <!-- teal accent stripe -->
+  <line x1="92" y1="45" x2="20" y2="45" stroke="rgba(0,196,161,0.4)" stroke-width=".8" stroke-dasharray="3,4"/>
+</svg>
+
+<!-- 📘 PASSPORT — detailed cover + pages + stamp, top left -->
+<svg class="ti-d" width="72" height="90" viewBox="0 0 72 90"
+     style="top:13%;left:7%" filter="url(#glow2)">
+  <!-- back cover shadow -->
+  <rect x="9" y="7" width="56" height="76" rx="5" fill="rgba(0,0,0,0.15)"/>
+  <!-- passport cover -->
+  <rect x="6" y="4" width="56" height="76" rx="5" fill="url(#gPass)" stroke="rgba(0,196,161,0.5)" stroke-width="1.5"/>
+  <!-- cover spine -->
+  <rect x="6" y="4" width="8" height="76" rx="4" fill="rgba(0,196,161,0.15)"/>
+  <!-- top text line -->
+  <rect x="18" y="12" width="36" height="2.5" rx="1.2" fill="rgba(255,255,255,0.2)"/>
+  <rect x="22" y="17" width="28" height="1.5" rx=".75" fill="rgba(255,255,255,0.12)"/>
+  <!-- globe icon on cover -->
+  <circle cx="34" cy="38" r="14" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+  <ellipse cx="34" cy="38" rx="6" ry="14" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width=".8"/>
+  <line x1="20" y1="38" x2="48" y2="38" stroke="rgba(255,255,255,0.2)" stroke-width=".7"/>
+  <line x1="21" y1="30" x2="47" y2="30" stroke="rgba(255,255,255,0.12)" stroke-width=".6"/>
+  <line x1="21" y1="46" x2="47" y2="46" stroke="rgba(255,255,255,0.12)" stroke-width=".6"/>
+  <!-- bottom data lines -->
+  <rect x="16" y="58" width="40" height="2" rx="1" fill="rgba(255,255,255,0.15)"/>
+  <rect x="16" y="63" width="40" height="2" rx="1" fill="rgba(255,255,255,0.1)"/>
+  <rect x="16" y="68" width="28" height="2" rx="1" fill="rgba(255,255,255,0.08)"/>
+  <!-- stamp circle -->
+  <circle cx="52" cy="62" r="10" fill="none" stroke="rgba(0,196,161,0.45)" stroke-width="1.5" stroke-dasharray="2,2"/>
+  <text x="52" y="65" text-anchor="middle" font-size="5" fill="rgba(0,196,161,0.5)" font-family="sans-serif">VISA</text>
+</svg>
+
+<!-- 🌍 GLOBE — spinning, detailed with continents, center top -->
+<svg class="ti-e" width="84" height="84" viewBox="0 0 84 84"
+     style="top:5%;left:34%">
+  <!-- outer ring glow -->
+  <circle cx="42" cy="42" r="39" fill="none" stroke="rgba(0,196,161,0.15)" stroke-width="2"/>
+  <!-- main globe -->
+  <circle cx="42" cy="42" r="33" fill="url(#gGlobe)" stroke="rgba(255,255,255,0.25)" stroke-width="1.2"/>
+  <!-- latitude lines -->
+  <ellipse cx="42" cy="42" rx="33" ry="12" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width=".7"/>
+  <ellipse cx="42" cy="42" rx="33" ry="22" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width=".6"/>
+  <!-- meridian lines -->
+  <ellipse cx="42" cy="42" rx="14" ry="33" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width=".7"/>
+  <ellipse cx="42" cy="42" rx="26" ry="33" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width=".6"/>
+  <!-- equator bold -->
+  <line x1="9" y1="42" x2="75" y2="42" stroke="rgba(255,255,255,0.18)" stroke-width="1"/>
+  <!-- continent shapes (simplified) -->
+  <path d="M32 28 Q35 24 40 26 Q44 24 46 28 Q48 32 46 36 Q42 38 38 36 Q33 33 32 28Z" fill="rgba(0,196,161,0.18)" stroke="rgba(0,196,161,0.35)" stroke-width=".7"/>
+  <path d="M48 32 Q52 28 56 30 Q58 34 56 38 Q52 40 48 38 Q46 35 48 32Z" fill="rgba(0,196,161,0.14)" stroke="rgba(0,196,161,0.28)" stroke-width=".6"/>
+  <path d="M26 42 Q28 38 32 40 Q34 44 32 48 Q28 50 26 46Z" fill="rgba(0,196,161,0.12)" stroke="rgba(0,196,161,0.25)" stroke-width=".6"/>
+  <!-- poles -->
+  <circle cx="42" cy="9" r="3" fill="rgba(255,255,255,0.2)"/>
+  <circle cx="42" cy="75" r="3" fill="rgba(255,255,255,0.15)"/>
+  <!-- teal highlight -->
+  <circle cx="34" cy="32" r="4" fill="rgba(0,196,161,0.12)"/>
+</svg>
+
+<!-- 🧳 SUITCASE — detailed, right mid -->
+<svg class="ti-f" width="78" height="72" viewBox="0 0 78 72"
+     style="top:56%;right:6%">
+  <!-- shadow -->
+  <ellipse cx="39" cy="68" rx="28" ry="3" fill="rgba(0,0,0,0.15)"/>
+  <!-- main body -->
+  <rect x="8" y="16" width="62" height="46" rx="7" fill="url(#gCase)" stroke="rgba(255,255,255,0.3)" stroke-width="1.3"/>
+  <!-- handle bar -->
+  <path d="M27 16 L27 8 Q27 4 31 4 L47 4 Q51 4 51 8 L51 16" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="2" stroke-linecap="round"/>
+  <!-- horizontal band -->
+  <rect x="8" y="34" width="62" height="8" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.15)" stroke-width=".7"/>
+  <!-- zipper line -->
+  <line x1="8" y1="39" x2="70" y2="39" stroke="rgba(255,255,255,0.2)" stroke-width=".7" stroke-dasharray="2,2"/>
+  <!-- lock -->
+  <rect x="32" y="34" width="14" height="8" rx="2" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.3)" stroke-width=".8"/>
+  <circle cx="39" cy="38" r="2.5" fill="rgba(0,196,161,0.4)" stroke="rgba(0,196,161,0.7)" stroke-width=".7"/>
+  <!-- left detail pocket -->
+  <rect x="13" y="22" width="20" height="26" rx="4" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.15)" stroke-width=".7"/>
+  <!-- right detail pocket -->
+  <rect x="45" y="22" width="20" height="26" rx="4" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.15)" stroke-width=".7"/>
+  <!-- wheels -->
+  <circle cx="18" cy="60" r="4" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+  <circle cx="18" cy="60" r="1.5" fill="rgba(0,196,161,0.3)"/>
+  <circle cx="60" cy="60" r="4" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+  <circle cx="60" cy="60" r="1.5" fill="rgba(0,196,161,0.3)"/>
+  <!-- tag -->
+  <rect x="52" y="20" width="12" height="8" rx="2" fill="rgba(0,196,161,0.2)" stroke="rgba(0,196,161,0.4)" stroke-width=".8"/>
+  <circle cx="56" cy="19" r="1.5" fill="none" stroke="rgba(0,196,161,0.5)" stroke-width=".8"/>
+</svg>
+
+<!-- 📍 MAP PIN — bottom left, glowing -->
+<svg class="ti-g" width="52" height="68" viewBox="0 0 52 68"
+     style="bottom:16%;left:10%" filter="url(#glow)">
+  <!-- glow ring -->
+  <circle cx="26" cy="26" r="22" fill="rgba(0,196,161,0.06)"/>
+  <!-- pin body -->
+  <path d="M26 4 C14 4 6 12 6 24 C6 36 26 64 26 64 C26 64 46 36 46 24 C46 12 38 4 26 4Z"
+        fill="rgba(0,196,161,0.15)" stroke="rgba(0,196,161,0.55)" stroke-width="1.5"/>
+  <!-- pin inner circle -->
+  <circle cx="26" cy="24" r="10" fill="rgba(0,196,161,0.2)" stroke="rgba(0,196,161,0.5)" stroke-width="1.2"/>
+  <circle cx="26" cy="24" r="5" fill="rgba(0,196,161,0.4)" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+  <circle cx="26" cy="24" r="2" fill="rgba(255,255,255,0.5)"/>
+  <!-- highlight -->
+  <ellipse cx="20" cy="18" rx="4" ry="3" fill="rgba(255,255,255,0.15)" transform="rotate(-20,20,18)"/>
+</svg>
+
+<!-- 🧭 COMPASS — top right area, detailed -->
+<svg class="ti-h" width="68" height="68" viewBox="0 0 68 68"
+     style="top:18%;right:17%">
+  <!-- outer ring -->
+  <circle cx="34" cy="34" r="32" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+  <!-- inner ring -->
+  <circle cx="34" cy="34" r="26" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.12)" stroke-width=".8"/>
+  <!-- degree marks -->
+  <line x1="34" y1="4" x2="34" y2="10" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+  <line x1="34" y1="58" x2="34" y2="64" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+  <line x1="4" y1="34" x2="10" y2="34" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+  <line x1="58" y1="34" x2="64" y2="34" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+  <!-- diagonal marks -->
+  <line x1="11" y1="11" x2="15" y2="15" stroke="rgba(255,255,255,0.15)" stroke-width=".8"/>
+  <line x1="53" y1="53" x2="57" y2="57" stroke="rgba(255,255,255,0.15)" stroke-width=".8"/>
+  <line x1="53" y1="11" x2="57" y2="15" stroke="rgba(255,255,255,0.15)" stroke-width=".8"/>
+  <line x1="11" y1="53" x2="15" y2="57" stroke="rgba(255,255,255,0.15)" stroke-width=".8"/>
+  <!-- N label -->
+  <text x="34" y="19" text-anchor="middle" font-size="7" font-weight="bold" fill="rgba(0,196,161,0.8)" font-family="sans-serif">N</text>
+  <text x="34" y="55" text-anchor="middle" font-size="6" fill="rgba(255,255,255,0.3)" font-family="sans-serif">S</text>
+  <text x="14" y="37" text-anchor="middle" font-size="6" fill="rgba(255,255,255,0.3)" font-family="sans-serif">W</text>
+  <text x="54" y="37" text-anchor="middle" font-size="6" fill="rgba(255,255,255,0.3)" font-family="sans-serif">E</text>
+  <!-- needle north (teal) -->
+  <polygon points="34,12 37,34 34,30 31,34" fill="rgba(0,196,161,0.7)" stroke="rgba(0,196,161,0.9)" stroke-width=".5"/>
+  <!-- needle south (white) -->
+  <polygon points="34,56 37,34 34,38 31,34" fill="rgba(255,255,255,0.25)" stroke="rgba(255,255,255,0.4)" stroke-width=".5"/>
+  <!-- center -->
+  <circle cx="34" cy="34" r="3.5" fill="rgba(255,255,255,0.4)" stroke="rgba(0,196,161,0.8)" stroke-width="1"/>
+  <circle cx="34" cy="34" r="1.5" fill="rgba(0,196,161,0.8)"/>
+</svg>
+
+<!-- 🎫 BOARDING PASS — bottom right, detailed -->
+<svg class="ti-i" width="88" height="50" viewBox="0 0 88 50"
+     style="bottom:20%;right:32%">
+  <!-- shadow -->
+  <rect x="4" y="6" width="80" height="40" rx="5" fill="rgba(0,0,0,0.12)"/>
+  <!-- main card -->
+  <rect x="2" y="3" width="80" height="40" rx="5" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+  <!-- left section -->
+  <rect x="2" y="3" width="22" height="40" rx="5" fill="rgba(0,196,161,0.12)" stroke="none"/>
+  <!-- tear perforation -->
+  <line x1="24" y1="3" x2="24" y2="43" stroke="rgba(255,255,255,0.2)" stroke-width="1" stroke-dasharray="3,3"/>
+  <circle cx="24" cy="3" r="3" fill="#0B1F3A"/>
+  <circle cx="24" cy="43" r="3" fill="#0B1F3A"/>
+  <!-- airline icon left -->
+  <circle cx="13" cy="16" r="6" fill="rgba(0,196,161,0.2)" stroke="rgba(0,196,161,0.5)" stroke-width=".8"/>
+  <path d="M10 16 L13 12 L16 16 L14 16 L14 20 L12 20 L12 16Z" fill="rgba(0,196,161,0.6)"/>
+  <!-- seat number left -->
+  <text x="13" y="33" text-anchor="middle" font-size="8" font-weight="bold" fill="rgba(0,196,161,0.7)" font-family="sans-serif">4A</text>
+  <!-- route text -->
+  <text x="36" y="16" text-anchor="middle" font-size="7" fill="rgba(255,255,255,0.5)" font-family="sans-serif">BOG</text>
+  <line x1="46" y1="14" x2="54" y2="14" stroke="rgba(255,255,255,0.3)" stroke-width=".8"/>
+  <polygon points="54,12 57,14 54,16" fill="rgba(255,255,255,0.3)"/>
+  <text x="63" y="16" text-anchor="middle" font-size="7" fill="rgba(255,255,255,0.5)" font-family="sans-serif">MAD</text>
+  <!-- passenger name line -->
+  <rect x="28" y="20" width="50" height="2" rx="1" fill="rgba(255,255,255,0.12)"/>
+  <rect x="28" y="25" width="36" height="1.5" rx=".75" fill="rgba(255,255,255,0.08)"/>
+  <!-- barcode bottom -->
+  <rect x="28" y="30" width="3" height="10" rx=".5" fill="rgba(255,255,255,0.2)"/>
+  <rect x="33" y="30" width="1.5" height="10" rx=".5" fill="rgba(255,255,255,0.15)"/>
+  <rect x="36" y="30" width="4" height="10" rx=".5" fill="rgba(255,255,255,0.2)"/>
+  <rect x="42" y="30" width="2" height="10" rx=".5" fill="rgba(255,255,255,0.15)"/>
+  <rect x="46" y="30" width="3" height="10" rx=".5" fill="rgba(255,255,255,0.2)"/>
+  <rect x="51" y="30" width="1.5" height="10" rx=".5" fill="rgba(255,255,255,0.15)"/>
+  <rect x="54" y="30" width="4" height="10" rx=".5" fill="rgba(255,255,255,0.2)"/>
+  <rect x="60" y="30" width="2" height="10" rx=".5" fill="rgba(255,255,255,0.15)"/>
+  <rect x="64" y="30" width="3" height="10" rx=".5" fill="rgba(255,255,255,0.2)"/>
+  <rect x="69" y="30" width="5" height="10" rx=".5" fill="rgba(255,255,255,0.15)"/>
+  <rect x="76" y="30" width="2" height="10" rx=".5" fill="rgba(255,255,255,0.2)"/>
+</svg>
+
+<!-- ✈ PLANE 2 — small, left mid, different angle -->
+<svg class="ti-b" width="60" height="60" viewBox="0 0 110 90"
+     style="top:50%;left:3%;transform:rotate(35deg)">
+  <ellipse cx="55" cy="45" rx="38" ry="10" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+  <ellipse cx="88" cy="45" rx="8" ry="7" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+  <ellipse cx="83" cy="42" rx="3" ry="2.5" fill="rgba(0,196,161,0.35)"/>
+  <polygon points="65,45 45,22 18,38 18,52 45,68" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.18)" stroke-width="1"/>
+  <polygon points="22,45 18,32 10,38 10,52 18,58" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.15)" stroke-width=".8"/>
+  <ellipse cx="42" cy="54" rx="8" ry="4" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.18)" stroke-width=".8"/>
+</svg>
+
+<!-- ✈ PLANE 3 — tiny, bottom right -->
+<svg class="ti-c" width="48" height="48" viewBox="0 0 110 90"
+     style="bottom:10%;right:20%;transform:rotate(-22deg)">
+  <ellipse cx="55" cy="45" rx="38" ry="10" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+  <ellipse cx="88" cy="45" rx="8" ry="7" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.18)" stroke-width="1"/>
+  <polygon points="65,45 45,22 18,38 18,52 45,68" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.14)" stroke-width=".8"/>
+</svg>
+
+<!-- Flight routes with dots -->
+<svg style="position:absolute;top:0;left:0;width:100%;height:100%;opacity:.12"
+     viewBox="0 0 1400 600" preserveAspectRatio="none">
+  <defs>
+    <radialGradient id="dotGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:rgba(0,196,161,1)"/>
+      <stop offset="100%" style="stop-color:rgba(0,196,161,0)"/>
+    </radialGradient>
+  </defs>
+  <!-- main route -->
+  <path d="M-60 480 Q 280 100 620 280 Q 900 440 1200 140 Q 1360 60 1500 180"
+        stroke="rgba(0,196,161,0.9)" stroke-width="1.5" stroke-dasharray="10,16" fill="none"/>
+  <!-- secondary route -->
+  <path d="M-60 180 Q 380 500 720 200 Q 1020 40 1500 360"
+        stroke="white" stroke-width="1" stroke-dasharray="7,18" fill="none" opacity=".6"/>
+  <!-- tertiary -->
+  <path d="M300 -20 Q 480 320 660 160 Q 840 20 1100 420"
+        stroke="white" stroke-width=".8" stroke-dasharray="5,22" fill="none" opacity=".4"/>
+  <!-- city dots -->
+  <circle cx="180" cy="420" r="5" fill="rgba(0,196,161,0.8)"/>
+  <circle cx="180" cy="420" r="10" fill="rgba(0,196,161,0.2)"/>
+  <circle cx="620" cy="280" r="4" fill="rgba(0,196,161,0.7)"/>
+  <circle cx="620" cy="280" r="8" fill="rgba(0,196,161,0.15)"/>
+  <circle cx="900" cy="350" r="4" fill="rgba(0,196,161,0.6)"/>
+  <circle cx="1200" cy="140" r="5" fill="rgba(0,196,161,0.8)"/>
+  <circle cx="1200" cy="140" r="10" fill="rgba(0,196,161,0.2)"/>
+  <circle cx="380" cy="460" r="3" fill="rgba(255,255,255,0.5)"/>
+  <circle cx="720" cy="200" r="3" fill="rgba(255,255,255,0.4)"/>
+  <circle cx="1020" cy="80" r="3" fill="rgba(255,255,255,0.4)"/>
+</svg>
+
+</div>
+
+<!-- FULL PAGE CANVAS -->
+<script id="travel-canvas-js">
+(function(){
+  var c=document.getElementById('travel-canvas');
+  if(!c)return;
+  var ctx=c.getContext('2d');
+  var W,H,t=0;
+
+  function resize(){
+    W=c.width=window.innerWidth;
+    H=c.height=Math.max(document.body.scrollHeight,window.innerHeight);
+  }
+  resize();
+  window.addEventListener('resize',resize);
+  setTimeout(resize,500);
+
+  // Floating micro icons
+  var icons=[];
+  var n=Math.min(22,Math.floor(window.innerWidth/60));
+  var typeList=['plane','passport','pin','dot','cross'];
+  for(var i=0;i<n;i++){
+    icons.push({
+      x:Math.random(),y:Math.random()+.1,
+      type:typeList[Math.floor(Math.random()*typeList.length)],
+      sz:Math.random()*9+5,
+      op:Math.random()*.08+.025,
+      vy:-(Math.random()*.0004+.0001),
+      floatA:Math.random()*18+6,
+      floatS:Math.random()*.012+.006,
+      phase:Math.random()*Math.PI*2,
+      rot:Math.random()*Math.PI*2,
+      rotV:(Math.random()-.5)*.004
+    });
+  }
+
+  function drawPlane(px,py,ang,sz,op){
+    ctx.save();ctx.translate(px,py);ctx.rotate(ang);ctx.globalAlpha=op;
+    ctx.fillStyle='rgba(255,255,255,.9)';
+    ctx.beginPath();ctx.moveTo(sz,0);ctx.lineTo(-sz*.75,sz*.45);ctx.lineTo(-sz*.5,0);ctx.lineTo(-sz*.75,-sz*.45);ctx.closePath();ctx.fill();
+    ctx.fillStyle='rgba(255,255,255,.5)';
+    ctx.beginPath();ctx.moveTo(sz*.05,0);ctx.lineTo(-sz*.4,-sz*.85);ctx.lineTo(-sz*.7,0);ctx.closePath();ctx.fill();
+    ctx.beginPath();ctx.moveTo(sz*.05,0);ctx.lineTo(-sz*.4,sz*.85);ctx.lineTo(-sz*.7,0);ctx.closePath();ctx.fill();
+    ctx.restore();
+  }
+
+  function drawPassport(px,py,sz,op){
+    ctx.save();ctx.translate(px,py);ctx.globalAlpha=op;
+    ctx.fillStyle='rgba(0,196,161,.12)';ctx.strokeStyle='rgba(0,196,161,.45)';ctx.lineWidth=.8;
+    if(ctx.roundRect) ctx.beginPath(),ctx.roundRect(-sz*.4,-sz*.56,sz*.8,sz*1.12,sz*.08);
+    else {ctx.beginPath();ctx.rect(-sz*.4,-sz*.56,sz*.8,sz*1.12);}
+    ctx.fill();ctx.stroke();
+    ctx.beginPath();ctx.arc(0,-sz*.1,sz*.22,0,Math.PI*2);ctx.stroke();
+    for(var l=0;l<3;l++){
+      ctx.beginPath();ctx.moveTo(-sz*.25,sz*(.1+l*.15));ctx.lineTo(sz*.25,sz*(.1+l*.15));
+      ctx.strokeStyle='rgba(255,255,255,.15)';ctx.stroke();
+    }
+    ctx.restore();
+  }
+
+  function drawPin(px,py,sz,op){
+    ctx.save();ctx.translate(px,py);ctx.globalAlpha=op;
+    ctx.fillStyle='rgba(0,196,161,.15)';ctx.strokeStyle='rgba(0,196,161,.4)';ctx.lineWidth=.8;
+    ctx.beginPath();ctx.arc(0,-sz*.2,sz*.45,0,Math.PI*2);ctx.fill();ctx.stroke();
+    ctx.beginPath();ctx.moveTo(-sz*.4,-sz*.2);ctx.lineTo(0,sz*.7);ctx.lineTo(sz*.4,-sz*.2);ctx.fill();ctx.stroke();
+    ctx.fillStyle='rgba(255,255,255,.25)';ctx.beginPath();ctx.arc(0,-sz*.2,sz*.2,0,Math.PI*2);ctx.fill();
+    ctx.restore();
+  }
+
+  // Animated planes
+  var flights=[
+    {pt:0,ax:.03,ay:.22,bx:.97,by:.12,cp:.5,cpy:.04,speed:.0022,sz:9,op:.1},
+    {pt:.5,ax:.02,ay:.72,bx:.98,by:.62,cp:.5,cpy:.52,speed:.0018,sz:7,op:.07},
+  ];
+
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+
+    // Micro icons
+    icons.forEach(function(ic){
+      ic.y+=ic.vy;
+      if(ic.y<-0.08)ic.y=1.08;
+      ic.rot+=ic.rotV;
+      var px=ic.x*W,py=ic.y*H+Math.sin(t*ic.floatS+ic.phase)*ic.floatA;
+      if(ic.type==='plane') drawPlane(px,py,ic.rot,ic.sz,ic.op);
+      else if(ic.type==='passport') drawPassport(px,py,ic.sz,ic.op);
+      else if(ic.type==='pin') drawPin(px,py,ic.sz,ic.op);
+      else if(ic.type==='dot'){
+        ctx.save();ctx.translate(px,py);ctx.globalAlpha=ic.op*(Math.sin(t*.04+ic.phase)*.3+.7);
+        ctx.fillStyle='rgba(0,196,161,.9)';ctx.beginPath();ctx.arc(0,0,ic.sz*.3,0,Math.PI*2);ctx.fill();
+        ctx.restore();
+      } else {
+        ctx.save();ctx.translate(px,py);ctx.rotate(ic.rot);ctx.globalAlpha=ic.op*.7;
+        ctx.strokeStyle='rgba(255,255,255,.6)';ctx.lineWidth=.8;
+        ctx.beginPath();ctx.moveTo(-ic.sz*.4,0);ctx.lineTo(ic.sz*.4,0);ctx.stroke();
+        ctx.beginPath();ctx.moveTo(0,-ic.sz*.4);ctx.lineTo(0,ic.sz*.4);ctx.stroke();
+        ctx.restore();
+      }
+    });
+
+    // Animated flights
+    flights.forEach(function(fl){
+      fl.pt=(fl.pt+fl.speed)%1;
+      var mt=1-fl.pt;
+      var cpx=fl.cp*W,cpy=fl.cpy*H;
+      var px=mt*mt*fl.ax*W+2*mt*fl.pt*cpx+fl.pt*fl.pt*fl.bx*W;
+      var py=mt*mt*fl.ay*H+2*mt*fl.pt*cpy+fl.pt*fl.pt*fl.by*H;
+      var pt2=Math.min(fl.pt+.015,1);var mt2=1-pt2;
+      var px2=mt2*mt2*fl.ax*W+2*mt2*pt2*cpx+pt2*pt2*fl.bx*W;
+      var py2=mt2*mt2*fl.ay*H+2*mt2*pt2*cpy+pt2*pt2*fl.by*H;
+      var ang=Math.atan2(py2-py,px2-px);
+      // trail
+      for(var tr=1;tr<=14;tr++){
+        var tp=Math.max(0,fl.pt-tr*.006);var mtp=1-tp;
+        var tx=mtp*mtp*fl.ax*W+2*mtp*tp*cpx+tp*tp*fl.bx*W;
+        var ty=mtp*mtp*fl.ay*H+2*mtp*tp*cpy+tp*tp*fl.by*H;
+        ctx.beginPath();ctx.arc(tx,ty,1.2,0,Math.PI*2);
+        ctx.fillStyle='rgba(0,196,161,'+(1-tr/14)*.18+')';ctx.fill();
+      }
+      drawPlane(px,py,ang,fl.sz,fl.op);
+    });
+
+    t++;
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+</script>
+
+<div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">🏙️ Desde José María Córdova (MDE)</div>
+      <h1>Seguro de Viaje<br><em>Medellín a España</em><br>2026</h1>
+      <p class="hero-desc">Para paisas que vuelan a Madrid o Barcelona. Sin visa requerida, cobertura médica ilimitada y póliza en tu email en 2 minutos. El seguro pensado para antioqueños.</p>
+      <div class="hero-badges">
+        <div class="hbadge">✓ Sin visa requerida</div>
+        <div class="hbadge">✓ Vuelos MDE → MAD / BCN</div>
+        <div class="hbadge">✓ Cobertura ilimitada</div>
+        <div class="hbadge">✓ Español 24/7</div>
+      </div>
+      <div class="hero-stats">
+        <div class="hstat"><div class="hstat-val">€1.75<span>/día</span></div><div class="hstat-label">Precio mínimo</div></div>
+        <div class="hstat"><div class="hstat-val">12<span>-16h</span></div><div class="hstat-label">Vuelo MDE→MAD con escala</div></div>
+        <div class="hstat"><div class="hstat-val">4.9<span>★</span></div><div class="hstat-label">Valoración media</div></div>
+      </div>
+    </div>
+    <div class="hcard">
+      <div class="hcard-top">
+        <div class="hcard-title">🏙️ Medellín → España</div>
+        <div class="hcard-sub">Seguro de viaje internacional</div>
+      </div>
+      <div class="hcard-body">
+        <div class="hcard-row"><span class="hcard-label">Origen</span><span class="hcard-val">Medellín (MDE) 🇨🇴</span></div>
+        <div class="hcard-row"><span class="hcard-label">Destino</span><span class="hcard-val">España 🇪🇸</span></div>
+        <div class="hcard-row"><span class="hcard-label">Sin visa</span><span class="hcard-val" style="color:var(--green)">✓ No requerida</span></div>
+        <div class="hcard-row"><span class="hcard-label">ETIAS desde</span><span class="hcard-val" style="color:var(--amber)">Q4 2026</span></div>
+        <div class="hcard-row"><span class="hcard-label">Desde</span><span class="hcard-val" style="font-family:var(--font-d);font-size:20px;color:var(--navy)">€1.75/día</span></div>
+        <a href="/resultados/" class="btn-cta">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          Comparar seguros gratis
+        </a>
+        <p style="font-size:11px;color:var(--text-light);text-align:center;margin-top:8px">🔒 Sin coste · Póliza en 2 min</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+<div>
+
+  <!-- VUELOS -->
+  <div class="section">
+    <div class="sec-head"><div class="sec-icon">✈️</div><h2 class="sec-title">Vuelos de Medellín a España — Aeropuerto MDE</h2></div>
+    <div class="sec-body">
+      <div class="alert-warn">
+        <span style="flex-shrink:0">⚠</span>
+        <span><strong>Importante:</strong> Los vuelos internacionales de Medellín salen del <strong>Aeropuerto José María Córdova (MDE)</strong> en Rionegro, a 45 minutos del centro. No del Olaya Herrera (EOH) que es solo para vuelos nacionales.</span>
+      </div>
+      <div class="vuelos-grid" style="margin-top:14px">
+        <div class="vuelo-card">
+          <div class="vuelo-ruta">🛫 MDE → MAD (con escala)</div>
+          <div class="vuelo-info">
+            Duración: <strong>12–16h total</strong><br>
+            Escalas: <strong>Bogotá, Panamá o Miami</strong><br>
+            Aerolíneas: <strong>Avianca, Copa, Iberia</strong><br>
+            Precio medio: <strong>$650–$1.000 USD</strong>
+          </div>
+        </div>
+        <div class="vuelo-card">
+          <div class="vuelo-ruta">🛫 MDE → BCN (con escala)</div>
+          <div class="vuelo-info">
+            Duración: <strong>13–17h total</strong><br>
+            Escalas: <strong>Bogotá, Lisboa o Madrid</strong><br>
+            Aerolíneas: <strong>Avianca, Vueling, TAP</strong><br>
+            Precio medio: <strong>$700–$1.050 USD</strong>
+          </div>
+        </div>
+      </div>
+      <div class="alert-ok" style="margin-top:12px">
+        <span style="flex-shrink:0">💡</span>
+        <span>Con escala en Bogotá (BOG), el equipaje tiene mayor riesgo de pérdida o retraso. El seguro de viaje cubre hasta <strong>€1.500 en equipaje perdido</strong> y hasta €300 si llega con más de 12h de retraso.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- NO VISA -->
+  <div class="section">
+    <div class="sec-head"><div class="sec-icon">🛂</div><h2 class="sec-title">¿Necesitan visa los paisas para ir a España?</h2></div>
+    <div class="sec-body">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div style="background:var(--green-pale);border-radius:var(--r-md);padding:16px;text-align:center">
+          <div style="font-size:32px;margin-bottom:8px">✅</div>
+          <div style="font-size:15px;font-weight:700;color:var(--green);margin-bottom:6px">Sin visa hasta hoy</div>
+          <div style="font-size:13px;color:var(--text-mid);line-height:1.6">Los colombianos entran a España sin visa por hasta <strong>90 días</strong>. Solo pasaporte válido.</div>
+        </div>
+        <div style="background:var(--amber-pale);border-radius:var(--r-md);padding:16px;text-align:center">
+          <div style="font-size:32px;margin-bottom:8px">⚡</div>
+          <div style="font-size:15px;font-weight:700;color:var(--amber);margin-bottom:6px">ETIAS desde Q4 2026</div>
+          <div style="font-size:13px;color:var(--text-mid);line-height:1.6">Autorización electrónica de <strong>€7</strong>, válida 3 años. <a href="/blog/etias-colombianos/" style="color:var(--teal-dark);font-weight:600">Ver guía →</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPARATIVA -->
+  <div class="section">
+    <div class="sec-head"><div class="sec-icon">📊</div><h2 class="sec-title">Mejores seguros para paisas a España 2026</h2></div>
+    <div style="overflow-x:auto">
+      <table class="comp-table">
+        <thead>
+          <tr>
+            <th>Aseguradora</th>
+            <th>Cobertura médica</th>
+            <th>Cancelación</th>
+            <th>Precio 15 días</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div style="display:flex;align-items:center;gap:9px"><div class="ins-logo" style="background:#E6F1FB;color:#185FA5">IA</div><div><div class="ins-name">IATI Estrella</div><div class="ins-sub">Pago directo</div></div></div></td>
+            <td><strong>Ilimitada</strong></td>
+            <td><span class="check-ok">✓</span> Incluida</td>
+            <td><div class="price-n">€34.90</div><div class="price-d">€2.33/día</div></td>
+            <td><button class="btn-sm" onclick="window.open('https://www.iati.es/seguro-viaje/?utm_source=viajerolatam&utm_medium=affiliate&utm_campaign=medellin-espana','_blank')">Contratar →</button></td>
+<div style="text-align:center;margin-top:6px;font-size:11px;color:#854F0B;background:#FEF3E2;border:1px solid #FBBF24;border-radius:6px;padding:4px 8px;font-weight:700">🏷️ Cupón: <span style="letter-spacing:.05em">VIAJEROLATAM</span></div>
+          </tr>
+          <tr>
+            <td><div style="display:flex;align-items:center;gap:9px"><div class="ins-logo" style="background:#F0F4FF;color:#2A4BB5">IM</div><div><div class="ins-name">Intermundial</div><div class="ins-sub">💰 Mejor precio</div></div></div></td>
+            <td><strong>10.000.000 €</strong></td>
+            <td><span style="color:var(--amber);font-size:12px">Opcional</span></td>
+            <td><div class="price-n">€26.25</div><div class="price-d">€1.75/día</div></td>
+            <td><button class="btn-sm" onclick="window.open('https://www.intermundial.es/afiliados/seguros-de-viaje-recomendado?utm_source=Affiliates&utm_medium=Affiliates&utm_campaign=General&utm_term=kbnnqvpvcy490&utm_content=kbnnqvpvcy490&coupon=VIAJEROLATAM','_blank')">Contratar →</button></td>
+<div style="text-align:center;margin-top:6px;font-size:11px;color:#854F0B;background:#FEF3E2;border:1px solid #FBBF24;border-radius:6px;padding:4px 8px;font-weight:700">🏷️ Cupón: <span style="letter-spacing:.05em">VIAJEROLATAM</span></div>
+          </tr>
+          </tbody>
+      </table>
+    </div>
+    <div style="padding:12px 18px;background:var(--sand);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
+      <p style="font-size:13px;color:var(--text-mid)">¿Quieres comparar con filtros?</p>
+      <a href="/resultados/" style="background:var(--navy);color:var(--white);border-radius:50px;padding:8px 18px;font-size:13px;font-weight:700;text-decoration:none">Ver comparador completo →</a>
+    </div>
+  </div>
+
+  <!-- POR PERFIL -->
+  <div class="section">
+    <div class="sec-head"><div class="sec-icon">👤</div><h2 class="sec-title">¿Cuál es el mejor seguro para ti?</h2></div>
+    <div class="sec-body">
+      <div class="profile-grid">
+        <div class="profile-card">
+          <div class="profile-emoji">🧳</div>
+          <div class="profile-title">Turista paisa</div>
+          <div class="profile-price">€31.50 · 15 días<br>App en español, sin trámites</div>
+        </div>
+        <div class="profile-card">
+          <div class="profile-emoji">👨‍👩‍👧</div>
+          <div class="profile-title">Familia completa</div>
+          <div class="profile-seg">IATI Estrella</div>
+          <div class="profile-price">Descuento familiar<br>Pago directo en urgencias</div>
+        </div>
+        <div class="profile-card">
+          <div class="profile-emoji">💰</div>
+          <div class="profile-title">Presupuesto ajustado</div>
+          <div class="profile-seg">Intermundial</div>
+          <div class="profile-price">€26.25 · 15 días<br>El más económico</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="section">
+    <div class="sec-head"><div class="sec-icon">❓</div><h2 class="sec-title">Preguntas frecuentes — Medellín a España</h2></div>
+    <div class="sec-body" style="padding-bottom:8px">
+      <details><summary>¿Necesito visa para volar de Medellín a España? <span class="fi">+</span></summary>
+        <p class="fa"><strong>No.</strong> Los paisas (colombianos) pueden entrar a España sin visa por hasta 90 días. Desde Q4 2026 necesitarán el ETIAS (€7, online). <a href="/blog/etias-colombianos/">Ver guía ETIAS →</a></p>
+      </details>
+      <details><summary>¿Desde qué aeropuerto salen los vuelos internacionales de Medellín? <span class="fi">+</span></summary>
+        <p class="fa">Los vuelos internacionales salen del <strong>Aeropuerto José María Córdova (MDE)</strong> en Rionegro, a 45 minutos del centro de Medellín. El Aeropuerto Olaya Herrera (EOH) es solo para vuelos nacionales.</p>
+      </details>
+      <details><summary>¿Hay vuelos directos de Medellín a Madrid? <span class="fi">+</span></summary>
+        <p class="fa"><strong>No hay vuelo directo</strong> de Medellín a Madrid. Todos los vuelos tienen al menos una escala, normalmente en Bogotá (BOG), Panamá (PTY) o Miami (MIA). La escala más corta y económica suele ser Bogotá con Avianca. El tiempo total es de 12 a 16 horas.</p>
+      </details>
+      <details><summary>¿El seguro cubre si pierdo mi equipaje en la escala? <span class="fi">+</span></summary>
+        <p class="fa">Sí. Los vuelos con escala tienen mayor riesgo de pérdida de equipaje. Todos los seguros de nuestra comparativa incluyen cobertura por <strong>equipaje perdido hasta €1.500</strong> y por equipaje demorado más de 12 horas (hasta €300 para comprar artículos esenciales). Guarda siempre el talón de equipaje.</p>
+      </details>
+      <details><summary>¿Cuándo debo contratar el seguro? <span class="fi">+</span></summary>
+        <p class="fa">Contrátatelo <strong>antes de pagar el vuelo</strong> si eliges un plan con cancelación. Si solo quieres cobertura médica básica, puedes contratarlo hasta 24 horas antes del vuelo. Recibirás la póliza en tu email en menos de 2 minutos.</p>
+      </details>
+    </div>
+  </div>
+
+  <!-- OTRAS CIUDADES -->
+  <div class="section">
+    <div class="sec-head"><div class="sec-icon">🗺️</div><h2 class="sec-title">Otras ciudades de Colombia</h2></div>
+    <div class="sec-body">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+        <a href="/seguro-viaje/colombia-a-espana/" style="display:flex;align-items:center;gap:8px;padding:12px 14px;background:var(--sand);border-radius:var(--r-md);text-decoration:none;font-size:13px;font-weight:500;color:var(--text-dark);border:1px solid var(--sand-dark)">🇨🇴 Colombia → España (general)</a>
+        <a href="/seguro-viaje/bogota-a-espana/" style="display:flex;align-items:center;gap:8px;padding:12px 14px;background:var(--sand);border-radius:var(--r-md);text-decoration:none;font-size:13px;font-weight:500;color:var(--text-dark);border:1px solid var(--sand-dark)">🏙️ Bogotá → España</a>
+        <a href="/seguro-viaje/cali-a-espana/" style="display:flex;align-items:center;gap:8px;padding:12px 14px;background:var(--sand);border-radius:var(--r-md);text-decoration:none;font-size:13px;font-weight:500;color:var(--text-dark);border:1px solid var(--sand-dark)">🏙️ Cali → España</a>
+        <a href="/resultados/" style="display:flex;align-items:center;gap:8px;padding:12px 14px;background:var(--sand);border-radius:var(--r-md);text-decoration:none;font-size:13px;font-weight:500;color:var(--text-dark);border:1px solid var(--sand-dark)">🔍 Comparar seguros</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<aside class="sidebar">
+  <div class="sb-card">
+    <div class="sb-head">
+      <div class="sb-title">🏙️ Medellín → España</div>
+      <div class="sb-sub">Precios para 15 días · 1 adulto</div>
+    </div>
+    <div class="sb-body">
+      <div class="sb-row"><span class="sb-label">Más barato</span><span class="sb-val">€26.25</span></div>
+      <div class="sb-row"><span class="sb-label">Más popular</span><span class="sb-val">€31.50</span></div>
+      <div class="sb-row"><span class="sb-label">Con cancelación</span><span class="sb-val">€54.00</span></div>
+      <div class="sb-row"><span class="sb-label">Visa requerida</span><span class="sb-val" style="color:var(--green)">✓ No</span></div>
+      <div class="sb-row"><span class="sb-label">ETIAS desde</span><span class="sb-val" style="color:var(--amber)">Q4 2026</span></div>
+      <a href="/resultados/" class="btn-sb">Comparar gratis →</a>
+    </div>
+  </div>
+  <div class="inote">
+    <strong>✈️ Aeropuerto</strong>
+    José María Córdova (MDE) — Rionegro, 45 min del centro. Todos los vuelos internacionales salen de aquí.
+  </div>
+  <div class="inote" style="border-color:var(--amber)">
+    <strong>⚠ Sin vuelo directo</strong>
+    No hay vuelo directo MDE→MAD. La escala más rápida es vía Bogotá con Avianca (12–13h total).
+  </div>
+  <div class="inote" style="border-color:#FAC775">
+    <strong>⚡ ETIAS Q4 2026</strong>
+    Autorización electrónica €7, válida 3 años. <a href="/blog/etias-colombianos/" style="color:var(--teal-dark);font-weight:600">Más info →</a>
+  </div>
+</aside>
+
+</div>
+
+
+<section class="vl-trust-block">
+  <h2>Checklist antes de contratar tu seguro</h2>
+  <p style="color:#4A647E;max-width:780px">Antes de pagar, revisa estos puntos. Un seguro barato puede salir caro si no cubre lo que necesitas durante tu viaje de Colombia a España.</p>
+  <div class="vl-trust-grid">
+    <div class="vl-trust-item"><strong>Cobertura médica suficiente</strong><p>Como referencia Schengen, muchos viajeros buscan mínimo 30.000 € de cobertura médica.</p></div>
+    <div class="vl-trust-item"><strong>Repatriación incluida</strong><p>Comprueba que incluya traslado sanitario y repatriación durante todo el viaje.</p></div>
+    <div class="vl-trust-item"><strong>Fechas completas</strong><p>Debe cubrir desde tu salida de Colombia hasta el regreso, incluyendo escalas.</p></div>
+    <div class="vl-trust-item"><strong>Asistencia en español</strong><p>Muy importante si viajas con familia o si no quieres complicarte en una emergencia.</p></div>
+    <div class="vl-trust-item"><strong>Franquicia y exclusiones</strong><p>Revisa si debes pagar algo de tu bolsillo y qué situaciones quedan fuera.</p></div>
+    <div class="vl-trust-item"><strong>Póliza PDF</strong><p>Guarda el documento para migración, consulado, aerolínea o cualquier emergencia.</p></div>
+  </div>
+</section>
+
+
+<div class="vl-affiliate-transparency">
+  <strong>Transparencia:</strong> ViajeroLatam es gratuito para ti. Podemos recibir una comisión si contratas desde nuestros enlaces afiliados, sin coste adicional para ti. Esto nos ayuda a mantener la web y crear guías útiles para viajeros latinoamericanos.
+</div>
+
+<footer>
+  <div class="fg">
+    <div class="fl"><img src="/logo.png" alt="ViajeroLatam" style="height:58px;width:auto;display:block"><p>Comparador de seguros para latinoamericanos que viajan a España y Europa.</p></div>
+    <div class="fc">
+      <h4>Colombia → España</h4>
+      <a href="/seguro-viaje/colombia-a-espana/">Colombia general</a>
+      <a href="/seguro-viaje/bogota-a-espana/">Bogotá → España</a>
+      <a href="/seguro-viaje/medellin-a-espana/">Medellín → España</a>
+    </div>
+    <div class="fc">
+      <h4>Recursos</h4>
+      <a href="/blog/etias-colombianos/">ETIAS 2026</a>
+      <a href="/visa-schengen/">Visa Schengen</a>
+      <a href="/resultados/">Comparador</a>
+    </div>
+  </div>
+  <div class="fb">
+    <p>© 2026 ViajeroLatam · Comparador independiente</p>
+    <p>Seguro viaje Medellín España · Sin visa · Desde €1.75/día</p>
+  </div>
+
+<section class="vl-affiliate-cta" style="padding:46px 5%;background:#F5F0E8">
+  <div style="max-width:1050px;margin:0 auto;background:#fff;border:1px solid #EAE3D5;border-radius:24px;padding:26px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap">
+    <div style="max-width:620px">
+      <div style="font-size:12px;font-weight:800;color:#00A989;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px">Seguro recomendado</div>
+      <h2 style="font-family:Georgia,serif;font-size:30px;line-height:1.15;color:#0B1F3A;margin:0 0 8px">Compara antes de viajar a España</h2>
+      <p style="margin:0;color:#4A647E;font-size:15px;line-height:1.6">Revisa cobertura médica, repatriación, asistencia en español y condiciones de la póliza antes de contratar.</p>
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <a href="/resultados/" style="display:inline-flex;background:#0B1F3A;color:#fff;text-decoration:none;padding:13px 20px;border-radius:999px;font-weight:800">Comparar seguros</a>
+      <a href="https://www.iatiseguros.com?r=84208681926165" target="_blank" rel="nofollow sponsored noopener" style="display:inline-flex;background:#00C4A1;color:#0B1F3A;text-decoration:none;padding:13px 20px;border-radius:999px;font-weight:900">Ver precio en IATI →</a>
+    </div>
+  </div>
+</section>
+
+<div style="margin-top:24px;padding:20px;border-radius:20px;background:#F5F0E8;border:1px solid #EAE3D5">
+  <strong style="color:#0B1F3A">Nueva comparativa:</strong>
+  <span style="color:#4A647E"> revisa IATI vs InterMundial para viajar de Colombia a España.</span>
+  <a href="/comparar-seguros-viaje-colombia-espana/" style="display:inline-flex;margin-left:8px;color:#00A989;font-weight:900;text-decoration:none">Ver comparativa →</a>
+</div>
+
+
+</footer>
+
+<script>
+function openMobMenu(){var d=document.getElementById('mob-drawer'),o=document.getElementById('mob-overlay'),b=document.querySelector('.mob-btn');if(!d)return;d.style.display='flex';o.style.display='block';requestAnimationFrame(function(){d.classList.add('is-open');if(b)b.classList.add('is-open');});document.body.style.overflow='hidden';}
+function closeMobMenu(){var d=document.getElementById('mob-drawer'),o=document.getElementById('mob-overlay'),b=document.querySelector('.mob-btn');if(!d)return;d.classList.remove('is-open');if(b)b.classList.remove('is-open');document.body.style.overflow='';setTimeout(function(){d.style.display='none';o.style.display='none';},280);}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu();});
+document.querySelectorAll('details').forEach(d=>{d.addEventListener('toggle',()=>{const ic=d.querySelector('.fi');if(ic)ic.textContent=d.open?'−':'+';});});
+</script>
+<!-- ═══ EXIT INTENT + STICKY CTA ═══ -->
+<style id="exit-sticky-css">
+/* ── STICKY CTA MÓVIL ── */
+#sticky-mob{
+  display:none;
+  position:fixed;
+  bottom:0;left:0;right:0;
+  z-index:990;
+  padding:12px 16px 16px;
+  background:linear-gradient(to top,rgba(255,255,255,1) 60%,rgba(255,255,255,0));
+  pointer-events:none;
+}
+#sticky-mob a{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  background:#00C4A1;color:#0B1F3A;
+  padding:15px;border-radius:50px;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:16px;font-weight:700;
+  text-decoration:none;
+  box-shadow:0 4px 24px rgba(0,196,161,.45);
+  pointer-events:all;
+  transition:background .2s, transform .15s;
+}
+#sticky-mob a:active{transform:scale(.97)}
+#sticky-mob p{
+  font-size:11px;color:#8FA4B8;
+  text-align:center;margin-top:6px;
+  font-family:'Plus Jakarta Sans',sans-serif;
+}
+@media(max-width:768px){
+  #sticky-mob{display:block}
+  body{padding-bottom:90px}
+}
+@media(min-width:769px){
+  #sticky-mob{display:none!important}
+}
+
+/* ── EXIT INTENT POPUP ── */
+#exit-overlay{
+  display:none;position:fixed;inset:0;
+  background:rgba(11,31,58,.65);
+  z-index:9999;
+  backdrop-filter:blur(6px);
+  align-items:center;justify-content:center;
+  padding:20px;
+}
+#exit-box{
+  background:#fff;
+  border-radius:24px;
+  padding:36px 32px;
+  max-width:440px;width:100%;
+  position:relative;
+  box-shadow:0 24px 80px rgba(11,31,58,.25);
+  animation:exitPop .3s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes exitPop{
+  from{opacity:0;transform:scale(.85) translateY(20px)}
+  to{opacity:1;transform:scale(1) translateY(0)}
+}
+#exit-close{
+  position:absolute;top:14px;right:14px;
+  width:32px;height:32px;border-radius:50%;
+  background:#F0F4F8;border:none;cursor:pointer;
+  font-size:16px;color:#4A647E;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .15s;
+}
+#exit-close:hover{background:#E4EDF5}
+.exit-emoji{font-size:48px;text-align:center;margin-bottom:12px}
+.exit-title{
+  font-family:'DM Serif Display',Georgia,serif;
+  font-size:26px;color:#0B1F3A;line-height:1.2;
+  text-align:center;margin-bottom:8px;
+}
+.exit-title em{color:#00C4A1;font-style:italic}
+.exit-sub{
+  font-size:14px;color:#4A647E;text-align:center;
+  line-height:1.6;margin-bottom:20px;
+}
+.exit-proof{
+  display:flex;gap:16px;justify-content:center;
+  margin-bottom:20px;flex-wrap:wrap;
+}
+.exit-proof span{
+  font-size:12px;color:#4A647E;
+  display:flex;align-items:center;gap:4px;
+}
+#exit-cta{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  width:100%;background:#00C4A1;color:#0B1F3A;
+  padding:15px;border-radius:50px;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:15px;font-weight:700;
+  text-decoration:none;border:none;cursor:pointer;
+  transition:background .2s;
+  margin-bottom:10px;
+}
+#exit-cta:hover{background:#009C7F}
+#exit-skip{
+  display:block;width:100%;text-align:center;
+  font-size:12px;color:#8FA4B8;
+  background:none;border:none;cursor:pointer;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  padding:6px;text-decoration:underline;
+}
+</style>
+
+<!-- STICKY MÓVIL -->
+<div id="sticky-mob" aria-label="Comparar seguros gratis">
+  <a href="/resultados/" onclick="if(typeof gtag!='undefined')gtag('event','click_sticky_mob',{page:location.pathname})">
+    🔍 Comparar seguros gratis
+  </a>
+  <p>Sin coste · Póliza en 2 minutos · 2 aseguradoras</p>
+</div>
+
+<!-- EXIT INTENT POPUP -->
+<div id="exit-overlay" role="dialog" aria-modal="true" aria-label="Antes de irte">
+  <div id="exit-box">
+    <button id="exit-close" onclick="closeExitPopup()" aria-label="Cerrar">✕</button>
+    <div class="exit-emoji">✈️</div>
+    <div class="exit-title">¿Seguro para tu viaje <em>ya tienes</em>?</div>
+    <div class="exit-sub">Compara en 2 minutos las 8 mejores aseguradoras. Gratis, en español, sin letra pequeña.</div>
+    <div class="exit-proof">
+      <span>✓ Desde €1.75/día</span>
+      <span>✓ Sin franquicia</span>
+      <span>✓ Cobertura ilimitada</span>
+    </div>
+    <a href="/resultados/" id="exit-cta" onclick="closeExitPopup();if(typeof gtag!='undefined')gtag('event','click_exit_popup',{page:location.pathname})">
+      🔍 Comparar seguros gratis
+    </a>
+    <button id="exit-skip" onclick="closeExitPopup()">No me interesa por ahora</button>
+  </div>
+</div>
+
+<script id="exit-sticky-js">
+(function(){
+  var shown = false;
+  var dismissed = false;
+
+  // ── Exit intent — desktop (mouse leaves top)
+  document.addEventListener('mouseleave', function(e){
+    if(e.clientY > 20) return;
+    if(shown || dismissed) return;
+    if(sessionStorage.getItem('vl_exit_shown')) return;
+    showExitPopup();
+  });
+
+  // ── Exit intent — mobile (back button / scroll up fast)
+  var lastScrollY = 0;
+  var scrollTimer;
+  window.addEventListener('scroll', function(){
+    var currentY = window.scrollY;
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(function(){
+      var delta = lastScrollY - currentY;
+      if(delta > 120 && currentY > 400 && !shown && !dismissed){
+        if(!sessionStorage.getItem('vl_exit_shown')) showExitPopup();
+      }
+      lastScrollY = currentY;
+    }, 150);
+    lastScrollY = currentY;
+  });
+
+  // ── Sticky CTA — hide when hero CTA visible
+  var hero = document.querySelector('.hero, header.hero, .hero-inner');
+  var sticky = document.getElementById('sticky-mob');
+  if(sticky && hero){
+    var io = new IntersectionObserver(function(entries){
+      sticky.style.opacity = entries[0].isIntersecting ? '0' : '1';
+      sticky.style.pointerEvents = entries[0].isIntersecting ? 'none' : 'all';
+    }, {threshold: 0.2});
+    io.observe(hero);
+  }
+})();
+
+function showExitPopup(){
+  shown = true;
+  var overlay = document.getElementById('exit-overlay');
+  if(!overlay) return;
+  overlay.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+  sessionStorage.setItem('vl_exit_shown','1');
+  if(typeof gtag !== 'undefined') gtag('event','exit_popup_shown',{page:location.pathname});
+}
+
+function closeExitPopup(){
+  dismissed = true;
+  var overlay = document.getElementById('exit-overlay');
+  if(!overlay) return;
+  overlay.style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+// Close on overlay click
+document.getElementById('exit-overlay').addEventListener('click', function(e){
+  if(e.target === this) closeExitPopup();
+});
+
+// Close on Escape
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape') closeExitPopup();
+});
+</script>
+<!-- ═══ END EXIT INTENT + STICKY ═══ -->
+
+<script>
+document.addEventListener('click', function(e){
+  var link = e.target.closest('a');
+  if(!link || typeof gtag !== 'function') return;
+  var href = link.getAttribute('href') || '';
+  if(href.indexOf('iatiseguros.com') !== -1){
+    gtag('event', 'click_affiliate_iati', {
+      event_category: 'affiliate',
+      event_label: href,
+      page_location: window.location.href
+    });
+  }
+
+  if(href.indexOf('intermundial.es') !== -1){
+    gtag('event', 'click_affiliate_intermundial', {
+      event_category: 'affiliate',
+      event_label: href,
+      page_location: window.location.href
+    });
+  }
+});
+</script>
+
+</body>
+</html>

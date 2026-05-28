@@ -214,6 +214,25 @@ footer{background:var(--navy);padding:40px 5% 24px;margin-top:40px}
   font-weight:900;
 }
 
+
+/* Trust checklist + conversion blocks */
+.vl-trust-block{margin:34px auto;padding:26px;border-radius:26px;background:#F5F0E8;border:1px solid #EAE3D5;max-width:1120px}
+.vl-trust-block h2,.vl-trust-block h3{color:#0B1F3A;margin-bottom:12px}
+.vl-trust-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+.vl-trust-item{background:#fff;border:1px solid #EAE3D5;border-radius:18px;padding:18px}
+.vl-trust-item strong{display:block;color:#0B1F3A;margin-bottom:5px}
+.vl-trust-item p{color:#4A647E;font-size:14px;line-height:1.6;margin:0}
+.vl-affiliate-transparency{margin:26px auto;padding:18px 20px;border-left:4px solid #00C4A1;background:rgba(0,196,161,.08);border-radius:16px;color:#4A647E;max-width:1120px;font-size:14px;line-height:1.65}
+.vl-cta-comparison{margin:30px auto;padding:28px;border-radius:26px;background:linear-gradient(135deg,#0B1F3A,#1A3558);color:#fff;max-width:1120px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.vl-cta-comparison h3{font-size:24px;margin:0 0 6px;color:#fff}
+.vl-cta-comparison p{color:rgba(255,255,255,.7);margin:0}
+.vl-cta-buttons{display:flex;gap:10px;flex-wrap:wrap}
+.vl-cta-btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 20px;border-radius:999px;text-decoration:none!important;font-weight:900}
+.vl-cta-btn.primary{background:#00C4A1;color:#0B1F3A!important}
+.vl-cta-btn.secondary{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.22);color:#fff!important}
+.vl-coupon-mini{display:inline-flex;background:#fff;color:#0B1F3A;border:1px dashed #00A989;border-radius:10px;padding:6px 10px;font-weight:900;font-size:13px;margin-top:8px}
+@media(max-width:800px){.vl-trust-grid{grid-template-columns:1fr}.vl-cta-comparison{align-items:flex-start}.vl-cta-buttons{width:100%}.vl-cta-btn{width:100%}}
+
 </style>
 
 <!-- Google Analytics 4 -->
@@ -1423,6 +1442,25 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
   </div>
 </aside>
 
+</div>
+
+
+<section class="vl-trust-block">
+  <h2>Checklist antes de contratar tu seguro</h2>
+  <p style="color:#4A647E;max-width:780px">Antes de pagar, revisa estos puntos. Un seguro barato puede salir caro si no cubre lo que necesitas durante tu viaje de Colombia a España.</p>
+  <div class="vl-trust-grid">
+    <div class="vl-trust-item"><strong>Cobertura médica suficiente</strong><p>Como referencia Schengen, muchos viajeros buscan mínimo 30.000 € de cobertura médica.</p></div>
+    <div class="vl-trust-item"><strong>Repatriación incluida</strong><p>Comprueba que incluya traslado sanitario y repatriación durante todo el viaje.</p></div>
+    <div class="vl-trust-item"><strong>Fechas completas</strong><p>Debe cubrir desde tu salida de Colombia hasta el regreso, incluyendo escalas.</p></div>
+    <div class="vl-trust-item"><strong>Asistencia en español</strong><p>Muy importante si viajas con familia o si no quieres complicarte en una emergencia.</p></div>
+    <div class="vl-trust-item"><strong>Franquicia y exclusiones</strong><p>Revisa si debes pagar algo de tu bolsillo y qué situaciones quedan fuera.</p></div>
+    <div class="vl-trust-item"><strong>Póliza PDF</strong><p>Guarda el documento para migración, consulado, aerolínea o cualquier emergencia.</p></div>
+  </div>
+</section>
+
+
+<div class="vl-affiliate-transparency">
+  <strong>Transparencia:</strong> ViajeroLatam es gratuito para ti. Podemos recibir una comisión si contratas desde nuestros enlaces afiliados, sin coste adicional para ti. Esto nos ayuda a mantener la web y crear guías útiles para viajeros latinoamericanos.
 </div>
 
 <footer>
