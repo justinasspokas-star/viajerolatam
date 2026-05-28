@@ -220,7 +220,7 @@ nav .logo img.logo-img-header{height:58px;width:auto}
   /* ───── HERO ───── */
   .hero {
     min-height: 100vh;
-    background: linear-gradient(160deg, var(--navy) 0%, var(--navy-mid) 60%, #1E4876 100%);
+    background: url('/hero-bg.jpg') center center / cover no-repeat;
     display: flex; flex-direction: column; align-items: center; justify-content: center;
     text-align: center;
     padding: 120px 5% 80px;
@@ -229,9 +229,7 @@ nav .logo img.logo-img-header{height:58px;width:auto}
   .hero::before {
     content: '';
     position: absolute; inset: 0;
-    background:
-      radial-gradient(ellipse 60% 50% at 20% 80%, rgba(0,196,161,0.12) 0%, transparent 70%),
-      radial-gradient(ellipse 40% 40% at 80% 20%, rgba(0,196,161,0.08) 0%, transparent 70%);
+    background: rgba(5,12,40,0.55);
     pointer-events: none;
   }
   .hero-eyebrow {
@@ -625,23 +623,6 @@ nav .logo img.logo-img-header{height:58px;width:auto}
 }
 </script>
 <style>@font-face{font-display:swap}</style>
-<style id="travel-bg">
-.travel-icons{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1}
-.travel-icons svg{position:absolute}
-#travel-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
-@keyframes vl-f1{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-10px) rotate(3deg)}}
-@keyframes vl-f2{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-7px) rotate(-3deg)}}
-@keyframes vl-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
-.ti-a{animation:vl-f1 9s ease-in-out infinite}
-.ti-b{animation:vl-f2 13s ease-in-out infinite 2s}
-.ti-c{animation:vl-f1 17s ease-in-out infinite 5s}
-.ti-d{animation:vl-f2 11s ease-in-out infinite 1s}
-.ti-e{animation:vl-spin 55s linear infinite}
-.ti-f{animation:vl-f1 14s ease-in-out infinite 3s}
-.ti-g{animation:vl-f2 12s ease-in-out infinite 6s}
-.ti-h{animation:vl-f1 15s ease-in-out infinite 4s}
-.ti-i{animation:vl-f2 10s ease-in-out infinite 7s}
-</style>
 <style id="mobile-master">
 /* ============================================================
    MOBILE MASTER FIX — viajerolatam.com
@@ -855,99 +836,23 @@ img, svg, video { max-width: 100%; }
   .comp-table th:nth-child(4), .comp-table td:nth-child(4) { display: none !important; }
 }
 </style>
-<style id="hero-bg-override">
-/* === HERO BACKGROUND IMAGE === */
-.hero,
-header.hero,
-section.hero {
-  background-image: url('/hero-bg.jpg') !important;
-  background-size: cover !important;
-  background-position: center top !important;
-  background-repeat: no-repeat !important;
-  position: relative !important;
-  overflow: hidden !important;
+<style id="bg-fix">
+/* Replace hero gradient with travel background image */
+.hero,header.hero,section.hero{
+  background:url('/hero-bg.jpg') center center/cover no-repeat !important;
 }
-/* Remove old gradient that was overriding */
-.hero {
-  background-color: transparent !important;
+/* Keep overlay for text readability — same z-index as original */
+.hero::before{
+  background:rgba(5,12,40,0.55) !important;
 }
-/* Dark overlay — purely decorative, z-index -1 so NOTHING covers content */
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    160deg,
-    rgba(5,12,35,0.70) 0%,
-    rgba(8,20,55,0.60) 50%,
-    rgba(5,12,40,0.65) 100%
-  );
-  z-index: 0;
-  pointer-events: none;
-}
-/* Hero inner content — ALWAYS on top */
-.hero-inner,
-.hero-inner-wrap,
-.hero > .hero-inner,
-.hero > section,
-.hero > div:not(.travel-icons):not(.hero-overlay),
-.hero > header,
-.hero > .hero-eyebrow,
-.hero > h1,
-.hero > p,
-.hero > .search-box,
-.hero > .btn-row,
-.hero > .hero-stats,
-.hero > .hero-badges,
-.hero > .hero-trust {
-  position: relative !important;
-  z-index: 10 !important;
-}
-/* Hide old SVG travel icons (image has real ones) */
-.travel-icons { display: none !important; }
-#travel-canvas { display: none !important; }
-/* Nav matches background feel */
-nav {
-  background: rgba(5, 12, 40, 0.92) !important;
-  backdrop-filter: blur(16px) !important;
-  -webkit-backdrop-filter: blur(16px) !important;
-  border-bottom: 1px solid rgba(0,196,161,0.2) !important;
-}
-/* Mobile adjustments */
-@media (max-width: 768px) {
-  .hero,
-  header.hero,
-  section.hero {
-    background-position: 40% top !important;
-    background-size: cover !important;
+/* Remove dynamic icons — image has them already */
+.travel-icons,.travel-icons *,#travel-canvas{display:none !important;}
+/* Mobile: keep image filling screen */
+@media(max-width:768px){
+  .hero,header.hero,section.hero{
+    background:url('/hero-bg.jpg') center center/cover no-repeat !important;
   }
-  .hero-overlay {
-    background: linear-gradient(
-      160deg,
-      rgba(5,12,35,0.75) 0%,
-      rgba(8,20,55,0.65) 100%
-    ) !important;
-  }
-}
-@media (max-width: 480px) {
-  .hero-overlay {
-    background: rgba(5,12,40,0.78) !important;
-  }
-}
-
-/* Kill old ::before pseudo that was overriding */
-.hero::before,
-header.hero::before,
-section.hero::before {
-  display: none !important;
-  content: none !important;
-  background: none !important;
-}
-/* Force background to show */
-.hero,
-header.hero,
-section.hero {
-  background-image: url('/hero-bg.jpg') !important;
-  background-color: #05103A !important;
+  .hero::before{background:rgba(5,12,40,0.65) !important;}
 }
 </style>
 </head>
@@ -1033,8 +938,6 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
 
 <!-- HERO -->
 <section class="hero" id="comparar">
-<div class="hero-overlay" aria-hidden="true"></div>
-
 <div class="travel-icons" aria-hidden="true">
 <svg xmlns="http://www.w3.org/2000/svg" style="width:0;height:0;position:absolute">
   <defs>
@@ -1213,7 +1116,6 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
 </div>
 
 <!-- FULL PAGE CANVAS — very subtle floating micro elements -->
-<canvas id="travel-canvas" aria-hidden="true" style="opacity:.35"></canvas>
 <script id="travel-canvas-js">
 (function(){
   var c=document.getElementById('travel-canvas');

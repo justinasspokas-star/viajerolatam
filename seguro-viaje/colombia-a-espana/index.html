@@ -53,28 +53,11 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}:root{--navy:#0B1F3A;--navy2:#1A3558;--teal:#00C4A1;--mint:#75D8BC;--sand:#F5F0E8;--sand2:#EAE3D5;--text:#0B1F3A;--muted:#4A647E;--display:'DM Serif Display',Georgia,serif;--body:'Plus Jakarta Sans',sans-serif}
 body{font-family:var(--body);color:var(--text);background:#fff;line-height:1.7}nav{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:10px 5%;background:rgba(255,255,255,.94);backdrop-filter:blur(12px);border-bottom:1px solid rgba(11,31,58,.08)}nav img{height:54px;width:auto;display:block}.nav-links{display:flex;align-items:center;gap:22px}.nav-links a{text-decoration:none;color:#4A647E;font-size:14px;font-weight:700}.nav-cta{background:#0B1F3A!important;color:#fff!important;padding:10px 18px;border-radius:999px}
-.hero{position:relative;overflow:hidden;padding:86px 5% 70px;background:linear-gradient(135deg,#0B1F3A,#18375B);color:white}.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 18% 22%,rgba(0,196,161,.18),transparent 25%),radial-gradient(circle at 80% 70%,rgba(117,216,188,.14),transparent 25%);pointer-events:none}.hero-inner{position:relative;max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}.eyebrow{display:inline-flex;color:#75D8BC;background:rgba(117,216,188,.12);border:1px solid rgba(117,216,188,.28);border-radius:999px;padding:7px 15px;font-size:13px;font-weight:800;margin-bottom:20px}h1{font-family:var(--display);font-size:clamp(40px,6vw,72px);line-height:1.05;margin-bottom:20px}h1 em{color:#75D8BC;font-style:italic}.hero p{font-size:18px;color:rgba(255,255,255,.74);max-width:680px;margin-bottom:28px}.btn-row{display:flex;gap:12px;flex-wrap:wrap}.btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 24px;border-radius:999px;text-decoration:none;font-weight:900}.btn-primary{background:#00C4A1;color:#0B1F3A}.btn-secondary{border:1px solid rgba(255,255,255,.25);color:white;background:rgba(255,255,255,.06)}.hero-card{background:white;color:#0B1F3A;border-radius:28px;padding:26px;box-shadow:0 24px 70px rgba(0,0,0,.24)}.price{font-size:38px;font-weight:900;color:#0B1F3A;margin:12px 0 8px}.small{font-size:13px;color:#6B7F93}.checklist{list-style:none;display:grid;gap:11px;margin:18px 0}.checklist li{display:flex;gap:9px;color:#4A647E;font-size:14px}.checklist li::before{content:"✓";color:#00A989;font-weight:900}
+.hero{position:relative;overflow:hidden;padding:86px 5% 70px;background: url('/hero-bg.jpg') center center / cover no-repeat;color:white}.hero::before{content:"";position:absolute;inset:0;background: rgba(5,12,40,0.55);pointer-events:none}.hero-inner{position:relative;max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}.eyebrow{display:inline-flex;color:#75D8BC;background:rgba(117,216,188,.12);border:1px solid rgba(117,216,188,.28);border-radius:999px;padding:7px 15px;font-size:13px;font-weight:800;margin-bottom:20px}h1{font-family:var(--display);font-size:clamp(40px,6vw,72px);line-height:1.05;margin-bottom:20px}h1 em{color:#75D8BC;font-style:italic}.hero p{font-size:18px;color:rgba(255,255,255,.74);max-width:680px;margin-bottom:28px}.btn-row{display:flex;gap:12px;flex-wrap:wrap}.btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 24px;border-radius:999px;text-decoration:none;font-weight:900}.btn-primary{background:#00C4A1;color:#0B1F3A}.btn-secondary{border:1px solid rgba(255,255,255,.25);color:white;background:rgba(255,255,255,.06)}.hero-card{background:white;color:#0B1F3A;border-radius:28px;padding:26px;box-shadow:0 24px 70px rgba(0,0,0,.24)}.price{font-size:38px;font-weight:900;color:#0B1F3A;margin:12px 0 8px}.small{font-size:13px;color:#6B7F93}.checklist{list-style:none;display:grid;gap:11px;margin:18px 0}.checklist li{display:flex;gap:9px;color:#4A647E;font-size:14px}.checklist li::before{content:"✓";color:#00A989;font-weight:900}
 section{padding:72px 5%}.wrap{max-width:1120px;margin:0 auto}.section-kicker{color:#00A989;text-transform:uppercase;letter-spacing:.12em;font-size:12px;font-weight:900;margin-bottom:10px}h2{font-family:var(--display);font-size:clamp(30px,4vw,48px);line-height:1.12;margin-bottom:16px;color:#0B1F3A}.lead{font-size:17px;color:#4A647E;max-width:760px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px}.card{background:#F5F0E8;border:1px solid #EAE3D5;border-radius:22px;padding:24px}.card h3{font-size:18px;margin-bottom:9px}.card p{color:#4A647E;font-size:14px}.compare{background:#0B1F3A;color:white}.compare h2{color:white}.compare .lead{color:rgba(255,255,255,.68)}.table{margin-top:28px;background:white;color:#0B1F3A;border-radius:24px;overflow:hidden}.row{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;border-bottom:1px solid #EAE3D5}.cell{padding:18px 20px;font-size:14px}.head{background:#F5F0E8;font-weight:900}.brand{font-weight:900}.tag{display:inline-flex;background:rgba(0,196,161,.12);color:#007F68;border-radius:999px;padding:5px 10px;font-size:12px;font-weight:900;margin-top:6px}.cta-box{margin-top:34px;padding:26px;border-radius:24px;background:rgba(117,216,188,.12);border:1px solid rgba(117,216,188,.25);display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}.faq details{border-bottom:1px solid #EAE3D5;padding:18px 0}.faq summary{cursor:pointer;font-weight:900;color:#0B1F3A}.faq p{color:#4A647E;margin-top:10px}.notice{margin-top:24px;background:#F5F0E8;border-left:4px solid #00C4A1;padding:16px 18px;border-radius:14px;color:#4A647E;font-size:14px}footer{background:#0B1F3A;color:rgba(255,255,255,.55);padding:38px 5%;font-size:13px}
 @media(max-width:860px){.hero-inner{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.row{grid-template-columns:1fr}.head{display:none}.cell{border-bottom:1px solid #EAE3D5}.nav-links{display:none}h1{font-size:38px}section{padding:56px 5%}}
 </style>
 <style>@font-face{font-display:swap}</style>
-<style id="travel-bg">
-.travel-icons{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1}
-.travel-icons svg{position:absolute}
-#travel-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
-@keyframes vl-f1{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-10px) rotate(3deg)}}
-@keyframes vl-f2{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-7px) rotate(-3deg)}}
-@keyframes vl-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
-.ti-a{animation:vl-f1 9s ease-in-out infinite}
-.ti-b{animation:vl-f2 13s ease-in-out infinite 2s}
-.ti-c{animation:vl-f1 17s ease-in-out infinite 5s}
-.ti-d{animation:vl-f2 11s ease-in-out infinite 1s}
-.ti-e{animation:vl-spin 55s linear infinite}
-.ti-f{animation:vl-f1 14s ease-in-out infinite 3s}
-.ti-g{animation:vl-f2 12s ease-in-out infinite 6s}
-.ti-h{animation:vl-f1 15s ease-in-out infinite 4s}
-.ti-i{animation:vl-f2 10s ease-in-out infinite 7s}
-</style>
 <style id="mobile-master">
 /* ============================================================
    MOBILE MASTER FIX — viajerolatam.com
@@ -288,99 +271,23 @@ img, svg, video { max-width: 100%; }
   .comp-table th:nth-child(4), .comp-table td:nth-child(4) { display: none !important; }
 }
 </style>
-<style id="hero-bg-override">
-/* === HERO BACKGROUND IMAGE === */
-.hero,
-header.hero,
-section.hero {
-  background-image: url('/hero-bg.jpg') !important;
-  background-size: cover !important;
-  background-position: center top !important;
-  background-repeat: no-repeat !important;
-  position: relative !important;
-  overflow: hidden !important;
+<style id="bg-fix">
+/* Replace hero gradient with travel background image */
+.hero,header.hero,section.hero{
+  background:url('/hero-bg.jpg') center center/cover no-repeat !important;
 }
-/* Remove old gradient that was overriding */
-.hero {
-  background-color: transparent !important;
+/* Keep overlay for text readability — same z-index as original */
+.hero::before{
+  background:rgba(5,12,40,0.55) !important;
 }
-/* Dark overlay — purely decorative, z-index -1 so NOTHING covers content */
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    160deg,
-    rgba(5,12,35,0.70) 0%,
-    rgba(8,20,55,0.60) 50%,
-    rgba(5,12,40,0.65) 100%
-  );
-  z-index: 0;
-  pointer-events: none;
-}
-/* Hero inner content — ALWAYS on top */
-.hero-inner,
-.hero-inner-wrap,
-.hero > .hero-inner,
-.hero > section,
-.hero > div:not(.travel-icons):not(.hero-overlay),
-.hero > header,
-.hero > .hero-eyebrow,
-.hero > h1,
-.hero > p,
-.hero > .search-box,
-.hero > .btn-row,
-.hero > .hero-stats,
-.hero > .hero-badges,
-.hero > .hero-trust {
-  position: relative !important;
-  z-index: 10 !important;
-}
-/* Hide old SVG travel icons (image has real ones) */
-.travel-icons { display: none !important; }
-#travel-canvas { display: none !important; }
-/* Nav matches background feel */
-nav {
-  background: rgba(5, 12, 40, 0.92) !important;
-  backdrop-filter: blur(16px) !important;
-  -webkit-backdrop-filter: blur(16px) !important;
-  border-bottom: 1px solid rgba(0,196,161,0.2) !important;
-}
-/* Mobile adjustments */
-@media (max-width: 768px) {
-  .hero,
-  header.hero,
-  section.hero {
-    background-position: 40% top !important;
-    background-size: cover !important;
+/* Remove dynamic icons — image has them already */
+.travel-icons,.travel-icons *,#travel-canvas{display:none !important;}
+/* Mobile: keep image filling screen */
+@media(max-width:768px){
+  .hero,header.hero,section.hero{
+    background:url('/hero-bg.jpg') center center/cover no-repeat !important;
   }
-  .hero-overlay {
-    background: linear-gradient(
-      160deg,
-      rgba(5,12,35,0.75) 0%,
-      rgba(8,20,55,0.65) 100%
-    ) !important;
-  }
-}
-@media (max-width: 480px) {
-  .hero-overlay {
-    background: rgba(5,12,40,0.78) !important;
-  }
-}
-
-/* Kill old ::before pseudo that was overriding */
-.hero::before,
-header.hero::before,
-section.hero::before {
-  display: none !important;
-  content: none !important;
-  background: none !important;
-}
-/* Force background to show */
-.hero,
-header.hero,
-section.hero {
-  background-image: url('/hero-bg.jpg') !important;
-  background-color: #05103A !important;
+  .hero::before{background:rgba(5,12,40,0.65) !important;}
 }
 </style>
 </head>
@@ -432,8 +339,6 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
   <button class="mob-btn" onclick="openMobMenu()" aria-label="Menú"><span></span><span></span><span></span></button>
 </nav>
 <header class="hero">
-<div class="hero-overlay" aria-hidden="true"></div>
-
 <div class="travel-icons" aria-hidden="true">
 <svg xmlns="http://www.w3.org/2000/svg" style="width:0;height:0;position:absolute">
   <defs>
@@ -612,7 +517,6 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
 </div>
 
 <!-- FULL PAGE CANVAS — very subtle floating micro elements -->
-<canvas id="travel-canvas" aria-hidden="true" style="opacity:.35"></canvas>
 <script id="travel-canvas-js">
 (function(){
   var c=document.getElementById('travel-canvas');
