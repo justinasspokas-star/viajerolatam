@@ -16,4 +16,10 @@
     <changefreq>weekly</changefreq>
     <priority>0.98</priority>
   </url>
+  <url>
+    <loc>https://viajerolatam.com/blog/seguro-viaje-schengen-colombianos/</loc>
+    <lastmod>2026-05-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
 </urlset>
