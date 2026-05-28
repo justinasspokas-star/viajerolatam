@@ -63,13 +63,24 @@ section{padding:72px 5%}.wrap{max-width:1120px;margin:0 auto}.section-kicker{col
 .ti-pi{animation:vl-f1 12s ease-in-out infinite 6s}
 </style>
 <style>@font-face{font-display:swap}</style>
+<style id="nav-fix">
+nav{background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-bottom:1px solid #E4EDF5;padding:0 5%;height:68px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+nav .logo{display:flex;align-items:center;text-decoration:none;line-height:0}
+nav .logo img{height:58px!important;width:auto!important;display:block!important;max-height:58px}
+nav img{height:58px!important;width:auto!important;display:block!important}
+.nav-links{display:flex;align-items:center;gap:24px}
+.nav-links a{font-size:14px;font-weight:500;color:#4A647E;text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:#0B1F3A}
+.nav-cta{background:#0B1F3A!important;color:#fff!important;padding:9px 20px!important;border-radius:50px!important;font-weight:600!important}
+@media(max-width:768px){nav{height:auto!important;min-height:64px!important;padding:10px 4%!important}nav .logo img{height:44px!important;max-height:44px!important}}
+</style>
 </head>
 <body>
 <!-- MOBILE NAV -->
 <div id="mob-overlay" onclick="closeMobMenu()" style="display:none;position:fixed;inset:0;background:rgba(11,31,58,.6);z-index:998;backdrop-filter:blur(4px)"></div>
 <div id="mob-drawer" style="display:none;position:fixed;top:0;right:0;bottom:0;width:min(300px,85vw);background:#fff;z-index:999;box-shadow:-8px 0 40px rgba(11,31,58,.25);flex-direction:column;transform:translateX(100%);transition:transform .28s cubic-bezier(.4,0,.2,1)">
   <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:#0B1F3A;flex-shrink:0">
-    <img src="/logo.png" alt="ViajerosLatam" style="height:42px;width:auto">
+    <img src="/logo.png" alt="ViajerosLatam" style="height:42px;width:auto;display:block">
     <button onclick="closeMobMenu()" style="width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.12);border:none;color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center">✕</button>
   </div>
   <div style="flex:1;overflow-y:auto">
@@ -100,8 +111,16 @@ function openMobMenu(){var d=document.getElementById('mob-drawer'),o=document.ge
 function closeMobMenu(){var d=document.getElementById('mob-drawer'),o=document.getElementById('mob-overlay'),b=document.querySelector('.mob-btn');if(!d)return;d.classList.remove('is-open');if(b)b.classList.remove('is-open');document.body.style.overflow='';setTimeout(function(){d.style.display='none';o.style.display='none';},280);}
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu();});
 </script>
-<nav><a href="/"><img src="/og-image.jpg" alt="ViajeroLatam"></a><div class="nav-links"><a href="/#como-funciona">¿Cómo funciona?</a><a href="/#aseguradoras">Aseguradoras</a><a href="/visa-schengen/">Visa Schengen</a><a href="/blog/">Artículos</a><a href="/resultados/" class="nav-cta">Comparar ahora</a></div>
-<button class="mob-btn" onclick="openMobMenu()" aria-label="Menú"><span></span><span></span><span></span></button>
+<nav>
+  <a href="/" class="logo"><img src="/logo.png" alt="ViajerosLatam — Comparador de seguros de viaje para latinoamericanos" style="height:58px;width:auto;display:block"></a>
+  <div class="nav-links">
+    <a href="/#como-funciona">¿Cómo funciona?</a>
+    <a href="/#aseguradoras">Aseguradoras</a>
+    <a href="/visa-schengen/">Visa Schengen</a>
+    <a href="/blog/">Artículos</a>
+    <a href="/resultados/" class="nav-cta">Comparar ahora</a>
+  </div>
+  <button class="mob-btn" onclick="openMobMenu()" aria-label="Menú"><span></span><span></span><span></span></button>
 </nav>
 <header class="hero">
 <div class="travel-icons" aria-hidden="true">
