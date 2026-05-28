@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta http-equiv="refresh" content="0; url=/visa-schengen/"><link rel="canonical" href="https://viajerolatam.com/visa-schengen/"><title>Visa Schengen | ViajeroLatam</title><style>
+<!DOCTYPE html><html lang="es"><head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><meta charset="UTF-8"><meta http-equiv="refresh" content="0; url=/visa-schengen/"><link rel="canonical" href="https://viajerolatam.com/visa-schengen/"><title>Visa Schengen | ViajeroLatam</title><style>
 
 /* InterMundial affiliate CTA */
 .intermundial-affiliate-box{
@@ -177,6 +178,114 @@ nav a.brand-logo img, nav a.logo img{height:64px !important; width:auto !importa
 @media (max-width:768px){ nav a.brand-logo img, nav a.logo img, .mobile-logo img{height:44px !important; max-width:220px !important;} }
 
 </style>
+<meta property="og:locale" content="es_CO">
+<meta property="og:site_name" content="ViajeroLatam">
+<style id="mob-nav-fix">
+#mob-btn{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px;z-index:1001;position:relative}
+#mob-btn span{display:block;width:22px;height:2px;background:#fff;border-radius:2px}
+@media(max-width:768px){
+  #mob-btn{display:flex!important}
+  .nav-links{display:none!important}
+  #mob-drawer{position:fixed;top:0;right:-100%;width:min(280px,85vw);height:100vh;background:#0B1F3A;z-index:1000;transition:right .32s ease;padding:70px 24px 32px;display:flex;flex-direction:column;gap:6px;box-shadow:-6px 0 32px rgba(0,0,0,.45)}
+  #mob-drawer.open{right:0}
+  #mob-drawer a{color:rgba(255,255,255,.85);text-decoration:none;font-size:15px;font-weight:500;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.08);display:block}
+  #mob-drawer a:last-child{border:none;margin-top:8px;background:#00C4A1;color:#0B1F3A;padding:12px 16px;border-radius:50px;text-align:center;font-weight:700}
+  #mob-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:999}
+  #mob-overlay.open{display:block}
+}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P1Q2TSMVNJ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-P1Q2TSMVNJ');</script>
+<style id="vl-mobile-universal">
+/* ── PREVENT HORIZONTAL SCROLL ── */
+html,body{overflow-x:hidden!important;max-width:100vw}
+*{box-sizing:border-box}
+img,svg,video,iframe{max-width:100%!important;height:auto}
+
+/* ── NAV LINKS HIDDEN ON MOBILE ── */
+@media(max-width:768px){
+  .nav-links{display:none!important}
+  #mob-btn{display:flex!important}
+
+  /* HERO */
+  .hero,header.hero,section.hero{overflow:hidden!important;position:relative!important}
+  .hero-inner,.hero-inner-wrap{position:relative!important;z-index:5!important}
+  .travel-icons,#travel-canvas{display:none!important}
+  .hero h1{font-size:clamp(24px,7vw,38px)!important;line-height:1.15!important}
+  .hero p,.hero-desc{font-size:14px!important}
+  .hcard,.hero-card,aside.hero-card{display:none!important}
+
+  /* BUTTONS */
+  .btn-row,.cta-row{flex-direction:column!important;gap:10px!important;width:100%!important}
+  .btn,.btn-cta,.btn-teal,.btn-primary,.btn-secondary{width:100%!important;justify-content:center!important;text-align:center!important}
+
+  /* GRIDS → 1 col */
+  .cards-grid,.steps-grid,.insurers-grid,.inc-grid,.req-grid,.sch-grid,
+  .profiles,.related-grid,.two-col,.grid-3,.grid-4,.pros-cons,
+  .verdict,.calc-results,.stats-inner{grid-template-columns:1fr!important;gap:12px!important}
+
+  /* 2-col on mobile for small cards */
+  .partner-grid,.badge-grid{grid-template-columns:1fr 1fr!important;gap:8px!important}
+
+  /* PAGE LAYOUT */
+  .page,.page-body,.article-layout{grid-template-columns:1fr!important;padding:16px 4%!important}
+  .sidebar,aside.sidebar,.sticky-sidebar{display:none!important}
+
+  /* SECTIONS */
+  section,.section{padding:36px 4%!important}
+  .wrap,.inner,.container{max-width:100%!important;padding-left:4%!important;padding-right:4%!important}
+
+  /* TABLES */
+  table,.price-table,.comp-table,.paises-table{display:block!important;overflow-x:auto!important;-webkit-overflow-scrolling:touch!important;font-size:12px!important;width:100%!important}
+  th,td{white-space:nowrap!important;padding:8px 10px!important;min-width:80px}
+
+  /* SEARCH/FORM */
+  .search-box,.sb-inner,.search-form{flex-direction:column!important;gap:10px!important;padding:14px!important}
+  .sb-field,.search-field{width:100%!important}
+  .sb-btn,.search-btn{width:100%!important;text-align:center!important}
+
+  /* STICKY + EXIT */
+  #sticky-mob{display:block!important}
+  body{padding-bottom:84px!important}
+  #exit-box{padding:24px 18px!important;margin:12px!important}
+  .exit-title{font-size:20px!important}
+
+  /* BREADCRUMB */
+  .bc-inner{font-size:11px!important;flex-wrap:wrap!important}
+
+  /* FOOTER */
+  .fg,footer .fg{grid-template-columns:1fr 1fr!important;gap:16px!important}
+  .fl,.footer-brand{grid-column:1/-1!important}
+
+  /* BLOG CARDS */
+  .featured{padding:16px!important}
+  .featured .btn{width:100%!important;text-align:center!important}
+
+  /* HEADINGS */
+  h2{font-size:clamp(20px,6vw,30px)!important}
+  h3{font-size:clamp(17px,5vw,22px)!important}
+
+  /* TRUST STRIP */
+  .trust,.hero-badges,.badges-row{flex-wrap:wrap!important;gap:8px!important;justify-content:center!important}
+  .trust span,.hbadge{font-size:11px!important}
+
+  /* DIAS SELECTOR */
+  .dias-selector{gap:6px!important;flex-wrap:wrap!important}
+  .dias-btn{font-size:12px!important;padding:7px 10px!important}
+
+  /* NEWSLETTER */
+  .nl-form{flex-direction:column!important;gap:8px!important}
+  .nl-input,.nl-btn{width:100%!important}
+}
+
+/* SMALL PHONES */
+@media(max-width:380px){
+  .hero h1{font-size:22px!important}
+  h2{font-size:19px!important}
+  .partner-grid,.badge-grid{grid-template-columns:1fr!important}
+  th,td{min-width:60px!important;font-size:11px!important}
+}
+</style>
 </head><body><p>Redirigiendo a <a href="/visa-schengen/">Visa Schengen</a>...</p>
 <script>
 document.addEventListener('click', function(e){
@@ -200,4 +309,57 @@ document.addEventListener('click', function(e){
 });
 </script>
 
+<div id="mob-overlay" onclick="closeMobMenu()" aria-hidden="true"></div>
+<nav id="mob-drawer" aria-label="Menú móvil">
+  <a href="/">Inicio</a>
+  <a href="/seguro-viaje/colombia-a-espana/">Colombia → España</a>
+  <a href="/visa-schengen/">Visa Schengen</a>
+  <a href="/blog/">Artículos</a>
+  <a href="/resultados/">Comparar seguros →</a>
+</nav>
+<script>
+function openMobMenu(){document.getElementById('mob-drawer').classList.add('open');document.getElementById('mob-overlay').classList.add('open');document.body.style.overflow='hidden'}
+function closeMobMenu(){document.getElementById('mob-drawer').classList.remove('open');document.getElementById('mob-overlay').classList.remove('open');document.body.style.overflow=''}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu()})
+</script>
+<!-- Exit intent -->
+<div id="exit-overlay" style="display:none;position:fixed;inset:0;background:rgba(11,31,58,.65);z-index:9999;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(6px)">
+  <div id="exit-box" style="background:#fff;border-radius:20px;padding:32px 28px;max-width:420px;width:100%;position:relative;box-shadow:0 20px 60px rgba(11,31,58,.25)">
+    <button onclick="closeExit()" style="position:absolute;top:12px;right:12px;width:30px;height:30px;border-radius:50%;background:#F0F4F8;border:none;cursor:pointer;font-size:16px;color:#4A647E">✕</button>
+    <div style="font-size:40px;text-align:center;margin-bottom:10px">✈️</div>
+    <h3 style="font-family:Georgia,serif;font-size:22px;color:#0B1F3A;text-align:center;margin-bottom:8px">¿Ya tienes seguro<br>para tu viaje?</h3>
+    <p style="font-size:13px;color:#4A647E;text-align:center;margin-bottom:16px">Compara IATI e Intermundial en 2 minutos. Gratis, en español.</p>
+    <div style="display:flex;gap:12px;justify-content:center;margin-bottom:16px;flex-wrap:wrap">
+      <span style="font-size:12px;color:#4A647E">✓ Desde €1.75/día</span>
+      <span style="font-size:12px;color:#4A647E">✓ Sin franquicia</span>
+      <span style="font-size:12px;color:#4A647E">✓ Cupón VIAJEROLATAM</span>
+    </div>
+    <a href="/resultados/" onclick="closeExit()" style="display:block;width:100%;background:#00C4A1;color:#0B1F3A;padding:14px;border-radius:50px;font-family:inherit;font-size:14px;font-weight:700;text-decoration:none;text-align:center;margin-bottom:8px">🔍 Comparar seguros gratis</a>
+    <button onclick="closeExit()" style="display:block;width:100%;background:none;border:none;font-family:inherit;font-size:12px;color:#8FA4B8;cursor:pointer;text-decoration:underline">Ahora no</button>
+  </div>
+</div>
+<script>
+(function(){
+  var shown=false;
+  document.addEventListener('mouseleave',function(e){
+    if(e.clientY>15||shown||sessionStorage.getItem('vl_exit'))return;
+    shown=true;sessionStorage.setItem('vl_exit','1');
+    var o=document.getElementById('exit-overlay');
+    if(o){o.style.display='flex';document.body.style.overflow='hidden'}
+  });
+  var lastY=0;
+  window.addEventListener('scroll',function(){
+    var y=window.scrollY;
+    if(lastY-y>100&&y>300&&!shown&&!sessionStorage.getItem('vl_exit')){
+      shown=true;sessionStorage.setItem('vl_exit','1');
+      var o=document.getElementById('exit-overlay');
+      if(o){o.style.display='flex';document.body.style.overflow='hidden'}
+    }
+    lastY=y;
+  });
+})();
+function closeExit(){var o=document.getElementById('exit-overlay');if(o){o.style.display='none';document.body.style.overflow=''}}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeExit()});
+document.getElementById('exit-overlay').addEventListener('click',function(e){if(e.target===this)closeExit()});
+</script>
 </body></html>

@@ -190,6 +190,22 @@ nav a.brand-logo img, nav a.logo img{height:64px !important; width:auto !importa
   gtag('js', new Date());
   gtag('config', 'G-P1Q2TSMVNJ');
 </script>
+<meta property="og:locale" content="es_CO">
+<meta property="og:site_name" content="ViajeroLatam">
+<style id="mob-nav-fix">
+#mob-btn{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px;z-index:1001;position:relative}
+#mob-btn span{display:block;width:22px;height:2px;background:#fff;border-radius:2px}
+@media(max-width:768px){
+  #mob-btn{display:flex!important}
+  .nav-links{display:none!important}
+  #mob-drawer{position:fixed;top:0;right:-100%;width:min(280px,85vw);height:100vh;background:#0B1F3A;z-index:1000;transition:right .32s ease;padding:70px 24px 32px;display:flex;flex-direction:column;gap:6px;box-shadow:-6px 0 32px rgba(0,0,0,.45)}
+  #mob-drawer.open{right:0}
+  #mob-drawer a{color:rgba(255,255,255,.85);text-decoration:none;font-size:15px;font-weight:500;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.08);display:block}
+  #mob-drawer a:last-child{border:none;margin-top:8px;background:#00C4A1;color:#0B1F3A;padding:12px 16px;border-radius:50px;text-align:center;font-weight:700}
+  #mob-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:999}
+  #mob-overlay.open{display:block}
+}
+</style>
 </head>
 <body>
 <div class="box">
@@ -228,5 +244,18 @@ document.addEventListener('click', function(e){
 });
 </script>
 
+<div id="mob-overlay" onclick="closeMobMenu()" aria-hidden="true"></div>
+<nav id="mob-drawer" aria-label="Menú móvil">
+  <a href="/">Inicio</a>
+  <a href="/seguro-viaje/colombia-a-espana/">Colombia → España</a>
+  <a href="/visa-schengen/">Visa Schengen</a>
+  <a href="/blog/">Artículos</a>
+  <a href="/resultados/">Comparar seguros →</a>
+</nav>
+<script>
+function openMobMenu(){document.getElementById('mob-drawer').classList.add('open');document.getElementById('mob-overlay').classList.add('open');document.body.style.overflow='hidden'}
+function closeMobMenu(){document.getElementById('mob-drawer').classList.remove('open');document.getElementById('mob-overlay').classList.remove('open');document.body.style.overflow=''}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu()})
+</script>
 </body>
 </html>
