@@ -1,0 +1,20 @@
+# ViajeroLatam clean URLs
+/resultados/                         /resultados/index.html                         200
+/resultados                          /resultados/index.html                         200
+/visa-schengen/                      /visa-schengen/index.html                      200
+/visa-schengen                       /visa-schengen/index.html                      200
+/seguro-viaje/colombia-a-espana/     /seguro-viaje/colombia-a-espana/index.html     200
+/seguro-viaje/colombia-a-espana      /seguro-viaje/colombia-a-espana/index.html     200
+/seguro-viaje/bogota-a-espana/       /seguro-viaje/bogota-a-espana/index.html       200
+/seguro-viaje/bogota-a-espana        /seguro-viaje/bogota-a-espana/index.html       200
+/seguro-viaje/medellin-a-espana/     /seguro-viaje/medellin-a-espana/index.html     200
+/seguro-viaje/medellin-a-espana      /seguro-viaje/medellin-a-espana/index.html     200
+/seguro-viaje/cali-a-espana/         /seguro-viaje/cali-a-espana/index.html         200
+/seguro-viaje/cali-a-espana          /seguro-viaje/cali-a-espana/index.html         200
+/blog/                               /blog/index.html                               200
+/blog                                /blog/index.html                               200
+/blog/etias-colombianos/             /blog/etias-colombianos/index.html             200
+/blog/etias-colombianos              /blog/etias-colombianos/index.html             200
+/blog/cuanto-cuesta-seguro-viaje-colombia-espana/ /blog/cuanto-cuesta-seguro-viaje-colombia-espana/index.html 200
+/comparar/heymondo-vs-iati-colombianos/ /comparar/heymondo-vs-iati-colombianos/index.html 200
+https://www.viajerolatam.com/*       https://viajerolatam.com/:splat                301!

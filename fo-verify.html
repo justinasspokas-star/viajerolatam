@@ -1,8 +1,31 @@
 <HTML>
 <HEAD>
-<TITLE>ViajerosLatam - FlexOffers Verification</TITLE>
+<TITLE>ViajeroLatam - FlexOffers Verification</TITLE>
 <meta name="fo-verify" content="3452e9fe-ea8d-4db3-8faa-8f8a3a59fff3" />
 </HEAD>
 <BODY>
 </BODY>
 </HTML>
+
+<script>
+document.addEventListener('click', function(e){
+  var link = e.target.closest('a');
+  if(!link || typeof gtag !== 'function') return;
+  var href = link.getAttribute('href') || '';
+  if(href.indexOf('iatiseguros.com') !== -1){
+    gtag('event', 'click_affiliate_iati', {
+      event_category: 'affiliate',
+      event_label: href,
+      page_location: window.location.href
+    });
+  }
+
+  if(href.indexOf('intermundial.es') !== -1){
+    gtag('event', 'click_affiliate_intermundial', {
+      event_category: 'affiliate',
+      event_label: href,
+      page_location: window.location.href
+    });
+  }
+});
+</script>

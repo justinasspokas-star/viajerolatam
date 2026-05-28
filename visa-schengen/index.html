@@ -232,6 +232,41 @@ nav .logo img,
   .logo-img-header{height:44px!important;max-width:220px!important}
 }
 
+
+/* InterMundial affiliate CTA */
+.intermundial-affiliate-box{
+  margin-top:24px;
+  padding:22px;
+  border-radius:22px;
+  border:1px solid rgba(0,196,161,.25);
+  background:linear-gradient(135deg,rgba(0,196,161,.10),rgba(245,240,232,.72));
+}
+.intermundial-affiliate-box h3{margin:0 0 8px;color:#0B1F3A}
+.intermundial-affiliate-box p{margin:0 0 14px;color:#4A647E}
+.intermundial-coupon{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  background:#fff;
+  border:1px dashed #00A989;
+  color:#0B1F3A;
+  padding:8px 12px;
+  border-radius:12px;
+  font-weight:900;
+  margin:0 0 14px;
+}
+.intermundial-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  background:#0B1F3A;
+  color:#fff!important;
+  text-decoration:none!important;
+  padding:13px 22px;
+  border-radius:999px;
+  font-weight:900;
+}
+
 </style>
 <!-- Google Analytics 4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-P1Q2TSMVNJ"></script>
@@ -1529,6 +1564,14 @@ document.addEventListener('click', function(e){
   var href = link.getAttribute('href') || '';
   if(href.indexOf('iatiseguros.com') !== -1){
     gtag('event', 'click_affiliate_iati', {
+      event_category: 'affiliate',
+      event_label: href,
+      page_location: window.location.href
+    });
+  }
+
+  if(href.indexOf('intermundial.es') !== -1){
+    gtag('event', 'click_affiliate_intermundial', {
       event_category: 'affiliate',
       event_label: href,
       page_location: window.location.href
