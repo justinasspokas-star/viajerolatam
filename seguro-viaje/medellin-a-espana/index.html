@@ -439,61 +439,98 @@ img, svg, video { max-width: 100%; }
 }
 </style>
 <style id="hero-bg-override">
-/* ── HERO BACKGROUND IMAGE ── */
+/* === HERO BACKGROUND IMAGE === */
 .hero,
 header.hero,
 section.hero {
   background-image: url('/hero-bg.jpg') !important;
   background-size: cover !important;
-  background-position: center center !important;
+  background-position: center top !important;
   background-repeat: no-repeat !important;
   position: relative !important;
   overflow: hidden !important;
 }
-/* Semi-transparent overlay for text readability */
-.hero::before {
-  content: '' !important;
-  position: absolute !important;
-  inset: 0 !important;
-  background: rgba(5, 15, 45, 0.62) !important;
-  z-index: 0 !important;
-  pointer-events: none !important;
+/* Remove old gradient that was overriding */
+.hero {
+  background-color: transparent !important;
 }
-/* All hero content above overlay */
-.hero > *:not(.travel-icons) {
+/* Dark overlay — purely decorative, z-index -1 so NOTHING covers content */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    160deg,
+    rgba(5,12,35,0.70) 0%,
+    rgba(8,20,55,0.60) 50%,
+    rgba(5,12,40,0.65) 100%
+  );
+  z-index: 0;
+  pointer-events: none;
+}
+/* Hero inner content — ALWAYS on top */
+.hero-inner,
+.hero-inner-wrap,
+.hero > .hero-inner,
+.hero > section,
+.hero > div:not(.travel-icons):not(.hero-overlay),
+.hero > header,
+.hero > .hero-eyebrow,
+.hero > h1,
+.hero > p,
+.hero > .search-box,
+.hero > .btn-row,
+.hero > .hero-stats,
+.hero > .hero-badges,
+.hero > .hero-trust {
   position: relative !important;
-  z-index: 2 !important;
+  z-index: 10 !important;
 }
-.hero-inner, .hero-inner-wrap {
-  position: relative !important;
-  z-index: 3 !important;
-}
-.travel-icons {
-  display: none !important;
-}
-/* Nav: slight tint when over hero */
+/* Hide old SVG travel icons (image has real ones) */
+.travel-icons { display: none !important; }
+#travel-canvas { display: none !important; }
+/* Nav matches background feel */
 nav {
-  background: rgba(5, 15, 45, 0.92) !important;
-  backdrop-filter: blur(14px) !important;
-  -webkit-backdrop-filter: blur(14px) !important;
-  border-bottom: 1px solid rgba(0,196,161,0.15) !important;
+  background: rgba(5, 12, 40, 0.92) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border-bottom: 1px solid rgba(0,196,161,0.2) !important;
 }
-/* Mobile: shift background position to keep icons visible */
+/* Mobile adjustments */
 @media (max-width: 768px) {
   .hero,
   header.hero,
   section.hero {
-    background-position: 35% center !important;
+    background-position: 40% top !important;
     background-size: cover !important;
   }
-  .hero::before {
-    background: rgba(5, 15, 45, 0.68) !important;
+  .hero-overlay {
+    background: linear-gradient(
+      160deg,
+      rgba(5,12,35,0.75) 0%,
+      rgba(8,20,55,0.65) 100%
+    ) !important;
   }
 }
 @media (max-width: 480px) {
-  .hero::before {
-    background: rgba(5, 15, 45, 0.72) !important;
+  .hero-overlay {
+    background: rgba(5,12,40,0.78) !important;
   }
+}
+
+/* Kill old ::before pseudo that was overriding */
+.hero::before,
+header.hero::before,
+section.hero::before {
+  display: none !important;
+  content: none !important;
+  background: none !important;
+}
+/* Force background to show */
+.hero,
+header.hero,
+section.hero {
+  background-image: url('/hero-bg.jpg') !important;
+  background-color: #05103A !important;
 }
 </style>
 </head>
@@ -543,6 +580,8 @@ nav {
 </div>
 
 <div class="hero">
+<div class="hero-overlay" aria-hidden="true"></div>
+
 <div class="travel-icons" aria-hidden="true">
 <svg xmlns="http://www.w3.org/2000/svg" style="width:0;height:0;position:absolute">
   <defs>
