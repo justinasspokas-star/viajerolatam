@@ -228,11 +228,44 @@ nav a.brand-logo img, nav a.logo img,
   }
 }
 
+
+/* EXACT COLOR LOGO FIX */
+a.brand-logo img,
+a.logo img,
+.mobile-logo img,
+.footer-logo img,
+.fl img{
+  opacity: 1 !important;
+  filter: none !important;
+  mix-blend-mode: normal !important;
+  image-rendering: -webkit-optimize-contrast !important;
+  object-fit: contain !important;
+  background: transparent !important;
+}
+nav a.brand-logo, nav a.logo{
+  display:inline-flex !important;
+  align-items:center !important;
+  min-height:72px !important;
+}
+nav a.brand-logo img, nav a.logo img{
+  height:64px !important;
+  width:auto !important;
+  max-width:320px !important;
+}
+@media (max-width:768px){
+  nav a.brand-logo img, nav a.logo img,
+  .mobile-logo img{
+    height:44px !important;
+    width:auto !important;
+    max-width:200px !important;
+  }
+}
+
 </style>
 </head>
 <body>
   <nav>
-    <a href="/" class="brand-logo" aria-label="ViajeroLatam inicio"><img src="/logo.png" alt="ViajeroLatam" width="1567" height="490" loading="eager" fetchpriority="high" decoding="async"></a>
+    <a href="/" class="brand-logo" aria-label="ViajeroLatam inicio"><img src="/logo.png" alt="ViajeroLatam"></a>
     <div class="nav-links">
       <a href="/seguro-viaje/colombia-a-espana/">Colombia → España</a>
       <a href="/visa-schengen/">Visa Schengen</a>
