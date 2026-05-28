@@ -862,5 +862,209 @@ document.querySelectorAll('details').forEach(d=>{
   });
 });
 </script>
+<!-- ═══ EXIT INTENT + STICKY CTA ═══ -->
+<style id="exit-sticky-css">
+/* ── STICKY CTA MÓVIL ── */
+#sticky-mob{
+  display:none;
+  position:fixed;
+  bottom:0;left:0;right:0;
+  z-index:990;
+  padding:12px 16px 16px;
+  background:linear-gradient(to top,rgba(255,255,255,1) 60%,rgba(255,255,255,0));
+  pointer-events:none;
+}
+#sticky-mob a{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  background:#00C4A1;color:#0B1F3A;
+  padding:15px;border-radius:50px;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:16px;font-weight:700;
+  text-decoration:none;
+  box-shadow:0 4px 24px rgba(0,196,161,.45);
+  pointer-events:all;
+  transition:background .2s, transform .15s;
+}
+#sticky-mob a:active{transform:scale(.97)}
+#sticky-mob p{
+  font-size:11px;color:#8FA4B8;
+  text-align:center;margin-top:6px;
+  font-family:'Plus Jakarta Sans',sans-serif;
+}
+@media(max-width:768px){
+  #sticky-mob{display:block}
+  body{padding-bottom:90px}
+}
+@media(min-width:769px){
+  #sticky-mob{display:none!important}
+}
+
+/* ── EXIT INTENT POPUP ── */
+#exit-overlay{
+  display:none;position:fixed;inset:0;
+  background:rgba(11,31,58,.65);
+  z-index:9999;
+  backdrop-filter:blur(6px);
+  align-items:center;justify-content:center;
+  padding:20px;
+}
+#exit-box{
+  background:#fff;
+  border-radius:24px;
+  padding:36px 32px;
+  max-width:440px;width:100%;
+  position:relative;
+  box-shadow:0 24px 80px rgba(11,31,58,.25);
+  animation:exitPop .3s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes exitPop{
+  from{opacity:0;transform:scale(.85) translateY(20px)}
+  to{opacity:1;transform:scale(1) translateY(0)}
+}
+#exit-close{
+  position:absolute;top:14px;right:14px;
+  width:32px;height:32px;border-radius:50%;
+  background:#F0F4F8;border:none;cursor:pointer;
+  font-size:16px;color:#4A647E;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .15s;
+}
+#exit-close:hover{background:#E4EDF5}
+.exit-emoji{font-size:48px;text-align:center;margin-bottom:12px}
+.exit-title{
+  font-family:'DM Serif Display',Georgia,serif;
+  font-size:26px;color:#0B1F3A;line-height:1.2;
+  text-align:center;margin-bottom:8px;
+}
+.exit-title em{color:#00C4A1;font-style:italic}
+.exit-sub{
+  font-size:14px;color:#4A647E;text-align:center;
+  line-height:1.6;margin-bottom:20px;
+}
+.exit-proof{
+  display:flex;gap:16px;justify-content:center;
+  margin-bottom:20px;flex-wrap:wrap;
+}
+.exit-proof span{
+  font-size:12px;color:#4A647E;
+  display:flex;align-items:center;gap:4px;
+}
+#exit-cta{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  width:100%;background:#00C4A1;color:#0B1F3A;
+  padding:15px;border-radius:50px;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:15px;font-weight:700;
+  text-decoration:none;border:none;cursor:pointer;
+  transition:background .2s;
+  margin-bottom:10px;
+}
+#exit-cta:hover{background:#009C7F}
+#exit-skip{
+  display:block;width:100%;text-align:center;
+  font-size:12px;color:#8FA4B8;
+  background:none;border:none;cursor:pointer;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  padding:6px;text-decoration:underline;
+}
+</style>
+
+<!-- STICKY MÓVIL -->
+<div id="sticky-mob" aria-label="Comparar seguros gratis">
+  <a href="/resultados/" onclick="if(typeof gtag!='undefined')gtag('event','click_sticky_mob',{page:location.pathname})">
+    🔍 Comparar seguros gratis
+  </a>
+  <p>Sin coste · Póliza en 2 minutos · 8 aseguradoras</p>
+</div>
+
+<!-- EXIT INTENT POPUP -->
+<div id="exit-overlay" role="dialog" aria-modal="true" aria-label="Antes de irte">
+  <div id="exit-box">
+    <button id="exit-close" onclick="closeExitPopup()" aria-label="Cerrar">✕</button>
+    <div class="exit-emoji">✈️</div>
+    <div class="exit-title">¿Seguro para tu viaje <em>ya tienes</em>?</div>
+    <div class="exit-sub">Compara en 2 minutos las 8 mejores aseguradoras. Gratis, en español, sin letra pequeña.</div>
+    <div class="exit-proof">
+      <span>✓ Desde €1.75/día</span>
+      <span>✓ Sin franquicia</span>
+      <span>✓ Cobertura ilimitada</span>
+    </div>
+    <a href="/resultados/" id="exit-cta" onclick="closeExitPopup();if(typeof gtag!='undefined')gtag('event','click_exit_popup',{page:location.pathname})">
+      🔍 Comparar seguros gratis
+    </a>
+    <button id="exit-skip" onclick="closeExitPopup()">No me interesa por ahora</button>
+  </div>
+</div>
+
+<script id="exit-sticky-js">
+(function(){
+  var shown = false;
+  var dismissed = false;
+
+  // ── Exit intent — desktop (mouse leaves top)
+  document.addEventListener('mouseleave', function(e){
+    if(e.clientY > 20) return;
+    if(shown || dismissed) return;
+    if(sessionStorage.getItem('vl_exit_shown')) return;
+    showExitPopup();
+  });
+
+  // ── Exit intent — mobile (back button / scroll up fast)
+  var lastScrollY = 0;
+  var scrollTimer;
+  window.addEventListener('scroll', function(){
+    var currentY = window.scrollY;
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(function(){
+      var delta = lastScrollY - currentY;
+      if(delta > 120 && currentY > 400 && !shown && !dismissed){
+        if(!sessionStorage.getItem('vl_exit_shown')) showExitPopup();
+      }
+      lastScrollY = currentY;
+    }, 150);
+    lastScrollY = currentY;
+  });
+
+  // ── Sticky CTA — hide when hero CTA visible
+  var hero = document.querySelector('.hero, header.hero, .hero-inner');
+  var sticky = document.getElementById('sticky-mob');
+  if(sticky && hero){
+    var io = new IntersectionObserver(function(entries){
+      sticky.style.opacity = entries[0].isIntersecting ? '0' : '1';
+      sticky.style.pointerEvents = entries[0].isIntersecting ? 'none' : 'all';
+    }, {threshold: 0.2});
+    io.observe(hero);
+  }
+})();
+
+function showExitPopup(){
+  shown = true;
+  var overlay = document.getElementById('exit-overlay');
+  if(!overlay) return;
+  overlay.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+  sessionStorage.setItem('vl_exit_shown','1');
+  if(typeof gtag !== 'undefined') gtag('event','exit_popup_shown',{page:location.pathname});
+}
+
+function closeExitPopup(){
+  dismissed = true;
+  var overlay = document.getElementById('exit-overlay');
+  if(!overlay) return;
+  overlay.style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+// Close on overlay click
+document.getElementById('exit-overlay').addEventListener('click', function(e){
+  if(e.target === this) closeExitPopup();
+});
+
+// Close on Escape
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape') closeExitPopup();
+});
+</script>
+<!-- ═══ END EXIT INTENT + STICKY ═══ -->
 </body>
 </html>
