@@ -128,9 +128,12 @@
     ]
   }
   </script>
+<link rel="dns-prefetch" href="https://fonts.googleapis.com">
+<link rel="dns-prefetch" href="https://fonts.gstatic.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
 <style>
 
 /* ViajeroLatam logo — transparente y natural */
@@ -866,6 +869,22 @@ nav .logo img.logo-img-header{height:58px;width:auto}
 .ti-su{animation:vl-f2 16s ease-in-out infinite 4s}
 .ti-pi{animation:vl-f1 12s ease-in-out infinite 6s}
 </style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization",
+  "name":"ViajerosLatam",
+  "alternateName":"ViajeroLatam",
+  "url":"https://viajerolatam.com",
+  "logo":{"@type":"ImageObject","url":"https://viajerolatam.com/logo.png","width":600,"height":200},
+  "description":"Comparador de seguros de viaje para latinoamericanos que viajan a España, Europa y EEUU. Gratis, en español, sin letra pequeña.",
+  "areaServed":["CO","MX","AR","VE","PE","CL","EC","BO"],
+  "serviceType":"Comparador de seguros de viaje",
+  "foundingDate":"2026",
+  "inLanguage":"es-CO",
+  "contactPoint":{"@type":"ContactPoint","contactType":"customer support","availableLanguage":"Spanish"},
+  "sameAs":["https://viajerolatam.com"]
+}
+</script>
+<style>@font-face{font-display:swap}</style>
 </head>
 <body>
 <!-- ═══ MOBILE NAV SYSTEM ═══ -->
