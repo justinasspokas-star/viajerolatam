@@ -402,21 +402,6 @@ footer{background:var(--navy);padding:40px 5% 24px;margin-top:48px}
   gtag('js', new Date());
   gtag('config', 'G-P1Q2TSMVNJ');
 </script>
-<style id="travel-bg">
-.travel-icons{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1}
-.travel-icons svg{position:absolute;fill:none;stroke:rgba(255,255,255,0.18);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
-.hero-inner,.hero-inner-wrap{position:relative;z-index:2}
-@keyframes vl-float{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-14px) rotate(4deg)}}
-@keyframes vl-float2{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-10px) rotate(-3deg)}}
-@keyframes vl-float3{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-.ti-p1{animation:vl-float 9s ease-in-out infinite}
-.ti-p2{animation:vl-float2 13s ease-in-out infinite 2s}
-.ti-p3{animation:vl-float 17s ease-in-out infinite 5s}
-.ti-pass{animation:vl-float2 11s ease-in-out infinite 1s}
-.ti-globe{animation:vl-float3 14s ease-in-out infinite 3s}
-.ti-suit{animation:vl-float2 16s ease-in-out infinite 4s}
-.ti-pin{animation:vl-float 12s ease-in-out infinite 6s}
-</style>
 <style>@font-face{font-display:swap}</style>
 <style id="nav-fix">
 nav{background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-bottom:1px solid #E4EDF5;padding:0 5%;height:68px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
@@ -428,6 +413,30 @@ nav img{height:58px!important;width:auto!important;display:block!important}
 .nav-links a:hover{color:#0B1F3A}
 .nav-cta{background:#0B1F3A!important;color:#fff!important;padding:9px 20px!important;border-radius:50px!important;font-weight:600!important}
 @media(max-width:768px){nav{height:auto!important;min-height:64px!important;padding:10px 4%!important}nav .logo img{height:44px!important;max-height:44px!important}}
+</style>
+<style id="travel-bg">
+/* Hero travel icons layer */
+.travel-icons{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1}
+.travel-icons svg{position:absolute;fill:none;stroke-linecap:round;stroke-linejoin:round}
+/* Full-page canvas layer */
+#travel-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:.55}
+body{position:relative}
+/* Keyframes */
+@keyframes vl-float{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-16px) rotate(5deg)}}
+@keyframes vl-float2{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-10px) rotate(-4deg)}}
+@keyframes vl-float3{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-12px) rotate(3deg)}}
+@keyframes vl-spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+@keyframes vl-pulse{0%,100%{opacity:.18}50%{opacity:.32}}
+.ti-fly{animation:vl-float 8s ease-in-out infinite}
+.ti-fly2{animation:vl-float2 12s ease-in-out infinite 2s}
+.ti-fly3{animation:vl-float 16s ease-in-out infinite 5s}
+.ti-pass{animation:vl-float2 10s ease-in-out infinite 1s}
+.ti-globe{animation:vl-spin 40s linear infinite}
+.ti-suit{animation:vl-float3 14s ease-in-out infinite 3s}
+.ti-pin{animation:vl-float 11s ease-in-out infinite 6s}
+.ti-compass{animation:vl-float2 13s ease-in-out infinite 4s}
+.ti-stamp{animation:vl-float 9s ease-in-out infinite 7s}
+.ti-ticket{animation:vl-float2 15s ease-in-out infinite 2s}
 </style>
 </head>
 <body>
@@ -516,54 +525,274 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
 
 <div class="hero">
 <div class="travel-icons" aria-hidden="true">
-  <!-- ✈ Plane large - top right -->
-  <svg class="ti-p1" width="90" height="90" viewBox="0 0 24 24" style="top:8%;right:6%">
-    <path d="M22 16.5V15l-9-5.5V3a1.5 1.5 0 0 0-3 0v6.5L1 15v1.5l9-2.75V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-6.25z"/>
+
+  <!-- ✈ PLANE 1 — large, detailed, top right -->
+  <svg class="ti-fly" width="100" height="100" viewBox="0 0 48 48"
+       style="top:7%;right:5%;stroke:rgba(255,255,255,.2);stroke-width:1.2;fill:rgba(255,255,255,.06)">
+    <path d="M44 20v-3L28 8V4a4 4 0 0 0-8 0v4L4 17v3l16-4v10l-4 3v4l8-2 8 2v-4l-4-3V16z"/>
+    <line x1="8" y1="38" x2="40" y2="38" stroke-dasharray="3,4"/>
+    <circle cx="24" cy="40" r="1.5" fill="rgba(255,255,255,.15)"/>
   </svg>
-  <!-- ✈ Plane medium - left -->
-  <svg class="ti-p2" width="58" height="58" viewBox="0 0 24 24" style="top:50%;left:3%;transform:rotate(40deg)">
-    <path d="M22 16.5V15l-9-5.5V3a1.5 1.5 0 0 0-3 0v6.5L1 15v1.5l9-2.75V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-6.25z"/>
+
+  <!-- ✈ PLANE 2 — medium, left mid -->
+  <svg class="ti-fly2" width="72" height="72" viewBox="0 0 48 48"
+       style="top:48%;left:3%;transform:rotate(35deg);stroke:rgba(255,255,255,.15);stroke-width:1.2;fill:rgba(255,255,255,.05)">
+    <path d="M44 20v-3L28 8V4a4 4 0 0 0-8 0v4L4 17v3l16-4v10l-4 3v4l8-2 8 2v-4l-4-3V16z"/>
   </svg>
-  <!-- ✈ Plane small - bottom right -->
-  <svg class="ti-p3" width="44" height="44" viewBox="0 0 24 24" style="bottom:12%;right:25%;transform:rotate(-25deg)">
-    <path d="M22 16.5V15l-9-5.5V3a1.5 1.5 0 0 0-3 0v6.5L1 15v1.5l9-2.75V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-6.25z"/>
+
+  <!-- ✈ PLANE 3 — small, bottom right -->
+  <svg class="ti-fly3" width="52" height="52" viewBox="0 0 48 48"
+       style="bottom:12%;right:22%;transform:rotate(-18deg);stroke:rgba(255,255,255,.12);stroke-width:1.2;fill:rgba(255,255,255,.04)">
+    <path d="M44 20v-3L28 8V4a4 4 0 0 0-8 0v4L4 17v3l16-4v10l-4 3v4l8-2 8 2v-4l-4-3V16z"/>
   </svg>
-  <!-- 📘 Passport - top left -->
-  <svg class="ti-pass" width="52" height="52" viewBox="0 0 24 24" style="top:15%;left:8%">
-    <rect x="4" y="2" width="16" height="20" rx="2.5"/>
-    <circle cx="12" cy="11" r="3.5"/>
-    <path d="M12 7.5v1M12 14v1M8.5 11h1M14 11h1"/>
-    <path d="M7 5.5h10M7 17.5h10"/>
+
+  <!-- 📘 PASSPORT — detailed, top left -->
+  <svg class="ti-pass" width="58" height="58" viewBox="0 0 48 48"
+       style="top:14%;left:7%;stroke:rgba(255,255,255,.18);stroke-width:1.2;fill:rgba(255,255,255,.05)">
+    <rect x="8" y="4" width="32" height="40" rx="4"/>
+    <rect x="12" y="4" width="24" height="40" rx="2" fill="rgba(255,255,255,.03)"/>
+    <circle cx="24" cy="20" r="6"/>
+    <path d="M24 14v2M24 26v2M18 20h2M28 20h2"/>
+    <path d="M16 10h16M16 32h16M16 36h10"/>
+    <path d="M20 38l4-2 4 2"/>
   </svg>
-  <!-- 🌍 Globe - center top -->
-  <svg class="ti-globe" width="72" height="72" viewBox="0 0 24 24" style="top:5%;left:38%">
-    <circle cx="12" cy="12" r="10"/>
-    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-    <path d="M2 12h20M2 7.5h20M2 16.5h20"/>
+
+  <!-- 🌍 GLOBE — spinning, center top -->
+  <svg class="ti-globe" width="76" height="76" viewBox="0 0 48 48"
+       style="top:5%;left:36%;stroke:rgba(255,255,255,.16);stroke-width:1.1;fill:rgba(255,255,255,.04)">
+    <circle cx="24" cy="24" r="20"/>
+    <ellipse cx="24" cy="24" rx="8" ry="20"/>
+    <ellipse cx="24" cy="24" rx="20" ry="8"/>
+    <path d="M4 24h40M24 4v40"/>
+    <path d="M8 14h32M8 34h32"/>
   </svg>
-  <!-- 🧳 Suitcase - right mid -->
-  <svg class="ti-suit" width="54" height="54" viewBox="0 0 24 24" style="top:60%;right:8%">
-    <rect x="2" y="7" width="20" height="14" rx="2"/>
-    <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
-    <line x1="8" y1="14" x2="16" y2="14"/>
-    <line x1="12" y1="11" x2="12" y2="17"/>
+
+  <!-- 🧳 SUITCASE — detailed, right mid -->
+  <svg class="ti-suit" width="60" height="60" viewBox="0 0 48 48"
+       style="top:58%;right:7%;stroke:rgba(255,255,255,.17);stroke-width:1.2;fill:rgba(255,255,255,.05)">
+    <rect x="6" y="16" width="36" height="26" rx="4"/>
+    <path d="M18 16v-4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v4"/>
+    <line x1="6" y1="28" x2="42" y2="28"/>
+    <line x1="22" y1="24" x2="22" y2="32"/>
+    <line x1="26" y1="24" x2="26" y2="32"/>
+    <rect x="10" y="34" width="6" height="4" rx="1" fill="rgba(255,255,255,.08)"/>
+    <rect x="32" y="34" width="6" height="4" rx="1" fill="rgba(255,255,255,.08)"/>
+    <circle cx="24" cy="28" r="2"/>
   </svg>
-  <!-- 📍 Pin - bottom left -->
-  <svg class="ti-pin" width="46" height="46" viewBox="0 0 24 24" style="bottom:18%;left:15%">
-    <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/>
-    <circle cx="12" cy="10" r="3"/>
+
+  <!-- 📍 PIN — bottom left -->
+  <svg class="ti-pin" width="52" height="52" viewBox="0 0 48 48"
+       style="bottom:18%;left:12%;stroke:rgba(255,255,255,.16);stroke-width:1.2;fill:rgba(255,255,255,.05)">
+    <path d="M24 4C16.27 4 10 10.27 10 18c0 10.5 14 26 14 26S38 28.5 38 18C38 10.27 31.73 4 24 4z"/>
+    <circle cx="24" cy="18" r="5"/>
+    <circle cx="24" cy="18" r="2" fill="rgba(255,255,255,.15)"/>
   </svg>
-  <!-- 🧭 Compass - right top -->
-  <svg class="ti-pass" width="50" height="50" viewBox="0 0 24 24" style="top:20%;right:20%">
-    <circle cx="12" cy="12" r="10"/>
-    <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+
+  <!-- 🧭 COMPASS — top right mid -->
+  <svg class="ti-compass" width="56" height="56" viewBox="0 0 48 48"
+       style="top:20%;right:18%;stroke:rgba(255,255,255,.15);stroke-width:1.2;fill:rgba(255,255,255,.04)">
+    <circle cx="24" cy="24" r="20"/>
+    <circle cx="24" cy="24" r="2" fill="rgba(255,255,255,.2)"/>
+    <polygon points="24,6 28,24 24,22 20,24" fill="rgba(255,255,255,.15)"/>
+    <polygon points="24,42 20,24 24,26 28,24" fill="rgba(255,255,255,.08)"/>
+    <line x1="4" y1="24" x2="44" y2="24"/>
+    <line x1="24" y1="4" x2="24" y2="44" stroke-dasharray="2,6"/>
   </svg>
-  <!-- Flight path dashes -->
-  <svg style="position:absolute;top:0;left:0;width:100%;height:100%;opacity:0.10" viewBox="0 0 1400 500" preserveAspectRatio="none">
-    <path d="M-100 380 Q 300 80 700 240 Q 1000 380 1500 120" stroke="#fff" stroke-width="1.5" stroke-dasharray="10,16" fill="none"/>
-    <path d="M-100 180 Q 400 420 800 160 Q 1100 20 1500 280" stroke="#fff" stroke-width="1" stroke-dasharray="7,18" fill="none"/>
+
+  <!-- 🎫 TICKET — bottom center -->
+  <svg class="ti-ticket" width="66" height="40" viewBox="0 0 66 40"
+       style="bottom:22%;right:35%;stroke:rgba(255,255,255,.15);stroke-width:1.2;fill:rgba(255,255,255,.04)">
+    <rect x="2" y="6" width="62" height="28" rx="4"/>
+    <line x1="18" y1="6" x2="18" y2="34" stroke-dasharray="3,3"/>
+    <line x1="48" y1="6" x2="48" y2="34" stroke-dasharray="3,3"/>
+    <circle cx="2" cy="20" r="5" fill="#0B1F3A"/>
+    <circle cx="64" cy="20" r="5" fill="#0B1F3A"/>
+    <line x1="22" y1="14" x2="44" y2="14"/>
+    <line x1="22" y1="20" x2="44" y2="20"/>
+    <line x1="22" y1="26" x2="34" y2="26"/>
+    <circle cx="9" cy="20" r="2" fill="rgba(255,255,255,.15)"/>
+    <circle cx="57" cy="20" r="2" fill="rgba(255,255,255,.15)"/>
   </svg>
+
+  <!-- 🪙 STAMP — top center left -->
+  <svg class="ti-stamp" width="54" height="54" viewBox="0 0 48 48"
+       style="top:10%;left:22%;stroke:rgba(255,255,255,.13);stroke-width:1.2;fill:rgba(255,255,255,.04)">
+    <rect x="6" y="6" width="36" height="36" rx="3"/>
+    <rect x="10" y="10" width="28" height="28" rx="2"/>
+    <circle cx="24" cy="22" r="6"/>
+    <path d="M16 32h16M18 36h12"/>
+    <path d="M6 6l4 4M42 6l-4 4M6 42l4-4M42 42l-4-4"/>
+  </svg>
+
+  <!-- Flight route dashes -->
+  <svg style="position:absolute;top:0;left:0;width:100%;height:100%;opacity:.09"
+       viewBox="0 0 1400 600" preserveAspectRatio="none">
+    <path d="M-80 480 Q 200 120 560 300 Q 860 460 1200 160 Q 1350 80 1500 200"
+          stroke="white" stroke-width="1.5" stroke-dasharray="12,18" fill="none"/>
+    <path d="M-80 200 Q 350 500 700 220 Q 1000 60 1500 350"
+          stroke="white" stroke-width="1" stroke-dasharray="8,20" fill="none"/>
+    <path d="M200 -20 Q 400 300 600 180 Q 800 60 1100 400"
+          stroke="white" stroke-width=".8" stroke-dasharray="5,16" fill="none"/>
+    <!-- Small dot markers on routes -->
+    <circle cx="200" cy="380" r="3" fill="rgba(0,196,161,.4)"/>
+    <circle cx="560" cy="300" r="3" fill="rgba(0,196,161,.4)"/>
+    <circle cx="860" cy="350" r="3" fill="rgba(0,196,161,.3)"/>
+    <circle cx="1200" cy="160" r="3" fill="rgba(0,196,161,.4)"/>
+    <circle cx="350" cy="460" r="2" fill="rgba(255,255,255,.3)"/>
+    <circle cx="700" cy="220" r="2" fill="rgba(255,255,255,.3)"/>
+    <circle cx="1000" cy="100" r="2" fill="rgba(255,255,255,.3)"/>
+  </svg>
+
 </div>
+
+<!-- FULL-PAGE CANVAS ANIMATION -->
+<canvas id="travel-canvas" aria-hidden="true"></canvas>
+<script id="travel-canvas-js">
+(function(){
+  var c = document.getElementById('travel-canvas');
+  if(!c) return;
+  var ctx = c.getContext('2d');
+  var W, H, t = 0;
+
+  function resize(){
+    W = c.width = window.innerWidth;
+    H = c.height = document.body.scrollHeight || window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', function(){ resize(); });
+
+  // Floating micro-icons across full page
+  var icons = [];
+  var types = ['plane','passport','pin','star','dot'];
+  var count = Math.min(28, Math.floor(window.innerWidth / 50));
+  for(var i = 0; i < count; i++){
+    icons.push({
+      x: Math.random(),
+      y: Math.random(),
+      type: types[Math.floor(Math.random()*types.length)],
+      size: Math.random() * 10 + 6,
+      opacity: Math.random() * 0.1 + 0.04,
+      speed: Math.random() * 0.0003 + 0.0001,
+      floatAmp: Math.random() * 20 + 8,
+      floatSpeed: Math.random() * 0.015 + 0.008,
+      phase: Math.random() * Math.PI * 2,
+      rot: Math.random() * Math.PI * 2,
+      rotSpeed: (Math.random() - 0.5) * 0.005,
+    });
+  }
+
+  // Animated plane on flight path
+  var planePt = 0;
+  var pathPts = [
+    {x:0.05, y:0.6}, {cx:0.3, cy:0.15}, {x:0.55, y:0.35},
+  ];
+
+  function drawMiniPlane(px, py, ang, sz, op){
+    ctx.save();
+    ctx.translate(px, py); ctx.rotate(ang);
+    ctx.globalAlpha = op;
+    ctx.fillStyle = 'rgba(255,255,255,0.9)';
+    ctx.strokeStyle = 'rgba(255,255,255,0.5)';
+    ctx.lineWidth = 0.5;
+    ctx.beginPath();
+    ctx.moveTo(sz, 0); ctx.lineTo(-sz*.8, sz*.5); ctx.lineTo(-sz*.5, 0); ctx.lineTo(-sz*.8, -sz*.5);
+    ctx.closePath(); ctx.fill(); ctx.stroke();
+    // wings
+    ctx.beginPath();
+    ctx.moveTo(sz*.1, 0); ctx.lineTo(-sz*.4, -sz*.9); ctx.lineTo(-sz*.7, 0); ctx.closePath(); ctx.fill();
+    ctx.beginPath();
+    ctx.moveTo(sz*.1, 0); ctx.lineTo(-sz*.4, sz*.9); ctx.lineTo(-sz*.7, 0); ctx.closePath(); ctx.fill();
+    ctx.restore();
+  }
+
+  function drawMiniPassport(px, py, sz, op){
+    ctx.save(); ctx.translate(px, py); ctx.globalAlpha = op;
+    ctx.fillStyle = 'rgba(255,255,255,0.08)';
+    ctx.strokeStyle = 'rgba(255,255,255,0.4)'; ctx.lineWidth = 0.8;
+    ctx.beginPath(); ctx.roundRect(-sz*.4, -sz*.56, sz*.8, sz*1.12, sz*.08); ctx.fill(); ctx.stroke();
+    ctx.beginPath(); ctx.arc(0, -sz*.1, sz*.22, 0, Math.PI*2); ctx.stroke();
+    ctx.restore();
+  }
+
+  function drawMiniPin(px, py, sz, op){
+    ctx.save(); ctx.translate(px, py); ctx.globalAlpha = op;
+    ctx.fillStyle = 'rgba(255,255,255,0.08)';
+    ctx.strokeStyle = 'rgba(255,255,255,0.4)'; ctx.lineWidth = 0.8;
+    ctx.beginPath();
+    ctx.arc(0, -sz*.3, sz*.5, 0, Math.PI*2);
+    ctx.fill(); ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(-sz*.4, -sz*.3); ctx.lineTo(0, sz*.7); ctx.lineTo(sz*.4, -sz*.3);
+    ctx.fill(); ctx.stroke();
+    ctx.restore();
+  }
+
+  function draw(){
+    ctx.clearRect(0, 0, W, H);
+
+    // Floating micro icons
+    icons.forEach(function(ic){
+      ic.y -= ic.speed;
+      if(ic.y < -0.05) ic.y = 1.05;
+      ic.rot += ic.rotSpeed;
+      var px = ic.x * W;
+      var py = ic.y * H + Math.sin(t * ic.floatSpeed + ic.phase) * ic.floatAmp;
+
+      ctx.save(); ctx.rotate(ic.rot);
+      if(ic.type === 'plane') drawMiniPlane(px, py, ic.rot, ic.size, ic.opacity);
+      else if(ic.type === 'passport') drawMiniPassport(px, py, ic.size, ic.opacity);
+      else if(ic.type === 'pin') drawMiniPin(px, py, ic.size, ic.opacity);
+      else if(ic.type === 'star'){
+        ctx.save(); ctx.translate(px, py); ctx.globalAlpha = ic.opacity * (Math.sin(t*.04 + ic.phase) * .4 + .6);
+        ctx.fillStyle = 'rgba(255,255,255,.9)';
+        ctx.beginPath(); ctx.arc(0, 0, ic.size*.3, 0, Math.PI*2); ctx.fill();
+        ctx.restore();
+      } else {
+        ctx.save(); ctx.translate(px, py); ctx.globalAlpha = ic.opacity * .6;
+        ctx.fillStyle = 'rgba(255,255,255,.8)';
+        ctx.beginPath(); ctx.arc(0, 0, ic.size*.25, 0, Math.PI*2); ctx.fill();
+        ctx.restore();
+      }
+      ctx.restore();
+    });
+
+    // Main animated plane on bezier path
+    planePt = (planePt + 0.0018) % 1;
+    var ax=W*.05, ay=H*.25, bx=W*.95, by=H*.15;
+    var cpx=W*.5, cpy=H*.05;
+    var mt=1-planePt;
+    var ppx=mt*mt*ax+2*mt*planePt*cpx+planePt*planePt*bx;
+    var ppy=mt*mt*ay+2*mt*planePt*cpy+planePt*planePt*by;
+    var pt2=Math.min(planePt+.015,1); var mt2=1-pt2;
+    var ppx2=mt2*mt2*ax+2*mt2*pt2*cpx+pt2*pt2*bx;
+    var ppy2=mt2*mt2*ay+2*mt2*pt2*cpy+pt2*pt2*by;
+    var ang=Math.atan2(ppy2-ppy,ppx2-ppx);
+
+    // Trail
+    for(var tr=1;tr<=16;tr++){
+      var tp=Math.max(0,planePt-tr*.006);var mtp=1-tp;
+      var tx=mtp*mtp*ax+2*mtp*tp*cpx+tp*tp*bx;
+      var ty=mtp*mtp*ay+2*mtp*tp*cpy+tp*tp*by;
+      ctx.beginPath();ctx.arc(tx,ty,1.5,0,Math.PI*2);
+      ctx.fillStyle='rgba(0,196,161,'+(1-tr/16)*.25+')';ctx.fill();
+    }
+    drawMiniPlane(ppx, ppy, ang, 9, 0.12);
+
+    // Second plane, different path
+    var p2=(planePt+.5)%1;
+    var ax2=W*.02,ay2=H*.75,bx2=W*.98,by2=H*.65;
+    var cpx2=W*.5,cpy2=H*.55;
+    var mt3=1-p2;
+    var px2=mt3*mt3*ax2+2*mt3*p2*cpx2+p2*p2*bx2;
+    var py2=mt3*mt3*ay2+2*mt3*p2*cpy2+p2*p2*by2;
+    drawMiniPlane(px2, py2, 0.05, 7, 0.07);
+
+    t++;
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+</script>
 
 <div class="hero-inner">
     <div class="hero-eyebrow">📚 Guías actualizadas mayo 2026</div>
