@@ -357,7 +357,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
     <div class="search-pill">
       <div><div class="pill-label">Viajeros</div><div class="pill-val">1 adulto</div></div>
     </div>
-    <button class="pill-btn" style="margin-left:auto">
+    <button class="pill-btn" style="margin-left:auto" onclick="toggleEditPanel()">
       <svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
       Editar búsqueda
     </button>
@@ -369,6 +369,53 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
 </div>
 
 <!-- PAGE -->
+
+<div id="edit-panel" style="display:none;background:#fff;border-bottom:1px solid #E4EDF5;padding:20px 5%;position:relative;z-index:90">
+  <div style="max-width:900px;margin:0 auto">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+      <h3 style="font-size:15px;font-weight:700;color:#0B1F3A">Editar búsqueda</h3>
+      <button onclick="toggleEditPanel()" style="background:none;border:none;cursor:pointer;font-size:20px;color:#4A647E;padding:4px">✕</button>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;align-items:end">
+      <div>
+        <label style="font-size:11px;font-weight:700;color:#8FA4B8;text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:6px">Voy desde</label>
+        <select id="ep-origen" style="width:100%;padding:10px 12px;border:1.5px solid #E4EDF5;border-radius:10px;font-family:inherit;font-size:14px;color:#0B1F3A;background:#fff;outline:none">
+          <option value="colombia">🇨🇴 Colombia</option>
+          <option value="mexico">🇲🇽 México</option>
+          <option value="argentina">🇦🇷 Argentina</option>
+          <option value="venezuela">🇻🇪 Venezuela</option>
+          <option value="peru">🇵🇪 Perú</option>
+          <option value="chile">🇨🇱 Chile</option>
+        </select>
+      </div>
+      <div>
+        <label style="font-size:11px;font-weight:700;color:#8FA4B8;text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:6px">Destino</label>
+        <select id="ep-destino" style="width:100%;padding:10px 12px;border:1.5px solid #E4EDF5;border-radius:10px;font-family:inherit;font-size:14px;color:#0B1F3A;background:#fff;outline:none">
+          <option value="europa">🇪🇺 España / Schengen</option>
+          <option value="eeuu">🇺🇸 EEUU</option>
+          <option value="mundial">🌍 Mundial</option>
+        </select>
+      </div>
+      <div>
+        <label style="font-size:11px;font-weight:700;color:#8FA4B8;text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:6px">Fechas (días)</label>
+        <input type="number" id="ep-dias" value="15" min="1" max="365" style="width:100%;padding:10px 12px;border:1.5px solid #E4EDF5;border-radius:10px;font-family:inherit;font-size:14px;color:#0B1F3A;background:#fff;outline:none">
+      </div>
+      <div>
+        <label style="font-size:11px;font-weight:700;color:#8FA4B8;text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:6px">Viajeros</label>
+        <select id="ep-viajeros" style="width:100%;padding:10px 12px;border:1.5px solid #E4EDF5;border-radius:10px;font-family:inherit;font-size:14px;color:#0B1F3A;background:#fff;outline:none">
+          <option value="1">1 persona</option>
+          <option value="2">2 personas</option>
+          <option value="3">3 personas</option>
+          <option value="4">4+ personas</option>
+        </select>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;margin-top:14px;justify-content:flex-end">
+      <button onclick="toggleEditPanel()" style="padding:10px 20px;border:1.5px solid #E4EDF5;border-radius:50px;background:#fff;font-family:inherit;font-size:13px;font-weight:600;color:#4A647E;cursor:pointer">Cancelar</button>
+      <button onclick="applyEditSearch()" style="padding:10px 24px;border:none;border-radius:50px;background:#00C4A1;font-family:inherit;font-size:13px;font-weight:700;color:#0B1F3A;cursor:pointer">Actualizar resultados →</button>
+    </div>
+  </div>
+</div>
 <div class="page">
 
   <!-- SIDEBAR -->
@@ -752,7 +799,7 @@ function contractClick(name, plan) {
     gtag('event', 'click_contratar', { affiliate: name, plan: plan, page: window.location.pathname });
   }
   window.open(url, '_blank', 'noopener');
-} para contratar "${plan}".\n\n(En producción, aquí iría el enlace de afiliado con tracking.)`)
+}".\n\n(En producción, aquí iría el enlace de afiliado con tracking.)`)
 }
 
 // Init slider style
@@ -761,6 +808,37 @@ function contractClick(name, plan) {
   const v = ((5-1)/(10-1)*100).toFixed(0);
   sl.style.setProperty('--val', v+'%');
 })();
+
+
+function toggleEditPanel(){
+  var p = document.getElementById('edit-panel');
+  if(!p) return;
+  var isOpen = p.style.display !== 'none';
+  p.style.display = isOpen ? 'none' : 'block';
+  if(!isOpen) p.scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+
+function applyEditSearch(){
+  var dias = parseInt(document.getElementById('ep-dias').value) || 15;
+  var dest = document.getElementById('ep-destino').value;
+  var viajeros = parseInt(document.getElementById('ep-viajeros').value) || 1;
+  
+  // Update pills display
+  var destLabels = {europa:'España / Schengen 🇪🇺', eeuu:'EEUU 🇺🇸', mundial:'Mundial 🌍'};
+  var pillVals = document.querySelectorAll('.pill-val');
+  if(pillVals[1]) pillVals[1].textContent = destLabels[dest] || dest;
+  if(pillVals[2]) pillVals[2].textContent = dias + ' días';
+  if(pillVals[3]) pillVals[3].textContent = viajeros + (viajeros===1?' adulto':' adultos');
+  
+  // Update prices based on days
+  DATA.forEach(function(d){
+    d.price = (d.priceDay * dias).toFixed(2) * 1;
+  });
+  
+  // Re-render with new dest filter
+  setDest(null, dest);
+  toggleEditPanel();
+}
 
 // Initial render
 render(sortData(DATA, 'recomendado'));
