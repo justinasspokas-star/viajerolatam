@@ -304,6 +304,118 @@ img, video, iframe, svg {
   .sb-row, .search-dates-row { grid-template-columns: 1fr !important; }
   #sticky-mob a { font-size: 14px !important; }
 }
+
+/* Home trust + SEO expansion */
+.home-trust-seo{
+  max-width:1120px;
+  margin:0 auto;
+  padding:34px 5% 76px;
+}
+.home-trust-card{
+  background:#fff;
+  border:1px solid #EAE3D5;
+  border-radius:28px;
+  padding:30px;
+  margin:22px 0;
+  box-shadow:0 14px 36px rgba(11,31,58,.05);
+}
+.home-trust-card h2{
+  font-family:'DM Serif Display', Georgia, serif;
+  font-size:clamp(30px,4vw,46px);
+  line-height:1.15;
+  color:#0B1F3A;
+  margin:0 0 14px;
+}
+.home-trust-card h3{
+  color:#0B1F3A;
+  font-size:22px;
+  margin:24px 0 8px;
+}
+.home-trust-card p,
+.home-trust-card li{
+  color:#4A647E;
+  line-height:1.75;
+}
+.home-trust-card ul{
+  padding-left:22px;
+  margin:12px 0 18px;
+}
+.home-trust-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+  margin:24px 0;
+}
+.home-trust-box{
+  background:#F5F0E8;
+  border:1px solid #EAE3D5;
+  border-radius:20px;
+  padding:18px;
+}
+.home-trust-box strong{
+  display:block;
+  color:#0B1F3A;
+  margin-bottom:6px;
+}
+.home-compare-strip{
+  background:linear-gradient(135deg,#0B1F3A,#1A3558);
+  color:#fff;
+  border-radius:28px;
+  padding:28px;
+  margin:28px 0;
+}
+.home-compare-strip h2{
+  color:#fff;
+  margin:0 0 10px;
+  font-family:'DM Serif Display', Georgia, serif;
+  font-size:clamp(30px,4vw,44px);
+}
+.home-compare-strip p{
+  color:rgba(255,255,255,.74);
+  margin-bottom:16px;
+}
+.home-compare-strip .coupon{
+  display:inline-flex;
+  background:#fff;
+  color:#0B1F3A;
+  border:1px dashed #00A989;
+  border-radius:12px;
+  padding:8px 12px;
+  font-weight:900;
+  margin:8px 0 16px;
+}
+.home-compare-strip .btn-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+}
+.home-compare-strip a{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:13px 20px;
+  border-radius:999px;
+  text-decoration:none!important;
+  font-weight:900;
+}
+.home-compare-strip .primary{
+  background:#00C4A1;
+  color:#0B1F3A!important;
+}
+.home-compare-strip .secondary{
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.22);
+  color:#fff!important;
+}
+@media(max-width:768px){
+  .home-trust-seo{padding:24px 16px 64px}
+  .home-trust-card{padding:22px;border-radius:22px}
+  .home-trust-grid{grid-template-columns:1fr}
+  .home-compare-strip{padding:22px;border-radius:22px}
+  .home-compare-strip .btn-row{display:grid;grid-template-columns:1fr}
+  .home-compare-strip a{width:100%}
+}
+
 </style>
 <!-- Travelpayouts Drive -->
 <script nowpocket data-noptimize="1" data-cfasync="false" data-wpfc-render="false" seraph-accel-crit="1" data-no-defer="1">
@@ -322,7 +434,7 @@ img, video, iframe, svg {
 
   <!-- SEO: Title & Description -->
   <title>Compara Seguros de Viaje para Latinoamericanos | ViajeroLatam</title>
-  <meta name="description" content="Compara seguros de viaje para viajeros latinoamericanos que viajan a España o Europa. Guías, comparativas y enlaces oficiales de partners.">
+  <meta name="description" content="Comparador y guía para viajeros latinoamericanos que viajan a España o Europa. Seguros de viaje, Visa Schengen, ETIAS, documentos y enlaces oficiales de partners.">
   <meta name="keywords" content="seguro de viaje latinoamericanos, seguro viaje Colombia España, seguro Schengen latinoamericanos, seguro médico Europa latinoamérica, comparador seguros viaje latam">
   <meta name="robots" content="index, follow">
   <meta name="author" content="ViajeroLatam">
@@ -339,7 +451,7 @@ img, video, iframe, svg {
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://viajerolatam.com/">
   <meta property="og:title" content="Compara Seguros de Viaje para Latinoamericanos — Europa y EEUU">
-  <meta property="og:description" content="Compara seguros de viaje para viajeros latinoamericanos que viajan a España o Europa. Guías, comparativas y enlaces oficiales de partners.">
+  <meta property="og:description" content="Comparador y guía para viajeros latinoamericanos que viajan a España o Europa. Seguros de viaje, Visa Schengen, ETIAS, documentos y enlaces oficiales de partners.">
   <meta property="og:image" content="https://viajerolatam.com/og-image.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -349,7 +461,7 @@ img, video, iframe, svg {
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Compara Seguros de Viaje para Latinoamericanos — ViajeroLatam">
-  <meta name="twitter:description" content="Compara seguros de viaje para viajeros latinoamericanos que viajan a España o Europa. Guías, comparativas y enlaces oficiales de partners.">
+  <meta name="twitter:description" content="Comparador y guía para viajeros latinoamericanos que viajan a España o Europa. Seguros de viaje, Visa Schengen, ETIAS, documentos y enlaces oficiales de partners.">
   <meta name="twitter:image" content="https://viajerolatam.com/og-image.jpg">
 
   <!-- Schema: WebSite + SearchAction -->
@@ -1532,6 +1644,51 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
 </section>
 
 <!-- FOOTER -->
+
+<section class="home-trust-seo">
+  <div class="home-trust-card">
+    <h2>ViajeroLatam: compara antes de viajar a España o Europa</h2>
+    <p>ViajeroLatam nace para ayudar a viajeros latinoamericanos a preparar viajes internacionales con información clara y práctica. El foco principal es la ruta Colombia → España y Colombia → Europa, porque muchos usuarios buscan entender qué seguro contratar, qué documentos revisar y cómo evitar errores antes de viajar.</p>
+    <p>No vendemos seguros directamente ni emitimos pólizas. Nuestro trabajo es ordenar información, explicar criterios importantes y enlazar a páginas oficiales de partners para que puedas revisar precio, cobertura y condiciones finales antes de contratar.</p>
+
+    <div class="home-trust-grid">
+      <div class="home-trust-box"><strong>Comparación clara</strong><p>Explicamos diferencias prácticas entre opciones como IATI e InterMundial.</p></div>
+      <div class="home-trust-box"><strong>Enfoque Latam</strong><p>Contenido pensado para viajeros de Colombia y Latinoamérica que viajan a España o Europa.</p></div>
+      <div class="home-trust-box"><strong>Transparencia</strong><p>Indicamos cuando puede existir comisión afiliada, sin coste adicional para el usuario.</p></div>
+    </div>
+
+    <h3>Cómo elegimos qué destacar</h3>
+    <p>Priorizamos opciones con contratación online, información entendible, asistencia para viajes internacionales y buen encaje con rutas hacia España o zona Schengen. No intentamos mostrar todas las compañías del mercado: preferimos trabajar con una selección pequeña y explicar mejor qué debe revisar el viajero.</p>
+    <p>Antes de contratar, recomendamos comprobar siempre las fechas, destino cubierto, cobertura médica, repatriación, franquicia, exclusiones y documento PDF de la póliza. El precio importa, pero no debería ser el único criterio.</p>
+  </div>
+
+  <div class="home-compare-strip">
+    <h2>Comparativa principal: Colombia → España</h2>
+    <p>Empieza por la comparativa de seguros de viaje para Colombia a España. Revisa IATI e InterMundial, compara coberturas y confirma el precio final en la web oficial.</p>
+    <div class="coupon">Cupón InterMundial: VIAJEROLATAM</div>
+    <div class="btn-row">
+      <a class="primary" href="/comparar-seguros-viaje-colombia-espana/">Ver comparativa →</a>
+      <a class="secondary" href="https://www.iatiseguros.com?r=84208681926165" target="_blank" rel="nofollow sponsored noopener">IATI →</a>
+      <a class="secondary" href="https://www.intermundial.es/afiliados/seguros-de-viaje-recomendado?utm_source=Affiliates&utm_medium=Affiliates&utm_campaign=General&utm_term=kbnnqvpvcy490&utm_content=kbnnqvpvcy490" target="_blank" rel="nofollow sponsored noopener">InterMundial →</a>
+    </div>
+  </div>
+
+  <div class="home-trust-card">
+    <h2>Qué puedes hacer en ViajeroLatam</h2>
+    <ul>
+      <li>Comparar seguros para viajar de Colombia a España.</li>
+      <li>Revisar guías sobre visa Schengen, ETIAS, SES/EES y documentos de entrada.</li>
+      <li>Leer consejos para salidas desde Bogotá, Medellín o Cali.</li>
+      <li>Entender qué revisar si viajas a varios países europeos.</li>
+      <li>Acceder a enlaces oficiales de partners para contratar directamente.</li>
+    </ul>
+
+    <h3>Información orientativa, decisión final en la web oficial</h3>
+    <p>La información publicada en ViajeroLatam es orientativa. Las coberturas, precios, requisitos y condiciones pueden cambiar. Por eso, antes de pagar cualquier seguro o servicio, revisa siempre la información final en la web oficial del proveedor.</p>
+    <p>Podemos recibir una comisión si contratas desde algunos enlaces afiliados. Esto no cambia el precio para ti y nos ayuda a mantener el proyecto gratuito.</p>
+  </div>
+</section>
+
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
