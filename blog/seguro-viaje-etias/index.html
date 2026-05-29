@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<link rel="preload" as="image" href="/hero-bg.jpg" fetchpriority="high">
+<link rel="preload" as="image" href="/hero-bg.webp" type="image/webp" fetchpriority="high">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>¿Necesito seguro de viaje con el ETIAS? — Guía com | ViajeroLatam</title>
@@ -175,6 +175,13 @@ footer{background:var(--navy);color:rgba(255,255,255,.45);padding:48px 5% 24px}
 .vl-soft-cta .primary{background:#00C4A1;color:#0B1F3A!important}
 .vl-soft-cta .secondary{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);color:#fff!important}
 
+</style>
+<style id="webp-hero">
+@supports (background-image: url("data:image/webp,")) {
+  .hero, section.hero, header.hero, [style*="hero-bg.jpg"] {
+    background-image: url('/hero-bg.webp') !important;
+  }
+}
 </style>
 </head>
 <body>

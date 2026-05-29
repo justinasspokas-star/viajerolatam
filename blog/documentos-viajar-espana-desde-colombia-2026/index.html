@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<link rel="preload" as="image" href="/hero-bg.jpg" fetchpriority="high">
+<link rel="preload" as="image" href="/hero-bg.webp" type="image/webp" fetchpriority="high">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Documentos para viajar a España desde Colombia 202 | ViajeroLatam</title>
@@ -206,6 +206,13 @@ footer{background:var(--navy);color:rgba(255,255,255,0.45);padding:48px 5% 24px}
   font-weight:900;
 }
 
+</style>
+<style id="webp-hero">
+@supports (background-image: url("data:image/webp,")) {
+  .hero, section.hero, header.hero, [style*="hero-bg.jpg"] {
+    background-image: url('/hero-bg.webp') !important;
+  }
+}
 </style>
 </head>
 <body>

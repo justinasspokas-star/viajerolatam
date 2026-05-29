@@ -190,6 +190,13 @@ footer{background:var(--navy);color:rgba(255,255,255,0.45);padding:48px 5% 24px}
 </style>
 
 <style id="no-travel-icons">.travel-icons,#travel-canvas,canvas{display:none!important}</style>
+<style id="webp-hero">
+@supports (background-image: url("data:image/webp,")) {
+  .hero, section.hero, header.hero, [style*="hero-bg.jpg"] {
+    background-image: url('/hero-bg.webp') !important;
+  }
+}
+</style>
 </head>
 <body>
 
