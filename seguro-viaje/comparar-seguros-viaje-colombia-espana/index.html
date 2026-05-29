@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+<style id="vl-responsive">
+/* ================================================
+   VIAJEROLATAM — RESPONSIVE CSS (definitive)
+   Works: mobile portrait, landscape, tablet, desktop
+   ================================================ */
+
+/* 1. PREVENT OVERFLOW ALWAYS */
+html { overflow-x: hidden; }
+body { overflow-x: hidden; max-width: 100vw; }
+*, *::before, *::after {
+  box-sizing: border-box;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+img, video, iframe, svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* 2. MOBILE — 768px */
+@media screen and (max-width: 768px) {
+
+  /* NAV */
+  .nav-links { display: none !important; }
+  .mob-btn, #mob-btn { display: flex !important; }
+  nav { padding: 0 16px !important; height: 62px !important; }
+  nav img, .logo img, .brand-logo img {
+    height: 42px !important;
+    width: auto !important;
+    max-width: 180px !important;
+  }
+
+  /* HERO */
+  .hero, section.hero, header.hero {
+    padding: 68px 16px 32px !important;
+    min-height: auto !important;
+    text-align: center !important;
+    overflow: hidden !important;
+  }
+  .hero-inner, .hero-content, .hero-text {
+    position: relative !important;
+    z-index: 5 !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+  .hero h1, h1 {
+    font-size: clamp(22px, 7vw, 34px) !important;
+    line-height: 1.2 !important;
+  }
+  .hero p, .hero-sub { font-size: 14px !important; }
+  .travel-icons, #travel-canvas, canvas { display: none !important; }
+  .hcard, .hero-card, aside.hero-card { display: none !important; }
+
+  /* BREADCRUMB */
+  .breadcrumb-bar, .bc, .breadcrumb {
+    padding: 8px 16px !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+  }
+
+  /* PAGE WRAPPER */
+  .page, .wrap, .inner, .container,
+  .article-inner, .content-wrap {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 16px !important;
+    margin: 0 !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  /* SIDEBAR — always hide */
+  .sidebar, .sticky-sidebar, aside,
+  .article-aside, [class*="sidebar"] {
+    display: none !important;
+  }
+
+  /* SECTIONS */
+  .section, section {
+    padding: 20px 16px !important;
+    border-radius: 12px !important;
+    margin-bottom: 14px !important;
+    overflow: hidden !important;
+  }
+
+  /* SECTION HEADERS with icon */
+  .sec-head, [class*="sec-head"], [class*="section-head"] {
+    padding: 12px 14px !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    gap: 8px !important;
+    min-width: 0 !important;
+  }
+  .sec-title, .sec-head h2, .sec-head h3,
+  [class*="sec-title"] {
+    font-size: 14px !important;
+    line-height: 1.35 !important;
+    word-break: break-word !important;
+    flex: 1 !important;
+    min-width: 0 !important;
+  }
+  .sec-icon {
+    flex-shrink: 0 !important;
+    width: 28px !important;
+    height: 28px !important;
+  }
+  .sec-body { padding: 14px !important; }
+
+  /* STEPS / PASOS */
+  .step-row, .paso {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 10px !important;
+    padding: 12px 0 !important;
+    align-items: flex-start !important;
+    min-width: 0 !important;
+  }
+  .step-num, .paso-num {
+    flex-shrink: 0 !important;
+    width: 26px !important;
+    height: 26px !important;
+    min-width: 26px !important;
+    font-size: 12px !important;
+  }
+  .step-title, .paso-title {
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    line-height: 1.3 !important;
+    min-width: 0 !important;
+  }
+  .step-desc, .paso-desc {
+    font-size: 12px !important;
+    line-height: 1.5 !important;
+  }
+
+  /* H2 / H3 */
+  h2, .section-title, .sec-title {
+    font-size: clamp(18px, 5.5vw, 24px) !important;
+    line-height: 1.25 !important;
+    word-break: break-word !important;
+  }
+  h3 { font-size: clamp(15px, 5vw, 19px) !important; }
+  h4 { font-size: 14px !important; }
+  p, li { font-size: 13px !important; line-height: 1.6 !important; }
+
+  /* GRIDS */
+  [class*="grid"], [class*="Grid"] {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+  .req-grid, .sch-grid, .inc-grid, .steps-grid,
+  .related-grid, .cards-grid, .blog-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .etias-vs, .vs-grid { grid-template-columns: 1fr !important; }
+  .footer-grid, .fg { grid-template-columns: 1fr 1fr !important; gap: 14px !important; }
+  .footer-grid > *:first-child, .fl { grid-column: 1 / -1 !important; }
+
+  /* TABLES */
+  table, .price-table, .comp-table {
+    display: block !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    font-size: 12px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  td, th {
+    padding: 8px !important;
+    font-size: 12px !important;
+    min-width: 60px !important;
+    word-break: break-word !important;
+    white-space: normal !important;
+  }
+
+  /* BUTTONS */
+  .btn-row, .cta-row, .hero-cta, .btn-group {
+    flex-direction: column !important;
+    gap: 10px !important;
+    width: 100% !important;
+  }
+  .btn, .btn-cta, .btn-teal, .btn-primary,
+  .btn-secondary, a.btn, button.btn,
+  .leer-btn, .cta-btn, .sb-btn {
+    width: 100% !important;
+    text-align: center !important;
+    justify-content: center !important;
+    padding: 12px 16px !important;
+    font-size: 14px !important;
+  }
+
+  /* SEARCH */
+  .search-box, .sb-inner {
+    padding: 14px !important;
+    border-radius: 14px !important;
+  }
+  .sb-row, .search-dates-row {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+  }
+  .sb-field { min-width: 0 !important; }
+  .sb-full, .sb-btn { grid-column: 1 / -1 !important; }
+
+  /* COUNTRY CHIPS */
+  .pais-tags, .country-tags, [class*="pais-chip"],
+  [class*="country-chip"], [class*="flag-"] {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+    width: 100% !important;
+  }
+
+  /* INFO BOXES */
+  .info-box, .tip-box, .alert-box, .cta-banner,
+  [class*="-box"], [class*="-banner"] {
+    flex-direction: column !important;
+    padding: 14px !important;
+    width: 100% !important;
+    border-radius: 10px !important;
+  }
+
+  /* BLOG CARDS */
+  .blog-card, .article-card, .featured {
+    padding: 14px !important;
+    border-radius: 12px !important;
+  }
+  .featured .btn, .leer-btn { width: 100% !important; margin-top: 10px !important; }
+
+  /* CALCULATOR */
+  .calc-results { grid-template-columns: 1fr !important; }
+  .dias-selector { flex-wrap: wrap !important; gap: 6px !important; }
+  .dias-btn { font-size: 12px !important; padding: 6px 10px !important; }
+
+  /* NEWSLETTER */
+  .nl-form { flex-direction: column !important; }
+  .nl-input, .nl-btn { width: 100% !important; }
+
+  /* TRUST STRIP */
+  .trust, .hero-badges, [class*="trust-"] {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 8px !important;
+  }
+
+  /* STICKY + BODY PADDING */
+  #sticky-mob { display: block !important; }
+  body { padding-bottom: 84px !important; }
+
+  /* EXIT POPUP */
+  #exit-box {
+    padding: 24px 16px !important;
+    margin: 12px !important;
+    max-width: calc(100vw - 24px) !important;
+  }
+
+  /* FIX INLINE FIXED WIDTHS */
+  [style*="width:900px"], [style*="width: 900px"],
+  [style*="width:800px"], [style*="width: 800px"],
+  [style*="width:700px"], [style*="width: 700px"],
+  [style*="width:600px"], [style*="width: 600px"],
+  [style*="width:500px"], [style*="width: 500px"],
+  [style*="min-width:769px"], [style*="min-width: 769px"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: unset !important;
+  }
+
+  /* LANDSCAPE MOBILE */
+  @media screen and (orientation: landscape) and (max-height: 500px) {
+    .hero, section.hero { padding: 52px 16px 20px !important; min-height: auto !important; }
+    h1 { font-size: 22px !important; }
+    #sticky-mob { display: none !important; }
+    body { padding-bottom: 0 !important; }
+  }
+}
+
+/* 3. TABLET — 481px to 1024px */
+@media screen and (min-width: 481px) and (max-width: 1024px) {
+  .page, .wrap, .inner, .container {
+    padding: 24px 20px !important;
+    max-width: 100% !important;
+  }
+  [class*="grid-4"], [class*="grid-3"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .footer-grid { grid-template-columns: 1fr 1fr !important; }
+  h1 { font-size: clamp(28px, 5vw, 48px) !important; }
+  h2 { font-size: clamp(22px, 4vw, 32px) !important; }
+}
+
+/* 4. SMALL PHONES — 380px */
+@media screen and (max-width: 380px) {
+  nav img, .logo img { height: 36px !important; }
+  h1 { font-size: 20px !important; }
+  h2 { font-size: 17px !important; }
+  .sec-title { font-size: 13px !important; }
+  .step-title, .paso-title { font-size: 13px !important; }
+  p, li { font-size: 12px !important; }
+  td, th { font-size: 11px !important; padding: 6px !important; }
+  .section, section { padding: 14px 12px !important; }
+  .sb-row, .search-dates-row { grid-template-columns: 1fr !important; }
+  #sticky-mob a { font-size: 14px !important; }
+}
+
+/* Saily eSIM upsell */
+.vl-esim-upsell{
+  margin:34px 0;
+  padding:24px;
+  border-radius:26px;
+  background:linear-gradient(135deg,#F5F0E8,#FFFFFF);
+  border:1px solid #EAE3D5;
+  box-shadow:0 12px 34px rgba(11,31,58,.05);
+}
+.vl-esim-upsell .tag{
+  display:inline-flex;
+  background:rgba(0,196,161,.10);
+  border:1px solid rgba(0,196,161,.25);
+  color:#0B1F3A;
+  border-radius:999px;
+  padding:6px 12px;
+  font-size:12px;
+  font-weight:900;
+  margin-bottom:10px;
+}
+.vl-esim-upsell h2,
+.vl-esim-upsell h3{
+  color:#0B1F3A!important;
+  margin:0 0 8px!important;
+}
+.vl-esim-upsell p{
+  color:#4A647E!important;
+  margin-bottom:14px!important;
+}
+.vl-esim-upsell a{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:13px 20px;
+  border-radius:999px;
+  background:#00C4A1;
+  color:#0B1F3A!important;
+  text-decoration:none!important;
+  font-weight:900;
+}
+
+</style>
+<meta charset="UTF-8">
+  <meta name="google-site-verification" content="fnxi-_Liw22SOQakruhikIUAjmf3u6mdT79inMc9x9A">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Comparar seguros de viaje Colombia a España | IATI vs InterMundial</title>
+  <meta name="description" content="Compara seguros de viaje de Colombia a España. Guía completa IATI vs InterMundial, cobertura médica, requisitos Schengen, cupón VIAJEROLATAM, errores co...">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://viajerolatam.com/comparar-seguros-viaje-colombia-espana/">
+  <link rel="alternate" hreflang="es-CO" href="https://viajerolatam.com/comparar-seguros-viaje-colombia-espana/">
+  <link rel="alternate" hreflang="x-default" href="https://viajerolatam.com/comparar-seguros-viaje-colombia-espana/">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Comparar seguros de viaje Colombia a España">
+  <meta property="og:description" content="Comparativa clara entre IATI e InterMundial para colombianos que viajan a España o zona Schengen.">
+  <meta property="og:url" content="https://viajerolatam.com/comparar-seguros-viaje-colombia-espana/">
+  <meta property="og:image" content="https://viajerolatam.com/logo-vl-original-20260528.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P1Q2TSMVNJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-P1Q2TSMVNJ');
+</script>
+
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"BreadcrumbList",
+    "itemListElement":[
+      {"@type":"ListItem","position":1,"name":"Inicio","item":"https://viajerolatam.com/"},
+      {"@type":"ListItem","position":2,"name":"Colombia a España","item":"https://viajerolatam.com/seguro-viaje/colombia-a-espana/"},
+      {"@type":"ListItem","position":3,"name":"Comparar seguros","item":"https://viajerolatam.com/comparar-seguros-viaje-colombia-espana/"}
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"¿Qué seguro conviene más para viajar de Colombia a España?","acceptedAnswer":{"@type":"Answer","text":"Depende del tipo de viaje. IATI puede encajar bien para usuarios que buscan contratación online y asistencia en español. InterMundial puede ser interesante por su especialización en seguros de viaje y el cupón VIAJEROLATAM."}},
+      {"@type":"Question","name":"¿Estos seguros sirven para zona Schengen?","acceptedAnswer":{"@type":"Answer","text":"Antes de contratar, revisa que el plan elegido incluya cobertura médica suficiente, repatriación, asistencia durante toda la estancia y condiciones compatibles con tu viaje a España o zona Schengen."}},
+      {"@type":"Question","name":"¿El cupón VIAJEROLATAM cambia el precio?","acceptedAnswer":{"@type":"Answer","text":"El cupón VIAJEROLATAM está pensado para ofrecer descuento en InterMundial cuando se aplica correctamente en la página oficial. Verifica el precio final antes de pagar."}},
+      {"@type":"Question","name":"¿ViajeroLatam cobra por comparar?","acceptedAnswer":{"@type":"Answer","text":"No. ViajeroLatam es gratuito para el usuario. Podemos recibir una comisión si contratas desde nuestros enlaces afiliados, sin coste adicional para ti."}}
+    ]
+  }
+  </script>
+
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    :root{--navy:#0B1F3A;--navy2:#1A3558;--teal:#00C4A1;--mint:#75D8BC;--sand:#F5F0E8;--sand2:#EAE3D5;--text:#0B1F3A;--muted:#4A647E;--display:'DM Serif Display',Georgia,serif;--body:'Plus Jakarta Sans',sans-serif}
+    body{font-family:var(--body);color:var(--text);background:#fff;line-height:1.7}
+    nav{position:sticky;top:0;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:10px 5%;background:rgba(255,255,255,.94);backdrop-filter:blur(12px);border-bottom:1px solid rgba(11,31,58,.08)}
+    nav img{height:54px;width:auto;display:block}
+    .nav-links{display:flex;gap:22px;align-items:center}
+    .nav-links a{text-decoration:none;color:#4A647E;font-size:14px;font-weight:700}
+    .nav-cta{background:#0B1F3A;color:#fff!important;padding:10px 18px;border-radius:999px}
+    .hero{position:relative;overflow:hidden;background:linear-gradient(135deg,#0B1F3A,#18375B);color:#fff;padding:88px 5% 72px}
+    .hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 20% 20%,rgba(0,196,161,.18),transparent 28%),radial-gradient(circle at 80% 72%,rgba(117,216,188,.16),transparent 24%);pointer-events:none}
+    .hero-inner{position:relative;max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:center}
+    .eyebrow{display:inline-flex;background:rgba(117,216,188,.12);border:1px solid rgba(117,216,188,.28);color:#75D8BC;border-radius:999px;padding:7px 15px;font-size:13px;font-weight:900;margin-bottom:18px}
+    h1{font-family:var(--display);font-size:clamp(40px,6vw,72px);line-height:1.05;margin-bottom:20px}
+    h1 em{color:#75D8BC;font-style:italic}
+    .hero p{color:rgba(255,255,255,.75);font-size:18px;max-width:680px;margin-bottom:28px}
+    .btn-row{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 23px;border-radius:999px;text-decoration:none;font-weight:900;border:0;cursor:pointer}
+    .btn-primary{background:#00C4A1;color:#0B1F3A!important}
+    .btn-dark{background:#0B1F3A;color:#fff!important}
+    .btn-outline{border:1px solid rgba(255,255,255,.28);color:#fff!important;background:rgba(255,255,255,.06)}
+    .hero-box{background:#fff;color:#0B1F3A;border-radius:28px;padding:26px;box-shadow:0 24px 70px rgba(0,0,0,.25)}
+    .hero-box h2{font-family:var(--display);font-size:30px;margin-bottom:8px}
+    .coupon{display:inline-flex;background:#F5F0E8;border:1px dashed #00A989;border-radius:12px;padding:9px 13px;font-weight:900;margin:12px 0;color:#0B1F3A}
+    section{padding:72px 5%}
+    .wrap{max-width:1120px;margin:0 auto}
+    .kicker{color:#00A989;text-transform:uppercase;letter-spacing:.12em;font-size:12px;font-weight:900;margin-bottom:10px}
+    h2{font-family:var(--display);font-size:clamp(30px,4vw,48px);line-height:1.12;margin-bottom:16px;color:#0B1F3A}
+    .lead{font-size:17px;color:#4A647E;max-width:780px}
+    .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:30px}
+    .insurer{background:#F5F0E8;border:1px solid #EAE3D5;border-radius:28px;padding:28px;display:flex;flex-direction:column;gap:15px}
+    .insurer.recommended{background:#fff;border:2px solid #00C4A1;box-shadow:0 18px 50px rgba(11,31,58,.08)}
+    .badge{display:inline-flex;align-self:flex-start;background:rgba(0,196,161,.12);color:#007F68;border-radius:999px;padding:6px 11px;font-size:12px;font-weight:900}
+    .insurer h3{font-size:24px;margin-top:4px}
+    .insurer p{color:#4A647E;font-size:15px}
+    .list{list-style:none;display:grid;gap:9px;margin:4px 0 8px}
+    .list li{color:#4A647E;font-size:14px;display:flex;gap:8px}
+    .list li::before{content:"✓";color:#00A989;font-weight:900}
+    .table{margin-top:28px;border:1px solid #EAE3D5;border-radius:24px;overflow:hidden}
+    .row{display:grid;grid-template-columns:1.1fr 1fr 1fr;border-bottom:1px solid #EAE3D5}
+    .row:last-child{border-bottom:0}
+    .cell{padding:17px 19px;font-size:14px;color:#4A647E}
+    .head .cell{background:#0B1F3A;color:#fff;font-weight:900}
+    .cell strong{color:#0B1F3A}
+    .note{background:#F5F0E8;border-left:4px solid #00C4A1;border-radius:14px;padding:16px 18px;color:#4A647E;margin-top:24px;font-size:14px}
+    .dark{background:#0B1F3A;color:#fff}
+    .dark h2{color:#fff}
+    .dark .lead{color:rgba(255,255,255,.68)}
+    .dark-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:22px;padding:22px}
+    .dark-card h3{color:#fff;margin-bottom:8px}
+    .dark-card p{color:rgba(255,255,255,.65)}
+    .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px}
+    .faq details{border-bottom:1px solid #EAE3D5;padding:18px 0}
+    .faq summary{font-weight:900;cursor:pointer}
+    .faq p{color:#4A647E;margin-top:10px}
+    footer{background:#0B1F3A;color:rgba(255,255,255,.55);padding:38px 5%;font-size:13px}
+    @media(max-width:860px){.hero-inner,.cards,.grid3{grid-template-columns:1fr}.row{grid-template-columns:1fr}.head{display:none}.nav-links{display:none}section{padding:56px 5%}}
+  
+/* Trust checklist + conversion blocks */
+.vl-trust-block{margin:34px auto;padding:26px;border-radius:26px;background:#F5F0E8;border:1px solid #EAE3D5;max-width:1120px}
+.vl-trust-block h2,.vl-trust-block h3{color:#0B1F3A;margin-bottom:12px}
+.vl-trust-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+.vl-trust-item{background:#fff;border:1px solid #EAE3D5;border-radius:18px;padding:18px}
+.vl-trust-item strong{display:block;color:#0B1F3A;margin-bottom:5px}
+.vl-trust-item p{color:#4A647E;font-size:14px;line-height:1.6;margin:0}
+.vl-affiliate-transparency{margin:26px auto;padding:18px 20px;border-left:4px solid #00C4A1;background:rgba(0,196,161,.08);border-radius:16px;color:#4A647E;max-width:1120px;font-size:14px;line-height:1.65}
+.vl-cta-comparison{margin:30px auto;padding:28px;border-radius:26px;background:linear-gradient(135deg,#0B1F3A,#1A3558);color:#fff;max-width:1120px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.vl-cta-comparison h3{font-size:24px;margin:0 0 6px;color:#fff}
+.vl-cta-comparison p{color:rgba(255,255,255,.7);margin:0}
+.vl-cta-buttons{display:flex;gap:10px;flex-wrap:wrap}
+.vl-cta-btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 20px;border-radius:999px;text-decoration:none!important;font-weight:900}
+.vl-cta-btn.primary{background:#00C4A1;color:#0B1F3A!important}
+.vl-cta-btn.secondary{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.22);color:#fff!important}
+.vl-coupon-mini{display:inline-flex;background:#fff;color:#0B1F3A;border:1px dashed #00A989;border-radius:10px;padding:6px 10px;font-weight:900;font-size:13px;margin-top:8px}
+@media(max-width:800px){.vl-trust-grid{grid-template-columns:1fr}.vl-cta-comparison{align-items:flex-start}.vl-cta-buttons{width:100%}.vl-cta-btn{width:100%}}
+
+
+/* ViajeroLatam original logo — desktop/mobile fix */
+.site-header .brand-logo,
+nav .brand-logo{
+  display:inline-flex;
+  align-items:center;
+  flex:0 0 auto;
+  min-width:170px;
+  max-width:260px;
+  height:62px;
+  text-decoration:none;
+}
+.site-header .brand-logo picture,
+nav .brand-logo picture{display:flex;align-items:center;height:100%}
+.site-header .brand-logo img,
+nav .brand-logo img,
+.brand-logo img{
+  display:block!important;
+  width:auto!important;
+  height:56px!important;
+  max-width:250px!important;
+  object-fit:contain!important;
+}
+@media(max-width:768px){
+  .site-header .brand-logo,
+  nav .brand-logo{
+    min-width:138px;
+    max-width:180px;
+    height:54px;
+  }
+  .site-header .brand-logo img,
+  nav .brand-logo img,
+  .brand-logo img{
+    height:46px!important;
+    max-width:178px!important;
+  }
+}
+@media(max-width:380px){
+  .site-header .brand-logo,
+  nav .brand-logo{max-width:155px;min-width:125px}
+  .site-header .brand-logo img,
+  nav .brand-logo img,
+  .brand-logo img{height:40px!important;max-width:155px!important}
+}
+
+
+/* LOGO FIX — exact original logo, larger and clearer on desktop/mobile */
+a.brand-logo, a.logo, .mobile-logo, .footer-logo{
+  display:inline-flex !important;
+  align-items:center !important;
+  text-decoration:none !important;
+}
+nav a.brand-logo, nav a.logo{
+  flex:0 0 auto !important;
+  min-width:220px !important;
+  max-width:320px !important;
+  height:72px !important;
+}
+nav a.brand-logo img, nav a.logo img,
+.mobile-logo img, .footer-logo img, .fl img{
+  display:block !important;
+  width:auto !important;
+  height:64px !important;
+  max-width:320px !important;
+  object-fit:contain !important;
+  opacity:1 !important;
+  filter:none !important;
+  mix-blend-mode:normal !important;
+}
+@media (max-width: 768px){
+  nav{min-height:74px !important}
+  nav a.brand-logo, nav a.logo{
+    min-width:150px !important;
+    max-width:220px !important;
+    height:58px !important;
+  }
+  nav a.brand-logo img, nav a.logo img,
+  .mobile-logo img, .footer-logo img, .fl img{
+    height:48px !important;
+    max-width:210px !important;
+  }
+}
+@media (max-width: 420px){
+  nav a.brand-logo, nav a.logo{
+    min-width:135px !important;
+    max-width:190px !important;
+    height:52px !important;
+  }
+  nav a.brand-logo img, nav a.logo img,
+  .mobile-logo img, .footer-logo img, .fl img{
+    height:42px !important;
+    max-width:185px !important;
+  }
+}
+
+
+/* EXACT COLOR LOGO FIX */
+a.brand-logo img,
+a.logo img,
+.mobile-logo img,
+.footer-logo img,
+.fl img{
+  opacity: 1 !important;
+  filter: none !important;
+  mix-blend-mode: normal !important;
+  image-rendering: -webkit-optimize-contrast !important;
+  object-fit: contain !important;
+  background: transparent !important;
+}
+nav a.brand-logo, nav a.logo{
+  display:inline-flex !important;
+  align-items:center !important;
+  min-height:72px !important;
+}
+nav a.brand-logo img, nav a.logo img{
+  height:64px !important;
+  width:auto !important;
+  max-width:320px !important;
+}
+@media (max-width:768px){
+  nav a.brand-logo img, nav a.logo img,
+  .mobile-logo img{
+    height:44px !important;
+    width:auto !important;
+    max-width:200px !important;
+  }
+}
+
+
+/* CACHE-BUSTER LOGO FIX */
+a.brand-logo, a.logo, .mobile-logo, .footer-logo {opacity:1 !important; filter:none !important;}
+a.brand-logo img, a.logo img, .mobile-logo img, .footer-logo img, header img[src*="logo"]{
+  opacity:1 !important;
+  filter:none !important;
+  mix-blend-mode:normal !important;
+  object-fit:contain !important;
+  image-rendering:auto !important;
+  background:transparent !important;
+}
+nav a.brand-logo img, nav a.logo img{height:64px !important; width:auto !important; max-width:320px !important;}
+@media (max-width:768px){ nav a.brand-logo img, nav a.logo img, .mobile-logo img{height:44px !important; max-width:220px !important;} }
+
+
+/* Mobile header + CTA conversion polish */
+@media (max-width: 768px){
+  nav{
+    min-height:72px!important;
+    padding:8px 16px!important;
+    gap:10px!important;
+  }
+  nav .nav-links{
+    gap:8px!important;
+  }
+  nav .nav-links a:not(.nav-cta){
+    display:none!important;
+  }
+  nav .nav-cta{
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    padding:10px 15px!important;
+    font-size:13px!important;
+    white-space:nowrap!important;
+    border-radius:999px!important;
+  }
+  .hero{
+    padding-top:56px!important;
+    padding-bottom:54px!important;
+  }
+  .hero-inner{
+    gap:26px!important;
+  }
+  .hero h1,
+  h1{
+    font-size:clamp(38px,11vw,52px)!important;
+    line-height:1.04!important;
+  }
+  .hero p{
+    font-size:16px!important;
+  }
+  .hero-box{
+    border-radius:22px!important;
+    padding:20px!important;
+  }
+  .btn-row,
+  .vl-cta-buttons{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    width:100%!important;
+  }
+  .btn,
+  .vl-cta-btn,
+  .intermundial-btn{
+    width:100%!important;
+    min-height:48px!important;
+    text-align:center!important;
+  }
+  .cards{
+    gap:16px!important;
+  }
+  .insurer{
+    padding:22px!important;
+  }
+  .vl-trust-block{
+    margin:24px 16px!important;
+    padding:22px!important;
+    border-radius:22px!important;
+  }
+  .vl-cta-comparison{
+    margin:24px 16px!important;
+    padding:22px!important;
+    border-radius:22px!important;
+  }
+}
+
+/* Sticky mobile affiliate bar */
+.mobile-affiliate-bar{
+  position:fixed;
+  left:12px;
+  right:12px;
+  bottom:12px;
+  z-index:999;
+  display:none;
+  gap:8px;
+  padding:9px;
+  border-radius:999px;
+  background:rgba(11,31,58,.94);
+  box-shadow:0 18px 45px rgba(0,0,0,.24);
+  backdrop-filter:blur(12px);
+}
+.mobile-affiliate-bar a{
+  flex:1;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:42px;
+  border-radius:999px;
+  text-decoration:none!important;
+  font-weight:900;
+  font-size:13px;
+}
+.mobile-affiliate-bar .ma-primary{background:#00C4A1;color:#0B1F3A!important}
+.mobile-affiliate-bar .ma-secondary{background:#fff;color:#0B1F3A!important}
+@media (max-width:768px){
+  body{padding-bottom:74px!important}
+  .mobile-affiliate-bar{display:flex}
+}
+
+
+/* Long-form SEO content blocks */
+.seo-content-block{
+  max-width:1120px;
+  margin:0 auto;
+  padding:10px 0;
+}
+.seo-content-block .content-card{
+  background:#fff;
+  border:1px solid #EAE3D5;
+  border-radius:26px;
+  padding:28px;
+  margin:22px 0;
+  box-shadow:0 10px 30px rgba(11,31,58,.04);
+}
+.seo-content-block h2{
+  margin-top:0;
+}
+.seo-content-block h3{
+  color:#0B1F3A;
+  font-size:22px;
+  margin:22px 0 8px;
+}
+.seo-content-block p{
+  color:#4A647E;
+  margin:0 0 14px;
+}
+.seo-content-block ul{
+  color:#4A647E;
+  padding-left:22px;
+  margin:12px 0 18px;
+}
+.seo-content-block li{
+  margin:7px 0;
+}
+.seo-mini-table{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  border:1px solid #EAE3D5;
+  border-radius:20px;
+  overflow:hidden;
+  margin:20px 0;
+}
+.seo-mini-table div{
+  padding:15px;
+  border-bottom:1px solid #EAE3D5;
+  border-right:1px solid #EAE3D5;
+  color:#4A647E;
+  font-size:14px;
+}
+.seo-mini-table div:nth-child(3n){
+  border-right:0;
+}
+.seo-mini-table .th{
+  background:#0B1F3A;
+  color:#fff;
+  font-weight:900;
+}
+@media(max-width:768px){
+  .seo-content-block .content-card{
+    padding:22px;
+    margin:18px 0;
+  }
+  .seo-mini-table{
+    grid-template-columns:1fr;
+  }
+  .seo-mini-table div{
+    border-right:0;
+  }
+}
+
+</style>
+<meta property="og:locale" content="es_CO">
+<meta property="og:site_name" content="ViajeroLatam">
+
+<style id="no-travel-icons">.travel-icons,#travel-canvas,canvas{display:none!important}</style>
+</head>
+<body>
+  <nav>
+    <a href="/" class="brand-logo" aria-label="ViajeroLatam inicio"><img src="/logo-vl-original-20260528.png" alt="ViajeroLatam"></a>
+    <div class="nav-links">
+      <a href="/seguro-viaje/colombia-a-espana/">Colombia → Españaña</a>
+      <a href="/visa-schengen/">Visa Schengen</a>
+      <a href="/blog/">Artículos</a><a href="/sobre-nosotros/">Sobre nosotros</a><a href="/contacto/">Contacto</a>
+      <a href="/resultados/" class="nav-cta">Comparar ahora</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="eyebrow">🇨🇴 Comparativa para Colombia → Españaña</div>
+        <h1>Comparar seguros de viaje <em>Colombia a España</em></h1>
+        <p>IATI e InterMundial son dos opciones fuertes para viajar protegido a España. Compara diferencias, revisa el cupón VIAJEROLATAM y elige según tu tipo de viaje.</p>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="#comparativa">Ver comparativa</a>
+          <a class="btn btn-outline" href="/seguro-viaje/colombia-a-espana/">Leer guía completa</a>
+        </div>
+      </div>
+      <aside class="hero-box">
+        <h2>Oferta destacada</h2>
+        <p style="color:#4A647E">InterMundial ofrece descuento para lectores de ViajeroLatam.</p>
+        <div class="coupon">Cupón: VIAJEROLATAM</div>
+        <a class="btn btn-dark" href="https://www.intermundial.es/afiliados/seguros-de-viaje-recomendado?utm_source=Affiliates&utm_medium=Affiliates&utm_campaign=General&utm_term=kbnnqvpvcy490&utm_content=kbnnqvpvcy490&coupon=VIAJEROLATAM" target="_blank" rel="nofollow sponsored noopener" style="width:100%">Ver precio en InterMundial →</a>
+      </aside>
+    </div>
+  </header>
+
+  <section id="comparativa">
+    <div class="wrap">
+      <div class="kicker">Recomendaciones</div>
+      <h2>IATI vs InterMundial: cuál mirar primero</h2>
+      <p class="lead">No existe un seguro perfecto para todos. La mejor opción depende de duración, edad, tipo de viaje, coberturas necesarias y precio final. Estas son recomendaciones orientativas.</p>
+
+      <div class="cards">
+        <article class="insurer recommended">
+          <span class="badge">Buena opción hispana</span>
+          <h3>IATI</h3>
+          <p>Puede encajar bien si quieres contratar online, recibir la póliza rápido y tener una experiencia clara para viajes internacionales.</p>
+          <ul class="list">
+            <li>Asistencia en español</li>
+            <li>Opciones para Europa y viajes internacionales</li>
+            <li>Contratación online</li>
+            <li>Buena marca para usuarios hispanohablantes</li>
+          </ul>
+          <a class="btn btn-primary" href="https://www.iatiseguros.com?r=84208681926165" target="_blank" rel="nofollow sponsored noopener">Ver precio en IATI →</a>
+        
+<div class="vl-esim-upsell">
+  <div class="tag">También prepara tu viaje</div>
+  <h2>Internet en España sin roaming</h2>
+  <p>Además del seguro, puedes preparar una eSIM para llegar conectado a España o Europa sin depender del roaming internacional.</p>
+  <a href="/esim/espana-colombianos/">Ver eSIM para España →</a>
+</div>
+
+</article>
+
+        <article class="insurer recommended">
+          <span class="badge">Cupón VIAJEROLATAM</span>
+          <h3>InterMundial</h3>
+          <p>Interesante si buscas una compañía especializada en seguros de viaje en España y quieres usar el descuento de ViajeroLatam.</p>
+          <ul class="list">
+            <li>Especialistas en seguros de viaje</li>
+            <li>Buen encaje para España y Europa</li>
+            <li>Descuento para lectores con cupón</li>
+            <li>Productos configurables según viaje</li>
+          </ul>
+          <div class="coupon">Cupón: VIAJEROLATAM</div>
+          <a class="btn btn-dark" href="https://www.intermundial.es/afiliados/seguros-de-viaje-recomendado?utm_source=Affiliates&utm_medium=Affiliates&utm_campaign=General&utm_term=kbnnqvpvcy490&utm_content=kbnnqvpvcy490&coupon=VIAJEROLATAM" target="_blank" rel="nofollow sponsored noopener">Ver precio en InterMundial →</a>
+        </article>
+      </div>
+
+      <div class="note"><strong>Transparencia:</strong> ViajeroLatam es gratuito para ti. Podemos recibir comisión si contratas desde nuestros enlaces, sin coste adicional para ti.</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="kicker">Tabla rápida</div>
+      <h2>Comparativa orientativa</h2>
+      <div class="table">
+        <div class="row head"><div class="cell">Criterio</div><div class="cell">IATI</div><div class="cell">InterMundial</div></div>
+        <div class="row"><div class="cell"><strong>Mejor para</strong></div><div class="cell">Viajeros que buscan una experiencia online clara.</div><div class="cell">Viajeros que quieren usar descuento y comparar productos configurables.</div></div>
+        <div class="row"><div class="cell"><strong>Idioma</strong></div><div class="cell">Español.</div><div class="cell">Español.</div></div>
+        <div class="row"><div class="cell"><strong>Destino España/Europa</strong></div><div class="cell">Revisar plan elegido.</div><div class="cell">Buen encaje por especialización en viajes y mercado español.</div></div>
+        <div class="row"><div class="cell"><strong>Descuento</strong></div><div class="cell">Ver promociones activas en la web oficial.</div><div class="cell">Cupón VIAJEROLATAM.</div></div>
+        <div class="row"><div class="cell"><strong>Antes de contratar</strong></div><div class="cell">Revisar cobertura, franquicia y repatriación.</div><div class="cell">Revisar cobertura, franquicia y repatriación.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dark">
+    <div class="wrap">
+      <div class="kicker">Schengen</div>
+      <h2>Qué revisar si viajas a España</h2>
+      <p class="lead">Para viajar tranquilo desde Colombia a España, no mires solo el precio. Revisa especialmente estos puntos.</p>
+      <div class="grid3">
+        <div class="dark-card"><h3>Cobertura médica</h3><p>Busca una cobertura adecuada para España y Europa. Como referencia Schengen, muchos viajeros buscan mínimo 30.000 €.</p></div>
+        <div class="dark-card"><h3>Repatriación</h3><p>Debe estar incluida en la póliza. Es una cobertura clave en viajes internacionales.</p></div>
+        <div class="dark-card"><h3>Fechas completas</h3><p>La póliza debe cubrir desde que sales de Colombia hasta que regresas, incluyendo escalas.</p></div>
+      </div>
+    </div>
+  </section>
+
+  
+<section class="vl-trust-block">
+  <h2>Checklist antes de contratar tu seguro</h2>
+  <p style="color:#4A647E;max-width:780px">Antes de pagar, revisa estos puntos. Un seguro barato puede salir caro si no cubre lo que necesitas durante tu viaje de Colombia a España.</p>
+  <div class="vl-trust-grid">
+    <div class="vl-trust-item"><strong>Cobertura médica suficiente</strong><p>Como referencia Schengen, muchos viajeros buscan mínimo 30.000 € de cobertura médica.</p></div>
+    <div class="vl-trust-item"><strong>Repatriación incluida</strong><p>Comprueba que incluya traslado sanitario y repatriación durante todo el viaje.</p></div>
+    <div class="vl-trust-item"><strong>Fechas completas</strong><p>Debe cubrir desde tu salida de Colombia hasta el regreso, incluyendo escalas.</p></div>
+    <div class="vl-trust-item"><strong>Asistencia en español</strong><p>Muy importante si viajas con familia o si no quieres complicarte en una emergencia.</p></div>
+    <div class="vl-trust-item"><strong>Franquicia y exclusiones</strong><p>Revisa si debes pagar algo de tu bolsillo y qué situaciones quedan fuera.</p></div>
+    <div class="vl-trust-item"><strong>Póliza PDF</strong><p>Guarda el documento para migración, consulado, aerolínea o cualquier emergencia.</p></div>
+  </div>
+</section>
+
+
+<section class="vl-trust-block">
+  <h2>Cómo elegimos los seguros recomendados</h2>
+  <p style="color:#4A647E;max-width:820px">En ViajeroLatam priorizamos aseguradoras con experiencia en viajes, contratación online, información clara, atención útil y buen encaje para latinoamericanos que viajan a España o Europa.</p>
+  <div class="vl-trust-grid">
+    <div class="vl-trust-item"><strong>Claridad</strong><p>Que el usuario pueda entender cobertura, precio, límites y condiciones antes de contratar.</p></div>
+    <div class="vl-trust-item"><strong>Confianza</strong><p>Marcas con presencia en el sector de viajes y productos enfocados en asistencia internacional.</p></div>
+    <div class="vl-trust-item"><strong>Conversión útil</strong><p>Botones hacia webs oficiales, cupón cuando existe y aviso de afiliación transparente.</p></div>
+  </div>
+</section>
+
+
+<section class="seo-content-block">
+  <div class="content-card">
+    <div class="kicker">Guía de decisión</div>
+    <h2>Cómo comparar seguros de viaje de Colombia a España sin equivocarte</h2>
+    <p>Cuando viajas de Colombia a España, elegir un seguro no debería depender solo del precio. La diferencia real está en lo que ocurre si tienes una urgencia médica, pierdes una conexión, necesitas asistencia en español o tienes que presentar una póliza clara durante el viaje. Por eso, en ViajeroLatam recomendamos comparar el seguro como una herramienta de protección, no como un trámite más.</p>
+    <p>Para una ruta como Colombia → Españaña, lo más importante es revisar si el seguro cubre toda la estancia, si incluye asistencia médica internacional, si contempla repatriación y si la compañía ofrece canales de ayuda fáciles de usar. También conviene mirar el idioma de atención, porque en una emergencia no quieres perder tiempo interpretando condiciones complicadas.</p>
+
+    <h3>Qué debe tener un buen seguro para España</h3>
+    <p>Un buen seguro para viajar a España debería cubrir al menos los problemas más habituales de un viaje internacional: asistencia médica, urgencias, hospitalización, repatriación, pérdida o demora de equipaje y asistencia 24/7. En algunos casos también puede interesar añadir anulación, deportes, crucero, larga estancia o cobertura para dispositivos, pero eso depende del tipo de viaje.</p>
+    <ul>
+      <li><strong>Cobertura médica:</strong> revisa el límite máximo y si aplica para toda Europa o solo para España.</li>
+      <li><strong>Repatriación:</strong> una cobertura importante en viajes internacionales.</li>
+      <li><strong>Franquicia:</strong> algunos planes pueden exigir un pago inicial por parte del viajero.</li>
+      <li><strong>Asistencia en español:</strong> clave para viajeros colombianos y familias.</li>
+      <li><strong>Documento de póliza:</strong> debe ser fácil de descargar y guardar en PDF.</li>
+    </ul>
+
+    <h3>IATI o InterMundial: cómo decidir</h3>
+    <p>IATI puede ser una opción fuerte si buscas una experiencia de contratación sencilla, comunicación clara y enfoque en viajeros hispanohablantes. InterMundial puede ser interesante si quieres comparar una aseguradora especializada en viajes en España y aprovechar el cupón de ViajeroLatam. La decisión final debería salir de comparar el precio final, la cobertura médica, la franquicia, la duración del viaje y las condiciones concretas del producto elegido.</p>
+    <p>Si viajas pocos días por turismo, puede bastar un plan equilibrado con buena asistencia médica. Si viajas por estudios, larga estancia o visitas familiares, conviene mirar coberturas más amplias. Y si viajas con niños o personas mayores, prioriza asistencia médica y atención rápida por encima de ahorrar unos pocos euros.</p>
+
+    <div class="seo-mini-table">
+      <div class="th">Situación</div><div class="th">Qué priorizar</div><div class="th">Consejo ViajeroLatam</div>
+      <div>Turismo 7–20 días</div><div>Cobertura médica, equipaje y asistencia</div><div>Compara IATI e InterMundial y mira precio final.</div>
+      <div>Viaje familiar</div><div>Asistencia en español y urgencias médicas</div><div>No elijas solo el plan más barato.</div>
+      <div>Larga estancia</div><div>Límites altos y duración completa</div><div>Revisa condiciones antes de contratar.</div>
+      <div>Visa o requisito Schengen</div><div>Póliza clara, cobertura y repatriación</div><div>Guarda el PDF y revisa requisitos oficiales.</div>
+    </div>
+  </div>
+
+  <div class="content-card">
+    <div class="kicker">Errores comunes</div>
+    <h2>Errores que deberías evitar antes de contratar</h2>
+    <p>Uno de los errores más comunes es contratar el seguro más barato sin leer la cobertura. Otro error es poner fechas incompletas: el seguro debe cubrir desde el día de salida de Colombia hasta el día de regreso. También es frecuente olvidar las escalas, especialmente si el viaje pasa por otro país antes de llegar a España.</p>
+    <p>Otro punto importante es la franquicia. Un seguro puede parecer barato, pero si tiene franquicia alta, podrías terminar pagando parte de la atención médica. También conviene revisar exclusiones: enfermedades preexistentes, deportes, embarazo, objetos de valor o viajes de larga duración pueden tener condiciones especiales.</p>
+
+    <h3>Checklist rápido antes de pagar</h3>
+    <ul>
+      <li>Confirma que el destino sea España o Europa/zona Schengen.</li>
+      <li>Comprueba que las fechas cubran todo el viaje.</li>
+      <li>Revisa si hay franquicia.</li>
+      <li>Guarda el PDF de la póliza.</li>
+      <li>Verifica teléfono o app de emergencia.</li>
+      <li>Comprueba si el precio incluye el descuento o cupón aplicado.</li>
+    </ul>
+
+    <p>En InterMundial puedes revisar el precio usando el cupón <strong>VIAJEROLATAM</strong>. En IATI, revisa el precio final directamente desde la página oficial. En ambos casos, antes de pagar, compara no solo el precio, sino la cobertura real que estás comprando.</p>
+  </div>
+
+  <div class="content-card">
+    <div class="kicker">Opinión práctica</div>
+    <h2>Qué recomendaríamos según el tipo de viajero</h2>
+    <p>Para un viajero colombiano que va por turismo a España durante dos o tres semanas, buscaríamos un equilibrio entre precio, cobertura médica y facilidad de uso. Para una familia, pondríamos más peso en la asistencia en español y en una cobertura médica sólida. Para estudiantes o viajeros de larga estancia, revisaríamos condiciones específicas, duración máxima permitida y ampliaciones de cobertura.</p>
+    <p>ViajeroLatam no vende seguros directamente. Nuestro objetivo es ayudarte a comparar mejor y dirigirte a páginas oficiales. Si contratas desde nuestros enlaces, podemos recibir una comisión sin coste adicional para ti. Esto nos permite mantener la web gratuita y seguir creando guías para latinoamericanos que viajan a España y Europa.</p>
+  </div>
+</section>
+
+<section class="faq">
+    <div class="wrap">
+      <div class="kicker">FAQ</div>
+      <h2>Preguntas frecuentes</h2>
+      <details><summary>¿IATI o InterMundial: cuál es mejor?</summary><p>Depende del viajero. IATI puede encajar bien por experiencia online y asistencia en español. InterMundial es fuerte por especialización en viajes y cupón VIAJEROLATAM.</p></details>
+      <details><summary>¿Puedo usar el cupón VIAJEROLATAM?</summary><p>Sí, úsalo en la web de InterMundial si el formulario de compra lo permite. Revisa siempre el precio final antes de pagar.</p></details>
+      <details><summary>¿Necesito seguro si viajo de Colombia a España?</summary><p>Es muy recomendable viajar con seguro médico internacional. En casos relacionados con visa o requisitos Schengen, revisa condiciones oficiales y de la póliza.</p></details>
+      <details><summary>¿ViajeroLatam vende seguros directamente?</summary><p>No. ViajeroLatam compara y recomienda enlaces oficiales. La contratación se realiza en la web de cada aseguradora.</p></details>
+    </div>
+  </section>
+
+  <footer><div class="wrap">© 2026 ViajeroLatam. Comparador independiente para viajeros latinoamericanos.</div> · <a href="/sobre-nosotros/" style="color:#fff;text-decoration:none;font-weight:800">Sobre nosotros</a> · <a href="/contacto/" style="color:#fff;text-decoration:none;font-weight:800">Contacto</a></footer>
+  
+<script>
+document.addEventListener('click', function(e){
+  var link = e.target.closest('a');
+  if(!link || typeof gtag !== 'function') return;
+  var href = link.getAttribute('href') || '';
+  if(href.indexOf('iatiseguros.com') !== -1){
+    gtag('event', 'click_affiliate_iati', {
+      event_category: 'affiliate',
+      event_label: href,
+      page_location: window.location.href
+    });
+  }
+  if(href.indexOf('intermundial.es') !== -1){
+    gtag('event', 'click_affiliate_intermundial', {
+      event_category: 'affiliate',
+      event_label: href,
+      page_location: window.location.href
+    });
+  }
+});
+</script>
+
+<div id="mob-overlay" onclick="closeMobMenu()" aria-hidden="true"></div>
+<nav id="mob-drawer" aria-label="Menú móvil">
+  <a href="/">Inicio</a>
+  <a href="/seguro-viaje/colombia-a-espana/">Colombia → Españaña</a>
+  <a href="/visa-schengen/">Visa Schengen</a>
+  <a href="/blog/">Artículos</a>
+  <a href="/resultados/">Comparar seguros →</a>
+</nav>
+<script>
+function openMobMenu(){document.getElementById('mob-drawer').classList.add('open');document.getElementById('mob-overlay').classList.add('open');document.body.style.overflow='hidden'}
+function closeMobMenu(){document.getElementById('mob-drawer').classList.remove('open');document.getElementById('mob-overlay').classList.remove('open');document.body.style.overflow=''}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu()})
+</script>
+<!-- Exit intent -->
+<div id="exit-overlay" style="display:none;position:fixed;inset:0;background:rgba(11,31,58,.65);z-index:9999;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(6px)">
+  <div id="exit-box" style="background:#fff;border-radius:20px;padding:32px 28px;max-width:420px;width:100%;position:relative;box-shadow:0 20px 60px rgba(11,31,58,.25)">
+    <button onclick="closeExit()" style="position:absolute;top:12px;right:12px;width:30px;height:30px;border-radius:50%;background:#F0F4F8;border:none;cursor:pointer;font-size:16px;color:#4A647E">✕</button>
+    <div style="font-size:40px;text-align:center;margin-bottom:10px">✈️</div>
+    <h3 style="font-family:Georgia,serif;font-size:22px;color:#0B1F3A;text-align:center;margin-bottom:8px">¿Ya tienes seguro<br>para tu viaje?</h3>
+    <p style="font-size:13px;color:#4A647E;text-align:center;margin-bottom:16px">Compara IATI e Intermundial en 2 minutos. Gratis, en español.</p>
+    <div style="display:flex;gap:12px;justify-content:center;margin-bottom:16px;flex-wrap:wrap">
+      <span style="font-size:12px;color:#4A647E">✓ Desde €1.75/día</span>
+      <span style="font-size:12px;color:#4A647E">✓ Sin franquicia</span>
+      <span style="font-size:12px;color:#4A647E">✓ Cupón VIAJEROLATAM</span>
+    </div>
+    <a href="/resultados/" onclick="closeExit()" style="display:block;width:100%;background:#00C4A1;color:#0B1F3A;padding:14px;border-radius:50px;font-family:inherit;font-size:14px;font-weight:700;text-decoration:none;text-align:center;margin-bottom:8px">🔍 Comparar seguros gratis</a>
+    <button onclick="closeExit()" style="display:block;width:100%;background:none;border:none;font-family:inherit;font-size:12px;color:#8FA4B8;cursor:pointer;text-decoration:underline">Ahora no</button>
+  </div>
+</div>
+<script>
+(function(){
+  var shown=false;
+  document.addEventListener('mouseleave',function(e){
+    if(e.clientY>15||shown||sessionStorage.getItem('vl_exit'))return;
+    shown=true;sessionStorage.setItem('vl_exit','1');
+    var o=document.getElementById('exit-overlay');
+    if(o){o.style.display='flex';document.body.style.overflow='hidden'}
+  });
+  var lastY=0;
+  window.addEventListener('scroll',function(){
+    var y=window.scrollY;
+    if(lastY-y>100&&y>300&&!shown&&!sessionStorage.getItem('vl_exit')){
+      shown=true;sessionStorage.setItem('vl_exit','1');
+      var o=document.getElementById('exit-overlay');
+      if(o){o.style.display='flex';document.body.style.overflow='hidden'}
+    }
+    lastY=y;
+  });
+})();
+function closeExit(){var o=document.getElementById('exit-overlay');if(o){o.style.display='none';document.body.style.overflow=''}}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeExit()});
+document.getElementById('exit-overlay').addEventListener('click',function(e){if(e.target===this)closeExit()});
+</script>
+</body>
+</html>

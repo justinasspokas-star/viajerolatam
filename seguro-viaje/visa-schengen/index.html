@@ -1,0 +1,1470 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<style id="vl-responsive">
+/* ================================================
+   VIAJEROLATAM — RESPONSIVE CSS (definitive)
+   Works: mobile portrait, landscape, tablet, desktop
+   ================================================ */
+
+/* 1. PREVENT OVERFLOW ALWAYS */
+html { overflow-x: hidden; }
+body { overflow-x: hidden; max-width: 100vw; }
+*, *::before, *::after {
+  box-sizing: border-box;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+img, video, iframe, svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* 2. MOBILE — 768px */
+@media screen and (max-width: 768px) {
+
+  /* NAV */
+  .nav-links { display: none !important; }
+  .mob-btn, #mob-btn { display: flex !important; }
+  nav { padding: 0 16px !important; height: 62px !important; }
+  nav img, .logo img, .brand-logo img {
+    height: 42px !important;
+    width: auto !important;
+    max-width: 180px !important;
+  }
+
+  /* HERO */
+  .hero, section.hero, header.hero {
+    padding: 68px 16px 32px !important;
+    min-height: auto !important;
+    text-align: center !important;
+    overflow: hidden !important;
+  }
+  .hero-inner, .hero-content, .hero-text {
+    position: relative !important;
+    z-index: 5 !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+  .hero h1, h1 {
+    font-size: clamp(22px, 7vw, 34px) !important;
+    line-height: 1.2 !important;
+  }
+  .hero p, .hero-sub { font-size: 14px !important; }
+  .travel-icons, #travel-canvas, canvas { display: none !important; }
+  .hcard, .hero-card, aside.hero-card { display: none !important; }
+
+  /* BREADCRUMB */
+  .breadcrumb-bar, .bc, .breadcrumb {
+    padding: 8px 16px !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+  }
+
+  /* PAGE WRAPPER */
+  .page, .wrap, .inner, .container,
+  .article-inner, .content-wrap {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 16px !important;
+    margin: 0 !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  /* SIDEBAR — always hide */
+  .sidebar, .sticky-sidebar, aside,
+  .article-aside, [class*="sidebar"] {
+    display: none !important;
+  }
+
+  /* SECTIONS */
+  .section, section {
+    padding: 20px 16px !important;
+    border-radius: 12px !important;
+    margin-bottom: 14px !important;
+    overflow: hidden !important;
+  }
+
+  /* SECTION HEADERS with icon */
+  .sec-head, [class*="sec-head"], [class*="section-head"] {
+    padding: 12px 14px !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    gap: 8px !important;
+    min-width: 0 !important;
+  }
+  .sec-title, .sec-head h2, .sec-head h3,
+  [class*="sec-title"] {
+    font-size: 14px !important;
+    line-height: 1.35 !important;
+    word-break: break-word !important;
+    flex: 1 !important;
+    min-width: 0 !important;
+  }
+  .sec-icon {
+    flex-shrink: 0 !important;
+    width: 28px !important;
+    height: 28px !important;
+  }
+  .sec-body { padding: 14px !important; }
+
+  /* STEPS / PASOS */
+  .step-row, .paso {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 10px !important;
+    padding: 12px 0 !important;
+    align-items: flex-start !important;
+    min-width: 0 !important;
+  }
+  .step-num, .paso-num {
+    flex-shrink: 0 !important;
+    width: 26px !important;
+    height: 26px !important;
+    min-width: 26px !important;
+    font-size: 12px !important;
+  }
+  .step-title, .paso-title {
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    line-height: 1.3 !important;
+    min-width: 0 !important;
+  }
+  .step-desc, .paso-desc {
+    font-size: 12px !important;
+    line-height: 1.5 !important;
+  }
+
+  /* H2 / H3 */
+  h2, .section-title, .sec-title {
+    font-size: clamp(18px, 5.5vw, 24px) !important;
+    line-height: 1.25 !important;
+    word-break: break-word !important;
+  }
+  h3 { font-size: clamp(15px, 5vw, 19px) !important; }
+  h4 { font-size: 14px !important; }
+  p, li { font-size: 13px !important; line-height: 1.6 !important; }
+
+  /* GRIDS */
+  [class*="grid"], [class*="Grid"] {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+  .req-grid, .sch-grid, .inc-grid, .steps-grid,
+  .related-grid, .cards-grid, .blog-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .etias-vs, .vs-grid { grid-template-columns: 1fr !important; }
+  .footer-grid, .fg { grid-template-columns: 1fr 1fr !important; gap: 14px !important; }
+  .footer-grid > *:first-child, .fl { grid-column: 1 / -1 !important; }
+
+  /* TABLES */
+  table, .price-table, .comp-table {
+    display: block !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    font-size: 12px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  td, th {
+    padding: 8px !important;
+    font-size: 12px !important;
+    min-width: 60px !important;
+    word-break: break-word !important;
+    white-space: normal !important;
+  }
+
+  /* BUTTONS */
+  .btn-row, .cta-row, .hero-cta, .btn-group {
+    flex-direction: column !important;
+    gap: 10px !important;
+    width: 100% !important;
+  }
+  .btn, .btn-cta, .btn-teal, .btn-primary,
+  .btn-secondary, a.btn, button.btn,
+  .leer-btn, .cta-btn, .sb-btn {
+    width: 100% !important;
+    text-align: center !important;
+    justify-content: center !important;
+    padding: 12px 16px !important;
+    font-size: 14px !important;
+  }
+
+  /* SEARCH */
+  .search-box, .sb-inner {
+    padding: 14px !important;
+    border-radius: 14px !important;
+  }
+  .sb-row, .search-dates-row {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+  }
+  .sb-field { min-width: 0 !important; }
+  .sb-full, .sb-btn { grid-column: 1 / -1 !important; }
+
+  /* COUNTRY CHIPS */
+  .pais-tags, .country-tags, [class*="pais-chip"],
+  [class*="country-chip"], [class*="flag-"] {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+    width: 100% !important;
+  }
+
+  /* INFO BOXES */
+  .info-box, .tip-box, .alert-box, .cta-banner,
+  [class*="-box"], [class*="-banner"] {
+    flex-direction: column !important;
+    padding: 14px !important;
+    width: 100% !important;
+    border-radius: 10px !important;
+  }
+
+  /* BLOG CARDS */
+  .blog-card, .article-card, .featured {
+    padding: 14px !important;
+    border-radius: 12px !important;
+  }
+  .featured .btn, .leer-btn { width: 100% !important; margin-top: 10px !important; }
+
+  /* CALCULATOR */
+  .calc-results { grid-template-columns: 1fr !important; }
+  .dias-selector { flex-wrap: wrap !important; gap: 6px !important; }
+  .dias-btn { font-size: 12px !important; padding: 6px 10px !important; }
+
+  /* NEWSLETTER */
+  .nl-form { flex-direction: column !important; }
+  .nl-input, .nl-btn { width: 100% !important; }
+
+  /* TRUST STRIP */
+  .trust, .hero-badges, [class*="trust-"] {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 8px !important;
+  }
+
+  /* STICKY + BODY PADDING */
+  #sticky-mob { display: block !important; }
+  body { padding-bottom: 84px !important; }
+
+  /* EXIT POPUP */
+  #exit-box {
+    padding: 24px 16px !important;
+    margin: 12px !important;
+    max-width: calc(100vw - 24px) !important;
+  }
+
+  /* FIX INLINE FIXED WIDTHS */
+  [style*="width:900px"], [style*="width: 900px"],
+  [style*="width:800px"], [style*="width: 800px"],
+  [style*="width:700px"], [style*="width: 700px"],
+  [style*="width:600px"], [style*="width: 600px"],
+  [style*="width:500px"], [style*="width: 500px"],
+  [style*="min-width:769px"], [style*="min-width: 769px"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: unset !important;
+  }
+
+  /* LANDSCAPE MOBILE */
+  @media screen and (orientation: landscape) and (max-height: 500px) {
+    .hero, section.hero { padding: 52px 16px 20px !important; min-height: auto !important; }
+    h1 { font-size: 22px !important; }
+    #sticky-mob { display: none !important; }
+    body { padding-bottom: 0 !important; }
+  }
+}
+
+/* 3. TABLET — 481px to 1024px */
+@media screen and (min-width: 481px) and (max-width: 1024px) {
+  .page, .wrap, .inner, .container {
+    padding: 24px 20px !important;
+    max-width: 100% !important;
+  }
+  [class*="grid-4"], [class*="grid-3"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .footer-grid { grid-template-columns: 1fr 1fr !important; }
+  h1 { font-size: clamp(28px, 5vw, 48px) !important; }
+  h2 { font-size: clamp(22px, 4vw, 32px) !important; }
+}
+
+/* 4. SMALL PHONES — 380px */
+@media screen and (max-width: 380px) {
+  nav img, .logo img { height: 36px !important; }
+  h1 { font-size: 20px !important; }
+  h2 { font-size: 17px !important; }
+  .sec-title { font-size: 13px !important; }
+  .step-title, .paso-title { font-size: 13px !important; }
+  p, li { font-size: 12px !important; }
+  td, th { font-size: 11px !important; padding: 6px !important; }
+  .section, section { padding: 14px 12px !important; }
+  .sb-row, .search-dates-row { grid-template-columns: 1fr !important; }
+  #sticky-mob a { font-size: 14px !important; }
+}
+</style>
+<!-- Travelpayouts Drive -->
+<script nowpocket data-noptimize="1" data-cfasync="false" data-wpfc-render="false" seraph-accel-crit="1" data-no-defer="1">
+  (function () {
+    var script = document.createElement("script");
+    script.async = 1;
+    script.src = 'https://emrldtp.cc/NTMzNzMw.js?t=533730';
+    document.head.appendChild(script);
+  })();
+</script>
+  <meta charset="UTF-8">
+  <meta name="google-site-verification" content="fnxi-_Liw22SOQakruhikIUAjmf3u6mdT79inMc9x9A">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seguro de Viaje para Visa Schengen Latinoamericanos | ViajeroLatam</title>
+  <meta name="description" content="Todo lo que necesitas saber sobre el seguro obligatorio para la visa Schengen si eres latinoamericano. Requisitos, precios y los mejores seguros aprobad...">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://viajerolatam.com/visa-schengen/">
+  <link rel="alternate" hreflang="es" href="https://viajerolatam.com/visa-schengen/">
+  <link rel="alternate" hreflang="x-default" href="https://viajerolatam.com/visa-schengen/">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://viajerolatam.com/visa-schengen/">
+  <meta property="og:title" content="Seguro para Visa Schengen Latinoamericanos 2026 — Guía completa">
+  <meta property="og:description" content="Requisitos del seguro para visa Schengen si eres latinoamericano. Cobertura mínima, aseguradoras válidas y comparativa de precios desde €1.75/día.">
+  <meta property="og:image" content="https://viajerolatam.com/og-image.jpg">
+  <meta property="og:site_name" content="ViajeroLatam">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Inicio","item":"https://viajerolatam.com/"},
+    {"@type":"ListItem","position":2,"name":"Visa Schengen","item":"https://viajerolatam.com/visa-schengen/"}
+  ]}</script>
+
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"¿Qué seguro necesito para la visa Schengen si soy latinoamericano?",
+     "acceptedAnswer":{"@type":"Answer","text":"Para la visa Schengen necesitas un seguro con cobertura médica mínima de 30.000€, repatriación incluida, sin franquicia (deducible cero) y de una aseguradora con sede en Europa. El seguro debe cubrir todo el territorio Schengen y ser válido para toda la duración de tu estancia."}},
+    {"@type":"Question","name":"¿Qué países latinoamericanos necesitan visa Schengen?",
+     "acceptedAnswer":{"@type":"Answer","text":"Los ciudadanos de Colombia, Bolivia, Cuba, Ecuador, República Dominicana, Haití, Jamaica, Trinidad y Tobago necesitan visa Schengen para entrar a España y Europa. Los de México, Argentina, Chile, Brasil, Costa Rica, Panamá, Paraguay y Uruguay no necesitan visa pero sí necesitarán ETIAS desde Q4 2026."}},
+    {"@type":"Question","name":"¿Cuánto cuesta el seguro para visa Schengen?",
+     "acceptedAnswer":{"@type":"Answer","text":"El seguro para visa Schengen cuesta entre €18 y €55 para un viaje de 15 días. Intermundial es el más económico desde €1.75/día.  Direct cuesta €2.10/día con gastos médicos ilimitados."}},
+    {"@type":"Question","name":"¿El seguro Schengen tiene que ser de una empresa europea?",
+     "acceptedAnswer":{"@type":"Answer","text":"Sí, el consulado exige que la aseguradora tenga sede en un país de la Unión Europea o del espacio Schengen. , IATI e Intermundial tienen sede en España y cumplen este requisito."}},
+    {"@type":"Question","name":"¿Puedo contratar el seguro Schengen desde mi país?",
+     "acceptedAnswer":{"@type":"Answer","text":"Sí, puedes contratarlo online desde Colombia, México, Argentina o cualquier país latinoamericano. Recibes la póliza por email en 2 minutos y la presentas en el consulado antes de tu cita."}},
+    {"@type":"Question","name":"¿Qué es el ETIAS y cómo afecta a los latinoamericanos?",
+     "acceptedAnswer":{"@type":"Answer","text":"El ETIAS (Sistema Europeo de Autorización de Viajes) entra en vigor en Q4 2026. Aplica a los ciudadanos latinoamericanos que actualmente NO necesitan visa (México, Argentina, Chile, Brasil, etc.). No reemplaza la visa Schengen para quienes ya la necesitan como Colombia o Bolivia."}}
+  ]}</script>
+
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+<link rel="dns-prefetch" href="https://fonts.gstatic.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
+
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0B1F3A;--navy-mid:#1A3558;--teal:#00C4A1;--teal-dark:#009C7F;
+  --teal-pale:rgba(0,196,161,0.10);--sand:#F5F0E8;--sand-dark:#E8E2D8;
+  --white:#fff;--bg:#F0F4F8;--text-dark:#0B1F3A;--text-mid:#4A647E;
+  --text-light:#8FA4B8;--border:#E4EDF5;
+  --green-pale:#E8FDF4;--green:#0F6E56;
+  --amber-pale:#FEF3E2;--amber:#854F0B;
+  --red-pale:#FEE8E8;--red:#A32D2D;
+  --font-d:'DM Serif Display',Georgia,serif;
+  --font-b:'Plus Jakarta Sans',sans-serif;
+  --r-md:14px;--r-lg:20px;--r-xl:28px;
+  --sh:0 4px 24px rgba(11,31,58,0.08);
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-b);color:var(--text-dark);background:var(--bg);line-height:1.6;font-size:15px}
+
+nav{background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 5%;height:68px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.logo{display:flex;align-items:center;text-decoration:none}
+.logo img{height:58px;width:auto}
+.nav-links{display:flex;align-items:center;gap:24px}
+.nav-links a{font-size:14px;font-weight:500;color:var(--text-mid);text-decoration:none;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--navy)}
+.nav-cta{background:var(--navy);color:var(--white)!important;padding:9px 20px;border-radius:50px;font-weight:600!important}
+@media(max-width:700px){.nav-links{display:none}}
+
+.breadcrumb-bar{background:var(--white);border-bottom:1px solid var(--border);padding:10px 5%}
+.bc-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-light);flex-wrap:wrap}
+.bc-inner a{color:var(--text-mid);text-decoration:none}
+.bc-sep{color:var(--border)}
+
+/* HERO */
+.hero{background: url('/hero-bg.jpg') center center / cover no-repeat;padding:56px 5% 48px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background: rgba(5,12,40,0.55);pointer-events:none}
+.hero-inner{max-width:1100px;margin:0 auto}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:7px;background:rgba(0,196,161,0.15);border:1px solid rgba(0,196,161,0.3);border-radius:50px;padding:5px 14px;font-size:12px;font-weight:600;color:var(--teal);letter-spacing:0.04em;margin-bottom:20px}
+.hero h1{font-family:var(--font-d);font-size:clamp(30px,5vw,52px);color:var(--white);line-height:1.1;margin-bottom:16px;max-width:800px}
+.hero h1 em{color:var(--teal);font-style:italic}
+.hero-desc{font-size:16px;color:rgba(255,255,255,0.65);line-height:1.7;margin-bottom:32px;max-width:640px}
+
+/* REQUISITOS GRID */
+.req-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:1100px;margin:0 auto}
+@media(max-width:800px){.req-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:500px){.req-grid{grid-template-columns:1fr}}
+.req-card{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:var(--r-lg);padding:20px}
+.req-num{font-family:var(--font-d);font-size:32px;color:rgba(255,255,255,0.12);margin-bottom:8px;line-height:1}
+.req-label{font-size:11px;font-weight:700;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:5px}
+.req-val{font-size:15px;font-weight:600;color:var(--white);margin-bottom:4px}
+.req-check{font-size:11px;color:var(--teal);font-weight:600;display:flex;align-items:center;gap:4px}
+
+/* PAGE */
+.page{max-width:1100px;margin:0 auto;padding:36px 5%;display:grid;grid-template-columns:1fr 300px;gap:28px;align-items:start}
+@media(max-width:900px){.page{grid-template-columns:1fr}}
+
+/* SECTION */
+.section{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;margin-bottom:20px}
+.sec-head{padding:16px 22px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
+.sec-icon{width:32px;height:32px;border-radius:10px;background:var(--sand);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.sec-title{font-size:16px;font-weight:700;color:var(--navy)}
+.sec-body{padding:22px}
+
+/* PAÍSES TABLE */
+.paises-table{width:100%;border-collapse:collapse;font-size:13px}
+.paises-table th{padding:10px 12px;font-size:11px;font-weight:700;color:var(--text-light);text-transform:uppercase;letter-spacing:0.05em;background:var(--sand);text-align:left;border-bottom:1px solid var(--border)}
+.paises-table td{padding:12px;border-bottom:1px solid var(--border);vertical-align:middle}
+.paises-table tr:last-child td{border-bottom:none}
+.paises-table tr:hover td{background:rgba(0,196,161,0.03)}
+.badge-visa{font-size:10px;font-weight:700;padding:3px 8px;border-radius:10px}
+.bv-yes{background:var(--red-pale);color:var(--red)}
+.bv-no{background:var(--green-pale);color:var(--green)}
+.bv-etias{background:var(--amber-pale);color:var(--amber)}
+.flag-name{display:flex;align-items:center;gap:8px;font-weight:600;color:var(--text-dark)}
+.flag-emoji{font-size:18px}
+.seg-link{color:var(--teal-dark);text-decoration:none;font-weight:600;font-size:12px}
+.seg-link:hover{text-decoration:underline}
+
+/* COMPARATIVA */
+.comp-row{display:grid;grid-template-columns:auto 1fr auto auto auto auto;gap:12px;align-items:center;padding:14px 16px;border-bottom:1px solid var(--border)}
+.comp-row:last-child{border-bottom:none}
+.comp-row.winner{background:rgba(0,196,161,0.04);border-left:3px solid var(--teal)}
+.ins-box{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:var(--font-d);font-size:14px;flex-shrink:0}
+.ins-name{font-size:14px;font-weight:700;color:var(--navy)}
+.ins-sub{font-size:11px;color:var(--text-light)}
+.price-main{font-family:var(--font-d);font-size:20px;color:var(--navy);text-align:right}
+.price-day{font-size:10px;color:var(--text-light);text-align:right}
+.check-ok{color:var(--green);font-size:14px;text-align:center}
+.check-warn{color:var(--amber);font-size:12px;text-align:center}
+.btn-ver{background:var(--navy);color:var(--white);border:none;border-radius:50px;padding:8px 16px;font-family:var(--font-b);font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;transition:background .2s}
+.btn-ver:hover{background:var(--navy-mid)}
+.comp-row.winner .btn-ver{background:var(--teal);color:var(--navy)}
+.comp-row.winner .btn-ver:hover{background:var(--teal-dark)}
+
+/* PASO A PASO */
+.paso{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--border)}
+.paso:last-child{border-bottom:none}
+.paso-num{width:30px;height:30px;border-radius:50%;background:var(--navy);color:var(--white);font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.paso-title{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:5px}
+.paso-desc{font-size:13px;color:var(--text-mid);line-height:1.65}
+.paso-tip{font-size:11px;color:var(--teal-dark);background:var(--teal-pale);border-radius:6px;padding:5px 10px;margin-top:6px;display:inline-block;font-weight:500}
+
+/* FAQ */
+details{border-bottom:1px solid var(--border)}
+details:last-child{border-bottom:none}
+details summary{padding:15px 0;font-size:14px;font-weight:600;color:var(--text-dark);cursor:pointer;display:flex;justify-content:space-between;align-items:center;list-style:none}
+details summary::marker,details summary::-webkit-details-marker{display:none}
+.faq-icon{width:22px;height:22px;border-radius:50%;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--text-mid);flex-shrink:0}
+details[open] .faq-icon{border-color:var(--teal);color:var(--teal)}
+.faq-ans{font-size:14px;color:var(--text-mid);line-height:1.75;padding-bottom:15px}
+.faq-ans strong{color:var(--text-dark)}
+.faq-ans a{color:var(--teal-dark);text-decoration:none}
+
+/* ETIAS BOX */
+.etias-box{background:linear-gradient(135deg,#062040,#0D3560);border-radius:var(--r-lg);padding:24px;margin-bottom:20px;border:1px solid rgba(0,196,161,0.2)}
+.etias-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(0,196,161,0.15);border:1px solid rgba(0,196,161,0.3);border-radius:50px;padding:4px 12px;font-size:11px;font-weight:700;color:var(--teal);margin-bottom:12px}
+.etias-title{font-family:var(--font-d);font-size:20px;color:var(--white);margin-bottom:10px}
+.etias-desc{font-size:13px;color:rgba(255,255,255,0.6);line-height:1.7;margin-bottom:14px}
+.etias-paises{display:flex;flex-wrap:wrap;gap:6px}
+.etias-pais{background:rgba(255,255,255,0.08);border-radius:20px;padding:4px 10px;font-size:12px;color:rgba(255,255,255,0.75)}
+
+/* SIDEBAR */
+.sidebar{position:sticky;top:88px;display:flex;flex-direction:column;gap:14px}
+@media(max-width:900px){.sidebar{display:none}}
+.sb-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden}
+.sb-head{background:var(--navy);padding:14px 18px}
+.sb-title{font-size:13px;font-weight:600;color:var(--white);margin-bottom:3px}
+.sb-sub{font-size:11px;color:rgba(255,255,255,0.5)}
+.sb-body{padding:16px 18px}
+.sb-item{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px}
+.sb-item:last-child{border-bottom:none}
+.sb-label{color:var(--text-mid)}
+.sb-val{font-weight:600;color:var(--text-dark)}
+.btn-sb{width:100%;background:var(--teal);color:var(--navy);border:none;border-radius:50px;padding:12px;font-family:var(--font-b);font-size:14px;font-weight:700;cursor:pointer;margin-top:12px;display:block;text-align:center;text-decoration:none;transition:background .2s}
+.btn-sb:hover{background:var(--teal-dark)}
+.info-note{background:var(--sand);border-radius:var(--r-md);padding:12px 14px;font-size:12px;color:var(--text-mid);line-height:1.6;border-left:3px solid var(--teal)}
+.info-note strong{color:var(--text-dark);display:block;margin-bottom:3px}
+
+/* DEST LINKS */
+.dest-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.dest-link{display:flex;align-items:center;gap:8px;padding:10px 14px;background:var(--sand);border-radius:var(--r-md);text-decoration:none;font-size:13px;font-weight:500;color:var(--text-dark);border:1px solid var(--sand-dark);transition:all .2s}
+.dest-link:hover{background:var(--white);transform:translateY(-1px);border-color:var(--teal)}
+
+/* FOOTER */
+footer{background:var(--navy);padding:44px 5% 26px;margin-top:40px}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:36px}
+@media(max-width:700px){.footer-grid{grid-template-columns:1fr 1fr}}
+.footer-logo img{height:44px;margin-bottom:12px}
+.footer-desc{font-size:13px;color:rgba(255,255,255,0.4);line-height:1.7;max-width:240px}
+.footer-col h4{font-size:11px;font-weight:700;color:var(--white);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px}
+.footer-col a{display:block;font-size:13px;color:rgba(255,255,255,0.45);text-decoration:none;margin-bottom:8px;transition:color .2s}
+.footer-col a:hover{color:var(--teal)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.07);padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.footer-bottom p{font-size:12px;color:rgba(255,255,255,0.3)}
+
+/* LOGO FIX — visible, transparent, no ghost/fade */
+nav .logo,
+.logo{opacity:1!important;filter:none!important;mix-blend-mode:normal!important}
+.logo img,
+.logo-img,
+.logo-img-header,
+nav .logo img{
+  opacity:1!important;
+  filter:none!important;
+  mix-blend-mode:normal!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+nav .logo img,
+.logo-img-header{height:58px!important;max-width:300px!important;width:auto!important;object-fit:contain!important}
+@media(max-width:700px){
+  nav .logo img,
+  .logo-img-header{height:44px!important;max-width:220px!important}
+}
+
+
+/* InterMundial affiliate CTA */
+.intermundial-affiliate-box{
+  margin-top:24px;
+  padding:22px;
+  border-radius:22px;
+  border:1px solid rgba(0,196,161,.25);
+  background:linear-gradient(135deg,rgba(0,196,161,.10),rgba(245,240,232,.72));
+}
+.intermundial-affiliate-box h3{margin:0 0 8px;color:#0B1F3A}
+.intermundial-affiliate-box p{margin:0 0 14px;color:#4A647E}
+.intermundial-coupon{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  background:#fff;
+  border:1px dashed #00A989;
+  color:#0B1F3A;
+  padding:8px 12px;
+  border-radius:12px;
+  font-weight:900;
+  margin:0 0 14px;
+}
+.intermundial-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  background:#0B1F3A;
+  color:#fff!important;
+  text-decoration:none!important;
+  padding:13px 22px;
+  border-radius:999px;
+  font-weight:900;
+}
+
+
+/* Trust checklist + conversion blocks */
+.vl-trust-block{margin:34px auto;padding:26px;border-radius:26px;background:#F5F0E8;border:1px solid #EAE3D5;max-width:1120px}
+.vl-trust-block h2,.vl-trust-block h3{color:#0B1F3A;margin-bottom:12px}
+.vl-trust-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+.vl-trust-item{background:#fff;border:1px solid #EAE3D5;border-radius:18px;padding:18px}
+.vl-trust-item strong{display:block;color:#0B1F3A;margin-bottom:5px}
+.vl-trust-item p{color:#4A647E;font-size:14px;line-height:1.6;margin:0}
+.vl-affiliate-transparency{margin:26px auto;padding:18px 20px;border-left:4px solid #00C4A1;background:rgba(0,196,161,.08);border-radius:16px;color:#4A647E;max-width:1120px;font-size:14px;line-height:1.65}
+.vl-cta-comparison{margin:30px auto;padding:28px;border-radius:26px;background:linear-gradient(135deg,#0B1F3A,#1A3558);color:#fff;max-width:1120px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.vl-cta-comparison h3{font-size:24px;margin:0 0 6px;color:#fff}
+.vl-cta-comparison p{color:rgba(255,255,255,.7);margin:0}
+.vl-cta-buttons{display:flex;gap:10px;flex-wrap:wrap}
+.vl-cta-btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 20px;border-radius:999px;text-decoration:none!important;font-weight:900}
+.vl-cta-btn.primary{background:#00C4A1;color:#0B1F3A!important}
+.vl-cta-btn.secondary{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.22);color:#fff!important}
+.vl-coupon-mini{display:inline-flex;background:#fff;color:#0B1F3A;border:1px dashed #00A989;border-radius:10px;padding:6px 10px;font-weight:900;font-size:13px;margin-top:8px}
+@media(max-width:800px){.vl-trust-grid{grid-template-columns:1fr}.vl-cta-comparison{align-items:flex-start}.vl-cta-buttons{width:100%}.vl-cta-btn{width:100%}}
+
+
+/* ViajeroLatam original logo — desktop/mobile fix */
+.site-header .brand-logo,
+nav .brand-logo{
+  display:inline-flex;
+  align-items:center;
+  flex:0 0 auto;
+  min-width:170px;
+  max-width:260px;
+  height:62px;
+  text-decoration:none;
+}
+.site-header .brand-logo picture,
+nav .brand-logo picture{display:flex;align-items:center;height:100%}
+.site-header .brand-logo img,
+nav .brand-logo img,
+.brand-logo img{
+  display:block!important;
+  width:auto!important;
+  height:56px!important;
+  max-width:250px!important;
+  object-fit:contain!important;
+}
+@media(max-width:768px){
+  .site-header .brand-logo,
+  nav .brand-logo{
+    min-width:138px;
+    max-width:180px;
+    height:54px;
+  }
+  .site-header .brand-logo img,
+  nav .brand-logo img,
+  .brand-logo img{
+    height:46px!important;
+    max-width:178px!important;
+  }
+}
+@media(max-width:380px){
+  .site-header .brand-logo,
+  nav .brand-logo{max-width:155px;min-width:125px}
+  .site-header .brand-logo img,
+  nav .brand-logo img,
+  .brand-logo img{height:40px!important;max-width:155px!important}
+}
+
+
+/* LOGO FIX — exact original logo, larger and clearer on desktop/mobile */
+a.brand-logo, a.logo, .mobile-logo, .footer-logo{
+  display:inline-flex !important;
+  align-items:center !important;
+  text-decoration:none !important;
+}
+nav a.brand-logo, nav a.logo{
+  flex:0 0 auto !important;
+  min-width:220px !important;
+  max-width:320px !important;
+  height:72px !important;
+}
+nav a.brand-logo img, nav a.logo img,
+.mobile-logo img, .footer-logo img, .fl img{
+  display:block !important;
+  width:auto !important;
+  height:64px !important;
+  max-width:320px !important;
+  object-fit:contain !important;
+  opacity:1 !important;
+  filter:none !important;
+  mix-blend-mode:normal !important;
+}
+@media (max-width: 768px){
+  nav{min-height:74px !important}
+  nav a.brand-logo, nav a.logo{
+    min-width:150px !important;
+    max-width:220px !important;
+    height:58px !important;
+  }
+  nav a.brand-logo img, nav a.logo img,
+  .mobile-logo img, .footer-logo img, .fl img{
+    height:48px !important;
+    max-width:210px !important;
+  }
+}
+@media (max-width: 420px){
+  nav a.brand-logo, nav a.logo{
+    min-width:135px !important;
+    max-width:190px !important;
+    height:52px !important;
+  }
+  nav a.brand-logo img, nav a.logo img,
+  .mobile-logo img, .footer-logo img, .fl img{
+    height:42px !important;
+    max-width:185px !important;
+  }
+}
+
+
+/* EXACT COLOR LOGO FIX */
+a.brand-logo img,
+a.logo img,
+.mobile-logo img,
+.footer-logo img,
+.fl img{
+  opacity: 1 !important;
+  filter: none !important;
+  mix-blend-mode: normal !important;
+  image-rendering: -webkit-optimize-contrast !important;
+  object-fit: contain !important;
+  background: transparent !important;
+}
+nav a.brand-logo, nav a.logo{
+  display:inline-flex !important;
+  align-items:center !important;
+  min-height:72px !important;
+}
+nav a.brand-logo img, nav a.logo img{
+  height:64px !important;
+  width:auto !important;
+  max-width:320px !important;
+}
+@media (max-width:768px){
+  nav a.brand-logo img, nav a.logo img,
+  .mobile-logo img{
+    height:44px !important;
+    width:auto !important;
+    max-width:200px !important;
+  }
+}
+
+
+/* CACHE-BUSTER LOGO FIX */
+a.brand-logo, a.logo, .mobile-logo, .footer-logo {opacity:1 !important; filter:none !important;}
+a.brand-logo img, a.logo img, .mobile-logo img, .footer-logo img, header img[src*="logo"]{
+  opacity:1 !important;
+  filter:none !important;
+  mix-blend-mode:normal !important;
+  object-fit:contain !important;
+  image-rendering:auto !important;
+  background:transparent !important;
+}
+nav a.brand-logo img, nav a.logo img{height:64px !important; width:auto !important; max-width:320px !important;}
+@media (max-width:768px){ nav a.brand-logo img, nav a.logo img, .mobile-logo img{height:44px !important; max-width:220px !important;} }
+
+
+/* Mobile header + CTA conversion polish */
+@media (max-width: 768px){
+  nav{
+    min-height:72px!important;
+    padding:8px 16px!important;
+    gap:10px!important;
+  }
+  nav .nav-links{
+    gap:8px!important;
+  }
+  nav .nav-links a:not(.nav-cta){
+    display:none!important;
+  }
+  nav .nav-cta{
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    padding:10px 15px!important;
+    font-size:13px!important;
+    white-space:nowrap!important;
+    border-radius:999px!important;
+  }
+  .hero{
+    padding-top:56px!important;
+    padding-bottom:54px!important;
+  }
+  .hero-inner{
+    gap:26px!important;
+  }
+  .hero h1,
+  h1{
+    font-size:clamp(38px,11vw,52px)!important;
+    line-height:1.04!important;
+  }
+  .hero p{
+    font-size:16px!important;
+  }
+  .hero-box{
+    border-radius:22px!important;
+    padding:20px!important;
+  }
+  .btn-row,
+  .vl-cta-buttons{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    width:100%!important;
+  }
+  .btn,
+  .vl-cta-btn,
+  .intermundial-btn{
+    width:100%!important;
+    min-height:48px!important;
+    text-align:center!important;
+  }
+  .cards{
+    gap:16px!important;
+  }
+  .insurer{
+    padding:22px!important;
+  }
+  .vl-trust-block{
+    margin:24px 16px!important;
+    padding:22px!important;
+    border-radius:22px!important;
+  }
+  .vl-cta-comparison{
+    margin:24px 16px!important;
+    padding:22px!important;
+    border-radius:22px!important;
+  }
+}
+
+/* Sticky mobile affiliate bar */
+.mobile-affiliate-bar{
+  position:fixed;
+  left:12px;
+  right:12px;
+  bottom:12px;
+  z-index:999;
+  display:none;
+  gap:8px;
+  padding:9px;
+  border-radius:999px;
+  background:rgba(11,31,58,.94);
+  box-shadow:0 18px 45px rgba(0,0,0,.24);
+  backdrop-filter:blur(12px);
+}
+.mobile-affiliate-bar a{
+  flex:1;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:42px;
+  border-radius:999px;
+  text-decoration:none!important;
+  font-weight:900;
+  font-size:13px;
+}
+.mobile-affiliate-bar .ma-primary{background:#00C4A1;color:#0B1F3A!important}
+.mobile-affiliate-bar .ma-secondary{background:#fff;color:#0B1F3A!important}
+@media (max-width:768px){
+  body{padding-bottom:74px!important}
+  .mobile-affiliate-bar{display:flex}
+}
+
+</style>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P1Q2TSMVNJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-P1Q2TSMVNJ');
+</script>
+
+<style>@font-face{font-display:swap}</style>
+<meta property="og:locale" content="es_CO">
+<meta property="og:site_name" content="ViajeroLatam">
+
+<style id="no-travel-icons">.travel-icons,#travel-canvas,canvas{display:none!important}</style>
+</head>
+<body>
+<!-- MOBILE NAV -->
+<div id="mob-overlay" onclick="closeMobMenu()" style="display:none;position:fixed;inset:0;background:rgba(11,31,58,.6);z-index:998;backdrop-filter:blur(4px)"></div>
+<div id="mob-drawer" style="display:none;position:fixed;top:0;right:0;bottom:0;width:min(300px,85vw);background:#fff;z-index:999;box-shadow:-8px 0 40px rgba(11,31,58,.25);flex-direction:column;transform:translateX(100%);transition:transform .28s cubic-bezier(.4,0,.2,1)">
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:#0B1F3A;flex-shrink:0">
+    <img src="/logo-vl-original-20260528.png" alt="ViajeroLatam">
+    <button onclick="closeMobMenu()" style="width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.12);border:none;color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center">✕</button>
+  </div>
+  <div style="flex:1;overflow-y:auto">
+    <a href="/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">🏠 Inicio</a>
+    <a href="/blog/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">📚 Artículos</a>
+    <a href="/visa-schengen/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">🛂 Visa Schengen</a>
+    <a href="/blog/etias-colombianos/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">⚡ ETIAS 2026</a>
+    <a href="/seguro-viaje/colombia-a-espana/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">🇨🇴 Colombia → Españaña</a>
+    <a href="/seguro-viaje/bogota-a-espana/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">🏙️ Bogotá → España</a>
+    <a href="/seguro-viaje/medellin-a-espana/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">🏙️ Medellín → España</a>
+    <a href="/seguro-viaje/cali-a-espana/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">🏙️ Cali → España</a>
+  </div>
+  <div style="padding:16px 18px;border-top:1px solid #E4EDF5;flex-shrink:0">
+    <a href="/resultados/" onclick="closeMobMenu()" style="display:flex;align-items:center;justify-content:center;gap:8px;background:#00C4A1;color:#0B1F3A;padding:14px;border-radius:50px;font-size:15px;font-weight:700;text-decoration:none">🔍 Comparar seguros gratis</a>
+  </div>
+</div>
+<style>
+.mob-btn{display:none;flex-direction:column;justify-content:center;gap:5px;width:40px;height:40px;padding:8px;border-radius:10px;border:1.5px solid rgba(11,31,58,.15);background:rgba(11,31,58,.06);cursor:pointer;flex-shrink:0}
+.mob-btn span{display:block;height:2px;width:100%;background:#0B1F3A;border-radius:2px;transition:all .25s}
+.mob-btn.is-open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.mob-btn.is-open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.mob-btn.is-open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+#mob-drawer.is-open{transform:translateX(0)!important}
+@media(max-width:768px){.mob-btn{display:flex!important}}
+</style>
+<script>
+function openMobMenu(){var d=document.getElementById('mob-drawer'),o=document.getElementById('mob-overlay'),b=document.querySelector('.mob-btn');if(!d)return;d.style.display='flex';o.style.display='block';requestAnimationFrame(function(){d.classList.add('is-open');if(b)b.classList.add('is-open');});document.body.style.overflow='hidden';}
+function closeMobMenu(){var d=document.getElementById('mob-drawer'),o=document.getElementById('mob-overlay'),b=document.querySelector('.mob-btn');if(!d)return;d.classList.remove('is-open');if(b)b.classList.remove('is-open');document.body.style.overflow='';setTimeout(function(){d.style.display='none';o.style.display='none';},280);}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu();});
+</script>
+
+<nav>
+  <a href="/" class="brand-logo" aria-label="ViajeroLatam inicio"><img src="/logo-vl-original-20260528.png" alt="ViajeroLatam"></a>
+  <div class="nav-links">
+    <a href="/#como-funciona">¿Cómo funciona?</a>
+    <a href="/#aseguradoras">Aseguradoras</a>
+    <a href="/visa-schengen/" class="active">Visa Schengen</a>
+    <a href="/blog/">Artículos</a><a href="/sobre-nosotros/">Sobre nosotros</a>
+    <a href="/#faq">FAQ</a>
+    <a href="/resultados/" class="nav-cta">Comparar ahora</a>
+  </div>
+
+<button class="mob-btn" onclick="openMobMenu()" aria-label="Menú"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="breadcrumb-bar">
+  <div class="bc-inner">
+    <a href="/">Inicio</a><span class="bc-sep">/</span>
+    <span>Visa Schengen para latinoamericanos</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+<div class="hero-inner">
+    <div class="hero-eyebrow">🛂 Requisitos del consulado explicados en español</div>
+    <h1>Seguro de Viaje para<br><em>Visa Schengen</em><br>Latinoamericanos 2026</h1>
+    <p class="hero-desc">El consulado exige 4 requisitos exactos en tu seguro. Te explicamos qué pedir, cuáles aseguradoras aprueban el consulado y dónde conseguir el mejor precio.</p>
+  </div>
+
+  <div style="max-width:1100px;margin:28px auto 0">
+    <div class="req-grid">
+      <div class="req-card">
+        <div class="req-num">01</div>
+        <div class="req-label">Cobertura médica</div>
+        <div class="req-val">Mínimo 30.000 €</div>
+        <div class="req-check">✓ Gastos hospitalarios incluidos</div>
+      </div>
+      <div class="req-card">
+        <div class="req-num">02</div>
+        <div class="req-label">Repatriación</div>
+        <div class="req-val">Sin límite</div>
+        <div class="req-check">✓ Traslado médico + restos mortales</div>
+      </div>
+      <div class="req-card">
+        <div class="req-num">03</div>
+        <div class="req-label">Franquicia</div>
+        <div class="req-val">€0 — Sin franquicia</div>
+        <div class="req-check">✓ El consulado rechaza seguros con franquicia</div>
+      </div>
+      <div class="req-card">
+        <div class="req-num">04</div>
+        <div class="req-label">Sede aseguradora</div>
+        <div class="req-val">País de la UE</div>
+        <div class="req-check">✓ España, Francia, Alemania, etc.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE -->
+<div class="page">
+<div>
+
+  <!-- PAÍSES -->
+  <div class="section">
+    <div class="sec-head"><div class="sec-icon">🌎</div><h2 class="sec-title">¿Tu país necesita visa Schengen para ir a España?</h2></div>
+    <div style="overflow-x:auto">
+      <table class="paises-table">
+        <thead>
+          <tr>
+            <th>País</th>
+            <th>¿Necesita visa?</th>
+            <th>¿Seguro obligatorio?</th>
+            <th>Seguro específico</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="flag-name"><span class="flag-emoji">🇨🇴</span>Colombia</div></td>
+            <td><span class="badge-visa bv-no">No necesita visa</span></td>
+            <td><strong style="color:#854F0B">Muy recomendado</strong></td>
+            <td><a href="/seguro-viaje/colombia-a-espana/" class="link-seguro">Ver seguro Colombia →</a></td>
+          </tr>
+          <tr>
+            <td><div class="flag-name"><span class="flag-emoji">🇧🇴</span>Bolivia</div></td>
+            <td><span class="badge-visa bv-yes">Sí — visa Schengen</span></td>
+            <td><strong style="color:#C0392B">Obligatorio</strong></td>
+            <td><a href="/resultados/" class="link-seguro">Comparar seguros →</a></td>
+          </tr>
+          <tr>
+            <td><div class="flag-name"><span class="flag-emoji">🇨🇺</span>Cuba</div></td>
+            <td><span class="badge-visa bv-yes">Sí — visa Schengen</span></td>
+            <td><strong style="color:#C0392B">Obligatorio</strong></td>
+            <td><a href="/resultados/" class="link-seguro">Comparar seguros →</a></td>
+          </tr>
+          <tr>
+            <td><div class="flag-name"><span class="flag-emoji">🇩🇴</span>R. Dominicana</div></td>
+            <td><span class="badge-visa bv-yes">Sí — visa Schengen</span></td>
+            <td><strong style="color:#C0392B">Obligatorio</strong></td>
+            <td><a href="/resultados/" class="link-seguro">Comparar seguros →</a></td>
+          </tr>
+          <tr>
+            <td><div class="flag-name"><span class="flag-emoji">🇪🇨</span>Ecuador</div></td>
+            <td><span class="badge-visa bv-yes">Sí — visa Schengen</span></td>
+            <td><strong style="color:#C0392B">Obligatorio</strong></td>
+            <td><a href="/resultados/" class="link-seguro">Comparar seguros →</a></td>
+          </tr>
+          <tr>
+            <td><div class="flag-name"><span class="flag-emoji">🇲🇽</span>México</div></td>
+            <td><span class="badge-visa bv-no">No necesita visa</span></td>
+            <td><strong style="color:#854F0B">Muy recomendado</strong></td>
+            <td><a href="/resultados/" class="link-seguro">Comparar seguros →</a></td>
+          </tr>
+          <tr>
+            <td><div class="flag-name"><span class="flag-emoji">🇦🇷</span>Argentina</div></td>
+            <td><span class="badge-visa bv-no">No necesita visa</span></td>
+            <td><strong style="color:#854F0B">Muy recomendado</strong></td>
+            <td><a href="/resultados/" class="link-seguro">Comparar seguros →</a></td>
+          </tr>
+          <tr>
+            <td><div class="flag-name"><span class="flag-emoji">🇨🇱</span>Chile</div></td>
+            <td><span class="badge-visa bv-no">No necesita visa</span></td>
+            <td><strong style="color:#854F0B">Muy recomendado</strong></td>
+            <td><a href="/resultados/" class="link-seguro">Comparar seguros →</a></td>
+          </tr>
+          <tr>
+            <td><div class="flag-name"><span class="flag-emoji">🇻🇪</span>Venezuela</div></td>
+            <td><span class="badge-visa bv-no">No necesita visa</span></td>
+            <td><strong style="color:#854F0B">Muy recomendado</strong></td>
+            <td><a href="/seguro-viaje/venezuela-a-espana/" class="link-seguro">Ver seguro Venezuela →</a></td>
+          </tr>
+          <tr>
+            <td><div class="flag-name"><span class="flag-emoji">🇵🇪</span>Perú</div></td>
+            <td><span class="badge-visa bv-etias">No necesita visa</span></td>
+            <td><strong style="color:#854F0B">Recomendado</strong></td>
+            <td><a href="/resultados/" class="link-seguro">Comparar seguros →</a></td>
+          </tr>
+          <tr>
+            <td><div class="flag-name"><span class="flag-emoji">🇧🇷</span>Brasil</div></td>
+            <td><span class="badge-visa bv-no">No necesita visa</span></td>
+            <td><strong style="color:#854F0B">Muy recomendado</strong></td>
+            <td><a href="/resultados/" class="link-seguro">Comparar seguros →</a></td>
+          </tr>
+          <tr>
+            <td><div class="flag-name"><span class="flag-emoji">🇺🇾</span>Uruguay</div></td>
+            <td><span class="badge-visa bv-no">No necesita visa</span></td>
+            <td><strong style="color:#854F0B">Muy recomendado</strong></td>
+            <td><a href="/resultados/" class="link-seguro">Comparar seguros →</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- COMPARATIVA SEGUROS SCHENGEN -->
+  <div class="section">
+    <div class="sec-head"><div class="sec-icon">🏆</div><h2 class="sec-title">Mejores seguros para visa Schengen 2026 — Comparativa</h2></div>
+    <div>
+      <!-- ETIAS BOX -->
+  <div class="etias-box">
+    <div class="etias-badge">⚡ Novedad Q4 2026</div>
+    <h2 class="etias-title">¿Qué es el ETIAS y cómo te afecta?</h2>
+    <p class="etias-desc">El ETIAS (Sistema Europeo de Autorización de Viajes) entra en vigor en el último trimestre de 2026. Es un permiso electrónico obligatorio para viajar a Europa sin visa. NO reemplaza la visa Schengen para Colombia, Bolivia, Cuba o Ecuador — ellos siguen necesitando visa. El ETIAS aplica a los países latinoamericanos que actualmente NO necesitan visa:</p>
+    <div class="etias-paises">
+      <span class="etias-pais">🇲🇽 México</span>
+      <span class="etias-pais">🇦🇷 Argentina</span>
+      <span class="etias-pais">🇨🇱 Chile</span>
+      <span class="etias-pais">🇧🇷 Brasil</span>
+      <span class="etias-pais">🇵🇪 Perú</span>
+      <span class="etias-pais">🇺🇾 Uruguay</span>
+      <span class="etias-pais">🇵🇦 Panamá</span>
+      <span class="etias-pais">🇨🇷 Costa Rica</span>
+      <span class="etias-pais">🇵🇾 Paraguay</span>
+    </div>
+  </div>
+
+  <!-- PASO A PASO -->
+  <div class="section">
+    <div class="sec-head"><div class="sec-icon">📋</div><h2 class="sec-title">Cómo tramitar el seguro para la visa Schengen — Paso a paso</h2></div>
+    <div class="sec-body">
+      <div class="paso">
+        <div class="paso-num">1</div>
+        <div>
+          <div class="paso-title">Verifica que tu país necesita visa Schengen</div>
+          <div class="paso-desc">Consulta la tabla de arriba. Colombia, Bolivia, Cuba, Ecuador y República Dominicana necesitan visa obligatoria. Si eres de México, Argentina o Chile, el seguro no es obligatorio pero sí muy recomendable.</div>
+        </div>
+      </div>
+      <div class="paso">
+        <div class="paso-num">2</div>
+        <div>
+          <div class="paso-title">Pide cita en el consulado español de tu ciudad</div>
+          <div class="paso-desc">El consulado de España en Bogotá, Medellín, Cali (Colombia), Ciudad de México, Buenos Aires o Lima gestiona las visas Schengen. La cita puede tardar semanas — pídela con antelación.</div>
+          <span class="paso-tip">Pide la cita ANTES de contratar el seguro para ajustar las fechas exactas.</span>
+        </div>
+      </div>
+      <div class="paso">
+        <div class="paso-num">3</div>
+        <div>
+          <div class="paso-title">Compara y contrata el seguro en ViajeroLatam</div>
+          <div class="paso-desc">Usa nuestro comparador para elegir el seguro que mejor se adapte a tu viaje. Todos los marcados "Válido Schengen" cumplen los 4 requisitos del consulado. El proceso es 100% online y tardas menos de 5 minutos.</div>
+        </div>
+      </div>
+      <div class="paso">
+        <div class="paso-num">4</div>
+        <div>
+          <div class="paso-title">Recibe la póliza por email en menos de 2 minutos</div>
+          <div class="paso-desc">La póliza llega en PDF a tu correo. Es el documento oficial que llevas a la cita en el consulado. No necesitas imprimirla — muchos consulados aceptan el PDF en el móvil.</div>
+          <span class="paso-tip">Guarda también el justificante de pago — algunos consulados lo piden junto a la póliza.</span>
+        </div>
+      </div>
+      <div class="paso" style="border:none">
+        <div class="paso-num">5</div>
+        <div>
+          <div class="paso-title">Presenta la póliza en el consulado</div>
+          <div class="paso-desc">El funcionario del consulado verifica que el seguro cumple los 4 requisitos: 30.000€ médicos, repatriación, sin franquicia y aseguradora europea. Con cualquier seguro de nuestra comparativa, la aprobación está garantizada.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="section">
+    <div class="sec-head"><div class="sec-icon">❓</div><h2 class="sec-title">Preguntas frecuentes sobre el seguro para visa Schengen</h2></div>
+    <div class="sec-body" style="padding-bottom:8px">
+      <details><summary>¿Qué pasa si mi seguro tiene franquicia? <span class="faq-icon">+</span></summary>
+        <p class="faq-ans">El consulado <strong>rechaza automáticamente</strong> los seguros con franquicia. Es uno de los errores más comunes. Verifica siempre que el seguro diga "Sin franquicia" o "Deducible €0". En nuestra comparativa filtramos solo los seguros sin franquicia para evitar este problema.</p>
+      </details>
+      <details><summary>¿Puedo usar un seguro de mi banco o tarjeta de crédito? <span class="faq-icon">+</span></summary>
+        <p class="faq-ans">En la mayoría de casos <strong>no</strong>. Los seguros de tarjetas de crédito o bancarios rara vez cumplen los 4 requisitos Schengen: suelen tener franquicia, no incluyen repatriación o la aseguradora no tiene sede en Europa. El consulado puede rechazarlos. Usa siempre un seguro específico de viaje como los de nuestra comparativa.</p>
+      </details>
+      <details><summary>¿Cuánto tiempo antes de viajar debo contratar el seguro? <span class="faq-icon">+</span></summary>
+        <p class="faq-ans">Contrátalo <strong>entre 1 y 7 días antes de la cita en el consulado</strong>. Las fechas del seguro deben coincidir exactamente con las fechas de tu viaje previsto. No lo contrates demasiado pronto porque si el consulado te pide modificar las fechas tendrías que hacer un nuevo seguro.</p>
+      </details>
+      <details><summary>¿El seguro cubre todos los países Schengen o solo España? <span class="faq-icon">+</span></summary>
+        <p class="faq-ans">Todos los seguros de nuestra comparativa cubren <strong>todo el espacio Schengen</strong> (26 países de Europa). No importa si tu vuelo llega a Madrid y luego viajas a París, Roma o Berlín — estás cubierto en todos. Asegúrate de que la póliza especifique "Espacio Schengen" o "Europa" como zona de cobertura.</p>
+      </details>
+      <details><summary>¿Necesito seguro si tengo residencia en España? <span class="faq-icon">+</span></summary>
+        <p class="faq-ans">Si tienes <strong>residencia legal en España</strong>, no necesitas visa Schengen para viajar dentro del espacio Schengen. Sin embargo, si viajas fuera del Schengen (EEUU, Latinoamérica, etc.) y regresas, sí es recomendable tener un seguro de viaje aunque no sea obligatorio.</p>
+      </details>
+    </div>
+  </div>
+
+  <!-- OTROS DESTINOS -->
+  <div class="section">
+    <div class="sec-head"><div class="sec-icon">🗺️</div><h2 class="sec-title">Seguros por país de origen</h2></div>
+    <div class="sec-body">
+      <div class="dest-grid">
+        <a href="/seguro-viaje/colombia-a-espana/" class="dest-link"><span style="font-size:18px">🇨🇴</span>Colombia → Españaña</a>
+        <a href="/resultados/" class="dest-link"><span style="font-size:18px">🇧🇴</span>Bolivia → Europa</a>
+        <a href="/resultados/" class="dest-link"><span style="font-size:18px">🇪🇨</span>Ecuador → España</a>
+        <a href="/resultados/" class="dest-link"><span style="font-size:18px">🇻🇪</span>Venezuela → EEUU</a>
+        <a href="/resultados/" class="dest-link"><span style="font-size:18px">🇲🇽</span>México → España</a>
+        <a href="/resultados/" class="dest-link"><span style="font-size:18px">🇦🇷</span>Argentina → Europa</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sb-card">
+    <div class="sb-head">
+      <div class="sb-title">🛂 Seguro para Visa Schengen</div>
+      <div class="sb-sub">Desde €1.75/día · Válido consulado</div>
+    </div>
+    <div class="sb-body">
+      <div class="sb-item"><span class="sb-label">Cobertura médica</span><span class="sb-val">≥30.000€ ✓</span></div>
+      <div class="sb-item"><span class="sb-label">Franquicia</span><span class="sb-val" style="color:var(--green)">€0 ✓</span></div>
+      <div class="sb-item"><span class="sb-label">Repatriación</span><span class="sb-val" style="color:var(--green)">Incluida ✓</span></div>
+      <div class="sb-item"><span class="sb-label">Sede aseguradora</span><span class="sb-val" style="color:var(--green)">España ✓</span></div>
+      <a href="/resultados/" class="btn-sb">Comparar seguros →</a>
+      <p style="font-size:11px;color:var(--text-light);text-align:center;margin-top:8px">Gratis · Póliza en 2 minutos</p>
+    </div>
+  </div>
+  <div class="info-note">
+    <strong>⚠ Cuidado con la franquicia</strong>
+    El error más común es contratar un seguro barato con franquicia de €150. El consulado lo rechaza automáticamente. Verifica siempre que diga "Sin franquicia".
+  </div>
+  <div class="info-note" style="border-color:var(--amber)">
+    <strong>📅 ETIAS Q4 2026</strong>
+    Si eres de México, Argentina o Chile, necesitarás el ETIAS para entrar a Europa a partir de octubre 2026. El seguro de viaje seguirá siendo recomendable aunque no obligatorio.
+  </div>
+</aside>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo"><img src="/logo-vl-original-20260528.png" alt="ViajeroLatam"></div>
+        <p class="footer-desc">Comparador de seguros de viaje para latinoamericanos que viajan a Europa y Estados Unidos.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Visa Schengen</h4>
+        <a href="/visa-schengen/">Seguro colombianos</a>
+        <a href="/visa-schengen/">Seguro bolivianos</a>
+        <a href="/visa-schengen/">Seguro ecuatorianos</a>
+        <a href="/visa-schengen/">Requisitos Colombia</a>
+      </div>
+      <div class="footer-col">
+        <h4>Por destino</h4>
+        <a href="/seguro-viaje/colombia-a-espana/">Colombia → Españaña</a>
+        <a href="/seguro-viaje/colombia-a-espana/">México → España</a>
+        <a href="/seguro-viaje/colombia-a-espana/">Venezuela → EEUU</a>
+        <a href="/seguro-viaje/colombia-a-espana/">Argentina → Europa</a>
+      </div>
+      <div class="footer-col">
+        <h4>Comparar</h4>
+        <a href="/resultados/">Ver todos los seguros</a>
+        
+        
+        <a href="/comparar-seguros-viaje-colombia-espana/">Mejor seguro LATAM</a>
+      </div>
+    </div>
+    <div style="max-width:1100px;margin:0 auto;padding-bottom:12px;display:flex;gap:20px;flex-wrap:wrap"><a href="/privacidad/" style="font-size:12px;color:rgba(255,255,255,.35);text-decoration:none">Privacidad</a><a href="/aviso-legal/" style="font-size:12px;color:rgba(255,255,255,.35);text-decoration:none">Aviso Legal</a><a href="/contacto/" style="font-size:12px;color:rgba(255,255,255,.35);text-decoration:none">Contacto</a></div><div class="footer-bottom">
+      <p>© 2026 ViajeroLatam · Comparador independiente · No somos aseguradora</p>
+      <p>Seguro para visa Schengen latinoamericanos · Válido consulado español</p>
+    </div>
+  </div>
+ · <a href="/sobre-nosotros/" style="color:#fff;text-decoration:none;font-weight:800">Sobre nosotros</a> · <a href="/contacto/" style="color:#fff;text-decoration:none;font-weight:800">Contacto</a></footer>
+
+<script>
+document.querySelectorAll('details').forEach(d=>{
+  d.addEventListener('toggle',()=>{
+    const ic = d.querySelector('.faq-icon');
+    if(ic) ic.textContent = d.open ? '−' : '+';
+  });
+});
+</script>
+
+<script>
+document.addEventListener('click', function(e){
+  var link = e.target.closest('a');
+  if(!link || typeof gtag !== 'function') return;
+  var href = link.getAttribute('href') || '';
+  if(href.indexOf('iatiseguros.com') !== -1){
+    gtag('event', 'click_affiliate_iati', {
+      event_category: 'affiliate',
+      event_label: href,
+      page_location: window.location.href
+    });
+  }
+
+  if(href.indexOf('intermundial.es') !== -1){
+    gtag('event', 'click_affiliate_intermundial', {
+      event_category: 'affiliate',
+      event_label: href,
+      page_location: window.location.href
+    });
+  }
+});
+</script>
+
+<!-- ═══ EXIT INTENT + STICKY CTA ═══ -->
+<style id="exit-sticky-css">
+/* ── STICKY CTA MÓVIL ── */
+#sticky-mob{
+  display:none;
+  position:fixed;
+  bottom:0;left:0;right:0;
+  z-index:990;
+  padding:12px 16px 16px;
+  background:linear-gradient(to top,rgba(255,255,255,1) 60%,rgba(255,255,255,0));
+  pointer-events:none;
+}
+#sticky-mob a{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  background:#00C4A1;color:#0B1F3A;
+  padding:15px;border-radius:50px;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:16px;font-weight:700;
+  text-decoration:none;
+  box-shadow:0 4px 24px rgba(0,196,161,.45);
+  pointer-events:all;
+  transition:background .2s, transform .15s;
+}
+#sticky-mob a:active{transform:scale(.97)}
+#sticky-mob p{
+  font-size:11px;color:#8FA4B8;
+  text-align:center;margin-top:6px;
+  font-family:'Plus Jakarta Sans',sans-serif;
+}
+@media(max-width:768px){
+  #sticky-mob{display:block}
+  body{padding-bottom:90px}
+}
+@media(min-width:769px){
+  #sticky-mob{display:none!important}
+}
+
+/* ── EXIT INTENT POPUP ── */
+#exit-overlay{
+  display:none;position:fixed;inset:0;
+  background:rgba(11,31,58,.65);
+  z-index:9999;
+  backdrop-filter:blur(6px);
+  align-items:center;justify-content:center;
+  padding:20px;
+}
+#exit-box{
+  background:#fff;
+  border-radius:24px;
+  padding:36px 32px;
+  max-width:440px;width:100%;
+  position:relative;
+  box-shadow:0 24px 80px rgba(11,31,58,.25);
+  animation:exitPop .3s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes exitPop{
+  from{opacity:0;transform:scale(.85) translateY(20px)}
+  to{opacity:1;transform:scale(1) translateY(0)}
+}
+#exit-close{
+  position:absolute;top:14px;right:14px;
+  width:32px;height:32px;border-radius:50%;
+  background:#F0F4F8;border:none;cursor:pointer;
+  font-size:16px;color:#4A647E;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .15s;
+}
+#exit-close:hover{background:#E4EDF5}
+.exit-emoji{font-size:48px;text-align:center;margin-bottom:12px}
+.exit-title{
+  font-family:'DM Serif Display',Georgia,serif;
+  font-size:26px;color:#0B1F3A;line-height:1.2;
+  text-align:center;margin-bottom:8px;
+}
+.exit-title em{color:#00C4A1;font-style:italic}
+.exit-sub{
+  font-size:14px;color:#4A647E;text-align:center;
+  line-height:1.6;margin-bottom:20px;
+}
+.exit-proof{
+  display:flex;gap:16px;justify-content:center;
+  margin-bottom:20px;flex-wrap:wrap;
+}
+.exit-proof span{
+  font-size:12px;color:#4A647E;
+  display:flex;align-items:center;gap:4px;
+}
+#exit-cta{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  width:100%;background:#00C4A1;color:#0B1F3A;
+  padding:15px;border-radius:50px;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:15px;font-weight:700;
+  text-decoration:none;border:none;cursor:pointer;
+  transition:background .2s;
+  margin-bottom:10px;
+}
+#exit-cta:hover{background:#009C7F}
+#exit-skip{
+  display:block;width:100%;text-align:center;
+  font-size:12px;color:#8FA4B8;
+  background:none;border:none;cursor:pointer;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  padding:6px;text-decoration:underline;
+}
+</style>
+
+<!-- STICKY MÓVIL -->
+<div id="sticky-mob" aria-label="Comparar seguros gratis">
+  <a href="/resultados/" onclick="if(typeof gtag!='undefined')gtag('event','click_sticky_mob',{page:location.pathname})">
+    🔍 Comparar seguros gratis
+  </a>
+  <p>Sin coste · Póliza en 2 minutos · 2 aseguradoras</p>
+</div>
+
+<!-- EXIT INTENT POPUP -->
+<div id="exit-overlay" role="dialog" aria-modal="true" aria-label="Antes de irte">
+  <div id="exit-box">
+    <button id="exit-close" onclick="closeExitPopup()" aria-label="Cerrar">✕</button>
+    <div class="exit-emoji">✈️</div>
+    <div class="exit-title">¿Seguro para tu viaje <em>ya tienes</em>?</div>
+    <div class="exit-sub">Compara en 2 minutos las 8 mejores aseguradoras. Gratis, en español, sin letra pequeña.</div>
+    <div class="exit-proof">
+      <span>✓ Desde €1.75/día</span>
+      <span>✓ Sin franquicia</span>
+      <span>✓ Cobertura ilimitada</span>
+    </div>
+    <a href="/resultados/" id="exit-cta" onclick="closeExitPopup();if(typeof gtag!='undefined')gtag('event','click_exit_popup',{page:location.pathname})">
+      🔍 Comparar seguros gratis
+    </a>
+    <button id="exit-skip" onclick="closeExitPopup()">No me interesa por ahora</button>
+  </div>
+</div>
+
+<script id="exit-sticky-js">
+(function(){
+  var shown = false;
+  var dismissed = false;
+
+  // ── Exit intent — desktop (mouse leaves top)
+  document.addEventListener('mouseleave', function(e){
+    if(e.clientY > 20) return;
+    if(shown || dismissed) return;
+    if(sessionStorage.getItem('vl_exit_shown')) return;
+    showExitPopup();
+  });
+
+  // ── Exit intent — mobile (back button / scroll up fast)
+  var lastScrollY = 0;
+  var scrollTimer;
+  window.addEventListener('scroll', function(){
+    var currentY = window.scrollY;
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(function(){
+      var delta = lastScrollY - currentY;
+      if(delta > 120 && currentY > 400 && !shown && !dismissed){
+        if(!sessionStorage.getItem('vl_exit_shown')) showExitPopup();
+      }
+      lastScrollY = currentY;
+    }, 150);
+    lastScrollY = currentY;
+  });
+
+  // ── Sticky CTA — hide when hero CTA visible
+  var hero = document.querySelector('.hero, header.hero, .hero-inner');
+  var sticky = document.getElementById('sticky-mob');
+  if(sticky && hero){
+    var io = new IntersectionObserver(function(entries){
+      sticky.style.opacity = entries[0].isIntersecting ? '0' : '1';
+      sticky.style.pointerEvents = entries[0].isIntersecting ? 'none' : 'all';
+    }, {threshold: 0.2});
+    io.observe(hero);
+  }
+})();
+
+function showExitPopup(){
+  shown = true;
+  var overlay = document.getElementById('exit-overlay');
+  if(!overlay) return;
+  overlay.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+  sessionStorage.setItem('vl_exit_shown','1');
+  if(typeof gtag !== 'undefined') gtag('event','exit_popup_shown',{page:location.pathname});
+}
+
+function closeExitPopup(){
+  dismissed = true;
+  var overlay = document.getElementById('exit-overlay');
+  if(!overlay) return;
+  overlay.style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+// Close on overlay click
+document.getElementById('exit-overlay').addEventListener('click', function(e){
+  if(e.target === this) closeExitPopup();
+});
+
+// Close on Escape
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape') closeExitPopup();
+});
+</script>
+<!-- ═══ END EXIT INTENT + STICKY ═══ -->
+
+<div style="margin-top:24px;padding:20px;border-radius:20px;background:#F5F0E8;border:1px solid #EAE3D5">
+  <strong style="color:#0B1F3A">Nueva comparativa:</strong>
+  <span style="color:#4A647E"> revisa IATI vs InterMundial para viajar de Colombia a España.</span>
+  <a href="/comparar-seguros-viaje-colombia-espana/" style="display:inline-flex;margin-left:8px;color:#00A989;font-weight:900;text-decoration:none">Ver comparativa →</a>
+</div>
+
+
+<section style="padding:38px 5%;background:#F5F0E8">
+  <div style="max-width:1060px;margin:0 auto;background:#fff;border:1px solid #EAE3D5;border-radius:24px;padding:24px">
+    <h2 style="margin-bottom:8px">Seguro Schengen para colombianos</h2>
+    <p style="color:#4A647E">Guía específica sobre coberturas, repatriación y póliza para viajar a España o Europa.</p>
+    <a href="/blog/seguro-viaje-schengen-colombianos/" style="display:inline-flex;margin-top:12px;background:#0B1F3A;color:white;text-decoration:none;padding:12px 18px;border-radius:999px;font-weight:900">Leer guía Schengen →</a>
+  </div>
+</section>
+
+</body>
+</html>
