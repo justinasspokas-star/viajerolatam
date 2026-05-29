@@ -76,6 +76,90 @@
       body{padding-bottom:74px}
       .mobile-affiliate-bar{display:flex}
     }
+
+.contact-form-card{
+  background:#F5F0E8;
+  border:1px solid #EAE3D5;
+  border-radius:28px;
+  padding:28px;
+  margin:28px 0;
+}
+.contact-form{
+  display:grid;
+  gap:16px;
+}
+.contact-form label{
+  display:grid;
+  gap:7px;
+  color:#0B1F3A;
+  font-weight:900;
+}
+.contact-form input,
+.contact-form textarea{
+  width:100%;
+  border:1px solid #D8D0C2;
+  border-radius:16px;
+  padding:14px 16px;
+  font:inherit;
+  color:#0B1F3A;
+  background:#fff;
+  outline:none;
+}
+.contact-form textarea{
+  min-height:170px;
+  resize:vertical;
+}
+.contact-form input:focus,
+.contact-form textarea:focus{
+  border-color:#00C4A1;
+  box-shadow:0 0 0 4px rgba(0,196,161,.12);
+}
+.contact-form small{
+  color:#4A647E;
+  font-weight:500;
+}
+.contact-form button{
+  border:0;
+  cursor:pointer;
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  min-height:50px;
+  padding:14px 22px;
+  border-radius:999px;
+  background:#00C4A1;
+  color:#0B1F3A;
+  font-weight:900;
+  font:inherit;
+}
+.form-note{
+  color:#4A647E;
+  font-size:14px;
+  margin-top:14px;
+}
+.form-status{
+  display:none;
+  border-radius:16px;
+  padding:14px 16px;
+  font-weight:800;
+  margin-top:12px;
+}
+.form-status.ok{
+  display:block;
+  background:rgba(0,196,161,.12);
+  color:#0B1F3A;
+  border:1px solid rgba(0,196,161,.35);
+}
+.form-status.error{
+  display:block;
+  background:rgba(190,44,44,.10);
+  color:#8A1D1D;
+  border:1px solid rgba(190,44,44,.25);
+}
+@media(max-width:768px){
+  .contact-form-card{padding:22px;border-radius:22px}
+}
+
 </style>
 
   <script type="application/ld+json">
@@ -115,10 +199,35 @@
   <main>
     <div class="wrap">
       <article>
-        <div class="box">
-          <p><strong>Email:</strong> <a href="mailto:justinasspokas@gmail.com">justinasspokas@gmail.com</a></p>
-          <p>ViajeroLatam no es una aseguradora ni una correduría. La contratación de seguros se realiza directamente en las páginas oficiales de nuestros partners.</p>
-        </div>
+        
+<div class="contact-form-card">
+  <h2>Envíanos un mensaje</h2>
+  <p>Escribe tu email dos veces para evitar errores y cuéntanos en qué podemos ayudarte.</p>
+
+  <form class="contact-form" id="vlContactForm">
+    <label>
+      Tu email
+      <input type="email" id="contactEmail" name="email" autocomplete="email" required placeholder="tuemail@ejemplo.com">
+    </label>
+
+    <label>
+      Repite tu email
+      <input type="email" id="contactEmailRepeat" name="email_repeat" autocomplete="email" required placeholder="tuemail@ejemplo.com">
+      <small>Lo pedimos dos veces para asegurar que podemos responderte.</small>
+    </label>
+
+    <label>
+      Mensaje
+      <textarea id="contactMessage" name="message" required placeholder="Escribe tu mensaje aquí..."></textarea>
+    </label>
+
+    <button type="submit">Enviar mensaje</button>
+    <div id="contactStatus" class="form-status" aria-live="polite"></div>
+  </form>
+
+  <p class="form-note">Al enviar, se abrirá tu aplicación de correo con el mensaje preparado para ViajeroLatam. No guardamos tus datos en esta página.</p>
+</div>
+
         <h2>Cómo podemos ayudarte</h2>
         <ul>
           <li>Colaboraciones con aseguradoras, eSIMs, hoteles o servicios de viaje.</li>
@@ -141,5 +250,48 @@
     </div>
   </main>
   <footer>© 2026 ViajeroLatam. Comparador independiente para viajeros latinoamericanos. · <a href="/sobre-nosotros/" style="color:#fff;text-decoration:none;font-weight:800">Sobre nosotros</a> · <a href="/contacto/" style="color:#fff;text-decoration:none;font-weight:800">Contacto</a></footer>
+
+<script>
+(function(){
+  var form = document.getElementById('vlContactForm');
+  if(!form) return;
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+
+    var email = document.getElementById('contactEmail').value.trim();
+    var emailRepeat = document.getElementById('contactEmailRepeat').value.trim();
+    var message = document.getElementById('contactMessage').value.trim();
+    var status = document.getElementById('contactStatus');
+
+    status.className = 'form-status';
+    status.textContent = '';
+
+    if(!email || !emailRepeat || !message){
+      status.className = 'form-status error';
+      status.textContent = 'Por favor completa todos los campos.';
+      return;
+    }
+
+    if(email.toLowerCase() !== emailRepeat.toLowerCase()){
+      status.className = 'form-status error';
+      status.textContent = 'Los emails no coinciden. Revisa que estén escritos igual.';
+      return;
+    }
+
+    var subject = encodeURIComponent('Mensaje desde ViajeroLatam');
+    var body = encodeURIComponent(
+      'Email del usuario: ' + email + '\n\n' +
+      'Mensaje:\n' + message
+    );
+
+    status.className = 'form-status ok';
+    status.textContent = 'Perfecto. Se abrirá tu correo para enviar el mensaje.';
+
+    window.location.href = 'mailto:justinasspokas@gmail.com?subject=' + subject + '&body=' + body;
+  });
+})();
+</script>
+
 </body>
 </html>
