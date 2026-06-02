@@ -434,7 +434,7 @@ img, video, iframe, svg {
 
   <!-- SEO: Title & Description -->
   <title>Compara Seguros de Viaje para Latinoamericanos | ViajeroLatam</title>
-  <meta name="description" content="Comparador y guía para viajeros latinoamericanos que viajan a España o Europa. Seguros de viaje, Visa Schengen, ETIAS, documentos y enlaces oficiales de...">
+  <meta name="description" content="Comparador y guía para viajeros latinoamericanos que viajan a España o Europa. Seguros de viaje, Visa Schengen, ETIAS, documentos y enlaces oficiales de partners.">
   <meta name="keywords" content="seguro de viaje latinoamericanos, seguro viaje Colombia España, seguro Schengen latinoamericanos, seguro médico Europa latinoamérica, comparador seguros viaje latam">
   <meta name="robots" content="index, follow">
   <meta name="author" content="ViajeroLatam">
@@ -465,6 +465,22 @@ img, video, iframe, svg {
   <meta name="twitter:image" content="https://viajerolatam.com/og-image.jpg">
 
   <!-- Schema: WebSite + SearchAction -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "ViajeroLatam",
+    "url": "https://viajerolatam.com",
+    "description": "Comparador de seguros de viaje para latinoamericanos que viajan a España, Europa y Estados Unidos",
+    "inLanguage": "es",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://viajerolatam.com/resultados/?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+
   <!-- Schema: InsuranceAgency / Organization -->
   <script type="application/ld+json">
   {
@@ -1298,54 +1314,24 @@ nav a.brand-logo img, nav a.logo img{height:64px !important; width:auto !importa
   gtag('config', 'G-P1Q2TSMVNJ');
 </script>
 
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization",
+  "name":"ViajeroLatam",
+  "alternateName":"ViajeroLatam",
+  "url":"https://viajerolatam.com",
+  "logo":{"@type":"ImageObject","url":"https://viajerolatam.com/logo-vl-original-20260528.png","width":600,"height":200},
+  "description":"Comparador de seguros de viaje para latinoamericanos que viajan a España, Europa y EEUU. Gratis, en español, sin letra pequeña.",
+  "areaServed":["CO","MX","AR","VE","PE","CL","EC","BO"],
+  "serviceType":"Comparador de seguros de viaje",
+  "foundingDate":"2026",
+  "inLanguage":"es-CO",
+  "contactPoint":{"@type":"ContactPoint","contactType":"customer support","availableLanguage":"Spanish"},
+  "sameAs":["https://viajerolatam.com"]
+}
+</script>
 <style>@font-face{font-display:swap}</style>
 
 <style id="no-travel-icons">.travel-icons,#travel-canvas,canvas{display:none!important}</style>
-<style id="webp-hero">
-@supports (background-image: url("data:image/webp,")) {
-  .hero, section.hero, header.hero, [style*="hero-bg.jpg"] {
-    background-image: url('/hero-bg.webp') !important;
-  }
-}
-</style>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "ViajeroLatam",
-  "url": "https://viajerolatam.com",
-  "logo": "https://viajerolatam.com/logo-vl-original-20260528.png",
-  "description": "Comparador de seguros de viaje para latinoamericanos que viajan a España, Europa y EEUU. Especialistas en seguros Schengen, ETIAS y documentación de viaje.",
-  "foundingDate": "2026",
-  "areaServed": ["Colombia", "Venezuela", "México", "Perú", "Bolivia", "Ecuador", "Cuba", "Argentina", "Chile"],
-  "serviceType": "Comparador de seguros de viaje",
-  "sameAs": [],
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "contactType": "customer support",
-    "availableLanguage": "Spanish",
-    "url": "https://viajerolatam.com/contacto/"
-  },
-  "knowsAbout": ["Seguro de viaje", "Visa Schengen", "ETIAS", "Seguro médico viaje", "SES EES Europa"]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "ViajeroLatam",
-  "url": "https://viajerolatam.com",
-  "description": "Comparador de seguros de viaje para latinoamericanos",
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": {
-      "@type": "EntryPoint",
-      "urlTemplate": "https://viajerolatam.com/resultados/?q={search_term_string}"
-    },
-    "query-input": "required name=search_term_string"
-  }
-}
-</script>
 </head>
 <body>
 <!-- ═══ MOBILE NAV SYSTEM ═══ -->
@@ -1506,7 +1492,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
     <div class="trust-item"><span class="trust-icon">✓</span> Sin coste para ti</div>
     <div class="trust-item"><span class="trust-icon">✓</span> Válido para visa Schengen</div>
     <div class="trust-item"><span class="trust-icon">✓</span> Soporte en español 24/7</div>
-    <div class="trust-item"><span class="trust-icon">✓</span> +100% cobertura médica</div>
+    <div class="trust-item"><span class="trust-icon">✓</span> +50.000 viajeros protegidos</div>
   </div>
 </div>
 </section>
