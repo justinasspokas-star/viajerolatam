@@ -428,7 +428,7 @@ img, video, iframe, svg {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Comparar Seguros de Viaje Colombia → Españañaña — IAT | ViajeroLatam</title>
-  <meta name="description" content="Compara 3 seguros de viaje para colombianos que viajan a España y Europa. Precios desde €18 para 15 días. Todos válidos para visa Schengen. Sin franquicia.">
+  <meta name="description" content="Compara 4 seguros de viaje para colombianos que viajan a España y Europa. Precios desde €18 para 15 días. Todos válidos para visa Schengen. Sin franquicia.">
   <meta name="robots" content="noindex, follow">
   <link rel="canonical" href="https://viajerolatam.com/resultados/">
 
@@ -436,14 +436,14 @@ img, video, iframe, svg {
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://viajerolatam.com/resultados/">
   <meta property="og:title" content="Seguros de Viaje Colombia → Españaña — IATI e Intermundial | ViajeroLatam">
-  <meta property="og:description" content="Compara 3 seguros de viaje para latinoamericanos. Válidos para visa Schengen. Sin coste para ti.">
+  <meta property="og:description" content="Compara 4 seguros de viaje para latinoamericanos. Válidos para visa Schengen. Sin coste para ti.">
   <meta property="og:image" content="https://viajerolatam.com/og-image.jpg">
   <meta property="og:site_name" content="ViajeroLatam">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Compara Seguros de Viaje — ViajeroLatam">
-  <meta name="twitter:description" content="3 seguros de viaje para latinoamericanos. Válidos para visa Schengen. Desde €18.">
+  <meta name="twitter:description" content="4 seguros de viaje para latinoamericanos. Válidos para visa Schengen. Desde €18.">
   <meta name="twitter:image" content="https://viajerolatam.com/og-image.jpg">
 
   <!-- Schema: ItemList of insurance products -->
@@ -1159,6 +1159,22 @@ const DATA = [
     pillAmber:['Revisar residencia'],
     pillNavy:['Alternativa'],
     score: 76
+  },
+  {
+    id:5, recommended:false,
+    logo:'AX', logoColor:'#EEF2FF', logoText:'#1B3A8A',
+    name:'AXA', plan:'Seguro de viaje',
+    stars:4, reviews:2100,
+    price:33.60, priceDay:2.24,
+    saving:'Marca reconocida',
+    medica:'Revisar en web oficial', repatriacion:'Revisar condiciones', franquicia:'Según plan',
+    cancelacion:'Opcional según plan', equipaje:'Según plan', demora:'Según plan',
+    schengen:true, aventura:false, tele:false, anual:false,
+    extras:['Marca reconocida', 'Web en español', 'Comparar condiciones'],
+    pillGreen:['Seguro de viaje'],
+    pillAmber:['Revisar residencia'],
+    pillNavy:['AXA'],
+    score: 82
   }
 ];
 
@@ -1301,6 +1317,13 @@ function toggleDetails(id){
 }
 
 function contractClick(name, plan) {
+  if(name && name.toLowerCase().includes('axa')){
+    if(typeof gtag === 'function'){
+      gtag('event','click_affiliate_axa',{event_category:'affiliate',event_label:'AXA',page_location:window.location.href});
+    }
+    window.open('https://clk.tradedoubler.com/click?p=343758&a=3485639','_blank','noopener');
+    return;
+  }
 
 if(name && name.toLowerCase().includes('holins')){
   if(typeof gtag === 'function'){
