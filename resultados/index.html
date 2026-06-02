@@ -329,6 +329,90 @@ img, video, iframe, svg {
   color:#0B1F3A;
 }
 
+
+/* Ordered insurer cards */
+.vl-insurer-section{
+  margin:28px 0;
+}
+.vl-insurer-title{
+  margin:0 0 14px;
+  color:#0B1F3A;
+  font-size:24px;
+  font-weight:900;
+}
+.vl-insurer-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:16px;
+}
+.vl-insurer-card{
+  background:#fff;
+  border:1px solid #EAE3D5;
+  border-radius:22px;
+  padding:20px;
+  box-shadow:0 10px 28px rgba(11,31,58,.06);
+}
+.vl-insurer-card.featured{
+  border-color:rgba(0,196,161,.45);
+  background:linear-gradient(180deg,#fff,#F7FFFC);
+}
+.vl-insurer-card .badge{
+  display:inline-flex;
+  border-radius:999px;
+  padding:5px 10px;
+  background:#F5F0E8;
+  color:#4A647E;
+  font-size:12px;
+  font-weight:900;
+  margin-bottom:10px;
+}
+.vl-insurer-card.featured .badge{
+  background:rgba(0,196,161,.12);
+  color:#0B1F3A;
+}
+.vl-insurer-card h3{
+  margin:0 0 8px;
+  color:#0B1F3A;
+  font-size:22px;
+}
+.vl-insurer-card p{
+  margin:0 0 14px;
+  color:#4A647E;
+  line-height:1.6;
+  font-size:14px;
+}
+.vl-insurer-actions{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+.vl-insurer-actions a{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:11px 14px;
+  border-radius:999px;
+  text-decoration:none!important;
+  font-weight:900;
+  font-size:14px;
+}
+.vl-insurer-actions .primary{
+  background:#0B1F3A;
+  color:#fff!important;
+}
+.vl-insurer-actions .accent{
+  background:#00C4A1;
+  color:#0B1F3A!important;
+}
+.vl-insurer-actions .secondary{
+  background:#F5F0E8;
+  color:#0B1F3A!important;
+  border:1px solid #EAE3D5;
+}
+@media(max-width:860px){
+  .vl-insurer-grid{grid-template-columns:1fr}
+}
+
 </style>
 <!-- Travelpayouts Drive -->
 <script nowpocket data-noptimize="1" data-cfasync="false" data-wpfc-render="false" seraph-accel-crit="1" data-no-defer="1">
@@ -1018,9 +1102,9 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
       <p>Prueba a ajustar los filtros para ver más opciones.</p>
     </div>
 
-  <p><a href="/seguros/intermundial/">Guía de InterMundial y cupón VIAJEROLATAM</a></p>
-<p><a href="/seguros/iati/">Guía de IATI seguro de viaje</a></p>
-<div class="partner-note"><strong>También puedes revisar Holins:</strong> Holins es una alternativa adicional de seguro de viaje. Antes de contratar, confirma residencia, destino, cobertura médica, repatriación, fechas y condiciones finales en la web oficial.<br><a href="/seguros/holins/">Ver guía de Holins</a> · <a href="https://clk.tradedoubler.com/click?p=301095&a=3485639" target="_blank" rel="nofollow sponsored noopener">Ir a Holins →</a></div>
+  
+
+
 </main>
 </div>
 
