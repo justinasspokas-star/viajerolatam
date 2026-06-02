@@ -428,7 +428,7 @@ img, video, iframe, svg {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Comparar Seguros de Viaje Colombia → Españañaña — IAT | ViajeroLatam</title>
-  <meta name="description" content="Compara 2 seguros de viaje para colombianos que viajan a España y Europa. Precios desde €18 para 15 días. Todos válidos para visa Schengen. Sin franquicia.">
+  <meta name="description" content="Compara 3 seguros de viaje para colombianos que viajan a España y Europa. Precios desde €18 para 15 días. Todos válidos para visa Schengen. Sin franquicia.">
   <meta name="robots" content="noindex, follow">
   <link rel="canonical" href="https://viajerolatam.com/resultados/">
 
@@ -436,14 +436,14 @@ img, video, iframe, svg {
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://viajerolatam.com/resultados/">
   <meta property="og:title" content="Seguros de Viaje Colombia → Españaña — IATI e Intermundial | ViajeroLatam">
-  <meta property="og:description" content="Compara 2 seguros de viaje para latinoamericanos. Válidos para visa Schengen. Sin coste para ti.">
+  <meta property="og:description" content="Compara 3 seguros de viaje para latinoamericanos. Válidos para visa Schengen. Sin coste para ti.">
   <meta property="og:image" content="https://viajerolatam.com/og-image.jpg">
   <meta property="og:site_name" content="ViajeroLatam">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Compara Seguros de Viaje — ViajeroLatam">
-  <meta name="twitter:description" content="2 seguros de viaje para latinoamericanos. Válidos para visa Schengen. Desde €18.">
+  <meta name="twitter:description" content="3 seguros de viaje para latinoamericanos. Válidos para visa Schengen. Desde €18.">
   <meta name="twitter:image" content="https://viajerolatam.com/og-image.jpg">
 
   <!-- Schema: ItemList of insurance products -->
@@ -1096,7 +1096,8 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
 
     <!-- Best value banner -->
     <!-- CARDS CONTAINER -->
-    <div id="cards-container"></div>
+    <div class="partner-note holins-list-note"><strong>Holins aparece como alternativa adicional:</strong> revisa siempre residencia, destino, cobertura médica y repatriación en la web oficial antes de contratar.</div>
+<div id="cards-container"></div>
 
     <div id="no-results" class="no-results" style="display:none">
       <h3>Sin resultados</h3>
@@ -1142,6 +1143,22 @@ const DATA = [
     pillAmber:[],
     pillNavy:['Anual disponible'],
     score: 88
+  },
+  {
+    id:4, recommended:false,
+    logo:'HO', logoColor:'#EAF7F4', logoText:'#137A70',
+    name:'Holins', plan:'Seguro de viaje',
+    stars:4, reviews:950,
+    price:31.80, priceDay:2.12,
+    saving:'Alternativa adicional',
+    medica:'Revisar en web oficial', repatriacion:'Revisar condiciones', franquicia:'Según plan',
+    cancelacion:'Opcional según plan', equipaje:'Según plan', demora:'Según plan',
+    schengen:true, aventura:false, tele:false, anual:false,
+    extras:['Web en español', 'Comparar condiciones', 'Alternativa adicional'],
+    pillGreen:['Seguro de viaje'],
+    pillAmber:['Revisar residencia'],
+    pillNavy:['Alternativa'],
+    score: 76
   }
 ];
 
@@ -1284,6 +1301,15 @@ function toggleDetails(id){
 }
 
 function contractClick(name, plan) {
+
+if(name && name.toLowerCase().includes('holins')){
+  if(typeof gtag === 'function'){
+    gtag('event','click_affiliate_holins',{event_category:'affiliate',event_label:'Holins',page_location:window.location.href});
+  }
+  window.open('https://clk.tradedoubler.com/click?p=301095&a=3485639','_blank','noopener');
+  return;
+}
+
   var urls = {
     '':       'https://www..es/travel-insurance/?utm_source=viajerolatam&utm_medium=affiliate&utm_campaign=latam',
     'IATI Seguros':   'https://www.iatiseguros.com?r=84208681926165',
