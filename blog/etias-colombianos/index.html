@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<link rel="preload" as="image" href="/hero-bg.webp" type="image/webp">
 <style id="vl-responsive">
 /* ================================================
    VIAJEROLATAM — RESPONSIVE CSS (definitive)
@@ -318,7 +319,7 @@ img, video, iframe, svg {
   <meta name="google-site-verification" content="fnxi-_Liw22SOQakruhikIUAjmf3u6mdT79inMc9x9A">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>ETIAS para Colombianos 2026 — Qué es y cómo tramitarlo | ViajeroLatam</title>
+  <title>ETIAS para Colombianos 2026 — Qué es y cómo tramit | ViajeroLatam</title>
   <meta name="description" content="Guía completa del ETIAS para colombianos 2026. Qué es, cuándo es obligatorio, cómo solicitarlo online (€7) y qué seguro de viaje necesitas para viajar a...">
   <meta name="keywords" content="ETIAS colombianos, ETIAS Colombia España 2026, qué es ETIAS Colombia, ETIAS Colombia cómo tramitar, requisitos viajar España Colombia 2026, seguro viaje ETIAS Colombia">
   <meta name="robots" content="index, follow">
@@ -815,6 +816,11 @@ nav a.brand-logo img, nav a.logo img{height:64px !important; width:auto !importa
 <meta property="og:site_name" content="ViajeroLatam">
 
 <style id="no-travel-icons">.travel-icons,#travel-canvas,canvas{display:none!important}</style>
+<style id="webp-hero">
+@supports (background-image: url("data:image/webp,")) {
+  .hero, section.hero, header.hero { background-image: url('/hero-bg.webp') !important; }
+}
+</style>
 </head>
 <body>
 <!-- ═══ MOBILE NAV SYSTEM ═══ -->
@@ -831,7 +837,7 @@ nav a.brand-logo img, nav a.logo img{height:64px !important; width:auto !importa
     <a href="/visa-schengen/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">🛂 Visa Schengen</a>
     <a href="/blog/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">📚 Artículos</a>
     <a href="/#faq" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">💬 FAQ</a>
-    <a href="/seguro-viaje/colombia-a-espana/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">🇨🇴 Colombia a España</a>
+    <a href="/seguro-viaje/colombia-a-espana/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">🇨🇴 Colombia → Españaña</a>
     <a href="/blog/etias-colombianos/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">⚡ ETIAS 2026</a>
   </div>
   <div style="padding:16px 18px;border-top:1px solid #E4EDF5;flex-shrink:0">
@@ -884,7 +890,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
   <div class="nav-links">
     <a href="/">Inicio</a>
     <a href="/visa-schengen/">Visa Schengen</a>
-    <a href="/seguro-viaje/colombia-a-espana/">Colombia a España</a>
+    <a href="/seguro-viaje/colombia-a-espana/">Colombia → Españaña</a>
     <a href="/blog/">Artículos</a><a href="/sobre-nosotros/">Sobre nosotros</a>
     <a href="/resultados/" class="nav-cta">Comparar seguros</a>
   </div>
@@ -1137,7 +1143,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
       <div class="related-grid">
         <a href="/seguro-viaje/colombia-a-espana/" class="related-link">
           <div class="rl-emoji">🇨🇴→🇪🇸</div>
-          <div><div class="rl-title">Seguro de viaje Colombia a España</div><div class="rl-sub">Compara desde €1.75/día · Póliza en 2 min</div></div>
+          <div><div class="rl-title">Seguro de viaje Colombia → Españaña</div><div class="rl-sub">Compara desde €1.75/día · Póliza en 2 min</div></div>
         </a>
         <a href="/visa-schengen/" class="related-link">
           <div class="rl-emoji">🛂</div>
@@ -1145,7 +1151,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
         </a>
         <a href="/resultados/" class="related-link">
           <div class="rl-emoji">🔍</div>
-          <div><div class="rl-title">Comparar todos los seguros</div><div class="rl-sub">4 aseguradoras · Filtros · Tiempo real</div></div>
+          <div><div class="rl-title">Comparar todos los seguros</div><div class="rl-sub">2 aseguradoras · Filtros · Tiempo real</div></div>
         </a>
         
       </div>
@@ -1170,7 +1176,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
         <p class="footer-desc">Comparador de seguros de viaje para latinoamericanos que viajan a España, Europa y Estados Unidos.</p>
       </div>
       <div class="footer-col">
-        <h4>Colombia a España</h4>
+        <h4>Colombia → Españaña</h4>
         <a href="/seguro-viaje/colombia-a-espana/">Seguro de viaje</a>
         <a href="/blog/etias-colombianos/">ETIAS 2026</a>
         <a href="/resultados/">Comparar precios</a>
@@ -1187,7 +1193,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
       <p>ETIAS Colombia España 2026 · Guía actualizada mayo 2026</p>
     </div>
   </div>
- · <a href="/sobre-nosotros/" style="color:#fff;text-decoration:none;font-weight:800">Sobre nosotros</a> · <a href="/contacto/" style="color:#fff;text-decoration:none;font-weight:800">Contacto</a><p><a href="/como-elegimos/">Cómo elegimos las aseguradoras</a></p></footer>
+ · <a href="/sobre-nosotros/" style="color:#fff;text-decoration:none;font-weight:800">Sobre nosotros</a> · <a href="/contacto/" style="color:#fff;text-decoration:none;font-weight:800">Contacto</a></footer>
 
 <script>
 document.querySelectorAll('details').forEach(d=>{
@@ -1309,7 +1315,7 @@ document.querySelectorAll('details').forEach(d=>{
   <a href="/resultados/" onclick="if(typeof gtag!='undefined')gtag('event','click_sticky_mob',{page:location.pathname})">
     🔍 Comparar seguros gratis
   </a>
-  <p>Sin coste · Póliza en 2 minutos · 4 aseguradoras</p>
+  <p>Sin coste · Póliza en 2 minutos · 2 aseguradoras</p>
 </div>
 
 <!-- EXIT INTENT POPUP -->

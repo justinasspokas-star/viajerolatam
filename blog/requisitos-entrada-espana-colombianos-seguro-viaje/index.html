@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es-CO">
 <head>
+<link rel="preload" as="image" href="/hero-bg.webp" type="image/webp">
 <style id="vl-responsive">
 /* ================================================
    VIAJEROLATAM — RESPONSIVE CSS (definitive)
@@ -388,7 +389,7 @@ img, video, iframe, svg {
       {"@type":"Question","name":"¿Qué necesita un colombiano para entrar a España como turista?","acceptedAnswer":{"@type":"Answer","text":"Debe revisar documentación vigente, pasaporte, motivo del viaje, alojamiento, recursos económicos, billete de regreso y condiciones actualizadas. Los requisitos pueden cambiar, por eso conviene confirmar siempre con fuentes oficiales antes de viajar."}},
       {"@type":"Question","name":"¿Conviene llevar seguro de viaje para España?","acceptedAnswer":{"@type":"Answer","text":"Sí. Aunque la exigencia puede depender del caso, llevar seguro médico internacional es muy recomendable para cubrir urgencias, hospitalización, repatriación y asistencia durante el viaje."}},
       {"@type":"Question","name":"¿Qué debe tener el seguro de viaje?","acceptedAnswer":{"@type":"Answer","text":"Debe cubrir fechas completas, asistencia médica internacional, repatriación, urgencias, atención 24/7 y permitir descargar una póliza o certificado en PDF."}},
-      {"@type":"Question","name":"¿Puedo comparar IATI e InterMundial?","acceptedAnswer":{"@type":"Answer","text":"Sí. ViajeroLatam ofrece una comparativa de Colombia a España con enlaces oficiales de IATI e InterMundial y cupón VIAJEROLATAM para InterMundial."}}
+      {"@type":"Question","name":"¿Puedo comparar IATI e InterMundial?","acceptedAnswer":{"@type":"Answer","text":"Sí. ViajeroLatam ofrece una comparativa para Colombia a España con enlaces oficiales de IATI e InterMundial y cupón VIAJEROLATAM para InterMundial."}}
     ]
   }
   </script>
@@ -455,12 +456,17 @@ img, video, iframe, svg {
 <meta property="og:site_name" content="ViajeroLatam">
 
 <style id="no-travel-icons">.travel-icons,#travel-canvas,canvas{display:none!important}</style>
+<style id="webp-hero">
+@supports (background-image: url("data:image/webp,")) {
+  .hero, section.hero, header.hero { background-image: url('/hero-bg.webp') !important; }
+}
+</style>
 </head>
 <body>
   <nav>
     <a href="/" class="brand-logo"><img src="/logo-vl-original-20260528.png" alt="ViajeroLatam"></a>
     <div class="nav-links">
-      <a href="/seguro-viaje/colombia-a-espana/">Colombia a España</a>
+      <a href="/seguro-viaje/colombia-a-espana/">Colombia → Españaña</a>
       <a href="/comparar-seguros-viaje-colombia-espana/">Comparativa</a>
       <a href="/visa-schengen/">Visa Schengen</a>
       <a href="/resultados/" class="nav-cta">Comparar ahora</a>
@@ -563,7 +569,7 @@ img, video, iframe, svg {
     </div>
   </main>
 
-  <footer>© 2026 ViajeroLatam. Comparador independiente para viajeros latinoamericanos.<p><a href="/como-elegimos/">Cómo elegimos las aseguradoras</a></p></footer>
+  <footer>© 2026 ViajeroLatam. Comparador independiente para viajeros latinoamericanos.</footer>
 
   <div class="mobile-affiliate-bar" aria-label="Comparar seguros">
     <a class="ma-primary" href="/comparar-seguros-viaje-colombia-espana/">Comparar</a>
@@ -596,7 +602,7 @@ document.addEventListener('click', function(e){
 <div id="mob-overlay" onclick="closeMobMenu()" aria-hidden="true"></div>
 <nav id="mob-drawer" aria-label="Menú móvil">
   <a href="/">Inicio</a>
-  <a href="/seguro-viaje/colombia-a-espana/">Colombia a España</a>
+  <a href="/seguro-viaje/colombia-a-espana/">Colombia → Españaña</a>
   <a href="/visa-schengen/">Visa Schengen</a>
   <a href="/blog/">Artículos</a><a href="/sobre-nosotros/">Sobre nosotros</a><a href="/contacto/">Contacto</a>
   <a href="/resultados/">Comparar seguros →</a>

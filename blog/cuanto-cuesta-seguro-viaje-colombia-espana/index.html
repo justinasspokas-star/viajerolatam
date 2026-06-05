@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es-CO">
 <head>
+<link rel="preload" as="image" href="/hero-bg.webp" type="image/webp">
 <style id="vl-responsive">
 /* ================================================
    VIAJEROLATAM — RESPONSIVE CSS (definitive)
@@ -428,12 +429,17 @@ img, video, iframe, svg {
 <meta property="og:site_name" content="ViajeroLatam">
 
 <style id="no-travel-icons">.travel-icons,#travel-canvas,canvas{display:none!important}</style>
+<style id="webp-hero">
+@supports (background-image: url("data:image/webp,")) {
+  .hero, section.hero, header.hero { background-image: url('/hero-bg.webp') !important; }
+}
+</style>
 </head>
 <body>
   <nav>
     <a href="/" class="brand-logo"><img src="/logo-vl-original-20260528.png" alt="ViajeroLatam"></a>
     <div class="nav-links">
-      <a href="/seguro-viaje/colombia-a-espana/">Colombia a España</a>
+      <a href="/seguro-viaje/colombia-a-espana/">Colombia → Españaña</a>
       <a href="/comparar-seguros-viaje-colombia-espana/">Comparativa</a>
       <a href="/visa-schengen/">Visa Schengen</a>
       <a href="/resultados/" class="nav-cta">Comparar ahora</a>
@@ -447,7 +453,7 @@ img, video, iframe, svg {
       <p>Guía práctica para entender precios, coberturas y diferencias entre opciones como IATI e InterMundial antes de contratar tu seguro de viaje.</p>
       <div class="btn-row">
         <a class="btn btn-primary" href="/comparar-seguros-viaje-colombia-espana/">Comparar IATI vs InterMundial →</a>
-        <a class="btn btn-secondary" href="/seguro-viaje/colombia-a-espana/">Leer guía Colombia a España</a>
+        <a class="btn btn-secondary" href="/seguro-viaje/colombia-a-espana/">Leer guía Colombia → Españaña</a>
       </div>
     </div>
   </header>
@@ -491,7 +497,7 @@ img, video, iframe, svg {
 
         <div class="cta-card">
           <h2>Comparar antes de contratar</h2>
-          <p>Revisa nuestra comparativa Colombia a España con IATI e InterMundial, o entra directamente en las webs oficiales.</p>
+          <p>Revisa nuestra comparativa Colombia → Españaña con IATI e InterMundial, o entra directamente en las webs oficiales.</p>
           <div class="coupon">Cupón InterMundial: VIAJEROLATAM</div>
           <div class="btn-row">
             <a class="btn btn-primary" href="/comparar-seguros-viaje-colombia-espana/">Ver comparativa →</a>
@@ -511,7 +517,7 @@ img, video, iframe, svg {
         </ul>
 
         <h2>Conclusión</h2>
-        <p>para viajar de Colombia a España, el precio del seguro importa, pero no debe ser el único criterio. Lo ideal es comparar opciones con buena cobertura médica, repatriación incluida, atención clara y condiciones fáciles de entender. Si usas InterMundial, recuerda revisar el cupón <strong>VIAJEROLATAM</strong>; si revisas IATI, compara el precio final con el mismo tipo de viaje.</p>
+        <p>Para viajar de Colombia a España, el precio del seguro importa, pero no debe ser el único criterio. Lo ideal es comparar opciones con buena cobertura médica, repatriación incluida, atención clara y condiciones fáciles de entender. Si usas InterMundial, recuerda revisar el cupón <strong>VIAJEROLATAM</strong>; si revisas IATI, compara el precio final con el mismo tipo de viaje.</p>
         <p>ViajeroLatam es gratuito para el usuario. Podemos recibir una comisión si contratas desde nuestros enlaces afiliados, sin coste adicional para ti.</p>
       </article>
 
@@ -535,7 +541,7 @@ img, video, iframe, svg {
     </div>
   </main>
 
-  <footer>© 2026 ViajeroLatam. Comparador independiente para viajeros latinoamericanos.<p><a href="/como-elegimos/">Cómo elegimos las aseguradoras</a></p></footer>
+  <footer>© 2026 ViajeroLatam. Comparador independiente para viajeros latinoamericanos.</footer>
 
   <div class="mobile-affiliate-bar" aria-label="Comparar seguros">
     <a class="ma-primary" href="/comparar-seguros-viaje-colombia-espana/">Comparar</a>
@@ -569,7 +575,7 @@ document.addEventListener('click', function(e){
 <div id="mob-overlay" onclick="closeMobMenu()" aria-hidden="true"></div>
 <nav id="mob-drawer" aria-label="Menú móvil">
   <a href="/">Inicio</a>
-  <a href="/seguro-viaje/colombia-a-espana/">Colombia a España</a>
+  <a href="/seguro-viaje/colombia-a-espana/">Colombia → Españaña</a>
   <a href="/visa-schengen/">Visa Schengen</a>
   <a href="/blog/">Artículos</a><a href="/sobre-nosotros/">Sobre nosotros</a><a href="/contacto/">Contacto</a>
   <a href="/resultados/">Comparar seguros →</a>
