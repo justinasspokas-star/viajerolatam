@@ -80,43 +80,53 @@ footer{background:var(--navy);color:rgba(255,255,255,.45);padding:48px 5% 24px}
 <meta property="og:image" content="https://viajerolatam.com/og-image.jpg">
 
 <style id="vl-footer-css">
-/* ── FOOTER ── */
-.vl-footer{background:#0B1F3A;color:rgba(255,255,255,.68);padding:52px 5% 0;font-family:'Plus Jakarta Sans',sans-serif}
-.vl-footer-inner{max-width:1120px;margin:0 auto}
-.vl-footer-grid{display:grid;grid-template-columns:1.6fr repeat(3,1fr);gap:40px;align-items:start;padding-bottom:40px}
-.vl-footer-brand img{height:76px;width:auto;max-width:300px;object-fit:contain;display:block;margin-bottom:14px;opacity:1;filter:none}
-.vl-footer-brand p{color:rgba(255,255,255,.58);font-size:13px;line-height:1.7;max-width:300px;margin-bottom:16px}
+.vl-footer{background:#0B1F3A;color:rgba(255,255,255,.68);padding:52px 5% 0;font-family:'Plus Jakarta Sans',sans-serif;width:100%;box-sizing:border-box}
+.vl-footer-inner{max-width:1120px;margin:0 auto;width:100%;box-sizing:border-box}
+.vl-footer-grid{display:grid;grid-template-columns:1.6fr repeat(3,1fr);gap:40px;align-items:start;padding-bottom:40px;width:100%;box-sizing:border-box}
+.vl-footer-brand{min-width:0}
+.vl-footer-brand a{display:inline-block;line-height:0}
+.vl-footer-brand img{height:68px;width:auto;max-width:260px;object-fit:contain;display:block;margin-bottom:14px;opacity:1!important;filter:none!important;mix-blend-mode:normal!important}
+.vl-footer-brand p{color:rgba(255,255,255,.58);font-size:13px;line-height:1.7;max-width:280px;margin-bottom:16px}
 .vl-footer-social{display:flex;gap:8px;flex-wrap:wrap}
-.vl-footer-social a{width:36px;height:36px;display:inline-flex;align-items:center;justify-content:center;border-radius:10px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.7)!important;font-size:12px;font-weight:700;text-decoration:none!important;transition:background .2s}
+.vl-footer-social a{width:36px;height:36px;display:inline-flex;align-items:center;justify-content:center;border-radius:10px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.7)!important;font-size:12px;font-weight:700;text-decoration:none!important;transition:background .2s;flex-shrink:0}
 .vl-footer-social a:hover{background:rgba(0,196,161,.2);color:#75D8BC!important}
-.vl-footer-col h4{color:#fff;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin:0 0 14px}
-.vl-footer-col ul{list-style:none;padding:0;margin:0;display:grid;gap:9px}
-.vl-footer-col a{color:rgba(255,255,255,.62)!important;text-decoration:none!important;font-size:13px;font-weight:500;transition:color .2s}
+.vl-footer-col{min-width:0}
+.vl-footer-col h4{color:#fff;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin:0 0 14px;white-space:nowrap}
+.vl-footer-col ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:9px}
+.vl-footer-col a{color:rgba(255,255,255,.62)!important;text-decoration:none!important;font-size:13px;font-weight:500;transition:color .2s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
 .vl-footer-col a:hover{color:#75D8BC!important}
 .vl-footer-bottom{border-top:1px solid rgba(255,255,255,.10);padding:18px 0 22px;display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;font-size:12px;color:rgba(255,255,255,.38)}
 .vl-footer-bottom .vl-legal{display:flex;gap:16px;flex-wrap:wrap}
-.vl-footer-bottom a{color:rgba(255,255,255,.38)!important;text-decoration:none!important;transition:color .2s}
+.vl-footer-bottom a{color:rgba(255,255,255,.38)!important;text-decoration:none!important;transition:color .2s;white-space:nowrap}
 .vl-footer-bottom a:hover{color:rgba(255,255,255,.7)!important}
-@media(max-width:900px){
-  .vl-footer-grid{grid-template-columns:1fr 1fr;gap:28px}
-  .vl-footer-brand{grid-column:1/-1}
+@media(max-width:1000px){
+  .vl-footer-grid{grid-template-columns:1fr 1fr 1fr;gap:28px}
+  .vl-footer-brand{grid-column:1/-1;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:start}
+  .vl-footer-brand p{margin-bottom:0}
 }
-@media(max-width:580px){
-  .vl-footer{padding:40px 18px 0}
-  .vl-footer-grid{grid-template-columns:1fr 1fr;gap:22px;padding-bottom:28px}
-  .vl-footer-brand img{height:58px}
-  .vl-footer-bottom{display:grid;gap:10px;text-align:center}
-  .vl-footer-bottom .vl-legal{justify-content:center}
+@media(max-width:700px){
+  .vl-footer{padding:36px 20px 0}
+  .vl-footer-grid{grid-template-columns:1fr 1fr;gap:24px;padding-bottom:28px}
+  .vl-footer-brand{grid-column:1/-1;display:block}
+  .vl-footer-brand img{height:54px;margin-bottom:12px}
+  .vl-footer-brand p{max-width:100%;font-size:12px}
+  .vl-footer-col h4{font-size:10px}
+  .vl-footer-col a{font-size:12px}
+  .vl-footer-bottom{flex-direction:column;align-items:flex-start;gap:8px;padding:14px 0 20px}
+  .vl-footer-bottom .vl-legal{gap:12px}
 }
-
-/* ── STICKY MOBILE CTA ── */
+@media(max-width:420px){
+  .vl-footer{padding:32px 16px 0}
+  .vl-footer-grid{grid-template-columns:1fr 1fr;gap:20px}
+  .vl-footer-col a{white-space:normal}
+}
 #vl-sticky{display:none;position:fixed;bottom:0;left:0;right:0;z-index:990;padding:10px 14px 14px;background:linear-gradient(to top,rgba(255,255,255,1) 55%,rgba(255,255,255,0));pointer-events:none}
 #vl-sticky a{display:flex;align-items:center;justify-content:center;gap:8px;background:#00C4A1;color:#0B1F3A!important;padding:14px;border-radius:50px;font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:700;text-decoration:none!important;box-shadow:0 4px 20px rgba(0,196,161,.4);pointer-events:all;transition:background .2s,transform .15s}
 #vl-sticky a:active{transform:scale(.97)}
 #vl-sticky p{font-size:11px;color:#8FA4B8;text-align:center;margin-top:5px;font-family:'Plus Jakarta Sans',sans-serif}
-@media(max-width:768px){#vl-sticky{display:block};body{padding-bottom:86px}}
+@media(max-width:768px){#vl-sticky{display:block}body{padding-bottom:86px!important}}
 @media(min-width:769px){#vl-sticky{display:none!important}}
-@media(orientation:landscape) and (max-height:500px){#vl-sticky{display:none!important};body{padding-bottom:0!important}}
+@media(orientation:landscape) and (max-height:500px){#vl-sticky{display:none!important}body{padding-bottom:0!important}}
 </style>
 
 </head>
@@ -319,7 +329,7 @@ html{overflow-x:hidden}body{overflow-x:hidden;max-width:100vw}
   <div class="vl-footer-inner">
     <div class="vl-footer-grid">
       <div class="vl-footer-brand">
-        <a href="/"><img src="/logo-vl-original-20260528.png" alt="ViajeroLatam"></a>
+        <a href="/"><img src="/logo-vl-original-20260528.png" alt="ViajeroLatam" width="220" height="68" style="height:68px;width:auto;max-width:220px;display:block;object-fit:contain;opacity:1!important;filter:none!important"></a>
         <p>Comparador independiente de seguros de viaje para latinoamericanos que preparan viajes a España, Europa y otros destinos.</p>
         <div class="vl-footer-social">
           <a href="https://www.instagram.com/" target="_blank" rel="nofollow noopener" aria-label="Instagram">ig</a>
@@ -374,6 +384,7 @@ html{overflow-x:hidden}body{overflow-x:hidden;max-width:100vw}
 </footer>
 
 
+
 <!-- STICKY MOBILE CTA -->
 <div id="vl-sticky" aria-label="Comparar seguros gratis">
   <a href="/resultados/" onclick="if(typeof gtag!='undefined')gtag('event','click_sticky_mob',{page:location.pathname})">
@@ -382,5 +393,12 @@ html{overflow-x:hidden}body{overflow-x:hidden;max-width:100vw}
   <p>Sin coste · 4 aseguradoras · Póliza en 2 minutos</p>
 </div>
 
+
+
+<style id="vl-footer-override">
+.vl-footer,.vl-footer *{box-sizing:border-box}
+footer.vl-footer{width:100%;max-width:none!important;margin-left:0!important;margin-right:0!important}
+.vl-footer-grid>*{min-width:0;word-break:break-word}
+</style>
 </body>
 </html>
