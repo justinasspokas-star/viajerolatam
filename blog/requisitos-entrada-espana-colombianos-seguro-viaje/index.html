@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="es-CO">
 <head>
-<link rel="preload" as="image" href="/hero-bg.webp" type="image/webp">
 <style id="vl-responsive">
 /* ================================================
    VIAJEROLATAM — RESPONSIVE CSS (definitive)
@@ -247,6 +246,7 @@ img, video, iframe, svg {
   }
 
   /* STICKY + BODY PADDING */
+  #sticky-mob { display: block !important; }
   body { padding-bottom: 84px !important; }
 
   /* EXIT POPUP */
@@ -272,6 +272,7 @@ img, video, iframe, svg {
   @media screen and (orientation: landscape) and (max-height: 500px) {
     .hero, section.hero { padding: 52px 16px 20px !important; min-height: auto !important; }
     h1 { font-size: 22px !important; }
+    #sticky-mob { display: none !important; }
     body { padding-bottom: 0 !important; }
   }
 }
@@ -301,7 +302,7 @@ img, video, iframe, svg {
   td, th { font-size: 11px !important; padding: 6px !important; }
   .section, section { padding: 14px 12px !important; }
   .sb-row, .search-dates-row { grid-template-columns: 1fr !important; }
-  
+  #sticky-mob a { font-size: 14px !important; }
 }
 
 /* Saily eSIM upsell */
@@ -347,10 +348,6 @@ img, video, iframe, svg {
 
 </style>
 <meta charset="UTF-8">
-<link rel="icon" type="image/x-icon" href="/favicon.ico">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <meta name="google-site-verification" content="fnxi-_Liw22SOQakruhikIUAjmf3u6mdT79inMc9x9A">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Requisitos para entrar a España desde Colombia y seguro de viaje</title>
@@ -365,12 +362,12 @@ img, video, iframe, svg {
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SY86BP2PPT"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P1Q2TSMVNJ"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-SY86BP2PPT');
+    gtag('config', 'G-P1Q2TSMVNJ');
   </script>
   <script type="application/ld+json">
   {
@@ -458,58 +455,6 @@ img, video, iframe, svg {
 <meta property="og:site_name" content="ViajeroLatam">
 
 <style id="no-travel-icons">.travel-icons,#travel-canvas,canvas{display:none!important}</style>
-<style id="webp-hero">@supports(background-image:url("data:image/webp,")){.hero,section.hero{background-image:url('/hero-bg.webp')!important}}</style>
-
-<style id="vl-footer-css">
-.vl-footer{background:#0B1F3A;color:rgba(255,255,255,.68);padding:52px 5% 0;font-family:'Plus Jakarta Sans',sans-serif;width:100%;box-sizing:border-box}
-.vl-footer-inner{max-width:1120px;margin:0 auto;width:100%;box-sizing:border-box}
-.vl-footer-grid{display:grid;grid-template-columns:1.6fr repeat(3,1fr);gap:40px;align-items:start;padding-bottom:40px;width:100%;box-sizing:border-box}
-.vl-footer-brand{min-width:0}
-.vl-footer-brand a{display:inline-block;line-height:0}
-.vl-footer-brand img{height:68px;width:auto;max-width:260px;object-fit:contain;display:block;margin-bottom:14px;opacity:1!important;filter:none!important;mix-blend-mode:normal!important}
-.vl-footer-brand p{color:rgba(255,255,255,.58);font-size:13px;line-height:1.7;max-width:280px;margin-bottom:16px}
-.vl-footer-social{display:flex;gap:8px;flex-wrap:wrap}
-.vl-footer-social a{width:36px;height:36px;display:inline-flex;align-items:center;justify-content:center;border-radius:10px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.7)!important;font-size:12px;font-weight:700;text-decoration:none!important;transition:background .2s;flex-shrink:0}
-.vl-footer-social a:hover{background:rgba(0,196,161,.2);color:#75D8BC!important}
-.vl-footer-col{min-width:0}
-.vl-footer-col h4{color:#fff;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin:0 0 14px;white-space:nowrap}
-.vl-footer-col ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:9px}
-.vl-footer-col a{color:rgba(255,255,255,.62)!important;text-decoration:none!important;font-size:13px;font-weight:500;transition:color .2s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
-.vl-footer-col a:hover{color:#75D8BC!important}
-.vl-footer-bottom{border-top:1px solid rgba(255,255,255,.10);padding:18px 0 22px;display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;font-size:12px;color:rgba(255,255,255,.38)}
-.vl-footer-bottom .vl-legal{display:flex;gap:16px;flex-wrap:wrap}
-.vl-footer-bottom a{color:rgba(255,255,255,.38)!important;text-decoration:none!important;transition:color .2s;white-space:nowrap}
-.vl-footer-bottom a:hover{color:rgba(255,255,255,.7)!important}
-@media(max-width:1000px){
-  .vl-footer-grid{grid-template-columns:1fr 1fr 1fr;gap:28px}
-  .vl-footer-brand{grid-column:1/-1;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:start}
-  .vl-footer-brand p{margin-bottom:0}
-}
-@media(max-width:700px){
-  .vl-footer{padding:36px 20px 0}
-  .vl-footer-grid{grid-template-columns:1fr 1fr;gap:24px;padding-bottom:28px}
-  .vl-footer-brand{grid-column:1/-1;display:block}
-  .vl-footer-brand img{height:54px;margin-bottom:12px}
-  .vl-footer-brand p{max-width:100%;font-size:12px}
-  .vl-footer-col h4{font-size:10px}
-  .vl-footer-col a{font-size:12px}
-  .vl-footer-bottom{flex-direction:column;align-items:flex-start;gap:8px;padding:14px 0 20px}
-  .vl-footer-bottom .vl-legal{gap:12px}
-}
-@media(max-width:420px){
-  .vl-footer{padding:32px 16px 0}
-  .vl-footer-grid{grid-template-columns:1fr 1fr;gap:20px}
-  .vl-footer-col a{white-space:normal}
-}
-#vl-sticky{display:none;position:fixed;bottom:0;left:0;right:0;z-index:990;padding:10px 14px 14px;background:linear-gradient(to top,rgba(255,255,255,1) 55%,rgba(255,255,255,0));pointer-events:none}
-#vl-sticky a{display:flex;align-items:center;justify-content:center;gap:8px;background:#00C4A1;color:#0B1F3A!important;padding:14px;border-radius:50px;font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:700;text-decoration:none!important;box-shadow:0 4px 20px rgba(0,196,161,.4);pointer-events:all;transition:background .2s,transform .15s}
-#vl-sticky a:active{transform:scale(.97)}
-#vl-sticky p{font-size:11px;color:#8FA4B8;text-align:center;margin-top:5px;font-family:'Plus Jakarta Sans',sans-serif}
-@media(max-width:768px){#vl-sticky{display:block}body{padding-bottom:86px!important}}
-@media(min-width:769px){#vl-sticky{display:none!important}}
-@media(orientation:landscape) and (max-height:500px){#vl-sticky{display:none!important}body{padding-bottom:0!important}}
-</style>
-
 </head>
 <body>
   <nav>
@@ -618,7 +563,7 @@ img, video, iframe, svg {
     </div>
   </main>
 
-  
+  <footer>© 2026 ViajeroLatam. Comparador independiente para viajeros latinoamericanos.<p><a href="/como-elegimos/">Cómo elegimos las aseguradoras</a></p></footer>
 
   <div class="mobile-affiliate-bar" aria-label="Comparar seguros">
     <a class="ma-primary" href="/comparar-seguros-viaje-colombia-espana/">Comparar</a>
@@ -701,82 +646,5 @@ function closeExit(){var o=document.getElementById('exit-overlay');if(o){o.style
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeExit()});
 document.getElementById('exit-overlay').addEventListener('click',function(e){if(e.target===this)closeExit()});
 </script>
-
-<!-- FOOTER -->
-<footer class="vl-footer">
-  <div class="vl-footer-inner">
-    <div class="vl-footer-grid">
-      <div class="vl-footer-brand">
-        <a href="/"><img src="/logo-vl-original-20260528.png" alt="ViajeroLatam" width="220" height="68" style="height:68px;width:auto;max-width:220px;display:block;object-fit:contain;opacity:1!important;filter:none!important"></a>
-        <p>Comparador independiente de seguros de viaje para latinoamericanos que preparan viajes a España, Europa y otros destinos.</p>
-        <div class="vl-footer-social">
-          <a href="https://www.instagram.com/" target="_blank" rel="nofollow noopener" aria-label="Instagram">ig</a>
-          <a href="https://www.tiktok.com/" target="_blank" rel="nofollow noopener" aria-label="TikTok">tk</a>
-          <a href="https://www.youtube.com/" target="_blank" rel="nofollow noopener" aria-label="YouTube">yt</a>
-          <a href="https://www.facebook.com/" target="_blank" rel="nofollow noopener" aria-label="Facebook">fb</a>
-        </div>
-      </div>
-      <div class="vl-footer-col">
-        <h4>Comparar</h4>
-        <ul>
-          <li><a href="/resultados/">Comparar seguros gratis</a></li>
-          <li><a href="/comparar-seguros-viaje-colombia-espana/">Colombia → España</a></li>
-          <li><a href="/visa-schengen/">Visa Schengen</a></li>
-          <li><a href="/esim/espana-colombianos/">eSIM para España</a></li>
-          <li><a href="/blog/">Artículos y guías</a></li>
-        </ul>
-      </div>
-      <div class="vl-footer-col">
-        <h4>Aseguradoras</h4>
-        <ul>
-          <li><a href="/seguros/iati/">IATI Seguros</a></li>
-          <li><a href="/seguros/intermundial/">InterMundial</a></li>
-          <li><a href="/seguros/holins/">Holins</a></li>
-          <li><a href="/seguros/axa/">AXA</a></li>
-          <li><a href="/#aseguradoras">Todas las opciones</a></li>
-        </ul>
-      </div>
-      <div class="vl-footer-col">
-        <h4>Empresa</h4>
-        <ul>
-          <li><a href="/sobre-nosotros/">Sobre nosotros</a></li>
-          <li><a href="/como-elegimos/">Cómo elegimos</a></li>
-          <li><a href="/contacto/">Contacto</a></li>
-          <li><a href="/aviso-legal/">Aviso legal</a></li>
-          <li><a href="/privacidad/">Privacidad</a></li>
-          <li><a href="/cookies/">Cookies</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="vl-footer-bottom">
-      <span>© 2026 ViajeroLatam. Todos los derechos reservados.</span>
-      <div class="vl-legal">
-        <a href="/privacidad/">Privacidad</a>
-        <a href="/aviso-legal/">Aviso legal</a>
-        <a href="/cookies/">Cookies</a>
-        <a href="/contacto/">Contacto</a>
-      </div>
-      <span>Comparador independiente · No somos aseguradora</span>
-    </div>
-  </div>
-</footer>
-
-
-
-<!-- STICKY MOBILE CTA -->
-<div id="vl-sticky" aria-label="Comparar seguros gratis">
-  <a href="/resultados/" onclick="if(typeof gtag!='undefined')gtag('event','click_sticky_mob',{page:location.pathname})">
-    🔍 Comparar seguros gratis
-  </a>
-  <p>Sin coste · 4 aseguradoras · Póliza en 2 minutos</p>
-</div>
-
-
-
-<style id="vl-footer-override">
-.vl-footer,.vl-footer *{box-sizing:border-box}
-footer.vl-footer{width:100%;max-width:none!important;margin-left:0!important;margin-right:0!important}
-.vl-footer-grid>*{min-width:0;word-break:break-word}
-</style>
 </body>
 </html>
