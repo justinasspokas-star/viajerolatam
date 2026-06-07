@@ -370,13 +370,26 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;align-items:end">
       <div>
         <label style="font-size:11px;font-weight:700;color:#8FA4B8;text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:6px">Voy desde</label>
-        <select id="ep-origen" style="width:100%;padding:10px 12px;border:1.5px solid #E4EDF5;border-radius:10px;font-family:inherit;font-size:14px;color:#0B1F3A;background:#fff;outline:none">
+        <select id="ep-origen" onchange="updatePreview()" style="width:100%;padding:10px 12px;border:1.5px solid #E4EDF5;border-radius:10px;font-family:inherit;font-size:14px;color:#0B1F3A;background:#fff;outline:none">
           <option value="colombia">🇨🇴 Colombia</option>
           <option value="mexico">🇲🇽 México</option>
           <option value="argentina">🇦🇷 Argentina</option>
           <option value="venezuela">🇻🇪 Venezuela</option>
           <option value="peru">🇵🇪 Perú</option>
           <option value="chile">🇨🇱 Chile</option>
+          <option value="ecuador">🇪🇨 Ecuador</option>
+          <option value="bolivia">🇧🇴 Bolivia</option>
+          <option value="paraguay">🇵🇾 Paraguay</option>
+          <option value="uruguay">🇺🇾 Uruguay</option>
+          <option value="cuba">🇨🇺 Cuba</option>
+          <option value="republica-dominicana">🇩🇴 Rep. Dominicana</option>
+          <option value="panama">🇵🇦 Panamá</option>
+          <option value="costa-rica">🇨🇷 Costa Rica</option>
+          <option value="guatemala">🇬🇹 Guatemala</option>
+          <option value="honduras">🇭🇳 Honduras</option>
+          <option value="el-salvador">🇸🇻 El Salvador</option>
+          <option value="nicaragua">🇳🇮 Nicaragua</option>
+          <option value="brasil">🇧🇷 Brasil</option>
         </select>
       </div>
       <div>
@@ -389,16 +402,18 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
       </div>
       <div>
         <label style="font-size:11px;font-weight:700;color:#8FA4B8;text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:6px">Días de viaje</label>
-        <input type="number" id="ep-dias" value="15" min="1" max="365" oninput="var v=parseInt(this.value)||15;var el=document.getElementById('dias-preview');if(el)el.textContent=v+' días → desde €'+(v*1.75).toFixed(2)" style="width:100%;padding:10px 12px;border:1.5px solid #E4EDF5;border-radius:10px;font-family:inherit;font-size:14px;color:#0B1F3A;background:#fff;outline:none">
+        <input type="number" id="ep-dias" value="15" min="1" max="365" oninput="updatePreview()" style="width:100%;padding:10px 12px;border:1.5px solid #E4EDF5;border-radius:10px;font-family:inherit;font-size:14px;color:#0B1F3A;background:#fff;outline:none">
         <div id="dias-preview" style="font-size:11px;color:#009C7F;margin-top:4px;font-weight:600;min-height:16px"></div>
       </div>
       <div>
         <label style="font-size:11px;font-weight:700;color:#8FA4B8;text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:6px">Viajeros</label>
-        <select id="ep-viajeros" style="width:100%;padding:10px 12px;border:1.5px solid #E4EDF5;border-radius:10px;font-family:inherit;font-size:14px;color:#0B1F3A;background:#fff;outline:none">
+        <select id="ep-viajeros" onchange="updatePreview()" style="width:100%;padding:10px 12px;border:1.5px solid #E4EDF5;border-radius:10px;font-family:inherit;font-size:14px;color:#0B1F3A;background:#fff;outline:none">
           <option value="1">1 persona</option>
           <option value="2">2 personas</option>
           <option value="3">3 personas</option>
-          <option value="4">4+ personas</option>
+          <option value="4">4 personas</option>
+          <option value="5">5 personas</option>
+          <option value="6">6 personas</option>
         </select>
       </div>
     </div>
@@ -520,7 +535,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
 </div>
 
 <script>
-// ── DATA ──
+// ── DATA — precio base por persona/día ──
 const DATA = [
   {
     id:1, recommended:true,
@@ -592,25 +607,32 @@ const DATA = [
   }
 ];
 
+// ── ESTADO GLOBAL ──
 let diasViaje = 15;
+let numViajeros = 1;
 let activeData = [...DATA];
 
-function calcPrice(d){ return +(d.priceDay * diasViaje).toFixed(2); }
+// precio total = priceDay × días × personas
+function calcPrice(d){ return +(d.priceDay * diasViaje * numViajeros).toFixed(2); }
 function starStr(n){ return '★'.repeat(n)+'☆'.repeat(5-n); }
 
+// ── RENDER CARD ──
 function renderCard(d){
   const price = calcPrice(d);
   const whole = Math.floor(price);
-  const dec = (price % 1).toFixed(2).slice(1);
-  const rec = d.recommended ? 'recommended' : '';
+  const dec   = (price % 1).toFixed(2).slice(1);
+  const rec   = d.recommended ? 'recommended' : '';
   const badge = d.recommended
     ? `<div class="card-badge-row"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>MEJOR VALORACIÓN · RECOMENDADO POR VIAJEROLATAM</div>` : '';
   const savingHtml = d.saving ? `<div class="price-saving">🏷 ${d.saving}</div>` : '';
   const schengenBadge = `<div class="badge-schengen"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Válido Schengen</div>`;
   const greenPills = d.pillGreen.map(t=>`<span class="cpill cpill-green"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>${t}</span>`).join('');
   const amberPills = d.pillAmber.map(t=>`<span class="cpill cpill-amber"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>${t}</span>`).join('');
-  const navyPills = d.pillNavy.map(t=>`<span class="cpill cpill-navy">${t}</span>`).join('');
-  const extras = d.extras.map(e=>`<span class="extra">${e}</span>`).join('');
+  const navyPills  = d.pillNavy.map(t=>`<span class="cpill cpill-navy">${t}</span>`).join('');
+  const extras     = d.extras.map(e=>`<span class="extra">${e}</span>`).join('');
+  const diasLabel  = diasViaje === 1 ? '1 día' : diasViaje + ' días';
+  const paxLabel   = numViajeros === 1 ? '' : ` · ${numViajeros} personas`;
+  const perDia     = (d.priceDay * numViajeros).toFixed(2);
   return `
 <div class="card ${rec}" id="card-${d.id}">
   ${badge}
@@ -632,9 +654,9 @@ function renderCard(d){
     <div class="card-price-block">
       ${schengenBadge}
       <div>
-        <div class="price-from">Total ${diasViaje===1?"1 día":diasViaje+" días"}</div>
+        <div class="price-from">Total ${diasLabel}${paxLabel}</div>
         <div class="price-main"><sup>€</sup>${whole}<sup>${dec}</sup></div>
-        <div class="price-per">€${d.priceDay.toFixed(2)} / día</div>
+        <div class="price-per">€${perDia} / día${numViajeros > 1 ? ' · ' + numViajeros + ' pax' : ''}</div>
       </div>
       ${savingHtml}
       <button class="btn-contract" onclick="contractClick('${d.name}','${d.ctaUrl}')">Contratar seguro →</button>
@@ -654,29 +676,33 @@ function renderCard(d){
 </div>`;
 }
 
+// ── RENDER ──
 function render(data){
-  const container = document.getElementById('cards-container');
-  const noResults = document.getElementById('no-results');
-  const slim = document.getElementById('count-slim');
-  var diasLabel = diasViaje===1?'1 día':diasViaje+' días';
-  if(slim) slim.textContent = `${data.length} seguro${data.length!==1?'s':''} encontrado${data.length!==1?'s':''} · Colombia → España · ${diasLabel}`;
+  const container  = document.getElementById('cards-container');
+  const noResults  = document.getElementById('no-results');
+  const slim       = document.getElementById('count-slim');
+  const diasLabel  = diasViaje === 1 ? '1 día' : diasViaje + ' días';
+  const paxLabel   = numViajeros > 1 ? ` · ${numViajeros} personas` : '';
+  const origenText = document.getElementById('pill-origen') ? document.getElementById('pill-origen').textContent : 'Colombia';
+  if(slim) slim.textContent = `${data.length} seguro${data.length!==1?'s':''} encontrado${data.length!==1?'s':''} · ${diasLabel}${paxLabel}`;
   if(!data.length){ container.innerHTML=''; noResults.style.display='block'; return; }
   noResults.style.display='none';
   container.innerHTML = data.map(renderCard).join('');
 }
 
+// ── FILTERS ──
 function applyFilters(){
   const maxDay = parseFloat(document.getElementById('price-slider').value);
   const wantSchengen = document.getElementById('f1').checked;
-  const wantNoFranq = document.getElementById('f2').checked;
+  const wantNoFranq  = document.getElementById('f2').checked;
   const wantAventura = document.getElementById('f3').checked;
-  const wantTele = document.getElementById('f5').checked;
+  const wantTele     = document.getElementById('f5').checked;
   let filtered = DATA.filter(d=>{
     if(d.priceDay > maxDay) return false;
     if(wantSchengen && !d.schengen) return false;
-    if(wantNoFranq && d.franquicia !== 'Sin franquicia') return false;
+    if(wantNoFranq  && d.franquicia !== 'Sin franquicia') return false;
     if(wantAventura && !d.aventura) return false;
-    if(wantTele && !d.tele) return false;
+    if(wantTele     && !d.tele) return false;
     return true;
   });
   const sortVal = document.getElementById('sort-select').value;
@@ -687,9 +713,9 @@ function applyFilters(){
 
 function sortData(data, val){
   const d = [...data];
-  if(val==='precio-asc') d.sort((a,b)=>a.priceDay-b.priceDay);
+  if(val==='precio-asc')  d.sort((a,b)=>a.priceDay-b.priceDay);
   else if(val==='precio-desc') d.sort((a,b)=>b.priceDay-a.priceDay);
-  else if(val==='cobertura') d.sort((a,b)=>b.score-a.score);
+  else if(val==='cobertura')   d.sort((a,b)=>b.score-a.score);
   else d.sort((a,b)=>b.score-a.score);
   return d;
 }
@@ -704,17 +730,7 @@ function onPriceChange(el){
   applyFilters();
 }
 
-function updatePillFechas(dias){
-  var hoy = new Date();
-  var vuelta = new Date(hoy);
-  vuelta.setDate(hoy.getDate() + parseInt(dias));
-  var opts = {day:'numeric', month:'short'};
-  var desde = hoy.toLocaleDateString('es-ES', opts);
-  var hasta = vuelta.toLocaleDateString('es-ES', opts);
-  var pill = document.getElementById('pill-fechas');
-  if(pill) pill.textContent = desde + ' → ' + hasta + ' (' + dias + ' días)';
-}
-
+// ── DESTINO TABS ──
 function setDest(el, dest){
   document.querySelectorAll('.dest-tab').forEach(t=>t.classList.remove('active'));
   if(el) el.classList.add('active');
@@ -745,40 +761,81 @@ function contractClick(name, url){
   if(url && url !== '#') window.open(url,'_blank','noopener');
 }
 
+// ── EDIT PANEL ──
 function toggleEditPanel(){
   var p = document.getElementById('edit-panel');
   if(!p) return;
   p.style.display = p.style.display !== 'block' ? 'block' : 'none';
+  if(p.style.display === 'block') updatePreview();
 }
 
+// Live preview inside edit panel
+function updatePreview(){
+  var d = Math.max(1, Math.min(365, parseInt(document.getElementById('ep-dias').value) || 15));
+  var v = parseInt(document.getElementById('ep-viajeros').value) || 1;
+  var el = document.getElementById('dias-preview');
+  if(!el) return;
+  var minP = (DATA[1].priceDay * d * v).toFixed(2); // intermundial cheapest
+  var maxP = (DATA[0].priceDay * d * v).toFixed(2); // iati most complete
+  var diasLabel = d === 1 ? '1 día' : d + ' días';
+  var paxLabel  = v === 1 ? '1 persona' : v + ' personas';
+  el.textContent = diasLabel + ' · ' + paxLabel + ' → desde €' + minP + ' hasta €' + maxP;
+}
+
+// Origen labels map
+const ORIGEN_LABELS = {
+  'colombia':'Colombia 🇨🇴','mexico':'México 🇲🇽','argentina':'Argentina 🇦🇷',
+  'venezuela':'Venezuela 🇻🇪','peru':'Perú 🇵🇪','chile':'Chile 🇨🇱',
+  'ecuador':'Ecuador 🇪🇨','bolivia':'Bolivia 🇧🇴','paraguay':'Paraguay 🇵🇾',
+  'uruguay':'Uruguay 🇺🇾','cuba':'Cuba 🇨🇺','republica-dominicana':'Rep. Dominicana 🇩🇴',
+  'panama':'Panamá 🇵🇦','costa-rica':'Costa Rica 🇨🇷','guatemala':'Guatemala 🇬🇹',
+  'honduras':'Honduras 🇭🇳','el-salvador':'El Salvador 🇸🇻','nicaragua':'Nicaragua 🇳🇮',
+  'brasil':'Brasil 🇧🇷'
+};
+
 function applyEditSearch(){
-  var nuevoDias = Math.max(1, Math.min(365, parseInt(document.getElementById('ep-dias').value) || 15));
-  document.getElementById('ep-dias').value = nuevoDias;
-  var dest = document.getElementById('ep-destino').value;
-  var viajeros = parseInt(document.getElementById('ep-viajeros').value) || 1;
+  var nuevoDias     = Math.max(1, Math.min(365, parseInt(document.getElementById('ep-dias').value) || 15));
+  var nuevosViaj    = Math.max(1, Math.min(6, parseInt(document.getElementById('ep-viajeros').value) || 1));
+  var dest          = document.getElementById('ep-destino').value;
+  var origen        = document.getElementById('ep-origen').value;
 
-  // Update global days and re-render prices
-  diasViaje = nuevoDias;
+  // Update globals
+  diasViaje    = nuevoDias;
+  numViajeros  = nuevosViaj;
 
-  // Update pills
-  var destLabels = {europa:'España / Schengen 🇪🇺',eeuu:'EEUU 🇺🇸',mundial:'Mundial 🌍'};
-  var pillDest = document.getElementById('pill-destino');
-  var pillV = document.getElementById('pill-viajeros');
-  if(pillDest) pillDest.textContent = destLabels[dest] || dest;
-  if(pillV) pillV.textContent = viajeros + (viajeros===1?' adulto':' adultos');
+  // Update search bar pills
+  var destLabels = {europa:'España / Schengen 🇪🇺', eeuu:'EEUU 🇺🇸', mundial:'Mundial 🌍'};
+  var pillOrigen = document.getElementById('pill-origen');
+  var pillDest   = document.getElementById('pill-destino');
+  var pillV      = document.getElementById('pill-viajeros');
+  if(pillOrigen) pillOrigen.textContent = ORIGEN_LABELS[origen] || origen;
+  if(pillDest)   pillDest.textContent   = destLabels[dest] || dest;
+  if(pillV)      pillV.textContent      = nuevosViaj + (nuevosViaj === 1 ? ' adulto' : ' adultos');
   updatePillFechas(diasViaje);
 
-  // Update dest tab UI
-  document.querySelectorAll('.dest-tab').forEach(t=>{
-    t.classList.toggle('active', t.getAttribute('onclick') && t.getAttribute('onclick').includes("'"+dest+"'"));
+  // Sync dest tab UI
+  document.querySelectorAll('.dest-tab').forEach(function(t){
+    t.classList.toggle('active', !!(t.getAttribute('onclick') && t.getAttribute('onclick').includes("'"+dest+"'")));
   });
 
-  // Re-apply filters (will call render with updated diasViaje)
+  // Re-render with new days + persons
   applyFilters();
   toggleEditPanel();
 }
 
-// Mobile menus
+function updatePillFechas(dias){
+  var hoy   = new Date();
+  var vuelta = new Date(hoy);
+  vuelta.setDate(hoy.getDate() + parseInt(dias));
+  var opts  = {day:'numeric', month:'short'};
+  var desde = hoy.toLocaleDateString('es-ES', opts);
+  var hasta  = vuelta.toLocaleDateString('es-ES', opts);
+  var pill  = document.getElementById('pill-fechas');
+  var diasLabel = dias === 1 ? '1 día' : dias + ' días';
+  if(pill) pill.textContent = desde + ' → ' + hasta + ' (' + diasLabel + ')';
+}
+
+// ── MOBILE ──
 function openMobMenu(){var d=document.getElementById('mob-drawer'),o=document.getElementById('mob-overlay'),b=document.querySelector('.mob-btn');if(!d)return;d.style.display='flex';o.style.display='block';requestAnimationFrame(function(){d.classList.add('is-open');if(b)b.classList.add('is-open');});document.body.style.overflow='hidden';}
 function closeMobMenu(){var d=document.getElementById('mob-drawer'),o=document.getElementById('mob-overlay'),b=document.querySelector('.mob-btn');if(!d)return;d.classList.remove('is-open');if(b)b.classList.remove('is-open');document.body.style.overflow='';setTimeout(function(){d.style.display='none';o.style.display='none';},280);}
 function openMobFilters(){var el=document.getElementById('mob-filter-overlay'),sidebar=document.querySelector('.sidebar'),mc=document.getElementById('mob-filter-content');if(el&&sidebar&&mc){mc.innerHTML=sidebar.innerHTML;el.classList.add('open');document.body.style.overflow='hidden';}}
@@ -786,7 +843,7 @@ function closeMobFilters(){var el=document.getElementById('mob-filter-overlay');
 function closeExit(){var o=document.getElementById('exit-overlay');if(o){o.style.display='none';document.body.style.overflow='';}}
 document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeMobMenu();closeMobFilters();closeExit();}});
 
-// Exit intent
+// ── EXIT INTENT ──
 (function(){
   var shown=false;
   document.addEventListener('mouseleave',function(e){
@@ -797,56 +854,74 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeMobMen
   });
 })();
 
-// Init — read URL params on load
+// ── INIT — lee URL params ──
 (function(){
   var params = new URLSearchParams(window.location.search);
 
-  // Days from URL (?dias=30) or default 15
-  var urlDias = parseInt(params.get('dias') || params.get('personas') ? '' : '') || 0;
-  // Also support ?ida= and ?vuelta= to calculate days
-  var ida = params.get('ida');
+  // Días desde ?ida= y ?vuelta= o desde ?dias=
+  var urlDias = 15;
+  var ida   = params.get('ida');
   var vuelta = params.get('vuelta');
   if(ida && vuelta){
     var d1 = new Date(ida), d2 = new Date(vuelta);
-    if(!isNaN(d1) && !isNaN(d2)){
-      urlDias = Math.max(1, Math.round((d2-d1)/(1000*60*60*24)));
-    }
+    if(!isNaN(d1) && !isNaN(d2)) urlDias = Math.max(1, Math.round((d2-d1)/(1000*60*60*24)));
+  } else {
+    urlDias = parseInt(params.get('dias')) || 15;
   }
-  if(!urlDias) urlDias = parseInt(params.get('dias')) || 15;
   urlDias = Math.max(1, Math.min(365, urlDias));
-  diasViaje = urlDias;
 
-  // Viajeros
-  var urlViajeros = parseInt(params.get('personas')) || 1;
+  // Personas
+  var urlPersonas = Math.max(1, Math.min(6, parseInt(params.get('personas')) || 1));
 
   // Destino
   var urlDest = params.get('destino') || 'europa';
   var destMap = {'espana-schengen':'europa','espana':'europa','europa':'europa','eeuu':'eeuu','mundial':'mundial'};
   var dest = destMap[urlDest] || 'europa';
 
-  // Update pills
-  var destLabels = {europa:'España / Schengen 🇪🇺',eeuu:'EEUU 🇺🇸',mundial:'Mundial 🌍'};
+  // Origen
+  var urlOrigen = params.get('origen') || 'colombia';
+
+  // Apply globals
+  diasViaje   = urlDias;
+  numViajeros = urlPersonas;
+
+  // Sync pill-origen
+  var pillOrigen = document.getElementById('pill-origen');
+  if(pillOrigen) pillOrigen.textContent = ORIGEN_LABELS[urlOrigen] || 'Colombia 🇨🇴';
+
+  // Sync pill-destino
+  var destLabels = {europa:'España / Schengen 🇪🇺', eeuu:'EEUU 🇺🇸', mundial:'Mundial 🌍'};
   var pillDest = document.getElementById('pill-destino');
-  if(pillDest) pillDest.textContent = destLabels[dest];
+  if(pillDest) pillDest.textContent = destLabels[dest] || dest;
+
+  // Sync pill-viajeros
   var pillV = document.getElementById('pill-viajeros');
-  if(pillV) pillV.textContent = urlViajeros+(urlViajeros===1?' adulto':' adultos');
+  if(pillV) pillV.textContent = urlPersonas + (urlPersonas===1?' adulto':' adultos');
+
+  // Sync pill-fechas
   updatePillFechas(urlDias);
 
-  // Sync ep-dias input with actual days
-  var epDias = document.getElementById('ep-dias');
-  if(epDias) epDias.value = urlDias;
+  // Sync edit panel fields
+  var epDias    = document.getElementById('ep-dias');
+  var epViaj    = document.getElementById('ep-viajeros');
+  var epOrigen  = document.getElementById('ep-origen');
+  var epDestino = document.getElementById('ep-destino');
+  if(epDias)   epDias.value   = urlDias;
+  if(epViaj)   epViaj.value   = urlPersonas;
+  if(epOrigen) epOrigen.value = urlOrigen;
+  if(epDestino) epDestino.value = dest;
 
   // Dest tabs
   document.querySelectorAll('.dest-tab').forEach(function(t){
-    t.classList.toggle('active', t.getAttribute('onclick') && t.getAttribute('onclick').includes("'"+dest+"'"));
+    t.classList.toggle('active', !!(t.getAttribute('onclick') && t.getAttribute('onclick').includes("'"+dest+"'")));
   });
 
-  // Price slider
+  // Price slider init
   var sl = document.getElementById('price-slider');
-  sl.style.setProperty('--val', ((5-1)/(10-1)*100).toFixed(0)+'%');
+  if(sl) sl.style.setProperty('--val', ((5-1)/(10-1)*100).toFixed(0)+'%');
 })();
+
 render(sortData(DATA, 'recomendado'));
-</script>
 
 <!-- FOOTER -->
 <footer class="vl-footer">
