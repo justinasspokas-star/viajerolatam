@@ -389,7 +389,8 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
       </div>
       <div>
         <label style="font-size:11px;font-weight:700;color:#8FA4B8;text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:6px">Días de viaje</label>
-        <input type="number" id="ep-dias" value="15" min="1" max="365" style="width:100%;padding:10px 12px;border:1.5px solid #E4EDF5;border-radius:10px;font-family:inherit;font-size:14px;color:#0B1F3A;background:#fff;outline:none">
+        <input type="number" id="ep-dias" value="15" min="1" max="365" oninput="var v=parseInt(this.value)||15;var el=document.getElementById('dias-preview');if(el)el.textContent=v+' días → desde €'+(v*1.75).toFixed(2)" style="width:100%;padding:10px 12px;border:1.5px solid #E4EDF5;border-radius:10px;font-family:inherit;font-size:14px;color:#0B1F3A;background:#fff;outline:none">
+        <div id="dias-preview" style="font-size:11px;color:#009C7F;margin-top:4px;font-weight:600;min-height:16px"></div>
       </div>
       <div>
         <label style="font-size:11px;font-weight:700;color:#8FA4B8;text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:6px">Viajeros</label>
@@ -702,6 +703,17 @@ function onPriceChange(el){
   applyFilters();
 }
 
+function updatePillFechas(dias){
+  var hoy = new Date();
+  var vuelta = new Date(hoy);
+  vuelta.setDate(hoy.getDate() + parseInt(dias));
+  var opts = {day:'numeric', month:'short'};
+  var desde = hoy.toLocaleDateString('es-ES', opts);
+  var hasta = vuelta.toLocaleDateString('es-ES', opts);
+  var pill = document.getElementById('pill-fechas');
+  if(pill) pill.textContent = desde + ' → ' + hasta + ' (' + dias + ' días)';
+}
+
 function setDest(el, dest){
   document.querySelectorAll('.dest-tab').forEach(t=>t.classList.remove('active'));
   if(el) el.classList.add('active');
@@ -739,15 +751,28 @@ function toggleEditPanel(){
 }
 
 function applyEditSearch(){
-  diasViaje = parseInt(document.getElementById('ep-dias').value) || 15;
+  var nuevoDias = parseInt(document.getElementById('ep-dias').value) || 15;
   var dest = document.getElementById('ep-destino').value;
   var viajeros = parseInt(document.getElementById('ep-viajeros').value) || 1;
+
+  // Update global days and re-render prices
+  diasViaje = nuevoDias;
+
+  // Update pills
   var destLabels = {europa:'España / Schengen 🇪🇺',eeuu:'EEUU 🇺🇸',mundial:'Mundial 🌍'};
-  var pill = document.getElementById('pill-destino');
+  var pillDest = document.getElementById('pill-destino');
   var pillV = document.getElementById('pill-viajeros');
-  if(pill) pill.textContent = destLabels[dest] || dest;
-  if(pillV) pillV.textContent = viajeros+(viajeros===1?' adulto':' adultos');
-  setDest(null, dest);
+  if(pillDest) pillDest.textContent = destLabels[dest] || dest;
+  if(pillV) pillV.textContent = viajeros + (viajeros===1?' adulto':' adultos');
+  updatePillFechas(diasViaje);
+
+  // Update dest tab UI
+  document.querySelectorAll('.dest-tab').forEach(t=>{
+    t.classList.toggle('active', t.getAttribute('onclick') && t.getAttribute('onclick').includes("'"+dest+"'"));
+  });
+
+  // Re-apply filters (will call render with updated diasViaje)
+  applyFilters();
   toggleEditPanel();
 }
 
