@@ -210,6 +210,8 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
 .price-main{font-family:var(--font-display);font-size:36px;color:var(--navy);line-height:1;text-align:right}
 .price-main sup{font-size:18px;vertical-align:super}
 .price-per{font-size:11px;color:var(--text-light)}
+.price-local{font-size:11px;color:#1D9E75;font-weight:600;margin-top:2px;background:rgba(29,158,117,.08);border-radius:4px;padding:1px 5px;display:inline-block}
+.price-local span{font-size:10px;font-weight:400;color:#4A7E6A;margin-left:2px}
 .price-saving{font-size:12px;color:var(--green-text);font-weight:600;background:var(--green-pale);border-radius:6px;padding:4px 10px;text-align:center}
 .btn-contract{width:100%;background:var(--navy);color:var(--white);border:none;border-radius:50px;padding:12px 0;font-family:var(--font-body);font-size:14px;font-weight:700;cursor:pointer;transition:background var(--transition),transform var(--transition),box-shadow var(--transition)}
 .btn-contract:hover{background:var(--navy-mid);transform:translateY(-1px);box-shadow:0 4px 16px rgba(11,31,58,0.25)}
@@ -491,6 +493,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
       <div class="slim-trust">
         <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
         <span id="count-slim">4 seguros encontrados · Colombia → España · 15 días</span>
+        <span id="currency-note" style="font-size:11px;color:#1D9E75;font-weight:600;background:rgba(29,158,117,.08);border-radius:4px;padding:2px 8px;margin-left:4px"></span>
       </div>
       <select id="sort-select" onchange="applySort(this.value)" style="font-size:12px;font-weight:600;color:#0B1F3A;background:#F0F4F8;border:1px solid #E4EDF5;border-radius:50px;padding:5px 12px;cursor:pointer;outline:none;font-family:inherit">
         <option value="recomendado">⭐ Recomendado</option>
@@ -614,6 +617,7 @@ const DATA = [
 // ── ESTADO GLOBAL ──
 let diasViaje = 15;
 let numViajeros = 1;
+let currentOrigen = 'colombia'; // default, updated from URL/panel
 let activeData = [...DATA];
 
 // precio total = priceDay × días × personas
@@ -661,6 +665,7 @@ function renderCard(d){
         <div class="price-from">Total ${diasLabel}${paxLabel}</div>
         <div class="price-main"><sup>€</sup>${whole}<sup>${dec}</sup></div>
         <div class="price-per">€${perDia} / día${numViajeros > 1 ? ' · ' + numViajeros + ' pax' : ''}</div>
+        ${(function(){ var lp = localPrice(price); return lp ? '<div class="price-local">≈ ' + lp.symbol + ' ' + lp.str + ' <span>' + lp.label + '</span></div>' : ''; })()}
       </div>
       ${savingHtml}
       <button class="btn-contract" onclick="contractClick('${d.name}','${d.ctaUrl}')">Contratar seguro →</button>
@@ -689,6 +694,8 @@ function render(data){
   const paxLabel   = numViajeros > 1 ? ` · ${numViajeros} personas` : '';
   const origenText = document.getElementById('pill-origen') ? document.getElementById('pill-origen').textContent : 'Colombia';
   if(slim) slim.textContent = `${data.length} seguro${data.length!==1?'s':''} encontrado${data.length!==1?'s':''} · ${diasLabel}${paxLabel}`;
+  var currEl = document.getElementById('currency-note');
+  if(currEl){var cfg=CURRENCY_CONFIG[currentOrigen];currEl.textContent=cfg?'Precios en EUR · equiv. '+cfg.label+' orientativo':'';}
   if(!data.length){ container.innerHTML=''; noResults.style.display='block'; return; }
   noResults.style.display='none';
   container.innerHTML = data.map(renderCard).join('');
@@ -783,7 +790,9 @@ function updatePreview(){
   var maxP = (DATA[0].priceDay * d * v).toFixed(2); // iati most complete
   var diasLabel = d === 1 ? '1 día' : d + ' días';
   var paxLabel  = v === 1 ? '1 persona' : v + ' personas';
-  el.textContent = diasLabel + ' · ' + paxLabel + ' → desde €' + minP + ' hasta €' + maxP;
+  var cfg = CURRENCY_CONFIG[currentOrigen];
+  var localMin = cfg ? ' (~' + cfg.symbol + ' ' + (parseFloat(minP) * cfg.rate).toLocaleString('es-CO', {maximumFractionDigits: cfg.rate > 100 ? 0 : 2}) + ')' : '';
+  el.textContent = diasLabel + ' · ' + paxLabel + ' → desde €' + minP + ' hasta €' + maxP + localMin;
 }
 
 // Origen labels map
@@ -797,6 +806,46 @@ const ORIGEN_LABELS = {
   'brasil':'Brasil 🇧🇷'
 };
 
+// ── MONEDAS — tasas orientativas (sin API, actualizadas jun 2026) ──────────
+// Formato: { symbol, rate (1 EUR = X), secondary (null = no mostrar) }
+// Para países con moneda muy inestable usamos USD como referencia secundaria
+const CURRENCY_CONFIG = {
+  'colombia':          { symbol:'COP', rate:4420,   fmt:'#.###',  label:'COP aprox.' },
+  'peru':              { symbol:'PEN', rate:4.15,    fmt:'#.##',   label:'PEN aprox.' },
+  'mexico':            { symbol:'MXN', rate:20.8,    fmt:'#.##',   label:'MXN aprox.' },
+  'argentina':         { symbol:'USD', rate:1.08,    fmt:'#.##',   label:'USD ref.' },
+  'venezuela':         { symbol:'USD', rate:1.08,    fmt:'#.##',   label:'USD ref.' },
+  'ecuador':           { symbol:'USD', rate:1.08,    fmt:'#.##',   label:'USD ref.' },
+  'cuba':              { symbol:'USD', rate:1.08,    fmt:'#.##',   label:'USD ref.' },
+  'bolivia':           { symbol:'BOB', rate:7.45,    fmt:'#.##',   label:'BOB aprox.' },
+  'chile':             { symbol:'CLP', rate:1040,    fmt:'#.###',  label:'CLP aprox.' },
+  'paraguay':          { symbol:'USD', rate:1.08,    fmt:'#.##',   label:'USD ref.' },
+  'uruguay':           { symbol:'USD', rate:1.08,    fmt:'#.##',   label:'USD ref.' },
+  'republica-dominicana':{ symbol:'USD', rate:1.08,  fmt:'#.##',   label:'USD ref.' },
+  'panama':            { symbol:'USD', rate:1.08,    fmt:'#.##',   label:'USD ref.' },
+  'costa-rica':        { symbol:'USD', rate:1.08,    fmt:'#.##',   label:'USD ref.' },
+  'guatemala':         { symbol:'USD', rate:1.08,    fmt:'#.##',   label:'USD ref.' },
+  'honduras':          { symbol:'USD', rate:1.08,    fmt:'#.##',   label:'USD ref.' },
+  'el-salvador':       { symbol:'USD', rate:1.08,    fmt:'#.##',   label:'USD ref.' },
+  'nicaragua':         { symbol:'USD', rate:1.08,    fmt:'#.##',   label:'USD ref.' },
+  'brasil':            { symbol:'BRL', rate:5.80,    fmt:'#.##',   label:'BRL aprox.' }
+};
+
+// Devuelve el precio en moneda local formateado
+function localPrice(eurAmount) {
+  var cfg = CURRENCY_CONFIG[currentOrigen];
+  if (!cfg) return null;
+  var local = eurAmount * cfg.rate;
+  var formatted;
+  if (cfg.symbol === 'COP' || cfg.symbol === 'CLP') {
+    // Sin decimales, con puntos de miles
+    formatted = Math.round(local).toLocaleString('es-CO');
+  } else {
+    formatted = local.toFixed(2);
+  }
+  return { str: formatted, label: cfg.label, symbol: cfg.symbol };
+}
+
 function applyEditSearch(){
   var nuevoDias     = Math.max(1, Math.min(365, parseInt(document.getElementById('ep-dias').value) || 15));
   var nuevosViaj    = Math.max(1, Math.min(6, parseInt(document.getElementById('ep-viajeros').value) || 1));
@@ -806,6 +855,7 @@ function applyEditSearch(){
   // Update globals
   diasViaje    = nuevoDias;
   numViajeros  = nuevosViaj;
+  currentOrigen = origen;
 
   // Update search bar pills
   var destLabels = {europa:'España / Schengen 🇪🇺', eeuu:'EEUU 🇺🇸', mundial:'Mundial 🌍'};
@@ -884,6 +934,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeMobMen
 
   // Origen
   var urlOrigen = params.get('origen') || 'colombia';
+  currentOrigen = urlOrigen;
 
   // Apply globals
   diasViaje   = urlDias;
