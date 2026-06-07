@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="es-CO">
 <head>
-<link rel="preload" as="image" href="/hero-bg.webp" type="image/webp">
   <meta charset="UTF-8">
   <meta name="google-site-verification" content="fnxi-_Liw22SOQakruhikIUAjmf3u6mdT79inMc9x9A">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -161,6 +160,94 @@
   .contact-form-card{padding:22px;border-radius:22px}
 }
 
+
+/* Formspree contact form */
+.contact-form-card{
+  background:#F5F0E8;
+  border:1px solid #EAE3D5;
+  border-radius:28px;
+  padding:32px;
+}
+.contact-form-card h1,
+.contact-form-card h2{
+  font-family:'DM Serif Display',Georgia,serif;
+  color:#0B1F3A;
+  font-size:clamp(34px,4vw,54px);
+  line-height:1.08;
+  margin:0 0 12px;
+}
+.contact-form-card p{
+  color:#4A647E;
+  line-height:1.7;
+  margin:0 0 18px;
+}
+.vl-contact-form label{
+  display:block;
+  color:#0B1F3A;
+  font-weight:900;
+  margin:14px 0 7px;
+}
+.vl-contact-form input,
+.vl-contact-form textarea{
+  width:100%;
+  border:1px solid #D8D0C1;
+  background:#fff;
+  color:#0B1F3A;
+  border-radius:16px;
+  padding:15px 16px;
+  font:inherit;
+  font-weight:700;
+  outline:none;
+}
+.vl-contact-form input:focus,
+.vl-contact-form textarea:focus{
+  border-color:#00C4A1;
+  box-shadow:0 0 0 4px rgba(0,196,161,.12);
+}
+.vl-contact-form textarea{
+  min-height:170px;
+  resize:vertical;
+}
+.vl-contact-form button{
+  width:100%;
+  border:0;
+  border-radius:999px;
+  padding:16px 22px;
+  margin-top:18px;
+  background:#00C4A1;
+  color:#0B1F3A;
+  font:inherit;
+  font-weight:900;
+  cursor:pointer;
+}
+.vl-contact-form button:hover{
+  filter:brightness(.97);
+}
+.form-help{
+  font-size:14px;
+  color:#4A647E;
+  margin-top:8px!important;
+}
+.form-status{
+  display:none;
+  margin-top:16px;
+  padding:14px 16px;
+  border-radius:16px;
+  font-weight:800;
+}
+.form-status.success{
+  display:block;
+  background:rgba(0,196,161,.12);
+  border:1px solid rgba(0,196,161,.35);
+  color:#0B1F3A;
+}
+.form-status.error{
+  display:block;
+  background:#FFF1F1;
+  border:1px solid #F5B5B5;
+  color:#8A1F1F;
+}
+
 </style>
 
   <script type="application/ld+json">
@@ -178,45 +265,12 @@
   }
   </script>
 
-<style id="webp-hero">
-@supports (background-image: url("data:image/webp,")) {
-  .hero, section.hero, header.hero { background-image: url('/hero-bg.webp') !important; }
-}
-</style>
-<style id="mob-fix">
-#mob-btn{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px;z-index:1001;flex-shrink:0}
-#mob-btn span{display:block;width:22px;height:2px;background:#0B1F3A;border-radius:2px}
-@media(max-width:768px){
-  .nav-links{display:none!important}
-  #mob-btn{display:flex!important}
-  #mob-drawer{position:fixed;top:0;right:-100%;width:min(290px,88vw);height:100vh;background:#0B1F3A;z-index:1000;transition:right .32s ease;padding:70px 24px 32px;display:flex;flex-direction:column;gap:6px;box-shadow:-6px 0 32px rgba(0,0,0,.45)}
-  #mob-drawer.open{right:0}
-  #mob-drawer a{color:rgba(255,255,255,.85);text-decoration:none;font-size:15px;font-weight:500;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.08);display:block}
-  #mob-drawer a:last-child{border-bottom:none;background:#00C4A1;color:#0B1F3A;padding:12px 16px;border-radius:50px;text-align:center;font-weight:700;margin-top:8px}
-  #mob-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:999}
-  html{overflow-x:hidden}body{overflow-x:hidden;max-width:100vw}
-  *,*::before,*::after{box-sizing:border-box;word-wrap:break-word;overflow-wrap:break-word}
-  img,svg,video,iframe{max-width:100%!important;height:auto}
-  [class*="grid"]{grid-template-columns:1fr!important}
-  .sidebar,.sticky-col,aside{display:none!important}
-  table{display:block!important;overflow-x:auto!important}
-  .cta-banner,.cta-wrap{flex-direction:column!important;padding:16px!important}
-  [class*="btn"]{width:100%!important;text-align:center!important}
-  section,.section,.sec{padding:16px!important}
-  h1,h2{font-size:clamp(20px,6vw,32px)!important;word-break:break-word!important}
-  #sticky-mob{display:block!important}
-  body{padding-bottom:84px!important}
-}
-@media(max-width:380px){h1,h2{font-size:18px!important}}
-</style>
-<meta property="og:locale" content="es_CO">
-<meta property="og:site_name" content="ViajeroLatam">
 </head>
 <body>
   <nav>
     <a href="/" class="brand-logo"><img src="/logo-vl-original-20260528.png" alt="ViajeroLatam"></a>
     <div class="nav-links">
-      <a href="/seguro-viaje/colombia-a-espana/">Colombia → España</a>
+      <a href="/seguro-viaje/colombia-a-espana/">Colombia a España</a>
       <a href="/comparar-seguros-viaje-colombia-espana/">Comparativa</a>
       <a href="/visa-schengen/">Visa Schengen</a>
       <a href="/blog/">Artículos</a><a href="/sobre-nosotros/">Sobre nosotros</a>
@@ -234,111 +288,89 @@
     <div class="wrap">
       <article>
         
+
 <div class="contact-form-card">
-  <h2>Envíanos un mensaje</h2>
+  <h1>Envíanos un mensaje</h1>
   <p>Escribe tu email dos veces para evitar errores y cuéntanos en qué podemos ayudarte.</p>
 
-  <form class="contact-form" id="vlContactForm">
-    <label>
-      Tu email
-      <input type="email" id="contactEmail" name="email" autocomplete="email" required placeholder="tuemail@ejemplo.com">
-    </label>
+  <form class="vl-contact-form" id="contact-form" action="https://formspree.io/f/mojbggpq" method="POST">
+    <input type="hidden" name="_subject" value="Nuevo mensaje desde ViajeroLatam">
+    <input type="hidden" name="origen" value="Formulario contacto ViajeroLatam">
 
-    <label>
-      Repite tu email
-      <input type="email" id="contactEmailRepeat" name="email_repeat" autocomplete="email" required placeholder="tuemail@ejemplo.com">
-      <small>Lo pedimos dos veces para asegurar que podemos responderte.</small>
-    </label>
+    <label for="email">Tu email</label>
+    <input id="email" type="email" name="email" placeholder="tuemail@ejemplo.com" required autocomplete="email">
 
-    <label>
-      Mensaje
-      <textarea id="contactMessage" name="message" required placeholder="Escribe tu mensaje aquí..."></textarea>
-    </label>
+    <label for="email_confirm">Repite tu email</label>
+    <input id="email_confirm" type="email" name="email_confirm" placeholder="tuemail@ejemplo.com" required autocomplete="email">
+    <p class="form-help">Lo pedimos dos veces para asegurar que podemos responderte.</p>
+
+    <label for="message">Mensaje</label>
+    <textarea id="message" name="message" placeholder="Escribe tu mensaje aquí..." required></textarea>
 
     <button type="submit">Enviar mensaje</button>
-    <div id="contactStatus" class="form-status" aria-live="polite"></div>
+
+    <p class="form-help">Al enviar, el mensaje llegará a ViajeroLatam usando Formspree. No guardamos tus datos en esta página.</p>
+    <div id="form-status" class="form-status" aria-live="polite"></div>
   </form>
-
-  <p class="form-note">Al enviar, se abrirá tu aplicación de correo con el mensaje preparado para ViajeroLatam. No guardamos tus datos en esta página.</p>
 </div>
-
-        <h2>Cómo podemos ayudarte</h2>
-        <ul>
-          <li>Colaboraciones con aseguradoras, eSIMs, hoteles o servicios de viaje.</li>
-          <li>Correcciones editoriales o información desactualizada.</li>
-          <li>Preguntas sobre transparencia afiliada.</li>
-          <li>Propuestas de contenido para viajeros latinoamericanos.</li>
-        </ul>
-        <h2>Colaboraciones</h2>
-        <p>Estamos abiertos a colaborar con aseguradoras, eSIMs, plataformas de viaje, hoteles y servicios útiles para viajeros latinoamericanos que viajan a España o Europa.</p>
-        <h2>Correcciones</h2>
-        <p>Si detectas una información desactualizada o quieres proponer una mejora editorial, puedes escribirnos para revisarla.</p>
-      </article>
-      <aside>
-        <div class="side-card">
-          <h3>Comparativa principal</h3>
-          <p>IATI vs InterMundial para Colombia → España.</p>
-          <a class="btn btn-primary" href="/comparar-seguros-viaje-colombia-espana/">Ver comparativa</a>
-        </div>
-      </aside>
-    </div>
-  </main>
-  <footer>© 2026 ViajeroLatam. Comparador independiente para viajeros latinoamericanos. · <a href="/sobre-nosotros/" style="color:#fff;text-decoration:none;font-weight:800">Sobre nosotros</a> · <a href="/contacto/" style="color:#fff;text-decoration:none;font-weight:800">Contacto</a></footer>
 
 <script>
 (function(){
-  var form = document.getElementById('vlContactForm');
-  if(!form) return;
+  var form = document.getElementById('contact-form');
+  var status = document.getElementById('form-status');
+  if(!form || !status) return;
 
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
-
-    var email = document.getElementById('contactEmail').value.trim();
-    var emailRepeat = document.getElementById('contactEmailRepeat').value.trim();
-    var message = document.getElementById('contactMessage').value.trim();
-    var status = document.getElementById('contactStatus');
+  form.addEventListener('submit', async function(e){
+    var email = document.getElementById('email').value.trim();
+    var confirm = document.getElementById('email_confirm').value.trim();
 
     status.className = 'form-status';
     status.textContent = '';
 
-    if(!email || !emailRepeat || !message){
+    if(email.toLowerCase() !== confirm.toLowerCase()){
+      e.preventDefault();
       status.className = 'form-status error';
-      status.textContent = 'Por favor completa todos los campos.';
+      status.textContent = 'Los emails no coinciden. Revísalos antes de enviar.';
       return;
     }
 
-    if(email.toLowerCase() !== emailRepeat.toLowerCase()){
+    e.preventDefault();
+
+    var button = form.querySelector('button[type="submit"]');
+    var originalText = button.textContent;
+    button.disabled = true;
+    button.textContent = 'Enviando...';
+
+    try {
+      var response = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if(response.ok){
+        form.reset();
+        status.className = 'form-status success';
+        status.textContent = 'Mensaje enviado correctamente. Te responderemos lo antes posible.';
+        if(typeof gtag === 'function'){
+          gtag('event','contact_form_submit',{event_category:'lead',event_label:'contacto'});
+        }
+      } else {
+        status.className = 'form-status error';
+        status.textContent = 'No se pudo enviar el mensaje. Inténtalo de nuevo o escríbenos más tarde.';
+      }
+    } catch(err) {
       status.className = 'form-status error';
-      status.textContent = 'Los emails no coinciden. Revisa que estén escritos igual.';
-      return;
+      status.textContent = 'Error de conexión. Inténtalo de nuevo en unos segundos.';
+    } finally {
+      button.disabled = false;
+      button.textContent = originalText;
     }
-
-    var subject = encodeURIComponent('Mensaje desde ViajeroLatam');
-    var body = encodeURIComponent(
-      'Email del usuario: ' + email + '\n\n' +
-      'Mensaje:\n' + message
-    );
-
-    status.className = 'form-status ok';
-    status.textContent = 'Perfecto. Se abrirá tu correo para enviar el mensaje.';
-
-    window.location.href = 'mailto:justinasspokas@gmail.com?subject=' + subject + '&body=' + body;
   });
 })();
 </script>
 
-<div id="mob-overlay" onclick="document.getElementById('mob-drawer').classList.remove('open');this.style.display='none';document.body.style.overflow=''" aria-hidden="true"></div>
-<div id="mob-drawer">
-  <a href="/">Inicio</a>
-  <a href="/seguro-viaje/colombia-a-espana/">Colombia → España</a>
-  <a href="/visa-schengen/">Visa Schengen</a>
-  <a href="/blog/">Artículos</a>
-  <a href="/resultados/">Comparar seguros →</a>
-</div>
-<script>
-function openMobMenu(){var d=document.getElementById('mob-drawer'),o=document.getElementById('mob-overlay');d.classList.add('open');o.style.display='block';document.body.style.overflow='hidden'}
-function closeMobMenu(){var d=document.getElementById('mob-drawer'),o=document.getElementById('mob-overlay');d.classList.remove('open');o.style.display='none';document.body.style.overflow=''}
-document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu()})
-</script>
+
+<p><a href="/como-elegimos/">Ver cómo elegimos las aseguradoras</a></p>
 </body>
 </html>

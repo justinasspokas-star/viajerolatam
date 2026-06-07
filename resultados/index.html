@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<link rel="preload" as="image" href="/hero-bg.webp" type="image/webp">
 <style id="vl-responsive">
 /* ================================================
    VIAJEROLATAM — RESPONSIVE CSS (definitive)
@@ -330,6 +329,101 @@ img, video, iframe, svg {
   color:#0B1F3A;
 }
 
+
+/* Ordered insurer cards */
+.vl-insurer-section{
+  margin:28px 0;
+}
+.vl-insurer-title{
+  margin:0 0 14px;
+  color:#0B1F3A;
+  font-size:24px;
+  font-weight:900;
+}
+.vl-insurer-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:16px;
+}
+.vl-insurer-card{
+  background:#fff;
+  border:1px solid #EAE3D5;
+  border-radius:22px;
+  padding:20px;
+  box-shadow:0 10px 28px rgba(11,31,58,.06);
+}
+.vl-insurer-card.featured{
+  border-color:rgba(0,196,161,.45);
+  background:linear-gradient(180deg,#fff,#F7FFFC);
+}
+.vl-insurer-card .badge{
+  display:inline-flex;
+  border-radius:999px;
+  padding:5px 10px;
+  background:#F5F0E8;
+  color:#4A647E;
+  font-size:12px;
+  font-weight:900;
+  margin-bottom:10px;
+}
+.vl-insurer-card.featured .badge{
+  background:rgba(0,196,161,.12);
+  color:#0B1F3A;
+}
+.vl-insurer-card h3{
+  margin:0 0 8px;
+  color:#0B1F3A;
+  font-size:22px;
+}
+.vl-insurer-card p{
+  margin:0 0 14px;
+  color:#4A647E;
+  line-height:1.6;
+  font-size:14px;
+}
+.vl-insurer-actions{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+.vl-insurer-actions a{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:11px 14px;
+  border-radius:999px;
+  text-decoration:none!important;
+  font-weight:900;
+  font-size:14px;
+}
+.vl-insurer-actions .primary{
+  background:#0B1F3A;
+  color:#fff!important;
+}
+.vl-insurer-actions .accent{
+  background:#00C4A1;
+  color:#0B1F3A!important;
+}
+.vl-insurer-actions .secondary{
+  background:#F5F0E8;
+  color:#0B1F3A!important;
+  border:1px solid #EAE3D5;
+}
+@media(max-width:860px){
+  .vl-insurer-grid{grid-template-columns:1fr}
+}
+
+
+.vl-quick-rec{margin:22px 0 20px;background:linear-gradient(135deg,#0B1F3A,#17365A);color:#fff;border-radius:24px;padding:22px;box-shadow:0 16px 42px rgba(11,31,58,.16)}
+.vl-quick-rec h2{margin:0 0 8px!important;color:#fff!important;font-size:24px!important;line-height:1.15!important;font-family:'DM Serif Display',Georgia,serif!important}
+.vl-quick-rec p{margin:0 0 16px!important;color:rgba(255,255,255,.72)!important;line-height:1.6!important}
+.vl-quick-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.vl-quick-card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:18px;padding:14px}
+.vl-quick-card strong{display:block;color:#75D8BC;font-size:13px;margin-bottom:4px}.vl-quick-card b{display:block;color:#fff;font-size:18px;margin-bottom:5px}.vl-quick-card span{display:block;color:rgba(255,255,255,.68);font-size:13px;line-height:1.45;min-height:38px}
+.vl-quick-card a{display:flex;justify-content:center;align-items:center;margin-top:12px;padding:10px 12px;border-radius:999px;background:#00C4A1;color:#0B1F3A!important;font-weight:900;text-decoration:none!important;font-size:13px}
+.vl-trust-note{margin:16px 0 0!important;padding-top:14px;border-top:1px solid rgba(255,255,255,.12);font-size:13px!important}
+@media(max-width:980px){.vl-quick-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:620px){.vl-quick-grid{grid-template-columns:1fr}.vl-quick-rec{padding:18px;border-radius:20px}}
+
 </style>
 <!-- Travelpayouts Drive -->
 <script nowpocket data-noptimize="1" data-cfasync="false" data-wpfc-render="false" seraph-accel-crit="1" data-no-defer="1">
@@ -344,23 +438,23 @@ img, video, iframe, svg {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Comparar Seguros de Viaje Colombia → Españañaña — | ViajeroLatam</title>
-  <meta name="description" content="Compara 2 seguros de viaje para colombianos que viajan a España y Europa. Precios desde €18 para 15 días. Todos válidos para visa Schengen. Sin franquicia.">
+  <title>Comparar Seguros de viaje de Colombia a España — IAT | ViajeroLatam</title>
+  <meta name="description" content="Compara 4 seguros de viaje para colombianos que viajan a España y Europa. Precios desde €18 para 15 días. Todos válidos para visa Schengen. Sin franquicia.">
   <meta name="robots" content="noindex, follow">
   <link rel="canonical" href="https://viajerolatam.com/resultados/">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://viajerolatam.com/resultados/">
-  <meta property="og:title" content="Seguros de Viaje Colombia → Españaña — IATI e Intermundial | ViajeroLatam">
-  <meta property="og:description" content="Compara 2 seguros de viaje para latinoamericanos. Válidos para visa Schengen. Sin coste para ti.">
+  <meta property="og:title" content="Seguros de viaje de Colombia a España — IATI e Intermundial | ViajeroLatam">
+  <meta property="og:description" content="Compara 4 seguros de viaje para latinoamericanos. Válidos para visa Schengen. Sin coste para ti.">
   <meta property="og:image" content="https://viajerolatam.com/og-image.jpg">
   <meta property="og:site_name" content="ViajeroLatam">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Compara Seguros de Viaje — ViajeroLatam">
-  <meta name="twitter:description" content="2 seguros de viaje para latinoamericanos. Válidos para visa Schengen. Desde €18.">
+  <meta name="twitter:description" content="4 seguros de viaje para latinoamericanos. Válidos para visa Schengen. Desde €18.">
   <meta name="twitter:image" content="https://viajerolatam.com/og-image.jpg">
 
   <!-- Schema: ItemList of insurance products -->
@@ -389,7 +483,7 @@ img, video, iframe, svg {
       {
         "@type": "ListItem",
         "position": 3,
-        "name": "Intermundial TotalTravel Premium",
+        "name": "Intermundial InterMundial Totaltravel",
         "url": "https://viajerolatam.com/seguros/intermundial-totaltravel/",
         "description": "Mejor precio. 10.000.000€ de cobertura médica desde €1.75 por día."
       }
@@ -799,14 +893,9 @@ nav a.brand-logo img, nav a.logo img{height:64px !important; width:auto !importa
 <meta property="og:site_name" content="ViajeroLatam">
 
 <style id="no-travel-icons">.travel-icons,#travel-canvas,canvas{display:none!important}</style>
-<style id="webp-hero">
-@supports (background-image: url("data:image/webp,")) {
-  .hero, section.hero, header.hero { background-image: url('/hero-bg.webp') !important; }
-}
-</style>
 </head>
 <body>
-<h1 class="visible-h1">Comparar seguros de viaje para Colombia a España</h1>
+<h1 class="visible-h1"></h1>
 
 <!-- MOBILE NAV -->
 <div id="mob-overlay" onclick="closeMobMenu()" style="display:none;position:fixed;inset:0;background:rgba(11,31,58,.6);z-index:998;backdrop-filter:blur(4px)"></div>
@@ -820,7 +909,7 @@ nav a.brand-logo img, nav a.logo img{height:64px !important; width:auto !importa
     <a href="/blog/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">📚 Artículos</a>
     <a href="/visa-schengen/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">🛂 Visa Schengen</a>
     <a href="/blog/etias-colombianos/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">⚡ ETIAS 2026</a>
-    <a href="/seguro-viaje/colombia-a-espana/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">🇨🇴 Colombia → Españaña</a>
+    <a href="/seguro-viaje/colombia-a-espana/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">🇨🇴 Colombia a España</a>
     <a href="/seguro-viaje/bogota-a-espana/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">🏙️ Bogotá → España</a>
     <a href="/seguro-viaje/medellin-a-espana/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">🏙️ Medellín → España</a>
     <a href="/seguro-viaje/cali-a-espana/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">🏙️ Cali → España</a>
@@ -984,24 +1073,54 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
 
   <!-- RESULTS -->
   <main class="results-area">
-        <!-- Best value banner -->
-    <!-- CARDS CONTAINER -->
-    <div style="background:linear-gradient(90deg,#0B1F3A,#1A3558);border-radius:10px;padding:10px 16px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
-  <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(255,255,255,.9)">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00C4A1" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-    <strong style="color:#fff">Todos cumplen Schengen</strong>
-    <span style="color:rgba(255,255,255,.5);display:none" class="slim-extra">· ≥30.000€ · Sin franquicia</span>
-  </div>
-  <div style="display:flex;align-items:center;gap:10px">
-    <div id="results-count-slim" style="font-size:12px;color:rgba(255,255,255,.5)"></div>
-    <select id="sort-select" onchange="applySort(this.value)" style="font-size:12px;font-weight:500;color:#0B1F3A;background:#00C4A1;border:none;border-radius:50px;padding:5px 10px;cursor:pointer;outline:none">
-      <option value="recomendado">Recomendado</option>
-      <option value="precio-asc">Menor precio</option>
-      <option value="precio-desc">Mayor precio</option>
-      <option value="cobertura">Mayor cobertura</option>
-    </select>
-  </div>
+<div class="partner-note intermundial-note">
+  <strong>Nota sobre InterMundial:</strong> la disponibilidad de productos puede variar según país de residencia y destino.
+  El producto InterMundial Totaltravel no debe tomarse como referencia para residentes en Sudamérica en este momento.
+  Para usuarios residentes en Sudamérica que viajan dentro de Europa, InterMundial nos ha indicado que Totaltravel Estándar y Totaltravel Mini estarán disponibles próximamente.
+  Revisa siempre las opciones activas en la web oficial de InterMundial antes de contratar.
 </div>
+
+
+    <div class="results-header">
+      <div class="results-count">Mostrando <strong id="count-display">2 seguros</strong> para tu viaje de <strong>15 días</strong></div>
+      <div class="sort-row">
+        <span class="sort-label">Ordenar por:</span>
+        <select class="sort-select" id="sort-select" onchange="applySort(this.value)">
+          <option value="recomendado">Recomendado</option>
+          <option value="precio-asc">Menor precio</option>
+          <option value="precio-desc">Mayor precio</option>
+          <option value="cobertura">Mayor cobertura</option>
+          <option value="valoracion">Mejor valoración</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Schengen callout -->
+    <div class="schengen-callout">
+      <div class="sc-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <div class="sc-text">
+        <h4>Todos cumplen los requisitos Schengen</h4>
+        <p>Cobertura ≥30.000€ · Repatriación incluida · Sin franquicia · Aseguradora con sede en Europa</p>
+      </div>
+      <button class="sc-btn">¿Qué es el Schengen?</button>
+    </div>
+
+    <!-- Best value banner -->
+    <!-- CARDS CONTAINER -->
+    <div class="partner-note holins-list-note"><strong>Holins aparece como alternativa adicional:</strong> revisa siempre residencia, destino, cobertura médica y repatriación en la web oficial antes de contratar.</div>
+
+<section class="vl-quick-rec" id="recomendacion-rapida">
+  <h2>Recomendación rápida</h2>
+  <p>Empieza por estas opciones según tu prioridad. Las condiciones finales se revisan siempre en la web oficial.</p>
+  <div class="vl-quick-grid">
+    <article class="vl-quick-card"><strong>Mejor equilibrio</strong><b>IATI</b><span>Buena opción inicial para comparar cobertura, asistencia y precio.</span><a href="https://www.iatiseguros.com?r=84208681926165" target="_blank" rel="nofollow sponsored noopener">Ver IATI</a></article>
+    <article class="vl-quick-card"><strong>Cupón disponible</strong><b>InterMundial</b><span>Revisa el cupón VIAJEROLATAM y disponibilidad por residencia.</span><a href="https://www.intermundial.es/afiliados/seguros-de-viaje-recomendado?utm_source=Affiliates&utm_medium=Affiliates&utm_campaign=General&utm_term=kbnnqvpvcy490&utm_content=kbnnqvpvcy490" target="_blank" rel="nofollow sponsored noopener">Ver InterMundial</a></article>
+    <article class="vl-quick-card"><strong>Alternativa adicional</strong><b>Holins</b><span>Útil para ampliar la comparación antes de contratar.</span><a href="https://clk.tradedoubler.com/click?p=301095&a=3485639" target="_blank" rel="nofollow sponsored noopener">Ver Holins</a></article>
+    <article class="vl-quick-card"><strong>Marca reconocida</strong><b>AXA</b><span>Buena opción si priorizas una marca aseguradora internacional.</span><a href="https://clk.tradedoubler.com/click?p=343758&a=3485639" target="_blank" rel="nofollow sponsored noopener">Ver AXA</a></article>
+  </div>
+  <p class="vl-trust-note">ViajeroLatam puede recibir comisión por algunos enlaces. Esto no aumenta el precio para ti.</p>
+</section>
+
 <div id="cards-container"></div>
 
     <div id="no-results" class="no-results" style="display:none">
@@ -1009,11 +1128,9 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
       <p>Prueba a ajustar los filtros para ver más opciones.</p>
     </div>
 
-  <div style="display:flex;gap:16px;flex-wrap:wrap;padding:8px 0;border-top:1px solid #E4EDF5;margin-top:8px">
-  <a href="/seguros/intermundial/" style="font-size:12px;color:#009C7F;text-decoration:none;font-weight:600">📋 Guía Intermundial + cupón VIAJEROLATAM</a>
-  <a href="/seguros/iati/" style="font-size:12px;color:#009C7F;text-decoration:none;font-weight:600">📋 Guía IATI seguro de viaje</a>
-  <a href="/seguros/holins/" style="font-size:12px;color:#009C7F;text-decoration:none;font-weight:600">📋 Guía Holins</a>
-</div>
+  
+
+
 </main>
 </div>
 
@@ -1033,14 +1150,12 @@ const DATA = [
     pillGreen:['Ilimitada','Pago directo'],
     pillAmber:['Cancelación incluida'],
     pillNavy:['Mascotas'],
-    score: 97,
-    ctaUrl: 'https://www.iatiseguros.com?r=84208681926165',
-    guideUrl: '/seguros/iati/'
+    score: 97
   },
   {
     id:3, recommended:false,
     logo:'IM', logoColor:'#F0F4FF', logoText:'#2A4BB5',
-    name:'Intermundial', plan:'TotalTravel Premium',
+    name:'Intermundial', plan:'InterMundial Totaltravel',
     stars:4, reviews:3180,
     price:26.25, priceDay:1.75,
     saving:'El más económico',
@@ -1051,28 +1166,39 @@ const DATA = [
     pillGreen:['10M € médicos','Precio imbatible'],
     pillAmber:[],
     pillNavy:['Anual disponible'],
-    score: 88,
-    ctaUrl: 'https://www.intermundial.es/afiliados/seguros-de-viaje-recomendado?utm_source=Affiliates&utm_medium=Affiliates&utm_campaign=General&utm_term=kbnnqvpvcy490&utm_content=kbnnqvpvcy490&coupon=VIAJEROLATAM',
-    guideUrl: '/seguros/intermundial/'
+    score: 88
   },
   {
-    id:4, recommended:false, isAlternative:true,
-    logo:'HO', logoColor:'#F5F0FF', logoText:'#5B21B6',
-    name:'Holins', plan:'Seguro Viaje Básico',
-    stars:3, reviews:890,
-    price:19.90, priceDay:1.33,
-    saving:null,
-    medica:'30.000 \u20ac', repatriacion:'Incluida', franquicia:'Sin franquicia',
-    cancelacion:'No incluida', equipaje:'No incluida', demora:null,
+    id:4, recommended:false,
+    logo:'HO', logoColor:'#EAF7F4', logoText:'#137A70',
+    name:'Holins', plan:'Seguro de viaje',
+    stars:4, reviews:950,
+    price:31.80, priceDay:2.12,
+    saving:'Alternativa adicional',
+    medica:'Revisar en web oficial', repatriacion:'Revisar condiciones', franquicia:'Según plan',
+    cancelacion:'Opcional según plan', equipaje:'Según plan', demora:'Según plan',
     schengen:true, aventura:false, tele:false, anual:false,
-    extras:['Verificar residencia', 'Revisar condiciones'],
-    pillGreen:['30.000\u20ac m\u00e9dicos'],
-    pillAmber:['Confirmar condiciones'],
-    pillNavy:[],
-    score: 62,
-    disclaimer: 'Alternativa a revisar. Confirma residencia, destino y cobertura antes de contratar.',
-    ctaUrl:  + HOLINS_URL + ,
-    guideUrl: '/seguros/holins/'
+    extras:['Web en español', 'Comparar condiciones', 'Alternativa adicional'],
+    pillGreen:['Seguro de viaje'],
+    pillAmber:['Revisar residencia'],
+    pillNavy:['Alternativa'],
+    score: 76
+  },
+  {
+    id:5, recommended:false,
+    logo:'AX', logoColor:'#EEF2FF', logoText:'#1B3A8A',
+    name:'AXA', plan:'Seguro de viaje',
+    stars:4, reviews:2100,
+    price:33.60, priceDay:2.24,
+    saving:'Marca reconocida',
+    medica:'Revisar en web oficial', repatriacion:'Revisar condiciones', franquicia:'Según plan',
+    cancelacion:'Opcional según plan', equipaje:'Según plan', demora:'Según plan',
+    schengen:true, aventura:false, tele:false, anual:false,
+    extras:['Marca reconocida', 'Web en español', 'Comparar condiciones'],
+    pillGreen:['Seguro de viaje'],
+    pillAmber:['Revisar residencia'],
+    pillNavy:['AXA'],
+    score: 82
   }
 ];
 
@@ -1083,7 +1209,7 @@ function starStr(n){return '★'.repeat(n)+'☆'.repeat(5-n)}
 
 function renderCard(d){
   const rec = d.recommended ? 'recommended' : '';
-  const badge = d.recommended ? `<div class="card-badge-row"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>MEJOR VALORACIÓN · RECOMENDADO POR VIAJEROLATAM</div>` : '';
+  const badge = d.recommended ? `<div class="card-badge-row"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>MEJOR VALORACIÓN · RECOMENDADO POR VIAJEROSLATAM</div>` : '';
   const savingHtml = d.saving ? `<div class="price-saving">🏷 ${d.saving}</div>` : '';
   const schengenBadge = d.schengen
     ? `<div class="badge-schengen"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Válido Schengen</div>`
@@ -1140,7 +1266,7 @@ function renderCard(d){
 function render(data){
   const container = document.getElementById('cards-container');
   const noResults = document.getElementById('no-results');
-  document.getElementById('count-display') || document.createElement('span').textContent = `${data.length} seguro${data.length!==1?'s':''}`;
+  document.getElementById('count-display').textContent = `${data.length} seguro${data.length!==1?'s':''}`;
   if(!data.length){container.innerHTML='';noResults.style.display='block';return;}
   noResults.style.display='none';
   container.innerHTML = data.map(renderCard).join('');
@@ -1215,6 +1341,22 @@ function toggleDetails(id){
 }
 
 function contractClick(name, plan) {
+  if(name && name.toLowerCase().includes('axa')){
+    if(typeof gtag === 'function'){
+      gtag('event','click_affiliate_axa',{event_category:'affiliate',event_label:'AXA',page_location:window.location.href});
+    }
+    window.open('https://clk.tradedoubler.com/click?p=343758&a=3485639','_blank','noopener');
+    return;
+  }
+
+if(name && name.toLowerCase().includes('holins')){
+  if(typeof gtag === 'function'){
+    gtag('event','click_affiliate_holins',{event_category:'affiliate',event_label:'Holins',page_location:window.location.href});
+  }
+  window.open('https://clk.tradedoubler.com/click?p=301095&a=3485639','_blank','noopener');
+  return;
+}
+
   var urls = {
     '':       'https://www..es/travel-insurance/?utm_source=viajerolatam&utm_medium=affiliate&utm_campaign=latam',
     'IATI Seguros':   'https://www.iatiseguros.com?r=84208681926165',
