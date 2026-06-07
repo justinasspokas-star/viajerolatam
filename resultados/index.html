@@ -632,7 +632,7 @@ function renderCard(d){
     <div class="card-price-block">
       ${schengenBadge}
       <div>
-        <div class="price-from">Total ${diasViaje} días</div>
+        <div class="price-from">Total ${diasViaje===1?"1 día":diasViaje+" días"}</div>
         <div class="price-main"><sup>€</sup>${whole}<sup>${dec}</sup></div>
         <div class="price-per">€${d.priceDay.toFixed(2)} / día</div>
       </div>
@@ -658,7 +658,8 @@ function render(data){
   const container = document.getElementById('cards-container');
   const noResults = document.getElementById('no-results');
   const slim = document.getElementById('count-slim');
-  if(slim) slim.textContent = `${data.length} seguro${data.length!==1?'s':''} encontrado${data.length!==1?'s':''} · Colombia → España · ${diasViaje} días`;
+  var diasLabel = diasViaje===1?'1 día':diasViaje+' días';
+  if(slim) slim.textContent = `${data.length} seguro${data.length!==1?'s':''} encontrado${data.length!==1?'s':''} · Colombia → España · ${diasLabel}`;
   if(!data.length){ container.innerHTML=''; noResults.style.display='block'; return; }
   noResults.style.display='none';
   container.innerHTML = data.map(renderCard).join('');
@@ -751,7 +752,8 @@ function toggleEditPanel(){
 }
 
 function applyEditSearch(){
-  var nuevoDias = parseInt(document.getElementById('ep-dias').value) || 15;
+  var nuevoDias = Math.max(1, Math.min(365, parseInt(document.getElementById('ep-dias').value) || 15));
+  document.getElementById('ep-dias').value = nuevoDias;
   var dest = document.getElementById('ep-destino').value;
   var viajeros = parseInt(document.getElementById('ep-viajeros').value) || 1;
 
@@ -795,8 +797,51 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeMobMen
   });
 })();
 
-// Init
+// Init — read URL params on load
 (function(){
+  var params = new URLSearchParams(window.location.search);
+
+  // Days from URL (?dias=30) or default 15
+  var urlDias = parseInt(params.get('dias') || params.get('personas') ? '' : '') || 0;
+  // Also support ?ida= and ?vuelta= to calculate days
+  var ida = params.get('ida');
+  var vuelta = params.get('vuelta');
+  if(ida && vuelta){
+    var d1 = new Date(ida), d2 = new Date(vuelta);
+    if(!isNaN(d1) && !isNaN(d2)){
+      urlDias = Math.max(1, Math.round((d2-d1)/(1000*60*60*24)));
+    }
+  }
+  if(!urlDias) urlDias = parseInt(params.get('dias')) || 15;
+  urlDias = Math.max(1, Math.min(365, urlDias));
+  diasViaje = urlDias;
+
+  // Viajeros
+  var urlViajeros = parseInt(params.get('personas')) || 1;
+
+  // Destino
+  var urlDest = params.get('destino') || 'europa';
+  var destMap = {'espana-schengen':'europa','espana':'europa','europa':'europa','eeuu':'eeuu','mundial':'mundial'};
+  var dest = destMap[urlDest] || 'europa';
+
+  // Update pills
+  var destLabels = {europa:'España / Schengen 🇪🇺',eeuu:'EEUU 🇺🇸',mundial:'Mundial 🌍'};
+  var pillDest = document.getElementById('pill-destino');
+  if(pillDest) pillDest.textContent = destLabels[dest];
+  var pillV = document.getElementById('pill-viajeros');
+  if(pillV) pillV.textContent = urlViajeros+(urlViajeros===1?' adulto':' adultos');
+  updatePillFechas(urlDias);
+
+  // Sync ep-dias input with actual days
+  var epDias = document.getElementById('ep-dias');
+  if(epDias) epDias.value = urlDias;
+
+  // Dest tabs
+  document.querySelectorAll('.dest-tab').forEach(function(t){
+    t.classList.toggle('active', t.getAttribute('onclick') && t.getAttribute('onclick').includes("'"+dest+"'"));
+  });
+
+  // Price slider
   var sl = document.getElementById('price-slider');
   sl.style.setProperty('--val', ((5-1)/(10-1)*100).toFixed(0)+'%');
 })();
