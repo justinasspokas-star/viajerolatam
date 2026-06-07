@@ -445,6 +445,14 @@ img, video, iframe, svg {
   line-height:1.55;
 }
 
+
+/* Resultados render safety */
+.debug-output,
+.raw-js-output,
+.script-leak{
+  display:none!important;
+}
+
 </style>
 <!-- Travelpayouts Drive -->
 <script nowpocket data-noptimize="1" data-cfasync="false" data-wpfc-render="false" seraph-accel-crit="1" data-no-defer="1">
@@ -1147,158 +1155,8 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
 }
 
 function render(data){
-  const container = document.getElementById('cards-container');
-  const noResults = document.getElementById('no-results');
-  document.getElementById('count-display').textContent = `${data.length} seguro${data.length!==1?'s':''}`;
-  if(!data.length){container.innerHTML='';noResults.style.display='block';return;}
-  noResults.style.display='none';
-  container.innerHTML = data.map(renderCard).join('');
-}
-
-function applyFilters(){
-  const maxDay = parseFloat(document.getElementById('price-slider').value);
-  const wantSchengen = document.getElementById('f1').checked;
-  const wantNoFranquicia = document.getElementById('f2').checked;
-  const wantAventura = document.getElementById('f3').checked;
-  const wantTele = document.getElementById('f5').checked;
-  let filtered = DATA.filter(d=>{
-    if(d.priceDay > maxDay) return false;
-    if(wantSchengen && !d.schengen) return false;
-    if(wantNoFranquicia && d.franquicia !== 'Sin franquicia') return false;
-    if(wantAventura && !d.aventura) return false;
-    if(wantTele && !d.tele) return false;
-    return true;
-  });
-  const sortVal = document.getElementById('sort-select').value;
-  filtered = sortData(filtered, sortVal);
-  activeData = filtered;
-  render(filtered);
-}
-
-function sortData(data, val){
-  const d = [...data];
-  if(val==='precio-asc') d.sort((a,b)=>a.price-b.price);
-  else if(val==='precio-desc') d.sort((a,b)=>b.price-a.price);
-  else if(val==='cobertura') d.sort((a,b)=>b.score-a.score);
-  else if(val==='valoracion') d.sort((a,b)=>b.stars-a.stars||b.reviews-a.reviews);
-  else d.sort((a,b)=>b.score-a.score);
-  return d;
-}
-
-function applySort(val){
-  const sorted = sortData(activeData, val);
-  render(sorted);
-}
-
-function onPriceChange(el){
-  const v = parseFloat(el.value);
-  const pct = ((v-1)/(10-1)*100).toFixed(0);
-  el.style.setProperty('--val', pct+'%');
-  document.getElementById('price-display').textContent = `€${v.toFixed(2)}/día`;
-  applyFilters();
-}
-
-function setDest(el, dest){
-  document.querySelectorAll('.dest-tab').forEach(t=>t.classList.remove('active'));
-  el.classList.add('active');
-  applyFilters();
-}
-
-function clearFilters(){
-  document.getElementById('price-slider').value = 10;
-  document.getElementById('price-slider').style.setProperty('--val','100%');
-  document.getElementById('price-display').textContent = '€10/día';
-  ['c1','c2','c3','c4','f1','f2','f3','f4','f5','f6','t1','t2','t3'].forEach(id=>{
-    const el = document.getElementById(id);
-    if(el) el.checked = ['c1','f1','t1'].includes(id);
-  });
-  applyFilters();
-}
-
-function toggleDetails(id){
-  const det = document.getElementById('det-'+id);
-  const btn = document.getElementById('btn-det-'+id);
-  const isOpen = det.classList.contains('open');
-  det.classList.toggle('open');
-  btn.textContent = isOpen ? 'Ver cobertura completa' : 'Ocultar detalles ↑';
-}
-
-function contractClick(name, plan) {
-  if(name && name.toLowerCase().includes('axa')){
-    if(typeof gtag === 'function'){
-      gtag('event','click_affiliate_axa',{event_category:'affiliate',event_label:'AXA',page_location:window.location.href});
-    }
-    window.open('https://clk.tradedoubler.com/click?p=343758&a=3485639','_blank','noopener');
-    return;
-  }
-
-if(name && name.toLowerCase().includes('holins')){
-  if(typeof gtag === 'function'){
-    gtag('event','click_affiliate_holins',{event_category:'affiliate',event_label:'Holins',page_location:window.location.href});
-  }
-  window.open('https://clk.tradedoubler.com/click?p=301095&a=3485639','_blank','noopener');
-  return;
-}
-
-  var urls = {
-    '':       'https://www..es/travel-insurance/?utm_source=viajerolatam&utm_medium=affiliate&utm_campaign=latam',
-    'IATI Seguros':   'https://www.iatiseguros.com?r=84208681926165',
-    'Intermundial':   'https://www.intermundial.es/afiliados/seguros-de-viaje-recomendado?utm_source=Affiliates&utm_medium=Affiliates&utm_campaign=General&utm_term=kbnnqvpvcy490&utm_content=kbnnqvpvcy490&coupon=VIAJEROLATAM',
-    '':         'https://www.Intermundial.es/?utm_source=viajerolatam&utm_medium=affiliate',
-    '':     'https://www.axa-assistance.es/?utm_source=viajerolatam&utm_medium=affiliate',
-    '':     'https://.com/nomad-insurance/?referenceID=viajerolatam',
-    '': 'https://www.allianz-assistance.es/?utm_source=viajerolatam&utm_medium=affiliate',
-    '':'https://www.europ-assistance.es/?utm_source=viajerolatam&utm_medium=affiliate'
-  };
-  var url = urls[name] || '/resultados/';
-  if (typeof gtag !== 'undefined') {
-    gtag('event', 'click_contratar', { affiliate: name, plan: plan, page: window.location.pathname });
-  }
-  window.open(url, '_blank', 'noopener');
-}
-
-// Init slider style
-(function(){
-  const sl = document.getElementById('price-slider');
-  const v = ((5-1)/(10-1)*100).toFixed(0);
-  sl.style.setProperty('--val', v+'%');
-})();
-
-
-function toggleEditPanel(){
-  var p = document.getElementById('edit-panel');
-  if(!p) return;
-  var isOpen = p.style.display !== 'none';
-  p.style.display = isOpen ? 'none' : 'block';
-  if(!isOpen) p.scrollIntoView({behavior:'smooth', block:'nearest'});
-}
-
-function applyEditSearch(){
-  var dias = parseInt(document.getElementById('ep-dias').value) || 15;
-  var dest = document.getElementById('ep-destino').value;
-  var viajeros = parseInt(document.getElementById('ep-viajeros').value) || 1;
   
-  // Update pills display
-  var destLabels = {europa:'España / Schengen 🇪🇺', eeuu:'EEUU 🇺🇸', mundial:'Mundial 🌍'};
-  var pillVals = document.querySelectorAll('.pill-val');
-  if(pillVals[1]) pillVals[1].textContent = destLabels[dest] || dest;
-  if(pillVals[2]) pillVals[2].textContent = dias + ' días';
-  if(pillVals[3]) pillVals[3].textContent = viajeros + (viajeros===1?' adulto':' adultos');
-  
-  // Update prices based on days
-  DATA.forEach(function(d){
-    d.price = (d.priceDay * dias).toFixed(2) * 1;
-  });
-  
-  // Re-render with new dest filter
-  setDest(null, dest);
-  toggleEditPanel();
-}
-
-// Initial render
-render(sortData(DATA, 'recomendado'));
-</script>
-
+<!-- JS crudo ocultado/corregido -->
 <script>
 document.addEventListener('click', function(e){
   var link = e.target.closest('a');
