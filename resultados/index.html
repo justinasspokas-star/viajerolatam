@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<link rel="preload" as="image" href="/hero-bg.webp" type="image/webp">
 <style id="vl-responsive">
 /* ================================================
    VIAJEROLATAM — RESPONSIVE CSS (definitive)
@@ -438,7 +439,7 @@ img, video, iframe, svg {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Comparar Seguros de viaje de Colombia a España — IAT | ViajeroLatam</title>
+  <title>Comparar Seguros de viaje de Colombia a España — I | ViajeroLatam</title>
   <meta name="description" content="Compara 4 seguros de viaje para colombianos que viajan a España y Europa. Precios desde €18 para 15 días. Todos válidos para visa Schengen. Sin franquicia.">
   <meta name="robots" content="noindex, follow">
   <link rel="canonical" href="https://viajerolatam.com/resultados/">
@@ -880,12 +881,12 @@ nav a.brand-logo img, nav a.logo img{height:64px !important; width:auto !importa
 
 </style>
 <!-- Google Analytics 4 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-P1Q2TSMVNJ"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SY86BP2PPT"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-P1Q2TSMVNJ');
+  gtag('config', 'G-SY86BP2PPT');
 </script>
 
 <style>@font-face{font-display:swap}</style>
@@ -893,6 +894,7 @@ nav a.brand-logo img, nav a.logo img{height:64px !important; width:auto !importa
 <meta property="og:site_name" content="ViajeroLatam">
 
 <style id="no-travel-icons">.travel-icons,#travel-canvas,canvas{display:none!important}</style>
+<style id="webp-hero">@supports(background-image:url("data:image/webp,")){.hero,section.hero{background-image:url('/hero-bg.webp')!important}}</style>
 </head>
 <body>
 <h1 class="visible-h1"></h1>
@@ -926,6 +928,126 @@ nav a.brand-logo img, nav a.logo img{height:64px !important; width:auto !importa
 .mob-btn.is-open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 #mob-drawer.is-open{transform:translateX(0)!important}
 @media(max-width:768px){.mob-btn{display:flex!important}}
+
+/* ═══════════════════════════════════════════
+   MOBILE COMPLETE OVERHAUL - viajerolatam
+   ═══════════════════════════════════════════ */
+@media screen and (max-width: 768px) {
+
+  /* NAV */
+  nav { padding: 0 16px !important; min-height: 56px !important; }
+  .nav-links { display: none !important; }
+  .mob-btn { display: flex !important; }
+
+  /* SEARCH BAR — horizontal scroll */
+  .search-bar { padding: 10px 12px !important; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .search-inner { flex-wrap: nowrap !important; min-width: max-content; gap: 6px !important; }
+  .search-pill { padding: 7px 12px !important; font-size: 12px !important; flex-shrink: 0; }
+  .pill-label { font-size: 10px !important; }
+  .pill-val { font-size: 12px !important; }
+  .pill-btn { padding: 7px 12px !important; font-size: 12px !important; }
+  .mobile-filters-btn { display: flex !important; flex-shrink: 0; }
+
+  /* EDIT PANEL */
+  #edit-panel > div > div[style*="grid-template-columns"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  /* PAGE LAYOUT — single column */
+  .page { 
+    grid-template-columns: 1fr !important; 
+    padding: 12px !important; 
+    gap: 12px !important;
+  }
+  
+  /* SIDEBAR — hidden, show via drawer */
+  .sidebar { display: none !important; }
+  .mobile-filter-drawer {
+    position: fixed; inset: 0; z-index: 300;
+    background: rgba(0,0,0,.5);
+    display: none;
+  }
+  .mobile-filter-drawer.open { display: block !important; }
+  .mobile-filter-inner {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: #fff; border-radius: 20px 20px 0 0;
+    padding: 20px; max-height: 85vh; overflow-y: auto;
+  }
+
+  /* CARD — compact mobile layout */
+  .card { margin-bottom: 10px !important; border-radius: 14px !important; }
+  .card-badge-row { padding: 5px 14px !important; font-size: 10px !important; }
+  
+  /* Card body — vertical stack */
+  .card-body {
+    grid-template-columns: 1fr !important;
+    padding: 14px !important;
+    gap: 12px !important;
+  }
+  
+  /* Logo block — horizontal on mobile */
+  .card-logo-block {
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 12px !important;
+    min-width: unset !important;
+  }
+  .card-logo { width: 44px !important; height: 44px !important; font-size: 14px !important; flex-shrink: 0; }
+  .card-name { font-size: 14px !important; font-weight: 700 !important; text-align: left !important; }
+  .card-stars { font-size: 12px !important; }
+  .card-reviews { text-align: left !important; }
+
+  /* Coverage block */
+  .card-plan { font-size: 14px !important; }
+  .cpill { font-size: 10px !important; padding: 3px 8px !important; }
+  .coverage-row { font-size: 12px !important; }
+
+  /* PRICE BLOCK — horizontal, full width */
+  .card-price-block {
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    min-width: unset !important;
+    width: 100% !important;
+    background: #F0F4F8;
+    border-radius: 12px;
+    padding: 12px 14px !important;
+    gap: 12px !important;
+  }
+  .price-main { font-size: 28px !important; }
+  .btn-contract { 
+    width: auto !important; 
+    padding: 11px 20px !important; 
+    font-size: 13px !important;
+    white-space: nowrap;
+  }
+  .btn-details { 
+    display: none !important; 
+  }
+  .badge-schengen { 
+    display: none !important; 
+  }
+  .price-from { font-size: 10px !important; text-align: left; }
+  .price-per { font-size: 10px !important; }
+
+  /* DETAILS expand */
+  .card-details { padding: 14px !important; }
+  .details-grid { grid-template-columns: 1fr 1fr !important; gap: 10px !important; }
+  .detail-val { font-size: 13px !important; }
+
+  /* SLIM BAR */
+  #count-slim { display: none; }
+
+  /* No results */
+  .no-results { padding: 24px 16px !important; }
+}
+
+@media screen and (max-width: 380px) {
+  .card-price-block { flex-direction: column !important; align-items: flex-start !important; }
+  .btn-contract { width: 100% !important; }
+  .price-main { font-size: 24px !important; }
+}
+
 </style>
 <script>
 function openMobMenu(){var d=document.getElementById('mob-drawer'),o=document.getElementById('mob-overlay'),b=document.querySelector('.mob-btn');if(!d)return;d.style.display='flex';o.style.display='block';requestAnimationFrame(function(){d.classList.add('is-open');if(b)b.classList.add('is-open');});document.body.style.overflow='hidden';}
@@ -963,7 +1085,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
       <svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
       Editar búsqueda
     </button>
-    <button class="mobile-filters-btn">
+    <button class="mobile-filters-btn" onclick="openMobFilters()">
       <svg viewBox="0 0 24 24"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
       Filtros
     </button>
@@ -1073,32 +1195,9 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
 
   <!-- RESULTS -->
   <main class="results-area">
-<div class="partner-note intermundial-note">
-  <strong>Nota sobre InterMundial:</strong> la disponibilidad de productos puede variar según país de residencia y destino.
-  El producto InterMundial Totaltravel no debe tomarse como referencia para residentes en Sudamérica en este momento.
-  Para usuarios residentes en Sudamérica que viajan dentro de Europa, InterMundial nos ha indicado que Totaltravel Estándar y Totaltravel Mini estarán disponibles próximamente.
-  Revisa siempre las opciones activas en la web oficial de InterMundial antes de contratar.
-</div>
 
 
-    <div class="results-header">
-      <div class="results-count">Mostrando <strong id="count-display">2 seguros</strong> para tu viaje de <strong>15 días</strong></div>
-      <div class="sort-row">
-        <span class="sort-label">Ordenar por:</span>
-        <select class="sort-select" id="sort-select" onchange="applySort(this.value)">
-          <option value="recomendado">Recomendado</option>
-          <option value="precio-asc">Menor precio</option>
-          <option value="precio-desc">Mayor precio</option>
-          <option value="cobertura">Mayor cobertura</option>
-          <option value="valoracion">Mejor valoración</option>
-        </select>
-      </div>
-    </div>
-
-    <!-- Schengen callout -->
-    <div class="schengen-callout">
-      <div class="sc-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-      <div class="sc-text">
+              <div class="sc-text">
         <h4>Todos cumplen los requisitos Schengen</h4>
         <p>Cobertura ≥30.000€ · Repatriación incluida · Sin franquicia · Aseguradora con sede en Europa</p>
       </div>
@@ -1107,10 +1206,26 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
 
     <!-- Best value banner -->
     <!-- CARDS CONTAINER -->
-    <!-- Nota Holins ocultada temporalmente -->
+    
 
-<!-- Recomendación rápida ocultada temporalmente -->
 
+
+    <!-- Slim bar -->
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px;flex-wrap:wrap">
+      <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:#4A647E">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#00C4A1" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span>Todos cumplen Schengen · ≥30.000€ · Sin franquicia</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <span style="font-size:12px;color:#8FA4B8" id="count-slim"></span>
+        <select id="sort-select" onchange="applySort(this.value)" style="font-size:12px;font-weight:600;color:#0B1F3A;background:#F0F4F8;border:1px solid #E4EDF5;border-radius:50px;padding:5px 12px;cursor:pointer;outline:none;font-family:inherit">
+          <option value="recomendado">⭐ Recomendado</option>
+          <option value="precio-asc">💶 Menor precio</option>
+          <option value="precio-desc">Mayor precio</option>
+          <option value="cobertura">🛡️ Mayor cobertura</option>
+        </select>
+      </div>
+    </div>
 <div id="cards-container"></div>
 
     <div id="no-results" class="no-results" style="display:none">
@@ -1140,7 +1255,9 @@ const DATA = [
     pillGreen:['Ilimitada','Pago directo'],
     pillAmber:['Cancelación incluida'],
     pillNavy:['Mascotas'],
-    score: 97
+    score: 97,
+    ctaUrl: 'https://www.iatiseguros.com?r=84208681926165',
+    guideUrl: '/seguros/iati/'
   },
   {
     id:3, recommended:false,
@@ -1156,7 +1273,9 @@ const DATA = [
     pillGreen:['10M € médicos','Precio imbatible'],
     pillAmber:[],
     pillNavy:['Anual disponible'],
-    score: 88
+    score: 88,
+    ctaUrl: 'https://www.intermundial.es/afiliados/seguros-de-viaje-recomendado?utm_source=Affiliates&utm_medium=Affiliates&utm_campaign=General&utm_term=kbnnqvpvcy490&utm_content=kbnnqvpvcy490&coupon=VIAJEROLATAM',
+    guideUrl: '/seguros/intermundial/'
   },
   {
     id:4, recommended:false,
@@ -1172,7 +1291,9 @@ const DATA = [
     pillGreen:['Seguro de viaje'],
     pillAmber:['Revisar residencia'],
     pillNavy:['Alternativa'],
-    score: 76
+    score: 76,
+    ctaUrl: 'https://clk.tradedoubler.com/click?p=301095&a=3485639',
+    guideUrl: '/seguros/holins/'
   },
   {
     id:5, recommended:false,
@@ -1188,7 +1309,9 @@ const DATA = [
     pillGreen:['Seguro de viaje'],
     pillAmber:['Revisar residencia'],
     pillNavy:['AXA'],
-    score: 82
+    score: 82,
+    ctaUrl: 'https://www.axaassistance.es/seguro-de-viaje',
+    guideUrl: '/seguros/axa/'
   }
 ];
 
@@ -1197,9 +1320,15 @@ let expandedCard = null;
 
 function starStr(n){return '★'.repeat(n)+'☆'.repeat(5-n)}
 
+
+function trackAndOpen(url, name){
+  if(typeof gtag !== 'undefined') gtag('event','click_contratar',{insurer:name});
+  if(url && url !== '#') window.open(url,'_blank');
+}
+
 function renderCard(d){
   const rec = d.recommended ? 'recommended' : '';
-  const badge = d.recommended ? `<div class="card-badge-row"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>MEJOR VALORACIÓN · RECOMENDADO POR VIAJEROSLATAM</div>` : '';
+  const badge = d.recommended ? `<div class="card-badge-row"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>MEJOR VALORACIÓN · RECOMENDADO POR VIAJEROLATAM</div>` : '';
   const savingHtml = d.saving ? `<div class="price-saving">🏷 ${d.saving}</div>` : '';
   const schengenBadge = d.schengen
     ? `<div class="badge-schengen"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Válido Schengen</div>`
@@ -1236,7 +1365,7 @@ function renderCard(d){
         <div class="price-per">€${d.priceDay.toFixed(2)} / día</div>
       </div>
       ${savingHtml}
-      <button class="btn-contract" onclick="contractClick('${d.name}','${d.plan}')">Contratar seguro →</button>
+      <button class="btn-contract" onclick="if(d && d.ctaUrl){window.open(d.ctaUrl,'_blank')}" onclick="contractClick('${d.name}','${d.plan}')">Contratar seguro →</button>
       <button class="btn-details" onclick="toggleDetails(${d.id})" id="btn-det-${d.id}">Ver cobertura completa</button>
     </div>
   </div>
@@ -1256,7 +1385,7 @@ function renderCard(d){
 function render(data){
   const container = document.getElementById('cards-container');
   const noResults = document.getElementById('no-results');
-  document.getElementById('count-display').textContent = `${data.length} seguro${data.length!==1?'s':''}`;
+  (document.getElementById('count-display') || {textContent:''}).textContent = `${data.length} seguro${data.length!==1?'s':''}`;
   if(!data.length){container.innerHTML='';noResults.style.display='block';return;}
   noResults.style.display='none';
   container.innerHTML = data.map(renderCard).join('');
@@ -1468,6 +1597,34 @@ document.addEventListener('click', function(e){
 function closeExit(){var o=document.getElementById('exit-overlay');if(o){o.style.display='none';document.body.style.overflow=''}}
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeExit()});
 document.getElementById('exit-overlay').addEventListener('click',function(e){if(e.target===this)closeExit()});
+</script>
+
+<!-- Mobile Filter Drawer -->
+<div id="mob-filter-overlay" class="mobile-filter-drawer" onclick="closeMobFilters()">
+  <div class="mobile-filter-inner" onclick="event.stopPropagation()">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+      <h3 style="font-size:15px;font-weight:700;color:#0B1F3A">Filtrar resultados</h3>
+      <button onclick="closeMobFilters()" style="background:none;border:none;cursor:pointer;font-size:22px;color:#4A647E">✕</button>
+    </div>
+    <div id="mob-filter-content"></div>
+    <button onclick="closeMobFilters()" style="width:100%;background:#00C4A1;color:#0B1F3A;border:none;border-radius:50px;padding:13px;font-weight:700;font-size:15px;font-family:inherit;cursor:pointer;margin-top:16px">Ver resultados</button>
+  </div>
+</div>
+<script>
+function openMobFilters(){
+  var el = document.getElementById('mob-filter-overlay');
+  var sidebar = document.querySelector('.sidebar');
+  var mc = document.getElementById('mob-filter-content');
+  if(el && sidebar && mc){
+    mc.innerHTML = sidebar.innerHTML;
+    el.classList.add('open');
+    document.body.style.overflow='hidden';
+  }
+}
+function closeMobFilters(){
+  var el = document.getElementById('mob-filter-overlay');
+  if(el){ el.classList.remove('open'); document.body.style.overflow=''; }
+}
 </script>
 </body>
 </html>
