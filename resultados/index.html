@@ -1094,12 +1094,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
 
   <!-- RESULTS -->
   <main class="results-area">
-<div class="partner-note intermundial-note">
-  <strong>Nota sobre InterMundial:</strong> la disponibilidad de productos puede variar según país de residencia y destino.
-  El producto InterMundial Totaltravel no debe tomarse como referencia para residentes en Sudamérica en este momento.
-  Para usuarios residentes en Sudamérica que viajan dentro de Europa, InterMundial nos ha indicado que Totaltravel Estándar y Totaltravel Mini estarán disponibles próximamente.
-  Revisa siempre las opciones activas en la web oficial de InterMundial antes de contratar.
-</div>
+<!-- Nota InterMundial ocultada temporalmente -->
 
 
     <div class="results-header">
@@ -1117,130 +1112,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
     </div>
 
     <!-- Schengen callout -->
-    <div class="schengen-callout">
-      <div class="sc-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-      <div class="sc-text">
-        <h4>Todos cumplen los requisitos Schengen</h4>
-        <p>Cobertura ≥30.000€ · Repatriación incluida · Sin franquicia · Aseguradora con sede en Europa</p>
-      </div>
-      <button class="sc-btn">¿Qué es el Schengen?</button>
-    </div>
-
-    <!-- Best value banner -->
-    <!-- CARDS CONTAINER -->
-    <!-- Nota Holins ocultada temporalmente -->
-
-<!-- Recomendación rápida ocultada temporalmente -->
-
-<div id="cards-container"></div>
-
-    <div id="no-results" class="no-results" style="display:none">
-      <h3>Sin resultados</h3>
-      <p>Prueba a ajustar los filtros para ver más opciones.</p>
-    </div>
-
-  
-
-
-</main>
-</div>
-
-<script>
-const DATA = [
-  {
-    id:2, recommended:false,
-    logo:'IA', logoColor:'#E6F1FB', logoText:'#185FA5',
-    name:'IATI Seguros', plan:'Estrella',
-    stars:5, reviews:6240,
-    price:34.90, priceDay:2.33,
-    saving:null,
-    medica:'Ilimitada', repatriacion:'Ilimitada', franquicia:'Sin franquicia',
-    cancelacion:'Hasta 5.000 €', equipaje:'Hasta 1.200 €', demora:'Desde 6h',
-    schengen:true, aventura:true, tele:true, anual:false,
-    extras:['Pago directo', 'Mascotas', 'Nacimiento prematuro'],
-    pillGreen:['Ilimitada','Pago directo'],
-    pillAmber:['Cancelación incluida'],
-    pillNavy:['Mascotas'],
-    score: 97
-  },
-  {
-    id:3, recommended:false,
-    logo:'IM', logoColor:'#F0F4FF', logoText:'#2A4BB5',
-    name:'Intermundial', plan:'InterMundial Totaltravel',
-    stars:4, reviews:3180,
-    price:26.25, priceDay:1.75,
-    saving:'El más económico',
-    medica:'10.000.000 €', repatriacion:'Ilimitada', franquicia:'Sin franquicia',
-    cancelacion:'Hasta 2.000 €', equipaje:'Hasta 900 €', demora:'Desde 4h',
-    schengen:true, aventura:false, tele:true, anual:true,
-    extras:['Mejor precio', 'Multiviaje anual', 'Familiar disponible'],
-    pillGreen:['10M € médicos','Precio imbatible'],
-    pillAmber:[],
-    pillNavy:['Anual disponible'],
-    score: 88
-  },
-  {
-    id:4, recommended:false,
-    logo:'HO', logoColor:'#EAF7F4', logoText:'#137A70',
-    name:'Holins', plan:'Seguro de viaje',
-    stars:4, reviews:950,
-    price:31.80, priceDay:2.12,
-    saving:'Alternativa adicional',
-    medica:'Revisar en web oficial', repatriacion:'Revisar condiciones', franquicia:'Según plan',
-    cancelacion:'Opcional según plan', equipaje:'Según plan', demora:'Según plan',
-    schengen:true, aventura:false, tele:false, anual:false,
-    extras:['Web en español', 'Comparar condiciones', 'Alternativa adicional'],
-    pillGreen:['Seguro de viaje'],
-    pillAmber:['Revisar residencia'],
-    pillNavy:['Alternativa'],
-    score: 76
-  },
-  {
-    id:5, recommended:false,
-    logo:'AX', logoColor:'#EEF2FF', logoText:'#1B3A8A',
-    name:'AXA', plan:'Seguro de viaje',
-    stars:4, reviews:2100,
-    price:33.60, priceDay:2.24,
-    saving:'Marca reconocida',
-    medica:'Revisar en web oficial', repatriacion:'Revisar condiciones', franquicia:'Según plan',
-    cancelacion:'Opcional según plan', equipaje:'Según plan', demora:'Según plan',
-    schengen:true, aventura:false, tele:false, anual:false,
-    extras:['Marca reconocida', 'Web en español', 'Comparar condiciones'],
-    pillGreen:['Seguro de viaje'],
-    pillAmber:['Revisar residencia'],
-    pillNavy:['AXA'],
-    score: 82
-  }
-];
-
-let activeData = [...DATA];
-let expandedCard = null;
-
-function starStr(n){return '★'.repeat(n)+'☆'.repeat(5-n)}
-
-function renderCard(d){
-  const rec = d.recommended ? 'recommended' : '';
-  const badge = d.recommended ? `<div class="card-badge-row"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>MEJOR VALORACIÓN · RECOMENDADO POR VIAJEROSLATAM</div>` : '';
-  const savingHtml = d.saving ? `<div class="price-saving">🏷 ${d.saving}</div>` : '';
-  const schengenBadge = d.schengen
-    ? `<div class="badge-schengen"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Válido Schengen</div>`
-    : `<div class="badge-schengen" style="background:#FEE8E8;color:#A32D2D;border-color:rgba(163,45,45,0.2)">⚠ No válido Schengen</div>`;
-  const greenPills = d.pillGreen.map(t=>`<span class="cpill cpill-green"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>${t}</span>`).join('');
-  const amberPills = d.pillAmber.map(t=>`<span class="cpill cpill-amber"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>${t}</span>`).join('');
-  const navyPills = d.pillNavy.map(t=>`<span class="cpill cpill-navy">${t}</span>`).join('');
-  const extras = d.extras.map(e=>`<span class="extra">${e}</span>`).join('');
-  const priceWhole = Math.floor(d.price);
-  const priceDec = (d.price % 1).toFixed(2).slice(1);
-  return `
-<div class="card ${rec}" id="card-${d.id}">
-  ${badge}
-  <div class="card-body">
-    <div class="card-logo-block">
-      <div class="card-logo" style="background:${d.logoColor};color:${d.logoText}">${d.logo}</div>
-      <div class="card-name">${d.name}</div>
-      <div class="card-stars">${starStr(d.stars)}</div>
-      <div class="card-reviews">${d.reviews.toLocaleString()} opiniones</div>
-    </div>
+    <!-- Banner Schengen ocultado temporalmente -->
     <div class="card-coverage">
       <div class="card-plan">${d.plan}</div>
       <div class="coverage-pills">${greenPills}${amberPills}${navyPills}</div>
@@ -1587,15 +1459,7 @@ document.getElementById('exit-overlay').addEventListener('click',function(e){if(
       target.appendChild(local);
       card.dataset.localCardDone = '1';
     });
-
-    if(!document.querySelector('.currency-note')){
-      const anchor = document.querySelector('#cards-container') || document.querySelector('.results-list') || document.querySelector('main');
-      if(anchor && anchor.parentNode){
-        const note = document.createElement('div');
-        note.className = 'currency-note';
-        note.textContent = 'Los importes en moneda local son aproximados. El precio final, la moneda de pago y las condiciones se confirman en la web oficial de cada aseguradora.';
-        anchor.parentNode.insertBefore(note, anchor);
-      }
+    // Nota de moneda local ocultada temporalmente.
     }
   }
 
