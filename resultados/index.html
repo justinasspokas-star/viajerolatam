@@ -339,36 +339,6 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
       <h3>Sin resultados</h3>
       <p>Prueba a ajustar los filtros para ver más opciones.</p>
     </div>
-
-    <!-- ✈️ VUELOS CTA — PASO 1 -->
-    <div id="vuelos-cta" style="margin:28px 0 8px;background:linear-gradient(135deg,#0B1F3A 0%,#1A3558 100%);border-radius:20px;padding:24px 28px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap">
-      <div style="display:flex;align-items:center;gap:16px;min-width:0">
-        <div style="font-size:36px;line-height:1;flex-shrink:0">✈️</div>
-        <div style="min-width:0">
-          <div style="font-family:Georgia,'DM Serif Display',serif;font-size:19px;font-weight:700;color:#fff;line-height:1.2;margin-bottom:4px">¿Todavía buscas vuelo?</div>
-          <div style="font-size:13px;color:rgba(255,255,255,.6);line-height:1.4">Compara precios en Google Flights, Skyscanner y Kayak desde <span id="vuelos-origen-label">Colombia</span>.</div>
-        </div>
-      </div>
-      <div style="display:flex;gap:10px;flex-wrap:wrap;flex-shrink:0" id="vuelos-btn-group">
-        <a id="vuelos-google" href="https://www.google.com/travel/flights" target="_blank" rel="nofollow noopener" style="display:inline-flex;align-items:center;gap:6px;padding:11px 18px;border-radius:999px;background:#00C4A1;color:#0B1F3A;font-size:13px;font-weight:700;text-decoration:none;white-space:nowrap">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13"/><path d="M22 2L15 22l-4-9-9-4 19-7z"/></svg>
-          Google Flights
-        </a>
-        <a id="vuelos-skyscanner" href="https://www.skyscanner.net" target="_blank" rel="nofollow noopener" style="display:inline-flex;align-items:center;gap:6px;padding:11px 18px;border-radius:999px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:13px;font-weight:700;text-decoration:none;white-space:nowrap">
-          Skyscanner
-        </a>
-        <a id="vuelos-kayak" href="https://www.kayak.com/flights" target="_blank" rel="nofollow noopener" style="display:inline-flex;align-items:center;gap:6px;padding:11px 18px;border-radius:999px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:13px;font-weight:700;text-decoration:none;white-space:nowrap">
-          Kayak
-        </a>
-      </div>
-    </div>
-    <style>
-    @media(max-width:600px){
-      #vuelos-cta{padding:18px 16px}
-      #vuelos-btn-group{width:100%}
-      #vuelos-btn-group a{flex:1;justify-content:center;min-width:0}
-    }
-    </style>
   </main>
 </div>
 
@@ -605,9 +575,6 @@ function onPriceChange(el){
 function setDest(el, dest){
   document.querySelectorAll('.dest-tab').forEach(t=>t.classList.remove('active'));
   if(el) el.classList.add('active');
-  var epDest = document.getElementById('ep-destino');
-  if(epDest && dest) epDest.value = dest;
-  updateVuelosCta();
   applyFilters();
 }
 
@@ -635,73 +602,6 @@ function contractClick(name, url){
   if(url && url !== '#') window.open(url,'_blank','noopener');
 }
 
-// ── VUELOS CTA ─────────────────────────────────────────────────────────────
-// Origin airport codes (IATA, most common departure city per country)
-var ORIGEN_IATA = {
-  'colombia':'BOG','mexico':'MEX','argentina':'EZE','venezuela':'CCS',
-  'peru':'LIM','chile':'SCL','ecuador':'UIO','bolivia':'VVI',
-  'republica-dominicana':'SDQ','panama':'PTY','uruguay':'MVD',
-  'costa-rica':'SJO','guatemala':'GUA','honduras':'SAP',
-  'el-salvador':'SAL','nicaragua':'MGA','brasil':'GRU',
-  'cuba':'HAV','paraguay':'ASU'
-};
-// Destination airport codes
-var DESTINO_IATA = {
-  'espana-schengen':'MAD','europa':'MAD','estados-unidos':'JFK',
-  'eeuu-canada':'JFK','mundial':'MAD'
-};
-
-function updateVuelosCta(){
-  var origin = currentOrigen || 'colombia';
-  var epDest = document.getElementById('ep-destino');
-  var destVal = (epDest && epDest.value) ? epDest.value : 'espana-schengen';
-
-  var origIata = ORIGEN_IATA[origin] || 'BOG';
-  var destIata = DESTINO_IATA[destVal] || 'MAD';
-
-  // Update label
-  var lbl = document.getElementById('vuelos-origen-label');
-  if(lbl){
-    var ORIGEN_LABELS2 = {
-      'colombia':'Colombia','mexico':'México','argentina':'Argentina',
-      'venezuela':'Venezuela','peru':'Perú','chile':'Chile',
-      'ecuador':'Ecuador','bolivia':'Bolivia','republica-dominicana':'Rep. Dominicana',
-      'panama':'Panamá','uruguay':'Uruguay','brasil':'Brasil',
-      'cuba':'Cuba','costa-rica':'Costa Rica'
-    };
-    lbl.textContent = ORIGEN_LABELS2[origin] || 'tu país';
-  }
-
-  // Build date strings for links (today + 30d)
-  var hoy = new Date();
-  var regreso = new Date(hoy);
-  regreso.setDate(hoy.getDate() + (diasViaje || 15));
-  var fmt = function(d){ return d.toISOString().split('T')[0]; };
-
-  // Google Flights deep link
-  var gLink = document.getElementById('vuelos-google');
-  if(gLink){
-    gLink.href = 'https://www.google.com/travel/flights/search?tfs=CBwQAhoeEgoyMDI2LTA3LTAxagcIARIDQk9HcgcIARIDTO&curr=EUR&gl=es&hl=es'
-      .replace('BOG', origIata).replace('MAD', destIata);
-    // Simplified: just use clean Google Flights URL with origin/dest
-    gLink.href = 'https://www.google.com/travel/flights/search?q=vuelos+' + origIata + '+a+' + destIata;
-    gLink.onclick = function(){ if(typeof gtag!=='undefined') gtag('event','click_vuelos_google',{origen:origin,destino:destVal}); };
-  }
-
-  // Skyscanner deep link
-  var skLink = document.getElementById('vuelos-skyscanner');
-  if(skLink){
-    skLink.href = 'https://www.skyscanner.net/transport/flights/' + origIata.toLowerCase() + '/' + destIata.toLowerCase() + '/' + fmt(hoy).replace(/-/g,'').slice(2) + '/' + fmt(regreso).replace(/-/g,'').slice(2) + '/';
-    skLink.onclick = function(){ if(typeof gtag!=='undefined') gtag('event','click_vuelos_skyscanner',{origen:origin,destino:destVal}); };
-  }
-
-  // Kayak deep link
-  var kLink = document.getElementById('vuelos-kayak');
-  if(kLink){
-    kLink.href = 'https://www.kayak.com/flights/' + origIata + '-' + destIata + '/' + fmt(hoy) + '/' + fmt(regreso);
-    kLink.onclick = function(){ if(typeof gtag!=='undefined') gtag('event','click_vuelos_kayak',{origen:origin,destino:destVal}); };
-  }
-}
 
 // ── EDIT PANEL ──
 function toggleEditPanel(){
@@ -797,8 +697,6 @@ function applyEditSearch(){
   if(pillDest)   pillDest.textContent   = destLabels[dest] || dest;
   if(pillV)      pillV.textContent      = nuevosViaj + (nuevosViaj === 1 ? ' adulto' : ' adultos');
   updatePillFechas(diasViaje);
-  updateVuelosCta();
-
   // Sync dest tab UI
   document.querySelectorAll('.dest-tab').forEach(function(t){
     t.classList.toggle('active', !!(t.getAttribute('onclick') && t.getAttribute('onclick').includes("'"+dest+"'")));
@@ -910,10 +808,6 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeMobMen
 
 render(sortData(DATA, 'recomendado'));
 
-// ── VUELOS CTA ── build deep-link URLs based on origin + destination
-(function initVuelosCta(){
-  updateVuelosCta();
-})();
 
 </script>
 <!-- FOOTER -->
