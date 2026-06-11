@@ -182,6 +182,11 @@ footer{background:var(--navy);color:rgba(255,255,255,.45);padding:48px 5% 24px}
 .vl-related-step1 a{display:inline-flex;margin:4px 10px 4px 0;color:#0B1F3A!important;font-weight:900;text-decoration:underline}
 @media(max-width:620px){.vl-flight-insurance-cta .actions{display:grid}.vl-flight-insurance-cta a{width:100%}}
 
+
+/* COP approximate prices for Colombia pages */
+.cop-price{display:block;margin-top:3px;color:#4A647E;font-size:12px;font-weight:800;line-height:1.25}
+.cop-inline{color:#4A647E;font-weight:800;white-space:nowrap}
+
 </style>
 
 <style id="webp-hero">@supports(background-image:url("data:image/webp,")){.hero,section.hero{background-image:url('/hero-bg.webp')!important}}</style>
@@ -552,7 +557,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
   <div class="sec">
     <div class="sh"><div class="si">🛡️</div><div class="st">El seguro de viaje — no lo dejes para el último minuto</div></div>
     <div class="sb">
-      <p>Una vez que tengas el tiquete, lo siguiente más importante es el seguro de viaje. No porque alguien te lo exija necesariamente al llegar a España — sino porque una urgencia médica en Europa puede costar entre 800€ y 15.000€, y ese riesgo no tiene sentido tomarlo cuando el seguro cuesta €1.75 por día.</p>
+      <p>Una vez que tengas el tiquete, lo siguiente más importante es el seguro de viaje. No porque alguien te lo exija necesariamente al llegar a España — sino porque una urgencia médica en Europa puede costar entre 800€ <span class="cop-inline">(≈ $3.440.000 COP)</span> y 15.000€ <span class="cop-inline">(≈ $64.500.000 COP)</span>, y ese riesgo no tiene sentido tomarlo cuando el seguro cuesta €1.75 por día.</p>
       <p>Las dos aseguradoras que recomendamos para colombianos que viajan a España:</p>
 
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0">
@@ -584,7 +589,8 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
           <span style="font-size:13px;font-weight:700;color:#0B1F3A">¿Y datos móviles en España?</span>
         </div>
         <div style="padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
-          <p style="font-size:13px;color:#4A647E;margin:0;flex:1;min-width:160px">Una eSIM Saily te conecta desde que aterrizas en Madrid. Sin roaming, sin cambiar tarjeta. <strong style="color:#0B1F3A">Desde €2/día.</strong></p>
+          <p style="font-size:13px;color:#4A647E;margin:0;flex:1;min-width:160px">Una eSIM Saily te conecta desde que aterrizas en Madrid. Sin roaming, sin cambiar tarjeta. <strong style="color:#0B1F3A">Desde €2/día<span class="cop-price">≈ $8.600 COP/día aprox.</span>
+<p class="cop-inline" style="display:block;margin-top:10px">Conversión orientativa: 1 EUR ≈ 4.300 COP. El precio final se confirma en la web de la aseguradora.</p>.</strong></p>
           <a href="https://saily.tpx.lv/Bf6yTl42" target="_blank" rel="noopener sponsored" style="display:block;background:#0B1F3A;color:#fff;padding:9px 16px;border-radius:50px;font-weight:700;font-size:12px;text-decoration:none;white-space:nowrap">📱 Ver Saily →</a>
         </div>
       </div>
@@ -617,7 +623,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
   <div class="cta-banner">
     <div class="cta-text">
       <h3>¿Ya tienes el tiquete? Ahora el seguro</h3>
-      <p>Compara IATI e Intermundial en 2 minutos. Desde €1.75/día · Sin franquicia · Cupón <strong style="color:#00C4A1">VIAJEROLATAM</strong> en Intermundial.</p>
+      <p>Compara IATI e Intermundial en 2 minutos. Desde €1.75/día<span class="cop-price">≈ $7.525 COP/día aprox.</span> · Sin franquicia · Cupón <strong style="color:#00C4A1">VIAJEROLATAM</strong> en Intermundial.</p>
     </div>
     <div class="cta-btns">
       <a href="/resultados/" class="btn-t">🔍 Comparar seguros gratis</a>
@@ -747,5 +753,30 @@ html{overflow-x:hidden}body{overflow-x:hidden;max-width:100vw}*,*::before,*::aft
 footer.vl-footer{width:100%;max-width:none!important;margin-left:0!important;margin-right:0!important}
 .vl-footer-grid>*{min-width:0;word-break:break-word}
 </style>
+
+<script>
+(function(){
+  const EUR_TO_COP = 4300;
+  function cop(eur){return '≈ $' + Math.round(eur * EUR_TO_COP).toLocaleString('es-CO') + ' COP aprox.';}
+  function addCop(){
+    document.querySelectorAll('.price,.product-price,.card-price,.amount,[class*="price"],td,li,p,span,div').forEach(function(el){
+      if(el.dataset.copDone==='1'||el.closest('script,style')||(el.querySelector&&el.querySelector('.cop-price'))) return;
+      const direct = el.childNodes ? Array.from(el.childNodes).filter(n=>n.nodeType===3).map(n=>n.textContent).join(' ') : '';
+      const m = (direct || el.textContent || '').match(/€\s*([0-9]+(?:[\.,][0-9]+)?)/);
+      if(!m) return;
+      if(((el.textContent||'').match(/€/g)||[]).length>1) return;
+      const eur = parseFloat(m[1].replace(',','.'));
+      if(!isFinite(eur)) return;
+      const s=document.createElement('span');
+      s.className='cop-price';
+      s.textContent=cop(eur);
+      el.appendChild(s);
+      el.dataset.copDone='1';
+    });
+  }
+  document.addEventListener('DOMContentLoaded', function(){addCop(); setTimeout(addCop,300); setTimeout(addCop,1000);});
+})();
+</script>
+
 </body>
 </html>
