@@ -185,6 +185,95 @@ a.brand-logo img, a.logo img, .mobile-logo img, .footer-logo img, header img[src
 nav a.brand-logo img, nav a.logo img{height:64px !important; width:auto !important; max-width:320px !important;}
 @media (max-width:768px){ nav a.brand-logo img, nav a.logo img, .mobile-logo img{height:44px !important; max-width:220px !important;} }
 
+
+/* Header navigation button polish */
+header nav a,
+.site-header nav a,
+.navbar a,
+.nav-links a,
+.main-nav a,
+.header-nav a{
+  text-decoration:none!important;
+  color:#0B1F3A!important;
+  font-weight:800!important;
+  font-size:14px!important;
+  line-height:1!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:6px!important;
+  padding:10px 14px!important;
+  border-radius:999px!important;
+  transition:background .18s ease,color .18s ease,transform .18s ease,border-color .18s ease!important;
+}
+header nav a:hover,
+.site-header nav a:hover,
+.navbar a:hover,
+.nav-links a:hover,
+.main-nav a:hover,
+.header-nav a:hover{
+  background:#F0F6FF!important;
+  color:#0B1F3A!important;
+  transform:translateY(-1px)!important;
+}
+header nav a[aria-current="page"],
+.site-header nav a[aria-current="page"],
+.navbar a[aria-current="page"],
+.nav-links a[aria-current="page"],
+.main-nav a[aria-current="page"],
+.header-nav a[aria-current="page"]{
+  background:#EAFBF7!important;
+  color:#0B1F3A!important;
+}
+header nav a[href*="resultados"],
+header nav a[href*="comparar"],
+.site-header nav a[href*="resultados"],
+.site-header nav a[href*="comparar"],
+.navbar a[href*="resultados"],
+.navbar a[href*="comparar"],
+.nav-links a[href*="resultados"],
+.nav-links a[href*="comparar"],
+.main-nav a[href*="resultados"],
+.main-nav a[href*="comparar"],
+.header-nav a[href*="resultados"],
+.header-nav a[href*="comparar"]{
+  background:#0B1F3A!important;
+  color:#fff!important;
+  box-shadow:0 8px 18px rgba(11,31,58,.16)!important;
+}
+header nav a[href*="resultados"]:hover,
+header nav a[href*="comparar"]:hover,
+.site-header nav a[href*="resultados"]:hover,
+.site-header nav a[href*="comparar"]:hover,
+.navbar a[href*="resultados"]:hover,
+.navbar a[href*="comparar"]:hover,
+.nav-links a[href*="resultados"]:hover,
+.nav-links a[href*="comparar"]:hover,
+.main-nav a[href*="resultados"]:hover,
+.main-nav a[href*="comparar"]:hover,
+.header-nav a[href*="resultados"]:hover,
+.header-nav a[href*="comparar"]:hover{
+  background:#00C4A1!important;
+  color:#0B1F3A!important;
+}
+header,
+.site-header{
+  background:#fff!important;
+  border-bottom:1px solid rgba(11,31,58,.08)!important;
+}
+@media(max-width:780px){
+  header nav a,
+  .site-header nav a,
+  .navbar a,
+  .nav-links a,
+  .main-nav a,
+  .header-nav a{
+    width:100%!important;
+    justify-content:flex-start!important;
+    padding:12px 14px!important;
+  }
+}
+
 </style>
 <!-- Google Analytics 4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-P1Q2TSMVNJ"></script>
