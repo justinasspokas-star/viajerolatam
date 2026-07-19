@@ -1,0 +1,1 @@
+Cambio aplicado: home responsive final para que la cabecera/hero/buscador se vean centrados y limpios en ordenador, tablet y móvil. No se cambió logo ni diseño base. Para subir rápido, reemplaza solo /index.html.
