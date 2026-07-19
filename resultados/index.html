@@ -1322,8 +1322,15 @@ function starStr(n){return '★'.repeat(n)+'☆'.repeat(5-n)}
 
 
 function trackAndOpen(url, name){
-  if(typeof gtag !== 'undefined') gtag('event','click_contratar',{insurer:name});
-  if(url && url !== '#') window.open(url,'_blank');
+  var u = (url || '').trim();
+  if(!u || u === '#' || u === 'undefined' || u === 'null') {
+    console.warn('[ViajeroLatam] No ctaUrl for:', name);
+    return;
+  }
+  try {
+    if(typeof gtag !== 'undefined') gtag('event','click_contratar',{insurer:name||''});
+  } catch(e){}
+  window.open(u, '_blank', 'noopener,noreferrer');
 }
 
 function renderCard(d){
@@ -1365,8 +1372,8 @@ function renderCard(d){
         <div class="price-per">€${d.priceDay.toFixed(2)} / día</div>
       </div>
       ${savingHtml}
-      <button class="btn-contract" onclick="if(d && d.ctaUrl){window.open(d.ctaUrl,'_blank')}" onclick="contractClick('${d.name}','${d.plan}')">Contratar seguro →</button>
-      <button class="btn-details" onclick="toggleDetails(${d.id})" id="btn-det-${d.id}">Ver cobertura completa</button>
+      <button class="btn-contract" data-url="${d.ctaUrl||''}" data-name="${d.name}" onclick="trackAndOpen(this.dataset.url,this.dataset.name)">Contratar seguro →</button>
+      <button class="btn-details" data-id="${d.id}" onclick="toggleDetails(parseInt(this.dataset.id))" id="btn-det-${d.id}">Ver cobertura completa</button>
     </div>
   </div>
   <div class="card-details" id="det-${d.id}">
@@ -1451,18 +1458,25 @@ function clearFilters(){
   applyFilters();
 }
 
-function toggleDetails(id){
-  const det = document.getElementById('det-'+id);
-  const btn = document.getElementById('btn-det-'+id);
-  const isOpen = det.classList.contains('open');
-  det.classList.toggle('open');
-  btn.textContent = isOpen ? 'Ver cobertura completa' : 'Ocultar detalles ↑';
+function toggleDetails(idOrBtn){
+  var btn, det;
+  if(typeof idOrBtn === 'number'){
+    // Called with numeric id from data attribute
+    det = document.getElementById('det-'+idOrBtn);
+    btn = document.getElementById('btn-det-'+idOrBtn);
+  } else {
+    // Called with element
+    var card = idOrBtn.closest ? idOrBtn.closest('.card') : null;
+    det = card ? card.querySelector('.card-details') : null;
+    btn = idOrBtn;
+  }
+  if(det){
+    var open = det.classList.toggle('open');
+    if(btn) btn.textContent = open ? 'Ocultar ▲' : 'Ver cobertura completa ▼';
+  }
 }
 
-function contractClick(name, plan) {
-  if(name && name.toLowerCase().includes('axa')){
-    if(typeof gtag === 'function'){
-      gtag('event','click_affiliate_axa',{event_category:'affiliate',event_label:'AXA',page_location:window.location.href});
+);
     }
     window.open('https://clk.tradedoubler.com/click?p=343758&a=3485639','_blank','noopener');
     return;
