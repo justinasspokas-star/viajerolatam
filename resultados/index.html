@@ -916,6 +916,38 @@ nav .brand-logo img{height:38px!important;max-width:170px!important;width:auto!i
 @media(max-width:420px){.search-inner{flex-wrap:nowrap!important;overflow-x:auto!important}.results-top h1{font-size:24px!important}.card-price-block{grid-template-columns:1fr!important}.btn-contract{width:100%!important}}
 </style>
 
+
+<style id="cop-price-style">
+/* COP approximate currency display for Colombia → España */
+.currency-note-cop{
+  display:none;
+  margin:0 0 12px;
+  padding:10px 14px;
+  border:1px solid rgba(0,196,161,.24);
+  background:rgba(0,196,161,.08);
+  color:#0B1F3A;
+  border-radius:14px;
+  font-size:12px;
+  line-height:1.45;
+}
+.currency-note-cop.is-visible{display:block}
+.price-cop{
+  margin-top:4px;
+  font-size:13px;
+  font-weight:900;
+  color:#0B1F3A;
+  text-align:right;
+}
+.price-cop-day{
+  margin-top:1px;
+  font-size:10.5px;
+  color:#6B7D92;
+  text-align:right;
+}
+@media(max-width:900px){
+  .price-cop,.price-cop-day{text-align:left!important}
+}
+</style>
 </head>
 <body>
 <!-- H1 principal movido al bloque de resultados para evitar espacio superior -->
@@ -1229,6 +1261,10 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
     </div>
   </div>
 
+  <div id="cop-currency-note" class="currency-note-cop">
+    Precios en euros y referencia aproximada en pesos colombianos para viajes Colombia → España. El precio final y el cambio pueden variar al contratar.
+  </div>
+
   <div id="cards-container"></div>
   <div class="no-results" id="no-results" style="display:none">
     <h3>Sin resultados</h3>
@@ -1313,6 +1349,32 @@ const DATA = [
   }
 ];
 
+const EUR_TO_COP_APPROX = 3720; // Ajuste aproximado para mostrar referencia en COP.
+window.currentSearchOrigin = (new URLSearchParams(window.location.search).get('origen') || 'colombia').toLowerCase();
+window.currentSearchDest = (new URLSearchParams(window.location.search).get('destino') || 'espana-schengen').toLowerCase();
+
+function shouldShowCOP(){
+  const origin = String(window.currentSearchOrigin || '').toLowerCase();
+  const dest = String(window.currentSearchDest || '').toLowerCase();
+  return origin.includes('colombia') && (dest.includes('espana') || dest.includes('españa') || dest.includes('schengen') || dest.includes('europa'));
+}
+
+function formatCOPApprox(eurAmount){
+  const amount = Math.round((Number(eurAmount) || 0) * EUR_TO_COP_APPROX / 100) * 100;
+  return '$' + amount.toLocaleString('es-CO') + ' COP';
+}
+
+function updateCOPNote(){
+  const el = document.getElementById('cop-currency-note');
+  if(!el) return;
+  if(shouldShowCOP()){
+    el.classList.add('is-visible');
+    el.innerHTML = 'También mostramos precio aproximado en pesos colombianos: <strong>1 € ≈ $3.720 COP</strong>. Es solo una referencia; el pago final lo calcula cada aseguradora.';
+  } else {
+    el.classList.remove('is-visible');
+  }
+}
+
 let activeData = [...DATA];
 let expandedCard = null;
 
@@ -1345,6 +1407,9 @@ function renderCard(d){
   const extras = d.extras.map(e=>`<span class="extra">${e}</span>`).join('');
   const priceWhole = Math.floor(d.price);
   const priceDec = (d.price % 1).toFixed(2).slice(1);
+  const copHtml = shouldShowCOP()
+    ? `<div class="price-cop">≈ ${formatCOPApprox(d.price)}</div><div class="price-cop-day">≈ ${formatCOPApprox(d.priceDay)} / día</div>`
+    : '';
   return `
 <div class="card ${rec}" id="card-${d.id}">
   ${badge}
@@ -1369,6 +1434,7 @@ function renderCard(d){
         <div class="price-from">Total 15 días</div>
         <div class="price-main"><sup>€</sup>${priceWhole}<sup>${priceDec}</sup></div>
         <div class="price-per">€${d.priceDay.toFixed(2)} / día</div>
+        ${copHtml}
       </div>
       ${savingHtml}
       <a class="btn-contract" href="${escAttr(d.ctaUrl || '/resultados/')}" target="_blank" rel="nofollow sponsored noopener" onclick="trackContract('${escJs(d.name)}','${escJs(d.plan)}')">Contratar seguro →</a>
@@ -1394,6 +1460,7 @@ function render(data){
   const countText = `${data.length} seguro${data.length!==1?'s':''}`;
   (document.getElementById('count-display') || {textContent:''}).textContent = countText;
   (document.getElementById('count-slim') || {textContent:''}).textContent = countText;
+  updateCOPNote();
   if(!data.length){container.innerHTML='';noResults.style.display='block';return;}
   noResults.style.display='none';
   container.innerHTML = data.map(renderCard).join('');
@@ -1438,7 +1505,7 @@ function onPriceChange(el){
   const v = parseFloat(el.value);
   const pct = ((v-1)/(10-1)*100).toFixed(0);
   el.style.setProperty('--val', pct+'%');
-  document.getElementById('price-display').textContent = `€${v.toFixed(2)}/día`;
+  document.getElementById('price-display').textContent = shouldShowCOP() ? `€${v.toFixed(2)}/día · ≈ ${formatCOPApprox(v)}/día` : `€${v.toFixed(2)}/día`;
   applyFilters();
 }
 
@@ -1455,7 +1522,7 @@ function setDest(el, dest){
 function clearFilters(){
   document.getElementById('price-slider').value = 10;
   document.getElementById('price-slider').style.setProperty('--val','100%');
-  document.getElementById('price-display').textContent = '€10/día';
+  document.getElementById('price-display').textContent = shouldShowCOP() ? '€10/día · ≈ ' + formatCOPApprox(10) + '/día' : '€10/día';
   ['c1','c2','c3','c4','f1','f2','f3','f4','f5','f6','t1','t2','t3'].forEach(id=>{
     const el = document.getElementById(id);
     if(el) el.checked = ['c1','f1','t1'].includes(id);
@@ -1501,12 +1568,17 @@ function toggleEditPanel(){
 
 function applyEditSearch(){
   var dias = parseInt(document.getElementById('ep-dias').value) || 15;
+  var origen = (document.getElementById('ep-origen') && document.getElementById('ep-origen').value) || 'colombia';
   var dest = document.getElementById('ep-destino').value;
   var viajeros = parseInt(document.getElementById('ep-viajeros').value) || 1;
+  window.currentSearchOrigin = String(origen || '').toLowerCase();
+  window.currentSearchDest = String(dest || '').toLowerCase();
   
   // Update pills display
+  var originLabels = {colombia:'Colombia 🇨🇴', mexico:'México 🇲🇽', argentina:'Argentina 🇦🇷', venezuela:'Venezuela 🇻🇪', peru:'Perú 🇵🇪', chile:'Chile 🇨🇱'};
   var destLabels = {europa:'España / Schengen 🇪🇺', eeuu:'EEUU 🇺🇸', mundial:'Mundial 🌍'};
   var pillVals = document.querySelectorAll('.pill-val');
+  if(pillVals[0]) pillVals[0].textContent = originLabels[origen] || origen;
   if(pillVals[1]) pillVals[1].textContent = destLabels[dest] || dest;
   if(pillVals[2]) pillVals[2].textContent = dias + ' días';
   if(pillVals[3]) pillVals[3].textContent = viajeros + (viajeros===1?' adulto':' adultos');
@@ -1522,6 +1594,27 @@ function applyEditSearch(){
 }
 
 // Initial render
+(function initSearchFromURL(){
+  const params = new URLSearchParams(window.location.search);
+  const origen = (params.get('origen') || 'colombia').toLowerCase();
+  const destinoRaw = (params.get('destino') || 'espana-schengen').toLowerCase();
+  window.currentSearchOrigin = origen;
+  window.currentSearchDest = destinoRaw;
+  const origenSelect = document.getElementById('ep-origen');
+  if(origenSelect && Array.from(origenSelect.options).some(o => o.value === origen)) origenSelect.value = origen;
+  const destSelect = document.getElementById('ep-destino');
+  if(destSelect){
+    if(destinoRaw.includes('eeuu')) destSelect.value = 'eeuu';
+    else if(destinoRaw.includes('mundial')) destSelect.value = 'mundial';
+    else destSelect.value = 'europa';
+  }
+  const slider = document.getElementById('price-slider');
+  const priceDisplay = document.getElementById('price-display');
+  if(slider && priceDisplay){
+    const v = parseFloat(slider.value || '10');
+    priceDisplay.textContent = shouldShowCOP() ? `€${v.toFixed(2)}/día · ≈ ${formatCOPApprox(v)}/día` : `€${v.toFixed(2)}/día`;
+  }
+})();
 render(sortData(DATA, 'recomendado'));
 </script>
 <script>

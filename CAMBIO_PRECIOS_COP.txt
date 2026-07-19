@@ -1,0 +1,5 @@
+Cambio aplicado en /resultados/:
+- Si el viaje es Colombia → España / Schengen, cada card muestra precio en EUR y referencia aproximada en pesos colombianos.
+- Conversión usada para mostrar referencia: 1 EUR ≈ 3.720 COP.
+- Los botones de contratar siguen abriendo enlaces afiliados en nueva pestaña.
+- Reemplazar /resultados/index.html si quieres subir solo el cambio rápido.

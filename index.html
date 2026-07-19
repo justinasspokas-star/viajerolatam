@@ -1762,7 +1762,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
 </div>
 </div>
 <!-- Duración auto -->
-<div id="sb-duracion-display" style="display:none;background:rgba(0,196,161,0.1);border-radius:8px;padding:8px 14px;margin-bottom:12px;font-size:13px;font-weight:500;color:var(--teal-dark)">
+<div id="sb-duracion-display" style="display:none;background:rgba(0,196,161,0.1);border-radius:8px;padding:8px 14px;margin-bottom:12px;font-size:13px;font-weight:500;color:var(--teal-dark);line-height:1.35">
       📅 <span id="sb-duracion-text">15 días de cobertura</span>
 </div>
 <!-- Button -->
@@ -2103,8 +2103,35 @@ function sbDateChange() {
   }
   var dias = Math.round((d2 - d1) / (1000 * 60 * 60 * 24));
   if (disp) disp.style.display = 'block';
-  if (txt)  txt.textContent = dias + ' días · Desde €' + (1.75 * dias).toFixed(2) + ' · €' + (2.10 * dias).toFixed(2);
+  if (txt) {
+    var origen = (document.getElementById('sb-origen') || {}).value || 'colombia';
+    var destino = (document.getElementById('sb-destino') || {}).value || 'espana-schengen';
+    var personas = parseInt(((document.getElementById('sb-personas') || {}).value || '1'), 10);
+    if (!isFinite(personas) || personas < 1) personas = 1;
+
+    var eurCop = 3720; // cambio orientativo para mostrar precio aproximado en COP
+    var minEur = 1.75 * dias * personas;
+    var maxEur = 2.10 * dias * personas;
+    var fmtEur = function(n) { return '€' + n.toFixed(2); };
+    var fmtCop = function(n) {
+      return '$' + Math.round(n).toLocaleString('es-CO') + ' COP';
+    };
+
+    var base = dias + ' días';
+    if (personas > 1) base += ' · ' + personas + ' viajeros';
+
+    if (origen === 'colombia' && destino === 'espana-schengen') {
+      txt.textContent = base + ' · Desde ' + fmtEur(minEur) + '–' + fmtEur(maxEur) + ' · aprox. ' + fmtCop(minEur * eurCop) + '–' + fmtCop(maxEur * eurCop);
+    } else {
+      txt.textContent = base + ' · Desde ' + fmtEur(minEur) + ' · ' + fmtEur(maxEur);
+    }
+  }
 }
+
+['sb-origen','sb-destino','sb-personas'].forEach(function(id){
+  var el = document.getElementById(id);
+  if (el) el.addEventListener('change', sbDateChange);
+});
 
 function goCompare() {
   var o  = (document.getElementById('sb-origen')   || {}).value || 'colombia';
