@@ -1,5 +1,0 @@
-Cambio aplicado en /resultados/:
-- Se mantiene el precio base en EUR.
-- Se añade debajo precio aproximado en moneda local según origen.
-- Colombia: COP; Perú: PEN; México: MXN; Argentina/Venezuela/Ecuador/Cuba/EEUU: USD; Bolivia: BOB.
-- La conversión es orientativa. El precio final se confirma en la web oficial de la aseguradora.
