@@ -1,1 +1,15 @@
-Titles/metas optimizados y CTAs internos añadidos a páginas con impresiones en Search Console.
+Cambios SEO aplicados el 2026-07-19
+
+- Corregidos titles truncados en páginas clave.
+- Unificado Google Analytics en G-P1Q2TSMVNJ.
+- Corregido H1 vacío en /resultados/.
+- Ajustado /contacto/ para mantener un único H1.
+- Corregidos textos: Españaña, KD 8 y claims demasiado absolutos.
+- Actualizada información ETIAS: previsto último trimestre de 2026 y tasa oficial actual 20 €.
+- Suavizado lenguaje sobre obligatoriedad de seguro: obligatorio para visa Schengen, recomendable para viajeros exentos de visa.
+- Añadidos/asegurados rel="nofollow sponsored noopener" y target="_blank" en enlaces afiliados.
+- Añadido bloque puente desde el artículo de vuelos Colombia-España hacia seguros.
+- Añadido bloque visible sobre si el seguro es obligatorio para colombianos en /seguro-viaje/colombia-a-espana/.
+- Actualizado sitemap lastmod.
+
+Diseño y logo: no rediseñados.
