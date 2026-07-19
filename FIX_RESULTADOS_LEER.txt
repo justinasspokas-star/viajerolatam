@@ -1,0 +1,6 @@
+Cambios aplicados en /resultados/:
+- Corregido el espacio enorme: las cards ahora están dentro del bloque principal de resultados.
+- Diseño de resultados más compacto y minimalista.
+- Arreglado el botón 'Contratar seguro': ahora es enlace real con target blank, rel nofollow sponsored noopener y tracking GA4.
+- Corregido enlace AXA al enlace de afiliado Tradedoubler.
+- Mantenido logo y diseño general del resto de la web.

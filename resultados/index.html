@@ -889,9 +889,36 @@ nav a.brand-logo img, nav a.logo img{height:64px !important; width:auto !importa
 <meta content="ViajeroLatam" property="og:site_name"/>
 <style id="no-travel-icons">.travel-icons,#travel-canvas,canvas{display:none!important}</style>
 <style id="webp-hero">@supports(background-image:url("data:image/webp,")){.hero,section.hero{background-image:url('/hero-bg.webp')!important}}</style>
+
+<style id="resultados-minimal-fix">
+/* Resultados — diseño compacto/minimalista y corrección de espacios */
+body{background:#F6F8FB!important}
+nav{min-height:56px!important;padding:0 5%!important}
+nav .brand-logo img{height:38px!important;max-width:170px!important;width:auto!important;object-fit:contain!important;display:block!important}
+.nav-back{font-size:12px!important}
+.search-bar{padding:10px 5%!important;background:#fff!important}
+.search-inner{max-width:1180px!important;gap:7px!important}
+.search-pill{padding:7px 13px!important;border-radius:999px!important}
+.pill-label{font-size:9px!important;line-height:1.1!important}.pill-val{font-size:12px!important;line-height:1.2!important}
+.pill-btn{padding:8px 14px!important;font-size:12px!important}
+.page{max-width:1180px!important;margin:0 auto!important;padding:16px 22px 32px!important;display:grid!important;grid-template-columns:238px minmax(0,1fr)!important;gap:16px!important;align-items:start!important}
+.sidebar{top:72px!important;border-radius:16px!important;box-shadow:0 4px 20px rgba(11,31,58,.05)!important}
+.sidebar-header{padding:14px 16px 12px!important}.sidebar-header h3{font-size:14px!important}
+.filter-section{padding:12px 16px!important}.filter-title{font-size:10px!important;margin-bottom:8px!important}.check-item{padding:5px 0!important}.check-item label{font-size:12px!important}.dest-tab{font-size:11px!important;padding:4px 10px!important}
+.results-area{min-width:0!important;width:100%!important;display:block!important}
+.results-top{background:#fff;border:1px solid #E4EDF5;border-radius:18px;padding:16px 18px;margin:0 0 12px;display:flex;align-items:center;justify-content:space-between;gap:14px;box-shadow:0 4px 18px rgba(11,31,58,.04)}
+.results-top h1{font-family:var(--font-display,Georgia,serif);font-size:clamp(24px,2.7vw,34px)!important;line-height:1.04!important;color:#0B1F3A;margin:0 0 6px!important;letter-spacing:-.02em!important}
+.results-top p{font-size:13px!important;color:#4A647E!important;margin:0!important;line-height:1.5!important}.results-top strong{color:#0B1F3A}
+.results-toolbar{background:#fff;border:1px solid #E4EDF5;border-radius:14px;padding:10px 12px;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.results-toolbar-left{display:flex;align-items:center;gap:7px;font-size:12px;color:#4A647E;min-width:0}.results-toolbar-left span{white-space:normal}.results-toolbar-right{display:flex;align-items:center;gap:8px}.sort-select,#sort-select{font-size:12px!important;font-weight:700!important;border-radius:999px!important;background:#F6F8FB!important;padding:7px 12px!important}.sc-btn{display:inline-flex!important;align-items:center!important;justify-content:center!important;text-decoration:none!important;margin-left:0!important;background:#00C4A1!important;color:#0B1F3A!important;border:none!important;border-radius:999px!important;padding:9px 14px!important;font-size:12px!important;font-weight:800!important;white-space:nowrap!important}
+#cards-container{width:100%!important}.card{margin-bottom:10px!important;border-radius:16px!important;border:1px solid #E4EDF5!important;box-shadow:0 4px 20px rgba(11,31,58,.045)!important;animation:none!important}.card:hover{transform:none!important;box-shadow:0 8px 28px rgba(11,31,58,.08)!important}.card.recommended{border:1.5px solid #00C4A1!important}.card-badge-row{padding:5px 14px!important;font-size:10px!important;letter-spacing:.03em!important}.card-body{padding:14px 16px!important;display:grid!important;grid-template-columns:72px minmax(0,1fr) 148px!important;gap:14px!important;align-items:center!important}.card-logo-block{min-width:0!important;gap:5px!important}.card-logo{width:42px!important;height:42px!important;border-radius:12px!important;font-size:14px!important}.card-name{font-size:12px!important;line-height:1.2!important}.card-stars{font-size:10px!important}.card-reviews{font-size:9px!important}.card-plan{font-size:14px!important;margin-bottom:3px!important}.card-coverage{gap:4px!important}.coverage-pills{gap:5px!important;margin-bottom:5px!important}.cpill{font-size:10px!important;padding:3px 7px!important}.cpill svg{width:10px!important;height:10px!important}.coverage-row{font-size:11.5px!important;line-height:1.35!important}.cov-icon{width:12px!important;height:12px!important}.card-extras{margin-top:5px!important;gap:4px!important}.extra{font-size:10px!important;padding:3px 7px!important}.card-price-block{min-width:0!important;align-items:stretch!important;gap:7px!important}.badge-schengen{font-size:10px!important;padding:4px 7px!important}.price-from{text-align:right!important;font-size:10px!important}.price-main{font-size:30px!important}.price-main sup{font-size:14px!important}.price-per{font-size:10px!important;text-align:right!important}.price-saving{font-size:11px!important;padding:3px 7px!important}.btn-contract{width:100%!important;display:flex!important;align-items:center!important;justify-content:center!important;text-decoration:none!important;background:#0B1F3A!important;color:#fff!important;border:none!important;border-radius:999px!important;padding:10px 12px!important;font-family:var(--font-body,'Plus Jakarta Sans',sans-serif)!important;font-size:12px!important;font-weight:800!important;line-height:1.1!important;cursor:pointer!important}.btn-contract:hover{background:#1A3558!important;transform:none!important}.card.recommended .btn-contract{background:#00C4A1!important;color:#0B1F3A!important}.btn-details{padding:8px 10px!important;font-size:11px!important}.card-details{padding:14px 16px!important}.details-grid{gap:12px!important}
+@media(max-width:900px){.page{grid-template-columns:1fr!important;padding:12px!important}.sidebar{display:none!important}.results-top{flex-direction:column;align-items:flex-start;padding:15px}.sc-btn{width:100%}.card-body{grid-template-columns:1fr!important}.card-logo-block{flex-direction:row!important;align-items:center!important}.card-price-block{background:#F6F8FB!important;border-radius:14px!important;padding:12px!important;display:grid!important;grid-template-columns:1fr auto!important;align-items:center!important}.badge-schengen{display:none!important}.btn-contract{grid-column:1/-1!important}.price-from,.price-per,.price-main{text-align:left!important}.results-toolbar{align-items:flex-start}.results-toolbar-right{width:100%;justify-content:space-between}#sort-select{flex:1}}
+@media(max-width:420px){.search-inner{flex-wrap:nowrap!important;overflow-x:auto!important}.results-top h1{font-size:24px!important}.card-price-block{grid-template-columns:1fr!important}.btn-contract{width:100%!important}}
+</style>
+
 </head>
 <body>
-<h1 class="visible-h1">Comparar seguros de viaje para España y Schengen</h1>
+<!-- H1 principal movido al bloque de resultados para evitar espacio superior -->
 <!-- MOBILE NAV -->
 <div id="mob-overlay" onclick="closeMobMenu()" style="display:none;position:fixed;inset:0;background:rgba(11,31,58,.6);z-index:998;backdrop-filter:blur(4px)"></div>
 <div id="mob-drawer" style="display:none;position:fixed;top:0;right:0;bottom:0;width:min(300px,85vw);background:#fff;z-index:999;box-shadow:-8px 0 40px rgba(11,31,58,.25);flex-direction:column;transform:translateX(100%);transition:transform .28s cubic-bezier(.4,0,.2,1)">
@@ -1128,6 +1155,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
 </div>
 </div>
 </div>
+
 <div class="page">
 <!-- SIDEBAR -->
 <aside class="sidebar">
@@ -1176,36 +1204,38 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
 </aside>
 <!-- RESULTS -->
 <main class="results-area">
-<div class="sc-text">
-<h4>Todos cumplen los requisitos Schengen</h4>
-<p>Cobertura ≥30.000€ · Repatriación incluida · revisa condiciones · Aseguradora con sede en Europa</p>
-</div>
-<button class="sc-btn">¿Qué es el Schengen?</button>
-</main></div>
-<!-- Best value banner -->
-<!-- CARDS CONTAINER -->
-<!-- Slim bar -->
-<div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px;flex-wrap:wrap">
-<div style="display:flex;align-items:center;gap:6px;font-size:12px;color:#4A647E">
-<svg fill="none" height="13" stroke="#00C4A1" stroke-width="2.5" viewbox="0 0 24 24" width="13"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-<span>Todos cumplen Schengen · ≥30.000€ · Sin franquicia</span>
-</div>
-<div style="display:flex;align-items:center;gap:8px">
-<span id="count-slim" style="font-size:12px;color:#8FA4B8"></span>
-<select id="sort-select" onchange="applySort(this.value)" style="font-size:12px;font-weight:600;color:#0B1F3A;background:#F0F4F8;border:1px solid #E4EDF5;border-radius:50px;padding:5px 12px;cursor:pointer;outline:none;font-family:inherit">
-<option value="recomendado">⭐ Recomendado</option>
-<option value="precio-asc">💶 Menor precio</option>
-<option value="precio-desc">Mayor precio</option>
-<option value="cobertura">🛡️ Mayor cobertura</option>
-</select>
-</div>
-</div>
-<div id="cards-container"></div>
-<div class="no-results" id="no-results" style="display:none">
-<h3>Sin resultados</h3>
-<p>Prueba a ajustar los filtros para ver más opciones.</p>
-</div>
+  <section class="results-top" aria-labelledby="resultados-title">
+    <div>
+      <h1 id="resultados-title">Comparar seguros de viaje para España y Schengen</h1>
+      <p><strong>Resultados recomendados</strong> para Colombia → España. Compara precio, cobertura médica, repatriación y condiciones antes de contratar.</p>
+    </div>
+    <a class="sc-btn" href="/visa-schengen/">¿Qué es Schengen?</a>
+  </section>
 
+  <div class="results-toolbar">
+    <div class="results-toolbar-left">
+      <svg fill="none" height="14" stroke="#00C4A1" stroke-width="2.5" viewBox="0 0 24 24" width="14"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+      <span>Opciones válidas para Schengen · cobertura médica mínima 30.000 € · revisa siempre condiciones finales.</span>
+    </div>
+    <div class="results-toolbar-right">
+      <span id="count-slim" style="font-size:12px;color:#8FA4B8"></span>
+      <select id="sort-select" onchange="applySort(this.value)" class="sort-select">
+        <option value="recomendado">⭐ Recomendado</option>
+        <option value="precio-asc">💶 Menor precio</option>
+        <option value="precio-desc">Mayor precio</option>
+        <option value="cobertura">🛡️ Mayor cobertura</option>
+        <option value="valoracion">Mejor valoración</option>
+      </select>
+    </div>
+  </div>
+
+  <div id="cards-container"></div>
+  <div class="no-results" id="no-results" style="display:none">
+    <h3>Sin resultados</h3>
+    <p>Prueba a ajustar los filtros para ver más opciones.</p>
+  </div>
+</main>
+</div>
 
 <script>
 const DATA = [
@@ -1278,7 +1308,7 @@ const DATA = [
     pillAmber:['Revisar residencia'],
     pillNavy:['AXA'],
     score: 82,
-    ctaUrl: 'https://www.axaassistance.es/seguro-de-viaje',
+    ctaUrl: 'https://clk.tradedoubler.com/click?p=343758&a=3485639',
     guideUrl: '/seguros/axa/'
   }
 ];
@@ -1289,11 +1319,19 @@ let expandedCard = null;
 function starStr(n){return '★'.repeat(n)+'☆'.repeat(5-n)}
 
 
-function trackAndOpen(url, name){
-  if(typeof gtag !== 'undefined') gtag('event','click_contratar',{insurer:name});
-  if(url && url !== '#') window.open(url,'_blank');
-}
 
+function escAttr(v){return String(v || '').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function escJs(v){return String(v || '').replace(/\\/g,'\\\\').replace(/'/g,"\\'");}
+function trackContract(name, plan){
+  if(typeof gtag === 'function'){
+    gtag('event','click_contratar',{affiliate:name,plan:plan,page_location:window.location.href});
+    var low = String(name || '').toLowerCase();
+    if(low.indexOf('iati') !== -1) gtag('event','click_affiliate_iati',{event_category:'affiliate',event_label:plan,page_location:window.location.href});
+    if(low.indexOf('inter') !== -1) gtag('event','click_affiliate_intermundial',{event_category:'affiliate',event_label:plan,page_location:window.location.href});
+    if(low.indexOf('holins') !== -1) gtag('event','click_affiliate_holins',{event_category:'affiliate',event_label:plan,page_location:window.location.href});
+    if(low.indexOf('axa') !== -1) gtag('event','click_affiliate_axa',{event_category:'affiliate',event_label:plan,page_location:window.location.href});
+  }
+}
 function renderCard(d){
   const rec = d.recommended ? 'recommended' : '';
   const badge = d.recommended ? `<div class="card-badge-row"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>MEJOR VALORACIÓN · RECOMENDADO POR VIAJEROLATAM</div>` : '';
@@ -1333,7 +1371,7 @@ function renderCard(d){
         <div class="price-per">€${d.priceDay.toFixed(2)} / día</div>
       </div>
       ${savingHtml}
-      <button class="btn-contract" onclick="if(d && d.ctaUrl){window.open(d.ctaUrl,'_blank')}" onclick="contractClick('${d.name}','${d.plan}')">Contratar seguro →</button>
+      <a class="btn-contract" href="${escAttr(d.ctaUrl || '/resultados/')}" target="_blank" rel="nofollow sponsored noopener" onclick="trackContract('${escJs(d.name)}','${escJs(d.plan)}')">Contratar seguro →</a>
       <button class="btn-details" onclick="toggleDetails(${d.id})" id="btn-det-${d.id}">Ver cobertura completa</button>
     </div>
   </div>
@@ -1353,7 +1391,9 @@ function renderCard(d){
 function render(data){
   const container = document.getElementById('cards-container');
   const noResults = document.getElementById('no-results');
-  (document.getElementById('count-display') || {textContent:''}).textContent = `${data.length} seguro${data.length!==1?'s':''}`;
+  const countText = `${data.length} seguro${data.length!==1?'s':''}`;
+  (document.getElementById('count-display') || {textContent:''}).textContent = countText;
+  (document.getElementById('count-slim') || {textContent:''}).textContent = countText;
   if(!data.length){container.innerHTML='';noResults.style.display='block';return;}
   noResults.style.display='none';
   container.innerHTML = data.map(renderCard).join('');
@@ -1404,7 +1444,11 @@ function onPriceChange(el){
 
 function setDest(el, dest){
   document.querySelectorAll('.dest-tab').forEach(t=>t.classList.remove('active'));
-  el.classList.add('active');
+  if(el) el.classList.add('active');
+  else {
+    var first = document.querySelector('.dest-tab');
+    if(first) first.classList.add('active');
+  }
   applyFilters();
 }
 
@@ -1427,37 +1471,15 @@ function toggleDetails(id){
   btn.textContent = isOpen ? 'Ver cobertura completa' : 'Ocultar detalles ↑';
 }
 
+
 function contractClick(name, plan) {
-  if(name && name.toLowerCase().includes('axa')){
-    if(typeof gtag === 'function'){
-      gtag('event','click_affiliate_axa',{event_category:'affiliate',event_label:'AXA',page_location:window.location.href});
-    }
-    window.open('https://clk.tradedoubler.com/click?p=343758&a=3485639','_blank','noopener');
-    return;
-  }
-
-if(name && name.toLowerCase().includes('holins')){
-  if(typeof gtag === 'function'){
-    gtag('event','click_affiliate_holins',{event_category:'affiliate',event_label:'Holins',page_location:window.location.href});
-  }
-  window.open('https://clk.tradedoubler.com/click?p=301095&a=3485639','_blank','noopener');
-  return;
-}
-
-  var urls = {
-    '':       'https://www..es/travel-insurance/?utm_source=viajerolatam&utm_medium=affiliate&utm_campaign=latam',
-    'IATI Seguros':   'https://www.iatiseguros.com?r=84208681926165',
-    'Intermundial':   'https://www.intermundial.es/afiliados/seguros-de-viaje-recomendado?utm_source=Affiliates&utm_medium=Affiliates&utm_campaign=General&utm_term=kbnnqvpvcy490&utm_content=kbnnqvpvcy490&coupon=VIAJEROLATAM',
-    '':         'https://www.Intermundial.es/?utm_source=viajerolatam&utm_medium=affiliate',
-    '':     'https://www.axa-assistance.es/?utm_source=viajerolatam&utm_medium=affiliate',
-    '':     'https://.com/nomad-insurance/?referenceID=viajerolatam',
-    '': 'https://www.allianz-assistance.es/?utm_source=viajerolatam&utm_medium=affiliate',
-    '':'https://www.europ-assistance.es/?utm_source=viajerolatam&utm_medium=affiliate'
-  };
-  var url = urls[name] || '/resultados/';
-  if (typeof gtag !== 'undefined') {
-    gtag('event', 'click_contratar', { affiliate: name, plan: plan, page: window.location.pathname });
-  }
+  var low = String(name || '').toLowerCase();
+  var url = '/resultados/';
+  if(low.indexOf('iati') !== -1) url = 'https://www.iatiseguros.com?r=84208681926165';
+  else if(low.indexOf('inter') !== -1) url = 'https://www.intermundial.es/afiliados/seguros-de-viaje-recomendado?utm_source=Affiliates&utm_medium=Affiliates&utm_campaign=General&utm_term=kbnnqvpvcy490&utm_content=kbnnqvpvcy490&coupon=VIAJEROLATAM';
+  else if(low.indexOf('holins') !== -1) url = 'https://clk.tradedoubler.com/click?p=301095&a=3485639';
+  else if(low.indexOf('axa') !== -1) url = 'https://clk.tradedoubler.com/click?p=343758&a=3485639';
+  trackContract(name, plan);
   window.open(url, '_blank', 'noopener');
 }
 
