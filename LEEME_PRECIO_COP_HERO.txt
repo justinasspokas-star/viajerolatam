@@ -1,0 +1,1 @@
+Cambio aplicado: en la página /seguro-viaje/colombia-a-espana/ el precio del hero ahora muestra EUR y COP: desde €1,75/día ≈ $6.500 COP/día. No se cambió logo ni diseño base.
