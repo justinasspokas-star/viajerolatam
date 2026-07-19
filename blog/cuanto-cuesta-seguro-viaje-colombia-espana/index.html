@@ -247,6 +247,7 @@ img, video, iframe, svg {
   }
 
   /* STICKY + BODY PADDING */
+  #sticky-mob { display: block !important; }
   body { padding-bottom: 84px !important; }
 
   /* EXIT POPUP */
@@ -272,6 +273,7 @@ img, video, iframe, svg {
   @media screen and (orientation: landscape) and (max-height: 500px) {
     .hero, section.hero { padding: 52px 16px 20px !important; min-height: auto !important; }
     h1 { font-size: 22px !important; }
+    #sticky-mob { display: none !important; }
     body { padding-bottom: 0 !important; }
   }
 }
@@ -301,7 +303,7 @@ img, video, iframe, svg {
   td, th { font-size: 11px !important; padding: 6px !important; }
   .section, section { padding: 14px 12px !important; }
   .sb-row, .search-dates-row { grid-template-columns: 1fr !important; }
-  
+  #sticky-mob a { font-size: 14px !important; }
 }
 
 .vl-seo-cta{margin:34px 0;padding:24px;border-radius:24px;background:linear-gradient(135deg,#0B1F3A,#17365A);color:#fff;box-shadow:0 16px 42px rgba(11,31,58,.14)}
@@ -310,132 +312,21 @@ img, video, iframe, svg {
 .vl-related-links{margin:28px 0;padding:18px 20px;border-radius:20px;background:#F5F0E8;border:1px solid #EAE3D5}.vl-related-links strong{display:block;color:#0B1F3A;margin-bottom:8px}.vl-related-links a{display:inline-flex;margin:4px 10px 4px 0;color:#0B1F3A!important;font-weight:900;text-decoration:underline}
 @media(max-width:620px){.vl-seo-cta .actions{display:grid}.vl-seo-cta a{width:100%}}
 
-
-/* SEO price page optimization */
-.vl-price-hero-box{margin:24px 0 30px;padding:24px;border-radius:24px;background:linear-gradient(135deg,#0B1F3A,#17365A);color:#fff;box-shadow:0 16px 42px rgba(11,31,58,.14)}
-.vl-price-hero-box h2{color:#fff!important;margin:0 0 10px!important;font-family:'DM Serif Display',Georgia,serif!important;font-size:clamp(25px,3vw,38px)!important;line-height:1.12!important}
-.vl-price-hero-box p{color:rgba(255,255,255,.82)!important;margin:0 0 16px!important;line-height:1.65!important}
-.vl-price-hero-box a{display:inline-flex;justify-content:center;align-items:center;padding:12px 18px;border-radius:999px;background:#00C4A1;color:#0B1F3A!important;font-weight:900;text-decoration:none!important}
-.vl-price-table-box{margin:28px 0;padding:22px;border-radius:24px;background:#F5F0E8;border:1px solid #E7DDCA}
-.vl-price-table-box h2{margin:0 0 12px!important;color:#0B1F3A!important;font-family:'DM Serif Display',Georgia,serif!important;font-size:clamp(25px,3vw,36px)!important}
-.vl-price-table{width:100%;border-collapse:separate;border-spacing:0;overflow:hidden;border-radius:18px;background:#fff;border:1px solid #E3E9F0}
-.vl-price-table th,.vl-price-table td{padding:14px 15px;border-bottom:1px solid #E3E9F0;text-align:left;vertical-align:top}
-.vl-price-table th{background:#0B1F3A;color:#fff;font-weight:900}
-.vl-price-table tr:last-child td{border-bottom:0}
-.vl-price-note{margin-top:14px;padding:14px 16px;border-radius:18px;background:#EAFBF7;border:1px solid rgba(0,196,161,.25);color:#0B1F3A!important;font-weight:800;line-height:1.55!important}
-.vl-price-related{margin:26px 0;padding:18px 20px;border-radius:20px;background:#fff;border:1px solid #E3E9F0}
-.vl-price-related strong{display:block;color:#0B1F3A;margin-bottom:8px}
-.vl-price-related a{display:inline-flex;margin:4px 10px 4px 0;color:#0B1F3A!important;font-weight:900;text-decoration:underline}
-@media(max-width:680px){.vl-price-table{display:block;overflow-x:auto}.vl-price-hero-box,.vl-price-table-box{padding:20px}.vl-price-hero-box a{width:100%}}
-
-
-/* Header navigation button polish */
-header nav a,
-.site-header nav a,
-.navbar a,
-.nav-links a,
-.main-nav a,
-.header-nav a{
-  text-decoration:none!important;
-  color:#0B1F3A!important;
-  font-weight:800!important;
-  font-size:14px!important;
-  line-height:1!important;
-  display:inline-flex!important;
-  align-items:center!important;
-  justify-content:center!important;
-  gap:6px!important;
-  padding:10px 14px!important;
-  border-radius:999px!important;
-  transition:background .18s ease,color .18s ease,transform .18s ease,border-color .18s ease!important;
-}
-header nav a:hover,
-.site-header nav a:hover,
-.navbar a:hover,
-.nav-links a:hover,
-.main-nav a:hover,
-.header-nav a:hover{
-  background:#F0F6FF!important;
-  color:#0B1F3A!important;
-  transform:translateY(-1px)!important;
-}
-header nav a[aria-current="page"],
-.site-header nav a[aria-current="page"],
-.navbar a[aria-current="page"],
-.nav-links a[aria-current="page"],
-.main-nav a[aria-current="page"],
-.header-nav a[aria-current="page"]{
-  background:#EAFBF7!important;
-  color:#0B1F3A!important;
-}
-header nav a[href*="resultados"],
-header nav a[href*="comparar"],
-.site-header nav a[href*="resultados"],
-.site-header nav a[href*="comparar"],
-.navbar a[href*="resultados"],
-.navbar a[href*="comparar"],
-.nav-links a[href*="resultados"],
-.nav-links a[href*="comparar"],
-.main-nav a[href*="resultados"],
-.main-nav a[href*="comparar"],
-.header-nav a[href*="resultados"],
-.header-nav a[href*="comparar"]{
-  background:#0B1F3A!important;
-  color:#fff!important;
-  box-shadow:0 8px 18px rgba(11,31,58,.16)!important;
-}
-header nav a[href*="resultados"]:hover,
-header nav a[href*="comparar"]:hover,
-.site-header nav a[href*="resultados"]:hover,
-.site-header nav a[href*="comparar"]:hover,
-.navbar a[href*="resultados"]:hover,
-.navbar a[href*="comparar"]:hover,
-.nav-links a[href*="resultados"]:hover,
-.nav-links a[href*="comparar"]:hover,
-.main-nav a[href*="resultados"]:hover,
-.main-nav a[href*="comparar"]:hover,
-.header-nav a[href*="resultados"]:hover,
-.header-nav a[href*="comparar"]:hover{
-  background:#00C4A1!important;
-  color:#0B1F3A!important;
-}
-header,
-.site-header{
-  background:#fff!important;
-  border-bottom:1px solid rgba(11,31,58,.08)!important;
-}
-@media(max-width:780px){
-  header nav a,
-  .site-header nav a,
-  .navbar a,
-  .nav-links a,
-  .main-nav a,
-  .header-nav a{
-    width:100%!important;
-    justify-content:flex-start!important;
-    padding:12px 14px!important;
-  }
-}
-
 </style>
 <meta charset="UTF-8">
-<link rel="icon" type="image/x-icon" href="/favicon.ico">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <meta name="google-site-verification" content="fnxi-_Liw22SOQakruhikIUAjmf3u6mdT79inMc9x9A">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Cuánto cuesta un seguro de viaje Colombia a España 2026 | EUR y COP</title>
-  <meta name="description" content="Precios orientativos de seguros de viaje Colombia a España en euros y pesos colombianos, coberturas recomendadas y consejos para confirmar el precio final.">
+  <title>Cuánto cuesta un seguro de viaje Colombia a España 2026</title>
+  <meta name="description" content="Precios orientativos de seguro de viaje Colombia a España, qué coberturas revisar y cómo comparar IATI, InterMundial, Holins y AXA.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://viajerolatam.com/blog/cuanto-cuesta-seguro-viaje-colombia-espana/">
   <link rel="alternate" hreflang="es-CO" href="https://viajerolatam.com/blog/cuanto-cuesta-seguro-viaje-colombia-espana/">
   <link rel="alternate" hreflang="x-default" href="https://viajerolatam.com/blog/cuanto-cuesta-seguro-viaje-colombia-espana/">
 
   <meta property="og:type" content="article">
-  <meta property="og:title" content="Cuánto cuesta un seguro de viaje Colombia a España 2026 | EUR y COP">
-  <meta property="og:description" content="Precios orientativos de seguros de viaje Colombia a España en euros y pesos colombianos, coberturas recomendadas y consejos para confirmar el precio final.">
+  <meta property="og:title" content="Cuánto cuesta un seguro de viaje Colombia a España 2026">
+  <meta property="og:description" content="Precios orientativos de seguro de viaje Colombia a España, qué coberturas revisar y cómo comparar IATI, InterMundial, Holins y AXA.">
   <meta property="og:url" content="https://viajerolatam.com/blog/cuanto-cuesta-seguro-viaje-colombia-espana/">
   <meta property="og:image" content="https://viajerolatam.com/logo-vl-original-20260528.png">
 
@@ -444,6 +335,7 @@ header,
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SY86BP2PPT"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -545,67 +437,6 @@ header,
 
 <style id="no-travel-icons">.travel-icons,#travel-canvas,canvas{display:none!important}</style>
 <style id="webp-hero">@supports(background-image:url("data:image/webp,")){.hero,section.hero{background-image:url('/hero-bg.webp')!important}}</style>
-
-<style id="vl-footer-css">
-.vl-footer{background:#0B1F3A;color:rgba(255,255,255,.68);padding:52px 5% 0;font-family:'Plus Jakarta Sans',sans-serif;width:100%;box-sizing:border-box}
-.vl-footer-inner{max-width:1120px;margin:0 auto;width:100%;box-sizing:border-box}
-.vl-footer-grid{display:grid;grid-template-columns:1.6fr repeat(3,1fr);gap:40px;align-items:start;padding-bottom:40px;width:100%;box-sizing:border-box}
-.vl-footer-brand{min-width:0}
-.vl-footer-brand a{display:inline-block;line-height:0}
-.vl-footer-brand img{height:68px;width:auto;max-width:260px;object-fit:contain;display:block;margin-bottom:14px;opacity:1!important;filter:none!important;mix-blend-mode:normal!important}
-.vl-footer-brand p{color:rgba(255,255,255,.58);font-size:13px;line-height:1.7;max-width:280px;margin-bottom:16px}
-.vl-footer-social{display:flex;gap:8px;flex-wrap:wrap}
-.vl-footer-social a{width:36px;height:36px;display:inline-flex;align-items:center;justify-content:center;border-radius:10px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.7)!important;font-size:12px;font-weight:700;text-decoration:none!important;transition:background .2s;flex-shrink:0}
-.vl-footer-social a:hover{background:rgba(0,196,161,.2);color:#75D8BC!important}
-.vl-footer-col{min-width:0}
-.vl-footer-col h4{color:#fff;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin:0 0 14px;white-space:nowrap}
-.vl-footer-col ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:9px}
-.vl-footer-col a{color:rgba(255,255,255,.62)!important;text-decoration:none!important;font-size:13px;font-weight:500;transition:color .2s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
-.vl-footer-col a:hover{color:#75D8BC!important}
-.vl-footer-bottom{border-top:1px solid rgba(255,255,255,.10);padding:18px 0 22px;display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;font-size:12px;color:rgba(255,255,255,.38)}
-.vl-footer-bottom .vl-legal{display:flex;gap:16px;flex-wrap:wrap}
-.vl-footer-bottom a{color:rgba(255,255,255,.38)!important;text-decoration:none!important;transition:color .2s;white-space:nowrap}
-.vl-footer-bottom a:hover{color:rgba(255,255,255,.7)!important}
-@media(max-width:1000px){
-  .vl-footer-grid{grid-template-columns:1fr 1fr 1fr;gap:28px}
-  .vl-footer-brand{grid-column:1/-1;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:start}
-  .vl-footer-brand p{margin-bottom:0}
-}
-@media(max-width:700px){
-  .vl-footer{padding:36px 20px 0}
-  .vl-footer-grid{grid-template-columns:1fr 1fr;gap:24px;padding-bottom:28px}
-  .vl-footer-brand{grid-column:1/-1;display:block}
-  .vl-footer-brand img{height:54px;margin-bottom:12px}
-  .vl-footer-brand p{max-width:100%;font-size:12px}
-  .vl-footer-col h4{font-size:10px}
-  .vl-footer-col a{font-size:12px}
-  .vl-footer-bottom{flex-direction:column;align-items:flex-start;gap:8px;padding:14px 0 20px}
-  .vl-footer-bottom .vl-legal{gap:12px}
-}
-@media(max-width:420px){
-  .vl-footer{padding:32px 16px 0}
-  .vl-footer-grid{grid-template-columns:1fr 1fr;gap:20px}
-  .vl-footer-col a{white-space:normal}
-}
-#vl-sticky{display:none;position:fixed;bottom:0;left:0;right:0;z-index:990;padding:10px 14px 14px;background:linear-gradient(to top,rgba(255,255,255,1) 55%,rgba(255,255,255,0));pointer-events:none}
-#vl-sticky a{display:flex;align-items:center;justify-content:center;gap:8px;background:#00C4A1;color:#0B1F3A!important;padding:14px;border-radius:50px;font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:700;text-decoration:none!important;box-shadow:0 4px 20px rgba(0,196,161,.4);pointer-events:all;transition:background .2s,transform .15s}
-#vl-sticky a:active{transform:scale(.97)}
-#vl-sticky p{font-size:11px;color:#8FA4B8;text-align:center;margin-top:5px;font-family:'Plus Jakarta Sans',sans-serif}
-@media(max-width:768px){#vl-sticky{display:block}body{padding-bottom:86px!important}}
-@media(min-width:769px){#vl-sticky{display:none!important}}
-@media(orientation:landscape) and (max-height:500px){#vl-sticky{display:none!important}body{padding-bottom:0!important}}
-</style>
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-P1Q2TSMVNJ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-P1Q2TSMVNJ');
-</script>
-
 </head>
 <body>
   <nav>
@@ -635,51 +466,6 @@ header,
       <article>
         <div class="answer-box">
           <p><strong>Respuesta rápida:</strong> un seguro de viaje de Colombia a España puede costar desde pocos euros por día, pero el precio final depende de la edad del viajero, duración del viaje, cobertura médica, cancelación, franquicia y extras. Para no equivocarte, compara siempre el precio junto con la cobertura real.</p>
-
-<section class="vl-price-hero-box" id="precio-orientativo-seguro-colombia-espana">
-  <h2>Precio orientativo del seguro Colombia–España</h2>
-  <p>El precio depende de los días de viaje, edad, coberturas y aseguradora. En ViajeroLatam mostramos una comparativa orientativa; el precio final siempre se confirma en la web de la aseguradora antes de contratar.</p>
-  <a href="/resultados/?origen=colombia&destino=espana-schengen">Comparar seguros y ver precio final →</a>
-</section>
-
-<section class="vl-price-table-box" id="tabla-precios-eur-cop">
-  <h2>Tabla rápida de precios orientativos</h2>
-  <table class="vl-price-table">
-    <thead>
-      <tr>
-        <th>Duración del viaje</th>
-        <th>Precio orientativo en EUR</th>
-        <th>Aprox. en pesos colombianos</th>
-        <th>Comentario</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>7 días</td>
-        <td>Desde aprox. €12–€22</td>
-        <td>≈ $51.600–$94.600 COP</td>
-        <td>Viaje corto, escapada o visita familiar.</td>
-      </tr>
-      <tr>
-        <td>15 días</td>
-        <td>Desde aprox. €25–€55</td>
-        <td>≈ $107.500–$236.500 COP</td>
-        <td>Duración común para Colombia–España.</td>
-      </tr>
-      <tr>
-        <td>30 días</td>
-        <td>Desde aprox. €45–€95</td>
-        <td>≈ $193.500–$408.500 COP</td>
-        <td>Más días de cobertura y mayor coste total.</td>
-      </tr>
-    </tbody>
-  </table>
-  <p class="vl-price-note">Conversión orientativa usada: 1 EUR ≈ 4.300 COP. Los precios no son definitivos; cada aseguradora confirmará el importe final según fechas, edad, coberturas y condiciones.</p>
-</section>
-
-
-
-
         </div>
 
         <h2>Por qué no hay un precio único</h2>
@@ -758,7 +544,7 @@ header,
     </div>
   </main>
 
-  
+  <footer>© 2026 ViajeroLatam. Comparador independiente para viajeros latinoamericanos.<p><a href="/como-elegimos/">Cómo elegimos las aseguradoras</a></p></footer>
 
   <div class="mobile-affiliate-bar" aria-label="Comparar seguros">
     <a class="ma-primary" href="/comparar-seguros-viaje-colombia-espana/">Comparar</a>
@@ -842,82 +628,5 @@ function closeExit(){var o=document.getElementById('exit-overlay');if(o){o.style
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeExit()});
 document.getElementById('exit-overlay').addEventListener('click',function(e){if(e.target===this)closeExit()});
 </script>
-
-<!-- FOOTER -->
-<footer class="vl-footer">
-  <div class="vl-footer-inner">
-    <div class="vl-footer-grid">
-      <div class="vl-footer-brand">
-        <a href="/"><img src="/logo-vl-original-20260528.png" alt="ViajeroLatam" width="220" height="68" style="height:68px;width:auto;max-width:220px;display:block;object-fit:contain;opacity:1!important;filter:none!important"></a>
-        <p>Comparador independiente de seguros de viaje para latinoamericanos que preparan viajes a España, Europa y otros destinos.</p>
-        <div class="vl-footer-social">
-          <a href="https://www.instagram.com/" target="_blank" rel="nofollow noopener" aria-label="Instagram">ig</a>
-          <a href="https://www.tiktok.com/" target="_blank" rel="nofollow noopener" aria-label="TikTok">tk</a>
-          <a href="https://www.youtube.com/" target="_blank" rel="nofollow noopener" aria-label="YouTube">yt</a>
-          <a href="https://www.facebook.com/" target="_blank" rel="nofollow noopener" aria-label="Facebook">fb</a>
-        </div>
-      </div>
-      <div class="vl-footer-col">
-        <h4>Comparar</h4>
-        <ul>
-          <li><a href="/resultados/">Comparar seguros gratis</a></li>
-          <li><a href="/comparar-seguros-viaje-colombia-espana/">Colombia → España</a></li>
-          <li><a href="/visa-schengen/">Visa Schengen</a></li>
-          <li><a href="/esim/espana-colombianos/">eSIM para España</a></li>
-          <li><a href="/blog/">Artículos y guías</a></li>
-        </ul>
-      </div>
-      <div class="vl-footer-col">
-        <h4>Aseguradoras</h4>
-        <ul>
-          <li><a href="/seguros/iati/">IATI Seguros</a></li>
-          <li><a href="/seguros/intermundial/">InterMundial</a></li>
-          <li><a href="/seguros/holins/">Holins</a></li>
-          <li><a href="/seguros/axa/">AXA</a></li>
-          <li><a href="/#aseguradoras">Todas las opciones</a></li>
-        </ul>
-      </div>
-      <div class="vl-footer-col">
-        <h4>Empresa</h4>
-        <ul>
-          <li><a href="/sobre-nosotros/">Sobre nosotros</a></li>
-          <li><a href="/como-elegimos/">Cómo elegimos</a></li>
-          <li><a href="/contacto/">Contacto</a></li>
-          <li><a href="/aviso-legal/">Aviso legal</a></li>
-          <li><a href="/privacidad/">Privacidad</a></li>
-          <li><a href="/cookies/">Cookies</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="vl-footer-bottom">
-      <span>© 2026 ViajeroLatam. Todos los derechos reservados.</span>
-      <div class="vl-legal">
-        <a href="/privacidad/">Privacidad</a>
-        <a href="/aviso-legal/">Aviso legal</a>
-        <a href="/cookies/">Cookies</a>
-        <a href="/contacto/">Contacto</a>
-      </div>
-      <span>Comparador independiente · No somos aseguradora</span>
-    </div>
-  </div>
-</footer>
-
-
-
-<!-- STICKY MOBILE CTA -->
-<div id="vl-sticky" aria-label="Comparar seguros gratis">
-  <a href="/resultados/" onclick="if(typeof gtag!='undefined')gtag('event','click_sticky_mob',{page:location.pathname})">
-    🔍 Comparar seguros gratis
-  </a>
-  <p>Sin coste · 4 aseguradoras · Póliza en 2 minutos</p>
-</div>
-
-
-
-<style id="vl-footer-override">
-.vl-footer,.vl-footer *{box-sizing:border-box}
-footer.vl-footer{width:100%;max-width:none!important;margin-left:0!important;margin-right:0!important}
-.vl-footer-grid>*{min-width:0;word-break:break-word}
-</style>
 </body>
 </html>
