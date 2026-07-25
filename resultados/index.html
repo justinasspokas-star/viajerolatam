@@ -124,7 +124,14 @@ header,
 }
 
 
+
 /* Local currency based on origin country */
+.vl-local-currency{display:block;margin-top:4px;font-size:12px;font-weight:900;color:#4A647E;line-height:1.25}
+.vl-usd-currency{display:block;margin-top:4px;font-size:12px;font-weight:900;color:#0B1F3A;line-height:1.25}
+.vl-eur-hidden-usa{display:none!important}
+.vl-currency-note{margin:12px 0 0;padding:10px 12px;border-radius:14px;background:#F5F0E8;border:1px solid #E8DDC8;color:#4A647E;font-size:12px;font-weight:800;line-height:1.45}
+
+.vl-usd-currency{display:block;margin-top:4px;font-size:12px;font-weight:900;color:#0B1F3A;line-height:1.25}
 .vl-local-currency{display:block;margin-top:4px;font-size:12px;font-weight:900;color:#4A647E;line-height:1.25}
 .vl-currency-note{margin:12px 0 0;padding:10px 12px;border-radius:14px;background:#F5F0E8;border:1px solid #E8DDC8;color:#4A647E;font-size:12px;font-weight:800;line-height:1.45}
 
@@ -1096,29 +1103,41 @@ footer.vl-footer{width:100%;max-width:none!important;margin-left:0!important;mar
 .vl-footer-grid>*{min-width:0;word-break:break-word}
 </style>
 
+
+
+
+
+
+
 <script id="vl-origin-currency-results">
 (function(){
+  const EUR_TO_USD = 1.09; // conversión orientativa
   const ORIGIN_CURRENCIES = {
     colombia:{code:'COP',rate:4300,locale:'es-CO',symbol:'$',label:'pesos colombianos'},
     mexico:{code:'MXN',rate:20.2,locale:'es-MX',symbol:'$',label:'pesos mexicanos'},
     peru:{code:'PEN',rate:4.05,locale:'es-PE',symbol:'S/',label:'soles peruanos'},
     argentina:{code:'ARS',rate:1450,locale:'es-AR',symbol:'$',label:'pesos argentinos'},
     bolivia:{code:'BOB',rate:7.55,locale:'es-BO',symbol:'Bs',label:'bolivianos'},
-    ecuador:{code:'USD',rate:1.09,locale:'en-US',symbol:'US$',label:'dólares estadounidenses'},
-    venezuela:{code:'USD',rate:1.09,locale:'en-US',symbol:'US$',label:'dólares estadounidenses'},
-    cuba:{code:'USD',rate:1.09,locale:'en-US',symbol:'US$',label:'dólares estadounidenses'},
+    ecuador:{code:'USD',rate:EUR_TO_USD,locale:'en-US',symbol:'US$',label:'dólares estadounidenses'},
+    venezuela:{code:'USD',rate:EUR_TO_USD,locale:'en-US',symbol:'US$',label:'dólares estadounidenses'},
+    cuba:{code:'USD',rate:EUR_TO_USD,locale:'en-US',symbol:'US$',label:'dólares estadounidenses'},
     chile:{code:'CLP',rate:1010,locale:'es-CL',symbol:'$',label:'pesos chilenos'},
     uruguay:{code:'UYU',rate:43,locale:'es-UY',symbol:'$',label:'pesos uruguayos'},
     paraguay:{code:'PYG',rate:8150,locale:'es-PY',symbol:'₲',label:'guaraníes'},
     brasil:{code:'BRL',rate:5.9,locale:'pt-BR',symbol:'R$',label:'reales brasileños'},
     espana:{code:'EUR',rate:1,locale:'es-ES',symbol:'€',label:'euros'},
-    usa:{code:'USD',rate:1.09,locale:'en-US',symbol:'US$',label:'dólares estadounidenses'},
-    eeuu:{code:'USD',rate:1.09,locale:'en-US',symbol:'US$',label:'dólares estadounidenses'}
+    usa:{code:'USD',rate:EUR_TO_USD,locale:'en-US',symbol:'US$',label:'dólares estadounidenses'},
+    eeuu:{code:'USD',rate:EUR_TO_USD,locale:'en-US',symbol:'US$',label:'dólares estadounidenses'}
   };
-  function norm(v){return String(v||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/\s+/g,'-').replace(/_/g,'-');}
-  function getOrigin(){
-    const p=new URLSearchParams(location.search);
-    let o=norm(p.get('origen')||p.get('origin')||p.get('desde')||localStorage.getItem('vl_origen')||'');
+
+  function norm(v){
+    return String(v||'').toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+      .replace(/\s+/g,'-').replace(/_/g,'-');
+  }
+
+  function countryKey(value, fallback){
+    const o = norm(value);
     if(o.includes('mex')) return 'mexico';
     if(o.includes('col')) return 'colombia';
     if(o.includes('per')) return 'peru';
@@ -1132,43 +1151,128 @@ footer.vl-footer{width:100%;max-width:none!important;margin-left:0!important;mar
     if(o.includes('par')) return 'paraguay';
     if(o.includes('bra')) return 'brasil';
     if(o.includes('esp')) return 'espana';
-    if(o.includes('usa')||o.includes('eeuu')||o.includes('estados')) return 'usa';
-    return 'colombia';
+    if(o.includes('usa')||o.includes('eeuu')||o.includes('estados')||o.includes('unidos')) return 'usa';
+    return fallback || '';
   }
+
+  function getOrigin(){
+    const p = new URLSearchParams(location.search);
+    return countryKey(p.get('origen')||p.get('origin')||p.get('desde')||localStorage.getItem('vl_origen')||'', 'colombia');
+  }
+
+  function getDestination(){
+    const p = new URLSearchParams(location.search);
+    return countryKey(p.get('destino')||p.get('destination')||p.get('to')||localStorage.getItem('vl_destino')||'', 'espana');
+  }
+
   function eurFromText(t){
-    let m=String(t||'').match(/€\s*([0-9]+(?:[.,][0-9]+)?)/);
-    if(!m) m=String(t||'').match(/([0-9]+(?:[.,][0-9]+)?)\s*€/);
+    let m = String(t||'').match(/€\s*([0-9]+(?:[.,][0-9]+)?)/);
+    if(!m) m = String(t||'').match(/([0-9]+(?:[.,][0-9]+)?)\s*€/);
     if(!m) return null;
-    const n=parseFloat(m[1].replace(',','.'));
-    return isFinite(n)?n:null;
+    const n = parseFloat(m[1].replace(',','.'));
+    return isFinite(n) ? n : null;
   }
-  function format(eur,cfg){
-    if(cfg.code==='EUR') return '';
-    const noDec=['COP','CLP','PYG','ARS'].includes(cfg.code);
-    return '≈ '+cfg.symbol+new Intl.NumberFormat(cfg.locale,{maximumFractionDigits:noDec?0:2}).format(eur*cfg.rate)+' '+cfg.code+' aprox.';
+
+  function formatAmount(value, cfg){
+    const noDec = ['COP','CLP','PYG','ARS'].includes(cfg.code);
+    return cfg.symbol + new Intl.NumberFormat(cfg.locale,{maximumFractionDigits:noDec?0:2}).format(value);
   }
-  function addCurrency(){
-    const origin=getOrigin(), cfg=ORIGIN_CURRENCIES[origin]||ORIGIN_CURRENCIES.colombia;
-    try{localStorage.setItem('vl_origen',origin)}catch(e){}
-    document.querySelectorAll('.price,.product-price,.card-price,.result-price,.amount,[class*="price"],[class*="precio"],td,li,span,div').forEach(function(el){
-      if(el.closest('script,style')||el.dataset.vlLocalCurrency==='1'||(el.querySelector&&el.querySelector('.vl-local-currency'))) return;
-      const direct=el.childNodes?Array.from(el.childNodes).filter(n=>n.nodeType===3).map(n=>n.textContent).join(' '):'';
-      const txt=direct||el.textContent||'', eur=eurFromText(txt);
-      if(eur===null||((el.textContent||'').match(/€/g)||[]).length>1) return;
-      const local=format(eur,cfg); if(!local) return;
-      const s=document.createElement('span'); s.className='vl-local-currency'; s.textContent=local;
-      el.appendChild(s); el.dataset.vlLocalCurrency='1';
+
+  function hideEuroTextForUSA(el){
+    // Oculta el precio EUR original, pero mantiene el valor para calcular USD/local.
+    const children = Array.from(el.childNodes || []);
+    const hasElementChildren = children.some(n => n.nodeType === 1);
+    if(!hasElementChildren){
+      const original = el.textContent;
+      el.textContent = '';
+      const hidden = document.createElement('span');
+      hidden.className = 'vl-eur-hidden-usa';
+      hidden.textContent = original;
+      el.appendChild(hidden);
+      return;
+    }
+    children.forEach(function(n){
+      if(n.nodeType === 3 && /€/.test(n.textContent || '')){
+        const hidden = document.createElement('span');
+        hidden.className = 'vl-eur-hidden-usa';
+        hidden.textContent = n.textContent;
+        n.parentNode.replaceChild(hidden, n);
+      }
     });
-    if(!document.querySelector('.vl-currency-note')&&cfg.code!=='EUR'){
-      const note=document.createElement('div');
-      note.className='vl-currency-note';
-      note.textContent='Precios orientativos en EUR y '+cfg.code+' según el país de origen seleccionado. El precio final se confirma en la web de la aseguradora.';
-      const h1=document.querySelector('h1');
-      if(h1&&h1.parentNode) h1.parentNode.insertBefore(note,h1.nextSibling);
+  }
+
+  function addCurrency(){
+    const origin = getOrigin();
+    const destination = getDestination();
+    const cfg = ORIGIN_CURRENCIES[origin] || ORIGIN_CURRENCIES.colombia;
+    const isUSA = destination === 'usa' || destination === 'eeuu';
+
+    try{
+      localStorage.setItem('vl_origen', origin);
+      localStorage.setItem('vl_destino', destination);
+    }catch(e){}
+
+    document.querySelectorAll('.price,.product-price,.card-price,.result-price,.amount,[class*="price"],[class*="precio"],td,li,span,div').forEach(function(el){
+      if(el.closest('script,style')) return;
+      if(el.dataset.vlLocalCurrency === '1') return;
+      if(el.querySelector && (el.querySelector('.vl-local-currency') || el.querySelector('.vl-usd-currency'))) return;
+
+      const direct = el.childNodes ? Array.from(el.childNodes).filter(n=>n.nodeType===3).map(n=>n.textContent).join(' ') : '';
+      const txt = direct || el.textContent || '';
+      const eur = eurFromText(txt);
+      if(eur === null) return;
+      if(((el.textContent||'').match(/€/g)||[]).length > 1) return;
+
+      if(isUSA){
+        hideEuroTextForUSA(el);
+
+        if(cfg.code !== 'USD'){
+          const localSpan = document.createElement('span');
+          localSpan.className = 'vl-local-currency';
+          localSpan.textContent = '≈ ' + formatAmount(eur * cfg.rate, cfg) + ' ' + cfg.code + ' aprox.';
+          el.appendChild(localSpan);
+        }
+
+        const usdSpan = document.createElement('span');
+        usdSpan.className = 'vl-usd-currency';
+        usdSpan.textContent = '≈ US$' + new Intl.NumberFormat('en-US',{maximumFractionDigits:2}).format(eur * EUR_TO_USD) + ' USD aprox.';
+        el.appendChild(usdSpan);
+
+      }else{
+        if(cfg.code !== 'EUR'){
+          const localSpan = document.createElement('span');
+          localSpan.className = 'vl-local-currency';
+          localSpan.textContent = '≈ ' + formatAmount(eur * cfg.rate, cfg) + ' ' + cfg.code + ' aprox.';
+          el.appendChild(localSpan);
+        }
+      }
+
+      el.dataset.vlLocalCurrency = '1';
+    });
+
+    if(!document.querySelector('.vl-currency-note')){
+      const note = document.createElement('div');
+      note.className = 'vl-currency-note';
+      if(isUSA){
+        note.textContent = cfg.code === 'USD'
+          ? 'Precios orientativos en USD para destino Estados Unidos. El precio final se confirma en la web de la aseguradora.'
+          : 'Precios orientativos en ' + cfg.code + ' y USD para destino Estados Unidos. El precio final se confirma en la web de la aseguradora.';
+      }else if(cfg.code !== 'EUR'){
+        note.textContent = 'Precios orientativos en EUR y ' + cfg.code + ' según el país de origen seleccionado. El precio final se confirma en la web de la aseguradora.';
+      }else{
+        return;
+      }
+      const h1 = document.querySelector('h1');
+      if(h1 && h1.parentNode) h1.parentNode.insertBefore(note, h1.nextSibling);
       else (document.querySelector('main')||document.body).prepend(note);
     }
   }
-  document.addEventListener('DOMContentLoaded',function(){addCurrency();setTimeout(addCurrency,300);setTimeout(addCurrency,1000);});
+
+  document.addEventListener('DOMContentLoaded',function(){
+    addCurrency();
+    setTimeout(addCurrency,300);
+    setTimeout(addCurrency,1000);
+  });
 })();
 </script>
 

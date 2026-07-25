@@ -2526,12 +2526,30 @@ footer.vl-footer{width:100%;max-width:none!important;margin-left:0!important;mar
 .vl-footer-grid>*{min-width:0;word-break:break-word}
 </style>
 
+
+
+
+
+
+
 <script id="vl-save-origin-from-home">
 (function(){
   function norm(v){return String(v||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/\s+/g,'-');}
-  function save(el){if(el&&el.value){try{localStorage.setItem('vl_origen',norm(el.value));}catch(e){}}}
-  document.addEventListener('submit',function(e){const f=e.target;if(!f||!f.querySelector)return;save(f.querySelector('[name="origen"],[name="origin"],[name="desde"],#origen,#origin,#desde'));},true);
-  document.addEventListener('change',function(e){const el=e.target;if(el&&el.matches&&el.matches('[name="origen"],[name="origin"],[name="desde"],#origen,#origin,#desde'))save(el);},true);
+  function saveOne(keys, storageKey, root){
+    const q = keys.map(k=>'[name="'+k+'"],#'+k).join(',');
+    const el = (root||document).querySelector(q);
+    if(el && el.value){try{localStorage.setItem(storageKey,norm(el.value));}catch(e){}}
+  }
+  document.addEventListener('submit',function(e){
+    const f=e.target;if(!f||!f.querySelector)return;
+    saveOne(['origen','origin','desde'],'vl_origen',f);
+    saveOne(['destino','destination','to'],'vl_destino',f);
+  },true);
+  document.addEventListener('change',function(e){
+    const el=e.target;if(!el||!el.matches)return;
+    if(el.matches('[name="origen"],[name="origin"],[name="desde"],#origen,#origin,#desde')){try{localStorage.setItem('vl_origen',norm(el.value));}catch(err){}}
+    if(el.matches('[name="destino"],[name="destination"],[name="to"],#destino,#destination,#to')){try{localStorage.setItem('vl_destino',norm(el.value));}catch(err){}}
+  },true);
 })();
 </script>
 
