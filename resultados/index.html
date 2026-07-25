@@ -530,7 +530,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
         </div>
       </div>
       <div style="display:flex;gap:10px;flex-wrap:wrap;flex-shrink:0" id="vuelos-btn-group">
-        <a id="vuelos-google" href="https://kiwi.tpx.lv/u4fzWrWc" target="_blank" rel="nofollow noopener" style="display:inline-flex;align-items:center;gap:6px;padding:11px 18px;border-radius:999px;background:#00C4A1;color:#0B1F3A;font-size:13px;font-weight:700;text-decoration:none;white-space:nowrap">Buscar vuelos en Kiwi →</a>
+        <a id="vuelos-google" href="https://kiwi.tpx.lv/u4fzWrWc?sub_id=viajerolatam-vuelos" target="_blank" rel="nofollow noopener" style="display:inline-flex;align-items:center;gap:6px;padding:11px 18px;border-radius:999px;background:#00C4A1;color:#0B1F3A;font-size:13px;font-weight:700;text-decoration:none;white-space:nowrap">✈️ Buscar vuelos en Kiwi →</a>
         
         
       </div>
@@ -854,24 +854,24 @@ function updateVuelosCta(){
   // Kiwi deep link
   var gLink = document.getElementById('vuelos-google');
   if(gLink){
-    gLink.href = 'https://kiwi.tpx.lv/u4fzWrWc'
+    gLink.href = 'https://kiwi.tpx.lv/u4fzWrWc?sub_id=viajerolatam-vuelos'
       .replace('BOG', origIata).replace('MAD', destIata);
     // Simplified: just use clean Kiwi URL with origin/dest
-    gLink.href = 'https://kiwi.tpx.lv/u4fzWrWc' + origIata + '+a+' + destIata;
+    gLink.href = 'https://kiwi.tpx.lv/u4fzWrWc?sub_id=viajerolatam-vuelos' + origIata + '+a+' + destIata;
     gLink.onclick = function(){ if(typeof gtag!=='undefined') gtag('event','click_vuelos_google',{origen:origin,destino:destVal}); };
   }
 
   // Kiwi deep link
   var skLink = document.getElementById('vuelos-Kiwi');
   if(skLink){
-    skLink.href = 'https://kiwi.tpx.lv/u4fzWrWc' + origIata.toLowerCase() + '/' + destIata.toLowerCase() + '/' + fmt(hoy).replace(/-/g,'').slice(2) + '/' + fmt(regreso).replace(/-/g,'').slice(2) + '/';
+    skLink.href = 'https://kiwi.tpx.lv/u4fzWrWc?sub_id=viajerolatam-vuelos' + origIata.toLowerCase() + '/' + destIata.toLowerCase() + '/' + fmt(hoy).replace(/-/g,'').slice(2) + '/' + fmt(regreso).replace(/-/g,'').slice(2) + '/';
     skLink.onclick = function(){ if(typeof gtag!=='undefined') gtag('event','click_vuelos_Kiwi',{origen:origin,destino:destVal}); };
   }
 
   // Kiwi deep link
   var kLink = document.getElementById('vuelos-Kiwi');
   if(kLink){
-    kLink.href = 'https://kiwi.tpx.lv/u4fzWrWc' + origIata + '-' + destIata + '/' + fmt(hoy) + '/' + fmt(regreso);
+    kLink.href = 'https://kiwi.tpx.lv/u4fzWrWc?sub_id=viajerolatam-vuelos' + origIata + '-' + destIata + '/' + fmt(hoy) + '/' + fmt(regreso);
     kLink.onclick = function(){ if(typeof gtag!=='undefined') gtag('event','click_vuelos_Kiwi',{origen:origin,destino:destVal}); };
   }
 }
