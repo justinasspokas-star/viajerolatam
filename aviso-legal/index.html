@@ -1,20 +1,22 @@
 <!DOCTYPE html>
-
 <html lang="es">
 <head>
-<link as="image" href="/hero-bg.webp" rel="preload" type="image/webp"/>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link rel="preload" as="image" href="/hero-bg.webp" type="image/webp">
+<meta charset="UTF-8">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Aviso Legal | ViajeroLatam</title>
-<meta content="Aviso legal de ViajeroLatam conforme a la Ley 34/2002 LSSICE. Información sobre el titular del sitio, actividad y condiciones de uso." name="description"/>
-<link href="https://viajerolatam.com/aviso-legal/" rel="canonical"/>
-<meta content="es_CO" property="og:locale"/>
-<meta content="ViajeroLatam" property="og:site_name"/>
-<meta content="index, follow" name="robots"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-P1Q2TSMVNJ"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-P1Q2TSMVNJ');</script>
+<meta name="description" content="Aviso legal de ViajeroLatam conforme a la Ley 34/2002 LSSICE. Información sobre el titular del sitio, actividad y condiciones de uso.">
+<link rel="canonical" href="https://viajerolatam.com/aviso-legal/">
+<meta property="og:locale" content="es_CO">
+<meta property="og:site_name" content="ViajeroLatam">
+<meta name="robots" content="index, follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-SY86BP2PPT');</script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;word-wrap:break-word}
 :root{
@@ -76,45 +78,197 @@ footer{background:var(--navy);color:rgba(255,255,255,.45);padding:48px 5% 24px}
   .footer-grid>*:first-child{grid-column:1/-1!important}
   table.legal-table{font-size:12px!important;display:block;overflow-x:auto}
 }
+
+/* Header navigation button polish */
+header nav a,
+.site-header nav a,
+.navbar a,
+.nav-links a,
+.main-nav a,
+.header-nav a{
+  text-decoration:none!important;
+  color:#0B1F3A!important;
+  font-weight:800!important;
+  font-size:14px!important;
+  line-height:1!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:6px!important;
+  padding:10px 14px!important;
+  border-radius:999px!important;
+  transition:background .18s ease,color .18s ease,transform .18s ease,border-color .18s ease!important;
+}
+header nav a:hover,
+.site-header nav a:hover,
+.navbar a:hover,
+.nav-links a:hover,
+.main-nav a:hover,
+.header-nav a:hover{
+  background:#F0F6FF!important;
+  color:#0B1F3A!important;
+  transform:translateY(-1px)!important;
+}
+header nav a[aria-current="page"],
+.site-header nav a[aria-current="page"],
+.navbar a[aria-current="page"],
+.nav-links a[aria-current="page"],
+.main-nav a[aria-current="page"],
+.header-nav a[aria-current="page"]{
+  background:#EAFBF7!important;
+  color:#0B1F3A!important;
+}
+header nav a[href*="resultados"],
+header nav a[href*="comparar"],
+.site-header nav a[href*="resultados"],
+.site-header nav a[href*="comparar"],
+.navbar a[href*="resultados"],
+.navbar a[href*="comparar"],
+.nav-links a[href*="resultados"],
+.nav-links a[href*="comparar"],
+.main-nav a[href*="resultados"],
+.main-nav a[href*="comparar"],
+.header-nav a[href*="resultados"],
+.header-nav a[href*="comparar"]{
+  background:#0B1F3A!important;
+  color:#fff!important;
+  box-shadow:0 8px 18px rgba(11,31,58,.16)!important;
+}
+header nav a[href*="resultados"]:hover,
+header nav a[href*="comparar"]:hover,
+.site-header nav a[href*="resultados"]:hover,
+.site-header nav a[href*="comparar"]:hover,
+.navbar a[href*="resultados"]:hover,
+.navbar a[href*="comparar"]:hover,
+.nav-links a[href*="resultados"]:hover,
+.nav-links a[href*="comparar"]:hover,
+.main-nav a[href*="resultados"]:hover,
+.main-nav a[href*="comparar"]:hover,
+.header-nav a[href*="resultados"]:hover,
+.header-nav a[href*="comparar"]:hover{
+  background:#00C4A1!important;
+  color:#0B1F3A!important;
+}
+header,
+.site-header{
+  background:#fff!important;
+  border-bottom:1px solid rgba(11,31,58,.08)!important;
+}
+@media(max-width:780px){
+  header nav a,
+  .site-header nav a,
+  .navbar a,
+  .nav-links a,
+  .main-nav a,
+  .header-nav a{
+    width:100%!important;
+    justify-content:flex-start!important;
+    padding:12px 14px!important;
+  }
+}
+
 </style>
 <style id="webp-hero">@supports(background-image:url("data:image/webp,")){.hero,section.hero{background-image:url('/hero-bg.webp')!important}}</style>
-<meta content="https://viajerolatam.com/og-image.jpg" property="og:image"/>
+<meta property="og:image" content="https://viajerolatam.com/og-image.jpg">
+
+<style id="vl-footer-css">
+.vl-footer{background:#0B1F3A;color:rgba(255,255,255,.68);padding:52px 5% 0;font-family:'Plus Jakarta Sans',sans-serif;width:100%;box-sizing:border-box}
+.vl-footer-inner{max-width:1120px;margin:0 auto;width:100%;box-sizing:border-box}
+.vl-footer-grid{display:grid;grid-template-columns:1.6fr repeat(3,1fr);gap:40px;align-items:start;padding-bottom:40px;width:100%;box-sizing:border-box}
+.vl-footer-brand{min-width:0}
+.vl-footer-brand a{display:inline-block;line-height:0}
+.vl-footer-brand img{height:68px;width:auto;max-width:260px;object-fit:contain;display:block;margin-bottom:14px;opacity:1!important;filter:none!important;mix-blend-mode:normal!important}
+.vl-footer-brand p{color:rgba(255,255,255,.58);font-size:13px;line-height:1.7;max-width:280px;margin-bottom:16px}
+.vl-footer-social{display:flex;gap:8px;flex-wrap:wrap}
+.vl-footer-social a{width:36px;height:36px;display:inline-flex;align-items:center;justify-content:center;border-radius:10px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.7)!important;font-size:12px;font-weight:700;text-decoration:none!important;transition:background .2s;flex-shrink:0}
+.vl-footer-social a:hover{background:rgba(0,196,161,.2);color:#75D8BC!important}
+.vl-footer-col{min-width:0}
+.vl-footer-col h4{color:#fff;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin:0 0 14px;white-space:nowrap}
+.vl-footer-col ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:9px}
+.vl-footer-col a{color:rgba(255,255,255,.62)!important;text-decoration:none!important;font-size:13px;font-weight:500;transition:color .2s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+.vl-footer-col a:hover{color:#75D8BC!important}
+.vl-footer-bottom{border-top:1px solid rgba(255,255,255,.10);padding:18px 0 22px;display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;font-size:12px;color:rgba(255,255,255,.38)}
+.vl-footer-bottom .vl-legal{display:flex;gap:16px;flex-wrap:wrap}
+.vl-footer-bottom a{color:rgba(255,255,255,.38)!important;text-decoration:none!important;transition:color .2s;white-space:nowrap}
+.vl-footer-bottom a:hover{color:rgba(255,255,255,.7)!important}
+@media(max-width:1000px){
+  .vl-footer-grid{grid-template-columns:1fr 1fr 1fr;gap:28px}
+  .vl-footer-brand{grid-column:1/-1;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:start}
+  .vl-footer-brand p{margin-bottom:0}
+}
+@media(max-width:700px){
+  .vl-footer{padding:36px 20px 0}
+  .vl-footer-grid{grid-template-columns:1fr 1fr;gap:24px;padding-bottom:28px}
+  .vl-footer-brand{grid-column:1/-1;display:block}
+  .vl-footer-brand img{height:54px;margin-bottom:12px}
+  .vl-footer-brand p{max-width:100%;font-size:12px}
+  .vl-footer-col h4{font-size:10px}
+  .vl-footer-col a{font-size:12px}
+  .vl-footer-bottom{flex-direction:column;align-items:flex-start;gap:8px;padding:14px 0 20px}
+  .vl-footer-bottom .vl-legal{gap:12px}
+}
+@media(max-width:420px){
+  .vl-footer{padding:32px 16px 0}
+  .vl-footer-grid{grid-template-columns:1fr 1fr;gap:20px}
+  .vl-footer-col a{white-space:normal}
+}
+#vl-sticky{display:none;position:fixed;bottom:0;left:0;right:0;z-index:990;padding:10px 14px 14px;background:linear-gradient(to top,rgba(255,255,255,1) 55%,rgba(255,255,255,0));pointer-events:none}
+#vl-sticky a{display:flex;align-items:center;justify-content:center;gap:8px;background:#00C4A1;color:#0B1F3A!important;padding:14px;border-radius:50px;font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:700;text-decoration:none!important;box-shadow:0 4px 20px rgba(0,196,161,.4);pointer-events:all;transition:background .2s,transform .15s}
+#vl-sticky a:active{transform:scale(.97)}
+#vl-sticky p{font-size:11px;color:#8FA4B8;text-align:center;margin-top:5px;font-family:'Plus Jakarta Sans',sans-serif}
+@media(max-width:768px){#vl-sticky{display:block}body{padding-bottom:86px!important}}
+@media(min-width:769px){#vl-sticky{display:none!important}}
+@media(orientation:landscape) and (max-height:500px){#vl-sticky{display:none!important}body{padding-bottom:0!important}}
+</style>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P1Q2TSMVNJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P1Q2TSMVNJ');
+</script>
+
 </head>
 <body>
 <nav>
-<a aria-label="ViajeroLatam inicio" class="brand-logo" href="/"><img alt="ViajeroLatam" src="/logo-vl-original-20260528.png"/></a>
-<div class="nav-links">
-<a href="/">Inicio</a>
-<a href="/visa-schengen/">Visa Schengen</a>
-<a href="/seguro-viaje/colombia-a-espana/">Colombia a España</a>
-<a href="/blog/">Artículos</a><a href="/sobre-nosotros/">Sobre nosotros</a>
-<a class="nav-cta" href="/resultados/">Comparar seguros</a>
-</div>
-<button aria-label="Menú" class="mob-btn" onclick="openMobMenu()">
-<span></span><span></span><span></span>
-</button>
+  <a href="/" class="brand-logo" aria-label="ViajeroLatam inicio"><img src="/logo-vl-original-20260528.png" alt="ViajeroLatam"></a>
+  <div class="nav-links">
+    <a href="/">Inicio</a>
+    <a href="/visa-schengen/">Visa Schengen</a>
+    <a href="/seguro-viaje/colombia-a-espana/">Colombia a España</a>
+    <a href="/blog/">Artículos</a><a href="/sobre-nosotros/">Sobre nosotros</a>
+    <a href="/resultados/" class="nav-cta">Comparar seguros</a>
+  </div>
+
+  <button class="mob-btn" onclick="openMobMenu()" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 <div id="mob-overlay" onclick="closeMobMenu()" style="display:none;position:fixed;inset:0;background:rgba(11,31,58,0.6);z-index:998;backdrop-filter:blur(4px)"></div>
 <div id="mob-drawer" style="display:none;position:fixed;top:0;right:0;bottom:0;width:min(300px,85vw);background:#fff;z-index:999;box-shadow:-8px 0 40px rgba(11,31,58,0.25);flex-direction:column;transform:translateX(100%);transition:transform .28s cubic-bezier(.4,0,.2,1)">
-<div style="display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:#0B1F3A;flex-shrink:0">
-<img alt="ViajeroLatam" src="/logo-vl-original-20260528.png"/>
-<button onclick="closeMobMenu()" style="width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,0.12);border:none;color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1">✕</button>
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:#0B1F3A;flex-shrink:0">
+    <img src="/logo-vl-original-20260528.png" alt="ViajeroLatam">
+    <button onclick="closeMobMenu()" style="width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,0.12);border:none;color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1">✕</button>
+  </div>
+  <div style="flex:1;overflow-y:auto">
+    <a href="/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">🏠 Inicio</a>
+    <a href="/#como-funciona" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">❓ ¿Cómo funciona?</a>
+    <a href="/#aseguradoras" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">🏢 Aseguradoras</a>
+    <a href="/visa-schengen/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">🛂 Visa Schengen</a>
+    <a href="/blog/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">📚 Artículos</a>
+    <a href="/#faq" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">💬 FAQ</a>
+    <a href="/seguro-viaje/colombia-a-espana/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">🇨🇴 Colombia a España</a>
+    <a href="/blog/etias-colombianos/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">⚡ ETIAS 2026</a>
+  </div>
+  <div style="padding:16px 18px;border-top:1px solid #E4EDF5;flex-shrink:0">
+    <a href="/resultados/" onclick="closeMobMenu()" style="display:flex;align-items:center;justify-content:center;gap:8px;background:#00C4A1;color:#0B1F3A;padding:14px;border-radius:50px;font-size:15px;font-weight:700;text-decoration:none">🔍 Comparar seguros gratis</a>
+    <p style="font-size:11px;color:#8FA4B8;text-align:center;margin-top:8px">Sin coste · Póliza en 2 minutos</p>
+  </div>
 </div>
-<div style="flex:1;overflow-y:auto">
-<a href="/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">🏠 Inicio</a>
-<a href="/#como-funciona" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">❓ ¿Cómo funciona?</a>
-<a href="/#aseguradoras" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">🏢 Aseguradoras</a>
-<a href="/visa-schengen/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">🛂 Visa Schengen</a>
-<a href="/blog/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">📚 Artículos</a>
-<a href="/#faq" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">💬 FAQ</a>
-<a href="/seguro-viaje/colombia-a-espana/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">🇨🇴 Colombia a España</a>
-<a href="/blog/etias-colombianos/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">⚡ ETIAS 2026</a>
-</div>
-<div style="padding:16px 18px;border-top:1px solid #E4EDF5;flex-shrink:0">
-<a href="/resultados/" onclick="closeMobMenu()" style="display:flex;align-items:center;justify-content:center;gap:8px;background:#00C4A1;color:#0B1F3A;padding:14px;border-radius:50px;font-size:15px;font-weight:700;text-decoration:none">🔍 Comparar seguros gratis</a>
-<p style="font-size:11px;color:#8FA4B8;text-align:center;margin-top:8px">Sin coste · Póliza en 2 minutos</p>
-</div>
-</div>
+
 <style>
 .mob-btn{display:none;flex-direction:column;justify-content:center;gap:5px;width:40px;height:40px;padding:8px;border-radius:10px;border:1.5px solid rgba(11,31,58,0.15);background:rgba(11,31,58,0.06);cursor:pointer;flex-shrink:0}
 .mob-btn span{display:block;height:2px;width:100%;background:#0B1F3A;border-radius:2px;transition:all .25s ease}
@@ -124,6 +278,7 @@ footer{background:var(--navy);color:rgba(255,255,255,.45);padding:48px 5% 24px}
 #mob-drawer.is-open{transform:translateX(0)!important}
 @media(max-width:768px){.mob-btn{display:flex!important}}
 </style>
+
 <script>
 function openMobMenu(){
   var d=document.getElementById('mob-drawer');
@@ -150,88 +305,81 @@ function closeMobMenu(){
 }
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu();});
 </script>
+
 <div class="bc-bar">
-<div class="bc">
-<a href="/">Inicio</a><span>›</span>
-<span>Aviso Legal</span>
+  <div class="bc">
+    <a href="/">Inicio</a><span>›</span>
+    <span>Aviso Legal</span>
+  </div>
 </div>
-</div>
+
 <div class="page-header">
-<div class="page-header-inner">
-<div class="page-tag">⚖️ Legal</div>
-<h1 class="page-title">Aviso Legal</h1>
-<p class="page-date">Última actualización: 28 de mayo de 2026</p>
+  <div class="page-header-inner">
+    <div class="page-tag">⚖️ Legal</div>
+    <h1 class="page-title">Aviso Legal</h1>
+    <p class="page-date">Última actualización: 28 de mayo de 2026</p>
+  </div>
 </div>
-</div>
+
 <div class="content">
-<div class="info-box">
-<p>En cumplimiento de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSICE), se facilita la siguiente información sobre este sitio web.</p>
+
+  <div class="info-box">
+    <p>En cumplimiento de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSICE), se facilita la siguiente información sobre este sitio web.</p>
+  </div>
+
+  <h2>1. Datos identificativos del titular</h2>
+  <table class="legal-table">
+    <tbody>
+      <tr><td><strong>Denominación</strong></td><td>ViajeroLatam</td></tr>
+      <tr><td><strong>Sitio web</strong></td><td>viajerolatam.com</td></tr>
+      <tr><td><strong>Actividad</strong></td><td>Comparador de seguros de viaje y guías de viaje para latinoamericanos</td></tr>
+      <tr><td><strong>Email de contacto</strong></td><td>hola@viajerolatam.com</td></tr>
+    </tbody>
+  </table>
+
+  <h2>2. Objeto y actividad</h2>
+  <p>ViajeroLatam es un sitio web informativo y comparador independiente de seguros de viaje dirigido a ciudadanos latinoamericanos que viajan a España, Europa y Estados Unidos.</p>
+  <p>El sitio ofrece:</p>
+  <ul>
+    <li>Comparativas de seguros de viaje entre aseguradoras del mercado</li>
+    <li>Guías informativas sobre requisitos de entrada a Europa y EEUU</li>
+    <li>Información sobre visados, ETIAS y documentación necesaria para viajar</li>
+    <li>Recomendaciones de servicios complementarios como eSIMs</li>
+  </ul>
+
+  <h2>3. Naturaleza de la actividad — comparador con afiliados</h2>
+  <p>ViajeroLatam es un <strong>comparador independiente</strong>. No somos una aseguradora ni un agente de seguros. La contratación de los seguros se realiza directamente con cada aseguradora a través de sus propios sitios web.</p>
+  <p>Participamos en programas de afiliados de IATI Seguros, Intermundial, Saily y otras plataformas. Cuando un usuario contrata un seguro a través de nuestros enlaces, podemos recibir una comisión sin coste adicional para el usuario. Esta relación comercial no afecta a la independencia de nuestras comparativas ni al precio final del seguro.</p>
+
+  <h2>4. Propiedad intelectual</h2>
+  <p>Todos los contenidos del sitio web — textos, imágenes, logotipos, diseño gráfico y código — son propiedad de ViajeroLatam o se usan con la debida licencia, y están protegidos por la legislación sobre propiedad intelectual e industrial.</p>
+  <p>Queda prohibida la reproducción total o parcial de los contenidos sin autorización expresa por escrito, salvo para uso personal y no comercial.</p>
+  <p>Las marcas IATI, Intermundial, Saily y otras mencionadas en el sitio son propiedad de sus respectivos titulares. Su mención se realiza únicamente con fines informativos.</p>
+
+  <h2>5. Responsabilidad</h2>
+  <h3>5.1 Exactitud de la información</h3>
+  <p>ViajeroLatam se esfuerza por mantener la información actualizada y precisa, pero no garantiza la exactitud, completitud o vigencia de los contenidos en todo momento, especialmente en lo relativo a precios de seguros, requisitos de visado o normativa migratoria, que pueden cambiar sin previo aviso.</p>
+  <p>Recomendamos siempre verificar la información con las fuentes oficiales (consulados, aseguradoras, gobiernos) antes de tomar decisiones relacionadas con tu viaje.</p>
+
+  <h3>5.2 Sitios externos</h3>
+  <p>Este sitio contiene enlaces a sitios web de terceros (aseguradoras, webs oficiales de gobierno, etc.). ViajeroLatam no es responsable del contenido, políticas de privacidad ni prácticas de dichos sitios. El uso de estos enlaces es bajo la responsabilidad del usuario.</p>
+
+  <h3>5.3 Disponibilidad del servicio</h3>
+  <p>ViajeroLatam no garantiza la disponibilidad continua e ininterrumpida del sitio. Nos reservamos el derecho a suspender, modificar o discontinuar el servicio en cualquier momento sin previo aviso.</p>
+
+  <h2>6. Legislación aplicable y jurisdicción</h2>
+  <p>Este aviso legal se rige por la legislación española. Para cualquier controversia derivada del uso del sitio, las partes se someten a los juzgados y tribunales que correspondan según la legislación vigente.</p>
+
+  <h2>7. Modificaciones</h2>
+  <p>ViajeroLatam se reserva el derecho a modificar este aviso legal en cualquier momento. Los cambios serán publicados en esta misma página con la fecha de actualización.</p>
+
+  <h2>8. Contacto</h2>
+  <p>Para cualquier consulta relacionada con este aviso legal, puedes contactarnos a través de nuestro <a href="/contacto/">formulario de contacto</a> o escribiendo a hola@viajerolatam.com.</p>
+
 </div>
-<h2>1. Datos identificativos del titular</h2>
-<table class="legal-table">
-<tbody>
-<tr><td><strong>Denominación</strong></td><td>ViajeroLatam</td></tr>
-<tr><td><strong>Sitio web</strong></td><td>viajerolatam.com</td></tr>
-<tr><td><strong>Actividad</strong></td><td>Comparador de seguros de viaje y guías de viaje para latinoamericanos</td></tr>
-<tr><td><strong>Email de contacto</strong></td><td>hola@viajerolatam.com</td></tr>
-</tbody>
-</table>
-<h2>2. Objeto y actividad</h2>
-<p>ViajeroLatam es un sitio web informativo y comparador independiente de seguros de viaje dirigido a ciudadanos latinoamericanos que viajan a España, Europa y Estados Unidos.</p>
-<p>El sitio ofrece:</p>
-<ul>
-<li>Comparativas de seguros de viaje entre aseguradoras del mercado</li>
-<li>Guías informativas sobre requisitos de entrada a Europa y EEUU</li>
-<li>Información sobre visados, ETIAS y documentación necesaria para viajar</li>
-<li>Recomendaciones de servicios complementarios como eSIMs</li>
-</ul>
-<h2>3. Naturaleza de la actividad — comparador con afiliados</h2>
-<p>ViajeroLatam es un <strong>comparador independiente</strong>. No somos una aseguradora ni un agente de seguros. La contratación de los seguros se realiza directamente con cada aseguradora a través de sus propios sitios web.</p>
-<p>Participamos en programas de afiliados de IATI Seguros, Intermundial, Saily y otras plataformas. Cuando un usuario contrata un seguro a través de nuestros enlaces, podemos recibir una comisión sin coste adicional para el usuario. Esta relación comercial no afecta a la independencia de nuestras comparativas ni al precio final del seguro.</p>
-<h2>4. Propiedad intelectual</h2>
-<p>Todos los contenidos del sitio web — textos, imágenes, logotipos, diseño gráfico y código — son propiedad de ViajeroLatam o se usan con la debida licencia, y están protegidos por la legislación sobre propiedad intelectual e industrial.</p>
-<p>Queda prohibida la reproducción total o parcial de los contenidos sin autorización expresa por escrito, salvo para uso personal y no comercial.</p>
-<p>Las marcas IATI, Intermundial, Saily y otras mencionadas en el sitio son propiedad de sus respectivos titulares. Su mención se realiza únicamente con fines informativos.</p>
-<h2>5. Responsabilidad</h2>
-<h3>5.1 Exactitud de la información</h3>
-<p>ViajeroLatam se esfuerza por mantener la información actualizada y precisa, pero no garantiza la exactitud, completitud o vigencia de los contenidos en todo momento, especialmente en lo relativo a precios de seguros, requisitos de visado o normativa migratoria, que pueden cambiar sin previo aviso.</p>
-<p>Recomendamos siempre verificar la información con las fuentes oficiales (consulados, aseguradoras, gobiernos) antes de tomar decisiones relacionadas con tu viaje.</p>
-<h3>5.2 Sitios externos</h3>
-<p>Este sitio contiene enlaces a sitios web de terceros (aseguradoras, webs oficiales de gobierno, etc.). ViajeroLatam no es responsable del contenido, políticas de privacidad ni prácticas de dichos sitios. El uso de estos enlaces es bajo la responsabilidad del usuario.</p>
-<h3>5.3 Disponibilidad del servicio</h3>
-<p>ViajeroLatam no garantiza la disponibilidad continua e ininterrumpida del sitio. Nos reservamos el derecho a suspender, modificar o discontinuar el servicio en cualquier momento sin previo aviso.</p>
-<h2>6. Legislación aplicable y jurisdicción</h2>
-<p>Este aviso legal se rige por la legislación española. Para cualquier controversia derivada del uso del sitio, las partes se someten a los juzgados y tribunales que correspondan según la legislación vigente.</p>
-<h2>7. Modificaciones</h2>
-<p>ViajeroLatam se reserva el derecho a modificar este aviso legal en cualquier momento. Los cambios serán publicados en esta misma página con la fecha de actualización.</p>
-<h2>8. Contacto</h2>
-<p>Para cualquier consulta relacionada con este aviso legal, puedes contactarnos a través de nuestro <a href="/contacto/">formulario de contacto</a> o escribiendo a hola@viajerolatam.com.</p>
-</div>
-<footer>
-<div class="footer-inner">
-<div class="footer-grid">
-<div>
-<div class="footer-logo"><img alt="ViajeroLatam" src="/logo-vl-original-20260528.png"/></div>
-<p class="footer-desc">Comparador de seguros de viaje para latinoamericanos que viajan a España, Europa y Estados Unidos.</p>
-</div>
-<div class="footer-col">
-<h4>Colombia a España</h4>
-<a href="/seguro-viaje/colombia-a-espana/">Seguro de viaje</a>
-<a href="/blog/etias-colombianos/">ETIAS 2026</a>
-<a href="/resultados/">Comparar precios</a>
-</div>
-<div class="footer-col">
-<h4>Otros destinos</h4>
-<a href="/visa-schengen/">Visa Schengen</a>
-<a href="/resultados/">Ver todos los seguros</a>
-</div>
-</div>
-<div style="max-width:1100px;margin:0 auto;padding-bottom:12px;display:flex;gap:20px;flex-wrap:wrap"><a href="/privacidad/" style="font-size:12px;color:rgba(255,255,255,.35);text-decoration:none">Privacidad</a><a href="/aviso-legal/" style="font-size:12px;color:rgba(255,255,255,.35);text-decoration:none">Aviso Legal</a><a href="/contacto/" style="font-size:12px;color:rgba(255,255,255,.35);text-decoration:none">Contacto</a></div><div class="footer-bottom">
-<p>© 2026 ViajeroLatam · Comparador independiente</p>
-<p>ETIAS Colombia España 2026 · Guía actualizada julio 2026</p>
-</div>
-</div>
- · <a href="/sobre-nosotros/" style="color:#fff;text-decoration:none;font-weight:800">Sobre nosotros</a> · <a href="/contacto/" style="color:#fff;text-decoration:none;font-weight:800">Contacto</a><p><a href="/como-elegimos/">Cómo elegimos las aseguradoras</a></p></footer>
+
+
+
 <style id="vl-responsive">
 html{overflow-x:hidden}body{overflow-x:hidden;max-width:100vw}
 @media(max-width:768px){
@@ -242,6 +390,84 @@ html{overflow-x:hidden}body{overflow-x:hidden;max-width:100vw}
   .footer-grid{grid-template-columns:1fr 1fr!important}
   .footer-grid>*:first-child{grid-column:1/-1!important}
 }
+</style>
+
+
+<!-- FOOTER -->
+<footer class="vl-footer">
+  <div class="vl-footer-inner">
+    <div class="vl-footer-grid">
+      <div class="vl-footer-brand">
+        <a href="/"><img src="/logo-vl-original-20260528.png" alt="ViajeroLatam" width="220" height="68" style="height:68px;width:auto;max-width:220px;display:block;object-fit:contain;opacity:1!important;filter:none!important"></a>
+        <p>Comparador independiente de seguros de viaje para latinoamericanos que preparan viajes a España, Europa y otros destinos.</p>
+        <div class="vl-footer-social">
+          <a href="https://www.instagram.com/" target="_blank" rel="nofollow noopener" aria-label="Instagram">ig</a>
+          <a href="https://www.tiktok.com/" target="_blank" rel="nofollow noopener" aria-label="TikTok">tk</a>
+          <a href="https://www.youtube.com/" target="_blank" rel="nofollow noopener" aria-label="YouTube">yt</a>
+          <a href="https://www.facebook.com/" target="_blank" rel="nofollow noopener" aria-label="Facebook">fb</a>
+        </div>
+      </div>
+      <div class="vl-footer-col">
+        <h4>Comparar</h4>
+        <ul>
+          <li><a href="/resultados/">Comparar seguros gratis</a></li>
+          <li><a href="/comparar-seguros-viaje-colombia-espana/">Colombia → España</a></li>
+          <li><a href="/visa-schengen/">Visa Schengen</a></li>
+          <li><a href="/esim/espana-colombianos/">eSIM para España</a></li>
+          <li><a href="/blog/">Artículos y guías</a></li>
+        </ul>
+      </div>
+      <div class="vl-footer-col">
+        <h4>Aseguradoras</h4>
+        <ul>
+          <li><a href="/seguros/iati/">IATI Seguros</a></li>
+          <li><a href="/seguros/intermundial/">InterMundial</a></li>
+          <li><a href="/seguros/holins/">Holins</a></li>
+          <li><a href="/seguros/axa/">AXA</a></li>
+          <li><a href="/#aseguradoras">Todas las opciones</a></li>
+        </ul>
+      </div>
+      <div class="vl-footer-col">
+        <h4>Empresa</h4>
+        <ul>
+          <li><a href="/sobre-nosotros/">Sobre nosotros</a></li>
+          <li><a href="/como-elegimos/">Cómo elegimos</a></li>
+          <li><a href="/contacto/">Contacto</a></li>
+          <li><a href="/aviso-legal/">Aviso legal</a></li>
+          <li><a href="/privacidad/">Privacidad</a></li>
+          <li><a href="/cookies/">Cookies</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="vl-footer-bottom">
+      <span>© 2026 ViajeroLatam. Todos los derechos reservados.</span>
+      <div class="vl-legal">
+        <a href="/privacidad/">Privacidad</a>
+        <a href="/aviso-legal/">Aviso legal</a>
+        <a href="/cookies/">Cookies</a>
+        <a href="/contacto/">Contacto</a>
+      </div>
+      <span>Comparador independiente · No somos aseguradora</span>
+    </div>
+  </div>
+</footer>
+
+
+
+<!-- STICKY MOBILE CTA -->
+<div id="vl-sticky" aria-label="Comparar seguros gratis">
+  <a href="/resultados/" onclick="if(typeof gtag!='undefined')gtag('event','click_sticky_mob',{page:location.pathname})">
+    🔍 Comparar seguros gratis
+  </a>
+  <p>Sin coste · 4 aseguradoras · Póliza en 2 minutos</p>
+</div>
+
+
+
+<style id="vl-footer-override">
+.vl-footer,.vl-footer *{box-sizing:border-box}
+footer.vl-footer{width:100%;max-width:none!important;margin-left:0!important;margin-right:0!important}
+.vl-footer-grid>*{min-width:0;word-break:break-word}
 </style>
 </body>
 </html>

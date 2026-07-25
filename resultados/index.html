@@ -1,515 +1,198 @@
 <!DOCTYPE html>
-
 <html lang="es">
 <head>
-<link as="image" href="/hero-bg.webp" rel="preload" type="image/webp"/>
+<link rel="preload" as="image" href="/hero-bg.webp" type="image/webp">
 <style id="vl-responsive">
-/* ================================================
-   VIAJEROLATAM — RESPONSIVE CSS (definitive)
-   Works: mobile portrait, landscape, tablet, desktop
-   ================================================ */
-
-/* 1. PREVENT OVERFLOW ALWAYS */
 html { overflow-x: hidden; }
 body { overflow-x: hidden; max-width: 100vw; }
-*, *::before, *::after {
-  box-sizing: border-box;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-}
-img, video, iframe, svg {
-  max-width: 100%;
-  height: auto;
-}
+*, *::before, *::after { box-sizing: border-box; word-wrap: break-word; overflow-wrap: break-word; }
+img, video, iframe, svg { max-width: 100%; height: auto; }
 
-/* 2. MOBILE — 768px */
 @media screen and (max-width: 768px) {
-
-  /* NAV */
   .nav-links { display: none !important; }
   .mob-btn, #mob-btn { display: flex !important; }
   nav { padding: 0 16px !important; height: 62px !important; }
-  nav img, .logo img, .brand-logo img {
-    height: 42px !important;
-    width: auto !important;
-    max-width: 180px !important;
-  }
-
-  /* HERO */
-  .hero, section.hero, header.hero {
-    padding: 68px 16px 32px !important;
-    min-height: auto !important;
-    text-align: center !important;
-    overflow: hidden !important;
-  }
-  .hero-inner, .hero-content, .hero-text {
-    position: relative !important;
-    z-index: 5 !important;
-    max-width: 100% !important;
-    padding: 0 !important;
-  }
-  .hero h1, h1 {
-    font-size: clamp(22px, 7vw, 34px) !important;
-    line-height: 1.2 !important;
-  }
-  .hero p, .hero-sub { font-size: 14px !important; }
-  .travel-icons, #travel-canvas, canvas { display: none !important; }
-  .hcard, .hero-card, aside.hero-card { display: none !important; }
-
-  /* BREADCRUMB */
-  .breadcrumb-bar, .bc, .breadcrumb {
-    padding: 8px 16px !important;
-    overflow-x: auto !important;
-    white-space: nowrap !important;
-  }
-
-  /* PAGE WRAPPER */
-  .page, .wrap, .inner, .container,
-  .article-inner, .content-wrap {
-    max-width: 100% !important;
-    width: 100% !important;
-    padding: 16px !important;
-    margin: 0 !important;
-    grid-template-columns: 1fr !important;
-  }
-
-  /* SIDEBAR — always hide */
-  .sidebar, .sticky-sidebar, aside,
-  .article-aside, [class*="sidebar"] {
-    display: none !important;
-  }
-
-  /* SECTIONS */
-  .section, section {
-    padding: 20px 16px !important;
-    border-radius: 12px !important;
-    margin-bottom: 14px !important;
-    overflow: hidden !important;
-  }
-
-  /* SECTION HEADERS with icon */
-  .sec-head, [class*="sec-head"], [class*="section-head"] {
-    padding: 12px 14px !important;
-    display: flex !important;
-    flex-wrap: wrap !important;
-    align-items: center !important;
-    gap: 8px !important;
-    min-width: 0 !important;
-  }
-  .sec-title, .sec-head h2, .sec-head h3,
-  [class*="sec-title"] {
-    font-size: 14px !important;
-    line-height: 1.35 !important;
-    word-break: break-word !important;
-    flex: 1 !important;
-    min-width: 0 !important;
-  }
-  .sec-icon {
-    flex-shrink: 0 !important;
-    width: 28px !important;
-    height: 28px !important;
-  }
-  .sec-body { padding: 14px !important; }
-
-  /* STEPS / PASOS */
-  .step-row, .paso {
-    display: flex !important;
-    flex-direction: row !important;
-    gap: 10px !important;
-    padding: 12px 0 !important;
-    align-items: flex-start !important;
-    min-width: 0 !important;
-  }
-  .step-num, .paso-num {
-    flex-shrink: 0 !important;
-    width: 26px !important;
-    height: 26px !important;
-    min-width: 26px !important;
-    font-size: 12px !important;
-  }
-  .step-title, .paso-title {
-    font-size: 13px !important;
-    font-weight: 700 !important;
-    line-height: 1.3 !important;
-    min-width: 0 !important;
-  }
-  .step-desc, .paso-desc {
-    font-size: 12px !important;
-    line-height: 1.5 !important;
-  }
-
-  /* H2 / H3 */
-  h2, .section-title, .sec-title {
-    font-size: clamp(18px, 5.5vw, 24px) !important;
-    line-height: 1.25 !important;
-    word-break: break-word !important;
-  }
-  h3 { font-size: clamp(15px, 5vw, 19px) !important; }
-  h4 { font-size: 14px !important; }
-  p, li { font-size: 13px !important; line-height: 1.6 !important; }
-
-  /* GRIDS */
-  [class*="grid"], [class*="Grid"] {
-    grid-template-columns: 1fr !important;
-    gap: 10px !important;
-  }
-  .req-grid, .sch-grid, .inc-grid, .steps-grid,
-  .related-grid, .cards-grid, .blog-grid {
-    grid-template-columns: 1fr !important;
-  }
-  .etias-vs, .vs-grid { grid-template-columns: 1fr !important; }
-  .footer-grid, .fg { grid-template-columns: 1fr 1fr !important; gap: 14px !important; }
-  .footer-grid > *:first-child, .fl { grid-column: 1 / -1 !important; }
-
-  /* TABLES */
-  table, .price-table, .comp-table {
-    display: block !important;
-    overflow-x: auto !important;
-    -webkit-overflow-scrolling: touch !important;
-    font-size: 12px !important;
-    width: 100% !important;
-    max-width: 100% !important;
-  }
-  td, th {
-    padding: 8px !important;
-    font-size: 12px !important;
-    min-width: 60px !important;
-    word-break: break-word !important;
-    white-space: normal !important;
-  }
-
-  /* BUTTONS */
-  .btn-row, .cta-row, .hero-cta, .btn-group {
-    flex-direction: column !important;
-    gap: 10px !important;
-    width: 100% !important;
-  }
-  .btn, .btn-cta, .btn-teal, .btn-primary,
-  .btn-secondary, a.btn, button.btn,
-  .leer-btn, .cta-btn, .sb-btn {
-    width: 100% !important;
-    text-align: center !important;
-    justify-content: center !important;
-    padding: 12px 16px !important;
-    font-size: 14px !important;
-  }
-
-  /* SEARCH */
-  .search-box, .sb-inner {
-    padding: 14px !important;
-    border-radius: 14px !important;
-  }
-  .sb-row, .search-dates-row {
-    grid-template-columns: 1fr 1fr !important;
-    gap: 8px !important;
-  }
-  .sb-field { min-width: 0 !important; }
-  .sb-full, .sb-btn { grid-column: 1 / -1 !important; }
-
-  /* COUNTRY CHIPS */
-  .pais-tags, .country-tags, [class*="pais-chip"],
-  [class*="country-chip"], [class*="flag-"] {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    gap: 6px !important;
-    width: 100% !important;
-  }
-
-  /* INFO BOXES */
-  .info-box, .tip-box, .alert-box, .cta-banner,
-  [class*="-box"], [class*="-banner"] {
-    flex-direction: column !important;
-    padding: 14px !important;
-    width: 100% !important;
-    border-radius: 10px !important;
-  }
-
-  /* BLOG CARDS */
-  .blog-card, .article-card, .featured {
-    padding: 14px !important;
-    border-radius: 12px !important;
-  }
-  .featured .btn, .leer-btn { width: 100% !important; margin-top: 10px !important; }
-
-  /* CALCULATOR */
-  .calc-results { grid-template-columns: 1fr !important; }
-  .dias-selector { flex-wrap: wrap !important; gap: 6px !important; }
-  .dias-btn { font-size: 12px !important; padding: 6px 10px !important; }
-
-  /* NEWSLETTER */
-  .nl-form { flex-direction: column !important; }
-  .nl-input, .nl-btn { width: 100% !important; }
-
-  /* TRUST STRIP */
-  .trust, .hero-badges, [class*="trust-"] {
-    flex-wrap: wrap !important;
-    justify-content: center !important;
-    gap: 8px !important;
-  }
-
-  /* STICKY + BODY PADDING */
-  #sticky-mob { display: block !important; }
-  body { padding-bottom: 84px !important; }
-
-  /* EXIT POPUP */
-  #exit-box {
-    padding: 24px 16px !important;
-    margin: 12px !important;
-    max-width: calc(100vw - 24px) !important;
-  }
-
-  /* FIX INLINE FIXED WIDTHS */
-  [style*="width:900px"], [style*="width: 900px"],
-  [style*="width:800px"], [style*="width: 800px"],
-  [style*="width:700px"], [style*="width: 700px"],
-  [style*="width:600px"], [style*="width: 600px"],
-  [style*="width:500px"], [style*="width: 500px"],
-  [style*="min-width:769px"], [style*="min-width: 769px"] {
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: unset !important;
-  }
-
-  /* LANDSCAPE MOBILE */
-  @media screen and (orientation: landscape) and (max-height: 500px) {
-    .hero, section.hero { padding: 52px 16px 20px !important; min-height: auto !important; }
-    h1 { font-size: 22px !important; }
-    #sticky-mob { display: none !important; }
-    body { padding-bottom: 0 !important; }
-  }
+  .page { grid-template-columns: 1fr !important; padding: 12px !important; gap: 12px !important; }
+  .sidebar { display: none !important; }
+  .card-body { grid-template-columns: 1fr !important; padding: 14px !important; gap: 12px !important; }
+  .card-logo-block { flex-direction: row !important; align-items: center !important; gap: 12px !important; }
+  .card-logo { width: 44px !important; height: 44px !important; font-size: 14px !important; flex-shrink: 0; }
+  .card-name { font-size: 14px !important; font-weight: 700 !important; text-align: left !important; }
+  .card-price-block { flex-direction: row !important; align-items: center !important; justify-content: space-between !important; min-width: unset !important; width: 100% !important; background: #F0F4F8; border-radius: 12px; padding: 12px 14px !important; gap: 12px !important; }
+  .price-main { font-size: 28px !important; }
+  .btn-details { display: none !important; }
+  .badge-schengen { display: none !important; }
+  .search-bar { padding: 10px 12px !important; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .search-inner { flex-wrap: nowrap !important; min-width: max-content; gap: 6px !important; }
+  .search-pill { padding: 7px 12px !important; font-size: 12px !important; flex-shrink: 0; }
+  .mobile-filters-btn { display: flex !important; flex-shrink: 0; }
 }
-
-/* 3. TABLET — 481px to 1024px */
-@media screen and (min-width: 481px) and (max-width: 1024px) {
-  .page, .wrap, .inner, .container {
-    padding: 24px 20px !important;
-    max-width: 100% !important;
-  }
-  [class*="grid-4"], [class*="grid-3"] {
-    grid-template-columns: 1fr 1fr !important;
-  }
-  .footer-grid { grid-template-columns: 1fr 1fr !important; }
-  h1 { font-size: clamp(28px, 5vw, 48px) !important; }
-  h2 { font-size: clamp(22px, 4vw, 32px) !important; }
-}
-
-/* 4. SMALL PHONES — 380px */
 @media screen and (max-width: 380px) {
-  nav img, .logo img { height: 36px !important; }
-  h1 { font-size: 20px !important; }
-  h2 { font-size: 17px !important; }
-  .sec-title { font-size: 13px !important; }
-  .step-title, .paso-title { font-size: 13px !important; }
-  p, li { font-size: 12px !important; }
-  td, th { font-size: 11px !important; padding: 6px !important; }
-  .section, section { padding: 14px 12px !important; }
-  .sb-row, .search-dates-row { grid-template-columns: 1fr !important; }
-  #sticky-mob a { font-size: 14px !important; }
+  .card-price-block { flex-direction: column !important; align-items: flex-start !important; }
+  .btn-contract { width: 100% !important; }
 }
 
-.visible-h1{
-  font-family:'DM Serif Display', Georgia, serif;
-  font-size:clamp(36px,5vw,58px);
-  line-height:1.05;
-  color:#0B1F3A;
-  margin:28px auto 10px;
-  max-width:1120px;
-  padding:0 5%;
-}
+/* Resultados render safety */
+.debug-output,.raw-js-output,.script-leak{display:none!important}
 
-
-.partner-note{
-  margin:22px 0;
-  padding:18px 20px;
-  border-radius:18px;
-  background:#F5F0E8;
-  border:1px solid #EAE3D5;
-  color:#4A647E;
-  line-height:1.65;
-}
-.partner-note strong{
-  color:#0B1F3A;
-}
-
-
-/* Ordered insurer cards */
-.vl-insurer-section{
-  margin:28px 0;
-}
-.vl-insurer-title{
-  margin:0 0 14px;
-  color:#0B1F3A;
-  font-size:24px;
-  font-weight:900;
-}
-.vl-insurer-grid{
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:16px;
-}
-.vl-insurer-card{
-  background:#fff;
-  border:1px solid #EAE3D5;
-  border-radius:22px;
-  padding:20px;
-  box-shadow:0 10px 28px rgba(11,31,58,.06);
-}
-.vl-insurer-card.featured{
-  border-color:rgba(0,196,161,.45);
-  background:linear-gradient(180deg,#fff,#F7FFFC);
-}
-.vl-insurer-card .badge{
-  display:inline-flex;
-  border-radius:999px;
-  padding:5px 10px;
-  background:#F5F0E8;
-  color:#4A647E;
-  font-size:12px;
-  font-weight:900;
-  margin-bottom:10px;
-}
-.vl-insurer-card.featured .badge{
-  background:rgba(0,196,161,.12);
-  color:#0B1F3A;
-}
-.vl-insurer-card h3{
-  margin:0 0 8px;
-  color:#0B1F3A;
-  font-size:22px;
-}
-.vl-insurer-card p{
-  margin:0 0 14px;
-  color:#4A647E;
-  line-height:1.6;
-  font-size:14px;
-}
-.vl-insurer-actions{
-  display:flex;
-  flex-direction:column;
-  gap:8px;
-}
-.vl-insurer-actions a{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:11px 14px;
-  border-radius:999px;
+/* Header navigation button polish */
+header nav a,
+.site-header nav a,
+.navbar a,
+.nav-links a,
+.main-nav a,
+.header-nav a{
   text-decoration:none!important;
-  font-weight:900;
-  font-size:14px;
+  color:#0B1F3A!important;
+  font-weight:800!important;
+  font-size:14px!important;
+  line-height:1!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:6px!important;
+  padding:10px 14px!important;
+  border-radius:999px!important;
+  transition:background .18s ease,color .18s ease,transform .18s ease,border-color .18s ease!important;
 }
-.vl-insurer-actions .primary{
-  background:#0B1F3A;
+header nav a:hover,
+.site-header nav a:hover,
+.navbar a:hover,
+.nav-links a:hover,
+.main-nav a:hover,
+.header-nav a:hover{
+  background:#F0F6FF!important;
+  color:#0B1F3A!important;
+  transform:translateY(-1px)!important;
+}
+header nav a[aria-current="page"],
+.site-header nav a[aria-current="page"],
+.navbar a[aria-current="page"],
+.nav-links a[aria-current="page"],
+.main-nav a[aria-current="page"],
+.header-nav a[aria-current="page"]{
+  background:#EAFBF7!important;
+  color:#0B1F3A!important;
+}
+header nav a[href*="resultados"],
+header nav a[href*="comparar"],
+.site-header nav a[href*="resultados"],
+.site-header nav a[href*="comparar"],
+.navbar a[href*="resultados"],
+.navbar a[href*="comparar"],
+.nav-links a[href*="resultados"],
+.nav-links a[href*="comparar"],
+.main-nav a[href*="resultados"],
+.main-nav a[href*="comparar"],
+.header-nav a[href*="resultados"],
+.header-nav a[href*="comparar"]{
+  background:#0B1F3A!important;
   color:#fff!important;
+  box-shadow:0 8px 18px rgba(11,31,58,.16)!important;
 }
-.vl-insurer-actions .accent{
-  background:#00C4A1;
+header nav a[href*="resultados"]:hover,
+header nav a[href*="comparar"]:hover,
+.site-header nav a[href*="resultados"]:hover,
+.site-header nav a[href*="comparar"]:hover,
+.navbar a[href*="resultados"]:hover,
+.navbar a[href*="comparar"]:hover,
+.nav-links a[href*="resultados"]:hover,
+.nav-links a[href*="comparar"]:hover,
+.main-nav a[href*="resultados"]:hover,
+.main-nav a[href*="comparar"]:hover,
+.header-nav a[href*="resultados"]:hover,
+.header-nav a[href*="comparar"]:hover{
+  background:#00C4A1!important;
   color:#0B1F3A!important;
 }
-.vl-insurer-actions .secondary{
-  background:#F5F0E8;
-  color:#0B1F3A!important;
-  border:1px solid #EAE3D5;
+header,
+.site-header{
+  background:#fff!important;
+  border-bottom:1px solid rgba(11,31,58,.08)!important;
 }
-@media(max-width:860px){
-  .vl-insurer-grid{grid-template-columns:1fr}
+@media(max-width:780px){
+  header nav a,
+  .site-header nav a,
+  .navbar a,
+  .nav-links a,
+  .main-nav a,
+  .header-nav a{
+    width:100%!important;
+    justify-content:flex-start!important;
+    padding:12px 14px!important;
+  }
 }
 
 
-.vl-quick-rec{margin:22px 0 20px;background:linear-gradient(135deg,#0B1F3A,#17365A);color:#fff;border-radius:24px;padding:22px;box-shadow:0 16px 42px rgba(11,31,58,.16)}
-.vl-quick-rec h2{margin:0 0 8px!important;color:#fff!important;font-size:24px!important;line-height:1.15!important;font-family:'DM Serif Display',Georgia,serif!important}
-.vl-quick-rec p{margin:0 0 16px!important;color:rgba(255,255,255,.72)!important;line-height:1.6!important}
-.vl-quick-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
-.vl-quick-card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:18px;padding:14px}
-.vl-quick-card strong{display:block;color:#75D8BC;font-size:13px;margin-bottom:4px}.vl-quick-card b{display:block;color:#fff;font-size:18px;margin-bottom:5px}.vl-quick-card span{display:block;color:rgba(255,255,255,.68);font-size:13px;line-height:1.45;min-height:38px}
-.vl-quick-card a{display:flex;justify-content:center;align-items:center;margin-top:12px;padding:10px 12px;border-radius:999px;background:#00C4A1;color:#0B1F3A!important;font-weight:900;text-decoration:none!important;font-size:13px}
-.vl-trust-note{margin:16px 0 0!important;padding-top:14px;border-top:1px solid rgba(255,255,255,.12);font-size:13px!important}
-@media(max-width:980px){.vl-quick-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:620px){.vl-quick-grid{grid-template-columns:1fr}.vl-quick-rec{padding:18px;border-radius:20px}}
+/* Local currency based on origin country */
+.vl-local-currency{display:block;margin-top:4px;font-size:12px;font-weight:900;color:#4A647E;line-height:1.25}
+.vl-currency-note{margin:12px 0 0;padding:10px 12px;border-radius:14px;background:#F5F0E8;border:1px solid #E8DDC8;color:#4A647E;font-size:12px;font-weight:800;line-height:1.45}
 
 </style>
-<!-- Travelpayouts Drive -->
-<script data-cfasync="false" data-no-defer="1" data-noptimize="1" data-wpfc-render="false" nowpocket="" seraph-accel-crit="1">
-  (function () {
-    var script = document.createElement("script");
-    script.async = 1;
-    script.src = 'https://emrldtp.cc/NTMzNzMw.js?t=533730';
-    document.head.appendChild(script);
-  })();
+
+<!-- Google Analytics 4 -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-SY86BP2PPT');
 </script>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Comparar seguros de viaje para España y Schengen | ViajeroLatam</title>
-<meta content="Compara seguros de viaje para España y Europa. Revisa precio, cobertura médica, repatriación, equipaje y condiciones de IATI, InterMundial, Holins y AXA." name="description"/>
-<meta content="noindex, follow" name="robots"/>
-<link href="https://viajerolatam.com/resultados/" rel="canonical"/>
-<!-- Open Graph -->
-<meta content="website" property="og:type"/>
-<meta content="https://viajerolatam.com/resultados/" property="og:url"/>
-<meta content="Comparar seguros de viaje para España y Schengen" property="og:title"/>
-<meta content="Comparador de seguros de viaje para España y Europa con opciones para viajeros latinoamericanos." property="og:description"/>
-<meta content="https://viajerolatam.com/og-image.jpg" property="og:image"/>
-<meta content="ViajeroLatam" property="og:site_name"/>
-<!-- Twitter Card -->
-<meta content="summary_large_image" name="twitter:card"/>
-<meta content="Comparar seguros para España | ViajeroLatam" name="twitter:title"/>
-<meta content="Revisa seguros de viaje para España, Schengen y Europa." name="twitter:description"/>
-<meta content="https://viajerolatam.com/og-image.jpg" name="twitter:image"/>
-<!-- Schema: ItemList of insurance products -->
+
+<meta charset="UTF-8">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comparar Seguros de viaje de Colombia a España | ViajeroLatam</title>
+<meta name="description" content="Compara 4 seguros de viaje para colombianos que viajan a España y Europa. Precios desde €18 para 15 días. Todos válidos para visa Schengen. Sin franquicia.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://viajerolatam.com/resultados/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://viajerolatam.com/resultados/">
+<meta property="og:title" content="Seguros de viaje Colombia a España | ViajeroLatam">
+<meta property="og:description" content="Compara 4 seguros de viaje para latinoamericanos. Válidos para visa Schengen. Sin coste para ti.">
+<meta property="og:image" content="https://viajerolatam.com/og-image.jpg">
+<meta property="og:site_name" content="ViajeroLatam">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Compara Seguros de Viaje — ViajeroLatam">
+<meta name="twitter:description" content="4 seguros de viaje para latinoamericanos. Válidos para visa Schengen. Desde €18.">
+<meta name="twitter:image" content="https://viajerolatam.com/og-image.jpg">
+
 <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    "name": "Comparativa de seguros de viaje para latinoamericanos a España y Europa",
-    "description": "Los mejores seguros de viaje para latinoamericanos ordenados por relación calidad-precio",
-    "numberOfItems": 8,
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": " Direct",
-        "url": "https://viajerolatam.com/seguros/-viaje-premium/",
-        "description": "Mejor valorado. Gastos médicos ilimitados, sin franquicia, app 24/7 en español. Válido para visa Schengen."
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "IATI Estrella",
-        "url": "https://viajerolatam.com/seguros/iati-estrella/",
-        "description": "Sin franquicia, cobertura médica alta según póliza, pago directo desde el primer euro."
-      },
-      {
-        "@type": "ListItem",
-        "position": 3,
-        "name": "Intermundial InterMundial Totaltravel",
-        "url": "https://viajerolatam.com/seguros/intermundial-totaltravel/",
-        "description": "Mejor precio. 10.000.000€ de cobertura médica desde €1.75 por día."
-      }
-    ]
-  }
-  </script>
-<link href="https://fonts.googleapis.com" rel="dns-prefetch"/>
-<link href="https://fonts.gstatic.com" rel="dns-prefetch"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link as="style" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" onload="this.onload=null;this.rel='stylesheet'" rel="preload"/>
-<noscript><link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/></noscript>
-<style>
-
-/* ViajeroLatam logo — transparente y natural */
-.logo{display:inline-flex;align-items:center;text-decoration:none;line-height:0;flex-shrink:0}
-.logo-img{display:block;width:auto;object-fit:contain;background:transparent!important;filter:none!important;box-shadow:none!important}
-.logo-img-header{height:58px;max-width:300px}
-.logo-img-footer{height:54px;max-width:280px}
-nav .logo img.logo-img-header{height:58px;width:auto}
-@media(max-width:700px){
-  .logo-img-header{height:44px;max-width:220px}
-  .logo-img-footer{height:44px;max-width:220px}
-  nav .logo img.logo-img-header{height:44px}
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Comparativa de seguros de viaje para latinoamericanos a España y Europa",
+  "description": "Los mejores seguros de viaje para latinoamericanos ordenados por relación calidad-precio",
+  "numberOfItems": 4,
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"name":"IATI Estrella","url":"https://viajerolatam.com/seguros/iati/","description":"Sin franquicia, gastos médicos ilimitados, pago directo desde el primer euro."},
+    {"@type":"ListItem","position":2,"name":"Intermundial Totaltravel","url":"https://viajerolatam.com/seguros/intermundial/","description":"Mejor precio. 10.000.000€ de cobertura médica desde €1.75 por día."},
+    {"@type":"ListItem","position":3,"name":"AXA Seguro de viaje","url":"https://viajerolatam.com/seguros/axa/","description":"Marca reconocida. Válido para visa Schengen."},
+    {"@type":"ListItem","position":4,"name":"Holins Seguro de viaje","url":"https://viajerolatam.com/seguros/holins/","description":"Alternativa adicional. Válido para visa Schengen."}
+  ]
 }
+</script>
 
+<link rel="dns-prefetch" href="https://fonts.googleapis.com">
+<link rel="dns-prefetch" href="https://fonts.gstatic.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
+
+<style>
+/* ── LOGO ── */
+.logo{display:inline-flex;align-items:center;text-decoration:none;flex-shrink:0}
+.logo-img{display:block;width:auto;object-fit:contain;background:transparent!important;filter:none!important}
+nav a.brand-logo img, nav a.logo img{height:58px!important;width:auto!important;max-width:280px!important;object-fit:contain!important;opacity:1!important;filter:none!important}
+@media(max-width:768px){nav a.brand-logo img, nav a.logo img{height:44px!important;max-width:200px!important}}
+
+/* ── BASE ── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --navy:#0B1F3A;--navy-mid:#1A3558;--navy-light:#243F63;
+  --navy:#0B1F3A;--navy-mid:#1A3558;
   --teal:#00C4A1;--teal-dark:#009C7F;--teal-pale:rgba(0,196,161,0.1);
   --sand:#F5F0E8;--sand-dark:#E8E2D8;
   --white:#FFFFFF;
@@ -529,9 +212,7 @@ html{scroll-behavior:smooth}
 body{font-family:var(--font-body);background:#F0F4F8;color:var(--text-dark);line-height:1.6;min-height:100vh}
 
 /* ── NAV ── */
-nav{background:var(--navy);padding: 0 5%;min-height:68px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200}
-.logo{display:flex;align-items:center;text-decoration:none;display:flex;align-items:center;gap:8px}
-.logo-dot{width:8px;height:8px;border-radius:50%;background:var(--teal)}
+nav{background:var(--navy);padding:0 5%;min-height:68px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200}
 .nav-back{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,0.55);text-decoration:none;transition:color var(--transition)}
 .nav-back:hover{color:var(--teal)}
 .nav-back svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2}
@@ -539,14 +220,16 @@ nav{background:var(--navy);padding: 0 5%;min-height:68px;display:flex;align-item
 /* ── SEARCH BAR ── */
 .search-bar{background:var(--white);border-bottom:1px solid var(--border);padding:12px 5%}
 .search-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.search-pill{display:flex;align-items:center;gap:8px;background:var(--sand);border:1px solid var(--sand-dark);border-radius:50px;padding:8px 16px;font-size:13px;font-weight:500;color:var(--text-dark);cursor:pointer;transition:border-color var(--transition),background var(--transition);white-space:nowrap}
+.search-pill{display:flex;align-items:center;gap:8px;background:var(--sand);border:1px solid var(--sand-dark);border-radius:50px;padding:8px 16px;font-size:13px;font-weight:500;color:var(--text-dark);cursor:pointer;transition:border-color var(--transition);white-space:nowrap}
 .search-pill:hover{border-color:var(--teal);background:var(--white)}
 .pill-label{font-size:11px;font-weight:600;color:var(--text-light);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:1px}
 .pill-val{font-size:13px;font-weight:600;color:var(--text-dark)}
-.search-pill-edit{margin-left:auto}
 .pill-btn{display:inline-flex;align-items:center;gap:6px;background:var(--teal);color:var(--navy);border:none;border-radius:50px;padding:9px 18px;font-family:var(--font-body);font-size:13px;font-weight:700;cursor:pointer;transition:background var(--transition),transform var(--transition);white-space:nowrap}
 .pill-btn:hover{background:var(--teal-dark);transform:translateY(-1px)}
 .pill-btn svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2.5}
+.mobile-filters-btn{display:none;align-items:center;gap:6px;background:var(--white);border:1px solid var(--border);border-radius:50px;padding:8px 16px;font-family:var(--font-body);font-size:13px;font-weight:600;color:var(--text-dark);cursor:pointer}
+.mobile-filters-btn svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2}
+@media(max-width:900px){.mobile-filters-btn{display:flex}}
 
 /* ── LAYOUT ── */
 .page{max-width:1200px;margin:0 auto;padding:24px 5%;display:grid;grid-template-columns:280px 1fr;gap:24px;align-items:start}
@@ -559,58 +242,52 @@ nav{background:var(--navy);padding: 0 5%;min-height:68px;display:flex;align-item
 .clear-btn{font-size:12px;color:var(--teal-dark);font-weight:600;cursor:pointer;border:none;background:none;padding:0;font-family:var(--font-body)}
 .clear-btn:hover{text-decoration:underline}
 .filter-section{padding:16px 20px;border-bottom:1px solid var(--border)}
+.filter-section:last-child{border-bottom:none}
 .filter-title{font-size:11px;font-weight:700;color:var(--text-light);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:12px}
-
-/* Price range */
 .price-range-display{display:flex;justify-content:space-between;margin-bottom:10px}
 .price-val{font-size:13px;font-weight:600;color:var(--text-dark)}
 input[type=range]{width:100%;height:4px;-webkit-appearance:none;appearance:none;background:linear-gradient(to right,var(--teal) 0%,var(--teal) var(--val,60%),var(--border) var(--val,60%),var(--border) 100%);border-radius:2px;outline:none;cursor:pointer}
 input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--white);border:2.5px solid var(--teal);cursor:pointer;box-shadow:0 1px 4px rgba(0,196,161,0.3)}
-
-/* Checkboxes */
 .check-item{display:flex;align-items:center;gap:10px;padding:7px 0;cursor:pointer}
 .check-item input[type=checkbox]{width:16px;height:16px;accent-color:var(--teal);cursor:pointer;flex-shrink:0}
 .check-item label{font-size:13px;color:var(--text-mid);cursor:pointer;line-height:1.4}
 .check-count{margin-left:auto;font-size:11px;color:var(--text-light);background:var(--sand);border-radius:10px;padding:1px 7px;flex-shrink:0}
-
-/* Destination tabs */
 .dest-tabs{display:flex;gap:6px;flex-wrap:wrap}
 .dest-tab{font-size:12px;font-weight:500;padding:5px 12px;border-radius:50px;border:1px solid var(--border);background:var(--white);cursor:pointer;color:var(--text-mid);transition:all var(--transition);font-family:var(--font-body)}
 .dest-tab.active,.dest-tab:hover{background:var(--navy);color:var(--white);border-color:var(--navy)}
 
 /* ── RESULTS AREA ── */
-.results-area{}
 .results-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px}
 .results-count{font-size:14px;color:var(--text-mid)}
 .results-count strong{color:var(--text-dark);font-weight:600}
-.sort-row{display:flex;align-items:center;gap:8px}
-.sort-label{font-size:13px;color:var(--text-light)}
 .sort-select{font-family:var(--font-body);font-size:13px;font-weight:500;color:var(--text-dark);background:var(--white);border:1px solid var(--border);border-radius:var(--r-sm);padding:7px 12px;cursor:pointer;outline:none;transition:border-color var(--transition)}
 .sort-select:focus{border-color:var(--teal)}
 
-/* ── HIGHLIGHT BANNER ── */
-.best-banner{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%);border-radius:var(--r-lg);padding:16px 20px;margin-bottom:16px;display:flex;align-items:center;gap:14px}
-.best-banner svg{width:20px;height:20px;color:var(--teal);fill:none;stroke:currentColor;stroke-width:2;flex-shrink:0}
-.best-banner p{font-size:13px;color:rgba(255,255,255,0.75);line-height:1.5}
-.best-banner strong{color:var(--white)}
+/* ── SCHENGEN BAR ── */
+.schengen-bar{background:linear-gradient(135deg,#0B2F50,#0D3F6B);border-radius:var(--r-lg);padding:14px 20px;margin-bottom:14px;display:flex;align-items:center;gap:14px;border:1px solid rgba(0,196,161,0.2);flex-wrap:wrap}
+.schengen-bar svg{width:18px;height:18px;color:var(--teal);fill:none;stroke:currentColor;stroke-width:1.8;flex-shrink:0}
+.schengen-bar p{font-size:13px;color:rgba(255,255,255,0.7);line-height:1.4;flex:1}
+.schengen-bar strong{color:#fff}
+.sc-btn{white-space:nowrap;background:var(--teal);color:var(--navy);border:none;border-radius:50px;padding:8px 16px;font-family:var(--font-body);font-size:13px;font-weight:700;cursor:pointer;transition:background var(--transition);flex-shrink:0;text-decoration:none;display:inline-block}
+.sc-btn:hover{background:#00d9b3}
 
-/* ── INSURANCE CARD ── */
+/* ── SLIM BAR ── */
+.slim-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.slim-trust{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-mid)}
+.slim-trust svg{width:13px;height:13px;stroke:#00C4A1;fill:none;stroke-width:2.5}
+
+/* ── CARD ── */
 .card{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;margin-bottom:14px;transition:box-shadow var(--transition),border-color var(--transition),transform var(--transition)}
-.card:hover{box-shadow:var(--shadow-md);border-color:rgba(0,196,161,0.25);transform:translateY(-2px)}
+.card:hover{box-shadow:var(--shadow-md);border-color:rgba(0,196,161,0.3);transform:translateY(-2px)}
 .card.recommended{border:2px solid var(--teal)}
-.card-badge-row{background:var(--teal);padding:6px 20px;font-size:11px;font-weight:700;color:var(--navy);letter-spacing:0.05em;display:flex;align-items:center;gap:6px}
+.card-badge-row{background:var(--teal);padding:7px 20px;font-size:11px;font-weight:700;color:var(--navy);letter-spacing:0.05em;display:flex;align-items:center;gap:6px}
 .card-badge-row svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:2.5}
 .card-body{padding:20px 22px;display:grid;grid-template-columns:auto 1fr auto;gap:20px;align-items:start}
-@media(max-width:600px){.card-body{grid-template-columns:1fr;gap:14px}}
-
-/* Logo block */
 .card-logo-block{display:flex;flex-direction:column;align-items:center;gap:8px;min-width:80px}
 .card-logo{width:64px;height:64px;border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:18px;font-weight:400;flex-shrink:0}
 .card-name{font-size:13px;font-weight:600;color:var(--text-dark);text-align:center}
 .card-stars{color:#F5A623;font-size:11px;letter-spacing:0.5px}
 .card-reviews{font-size:10px;color:var(--text-light);text-align:center}
-
-/* Coverage block */
 .card-coverage{display:flex;flex-direction:column;gap:6px}
 .card-plan{font-size:15px;font-weight:600;color:var(--text-dark);margin-bottom:4px}
 .coverage-pills{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
@@ -624,14 +301,13 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
 .cov-val{font-weight:600;color:var(--text-dark)}
 .card-extras{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
 .extra{font-size:11px;color:var(--text-light);background:var(--sand);border-radius:20px;padding:3px 9px}
-
-/* Price block */
 .card-price-block{display:flex;flex-direction:column;align-items:flex-end;gap:10px;min-width:160px}
-@media(max-width:600px){.card-price-block{align-items:flex-start}}
 .price-from{font-size:11px;color:var(--text-light);text-align:right}
 .price-main{font-family:var(--font-display);font-size:36px;color:var(--navy);line-height:1;text-align:right}
 .price-main sup{font-size:18px;vertical-align:super}
 .price-per{font-size:11px;color:var(--text-light)}
+.price-local{font-size:11px;color:#1D9E75;font-weight:600;margin-top:2px;background:rgba(29,158,117,.08);border-radius:4px;padding:1px 5px;display:inline-block}
+.price-local span{font-size:10px;font-weight:400;color:#4A7E6A;margin-left:2px}
 .price-saving{font-size:12px;color:var(--green-text);font-weight:600;background:var(--green-pale);border-radius:6px;padding:4px 10px;text-align:center}
 .btn-contract{width:100%;background:var(--navy);color:var(--white);border:none;border-radius:50px;padding:12px 0;font-family:var(--font-body);font-size:14px;font-weight:700;cursor:pointer;transition:background var(--transition),transform var(--transition),box-shadow var(--transition)}
 .btn-contract:hover{background:var(--navy-mid);transform:translateY(-1px);box-shadow:0 4px 16px rgba(11,31,58,0.25)}
@@ -643,8 +319,8 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
 .badge-schengen svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:2.5}
 
 /* ── EXPAND DETAILS ── */
-.card-details{display:none;border-top:1px solid var(--border);padding:20px 22px}
-.card-details.open{display:block}
+.card-details-panel{display:none;border-top:1px solid var(--border);padding:20px 22px}
+.card-details-panel.open{display:block}
 .details-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 @media(max-width:600px){.details-grid{grid-template-columns:1fr 1fr}}
 .detail-item{display:flex;flex-direction:column;gap:3px}
@@ -652,327 +328,18 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
 .detail-val{font-size:14px;font-weight:600;color:var(--text-dark)}
 .detail-sub{font-size:11px;color:var(--text-mid)}
 
-/* ── SCHENGEN CALLOUT ── */
-.schengen-callout{background:linear-gradient(135deg,#0B2F50 0%,#0D3F6B 100%);border-radius:var(--r-lg);padding:20px 22px;margin-bottom:14px;display:flex;align-items:center;gap:16px;border:1px solid rgba(0,196,161,0.2)}
-.sc-icon{width:44px;height:44px;border-radius:12px;background:rgba(0,196,161,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.sc-icon svg{width:22px;height:22px;color:var(--teal);fill:none;stroke:currentColor;stroke-width:1.8}
-.sc-text h4{font-size:15px;font-weight:600;color:var(--white);margin-bottom:3px}
-.sc-text p{font-size:13px;color:rgba(255,255,255,0.55);line-height:1.5}
-.sc-btn{margin-left:auto;white-space:nowrap;background:var(--teal);color:var(--navy);border:none;border-radius:50px;padding:9px 18px;font-family:var(--font-body);font-size:13px;font-weight:700;cursor:pointer;flex-shrink:0;transition:background var(--transition)}
-.sc-btn:hover{background:#00d9b3}
-
-/* ── MOBILE FILTER TOGGLE ── */
-.mobile-filters-btn{display:none;align-items:center;gap:6px;background:var(--white);border:1px solid var(--border);border-radius:50px;padding:8px 16px;font-family:var(--font-body);font-size:13px;font-weight:600;color:var(--text-dark);cursor:pointer}
-.mobile-filters-btn svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2}
-@media(max-width:900px){.mobile-filters-btn{display:flex}}
-
 /* ── ANIMATIONS ── */
 @keyframes slideIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 .card{animation:slideIn .35s ease both}
 .card:nth-child(2){animation-delay:.05s}
 .card:nth-child(3){animation-delay:.1s}
 .card:nth-child(4){animation-delay:.15s}
-.card:nth-child(5){animation-delay:.2s}
 
 /* ── NO RESULTS ── */
 .no-results{text-align:center;padding:60px 20px;color:var(--text-mid)}
 .no-results h3{font-family:var(--font-display);font-size:24px;color:var(--text-dark);margin-bottom:10px}
 
-/* LOGO FIX — visible, transparent, no ghost/fade */
-nav .logo,
-.logo{opacity:1!important;filter:none!important;mix-blend-mode:normal!important}
-.logo img,
-.logo-img,
-.logo-img-header,
-nav .logo img{
-  opacity:1!important;
-  filter:none!important;
-  mix-blend-mode:normal!important;
-  background:transparent!important;
-  box-shadow:none!important;
-}
-nav .logo img,
-.logo-img-header{height:58px!important;max-width:300px!important;width:auto!important;object-fit:contain!important}
-@media(max-width:700px){
-  nav .logo img,
-  .logo-img-header{height:44px!important;max-width:220px!important}
-}
-
-
-/* InterMundial affiliate CTA */
-.intermundial-affiliate-box{
-  margin-top:24px;
-  padding:22px;
-  border-radius:22px;
-  border:1px solid rgba(0,196,161,.25);
-  background:linear-gradient(135deg,rgba(0,196,161,.10),rgba(245,240,232,.72));
-}
-.intermundial-affiliate-box h3{margin:0 0 8px;color:#0B1F3A}
-.intermundial-affiliate-box p{margin:0 0 14px;color:#4A647E}
-.intermundial-coupon{
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  background:#fff;
-  border:1px dashed #00A989;
-  color:#0B1F3A;
-  padding:8px 12px;
-  border-radius:12px;
-  font-weight:900;
-  margin:0 0 14px;
-}
-.intermundial-btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  background:#0B1F3A;
-  color:#fff!important;
-  text-decoration:none!important;
-  padding:13px 22px;
-  border-radius:999px;
-  font-weight:900;
-}
-
-
-/* ViajeroLatam original logo — desktop/mobile fix */
-.site-header .brand-logo,
-nav .brand-logo{
-  display:inline-flex;
-  align-items:center;
-  flex:0 0 auto;
-  min-width:170px;
-  max-width:260px;
-  height:62px;
-  text-decoration:none;
-}
-.site-header .brand-logo picture,
-nav .brand-logo picture{display:flex;align-items:center;height:100%}
-.site-header .brand-logo img,
-nav .brand-logo img,
-.brand-logo img{
-  display:block!important;
-  width:auto!important;
-  height:56px!important;
-  max-width:250px!important;
-  object-fit:contain!important;
-}
-@media(max-width:768px){
-  .site-header .brand-logo,
-  nav .brand-logo{
-    min-width:138px;
-    max-width:180px;
-    height:54px;
-  }
-  .site-header .brand-logo img,
-  nav .brand-logo img,
-  .brand-logo img{
-    height:46px!important;
-    max-width:178px!important;
-  }
-}
-@media(max-width:380px){
-  .site-header .brand-logo,
-  nav .brand-logo{max-width:155px;min-width:125px}
-  .site-header .brand-logo img,
-  nav .brand-logo img,
-  .brand-logo img{height:40px!important;max-width:155px!important}
-}
-
-
-/* LOGO FIX — exact original logo, larger and clearer on desktop/mobile */
-a.brand-logo, a.logo, .mobile-logo, .footer-logo{
-  display:inline-flex !important;
-  align-items:center !important;
-  text-decoration:none !important;
-}
-nav a.brand-logo, nav a.logo{
-  flex:0 0 auto !important;
-  min-width:220px !important;
-  max-width:320px !important;
-  height:72px !important;
-}
-nav a.brand-logo img, nav a.logo img,
-.mobile-logo img, .footer-logo img, .fl img{
-  display:block !important;
-  width:auto !important;
-  height:64px !important;
-  max-width:320px !important;
-  object-fit:contain !important;
-  opacity:1 !important;
-  filter:none !important;
-  mix-blend-mode:normal !important;
-}
-@media (max-width: 768px){
-  nav{min-height:74px !important}
-  nav a.brand-logo, nav a.logo{
-    min-width:150px !important;
-    max-width:220px !important;
-    height:58px !important;
-  }
-  nav a.brand-logo img, nav a.logo img,
-  .mobile-logo img, .footer-logo img, .fl img{
-    height:48px !important;
-    max-width:210px !important;
-  }
-}
-@media (max-width: 420px){
-  nav a.brand-logo, nav a.logo{
-    min-width:135px !important;
-    max-width:190px !important;
-    height:52px !important;
-  }
-  nav a.brand-logo img, nav a.logo img,
-  .mobile-logo img, .footer-logo img, .fl img{
-    height:42px !important;
-    max-width:185px !important;
-  }
-}
-
-
-/* EXACT COLOR LOGO FIX */
-a.brand-logo img,
-a.logo img,
-.mobile-logo img,
-.footer-logo img,
-.fl img{
-  opacity: 1 !important;
-  filter: none !important;
-  mix-blend-mode: normal !important;
-  image-rendering: -webkit-optimize-contrast !important;
-  object-fit: contain !important;
-  background: transparent !important;
-}
-nav a.brand-logo, nav a.logo{
-  display:inline-flex !important;
-  align-items:center !important;
-  min-height:72px !important;
-}
-nav a.brand-logo img, nav a.logo img{
-  height:64px !important;
-  width:auto !important;
-  max-width:320px !important;
-}
-@media (max-width:768px){
-  nav a.brand-logo img, nav a.logo img,
-  .mobile-logo img{
-    height:44px !important;
-    width:auto !important;
-    max-width:200px !important;
-  }
-}
-
-
-/* CACHE-BUSTER LOGO FIX */
-a.brand-logo, a.logo, .mobile-logo, .footer-logo {opacity:1 !important; filter:none !important;}
-a.brand-logo img, a.logo img, .mobile-logo img, .footer-logo img, header img[src*="logo"]{
-  opacity:1 !important;
-  filter:none !important;
-  mix-blend-mode:normal !important;
-  object-fit:contain !important;
-  image-rendering:auto !important;
-  background:transparent !important;
-}
-nav a.brand-logo img, nav a.logo img{height:64px !important; width:auto !important; max-width:320px !important;}
-@media (max-width:768px){ nav a.brand-logo img, nav a.logo img, .mobile-logo img{height:44px !important; max-width:220px !important;} }
-
-</style>
-<!-- Google Analytics 4 -->
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-P1Q2TSMVNJ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-P1Q2TSMVNJ');
-</script>
-<style>@font-face{font-display:swap}</style>
-<meta content="es_CO" property="og:locale"/>
-<meta content="ViajeroLatam" property="og:site_name"/>
-<style id="no-travel-icons">.travel-icons,#travel-canvas,canvas{display:none!important}</style>
-<style id="webp-hero">@supports(background-image:url("data:image/webp,")){.hero,section.hero{background-image:url('/hero-bg.webp')!important}}</style>
-
-<style id="resultados-minimal-fix">
-/* Resultados — diseño compacto/minimalista y corrección de espacios */
-body{background:#F6F8FB!important}
-nav{min-height:56px!important;padding:0 5%!important}
-nav .brand-logo img{height:38px!important;max-width:170px!important;width:auto!important;object-fit:contain!important;display:block!important}
-.nav-back{font-size:12px!important}
-.search-bar{padding:10px 5%!important;background:#fff!important}
-.search-inner{max-width:1180px!important;gap:7px!important}
-.search-pill{padding:7px 13px!important;border-radius:999px!important}
-.pill-label{font-size:9px!important;line-height:1.1!important}.pill-val{font-size:12px!important;line-height:1.2!important}
-.pill-btn{padding:8px 14px!important;font-size:12px!important}
-.page{max-width:1180px!important;margin:0 auto!important;padding:16px 22px 32px!important;display:grid!important;grid-template-columns:238px minmax(0,1fr)!important;gap:16px!important;align-items:start!important}
-.sidebar{top:72px!important;border-radius:16px!important;box-shadow:0 4px 20px rgba(11,31,58,.05)!important}
-.sidebar-header{padding:14px 16px 12px!important}.sidebar-header h3{font-size:14px!important}
-.filter-section{padding:12px 16px!important}.filter-title{font-size:10px!important;margin-bottom:8px!important}.check-item{padding:5px 0!important}.check-item label{font-size:12px!important}.dest-tab{font-size:11px!important;padding:4px 10px!important}
-.results-area{min-width:0!important;width:100%!important;display:block!important}
-.results-top{background:#fff;border:1px solid #E4EDF5;border-radius:18px;padding:16px 18px;margin:0 0 12px;display:flex;align-items:center;justify-content:space-between;gap:14px;box-shadow:0 4px 18px rgba(11,31,58,.04)}
-.results-top h1{font-family:var(--font-display,Georgia,serif);font-size:clamp(24px,2.7vw,34px)!important;line-height:1.04!important;color:#0B1F3A;margin:0 0 6px!important;letter-spacing:-.02em!important}
-.results-top p{font-size:13px!important;color:#4A647E!important;margin:0!important;line-height:1.5!important}.results-top strong{color:#0B1F3A}
-.results-toolbar{background:#fff;border:1px solid #E4EDF5;border-radius:14px;padding:10px 12px;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
-.results-toolbar-left{display:flex;align-items:center;gap:7px;font-size:12px;color:#4A647E;min-width:0}.results-toolbar-left span{white-space:normal}.results-toolbar-right{display:flex;align-items:center;gap:8px}.sort-select,#sort-select{font-size:12px!important;font-weight:700!important;border-radius:999px!important;background:#F6F8FB!important;padding:7px 12px!important}.sc-btn{display:inline-flex!important;align-items:center!important;justify-content:center!important;text-decoration:none!important;margin-left:0!important;background:#00C4A1!important;color:#0B1F3A!important;border:none!important;border-radius:999px!important;padding:9px 14px!important;font-size:12px!important;font-weight:800!important;white-space:nowrap!important}
-#cards-container{width:100%!important}.card{margin-bottom:10px!important;border-radius:16px!important;border:1px solid #E4EDF5!important;box-shadow:0 4px 20px rgba(11,31,58,.045)!important;animation:none!important}.card:hover{transform:none!important;box-shadow:0 8px 28px rgba(11,31,58,.08)!important}.card.recommended{border:1.5px solid #00C4A1!important}.card-badge-row{padding:5px 14px!important;font-size:10px!important;letter-spacing:.03em!important}.card-body{padding:14px 16px!important;display:grid!important;grid-template-columns:72px minmax(0,1fr) 148px!important;gap:14px!important;align-items:center!important}.card-logo-block{min-width:0!important;gap:5px!important}.card-logo{width:42px!important;height:42px!important;border-radius:12px!important;font-size:14px!important}.card-name{font-size:12px!important;line-height:1.2!important}.card-stars{font-size:10px!important}.card-reviews{font-size:9px!important}.card-plan{font-size:14px!important;margin-bottom:3px!important}.card-coverage{gap:4px!important}.coverage-pills{gap:5px!important;margin-bottom:5px!important}.cpill{font-size:10px!important;padding:3px 7px!important}.cpill svg{width:10px!important;height:10px!important}.coverage-row{font-size:11.5px!important;line-height:1.35!important}.cov-icon{width:12px!important;height:12px!important}.card-extras{margin-top:5px!important;gap:4px!important}.extra{font-size:10px!important;padding:3px 7px!important}.card-price-block{min-width:0!important;align-items:stretch!important;gap:7px!important}.badge-schengen{font-size:10px!important;padding:4px 7px!important}.price-from{text-align:right!important;font-size:10px!important}.price-main{font-size:30px!important}.price-main sup{font-size:14px!important}.price-per{font-size:10px!important;text-align:right!important}.price-saving{font-size:11px!important;padding:3px 7px!important}.btn-contract{width:100%!important;display:flex!important;align-items:center!important;justify-content:center!important;text-decoration:none!important;background:#0B1F3A!important;color:#fff!important;border:none!important;border-radius:999px!important;padding:10px 12px!important;font-family:var(--font-body,'Plus Jakarta Sans',sans-serif)!important;font-size:12px!important;font-weight:800!important;line-height:1.1!important;cursor:pointer!important}.btn-contract:hover{background:#1A3558!important;transform:none!important}.card.recommended .btn-contract{background:#00C4A1!important;color:#0B1F3A!important}.btn-details{padding:8px 10px!important;font-size:11px!important}.card-details{padding:14px 16px!important}.details-grid{gap:12px!important}
-@media(max-width:900px){.page{grid-template-columns:1fr!important;padding:12px!important}.sidebar{display:none!important}.results-top{flex-direction:column;align-items:flex-start;padding:15px}.sc-btn{width:100%}.card-body{grid-template-columns:1fr!important}.card-logo-block{flex-direction:row!important;align-items:center!important}.card-price-block{background:#F6F8FB!important;border-radius:14px!important;padding:12px!important;display:grid!important;grid-template-columns:1fr auto!important;align-items:center!important}.badge-schengen{display:none!important}.btn-contract{grid-column:1/-1!important}.price-from,.price-per,.price-main{text-align:left!important}.results-toolbar{align-items:flex-start}.results-toolbar-right{width:100%;justify-content:space-between}#sort-select{flex:1}}
-@media(max-width:420px){.search-inner{flex-wrap:nowrap!important;overflow-x:auto!important}.results-top h1{font-size:24px!important}.card-price-block{grid-template-columns:1fr!important}.btn-contract{width:100%!important}}
-</style>
-
-
-<style id="cop-price-style">
-/* COP approximate currency display for Colombia → España */
-.currency-note-cop{
-  display:none;
-  margin:0 0 12px;
-  padding:10px 14px;
-  border:1px solid rgba(0,196,161,.24);
-  background:rgba(0,196,161,.08);
-  color:#0B1F3A;
-  border-radius:14px;
-  font-size:12px;
-  line-height:1.45;
-}
-.currency-note-cop.is-visible{display:block}
-.price-cop{
-  margin-top:4px;
-  font-size:13px;
-  font-weight:900;
-  color:#0B1F3A;
-  text-align:right;
-}
-.price-cop-day{
-  margin-top:1px;
-  font-size:10.5px;
-  color:#6B7D92;
-  text-align:right;
-}
-@media(max-width:900px){
-  .price-cop,.price-cop-day{text-align:left!important}
-}
-</style>
-</head>
-<body>
-<!-- H1 principal movido al bloque de resultados para evitar espacio superior -->
-<!-- MOBILE NAV -->
-<div id="mob-overlay" onclick="closeMobMenu()" style="display:none;position:fixed;inset:0;background:rgba(11,31,58,.6);z-index:998;backdrop-filter:blur(4px)"></div>
-<div id="mob-drawer" style="display:none;position:fixed;top:0;right:0;bottom:0;width:min(300px,85vw);background:#fff;z-index:999;box-shadow:-8px 0 40px rgba(11,31,58,.25);flex-direction:column;transform:translateX(100%);transition:transform .28s cubic-bezier(.4,0,.2,1)">
-<div style="display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:#0B1F3A;flex-shrink:0">
-<img alt="ViajeroLatam" src="/logo-vl-original-20260528.png"/>
-<button onclick="closeMobMenu()" style="width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.12);border:none;color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center">✕</button>
-</div>
-<div style="flex:1;overflow-y:auto">
-<a href="/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">🏠 Inicio</a>
-<a href="/blog/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">📚 Artículos</a>
-<a href="/visa-schengen/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">🛂 Visa Schengen</a>
-<a href="/blog/etias-colombianos/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">⚡ ETIAS 2026</a>
-<a href="/seguro-viaje/colombia-a-espana/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">🇨🇴 Colombia a España</a>
-<a href="/seguro-viaje/bogota-a-espana/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">🏙️ Bogotá → España</a>
-<a href="/seguro-viaje/medellin-a-espana/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">🏙️ Medellín → España</a>
-<a href="/seguro-viaje/cali-a-espana/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">🏙️ Cali → España</a>
-</div>
-<div style="padding:16px 18px;border-top:1px solid #E4EDF5;flex-shrink:0">
-<a href="/resultados/" onclick="closeMobMenu()" style="display:flex;align-items:center;justify-content:center;gap:8px;background:#00C4A1;color:#0B1F3A;padding:14px;border-radius:50px;font-size:15px;font-weight:700;text-decoration:none">🔍 Comparar seguros gratis</a>
-</div>
-</div>
-<style>
+/* ── MOBILE DRAWER ── */
 .mob-btn{display:none;flex-direction:column;justify-content:center;gap:5px;width:40px;height:40px;padding:8px;border-radius:10px;border:1.5px solid rgba(11,31,58,.15);background:rgba(11,31,58,.06);cursor:pointer;flex-shrink:0}
 .mob-btn span{display:block;height:2px;width:100%;background:#0B1F3A;border-radius:2px;transition:all .25s}
 .mob-btn.is-open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
@@ -980,436 +347,263 @@ nav .brand-logo img{height:38px!important;max-width:170px!important;width:auto!i
 .mob-btn.is-open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 #mob-drawer.is-open{transform:translateX(0)!important}
 @media(max-width:768px){.mob-btn{display:flex!important}}
+.mobile-filter-drawer{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.5);display:none}
+.mobile-filter-drawer.open{display:block!important}
+.mobile-filter-inner{position:absolute;bottom:0;left:0;right:0;background:#fff;border-radius:20px 20px 0 0;padding:20px;max-height:85vh;overflow-y:auto}
 
-/* ═══════════════════════════════════════════
-   MOBILE COMPLETE OVERHAUL - viajerolatam
-   ═══════════════════════════════════════════ */
-@media screen and (max-width: 768px) {
-
-  /* NAV */
-  nav { padding: 0 16px !important; min-height: 56px !important; }
-  .nav-links { display: none !important; }
-  .mob-btn { display: flex !important; }
-
-  /* SEARCH BAR — horizontal scroll */
-  .search-bar { padding: 10px 12px !important; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  .search-inner { flex-wrap: nowrap !important; min-width: max-content; gap: 6px !important; }
-  .search-pill { padding: 7px 12px !important; font-size: 12px !important; flex-shrink: 0; }
-  .pill-label { font-size: 10px !important; }
-  .pill-val { font-size: 12px !important; }
-  .pill-btn { padding: 7px 12px !important; font-size: 12px !important; }
-  .mobile-filters-btn { display: flex !important; flex-shrink: 0; }
-
-  /* EDIT PANEL */
-  #edit-panel > div > div[style*="grid-template-columns"] {
-    grid-template-columns: 1fr 1fr !important;
-  }
-
-  /* PAGE LAYOUT — single column */
-  .page { 
-    grid-template-columns: 1fr !important; 
-    padding: 12px !important; 
-    gap: 12px !important;
-  }
-  
-  /* SIDEBAR — hidden, show via drawer */
-  .sidebar { display: none !important; }
-  .mobile-filter-drawer {
-    position: fixed; inset: 0; z-index: 300;
-    background: rgba(0,0,0,.5);
-    display: none;
-  }
-  .mobile-filter-drawer.open { display: block !important; }
-  .mobile-filter-inner {
-    position: absolute; bottom: 0; left: 0; right: 0;
-    background: #fff; border-radius: 20px 20px 0 0;
-    padding: 20px; max-height: 85vh; overflow-y: auto;
-  }
-
-  /* CARD — compact mobile layout */
-  .card { margin-bottom: 10px !important; border-radius: 14px !important; }
-  .card-badge-row { padding: 5px 14px !important; font-size: 10px !important; }
-  
-  /* Card body — vertical stack */
-  .card-body {
-    grid-template-columns: 1fr !important;
-    padding: 14px !important;
-    gap: 12px !important;
-  }
-  
-  /* Logo block — horizontal on mobile */
-  .card-logo-block {
-    flex-direction: row !important;
-    align-items: center !important;
-    gap: 12px !important;
-    min-width: unset !important;
-  }
-  .card-logo { width: 44px !important; height: 44px !important; font-size: 14px !important; flex-shrink: 0; }
-  .card-name { font-size: 14px !important; font-weight: 700 !important; text-align: left !important; }
-  .card-stars { font-size: 12px !important; }
-  .card-reviews { text-align: left !important; }
-
-  /* Coverage block */
-  .card-plan { font-size: 14px !important; }
-  .cpill { font-size: 10px !important; padding: 3px 8px !important; }
-  .coverage-row { font-size: 12px !important; }
-
-  /* PRICE BLOCK — horizontal, full width */
-  .card-price-block {
-    flex-direction: row !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    min-width: unset !important;
-    width: 100% !important;
-    background: #F0F4F8;
-    border-radius: 12px;
-    padding: 12px 14px !important;
-    gap: 12px !important;
-  }
-  .price-main { font-size: 28px !important; }
-  .btn-contract { 
-    width: auto !important; 
-    padding: 11px 20px !important; 
-    font-size: 13px !important;
-    white-space: nowrap;
-  }
-  .btn-details { 
-    display: none !important; 
-  }
-  .badge-schengen { 
-    display: none !important; 
-  }
-  .price-from { font-size: 10px !important; text-align: left; }
-  .price-per { font-size: 10px !important; }
-
-  /* DETAILS expand */
-  .card-details { padding: 14px !important; }
-  .details-grid { grid-template-columns: 1fr 1fr !important; gap: 10px !important; }
-  .detail-val { font-size: 13px !important; }
-
-  /* SLIM BAR */
-  #count-slim { display: none; }
-
-  /* No results */
-  .no-results { padding: 24px 16px !important; }
-}
-
-@media screen and (max-width: 380px) {
-  .card-price-block { flex-direction: column !important; align-items: flex-start !important; }
-  .btn-contract { width: 100% !important; }
-  .price-main { font-size: 24px !important; }
-}
-
+/* ── EDIT PANEL ── */
+#edit-panel{display:none;background:#fff;border-bottom:1px solid var(--border);padding:20px 5%;position:relative;z-index:90}
 </style>
+
+<style id="vl-footer-css">
+.vl-footer{background:#0B1F3A;color:rgba(255,255,255,.68);padding:52px 5% 0;font-family:'Plus Jakarta Sans',sans-serif;width:100%;box-sizing:border-box}
+.vl-footer-inner{max-width:1120px;margin:0 auto;width:100%;box-sizing:border-box}
+.vl-footer-grid{display:grid;grid-template-columns:1.6fr repeat(3,1fr);gap:40px;align-items:start;padding-bottom:40px;width:100%;box-sizing:border-box}
+.vl-footer-brand{min-width:0}
+.vl-footer-brand a{display:inline-block;line-height:0}
+.vl-footer-brand img{height:68px;width:auto;max-width:260px;object-fit:contain;display:block;margin-bottom:14px;opacity:1!important;filter:none!important;mix-blend-mode:normal!important}
+.vl-footer-brand p{color:rgba(255,255,255,.58);font-size:13px;line-height:1.7;max-width:280px;margin-bottom:16px}
+.vl-footer-social{display:flex;gap:8px;flex-wrap:wrap}
+.vl-footer-social a{width:36px;height:36px;display:inline-flex;align-items:center;justify-content:center;border-radius:10px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.7)!important;font-size:12px;font-weight:700;text-decoration:none!important;transition:background .2s;flex-shrink:0}
+.vl-footer-social a:hover{background:rgba(0,196,161,.2);color:#75D8BC!important}
+.vl-footer-col{min-width:0}
+.vl-footer-col h4{color:#fff;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin:0 0 14px;white-space:nowrap}
+.vl-footer-col ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:9px}
+.vl-footer-col a{color:rgba(255,255,255,.62)!important;text-decoration:none!important;font-size:13px;font-weight:500;transition:color .2s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+.vl-footer-col a:hover{color:#75D8BC!important}
+.vl-footer-bottom{border-top:1px solid rgba(255,255,255,.10);padding:18px 0 22px;display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;font-size:12px;color:rgba(255,255,255,.38)}
+.vl-footer-bottom .vl-legal{display:flex;gap:16px;flex-wrap:wrap}
+.vl-footer-bottom a{color:rgba(255,255,255,.38)!important;text-decoration:none!important;transition:color .2s;white-space:nowrap}
+.vl-footer-bottom a:hover{color:rgba(255,255,255,.7)!important}
+@media(max-width:1000px){
+  .vl-footer-grid{grid-template-columns:1fr 1fr 1fr;gap:28px}
+  .vl-footer-brand{grid-column:1/-1;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:start}
+  .vl-footer-brand p{margin-bottom:0}
+}
+@media(max-width:700px){
+  .vl-footer{padding:36px 20px 0}
+  .vl-footer-grid{grid-template-columns:1fr 1fr;gap:24px;padding-bottom:28px}
+  .vl-footer-brand{grid-column:1/-1;display:block}
+  .vl-footer-brand img{height:54px;margin-bottom:12px}
+  .vl-footer-brand p{max-width:100%;font-size:12px}
+  .vl-footer-col h4{font-size:10px}
+  .vl-footer-col a{font-size:12px}
+  .vl-footer-bottom{flex-direction:column;align-items:flex-start;gap:8px;padding:14px 0 20px}
+  .vl-footer-bottom .vl-legal{gap:12px}
+}
+@media(max-width:420px){
+  .vl-footer{padding:32px 16px 0}
+  .vl-footer-grid{grid-template-columns:1fr 1fr;gap:20px}
+  .vl-footer-col a{white-space:normal}
+}
+#vl-sticky{display:none;position:fixed;bottom:0;left:0;right:0;z-index:990;padding:10px 14px 14px;background:linear-gradient(to top,rgba(255,255,255,1) 55%,rgba(255,255,255,0));pointer-events:none}
+#vl-sticky a{display:flex;align-items:center;justify-content:center;gap:8px;background:#00C4A1;color:#0B1F3A!important;padding:14px;border-radius:50px;font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:700;text-decoration:none!important;box-shadow:0 4px 20px rgba(0,196,161,.4);pointer-events:all;transition:background .2s,transform .15s}
+#vl-sticky a:active{transform:scale(.97)}
+#vl-sticky p{font-size:11px;color:#8FA4B8;text-align:center;margin-top:5px;font-family:'Plus Jakarta Sans',sans-serif}
+@media(max-width:768px){#vl-sticky{display:block}body{padding-bottom:86px!important}}
+@media(min-width:769px){#vl-sticky{display:none!important}}
+@media(orientation:landscape) and (max-height:500px){#vl-sticky{display:none!important}body{padding-bottom:0!important}}
+</style>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P1Q2TSMVNJ"></script>
 <script>
-function openMobMenu(){var d=document.getElementById('mob-drawer'),o=document.getElementById('mob-overlay'),b=document.querySelector('.mob-btn');if(!d)return;d.style.display='flex';o.style.display='block';requestAnimationFrame(function(){d.classList.add('is-open');if(b)b.classList.add('is-open');});document.body.style.overflow='hidden';}
-function closeMobMenu(){var d=document.getElementById('mob-drawer'),o=document.getElementById('mob-overlay'),b=document.querySelector('.mob-btn');if(!d)return;d.classList.remove('is-open');if(b)b.classList.remove('is-open');document.body.style.overflow='';setTimeout(function(){d.style.display='none';o.style.display='none';},280);}
-document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu();});
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P1Q2TSMVNJ');
 </script>
-<!-- NAV -->
-<nav>
-<a aria-label="ViajeroLatam inicio" class="brand-logo" href="/"><img alt="ViajeroLatam" src="/logo-vl-original-20260528.png"/></a>
-<a class="nav-back" href="/">
-<svg viewbox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"></path></svg>
-    Nueva búsqueda
-  </a>
-<button aria-label="Menú" class="mob-btn" onclick="openMobMenu()"><span></span><span></span><span></span></button>
-</nav>
-<!-- SEARCH BAR -->
-<div class="search-bar">
-<div class="search-inner">
-<div class="search-pill">
-<div><div class="pill-label">Desde</div><div class="pill-val">Colombia 🇨🇴</div></div>
-</div>
-<div class="search-pill">
-<div><div class="pill-label">Destino</div><div class="pill-val">España / Schengen 🇪🇺</div></div>
-</div>
-<div class="search-pill">
-<div><div class="pill-label">Fechas</div><div class="pill-val">12 jun → 27 jun</div></div>
-</div>
-<div class="search-pill">
-<div><div class="pill-label">Viajeros</div><div class="pill-val">1 adulto</div></div>
-</div>
-<button class="pill-btn" onclick="toggleEditPanel()" style="margin-left:auto">
-<svg viewbox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
-      Editar búsqueda
-    </button>
-<button class="mobile-filters-btn" onclick="openMobFilters()">
-<svg viewbox="0 0 24 24"><line x1="4" x2="20" y1="6" y2="6"></line><line x1="8" x2="16" y1="12" y2="12"></line><line x1="11" x2="13" y1="18" y2="18"></line></svg>
-      Filtros
-    </button>
-</div>
-</div>
-<!-- PAGE -->
-<div id="edit-panel" style="display:none;background:#fff;border-bottom:1px solid #E4EDF5;padding:20px 5%;position:relative;z-index:90">
-<div style="max-width:900px;margin:0 auto">
-<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
-<h3 style="font-size:15px;font-weight:700;color:#0B1F3A">Editar búsqueda</h3>
-<button onclick="toggleEditPanel()" style="background:none;border:none;cursor:pointer;font-size:20px;color:#4A647E;padding:4px">✕</button>
-</div>
-<div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;align-items:end">
-<div>
-<label style="font-size:11px;font-weight:700;color:#8FA4B8;text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:6px">Voy desde</label>
-<select id="ep-origen" style="width:100%;padding:10px 12px;border:1.5px solid #E4EDF5;border-radius:10px;font-family:inherit;font-size:14px;color:#0B1F3A;background:#fff;outline:none">
-<option value="colombia">🇨🇴 Colombia</option>
-<option value="mexico">🇲🇽 México</option>
-<option value="argentina">🇦🇷 Argentina</option>
-<option value="venezuela">🇻🇪 Venezuela</option>
-<option value="peru">🇵🇪 Perú</option>
-<option value="chile">🇨🇱 Chile</option>
-</select>
-</div>
-<div>
-<label style="font-size:11px;font-weight:700;color:#8FA4B8;text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:6px">Destino</label>
-<select id="ep-destino" style="width:100%;padding:10px 12px;border:1.5px solid #E4EDF5;border-radius:10px;font-family:inherit;font-size:14px;color:#0B1F3A;background:#fff;outline:none">
-<option value="europa">🇪🇺 España / Schengen</option>
-<option value="eeuu">🇺🇸 EEUU</option>
-<option value="mundial">🌍 Mundial</option>
-</select>
-</div>
-<div>
-<label style="font-size:11px;font-weight:700;color:#8FA4B8;text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:6px">Fechas (días)</label>
-<input id="ep-dias" max="365" min="1" style="width:100%;padding:10px 12px;border:1.5px solid #E4EDF5;border-radius:10px;font-family:inherit;font-size:14px;color:#0B1F3A;background:#fff;outline:none" type="number" value="15"/>
-</div>
-<div>
-<label style="font-size:11px;font-weight:700;color:#8FA4B8;text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:6px">Viajeros</label>
-<select id="ep-viajeros" style="width:100%;padding:10px 12px;border:1.5px solid #E4EDF5;border-radius:10px;font-family:inherit;font-size:14px;color:#0B1F3A;background:#fff;outline:none">
-<option value="1">1 persona</option>
-<option value="2">2 personas</option>
-<option value="3">3 personas</option>
-<option value="4">4+ personas</option>
-</select>
-</div>
-</div>
-<div style="display:flex;gap:10px;margin-top:14px;justify-content:flex-end">
-<button onclick="toggleEditPanel()" style="padding:10px 20px;border:1.5px solid #E4EDF5;border-radius:50px;background:#fff;font-family:inherit;font-size:13px;font-weight:600;color:#4A647E;cursor:pointer">Cancelar</button>
-<button onclick="applyEditSearch()" style="padding:10px 24px;border:none;border-radius:50px;background:#00C4A1;font-family:inherit;font-size:13px;font-weight:700;color:#0B1F3A;cursor:pointer">Actualizar resultados →</button>
-</div>
-</div>
-</div>
 
-<div class="page">
-<!-- SIDEBAR -->
-<aside class="sidebar">
-<div class="sidebar-header">
-<h3>Filtros</h3>
-<button class="clear-btn" onclick="clearFilters()">Limpiar todo</button>
-</div>
-<div class="filter-section">
-<div class="filter-title">Destino</div>
-<div class="dest-tabs">
-<button class="dest-tab active" onclick="setDest(this,'europa')">🇪🇺 Europa</button>
-<button class="dest-tab" onclick="setDest(this,'eeuu')">🇺🇸 EEUU</button>
-<button class="dest-tab" onclick="setDest(this,'mundial')">🌍 Mundial</button>
-</div>
-</div>
-<div class="filter-section">
-<div class="filter-title">Precio máximo por día</div>
-<div class="price-range-display">
-<span class="price-val">€0</span>
-<span class="price-val" id="price-display">€5/día</span>
-</div>
-<input id="price-slider" max="10" min="1" oninput="onPriceChange(this)" type="range" value="5"/>
-</div>
-<div class="filter-section">
-<div class="filter-title">Cobertura médica mínima</div>
-<div class="check-item"><input checked="" id="c1" onchange="applyFilters()" type="checkbox"/><label for="c1">30.000 € (Schengen mínimo)</label></div>
-<div class="check-item"><input id="c2" onchange="applyFilters()" type="checkbox"/><label for="c2">150.000 €</label></div>
-<div class="check-item"><input id="c3" onchange="applyFilters()" type="checkbox"/><label for="c3">500.000 €</label></div>
-<div class="check-item"><input id="c4" onchange="applyFilters()" type="checkbox"/><label for="c4">Ilimitada</label></div>
-</div>
-<div class="filter-section">
-<div class="filter-title">Características</div>
-<div class="check-item"><input checked="" id="f1" onchange="applyFilters()" type="checkbox"/><label for="f1">Válido Visa Schengen</label><span class="check-count">8</span></div>
-<div class="check-item"><input id="f2" onchange="applyFilters()" type="checkbox"/><label for="f2">Sin franquicia</label><span class="check-count">6</span></div>
-<div class="check-item"><input id="f3" onchange="applyFilters()" type="checkbox"/><label for="f3">Deportes de aventura</label><span class="check-count">4</span></div>
-<div class="check-item"><input id="f4" onchange="applyFilters()" type="checkbox"/><label for="f4">Cancelación de viaje</label><span class="check-count">5</span></div>
-<div class="check-item"><input id="f5" onchange="applyFilters()" type="checkbox"/><label for="f5">Telemedicina 24/7</label><span class="check-count">6</span></div>
-<div class="check-item"><input id="f6" onchange="applyFilters()" type="checkbox"/><label for="f6">Equipaje incluido</label><span class="check-count">7</span></div>
-</div>
-<div class="filter-section" style="border-bottom:none">
-<div class="filter-title">Tipo de póliza</div>
-<div class="check-item"><input checked="" id="t1" onchange="applyFilters()" type="checkbox"/><label for="t1">Viaje individual</label></div>
-<div class="check-item"><input id="t2" onchange="applyFilters()" type="checkbox"/><label for="t2">Familiar</label></div>
-<div class="check-item"><input id="t3" onchange="applyFilters()" type="checkbox"/><label for="t3">Anual multiviaje</label></div>
-</div>
-</aside>
-<!-- RESULTS -->
-<main class="results-area">
-  <section class="results-top" aria-labelledby="resultados-title">
-    <div>
-      <h1 id="resultados-title">Comparar seguros de viaje para España y Schengen</h1>
-      <p><strong>Resultados recomendados</strong> para Colombia → España. Compara precio, cobertura médica, repatriación y condiciones antes de contratar.</p>
-    </div>
-    <a class="sc-btn" href="/visa-schengen/">¿Qué es Schengen?</a>
-  </section>
+</head>
+<body>
 
-  <div class="results-toolbar">
-    <div class="results-toolbar-left">
-      <svg fill="none" height="14" stroke="#00C4A1" stroke-width="2.5" viewBox="0 0 24 24" width="14"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-      <span>Opciones válidas para Schengen · cobertura médica mínima 30.000 € · revisa siempre condiciones finales.</span>
-    </div>
-    <div class="results-toolbar-right">
-      <span id="count-slim" style="font-size:12px;color:#8FA4B8"></span>
-      <select id="sort-select" onchange="applySort(this.value)" class="sort-select">
+<!-- MOBILE NAV -->
+<!-- Banner Schengen ocultado temporalmente -->
+
+    <!-- Slim bar -->
+    <div class="slim-bar">
+      <div class="slim-trust">
+        <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+        <span id="count-slim">4 seguros encontrados · Colombia → España · 15 días</span>
+        <span id="currency-note" style="font-size:11px;color:#1D9E75;font-weight:600;background:rgba(29,158,117,.08);border-radius:4px;padding:2px 8px;margin-left:4px"></span>
+      </div>
+      <select id="sort-select" onchange="applySort(this.value)" style="font-size:12px;font-weight:600;color:#0B1F3A;background:#F0F4F8;border:1px solid #E4EDF5;border-radius:50px;padding:5px 12px;cursor:pointer;outline:none;font-family:inherit">
         <option value="recomendado">⭐ Recomendado</option>
         <option value="precio-asc">💶 Menor precio</option>
         <option value="precio-desc">Mayor precio</option>
         <option value="cobertura">🛡️ Mayor cobertura</option>
-        <option value="valoracion">Mejor valoración</option>
       </select>
     </div>
-  </div>
 
-  <div id="cop-currency-note" class="currency-note-cop">
-    Precios en euros y referencia aproximada en pesos colombianos para viajes Colombia → España. El precio final y el cambio pueden variar al contratar.
-  </div>
+    <div id="cards-container"></div>
 
-  <div id="cards-container"></div>
-  <div class="no-results" id="no-results" style="display:none">
-    <h3>Sin resultados</h3>
-    <p>Prueba a ajustar los filtros para ver más opciones.</p>
+    <div id="no-results" class="no-results" style="display:none">
+      <h3>Sin resultados</h3>
+      <p>Prueba a ajustar los filtros para ver más opciones.</p>
+    </div>
+
+    <!-- ✈️ VUELOS CTA — PASO 1 -->
+    <div id="vuelos-cta" style="margin:28px 0 8px;background:linear-gradient(135deg,#0B1F3A 0%,#1A3558 100%);border-radius:20px;padding:24px 28px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap">
+      <div style="display:flex;align-items:center;gap:16px;min-width:0">
+        <div style="font-size:36px;line-height:1;flex-shrink:0">✈️</div>
+        <div style="min-width:0">
+          <div style="font-family:Georgia,'DM Serif Display',serif;font-size:19px;font-weight:700;color:#fff;line-height:1.2;margin-bottom:4px">¿Todavía buscas vuelo?</div>
+          <div style="font-size:13px;color:rgba(255,255,255,.6);line-height:1.4">Compara precios en Google Flights, Skyscanner y Kayak desde <span id="vuelos-origen-label">Colombia</span>.</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;flex-shrink:0" id="vuelos-btn-group">
+        <a id="vuelos-google" href="https://www.google.com/travel/flights" target="_blank" rel="nofollow noopener" style="display:inline-flex;align-items:center;gap:6px;padding:11px 18px;border-radius:999px;background:#00C4A1;color:#0B1F3A;font-size:13px;font-weight:700;text-decoration:none;white-space:nowrap">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13"/><path d="M22 2L15 22l-4-9-9-4 19-7z"/></svg>
+          Google Flights
+        </a>
+        <a id="vuelos-skyscanner" href="https://www.skyscanner.net" target="_blank" rel="nofollow noopener" style="display:inline-flex;align-items:center;gap:6px;padding:11px 18px;border-radius:999px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:13px;font-weight:700;text-decoration:none;white-space:nowrap">
+          Skyscanner
+        </a>
+        <a id="vuelos-kayak" href="https://www.kayak.com/flights" target="_blank" rel="nofollow noopener" style="display:inline-flex;align-items:center;gap:6px;padding:11px 18px;border-radius:999px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:13px;font-weight:700;text-decoration:none;white-space:nowrap">
+          Kayak
+        </a>
+      </div>
+    </div>
+    <style>
+    @media(max-width:600px){
+      #vuelos-cta{padding:18px 16px}
+      #vuelos-btn-group{width:100%}
+      #vuelos-btn-group a{flex:1;justify-content:center;min-width:0}
+    }
+    </style>
+  </main>
+</div>
+
+<!-- EXIT INTENT -->
+<div id="exit-overlay" style="display:none;position:fixed;inset:0;background:rgba(11,31,58,.65);z-index:9999;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(6px)">
+  <div id="exit-box" style="background:#fff;border-radius:20px;padding:32px 28px;max-width:420px;width:100%;position:relative;box-shadow:0 20px 60px rgba(11,31,58,.25)">
+    <button onclick="closeExit()" style="position:absolute;top:12px;right:12px;width:30px;height:30px;border-radius:50%;background:#F0F4F8;border:none;cursor:pointer;font-size:16px;color:#4A647E">✕</button>
+    <div style="font-size:40px;text-align:center;margin-bottom:10px">✈️</div>
+    <h3 style="font-family:Georgia,serif;font-size:22px;color:#0B1F3A;text-align:center;margin-bottom:8px">¿Ya tienes seguro<br>para tu viaje?</h3>
+    <p style="font-size:13px;color:#4A647E;text-align:center;margin-bottom:16px">Compara IATI e Intermundial en 2 minutos. Gratis, en español.</p>
+    <div style="display:flex;gap:12px;justify-content:center;margin-bottom:16px;flex-wrap:wrap">
+      <span style="font-size:12px;color:#4A647E">✓ Desde €1.75/día</span>
+      <span style="font-size:12px;color:#4A647E">✓ Sin franquicia</span>
+      <span style="font-size:12px;color:#4A647E">✓ Cupón VIAJEROLATAM</span>
+    </div>
+    <a href="/resultados/" onclick="closeExit()" style="display:block;width:100%;background:#00C4A1;color:#0B1F3A;padding:14px;border-radius:50px;font-family:inherit;font-size:14px;font-weight:700;text-decoration:none;text-align:center;margin-bottom:8px">🔍 Comparar seguros gratis</a>
+    <button onclick="closeExit()" style="display:block;width:100%;background:none;border:none;font-family:inherit;font-size:12px;color:#8FA4B8;cursor:pointer;text-decoration:underline">Ahora no</button>
   </div>
-</main>
+</div>
+
+<!-- MOBILE FILTER DRAWER -->
+<div id="mob-filter-overlay" class="mobile-filter-drawer" onclick="closeMobFilters()">
+  <div class="mobile-filter-inner" onclick="event.stopPropagation()">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+      <h3 style="font-size:15px;font-weight:700;color:#0B1F3A">Filtrar resultados</h3>
+      <button onclick="closeMobFilters()" style="background:none;border:none;cursor:pointer;font-size:22px;color:#4A647E">✕</button>
+    </div>
+    <div id="mob-filter-content"></div>
+    <button onclick="closeMobFilters()" style="width:100%;background:#00C4A1;color:#0B1F3A;border:none;border-radius:50px;padding:13px;font-weight:700;font-size:15px;font-family:inherit;cursor:pointer;margin-top:16px">Ver resultados</button>
+  </div>
 </div>
 
 <script>
+// ── DATA — precio base por persona/día ──
 const DATA = [
   {
-    id:2, recommended:false,
+    id:1, recommended:true,
     logo:'IA', logoColor:'#E6F1FB', logoText:'#185FA5',
     name:'IATI Seguros', plan:'Estrella',
     stars:5, reviews:6240,
-    price:34.90, priceDay:2.33,
-    saving:null,
+    priceDay:2.33, saving:null,
     medica:'Ilimitada', repatriacion:'Ilimitada', franquicia:'Sin franquicia',
     cancelacion:'Hasta 5.000 €', equipaje:'Hasta 1.200 €', demora:'Desde 6h',
     schengen:true, aventura:true, tele:true, anual:false,
-    extras:['Pago directo', 'Mascotas', 'Nacimiento prematuro'],
+    extras:['Pago directo','Mascotas','Nacimiento prematuro'],
     pillGreen:['Ilimitada','Pago directo'],
     pillAmber:['Cancelación incluida'],
     pillNavy:['Mascotas'],
-    score: 97,
-    ctaUrl: 'https://www.iatiseguros.com?r=84208681926165',
-    guideUrl: '/seguros/iati/'
+    score:97,
+    ctaUrl:'https://www.iatiseguros.com?r=84208681926165',
+    guideUrl:'/seguros/iati/'
   },
   {
-    id:3, recommended:false,
+    id:2, recommended:false,
     logo:'IM', logoColor:'#F0F4FF', logoText:'#2A4BB5',
-    name:'Intermundial', plan:'InterMundial Totaltravel',
+    name:'Intermundial', plan:'Totaltravel',
     stars:4, reviews:3180,
-    price:26.25, priceDay:1.75,
-    saving:'El más económico',
+    priceDay:1.75, saving:'El más económico',
     medica:'10.000.000 €', repatriacion:'Ilimitada', franquicia:'Sin franquicia',
     cancelacion:'Hasta 2.000 €', equipaje:'Hasta 900 €', demora:'Desde 4h',
     schengen:true, aventura:false, tele:true, anual:true,
-    extras:['Mejor precio', 'Multiviaje anual', 'Familiar disponible'],
+    extras:['Mejor precio','Multiviaje anual','Familiar disponible'],
     pillGreen:['10M € médicos','Precio imbatible'],
     pillAmber:[],
     pillNavy:['Anual disponible'],
-    score: 88,
-    ctaUrl: 'https://www.intermundial.es/afiliados/seguros-de-viaje-recomendado?utm_source=Affiliates&utm_medium=Affiliates&utm_campaign=General&utm_term=kbnnqvpvcy490&utm_content=kbnnqvpvcy490&coupon=VIAJEROLATAM',
-    guideUrl: '/seguros/intermundial/'
+    score:88,
+    ctaUrl:'https://www.intermundial.es/afiliados/seguros-de-viaje-recomendado?utm_source=Affiliates&utm_medium=Affiliates&utm_campaign=General&utm_term=kbnnqvpvcy490&utm_content=kbnnqvpvcy490&coupon=VIAJEROLATAM',
+    guideUrl:'/seguros/intermundial/'
+  },
+  {
+    id:3, recommended:false,
+    logo:'AX', logoColor:'#EEF2FF', logoText:'#1B3A8A',
+    name:'AXA', plan:'Seguro de viaje',
+    stars:4, reviews:2100,
+    priceDay:2.24, saving:'Marca reconocida',
+    medica:'150.000 €', repatriacion:'Incluida', franquicia:'Sin franquicia',
+    cancelacion:'Opcional', equipaje:'Hasta 1.000 €', demora:'Según plan',
+    schengen:true, aventura:false, tele:false, anual:false,
+    extras:['Marca reconocida','Web en español','Comparar condiciones'],
+    pillGreen:['Seguro de viaje'],
+    pillAmber:['Revisar residencia'],
+    pillNavy:['AXA'],
+    score:82,
+    ctaUrl:'https://clk.tradedoubler.com/click?p=343758&a=3485639',
+    guideUrl:'/seguros/axa/'
   },
   {
     id:4, recommended:false,
     logo:'HO', logoColor:'#EAF7F4', logoText:'#137A70',
     name:'Holins', plan:'Seguro de viaje',
     stars:4, reviews:950,
-    price:31.80, priceDay:2.12,
-    saving:'Alternativa adicional',
-    medica:'Revisar en web oficial', repatriacion:'Revisar condiciones', franquicia:'Según plan',
-    cancelacion:'Opcional según plan', equipaje:'Según plan', demora:'Según plan',
+    priceDay:2.12, saving:'Alternativa adicional',
+    medica:'Revisar condiciones', repatriacion:'Revisar condiciones', franquicia:'Según plan',
+    cancelacion:'Opcional', equipaje:'Según plan', demora:'Según plan',
     schengen:true, aventura:false, tele:false, anual:false,
-    extras:['Web en español', 'Comparar condiciones', 'Alternativa adicional'],
+    extras:['Web en español','Comparar condiciones','Alternativa'],
     pillGreen:['Seguro de viaje'],
     pillAmber:['Revisar residencia'],
     pillNavy:['Alternativa'],
-    score: 76,
-    ctaUrl: 'https://clk.tradedoubler.com/click?p=301095&a=3485639',
-    guideUrl: '/seguros/holins/'
-  },
-  {
-    id:5, recommended:false,
-    logo:'AX', logoColor:'#EEF2FF', logoText:'#1B3A8A',
-    name:'AXA', plan:'Seguro de viaje',
-    stars:4, reviews:2100,
-    price:33.60, priceDay:2.24,
-    saving:'Marca reconocida',
-    medica:'Revisar en web oficial', repatriacion:'Revisar condiciones', franquicia:'Según plan',
-    cancelacion:'Opcional según plan', equipaje:'Según plan', demora:'Según plan',
-    schengen:true, aventura:false, tele:false, anual:false,
-    extras:['Marca reconocida', 'Web en español', 'Comparar condiciones'],
-    pillGreen:['Seguro de viaje'],
-    pillAmber:['Revisar residencia'],
-    pillNavy:['AXA'],
-    score: 82,
-    ctaUrl: 'https://clk.tradedoubler.com/click?p=343758&a=3485639',
-    guideUrl: '/seguros/axa/'
+    score:76,
+    ctaUrl:'https://clk.tradedoubler.com/click?p=301095&a=3485639',
+    guideUrl:'/seguros/holins/'
   }
 ];
 
-const EUR_TO_COP_APPROX = 3720; // Ajuste aproximado para mostrar referencia en COP.
-window.currentSearchOrigin = (new URLSearchParams(window.location.search).get('origen') || 'colombia').toLowerCase();
-window.currentSearchDest = (new URLSearchParams(window.location.search).get('destino') || 'espana-schengen').toLowerCase();
-
-function shouldShowCOP(){
-  const origin = String(window.currentSearchOrigin || '').toLowerCase();
-  const dest = String(window.currentSearchDest || '').toLowerCase();
-  return origin.includes('colombia') && (dest.includes('espana') || dest.includes('españa') || dest.includes('schengen') || dest.includes('europa'));
-}
-
-function formatCOPApprox(eurAmount){
-  const amount = Math.round((Number(eurAmount) || 0) * EUR_TO_COP_APPROX / 100) * 100;
-  return '$' + amount.toLocaleString('es-CO') + ' COP';
-}
-
-function updateCOPNote(){
-  const el = document.getElementById('cop-currency-note');
-  if(!el) return;
-  if(shouldShowCOP()){
-    el.classList.add('is-visible');
-    el.innerHTML = 'También mostramos precio aproximado en pesos colombianos: <strong>1 € ≈ $3.720 COP</strong>. Es solo una referencia; el pago final lo calcula cada aseguradora.';
-  } else {
-    el.classList.remove('is-visible');
-  }
-}
-
+// ── ESTADO GLOBAL ──
+let diasViaje = 15;
+let numViajeros = 1;
+let currentOrigen = 'colombia'; // default, updated from URL/panel
 let activeData = [...DATA];
-let expandedCard = null;
 
-function starStr(n){return '★'.repeat(n)+'☆'.repeat(5-n)}
+// precio total = priceDay × días × personas
+function calcPrice(d){ return +(d.priceDay * diasViaje * numViajeros).toFixed(2); }
+function starStr(n){ return '★'.repeat(n)+'☆'.repeat(5-n); }
 
-
-
-function escAttr(v){return String(v || '').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
-function escJs(v){return String(v || '').replace(/\\/g,'\\\\').replace(/'/g,"\\'");}
-function trackContract(name, plan){
-  if(typeof gtag === 'function'){
-    gtag('event','click_contratar',{affiliate:name,plan:plan,page_location:window.location.href});
-    var low = String(name || '').toLowerCase();
-    if(low.indexOf('iati') !== -1) gtag('event','click_affiliate_iati',{event_category:'affiliate',event_label:plan,page_location:window.location.href});
-    if(low.indexOf('inter') !== -1) gtag('event','click_affiliate_intermundial',{event_category:'affiliate',event_label:plan,page_location:window.location.href});
-    if(low.indexOf('holins') !== -1) gtag('event','click_affiliate_holins',{event_category:'affiliate',event_label:plan,page_location:window.location.href});
-    if(low.indexOf('axa') !== -1) gtag('event','click_affiliate_axa',{event_category:'affiliate',event_label:plan,page_location:window.location.href});
-  }
-}
+// ── RENDER CARD ──
 function renderCard(d){
-  const rec = d.recommended ? 'recommended' : '';
-  const badge = d.recommended ? `<div class="card-badge-row"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>MEJOR VALORACIÓN · RECOMENDADO POR VIAJEROLATAM</div>` : '';
+  const price = calcPrice(d);
+  const whole = Math.floor(price);
+  const dec   = (price % 1).toFixed(2).slice(1);
+  const rec   = d.recommended ? 'recommended' : '';
+  const badge = d.recommended
+    ? `<div class="card-badge-row"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>MEJOR VALORACIÓN · RECOMENDADO POR VIAJEROLATAM</div>` : '';
   const savingHtml = d.saving ? `<div class="price-saving">🏷 ${d.saving}</div>` : '';
-  const schengenBadge = d.schengen
-    ? `<div class="badge-schengen"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Válido Schengen</div>`
-    : `<div class="badge-schengen" style="background:#FEE8E8;color:#A32D2D;border-color:rgba(163,45,45,0.2)">⚠ No válido Schengen</div>`;
+  const schengenBadge = `<div class="badge-schengen"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Válido Schengen</div>`;
   const greenPills = d.pillGreen.map(t=>`<span class="cpill cpill-green"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>${t}</span>`).join('');
   const amberPills = d.pillAmber.map(t=>`<span class="cpill cpill-amber"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>${t}</span>`).join('');
-  const navyPills = d.pillNavy.map(t=>`<span class="cpill cpill-navy">${t}</span>`).join('');
-  const extras = d.extras.map(e=>`<span class="extra">${e}</span>`).join('');
-  const priceWhole = Math.floor(d.price);
-  const priceDec = (d.price % 1).toFixed(2).slice(1);
-  const copHtml = shouldShowCOP()
-    ? `<div class="price-cop">≈ ${formatCOPApprox(d.price)}</div><div class="price-cop-day">≈ ${formatCOPApprox(d.priceDay)} / día</div>`
-    : '';
+  const navyPills  = d.pillNavy.map(t=>`<span class="cpill cpill-navy">${t}</span>`).join('');
+  const extras     = d.extras.map(e=>`<span class="extra">${e}</span>`).join('');
+  const diasLabel  = diasViaje === 1 ? '1 día' : diasViaje + ' días';
+  const paxLabel   = numViajeros === 1 ? '' : ` · ${numViajeros} personas`;
+  const perDia     = (d.priceDay * numViajeros).toFixed(2);
   return `
 <div class="card ${rec}" id="card-${d.id}">
   ${badge}
@@ -1431,17 +625,17 @@ function renderCard(d){
     <div class="card-price-block">
       ${schengenBadge}
       <div>
-        <div class="price-from">Total 15 días</div>
-        <div class="price-main"><sup>€</sup>${priceWhole}<sup>${priceDec}</sup></div>
-        <div class="price-per">€${d.priceDay.toFixed(2)} / día</div>
-        ${copHtml}
+        <div class="price-from">Total ${diasLabel}${paxLabel}</div>
+        <div class="price-main"><sup>€</sup>${whole}<sup>${dec}</sup></div>
+        <div class="price-per">€${perDia} / día${numViajeros > 1 ? ' · ' + numViajeros + ' pax' : ''}</div>
+        ${(function(){ var lp = localPrice(price); return lp ? '<div class="price-local">≈ ' + lp.symbol + ' ' + lp.str + ' <span>' + lp.label + '</span></div>' : ''; })()}
       </div>
       ${savingHtml}
-      <a class="btn-contract" href="${escAttr(d.ctaUrl || '/resultados/')}" target="_blank" rel="nofollow sponsored noopener" onclick="trackContract('${escJs(d.name)}','${escJs(d.plan)}')">Contratar seguro →</a>
+      <button class="btn-contract" onclick="contractClick('${d.name}','${d.ctaUrl}')">Contratar seguro →</button>
       <button class="btn-details" onclick="toggleDetails(${d.id})" id="btn-det-${d.id}">Ver cobertura completa</button>
     </div>
   </div>
-  <div class="card-details" id="det-${d.id}">
+  <div class="card-details-panel" id="det-${d.id}">
     <div class="details-grid">
       <div class="detail-item"><div class="detail-label">Gastos médicos</div><div class="detail-val">${d.medica}</div><div class="detail-sub">Hospitalización incluida</div></div>
       <div class="detail-item"><div class="detail-label">Repatriación</div><div class="detail-val">${d.repatriacion}</div><div class="detail-sub">Traslado + restos mortales</div></div>
@@ -1454,30 +648,35 @@ function renderCard(d){
 </div>`;
 }
 
+// ── RENDER ──
 function render(data){
-  const container = document.getElementById('cards-container');
-  const noResults = document.getElementById('no-results');
-  const countText = `${data.length} seguro${data.length!==1?'s':''}`;
-  (document.getElementById('count-display') || {textContent:''}).textContent = countText;
-  (document.getElementById('count-slim') || {textContent:''}).textContent = countText;
-  updateCOPNote();
-  if(!data.length){container.innerHTML='';noResults.style.display='block';return;}
+  const container  = document.getElementById('cards-container');
+  const noResults  = document.getElementById('no-results');
+  const slim       = document.getElementById('count-slim');
+  const diasLabel  = diasViaje === 1 ? '1 día' : diasViaje + ' días';
+  const paxLabel   = numViajeros > 1 ? ` · ${numViajeros} personas` : '';
+  const origenText = document.getElementById('pill-origen') ? document.getElementById('pill-origen').textContent : 'Colombia';
+  if(slim) slim.textContent = `${data.length} seguro${data.length!==1?'s':''} encontrado${data.length!==1?'s':''} · ${diasLabel}${paxLabel}`;
+  var currEl = document.getElementById('currency-note');
+  if(currEl){var cfg=CURRENCY_CONFIG[currentOrigen];currEl.textContent=cfg?'Precios en EUR · equiv. '+cfg.label+' orientativo':'';}
+  if(!data.length){ container.innerHTML=''; noResults.style.display='block'; return; }
   noResults.style.display='none';
   container.innerHTML = data.map(renderCard).join('');
 }
 
+// ── FILTERS ──
 function applyFilters(){
   const maxDay = parseFloat(document.getElementById('price-slider').value);
   const wantSchengen = document.getElementById('f1').checked;
-  const wantNoFranquicia = document.getElementById('f2').checked;
+  const wantNoFranq  = document.getElementById('f2').checked;
   const wantAventura = document.getElementById('f3').checked;
-  const wantTele = document.getElementById('f5').checked;
+  const wantTele     = document.getElementById('f5').checked;
   let filtered = DATA.filter(d=>{
     if(d.priceDay > maxDay) return false;
     if(wantSchengen && !d.schengen) return false;
-    if(wantNoFranquicia && d.franquicia !== 'Sin franquicia') return false;
+    if(wantNoFranq  && d.franquicia !== 'Sin franquicia') return false;
     if(wantAventura && !d.aventura) return false;
-    if(wantTele && !d.tele) return false;
+    if(wantTele     && !d.tele) return false;
     return true;
   });
   const sortVal = document.getElementById('sort-select').value;
@@ -1488,41 +687,37 @@ function applyFilters(){
 
 function sortData(data, val){
   const d = [...data];
-  if(val==='precio-asc') d.sort((a,b)=>a.price-b.price);
-  else if(val==='precio-desc') d.sort((a,b)=>b.price-a.price);
-  else if(val==='cobertura') d.sort((a,b)=>b.score-a.score);
-  else if(val==='valoracion') d.sort((a,b)=>b.stars-a.stars||b.reviews-a.reviews);
+  if(val==='precio-asc')  d.sort((a,b)=>a.priceDay-b.priceDay);
+  else if(val==='precio-desc') d.sort((a,b)=>b.priceDay-a.priceDay);
+  else if(val==='cobertura')   d.sort((a,b)=>b.score-a.score);
   else d.sort((a,b)=>b.score-a.score);
   return d;
 }
 
-function applySort(val){
-  const sorted = sortData(activeData, val);
-  render(sorted);
-}
+function applySort(val){ render(sortData(activeData, val)); }
 
 function onPriceChange(el){
   const v = parseFloat(el.value);
   const pct = ((v-1)/(10-1)*100).toFixed(0);
   el.style.setProperty('--val', pct+'%');
-  document.getElementById('price-display').textContent = shouldShowCOP() ? `€${v.toFixed(2)}/día · ≈ ${formatCOPApprox(v)}/día` : `€${v.toFixed(2)}/día`;
+  document.getElementById('price-display').textContent = `€${v.toFixed(2)}/día`;
   applyFilters();
 }
 
+// ── DESTINO TABS ──
 function setDest(el, dest){
   document.querySelectorAll('.dest-tab').forEach(t=>t.classList.remove('active'));
   if(el) el.classList.add('active');
-  else {
-    var first = document.querySelector('.dest-tab');
-    if(first) first.classList.add('active');
-  }
+  var epDest = document.getElementById('ep-destino');
+  if(epDest && dest) epDest.value = dest;
+  updateVuelosCta();
   applyFilters();
 }
 
 function clearFilters(){
   document.getElementById('price-slider').value = 10;
   document.getElementById('price-slider').style.setProperty('--val','100%');
-  document.getElementById('price-display').textContent = shouldShowCOP() ? '€10/día · ≈ ' + formatCOPApprox(10) + '/día' : '€10/día';
+  document.getElementById('price-display').textContent = '€10/día';
   ['c1','c2','c3','c4','f1','f2','f3','f4','f5','f6','t1','t2','t3'].forEach(id=>{
     const el = document.getElementById(id);
     if(el) el.checked = ['c1','f1','t1'].includes(id);
@@ -1535,176 +730,447 @@ function toggleDetails(id){
   const btn = document.getElementById('btn-det-'+id);
   const isOpen = det.classList.contains('open');
   det.classList.toggle('open');
-  btn.textContent = isOpen ? 'Ver cobertura completa' : 'Ocultar detalles ↑';
+  if(btn) btn.textContent = isOpen ? 'Ver cobertura completa' : 'Ocultar detalles ↑';
 }
 
-
-function contractClick(name, plan) {
-  var low = String(name || '').toLowerCase();
-  var url = '/resultados/';
-  if(low.indexOf('iati') !== -1) url = 'https://www.iatiseguros.com?r=84208681926165';
-  else if(low.indexOf('inter') !== -1) url = 'https://www.intermundial.es/afiliados/seguros-de-viaje-recomendado?utm_source=Affiliates&utm_medium=Affiliates&utm_campaign=General&utm_term=kbnnqvpvcy490&utm_content=kbnnqvpvcy490&coupon=VIAJEROLATAM';
-  else if(low.indexOf('holins') !== -1) url = 'https://clk.tradedoubler.com/click?p=301095&a=3485639';
-  else if(low.indexOf('axa') !== -1) url = 'https://clk.tradedoubler.com/click?p=343758&a=3485639';
-  trackContract(name, plan);
-  window.open(url, '_blank', 'noopener');
+function contractClick(name, url){
+  if(typeof gtag !== 'undefined') gtag('event','click_contratar',{affiliate:name,page:window.location.pathname});
+  if(url && url !== '#') window.open(url,'_blank','noopener');
 }
 
-// Init slider style
-(function(){
-  const sl = document.getElementById('price-slider');
-  const v = ((5-1)/(10-1)*100).toFixed(0);
-  sl.style.setProperty('--val', v+'%');
-})();
+// ── VUELOS CTA ─────────────────────────────────────────────────────────────
+// Origin airport codes (IATA, most common departure city per country)
+var ORIGEN_IATA = {
+  'colombia':'BOG','mexico':'MEX','argentina':'EZE','venezuela':'CCS',
+  'peru':'LIM','chile':'SCL','ecuador':'UIO','bolivia':'VVI',
+  'republica-dominicana':'SDQ','panama':'PTY','uruguay':'MVD',
+  'costa-rica':'SJO','guatemala':'GUA','honduras':'SAP',
+  'el-salvador':'SAL','nicaragua':'MGA','brasil':'GRU',
+  'cuba':'HAV','paraguay':'ASU'
+};
+// Destination airport codes
+var DESTINO_IATA = {
+  'espana-schengen':'MAD','europa':'MAD','estados-unidos':'JFK',
+  'eeuu-canada':'JFK','mundial':'MAD'
+};
 
+function updateVuelosCta(){
+  var origin = currentOrigen || 'colombia';
+  var epDest = document.getElementById('ep-destino');
+  var destVal = (epDest && epDest.value) ? epDest.value : 'espana-schengen';
 
+  var origIata = ORIGEN_IATA[origin] || 'BOG';
+  var destIata = DESTINO_IATA[destVal] || 'MAD';
+
+  // Update label
+  var lbl = document.getElementById('vuelos-origen-label');
+  if(lbl){
+    var ORIGEN_LABELS2 = {
+      'colombia':'Colombia','mexico':'México','argentina':'Argentina',
+      'venezuela':'Venezuela','peru':'Perú','chile':'Chile',
+      'ecuador':'Ecuador','bolivia':'Bolivia','republica-dominicana':'Rep. Dominicana',
+      'panama':'Panamá','uruguay':'Uruguay','brasil':'Brasil',
+      'cuba':'Cuba','costa-rica':'Costa Rica'
+    };
+    lbl.textContent = ORIGEN_LABELS2[origin] || 'tu país';
+  }
+
+  // Build date strings for links (today + 30d)
+  var hoy = new Date();
+  var regreso = new Date(hoy);
+  regreso.setDate(hoy.getDate() + (diasViaje || 15));
+  var fmt = function(d){ return d.toISOString().split('T')[0]; };
+
+  // Google Flights deep link
+  var gLink = document.getElementById('vuelos-google');
+  if(gLink){
+    gLink.href = 'https://www.google.com/travel/flights/search?tfs=CBwQAhoeEgoyMDI2LTA3LTAxagcIARIDQk9HcgcIARIDTO&curr=EUR&gl=es&hl=es'
+      .replace('BOG', origIata).replace('MAD', destIata);
+    // Simplified: just use clean Google Flights URL with origin/dest
+    gLink.href = 'https://www.google.com/travel/flights/search?q=vuelos+' + origIata + '+a+' + destIata;
+    gLink.onclick = function(){ if(typeof gtag!=='undefined') gtag('event','click_vuelos_google',{origen:origin,destino:destVal}); };
+  }
+
+  // Skyscanner deep link
+  var skLink = document.getElementById('vuelos-skyscanner');
+  if(skLink){
+    skLink.href = 'https://www.skyscanner.net/transport/flights/' + origIata.toLowerCase() + '/' + destIata.toLowerCase() + '/' + fmt(hoy).replace(/-/g,'').slice(2) + '/' + fmt(regreso).replace(/-/g,'').slice(2) + '/';
+    skLink.onclick = function(){ if(typeof gtag!=='undefined') gtag('event','click_vuelos_skyscanner',{origen:origin,destino:destVal}); };
+  }
+
+  // Kayak deep link
+  var kLink = document.getElementById('vuelos-kayak');
+  if(kLink){
+    kLink.href = 'https://www.kayak.com/flights/' + origIata + '-' + destIata + '/' + fmt(hoy) + '/' + fmt(regreso);
+    kLink.onclick = function(){ if(typeof gtag!=='undefined') gtag('event','click_vuelos_kayak',{origen:origin,destino:destVal}); };
+  }
+}
+
+// ── EDIT PANEL ──
 function toggleEditPanel(){
   var p = document.getElementById('edit-panel');
   if(!p) return;
-  var isOpen = p.style.display !== 'none';
-  p.style.display = isOpen ? 'none' : 'block';
-  if(!isOpen) p.scrollIntoView({behavior:'smooth', block:'nearest'});
+  p.style.display = p.style.display !== 'block' ? 'block' : 'none';
+  if(p.style.display === 'block') updatePreview();
+}
+
+// Live preview inside edit panel
+function updatePreview(){
+  var d = Math.max(1, Math.min(365, parseInt(document.getElementById('ep-dias').value) || 15));
+  var v = parseInt(document.getElementById('ep-viajeros').value) || 1;
+  var el = document.getElementById('dias-preview');
+  if(!el) return;
+  var minP = (DATA[1].priceDay * d * v).toFixed(2); // intermundial cheapest
+  var maxP = (DATA[0].priceDay * d * v).toFixed(2); // iati most complete
+  var diasLabel = d === 1 ? '1 día' : d + ' días';
+  var paxLabel  = v === 1 ? '1 persona' : v + ' personas';
+  var cfg = CURRENCY_CONFIG[currentOrigen];
+  var localMin = cfg ? ' (~' + cfg.symbol + ' ' + (parseFloat(minP) * cfg.rate).toLocaleString('es-CO', {maximumFractionDigits: cfg.rate > 100 ? 0 : 2}) + ')' : '';
+  el.textContent = diasLabel + ' · ' + paxLabel + ' → desde €' + minP + ' hasta €' + maxP + localMin;
+}
+
+// Origen labels map
+const ORIGEN_LABELS = {
+  'colombia':'Colombia 🇨🇴','mexico':'México 🇲🇽','argentina':'Argentina 🇦🇷',
+  'venezuela':'Venezuela 🇻🇪','peru':'Perú 🇵🇪','chile':'Chile 🇨🇱',
+  'ecuador':'Ecuador 🇪🇨','bolivia':'Bolivia 🇧🇴','paraguay':'Paraguay 🇵🇾',
+  'uruguay':'Uruguay 🇺🇾','cuba':'Cuba 🇨🇺','republica-dominicana':'Rep. Dominicana 🇩🇴',
+  'panama':'Panamá 🇵🇦','costa-rica':'Costa Rica 🇨🇷','guatemala':'Guatemala 🇬🇹',
+  'honduras':'Honduras 🇭🇳','el-salvador':'El Salvador 🇸🇻','nicaragua':'Nicaragua 🇳🇮',
+  'brasil':'Brasil 🇧🇷'
+};
+
+// ── MONEDAS — tasas orientativas (sin API, actualizadas jun 2026) ──────────
+// Formato: { symbol, rate (1 EUR = X), secondary (null = no mostrar) }
+// Para países con moneda muy inestable usamos USD como referencia secundaria
+const CURRENCY_CONFIG = {
+  'colombia':          { symbol:'COP', rate:4420,   fmt:'#.###',  label:'COP aprox.' },
+  'peru':              { symbol:'PEN', rate:4.15,    fmt:'#.##',   label:'PEN aprox.' },
+  'mexico':            { symbol:'MXN', rate:20.8,    fmt:'#.##',   label:'MXN aprox.' },
+  'argentina':         { symbol:'USD', rate:1.08,    fmt:'#.##',   label:'USD ref.' },
+  'venezuela':         { symbol:'USD', rate:1.08,    fmt:'#.##',   label:'USD ref.' },
+  'ecuador':           { symbol:'USD', rate:1.08,    fmt:'#.##',   label:'USD ref.' },
+  'cuba':              { symbol:'USD', rate:1.08,    fmt:'#.##',   label:'USD ref.' },
+  'bolivia':           { symbol:'BOB', rate:7.45,    fmt:'#.##',   label:'BOB aprox.' },
+  'chile':             { symbol:'CLP', rate:1040,    fmt:'#.###',  label:'CLP aprox.' },
+  'paraguay':          { symbol:'USD', rate:1.08,    fmt:'#.##',   label:'USD ref.' },
+  'uruguay':           { symbol:'USD', rate:1.08,    fmt:'#.##',   label:'USD ref.' },
+  'republica-dominicana':{ symbol:'USD', rate:1.08,  fmt:'#.##',   label:'USD ref.' },
+  'panama':            { symbol:'USD', rate:1.08,    fmt:'#.##',   label:'USD ref.' },
+  'costa-rica':        { symbol:'USD', rate:1.08,    fmt:'#.##',   label:'USD ref.' },
+  'guatemala':         { symbol:'USD', rate:1.08,    fmt:'#.##',   label:'USD ref.' },
+  'honduras':          { symbol:'USD', rate:1.08,    fmt:'#.##',   label:'USD ref.' },
+  'el-salvador':       { symbol:'USD', rate:1.08,    fmt:'#.##',   label:'USD ref.' },
+  'nicaragua':         { symbol:'USD', rate:1.08,    fmt:'#.##',   label:'USD ref.' },
+  'brasil':            { symbol:'BRL', rate:5.80,    fmt:'#.##',   label:'BRL aprox.' }
+};
+
+// Devuelve el precio en moneda local formateado
+function localPrice(eurAmount) {
+  var cfg = CURRENCY_CONFIG[currentOrigen];
+  if (!cfg) return null;
+  var local = eurAmount * cfg.rate;
+  var formatted;
+  if (cfg.symbol === 'COP' || cfg.symbol === 'CLP') {
+    // Sin decimales, con puntos de miles
+    formatted = Math.round(local).toLocaleString('es-CO');
+  } else {
+    formatted = local.toFixed(2);
+  }
+  return { str: formatted, label: cfg.label, symbol: cfg.symbol };
 }
 
 function applyEditSearch(){
-  var dias = parseInt(document.getElementById('ep-dias').value) || 15;
-  var origen = (document.getElementById('ep-origen') && document.getElementById('ep-origen').value) || 'colombia';
-  var dest = document.getElementById('ep-destino').value;
-  var viajeros = parseInt(document.getElementById('ep-viajeros').value) || 1;
-  window.currentSearchOrigin = String(origen || '').toLowerCase();
-  window.currentSearchDest = String(dest || '').toLowerCase();
-  
-  // Update pills display
-  var originLabels = {colombia:'Colombia 🇨🇴', mexico:'México 🇲🇽', argentina:'Argentina 🇦🇷', venezuela:'Venezuela 🇻🇪', peru:'Perú 🇵🇪', chile:'Chile 🇨🇱'};
+  var nuevoDias     = Math.max(1, Math.min(365, parseInt(document.getElementById('ep-dias').value) || 15));
+  var nuevosViaj    = Math.max(1, Math.min(6, parseInt(document.getElementById('ep-viajeros').value) || 1));
+  var dest          = document.getElementById('ep-destino').value;
+  var origen        = document.getElementById('ep-origen').value;
+
+  // Update globals
+  diasViaje    = nuevoDias;
+  numViajeros  = nuevosViaj;
+  currentOrigen = origen;
+
+  // Update search bar pills
   var destLabels = {europa:'España / Schengen 🇪🇺', eeuu:'EEUU 🇺🇸', mundial:'Mundial 🌍'};
-  var pillVals = document.querySelectorAll('.pill-val');
-  if(pillVals[0]) pillVals[0].textContent = originLabels[origen] || origen;
-  if(pillVals[1]) pillVals[1].textContent = destLabels[dest] || dest;
-  if(pillVals[2]) pillVals[2].textContent = dias + ' días';
-  if(pillVals[3]) pillVals[3].textContent = viajeros + (viajeros===1?' adulto':' adultos');
-  
-  // Update prices based on days
-  DATA.forEach(function(d){
-    d.price = (d.priceDay * dias).toFixed(2) * 1;
+  var pillOrigen = document.getElementById('pill-origen');
+  var pillDest   = document.getElementById('pill-destino');
+  var pillV      = document.getElementById('pill-viajeros');
+  if(pillOrigen) pillOrigen.textContent = ORIGEN_LABELS[origen] || origen;
+  if(pillDest)   pillDest.textContent   = destLabels[dest] || dest;
+  if(pillV)      pillV.textContent      = nuevosViaj + (nuevosViaj === 1 ? ' adulto' : ' adultos');
+  updatePillFechas(diasViaje);
+  updateVuelosCta();
+
+  // Sync dest tab UI
+  document.querySelectorAll('.dest-tab').forEach(function(t){
+    t.classList.toggle('active', !!(t.getAttribute('onclick') && t.getAttribute('onclick').includes("'"+dest+"'")));
   });
-  
-  // Re-render with new dest filter
-  setDest(null, dest);
+
+  // Re-render with new days + persons
+  applyFilters();
   toggleEditPanel();
 }
 
-// Initial render
-(function initSearchFromURL(){
-  const params = new URLSearchParams(window.location.search);
-  const origen = (params.get('origen') || 'colombia').toLowerCase();
-  const destinoRaw = (params.get('destino') || 'espana-schengen').toLowerCase();
-  window.currentSearchOrigin = origen;
-  window.currentSearchDest = destinoRaw;
-  const origenSelect = document.getElementById('ep-origen');
-  if(origenSelect && Array.from(origenSelect.options).some(o => o.value === origen)) origenSelect.value = origen;
-  const destSelect = document.getElementById('ep-destino');
-  if(destSelect){
-    if(destinoRaw.includes('eeuu')) destSelect.value = 'eeuu';
-    else if(destinoRaw.includes('mundial')) destSelect.value = 'mundial';
-    else destSelect.value = 'europa';
-  }
-  const slider = document.getElementById('price-slider');
-  const priceDisplay = document.getElementById('price-display');
-  if(slider && priceDisplay){
-    const v = parseFloat(slider.value || '10');
-    priceDisplay.textContent = shouldShowCOP() ? `€${v.toFixed(2)}/día · ≈ ${formatCOPApprox(v)}/día` : `€${v.toFixed(2)}/día`;
-  }
-})();
-render(sortData(DATA, 'recomendado'));
-</script>
-<script>
-document.addEventListener('click', function(e){
-  var link = e.target.closest('a');
-  if(!link || typeof gtag !== 'function') return;
-  var href = link.getAttribute('href') || '';
-  if(href.indexOf('iatiseguros.com') !== -1){
-    gtag('event', 'click_affiliate_iati', {
-      event_category: 'affiliate',
-      event_label: href,
-      page_location: window.location.href
-    });
-  }
+function updatePillFechas(dias){
+  var hoy   = new Date();
+  var vuelta = new Date(hoy);
+  vuelta.setDate(hoy.getDate() + parseInt(dias));
+  var opts  = {day:'numeric', month:'short'};
+  var desde = hoy.toLocaleDateString('es-ES', opts);
+  var hasta  = vuelta.toLocaleDateString('es-ES', opts);
+  var pill  = document.getElementById('pill-fechas');
+  var diasLabel = dias === 1 ? '1 día' : dias + ' días';
+  if(pill) pill.textContent = desde + ' → ' + hasta + ' (' + diasLabel + ')';
+}
 
-  if(href.indexOf('intermundial.es') !== -1){
-    gtag('event', 'click_affiliate_intermundial', {
-      event_category: 'affiliate',
-      event_label: href,
-      page_location: window.location.href
-    });
-  }
-});
-</script>
-<!-- Exit intent -->
-<div id="exit-overlay" style="display:none;position:fixed;inset:0;background:rgba(11,31,58,.65);z-index:9999;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(6px)">
-<div id="exit-box" style="background:#fff;border-radius:20px;padding:32px 28px;max-width:420px;width:100%;position:relative;box-shadow:0 20px 60px rgba(11,31,58,.25)">
-<button onclick="closeExit()" style="position:absolute;top:12px;right:12px;width:30px;height:30px;border-radius:50%;background:#F0F4F8;border:none;cursor:pointer;font-size:16px;color:#4A647E">✕</button>
-<div style="font-size:40px;text-align:center;margin-bottom:10px">✈️</div>
-<h3 style="font-family:Georgia,serif;font-size:22px;color:#0B1F3A;text-align:center;margin-bottom:8px">¿Ya tienes seguro<br/>para tu viaje?</h3>
-<p style="font-size:13px;color:#4A647E;text-align:center;margin-bottom:16px">Compara IATI e Intermundial en 2 minutos. Gratis, en español.</p>
-<div style="display:flex;gap:12px;justify-content:center;margin-bottom:16px;flex-wrap:wrap">
-<span style="font-size:12px;color:#4A647E">✓ Precio según fechas</span>
-<span style="font-size:12px;color:#4A647E">✓ Revisa condiciones</span>
-<span style="font-size:12px;color:#4A647E">✓ Cupón VIAJEROLATAM</span>
-</div>
-<a href="/resultados/" onclick="closeExit()" style="display:block;width:100%;background:#00C4A1;color:#0B1F3A;padding:14px;border-radius:50px;font-family:inherit;font-size:14px;font-weight:700;text-decoration:none;text-align:center;margin-bottom:8px">🔍 Comparar seguros gratis</a>
-<button onclick="closeExit()" style="display:block;width:100%;background:none;border:none;font-family:inherit;font-size:12px;color:#8FA4B8;cursor:pointer;text-decoration:underline">Ahora no</button>
-</div>
-</div>
-<script>
+// ── MOBILE ──
+function openMobMenu(){var d=document.getElementById('mob-drawer'),o=document.getElementById('mob-overlay'),b=document.querySelector('.mob-btn');if(!d)return;d.style.display='flex';o.style.display='block';requestAnimationFrame(function(){d.classList.add('is-open');if(b)b.classList.add('is-open');});document.body.style.overflow='hidden';}
+function closeMobMenu(){var d=document.getElementById('mob-drawer'),o=document.getElementById('mob-overlay'),b=document.querySelector('.mob-btn');if(!d)return;d.classList.remove('is-open');if(b)b.classList.remove('is-open');document.body.style.overflow='';setTimeout(function(){d.style.display='none';o.style.display='none';},280);}
+function openMobFilters(){var el=document.getElementById('mob-filter-overlay'),sidebar=document.querySelector('.sidebar'),mc=document.getElementById('mob-filter-content');if(el&&sidebar&&mc){mc.innerHTML=sidebar.innerHTML;el.classList.add('open');document.body.style.overflow='hidden';}}
+function closeMobFilters(){var el=document.getElementById('mob-filter-overlay');if(el){el.classList.remove('open');document.body.style.overflow='';}}
+function closeExit(){var o=document.getElementById('exit-overlay');if(o){o.style.display='none';document.body.style.overflow='';}}
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeMobMenu();closeMobFilters();closeExit();}});
+
+// ── EXIT INTENT ──
 (function(){
   var shown=false;
   document.addEventListener('mouseleave',function(e){
     if(e.clientY>15||shown||sessionStorage.getItem('vl_exit'))return;
     shown=true;sessionStorage.setItem('vl_exit','1');
     var o=document.getElementById('exit-overlay');
-    if(o){o.style.display='flex';document.body.style.overflow='hidden'}
-  });
-  var lastY=0;
-  window.addEventListener('scroll',function(){
-    var y=window.scrollY;
-    if(lastY-y>100&&y>300&&!shown&&!sessionStorage.getItem('vl_exit')){
-      shown=true;sessionStorage.setItem('vl_exit','1');
-      var o=document.getElementById('exit-overlay');
-      if(o){o.style.display='flex';document.body.style.overflow='hidden'}
-    }
-    lastY=y;
+    if(o){o.style.display='flex';document.body.style.overflow='hidden';}
   });
 })();
-function closeExit(){var o=document.getElementById('exit-overlay');if(o){o.style.display='none';document.body.style.overflow=''}}
-document.addEventListener('keydown',function(e){if(e.key==='Escape')closeExit()});
-document.getElementById('exit-overlay').addEventListener('click',function(e){if(e.target===this)closeExit()});
-</script>
-<!-- Mobile Filter Drawer -->
-<div class="mobile-filter-drawer" id="mob-filter-overlay" onclick="closeMobFilters()">
-<div class="mobile-filter-inner" onclick="event.stopPropagation()">
-<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
-<h3 style="font-size:15px;font-weight:700;color:#0B1F3A">Filtrar resultados</h3>
-<button onclick="closeMobFilters()" style="background:none;border:none;cursor:pointer;font-size:22px;color:#4A647E">✕</button>
-</div>
-<div id="mob-filter-content"></div>
-<button onclick="closeMobFilters()" style="width:100%;background:#00C4A1;color:#0B1F3A;border:none;border-radius:50px;padding:13px;font-weight:700;font-size:15px;font-family:inherit;cursor:pointer;margin-top:16px">Ver resultados</button>
-</div>
-</div>
-<script>
-function openMobFilters(){
-  var el = document.getElementById('mob-filter-overlay');
-  var sidebar = document.querySelector('.sidebar');
-  var mc = document.getElementById('mob-filter-content');
-  if(el && sidebar && mc){
-    mc.innerHTML = sidebar.innerHTML;
-    el.classList.add('open');
-    document.body.style.overflow='hidden';
+
+// ── INIT — lee URL params ──
+(function(){
+  var params = new URLSearchParams(window.location.search);
+
+  // Días desde ?ida= y ?vuelta= o desde ?dias=
+  var urlDias = 15;
+  var ida   = params.get('ida');
+  var vuelta = params.get('vuelta');
+  if(ida && vuelta){
+    var d1 = new Date(ida), d2 = new Date(vuelta);
+    if(!isNaN(d1) && !isNaN(d2)) urlDias = Math.max(1, Math.round((d2-d1)/(1000*60*60*24)));
+  } else {
+    urlDias = parseInt(params.get('dias')) || 15;
   }
-}
-function closeMobFilters(){
-  var el = document.getElementById('mob-filter-overlay');
-  if(el){ el.classList.remove('open'); document.body.style.overflow=''; }
-}
+  urlDias = Math.max(1, Math.min(365, urlDias));
+
+  // Personas
+  var urlPersonas = Math.max(1, Math.min(6, parseInt(params.get('personas')) || 1));
+
+  // Destino
+  var urlDest = params.get('destino') || 'europa';
+  var destMap = {'espana-schengen':'europa','espana':'europa','europa':'europa','eeuu':'eeuu','mundial':'mundial'};
+  var dest = destMap[urlDest] || 'europa';
+
+  // Origen
+  var urlOrigen = params.get('origen') || 'colombia';
+  currentOrigen = urlOrigen;
+
+  // Apply globals
+  diasViaje   = urlDias;
+  numViajeros = urlPersonas;
+
+  // Sync pill-origen
+  var pillOrigen = document.getElementById('pill-origen');
+  if(pillOrigen) pillOrigen.textContent = ORIGEN_LABELS[urlOrigen] || 'Colombia 🇨🇴';
+
+  // Sync pill-destino
+  var destLabels = {europa:'España / Schengen 🇪🇺', eeuu:'EEUU 🇺🇸', mundial:'Mundial 🌍'};
+  var pillDest = document.getElementById('pill-destino');
+  if(pillDest) pillDest.textContent = destLabels[dest] || dest;
+
+  // Sync pill-viajeros
+  var pillV = document.getElementById('pill-viajeros');
+  if(pillV) pillV.textContent = urlPersonas + (urlPersonas===1?' adulto':' adultos');
+
+  // Sync pill-fechas
+  updatePillFechas(urlDias);
+
+  // Sync edit panel fields
+  var epDias    = document.getElementById('ep-dias');
+  var epViaj    = document.getElementById('ep-viajeros');
+  var epOrigen  = document.getElementById('ep-origen');
+  var epDestino = document.getElementById('ep-destino');
+  if(epDias)   epDias.value   = urlDias;
+  if(epViaj)   epViaj.value   = urlPersonas;
+  if(epOrigen) epOrigen.value = urlOrigen;
+  if(epDestino) epDestino.value = dest;
+
+  // Dest tabs
+  document.querySelectorAll('.dest-tab').forEach(function(t){
+    t.classList.toggle('active', !!(t.getAttribute('onclick') && t.getAttribute('onclick').includes("'"+dest+"'")));
+  });
+
+  // Price slider init
+  var sl = document.getElementById('price-slider');
+  if(sl) sl.style.setProperty('--val', ((5-1)/(10-1)*100).toFixed(0)+'%');
+})();
+
+render(sortData(DATA, 'recomendado'));
+
+// ── VUELOS CTA ── build deep-link URLs based on origin + destination
+(function initVuelosCta(){
+  updateVuelosCta();
+})();
+
 </script>
+<!-- FOOTER -->
+<footer class="vl-footer">
+  <div class="vl-footer-inner">
+    <div class="vl-footer-grid">
+      <div class="vl-footer-brand">
+        <a href="/"><img src="/logo-vl-original-20260528.png" alt="ViajeroLatam" width="220" height="68" style="height:68px;width:auto;max-width:220px;display:block;object-fit:contain;opacity:1!important;filter:none!important"></a>
+        <p>Comparador independiente de seguros de viaje para latinoamericanos que preparan viajes a España, Europa y otros destinos.</p>
+        <div class="vl-footer-social">
+          <a href="https://www.instagram.com/" target="_blank" rel="nofollow noopener" aria-label="Instagram">ig</a>
+          <a href="https://www.tiktok.com/" target="_blank" rel="nofollow noopener" aria-label="TikTok">tk</a>
+          <a href="https://www.youtube.com/" target="_blank" rel="nofollow noopener" aria-label="YouTube">yt</a>
+          <a href="https://www.facebook.com/" target="_blank" rel="nofollow noopener" aria-label="Facebook">fb</a>
+        </div>
+      </div>
+      <div class="vl-footer-col">
+        <h4>Comparar</h4>
+        <ul>
+          <li><a href="/resultados/">Comparar seguros gratis</a></li>
+          <li><a href="/comparar-seguros-viaje-colombia-espana/">Colombia → España</a></li>
+          <li><a href="/visa-schengen/">Visa Schengen</a></li>
+          <li><a href="/esim/espana-colombianos/">eSIM para España</a></li>
+          <li><a href="/blog/">Artículos y guías</a></li>
+        </ul>
+      </div>
+      <div class="vl-footer-col">
+        <h4>Aseguradoras</h4>
+        <ul>
+          <li><a href="/seguros/iati/">IATI Seguros</a></li>
+          <li><a href="/seguros/intermundial/">InterMundial</a></li>
+          <li><a href="/seguros/holins/">Holins</a></li>
+          <li><a href="/seguros/axa/">AXA</a></li>
+          <li><a href="/#aseguradoras">Todas las opciones</a></li>
+        </ul>
+      </div>
+      <div class="vl-footer-col">
+        <h4>Empresa</h4>
+        <ul>
+          <li><a href="/sobre-nosotros/">Sobre nosotros</a></li>
+          <li><a href="/como-elegimos/">Cómo elegimos</a></li>
+          <li><a href="/contacto/">Contacto</a></li>
+          <li><a href="/aviso-legal/">Aviso legal</a></li>
+          <li><a href="/privacidad/">Privacidad</a></li>
+          <li><a href="/cookies/">Cookies</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="vl-footer-bottom">
+      <span>© 2026 ViajeroLatam. Todos los derechos reservados.</span>
+      <div class="vl-legal">
+        <a href="/privacidad/">Privacidad</a>
+        <a href="/aviso-legal/">Aviso legal</a>
+        <a href="/cookies/">Cookies</a>
+        <a href="/contacto/">Contacto</a>
+      </div>
+      <span>Comparador independiente · No somos aseguradora</span>
+    </div>
+  </div>
+</footer>
+
+
+
+<!-- STICKY MOBILE CTA -->
+<div id="vl-sticky" aria-label="Comparar seguros gratis">
+  <a href="/resultados/" onclick="if(typeof gtag!='undefined')gtag('event','click_sticky_mob',{page:location.pathname})">
+    🔍 Comparar seguros gratis
+  </a>
+  <p>Sin coste · 4 aseguradoras · Póliza en 2 minutos</p>
+</div>
+
+
+
+<style id="vl-footer-override">
+.vl-footer,.vl-footer *{box-sizing:border-box}
+footer.vl-footer{width:100%;max-width:none!important;margin-left:0!important;margin-right:0!important}
+.vl-footer-grid>*{min-width:0;word-break:break-word}
+</style>
+
+<script id="vl-origin-currency-results">
+(function(){
+  const ORIGIN_CURRENCIES = {
+    colombia:{code:'COP',rate:4300,locale:'es-CO',symbol:'$',label:'pesos colombianos'},
+    mexico:{code:'MXN',rate:20.2,locale:'es-MX',symbol:'$',label:'pesos mexicanos'},
+    peru:{code:'PEN',rate:4.05,locale:'es-PE',symbol:'S/',label:'soles peruanos'},
+    argentina:{code:'ARS',rate:1450,locale:'es-AR',symbol:'$',label:'pesos argentinos'},
+    bolivia:{code:'BOB',rate:7.55,locale:'es-BO',symbol:'Bs',label:'bolivianos'},
+    ecuador:{code:'USD',rate:1.09,locale:'en-US',symbol:'US$',label:'dólares estadounidenses'},
+    venezuela:{code:'USD',rate:1.09,locale:'en-US',symbol:'US$',label:'dólares estadounidenses'},
+    cuba:{code:'USD',rate:1.09,locale:'en-US',symbol:'US$',label:'dólares estadounidenses'},
+    chile:{code:'CLP',rate:1010,locale:'es-CL',symbol:'$',label:'pesos chilenos'},
+    uruguay:{code:'UYU',rate:43,locale:'es-UY',symbol:'$',label:'pesos uruguayos'},
+    paraguay:{code:'PYG',rate:8150,locale:'es-PY',symbol:'₲',label:'guaraníes'},
+    brasil:{code:'BRL',rate:5.9,locale:'pt-BR',symbol:'R$',label:'reales brasileños'},
+    espana:{code:'EUR',rate:1,locale:'es-ES',symbol:'€',label:'euros'},
+    usa:{code:'USD',rate:1.09,locale:'en-US',symbol:'US$',label:'dólares estadounidenses'},
+    eeuu:{code:'USD',rate:1.09,locale:'en-US',symbol:'US$',label:'dólares estadounidenses'}
+  };
+  function norm(v){return String(v||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/\s+/g,'-').replace(/_/g,'-');}
+  function getOrigin(){
+    const p=new URLSearchParams(location.search);
+    let o=norm(p.get('origen')||p.get('origin')||p.get('desde')||localStorage.getItem('vl_origen')||'');
+    if(o.includes('mex')) return 'mexico';
+    if(o.includes('col')) return 'colombia';
+    if(o.includes('per')) return 'peru';
+    if(o.includes('arg')) return 'argentina';
+    if(o.includes('bol')) return 'bolivia';
+    if(o.includes('ecu')) return 'ecuador';
+    if(o.includes('ven')) return 'venezuela';
+    if(o.includes('cub')) return 'cuba';
+    if(o.includes('chil')) return 'chile';
+    if(o.includes('uru')) return 'uruguay';
+    if(o.includes('par')) return 'paraguay';
+    if(o.includes('bra')) return 'brasil';
+    if(o.includes('esp')) return 'espana';
+    if(o.includes('usa')||o.includes('eeuu')||o.includes('estados')) return 'usa';
+    return 'colombia';
+  }
+  function eurFromText(t){
+    let m=String(t||'').match(/€\s*([0-9]+(?:[.,][0-9]+)?)/);
+    if(!m) m=String(t||'').match(/([0-9]+(?:[.,][0-9]+)?)\s*€/);
+    if(!m) return null;
+    const n=parseFloat(m[1].replace(',','.'));
+    return isFinite(n)?n:null;
+  }
+  function format(eur,cfg){
+    if(cfg.code==='EUR') return '';
+    const noDec=['COP','CLP','PYG','ARS'].includes(cfg.code);
+    return '≈ '+cfg.symbol+new Intl.NumberFormat(cfg.locale,{maximumFractionDigits:noDec?0:2}).format(eur*cfg.rate)+' '+cfg.code+' aprox.';
+  }
+  function addCurrency(){
+    const origin=getOrigin(), cfg=ORIGIN_CURRENCIES[origin]||ORIGIN_CURRENCIES.colombia;
+    try{localStorage.setItem('vl_origen',origin)}catch(e){}
+    document.querySelectorAll('.price,.product-price,.card-price,.result-price,.amount,[class*="price"],[class*="precio"],td,li,span,div').forEach(function(el){
+      if(el.closest('script,style')||el.dataset.vlLocalCurrency==='1'||(el.querySelector&&el.querySelector('.vl-local-currency'))) return;
+      const direct=el.childNodes?Array.from(el.childNodes).filter(n=>n.nodeType===3).map(n=>n.textContent).join(' '):'';
+      const txt=direct||el.textContent||'', eur=eurFromText(txt);
+      if(eur===null||((el.textContent||'').match(/€/g)||[]).length>1) return;
+      const local=format(eur,cfg); if(!local) return;
+      const s=document.createElement('span'); s.className='vl-local-currency'; s.textContent=local;
+      el.appendChild(s); el.dataset.vlLocalCurrency='1';
+    });
+    if(!document.querySelector('.vl-currency-note')&&cfg.code!=='EUR'){
+      const note=document.createElement('div');
+      note.className='vl-currency-note';
+      note.textContent='Precios orientativos en EUR y '+cfg.code+' según el país de origen seleccionado. El precio final se confirma en la web de la aseguradora.';
+      const h1=document.querySelector('h1');
+      if(h1&&h1.parentNode) h1.parentNode.insertBefore(note,h1.nextSibling);
+      else (document.querySelector('main')||document.body).prepend(note);
+    }
+  }
+  document.addEventListener('DOMContentLoaded',function(){addCurrency();setTimeout(addCurrency,300);setTimeout(addCurrency,1000);});
+})();
+</script>
+
 </body>
 </html>
