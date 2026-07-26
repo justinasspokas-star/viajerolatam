@@ -50,6 +50,47 @@ aside{position:sticky;top:92px}.side-card{background:var(--sand);border:1px soli
 @media(max-width:480px){h1{font-size:33px}.site-footer .footer-links{grid-template-columns:1fr}.mobile-affiliate-bar a{font-size:12px}}
 </style>
 
+<style id="vl-single-compare-cta-style">
+
+/* Mobile sticky CTA — one clean compare button */
+.mobile-affiliate-bar.single-compare-cta,
+.mobile-affiliate-bar.vl-single-compare-cta{
+  background:rgba(255,255,255,.96)!important;
+  border:1px solid #E4EDF5!important;
+  border-radius:22px!important;
+  padding:10px 12px 9px!important;
+  flex-direction:column!important;
+  gap:6px!important;
+  box-shadow:0 16px 45px rgba(11,31,58,.18)!important;
+}
+.mobile-affiliate-bar.single-compare-cta .ma-big,
+.mobile-affiliate-bar.vl-single-compare-cta .ma-big{
+  width:100%!important;
+  min-height:52px!important;
+  border-radius:999px!important;
+  background:#69C7AD!important;
+  color:#0B1F3A!important;
+  font-size:15px!important;
+  font-weight:900!important;
+  box-shadow:0 10px 22px rgba(0,196,161,.24)!important;
+}
+.mobile-affiliate-bar.single-compare-cta span,
+.mobile-affiliate-bar.vl-single-compare-cta span{
+  display:block;
+  text-align:center;
+  font-size:11px;
+  line-height:1.25;
+  color:#8FA4B8;
+  font-weight:600;
+}
+@media(max-width:480px){
+  .mobile-affiliate-bar.single-compare-cta .ma-big,
+  .mobile-affiliate-bar.vl-single-compare-cta .ma-big{font-size:14px!important}
+  .mobile-affiliate-bar.single-compare-cta span,
+  .mobile-affiliate-bar.vl-single-compare-cta span{font-size:10.5px}
+}
+
+</style>
 </head>
 <body>
 <nav>
@@ -139,7 +180,10 @@ aside{position:sticky;top:92px}.side-card{background:var(--sand);border:1px soli
 <div class="side-card"><h3>InterMundial</h3><p>Usa el cupón <strong>VIAJEROLATAM</strong> si está disponible.</p><a class="btn btn-primary" href="https://www.intermundial.es/afiliados/seguros-de-viaje-recomendado?utm_source=Affiliates&utm_medium=Affiliates&utm_campaign=General&utm_term=kbnnqvpvcy490&utm_content=kbnnqvpvcy490&coupon=VIAJEROLATAM" rel="nofollow sponsored noopener" target="_blank">Ver precio</a></div>
 </aside></div></main>
 <footer class="site-footer"><div class="footer-inner"><div class="footer-brand"><p><strong>© 2026 ViajeroLatam</strong> · Comparador independiente para viajeros latinoamericanos.</p><p class="disclosure">Podemos recibir una comisión si contratas desde nuestros enlaces afiliados, sin coste adicional para ti.</p></div><div class="footer-links"><a href="/">Inicio</a><a href="/seguro-viaje/venezuela-a-espana/">Venezuela a España</a><a href="/seguro-viaje/colombia-a-espana/">Colombia a España</a><a href="/visa-schengen/">Visa Schengen</a><a href="/blog/">Artículos</a><a href="/contacto/">Contacto</a><a href="/resultados/">Comparar seguros →</a></div></div></footer>
-<div aria-label="Comparar seguros" class="mobile-affiliate-bar"><a class="ma-primary" href="/seguro-viaje/venezuela-a-espana/">Comparar</a><a class="ma-secondary" href="https://www.iatiseguros.com?r=84208681926165" rel="nofollow sponsored noopener" target="_blank">IATI</a><a class="ma-secondary" href="https://www.intermundial.es/afiliados/seguros-de-viaje-recomendado?utm_source=Affiliates&utm_medium=Affiliates&utm_campaign=General&utm_term=kbnnqvpvcy490&utm_content=kbnnqvpvcy490&coupon=VIAJEROLATAM" rel="nofollow sponsored noopener" target="_blank">InterMundial</a></div>
+<div aria-label="Comparar seguros gratis" class="mobile-affiliate-bar vl-single-compare-cta">
+<a class="ma-primary ma-big" href="/resultados/">🔍 Comparar seguros gratis</a>
+<span>Sin coste · Póliza en 2 minutos · 4 aseguradoras</span>
+</div>
 <script>
 document.addEventListener('click', function(e){
   var link=e.target.closest('a'); if(!link || typeof gtag!=='function') return;
@@ -148,4 +192,20 @@ document.addEventListener('click', function(e){
   if(href.indexOf('intermundial.es')!==-1) gtag('event','click_affiliate_intermundial',{event_category:'affiliate',event_label:href,page_location:window.location.href});
 });
 </script>
+
+<script id="vl-compare-click-tracking">
+document.addEventListener('click', function(e){
+  var link = e.target.closest('a');
+  if(!link || typeof gtag !== 'function') return;
+  var href = link.getAttribute('href') || '';
+  if(href.indexOf('/resultados/') !== -1){
+    gtag('event', 'click_comparar_seguros_gratis', {
+      event_category: 'lead',
+      event_label: href,
+      page_location: window.location.href
+    });
+  }
+});
+</script>
+
 </body></html>

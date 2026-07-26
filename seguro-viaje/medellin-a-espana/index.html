@@ -814,7 +814,48 @@ nav a.brand-logo img, nav a.logo img{height:64px !important; width:auto !importa
 <meta content="ViajeroLatam" property="og:site_name"/>
 <style id="no-travel-icons">.travel-icons,#travel-canvas,canvas{display:none!important}</style>
 <style id="webp-hero">@supports(background-image:url("data:image/webp,")){.hero,section.hero{background-image:url('/hero-bg.webp')!important}}</style>
-<meta content="Seguro de viaje Medellín a España 2026 | Precios y cobertura" name="twitter:title"/><meta content="Seguro de viaje desde Medellín a España: compara opciones, revisa cobertura médica, repatriación, documentos y consejos antes de viajar." name="twitter:description"/></head>
+<meta content="Seguro de viaje Medellín a España 2026 | Precios y cobertura" name="twitter:title"/><meta content="Seguro de viaje desde Medellín a España: compara opciones, revisa cobertura médica, repatriación, documentos y consejos antes de viajar." name="twitter:description"/><style id="vl-single-compare-cta-style">
+
+/* Mobile sticky CTA — one clean compare button */
+.mobile-affiliate-bar.single-compare-cta,
+.mobile-affiliate-bar.vl-single-compare-cta{
+  background:rgba(255,255,255,.96)!important;
+  border:1px solid #E4EDF5!important;
+  border-radius:22px!important;
+  padding:10px 12px 9px!important;
+  flex-direction:column!important;
+  gap:6px!important;
+  box-shadow:0 16px 45px rgba(11,31,58,.18)!important;
+}
+.mobile-affiliate-bar.single-compare-cta .ma-big,
+.mobile-affiliate-bar.vl-single-compare-cta .ma-big{
+  width:100%!important;
+  min-height:52px!important;
+  border-radius:999px!important;
+  background:#69C7AD!important;
+  color:#0B1F3A!important;
+  font-size:15px!important;
+  font-weight:900!important;
+  box-shadow:0 10px 22px rgba(0,196,161,.24)!important;
+}
+.mobile-affiliate-bar.single-compare-cta span,
+.mobile-affiliate-bar.vl-single-compare-cta span{
+  display:block;
+  text-align:center;
+  font-size:11px;
+  line-height:1.25;
+  color:#8FA4B8;
+  font-weight:600;
+}
+@media(max-width:480px){
+  .mobile-affiliate-bar.single-compare-cta .ma-big,
+  .mobile-affiliate-bar.vl-single-compare-cta .ma-big{font-size:14px!important}
+  .mobile-affiliate-bar.single-compare-cta span,
+  .mobile-affiliate-bar.vl-single-compare-cta span{font-size:10.5px}
+}
+
+</style>
+</head>
 <body>
 <!-- MOBILE NAV -->
 <div id="mob-overlay" onclick="closeMobMenu()" style="display:none;position:fixed;inset:0;background:rgba(11,31,58,0.6);z-index:998;backdrop-filter:blur(4px)"></div>
@@ -1360,5 +1401,21 @@ document.addEventListener('click', function(e){
   }
 });
 </script>
+
+<script id="vl-compare-click-tracking">
+document.addEventListener('click', function(e){
+  var link = e.target.closest('a');
+  if(!link || typeof gtag !== 'function') return;
+  var href = link.getAttribute('href') || '';
+  if(href.indexOf('/resultados/') !== -1){
+    gtag('event', 'click_comparar_seguros_gratis', {
+      event_category: 'lead',
+      event_label: href,
+      page_location: window.location.href
+    });
+  }
+});
+</script>
+
 </body>
 </html>

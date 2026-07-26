@@ -812,7 +812,48 @@ nav a.brand-logo img, nav a.logo img{height:64px !important; width:auto !importa
 <meta content="https://viajerolatam.com/og-image.jpg" name="twitter:image"/>
 <style id="no-travel-icons">.travel-icons,#travel-canvas,canvas{display:none!important}</style>
 <style id="webp-hero">@supports(background-image:url("data:image/webp,")){.hero,section.hero{background-image:url('/hero-bg.webp')!important}}</style>
-<meta content="Guía para colombianos que viajan a España: requisitos de entrada, seguro médico de viaje, cobertura Schengen de referencia y precios aproximados en pesos colombianos." name="twitter:description"/><meta content="2026-07-19T12:00:00+02:00" property="article:modified_time"/><meta content="2026-05-28T08:00:00+02:00" property="article:published_time"/><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Seguro de viaje Colombia a España 2026 | Precios en COP","description":"Compara seguros de viaje Colombia a España: requisitos, cobertura médica, repatriación, precios aproximados en EUR/COP, IATI e InterMundial.","url":"https://viajerolatam.com/seguro-viaje/colombia-a-espana/","inLanguage":"es-CO","dateModified":"2026-07-19","isPartOf":{"@type":"WebSite","name":"ViajeroLatam","url":"https://viajerolatam.com/"},"about":["seguro de viaje Colombia a España","seguro Schengen para colombianos","precios de seguros de viaje en COP"],"publisher":{"@type":"Organization","name":"ViajeroLatam","url":"https://viajerolatam.com/","logo":{"@type":"ImageObject","url":"https://viajerolatam.com/logo-vl-original-20260528.png"}}}</script></head>
+<meta content="Guía para colombianos que viajan a España: requisitos de entrada, seguro médico de viaje, cobertura Schengen de referencia y precios aproximados en pesos colombianos." name="twitter:description"/><meta content="2026-07-19T12:00:00+02:00" property="article:modified_time"/><meta content="2026-05-28T08:00:00+02:00" property="article:published_time"/><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Seguro de viaje Colombia a España 2026 | Precios en COP","description":"Compara seguros de viaje Colombia a España: requisitos, cobertura médica, repatriación, precios aproximados en EUR/COP, IATI e InterMundial.","url":"https://viajerolatam.com/seguro-viaje/colombia-a-espana/","inLanguage":"es-CO","dateModified":"2026-07-19","isPartOf":{"@type":"WebSite","name":"ViajeroLatam","url":"https://viajerolatam.com/"},"about":["seguro de viaje Colombia a España","seguro Schengen para colombianos","precios de seguros de viaje en COP"],"publisher":{"@type":"Organization","name":"ViajeroLatam","url":"https://viajerolatam.com/","logo":{"@type":"ImageObject","url":"https://viajerolatam.com/logo-vl-original-20260528.png"}}}</script><style id="vl-single-compare-cta-style">
+
+/* Mobile sticky CTA — one clean compare button */
+.mobile-affiliate-bar.single-compare-cta,
+.mobile-affiliate-bar.vl-single-compare-cta{
+  background:rgba(255,255,255,.96)!important;
+  border:1px solid #E4EDF5!important;
+  border-radius:22px!important;
+  padding:10px 12px 9px!important;
+  flex-direction:column!important;
+  gap:6px!important;
+  box-shadow:0 16px 45px rgba(11,31,58,.18)!important;
+}
+.mobile-affiliate-bar.single-compare-cta .ma-big,
+.mobile-affiliate-bar.vl-single-compare-cta .ma-big{
+  width:100%!important;
+  min-height:52px!important;
+  border-radius:999px!important;
+  background:#69C7AD!important;
+  color:#0B1F3A!important;
+  font-size:15px!important;
+  font-weight:900!important;
+  box-shadow:0 10px 22px rgba(0,196,161,.24)!important;
+}
+.mobile-affiliate-bar.single-compare-cta span,
+.mobile-affiliate-bar.vl-single-compare-cta span{
+  display:block;
+  text-align:center;
+  font-size:11px;
+  line-height:1.25;
+  color:#8FA4B8;
+  font-weight:600;
+}
+@media(max-width:480px){
+  .mobile-affiliate-bar.single-compare-cta .ma-big,
+  .mobile-affiliate-bar.vl-single-compare-cta .ma-big{font-size:14px!important}
+  .mobile-affiliate-bar.single-compare-cta span,
+  .mobile-affiliate-bar.vl-single-compare-cta span{font-size:10.5px}
+}
+
+</style>
+</head>
 <body>
 <!-- MOBILE NAV -->
 <div id="mob-overlay" onclick="closeMobMenu()" style="display:none;position:fixed;inset:0;background:rgba(11,31,58,.6);z-index:998;backdrop-filter:blur(4px)"></div>
@@ -1267,5 +1308,21 @@ document.addEventListener('keydown', function(e){
 <!-- ═══ END EXIT INTENT + STICKY ═══ -->
 <div class="st">¿Ya tienes datos móviles para Europa?</div>
 <div class="sb" style="display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap">
-</div></body>
+</div>
+<script id="vl-compare-click-tracking">
+document.addEventListener('click', function(e){
+  var link = e.target.closest('a');
+  if(!link || typeof gtag !== 'function') return;
+  var href = link.getAttribute('href') || '';
+  if(href.indexOf('/resultados/') !== -1){
+    gtag('event', 'click_comparar_seguros_gratis', {
+      event_category: 'lead',
+      event_label: href,
+      page_location: window.location.href
+    });
+  }
+});
+</script>
+
+</body>
 </html>
