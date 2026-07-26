@@ -1868,6 +1868,19 @@ nav .logo img{
 }
 </style>
 
+
+<style id="vl-home-all-latam-select-currency">
+@media(max-width:768px){
+  #sb-origen option{font-size:15px}
+  #sb-duracion-display{
+    font-size:12px!important;
+    padding:10px 12px!important;
+    line-height:1.45!important;
+    text-align:center!important;
+  }
+}
+</style>
+
 </head>
 <body>
 <!-- ═══ MOBILE NAV SYSTEM ═══ -->
@@ -1965,9 +1978,18 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
 <option value="chile">🇨🇱 Chile</option>
 <option value="ecuador">🇪🇨 Ecuador</option>
 <option value="bolivia">🇧🇴 Bolivia</option>
-<option value="republica-dominicana">🇩🇴 R. Dominicana</option>
-<option value="panama">🇵🇦 Panamá</option>
+<option value="paraguay">🇵🇾 Paraguay</option>
 <option value="uruguay">🇺🇾 Uruguay</option>
+<option value="brasil">🇧🇷 Brasil</option>
+<option value="costa-rica">🇨🇷 Costa Rica</option>
+<option value="panama">🇵🇦 Panamá</option>
+<option value="guatemala">🇬🇹 Guatemala</option>
+<option value="el-salvador">🇸🇻 El Salvador</option>
+<option value="honduras">🇭🇳 Honduras</option>
+<option value="nicaragua">🇳🇮 Nicaragua</option>
+<option value="republica-dominicana">🇩🇴 R. Dominicana</option>
+<option value="cuba">🇨🇺 Cuba</option>
+<option value="puerto-rico">🇵🇷 Puerto Rico</option>
 </select>
 </div>
 <div>
@@ -2360,6 +2382,8 @@ function sbDateChange() {
     var minBase = (isUSDestination ? 2.20 : 1.75) * dias * personas;
     var maxBase = (isUSDestination ? 2.80 : 2.10) * dias * personas;
 
+    // Cambios orientativos solo para mostrar presupuesto aproximado.
+    // El precio final siempre lo calcula cada aseguradora.
     var currencyByOrigin = {
       colombia: {
         EUR: { rate: 3720, symbol: '$', code: 'COP', locale: 'es-CO', decimals: 0 },
@@ -2393,17 +2417,53 @@ function sbDateChange() {
         EUR: { rate: 7.6, symbol: 'Bs', code: 'BOB', locale: 'es-BO', decimals: 0 },
         USD: { rate: 6.9, symbol: 'Bs', code: 'BOB', locale: 'es-BO', decimals: 0 }
       },
-      'republica-dominicana': {
-        EUR: { rate: 67, symbol: 'RD$', code: 'DOP', locale: 'es-DO', decimals: 0 },
-        USD: { rate: 61, symbol: 'RD$', code: 'DOP', locale: 'es-DO', decimals: 0 }
+      paraguay: {
+        EUR: { rate: 8500, symbol: '₲', code: 'PYG', locale: 'es-PY', decimals: 0 },
+        USD: { rate: 7600, symbol: '₲', code: 'PYG', locale: 'es-PY', decimals: 0 }
+      },
+      uruguay: {
+        EUR: { rate: 47, symbol: '$', code: 'UYU', locale: 'es-UY', decimals: 0 },
+        USD: { rate: 43, symbol: '$', code: 'UYU', locale: 'es-UY', decimals: 0 }
+      },
+      brasil: {
+        EUR: { rate: 6.4, symbol: 'R$', code: 'BRL', locale: 'pt-BR', decimals: 0 },
+        USD: { rate: 5.6, symbol: 'R$', code: 'BRL', locale: 'pt-BR', decimals: 0 }
+      },
+      'costa-rica': {
+        EUR: { rate: 570, symbol: '₡', code: 'CRC', locale: 'es-CR', decimals: 0 },
+        USD: { rate: 515, symbol: '₡', code: 'CRC', locale: 'es-CR', decimals: 0 }
       },
       panama: {
         EUR: { rate: 1.1, symbol: 'US$', code: 'USD', locale: 'es-PA', decimals: 2 },
         USD: { rate: 1, symbol: 'US$', code: 'USD', locale: 'es-PA', decimals: 2 }
       },
-      uruguay: {
-        EUR: { rate: 47, symbol: '$', code: 'UYU', locale: 'es-UY', decimals: 0 },
-        USD: { rate: 43, symbol: '$', code: 'UYU', locale: 'es-UY', decimals: 0 }
+      guatemala: {
+        EUR: { rate: 8.5, symbol: 'Q', code: 'GTQ', locale: 'es-GT', decimals: 0 },
+        USD: { rate: 7.7, symbol: 'Q', code: 'GTQ', locale: 'es-GT', decimals: 0 }
+      },
+      'el-salvador': {
+        EUR: { rate: 1.1, symbol: 'US$', code: 'USD', locale: 'es-SV', decimals: 2 },
+        USD: { rate: 1, symbol: 'US$', code: 'USD', locale: 'es-SV', decimals: 2 }
+      },
+      honduras: {
+        EUR: { rate: 28, symbol: 'L', code: 'HNL', locale: 'es-HN', decimals: 0 },
+        USD: { rate: 25, symbol: 'L', code: 'HNL', locale: 'es-HN', decimals: 0 }
+      },
+      nicaragua: {
+        EUR: { rate: 40, symbol: 'C$', code: 'NIO', locale: 'es-NI', decimals: 0 },
+        USD: { rate: 37, symbol: 'C$', code: 'NIO', locale: 'es-NI', decimals: 0 }
+      },
+      'republica-dominicana': {
+        EUR: { rate: 67, symbol: 'RD$', code: 'DOP', locale: 'es-DO', decimals: 0 },
+        USD: { rate: 61, symbol: 'RD$', code: 'DOP', locale: 'es-DO', decimals: 0 }
+      },
+      cuba: {
+        EUR: { rate: 130, symbol: '$', code: 'CUP', locale: 'es-CU', decimals: 0 },
+        USD: { rate: 120, symbol: '$', code: 'CUP', locale: 'es-CU', decimals: 0 }
+      },
+      'puerto-rico': {
+        EUR: { rate: 1.1, symbol: 'US$', code: 'USD', locale: 'es-PR', decimals: 2 },
+        USD: { rate: 1, symbol: 'US$', code: 'USD', locale: 'es-PR', decimals: 2 }
       }
     };
 
