@@ -313,6 +313,36 @@ img, video, iframe, svg {
 .vl-related-links{margin:28px 0;padding:18px 20px;border-radius:20px;background:#F5F0E8;border:1px solid #EAE3D5}.vl-related-links strong{display:block;color:#0B1F3A;margin-bottom:8px}.vl-related-links a{display:inline-flex;margin:4px 10px 4px 0;color:#0B1F3A!important;font-weight:900;text-decoration:underline}
 @media(max-width:620px){.vl-seo-cta .actions{display:grid}.vl-seo-cta a{width:100%}}
 
+
+/* Footer + related links clean fix */
+.vl-related-links{display:block}
+.vl-related-links .links{display:flex;flex-wrap:wrap;gap:10px}
+.site-footer{background:#0B1F3A;color:rgba(255,255,255,.72);padding:34px 5% 24px;margin-top:44px}
+.site-footer .footer-inner{max-width:1060px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.site-footer .footer-brand{max-width:520px}
+.site-footer p{margin:0;color:rgba(255,255,255,.72)}
+.site-footer .disclosure{margin-top:8px;font-size:12px;color:rgba(255,255,255,.58)}
+.site-footer .footer-links{display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center}
+.site-footer .footer-links a,.site-footer a{color:#fff;text-decoration:none;font-weight:700;font-size:14px}
+.site-footer .footer-links a:hover,.site-footer a:hover{text-decoration:underline}
+#mob-overlay{display:none;position:fixed;inset:0;background:rgba(11,31,58,.5);z-index:998}
+#mob-overlay.open{display:block}
+#mob-drawer{display:none !important}
+@media(max-width:860px){
+  .vl-related-links{padding:16px !important;border-radius:16px !important}
+  .vl-related-links .links{display:grid;grid-template-columns:1fr;gap:8px}
+  .vl-related-links a{margin:0 !important;text-decoration:none !important;padding:10px 12px;border-radius:12px;background:#fff;border:1px solid #EAE3D5;display:flex;width:100%}
+  .vl-seo-cta{padding:18px !important;border-radius:18px !important}
+  .vl-seo-cta h2{font-size:clamp(22px,7vw,34px)!important}
+  .site-footer{padding:24px 16px 96px}
+  .site-footer .footer-inner{display:grid;grid-template-columns:1fr;gap:14px}
+  .site-footer .footer-links{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .site-footer .footer-links a{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);padding:10px 12px;border-radius:12px;text-align:center}
+}
+@media(max-width:480px){
+  .site-footer .footer-links{grid-template-columns:1fr}
+}
+
 </style>
 <meta charset="utf-8"/>
 <meta content="fnxi-_Liw22SOQakruhikIUAjmf3u6mdT79inMc9x9A" name="google-site-verification"/>
@@ -520,12 +550,12 @@ img, video, iframe, svg {
 <li>No revisar condiciones de anulación, equipaje o deportes.</li>
 </ul>
 
-<div class="vl-related-links"><strong>Guías relacionadas para Colombia:</strong>
+<div class="vl-related-links"><strong>Guías relacionadas para Colombia:</strong><div class="links">
 <a href="/seguro-viaje/colombia-a-espana/">Seguro de viaje Colombia a España</a>
 <a href="/blog/cuando-volar-colombia-espana-barato/">Cuándo volar barato Colombia-España</a>
 <a href="/blog/etias-colombianos/">ETIAS para colombianos</a>
 <a href="/blog/documentos-viajar-espana-desde-colombia-2026/">Documentos para viajar a España</a>
-</div>
+</div></div>
 
 <h2>Conclusión</h2>
 <p>Para viajar de Colombia a España, el precio del seguro importa, pero no debe ser el único criterio. Lo ideal es comparar opciones con buena cobertura médica, repatriación incluida, atención clara y condiciones fáciles de entender. Si usas InterMundial, recuerda revisar el cupón <strong>VIAJEROLATAM</strong>; si revisas IATI, compara el precio final con el mismo tipo de viaje.</p>
@@ -550,7 +580,24 @@ img, video, iframe, svg {
 </aside>
 </div>
 </main>
-<footer>© 2026 ViajeroLatam. Comparador independiente para viajeros latinoamericanos.<p><a href="/como-elegimos/">Cómo elegimos las aseguradoras</a></p></footer>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <p><strong>© 2026 ViajeroLatam</strong> · Comparador independiente para viajeros latinoamericanos.</p>
+      <p class="disclosure">Podemos recibir una comisión si contratas desde nuestros enlaces afiliados, sin coste adicional para ti.</p>
+    </div>
+    <div class="footer-links">
+      <a href="/">Inicio</a>
+      <a href="/seguro-viaje/colombia-a-espana/">Colombia a España</a>
+      <a href="/visa-schengen/">Visa Schengen</a>
+      <a href="/blog/">Artículos</a>
+      <a href="/sobre-nosotros/">Sobre nosotros</a>
+      <a href="/contacto/">Contacto</a>
+      <a href="/como-elegimos/">Cómo elegimos las aseguradoras</a>
+      <a href="/resultados/">Comparar seguros →</a>
+    </div>
+  </div>
+</footer>
 <div aria-label="Comparar seguros" class="mobile-affiliate-bar">
 <a class="ma-primary" href="/comparar-seguros-viaje-colombia-espana/">Comparar</a>
 <a class="ma-secondary" href="https://www.iatiseguros.com?r=84208681926165" rel="nofollow sponsored noopener" target="_blank">IATI</a>
