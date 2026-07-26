@@ -823,8 +823,8 @@ document.getElementById('exit-overlay').addEventListener('click',function(e){if(
         <h4>Aseguradoras</h4>
         <ul>
           <li><a href="/seguros/iati/">IATI Seguros</a></li>
-          <li><a href="/seguros/intermundial/">InterMundial</a></li>
-          <li><a href="/seguros/holins/">Holins</a></li>
+          <li><a href="/seguros/intermundial/" target="_blank" rel="nofollow sponsored noopener">InterMundial</a></li>
+          <li><a href="/seguros/holins/" target="_blank" rel="nofollow sponsored noopener">Holins</a></li>
           <li><a href="/seguros/axa/">AXA</a></li>
           <li><a href="/#aseguradoras">Todas las opciones</a></li>
         </ul>
@@ -871,5 +871,87 @@ document.getElementById('exit-overlay').addEventListener('click',function(e){if(
 footer.vl-footer{width:100%;max-width:none!important;margin-left:0!important;margin-right:0!important}
 .vl-footer-grid>*{min-width:0;word-break:break-word}
 </style>
+
+<script id="vl-affiliate-click-tracking">
+(function(){
+  function affiliateFromUrl(url){
+    var href = String(url || '').toLowerCase();
+
+    if(href.indexOf('iatiseguros.com') !== -1 || href.indexOf('r=84208681926165') !== -1){
+      return 'iati';
+    }
+    if(href.indexOf('intermundial.es') !== -1 || href.indexOf('kbnnqvpvcy490') !== -1){
+      return 'intermundial';
+    }
+    if(href.indexOf('kiwi.tpx.lv') !== -1){
+      return 'kiwi';
+    }
+    if(href.indexOf('saily.tpx.lv') !== -1){
+      return 'saily';
+    }
+    if(href.indexOf('clk.tradedoubler.com') !== -1){
+      try{
+        var u = new URL(url, window.location.href);
+        var p = u.searchParams.get('p');
+        if(p === '343758') return 'axa';
+        if(p === '301095') return 'holins';
+      }catch(e){}
+      if(href.indexOf('343758') !== -1 || href.indexOf('axa') !== -1) return 'axa';
+      if(href.indexOf('301095') !== -1 || href.indexOf('holins') !== -1) return 'holins';
+    }
+    if(href.indexOf('axa-assistance') !== -1) return 'axa';
+    if(href.indexOf('holins') !== -1) return 'holins';
+
+    return '';
+  }
+
+  function eventName(affiliate){
+    var map = {
+      iati:'click_iati',
+      intermundial:'click_intermundial',
+      axa:'click_axa',
+      holins:'click_holins',
+      kiwi:'click_kiwi',
+      saily:'click_saily'
+    };
+    return map[affiliate] || 'click_affiliate';
+  }
+
+  function track(link, affiliate){
+    var data = {
+      affiliate_name: affiliate,
+      page_path: window.location.pathname,
+      page_location: window.location.href,
+      link_url: link.href,
+      link_text: (link.innerText || link.textContent || '').trim().slice(0,100),
+      outbound: true
+    };
+
+    if(typeof window.gtag === 'function'){
+      window.gtag('event', eventName(affiliate), data);
+      window.gtag('event', 'click_affiliate', data);
+    }
+
+    try{
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: eventName(affiliate),
+        affiliate_name: affiliate,
+        page_path: window.location.pathname,
+        link_url: link.href
+      });
+    }catch(e){}
+  }
+
+  document.addEventListener('click', function(e){
+    var link = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+    if(!link) return;
+    var affiliate = affiliateFromUrl(link.href);
+    if(!affiliate) return;
+    track(link, affiliate);
+  }, true);
+})();
+</script>
+
 </body>
 </html>
