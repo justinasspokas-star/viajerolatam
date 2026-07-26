@@ -1842,6 +1842,32 @@ nav .logo img{
 }
 </style>
 
+
+<style id="vl-home-currency-all-origins">
+#sb-duracion-display{
+  text-align:center;
+}
+@media(max-width:768px){
+  #sb-duracion-display{
+    font-size:12px!important;
+    padding:10px 12px!important;
+    line-height:1.45!important;
+  }
+}
+</style>
+
+
+<style id="vl-home-usd-destination-currency">
+@media(max-width:768px){
+  #sb-duracion-display{
+    font-size:12px!important;
+    padding:10px 12px!important;
+    line-height:1.45!important;
+    text-align:center!important;
+  }
+}
+</style>
+
 </head>
 <body>
 <!-- ═══ MOBILE NAV SYSTEM ═══ -->
@@ -2324,22 +2350,83 @@ function sbDateChange() {
     var personas = parseInt(((document.getElementById('sb-personas') || {}).value || '1'), 10);
     if (!isFinite(personas) || personas < 1) personas = 1;
 
-    var eurCop = 3720; // cambio orientativo para mostrar precio aproximado en COP
-    var minEur = 1.75 * dias * personas;
-    var maxEur = 2.10 * dias * personas;
-    var fmtEur = function(n) { return '€' + n.toFixed(2); };
-    var fmtCop = function(n) {
-      return '$' + Math.round(n).toLocaleString('es-CO') + ' COP';
+    var isUSDestination = destino === 'estados-unidos' || destino === 'eeuu-canada';
+
+    // Si el destino es Estados Unidos / EEUU + Canadá, mostramos precio base en USD.
+    // Para España / Schengen, Europa y Mundial mantenemos precio base en EUR.
+    var baseCurrency = isUSDestination ? 'USD' : 'EUR';
+    var baseSymbol = isUSDestination ? 'US$' : '€';
+
+    var minBase = (isUSDestination ? 2.20 : 1.75) * dias * personas;
+    var maxBase = (isUSDestination ? 2.80 : 2.10) * dias * personas;
+
+    var currencyByOrigin = {
+      colombia: {
+        EUR: { rate: 3720, symbol: '$', code: 'COP', locale: 'es-CO', decimals: 0 },
+        USD: { rate: 4000, symbol: '$', code: 'COP', locale: 'es-CO', decimals: 0 }
+      },
+      mexico: {
+        EUR: { rate: 21.5, symbol: '$', code: 'MXN', locale: 'es-MX', decimals: 0 },
+        USD: { rate: 18.5, symbol: '$', code: 'MXN', locale: 'es-MX', decimals: 0 }
+      },
+      argentina: {
+        EUR: { rate: 1690, symbol: '$', code: 'ARS', locale: 'es-AR', decimals: 0 },
+        USD: { rate: 1530, symbol: '$', code: 'ARS', locale: 'es-AR', decimals: 0 }
+      },
+      venezuela: {
+        EUR: { rate: 120, symbol: 'Bs.', code: 'VES', locale: 'es-VE', decimals: 0 },
+        USD: { rate: 110, symbol: 'Bs.', code: 'VES', locale: 'es-VE', decimals: 0 }
+      },
+      peru: {
+        EUR: { rate: 4.1, symbol: 'S/', code: 'PEN', locale: 'es-PE', decimals: 0 },
+        USD: { rate: 3.75, symbol: 'S/', code: 'PEN', locale: 'es-PE', decimals: 0 }
+      },
+      chile: {
+        EUR: { rate: 1080, symbol: '$', code: 'CLP', locale: 'es-CL', decimals: 0 },
+        USD: { rate: 980, symbol: '$', code: 'CLP', locale: 'es-CL', decimals: 0 }
+      },
+      ecuador: {
+        EUR: { rate: 1.1, symbol: 'US$', code: 'USD', locale: 'es-EC', decimals: 2 },
+        USD: { rate: 1, symbol: 'US$', code: 'USD', locale: 'es-EC', decimals: 2 }
+      },
+      bolivia: {
+        EUR: { rate: 7.6, symbol: 'Bs', code: 'BOB', locale: 'es-BO', decimals: 0 },
+        USD: { rate: 6.9, symbol: 'Bs', code: 'BOB', locale: 'es-BO', decimals: 0 }
+      },
+      'republica-dominicana': {
+        EUR: { rate: 67, symbol: 'RD$', code: 'DOP', locale: 'es-DO', decimals: 0 },
+        USD: { rate: 61, symbol: 'RD$', code: 'DOP', locale: 'es-DO', decimals: 0 }
+      },
+      panama: {
+        EUR: { rate: 1.1, symbol: 'US$', code: 'USD', locale: 'es-PA', decimals: 2 },
+        USD: { rate: 1, symbol: 'US$', code: 'USD', locale: 'es-PA', decimals: 2 }
+      },
+      uruguay: {
+        EUR: { rate: 47, symbol: '$', code: 'UYU', locale: 'es-UY', decimals: 0 },
+        USD: { rate: 43, symbol: '$', code: 'UYU', locale: 'es-UY', decimals: 0 }
+      }
+    };
+
+    var infoSet = currencyByOrigin[origen] || currencyByOrigin.colombia;
+    var info = infoSet[baseCurrency] || infoSet.EUR;
+
+    var fmtBase = function(n) {
+      return baseSymbol + n.toFixed(2);
+    };
+
+    var fmtLocal = function(n) {
+      var value = n * info.rate;
+      var formatted = value.toLocaleString(info.locale, {
+        minimumFractionDigits: info.decimals,
+        maximumFractionDigits: info.decimals
+      });
+      return info.symbol + formatted + ' ' + info.code;
     };
 
     var base = dias + ' días';
     if (personas > 1) base += ' · ' + personas + ' viajeros';
 
-    if (origen === 'colombia' && destino === 'espana-schengen') {
-      txt.textContent = base + ' · Desde ' + fmtEur(minEur) + '–' + fmtEur(maxEur) + ' · aprox. ' + fmtCop(minEur * eurCop) + '–' + fmtCop(maxEur * eurCop);
-    } else {
-      txt.textContent = base + ' · Desde ' + fmtEur(minEur) + ' · ' + fmtEur(maxEur);
-    }
+    txt.textContent = base + ' · Desde ' + fmtBase(minBase) + '–' + fmtBase(maxBase) + ' · aprox. ' + fmtLocal(minBase) + '–' + fmtLocal(maxBase);
   }
 }
 
