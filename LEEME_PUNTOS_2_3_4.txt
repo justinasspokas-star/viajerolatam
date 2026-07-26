@@ -1,0 +1,18 @@
+Cambios aplicados por ViajeroLatam - puntos 2, 3 y 4
+
+1) Blog coste seguro Colombia-España
+- Title/meta mejorados para COP y EUR.
+- Tabla de precios aproximados en EUR y COP.
+- CTA hacia resultados y enlaces internos al cluster Colombia.
+
+2) Venezuela a España
+- Página reestructurada para móvil y SEO.
+- Title/meta reforzados.
+- Bloques de requisitos, seguro Schengen, comparativa y errores comunes.
+
+3) Colombia a Estados Unidos
+- Página actualizada en /seguro-viaje/colombia-a-eeuu/.
+- Añadida ruta alias /seguro-viaje/colombia-a-estados-unidos/.
+- Contenido prudente sobre seguro, visa y cobertura médica alta.
+
+También se mantiene el home responsive, resultados con COP, Colombia a España con COP en hero y el artículo de vuelos Colombia-España con CTA hacia seguros.

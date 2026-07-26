@@ -70,3 +70,6 @@
 /blog/cuanto-cuesta-seguro-viaje-colombia-espana/ /blog/cuanto-cuesta-seguro-viaje-colombia-espana/index.html 200
 /comparar/heymondo-vs-iati-colombianos/ /comparar/heymondo-vs-iati-colombianos/index.html 200
 https://www.viajerolatam.com/*       https://viajerolatam.com/:splat                301!
+
+# Alias SEO Colombia Estados Unidos
+/seguro-viaje/colombia-a-estados-unidos/ /seguro-viaje/colombia-a-eeuu/ 301
