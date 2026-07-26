@@ -1,7 +1,8 @@
 <!DOCTYPE html>
+
 <html lang="es-CO">
 <head>
-<link rel="preload" as="image" href="/hero-bg.webp" type="image/webp">
+<link as="image" href="/hero-bg.webp" rel="preload" type="image/webp"/>
 <style id="vl-responsive">
 /* ================================================
    VIAJEROLATAM — RESPONSIVE CSS (definitive)
@@ -247,6 +248,7 @@ img, video, iframe, svg {
   }
 
   /* STICKY + BODY PADDING */
+  #sticky-mob { display: block !important; }
   body { padding-bottom: 84px !important; }
 
   /* EXIT POPUP */
@@ -272,6 +274,7 @@ img, video, iframe, svg {
   @media screen and (orientation: landscape) and (max-height: 500px) {
     .hero, section.hero { padding: 52px 16px 20px !important; min-height: auto !important; }
     h1 { font-size: 22px !important; }
+    #sticky-mob { display: none !important; }
     body { padding-bottom: 0 !important; }
   }
 }
@@ -301,7 +304,7 @@ img, video, iframe, svg {
   td, th { font-size: 11px !important; padding: 6px !important; }
   .section, section { padding: 14px 12px !important; }
   .sb-row, .search-dates-row { grid-template-columns: 1fr !important; }
-  
+  #sticky-mob a { font-size: 14px !important; }
 }
 
 /* Saily eSIM upsell */
@@ -381,131 +384,33 @@ img, video, iframe, svg {
 .vl-clean-actions{display:grid;gap:8px}.vl-clean-actions a{display:flex;align-items:center;justify-content:center;text-align:center;padding:11px 14px;border-radius:999px;text-decoration:none!important;font-size:14px;font-weight:900}.vl-clean-actions .primary{background:#0B1F3A;color:#fff!important}.vl-clean-actions .accent{background:#00C4A1;color:#0B1F3A!important}.vl-clean-actions .secondary{background:#F5F0E8;color:#0B1F3A!important;border:1px solid #EAE3D5}
 @media(max-width:980px){.vl-clean-insurer-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:620px){.vl-clean-insurer-section{padding:20px}.vl-clean-insurer-grid{grid-template-columns:1fr}}
 
-
-/* Header navigation button polish */
-header nav a,
-.site-header nav a,
-.navbar a,
-.nav-links a,
-.main-nav a,
-.header-nav a{
-  text-decoration:none!important;
-  color:#0B1F3A!important;
-  font-weight:800!important;
-  font-size:14px!important;
-  line-height:1!important;
-  display:inline-flex!important;
-  align-items:center!important;
-  justify-content:center!important;
-  gap:6px!important;
-  padding:10px 14px!important;
-  border-radius:999px!important;
-  transition:background .18s ease,color .18s ease,transform .18s ease,border-color .18s ease!important;
-}
-header nav a:hover,
-.site-header nav a:hover,
-.navbar a:hover,
-.nav-links a:hover,
-.main-nav a:hover,
-.header-nav a:hover{
-  background:#F0F6FF!important;
-  color:#0B1F3A!important;
-  transform:translateY(-1px)!important;
-}
-header nav a[aria-current="page"],
-.site-header nav a[aria-current="page"],
-.navbar a[aria-current="page"],
-.nav-links a[aria-current="page"],
-.main-nav a[aria-current="page"],
-.header-nav a[aria-current="page"]{
-  background:#EAFBF7!important;
-  color:#0B1F3A!important;
-}
-header nav a[href*="resultados"],
-header nav a[href*="comparar"],
-.site-header nav a[href*="resultados"],
-.site-header nav a[href*="comparar"],
-.navbar a[href*="resultados"],
-.navbar a[href*="comparar"],
-.nav-links a[href*="resultados"],
-.nav-links a[href*="comparar"],
-.main-nav a[href*="resultados"],
-.main-nav a[href*="comparar"],
-.header-nav a[href*="resultados"],
-.header-nav a[href*="comparar"]{
-  background:#0B1F3A!important;
-  color:#fff!important;
-  box-shadow:0 8px 18px rgba(11,31,58,.16)!important;
-}
-header nav a[href*="resultados"]:hover,
-header nav a[href*="comparar"]:hover,
-.site-header nav a[href*="resultados"]:hover,
-.site-header nav a[href*="comparar"]:hover,
-.navbar a[href*="resultados"]:hover,
-.navbar a[href*="comparar"]:hover,
-.nav-links a[href*="resultados"]:hover,
-.nav-links a[href*="comparar"]:hover,
-.main-nav a[href*="resultados"]:hover,
-.main-nav a[href*="comparar"]:hover,
-.header-nav a[href*="resultados"]:hover,
-.header-nav a[href*="comparar"]:hover{
-  background:#00C4A1!important;
-  color:#0B1F3A!important;
-}
-header,
-.site-header{
-  background:#fff!important;
-  border-bottom:1px solid rgba(11,31,58,.08)!important;
-}
-@media(max-width:780px){
-  header nav a,
-  .site-header nav a,
-  .navbar a,
-  .nav-links a,
-  .main-nav a,
-  .header-nav a{
-    width:100%!important;
-    justify-content:flex-start!important;
-    padding:12px 14px!important;
-  }
-}
-
 </style>
-<meta charset="UTF-8">
-<link rel="icon" type="image/x-icon" href="/favicon.ico">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <meta name="google-site-verification" content="fnxi-_Liw22SOQakruhikIUAjmf3u6mdT79inMc9x9A">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Comparar seguros de viaje Colombia a Españ | IATI vs InterMundial</title>
-  <meta name="description" content="Compara seguros de viaje de Colombia a España. Guía completa IATI vs InterMundial, cobertura médica, requisitos Schengen, cupón VIAJEROLATAM, errores co...">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://viajerolatam.com/comparar-seguros-viaje-colombia-espana/">
-  <link rel="alternate" hreflang="es-CO" href="https://viajerolatam.com/comparar-seguros-viaje-colombia-espana/">
-  <link rel="alternate" hreflang="x-default" href="https://viajerolatam.com/comparar-seguros-viaje-colombia-espana/">
-
-  <meta property="og:type" content="article">
-  <meta property="og:title" content="Comparar seguros de viaje Colombia a España">
-  <meta property="og:description" content="Comparativa clara entre IATI e InterMundial para colombianos que viajan a España o zona Schengen.">
-  <meta property="og:url" content="https://viajerolatam.com/comparar-seguros-viaje-colombia-espana/">
-  <meta property="og:image" content="https://viajerolatam.com/logo-vl-original-20260528.png">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <!-- Google Analytics 4 -->
+<meta charset="utf-8"/>
+<meta content="fnxi-_Liw22SOQakruhikIUAjmf3u6mdT79inMc9x9A" name="google-site-verification"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Comparar seguros de viaje Colombia a España 2026 | IATI vs InterMundial</title>
+<meta content="Compara seguros de viaje para Colombia a España: IATI, InterMundial, Holins y AXA. Revisa precio, cobertura médica, repatriación y condiciones antes de contratar." name="description"/>
+<meta content="index, follow" name="robots"/>
+<link href="https://viajerolatam.com/comparar-seguros-viaje-colombia-espana/" rel="canonical"/>
+<link href="https://viajerolatam.com/comparar-seguros-viaje-colombia-espana/" hreflang="es-CO" rel="alternate"/>
+<link href="https://viajerolatam.com/comparar-seguros-viaje-colombia-espana/" hreflang="x-default" rel="alternate"/>
+<meta content="article" property="og:type"/>
+<meta content="Comparar seguros de viaje Colombia a España 2026" property="og:title"/>
+<meta content="Tabla comparativa para revisar precio, cobertura médica, repatriación y condiciones de seguros de viaje a España." property="og:description"/>
+<meta content="https://viajerolatam.com/comparar-seguros-viaje-colombia-espana/" property="og:url"/>
+<meta content="https://viajerolatam.com/logo-vl-original-20260528.png" property="og:image"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Google Analytics 4 -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-P1Q2TSMVNJ"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-SY86BP2PPT');
+  gtag('config', 'G-P1Q2TSMVNJ');
 </script>
-
-
-  <script type="application/ld+json">
+<script type="application/ld+json">
   {
     "@context":"https://schema.org",
     "@type":"BreadcrumbList",
@@ -516,8 +421,7 @@ header,
     ]
   }
   </script>
-
-  <script type="application/ld+json">
+<script type="application/ld+json">
   {
     "@context":"https://schema.org",
     "@type":"FAQPage",
@@ -529,8 +433,7 @@ header,
     ]
   }
   </script>
-
-  <style>
+<style>
     *{box-sizing:border-box;margin:0;padding:0}
     :root{--navy:#0B1F3A;--navy2:#1A3558;--teal:#00C4A1;--mint:#75D8BC;--sand:#F5F0E8;--sand2:#EAE3D5;--text:#0B1F3A;--muted:#4A647E;--display:'DM Serif Display',Georgia,serif;--body:'Plus Jakarta Sans',sans-serif}
     body{font-family:var(--body);color:var(--text);background:#fff;line-height:1.7}
@@ -850,6 +753,7 @@ nav a.brand-logo img, nav a.logo img{height:64px !important; width:auto !importa
 .mobile-affiliate-bar .ma-primary{background:#00C4A1;color:#0B1F3A!important}
 .mobile-affiliate-bar .ma-secondary{background:#fff;color:#0B1F3A!important}
 @media (max-width:768px){
+  body{padding-bottom:74px!important}
   .mobile-affiliate-bar{display:flex}
 }
 
@@ -925,279 +829,188 @@ nav a.brand-logo img, nav a.logo img{height:64px !important; width:auto !importa
 }
 
 </style>
-<meta property="og:locale" content="es_CO">
-<meta property="og:site_name" content="ViajeroLatam">
-
+<meta content="es_CO" property="og:locale"/>
+<meta content="ViajeroLatam" property="og:site_name"/>
 <style id="no-travel-icons">.travel-icons,#travel-canvas,canvas{display:none!important}</style>
 <style id="webp-hero">@supports(background-image:url("data:image/webp,")){.hero,section.hero{background-image:url('/hero-bg.webp')!important}}</style>
-
-<style id="vl-footer-css">
-.vl-footer{background:#0B1F3A;color:rgba(255,255,255,.68);padding:52px 5% 0;font-family:'Plus Jakarta Sans',sans-serif;width:100%;box-sizing:border-box}
-.vl-footer-inner{max-width:1120px;margin:0 auto;width:100%;box-sizing:border-box}
-.vl-footer-grid{display:grid;grid-template-columns:1.6fr repeat(3,1fr);gap:40px;align-items:start;padding-bottom:40px;width:100%;box-sizing:border-box}
-.vl-footer-brand{min-width:0}
-.vl-footer-brand a{display:inline-block;line-height:0}
-.vl-footer-brand img{height:68px;width:auto;max-width:260px;object-fit:contain;display:block;margin-bottom:14px;opacity:1!important;filter:none!important;mix-blend-mode:normal!important}
-.vl-footer-brand p{color:rgba(255,255,255,.58);font-size:13px;line-height:1.7;max-width:280px;margin-bottom:16px}
-.vl-footer-social{display:flex;gap:8px;flex-wrap:wrap}
-.vl-footer-social a{width:36px;height:36px;display:inline-flex;align-items:center;justify-content:center;border-radius:10px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.7)!important;font-size:12px;font-weight:700;text-decoration:none!important;transition:background .2s;flex-shrink:0}
-.vl-footer-social a:hover{background:rgba(0,196,161,.2);color:#75D8BC!important}
-.vl-footer-col{min-width:0}
-.vl-footer-col h4{color:#fff;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin:0 0 14px;white-space:nowrap}
-.vl-footer-col ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:9px}
-.vl-footer-col a{color:rgba(255,255,255,.62)!important;text-decoration:none!important;font-size:13px;font-weight:500;transition:color .2s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
-.vl-footer-col a:hover{color:#75D8BC!important}
-.vl-footer-bottom{border-top:1px solid rgba(255,255,255,.10);padding:18px 0 22px;display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;font-size:12px;color:rgba(255,255,255,.38)}
-.vl-footer-bottom .vl-legal{display:flex;gap:16px;flex-wrap:wrap}
-.vl-footer-bottom a{color:rgba(255,255,255,.38)!important;text-decoration:none!important;transition:color .2s;white-space:nowrap}
-.vl-footer-bottom a:hover{color:rgba(255,255,255,.7)!important}
-@media(max-width:1000px){
-  .vl-footer-grid{grid-template-columns:1fr 1fr 1fr;gap:28px}
-  .vl-footer-brand{grid-column:1/-1;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:start}
-  .vl-footer-brand p{margin-bottom:0}
-}
-@media(max-width:700px){
-  .vl-footer{padding:36px 20px 0}
-  .vl-footer-grid{grid-template-columns:1fr 1fr;gap:24px;padding-bottom:28px}
-  .vl-footer-brand{grid-column:1/-1;display:block}
-  .vl-footer-brand img{height:54px;margin-bottom:12px}
-  .vl-footer-brand p{max-width:100%;font-size:12px}
-  .vl-footer-col h4{font-size:10px}
-  .vl-footer-col a{font-size:12px}
-  .vl-footer-bottom{flex-direction:column;align-items:flex-start;gap:8px;padding:14px 0 20px}
-  .vl-footer-bottom .vl-legal{gap:12px}
-}
-@media(max-width:420px){
-  .vl-footer{padding:32px 16px 0}
-  .vl-footer-grid{grid-template-columns:1fr 1fr;gap:20px}
-  .vl-footer-col a{white-space:normal}
-}
-#vl-sticky{display:none;position:fixed;bottom:0;left:0;right:0;z-index:990;padding:10px 14px 14px;background:linear-gradient(to top,rgba(255,255,255,1) 55%,rgba(255,255,255,0));pointer-events:none}
-#vl-sticky a{display:flex;align-items:center;justify-content:center;gap:8px;background:#00C4A1;color:#0B1F3A!important;padding:14px;border-radius:50px;font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:700;text-decoration:none!important;box-shadow:0 4px 20px rgba(0,196,161,.4);pointer-events:all;transition:background .2s,transform .15s}
-#vl-sticky a:active{transform:scale(.97)}
-#vl-sticky p{font-size:11px;color:#8FA4B8;text-align:center;margin-top:5px;font-family:'Plus Jakarta Sans',sans-serif}
-@media(max-width:768px){#vl-sticky{display:block}body{padding-bottom:86px!important}}
-@media(min-width:769px){#vl-sticky{display:none!important}}
-@media(orientation:landscape) and (max-height:500px){#vl-sticky{display:none!important}body{padding-bottom:0!important}}
-</style>
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-P1Q2TSMVNJ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-P1Q2TSMVNJ');
-</script>
-
-</head>
+<meta content="Comparar seguros Colombia a España | ViajeroLatam" name="twitter:title"/><meta content="Compara IATI, InterMundial, Holins y AXA para viajar de Colombia a España." name="twitter:description"/></head>
 <body>
-  <nav>
-    <a href="/" class="brand-logo" aria-label="ViajeroLatam inicio"><img src="/logo-vl-original-20260528.png" alt="ViajeroLatam"></a>
-    <div class="nav-links">
-      <a href="/seguro-viaje/colombia-a-espana/">Colombia a España</a>
-      <a href="/visa-schengen/">Visa Schengen</a>
-      <a href="/blog/">Artículos</a><a href="/sobre-nosotros/">Sobre nosotros</a><a href="/contacto/">Contacto</a>
-      <a href="/resultados/" class="nav-cta">Comparar ahora</a>
-    </div>
-  </nav>
-
-  <header class="hero">
-    <div class="hero-inner">
-      <div>
-        <div class="eyebrow">🇨🇴 Comparativa de Colombia a España</div>
-        <h1>Comparar seguros de viaje <em>Colombia a España</em></h1>
-        <p>IATI e InterMundial son dos opciones fuertes para viajar protegido a España. Compara diferencias, revisa el cupón VIAJEROLATAM y elige según tu tipo de viaje.</p>
-        <div class="btn-row">
-          <a class="btn btn-primary" href="#comparativa">Ver comparativa</a>
-          <a class="btn btn-outline" href="/seguro-viaje/colombia-a-espana/">Leer guía completa</a>
-        </div>
-      </div>
-      <aside class="hero-box">
-        <h2>Oferta destacada</h2>
-        <p style="color:#4A647E">InterMundial ofrece descuento para lectores de ViajeroLatam.</p>
-        <div class="coupon">Cupón: VIAJEROLATAM</div>
-        <a class="btn btn-dark" href="https://www.intermundial.es/afiliados/seguros-de-viaje-recomendado?utm_source=Affiliates&utm_medium=Affiliates&utm_campaign=General&utm_term=kbnnqvpvcy490&utm_content=kbnnqvpvcy490&coupon=VIAJEROLATAM" target="_blank" rel="nofollow sponsored noopener" style="width:100%">Ver precio en InterMundial →</a>
-      </aside>
-    </div>
-  </header>
-
-  <section id="comparativa">
-    <div class="wrap">
-      <div class="kicker">Recomendaciones</div>
-      <h2>IATI vs InterMundial: cuál mirar primero</h2>
-      <p class="lead">No existe un seguro perfecto para todos. La mejor opción depende de duración, edad, tipo de viaje, coberturas necesarias y precio final. Estas son recomendaciones orientativas.</p>
-
-      <div class="cards">
-        <article class="insurer recommended">
-          <span class="badge">Buena opción hispana</span>
-          <h3>IATI</h3>
-          <p>Puede encajar bien si quieres contratar online, recibir la póliza rápido y tener una experiencia clara para viajes internacionales.</p>
-          <ul class="list">
-            <li>Asistencia en español</li>
-            <li>Opciones para Europa y viajes internacionales</li>
-            <li>Contratación online</li>
-            <li>Buena marca para usuarios hispanohablantes</li>
-          </ul>
-          <a class="btn btn-primary" href="https://www.iatiseguros.com?r=84208681926165" target="_blank" rel="nofollow sponsored noopener">Ver precio en IATI →</a>
-        
-<div class="vl-esim-upsell">
-  <div class="tag">También prepara tu viaje</div>
-  <h2>Internet en España sin roaming</h2>
-  <p>Además del seguro, puedes preparar una eSIM para llegar conectado a España o Europa sin depender del roaming internacional.</p>
-  <a href="/esim/espana-colombianos/">Ver eSIM para España →</a>
+<nav>
+<a aria-label="ViajeroLatam inicio" class="brand-logo" href="/"><img alt="ViajeroLatam" src="/logo-vl-original-20260528.png"/></a>
+<div class="nav-links">
+<a href="/seguro-viaje/colombia-a-espana/">Colombia a España</a>
+<a href="/visa-schengen/">Visa Schengen</a>
+<a href="/blog/">Artículos</a><a href="/sobre-nosotros/">Sobre nosotros</a><a href="/contacto/">Contacto</a>
+<a class="nav-cta" href="/resultados/">Comparar ahora</a>
 </div>
-
-
-
-
-
+</nav>
+<header class="hero">
+<div class="hero-inner">
+<div>
+<div class="eyebrow">🇨🇴 Comparativa de Colombia a España</div>
+<h1>Comparar seguros de viaje <em>Colombia a España</em></h1>
+<p>IATI e InterMundial son dos opciones fuertes para viajar protegido a España. Compara diferencias, revisa el cupón VIAJEROLATAM y elige según tu tipo de viaje.</p>
+<div class="btn-row">
+<a class="btn btn-primary" href="#comparativa">Ver comparativa</a>
+<a class="btn btn-outline" href="/seguro-viaje/colombia-a-espana/">Leer guía completa</a>
+</div>
+</div>
+<aside class="hero-box">
+<h2>Oferta destacada</h2>
+<p style="color:#4A647E">InterMundial ofrece descuento para lectores de ViajeroLatam.</p>
+<div class="coupon">Cupón: VIAJEROLATAM</div>
+<a class="btn btn-dark" href="https://www.intermundial.es/afiliados/seguros-de-viaje-recomendado?utm_source=Affiliates&amp;utm_medium=Affiliates&amp;utm_campaign=General&amp;utm_term=kbnnqvpvcy490&amp;utm_content=kbnnqvpvcy490&amp;coupon=VIAJEROLATAM" rel="nofollow sponsored noopener" style="width:100%" target="_blank">Ver precio en InterMundial →</a>
+</aside>
+</div>
+</header>
+<section id="comparativa">
+<div class="wrap">
+<div class="kicker">Recomendaciones</div>
+<h2>IATI vs InterMundial: cuál mirar primero</h2>
+<p class="lead">No existe un seguro perfecto para todos. La mejor opción depende de duración, edad, tipo de viaje, coberturas necesarias y precio final. Estas son recomendaciones orientativas.</p>
+<div class="cards">
+<article class="insurer recommended">
+<span class="badge">Buena opción hispana</span>
+<h3>IATI</h3>
+<p>Puede encajar bien si quieres contratar online, recibir la póliza rápido y tener una experiencia clara para viajes internacionales.</p>
+<ul class="list">
+<li>Asistencia en español</li>
+<li>Opciones para Europa y viajes internacionales</li>
+<li>Contratación online</li>
+<li>Buena marca para usuarios hispanohablantes</li>
+</ul>
+<a class="btn btn-primary" href="https://www.iatiseguros.com?r=84208681926165" rel="nofollow sponsored noopener" target="_blank">Ver precio en IATI →</a>
+<div class="vl-esim-upsell">
+<div class="tag">También prepara tu viaje</div>
+<h2>Internet en España sin roaming</h2>
+<p>Además del seguro, puedes preparar una eSIM para llegar conectado a España o Europa sin depender del roaming internacional.</p>
+<a href="/esim/espana-colombianos/">Ver eSIM para España →</a>
+</div>
 </article>
-
-        <article class="insurer recommended">
-          <span class="badge">Cupón VIAJEROLATAM</span>
-          <h3>InterMundial</h3>
-          <p>Interesante si buscas una compañía especializada en seguros de viaje en España y quieres usar el descuento de ViajeroLatam.</p>
-          <ul class="list">
-            <li>Especialistas en seguros de viaje</li>
-            <li>Buen encaje para España y Europa</li>
-            <li>Descuento para lectores con cupón</li>
-            <li>Productos configurables según viaje</li>
-          </ul>
-          <div class="coupon">Cupón: VIAJEROLATAM</div>
-          <a class="btn btn-dark" href="https://www.intermundial.es/afiliados/seguros-de-viaje-recomendado?utm_source=Affiliates&utm_medium=Affiliates&utm_campaign=General&utm_term=kbnnqvpvcy490&utm_content=kbnnqvpvcy490&coupon=VIAJEROLATAM" target="_blank" rel="nofollow sponsored noopener">Ver precio en InterMundial →</a>
-        </article>
-      </div>
-
-      <div class="note"><strong>Transparencia:</strong> ViajeroLatam es gratuito para ti. Podemos recibir comisión si contratas desde nuestros enlaces, sin coste adicional para ti.</div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap">
-      <div class="kicker">Tabla rápida</div>
-      <h2>Comparativa orientativa</h2>
-      <div class="table">
-        <div class="row head"><div class="cell">Criterio</div><div class="cell">IATI</div><div class="cell">InterMundial</div></div>
-        <div class="row"><div class="cell"><strong>Mejor para</strong></div><div class="cell">Viajeros que buscan una experiencia online clara.</div><div class="cell">Viajeros que quieren usar descuento y comparar productos configurables.</div></div>
-        <div class="row"><div class="cell"><strong>Idioma</strong></div><div class="cell">Español.</div><div class="cell">Español.</div></div>
-        <div class="row"><div class="cell"><strong>Destino España/Europa</strong></div><div class="cell">Revisar plan elegido.</div><div class="cell">Buen encaje por especialización en viajes y mercado español.</div></div>
-        <div class="row"><div class="cell"><strong>Descuento</strong></div><div class="cell">Ver promociones activas en la web oficial.</div><div class="cell">Cupón VIAJEROLATAM.</div></div>
-        <div class="row"><div class="cell"><strong>Antes de contratar</strong></div><div class="cell">Revisar cobertura, franquicia y repatriación.</div><div class="cell">Revisar cobertura, franquicia y repatriación.</div></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="dark">
-    <div class="wrap">
-      <div class="kicker">Schengen</div>
-      <h2>Qué revisar si viajas a España</h2>
-      <p class="lead">Para viajar tranquilo desde Colombia a España, no mires solo el precio. Revisa especialmente estos puntos.</p>
-      <div class="grid3">
-        <div class="dark-card"><h3>Cobertura médica</h3><p>Busca una cobertura adecuada para España y Europa. Como referencia Schengen, muchos viajeros buscan mínimo 30.000 €.</p></div>
-        <div class="dark-card"><h3>Repatriación</h3><p>Debe estar incluida en la póliza. Es una cobertura clave en viajes internacionales.</p></div>
-        <div class="dark-card"><h3>Fechas completas</h3><p>La póliza debe cubrir desde que sales de Colombia hasta que regresas, incluyendo escalas.</p></div>
-      </div>
-    </div>
-  </section>
-
-  
-<section class="vl-trust-block">
-  <h2>Checklist antes de contratar tu seguro</h2>
-  <p style="color:#4A647E;max-width:780px">Antes de pagar, revisa estos puntos. Un seguro barato puede salir caro si no cubre lo que necesitas durante tu viaje de Colombia a España.</p>
-  <div class="vl-trust-grid">
-    <div class="vl-trust-item"><strong>Cobertura médica suficiente</strong><p>Como referencia Schengen, muchos viajeros buscan mínimo 30.000 € de cobertura médica.</p></div>
-    <div class="vl-trust-item"><strong>Repatriación incluida</strong><p>Comprueba que incluya traslado sanitario y repatriación durante todo el viaje.</p></div>
-    <div class="vl-trust-item"><strong>Fechas completas</strong><p>Debe cubrir desde tu salida de Colombia hasta el regreso, incluyendo escalas.</p></div>
-    <div class="vl-trust-item"><strong>Asistencia en español</strong><p>Muy importante si viajas con familia o si no quieres complicarte en una emergencia.</p></div>
-    <div class="vl-trust-item"><strong>Franquicia y exclusiones</strong><p>Revisa si debes pagar algo de tu bolsillo y qué situaciones quedan fuera.</p></div>
-    <div class="vl-trust-item"><strong>Póliza PDF</strong><p>Guarda el documento para migración, consulado, aerolínea o cualquier emergencia.</p></div>
-  </div>
+<article class="insurer recommended">
+<span class="badge">Cupón VIAJEROLATAM</span>
+<h3>InterMundial</h3>
+<p>Interesante si buscas una compañía especializada en seguros de viaje en España y quieres usar el descuento de ViajeroLatam.</p>
+<ul class="list">
+<li>Especialistas en seguros de viaje</li>
+<li>Buen encaje para España y Europa</li>
+<li>Descuento para lectores con cupón</li>
+<li>Productos configurables según viaje</li>
+</ul>
+<div class="coupon">Cupón: VIAJEROLATAM</div>
+<a class="btn btn-dark" href="https://www.intermundial.es/afiliados/seguros-de-viaje-recomendado?utm_source=Affiliates&amp;utm_medium=Affiliates&amp;utm_campaign=General&amp;utm_term=kbnnqvpvcy490&amp;utm_content=kbnnqvpvcy490&amp;coupon=VIAJEROLATAM" rel="nofollow sponsored noopener" target="_blank">Ver precio en InterMundial →</a>
+</article>
+</div>
+<div class="note"><strong>Transparencia:</strong> ViajeroLatam es gratuito para ti. Podemos recibir comisión si contratas desde nuestros enlaces, sin coste adicional para ti.</div>
+</div>
 </section>
-
-
-<section class="vl-trust-block">
-  <h2>Cómo elegimos los seguros recomendados</h2>
-  <p style="color:#4A647E;max-width:820px">En ViajeroLatam priorizamos aseguradoras con experiencia en viajes, contratación online, información clara, atención útil y buen encaje para latinoamericanos que viajan a España o Europa.</p>
-  <div class="vl-trust-grid">
-    <div class="vl-trust-item"><strong>Claridad</strong><p>Que el usuario pueda entender cobertura, precio, límites y condiciones antes de contratar.</p></div>
-    <div class="vl-trust-item"><strong>Confianza</strong><p>Marcas con presencia en el sector de viajes y productos enfocados en asistencia internacional.</p></div>
-    <div class="vl-trust-item"><strong>Conversión útil</strong><p>Botones hacia webs oficiales, cupón cuando existe y aviso de afiliación transparente.</p></div>
-  </div>
+<section>
+<div class="wrap">
+<div class="kicker">Tabla rápida</div>
+<h2>Comparativa orientativa</h2>
+<div class="table">
+<div class="row head"><div class="cell">Criterio</div><div class="cell">IATI</div><div class="cell">InterMundial</div></div>
+<div class="row"><div class="cell"><strong>Mejor para</strong></div><div class="cell">Viajeros que buscan una experiencia online clara.</div><div class="cell">Viajeros que quieren usar descuento y comparar productos configurables.</div></div>
+<div class="row"><div class="cell"><strong>Idioma</strong></div><div class="cell">Español.</div><div class="cell">Español.</div></div>
+<div class="row"><div class="cell"><strong>Destino España/Europa</strong></div><div class="cell">Revisar plan elegido.</div><div class="cell">Buen encaje por especialización en viajes y mercado español.</div></div>
+<div class="row"><div class="cell"><strong>Descuento</strong></div><div class="cell">Ver promociones activas en la web oficial.</div><div class="cell">Cupón VIAJEROLATAM.</div></div>
+<div class="row"><div class="cell"><strong>Antes de contratar</strong></div><div class="cell">Revisar cobertura, franquicia y repatriación.</div><div class="cell">Revisar cobertura, franquicia y repatriación.</div></div>
+</div>
+</div>
 </section>
-
-
+<section class="dark">
+<div class="wrap">
+<div class="kicker">Schengen</div>
+<h2>Qué revisar si viajas a España</h2>
+<p class="lead">Para viajar tranquilo desde Colombia a España, no mires solo el precio. Revisa especialmente estos puntos.</p>
+<div class="grid3">
+<div class="dark-card"><h3>Cobertura médica</h3><p>Busca una cobertura adecuada para España y Europa. Como referencia Schengen, muchos viajeros buscan mínimo 30.000 €.</p></div>
+<div class="dark-card"><h3>Repatriación</h3><p>Debe estar incluida en la póliza. Es una cobertura clave en viajes internacionales.</p></div>
+<div class="dark-card"><h3>Fechas completas</h3><p>La póliza debe cubrir desde que sales de Colombia hasta que regresas, incluyendo escalas.</p></div>
+</div>
+</div>
+</section>
+<section class="vl-trust-block">
+<h2>Checklist antes de contratar tu seguro</h2>
+<p style="color:#4A647E;max-width:780px">Antes de pagar, revisa estos puntos. Un seguro barato puede salir caro si no cubre lo que necesitas durante tu viaje de Colombia a España.</p>
+<div class="vl-trust-grid">
+<div class="vl-trust-item"><strong>Cobertura médica suficiente</strong><p>Como referencia Schengen, muchos viajeros buscan mínimo 30.000 € de cobertura médica.</p></div>
+<div class="vl-trust-item"><strong>Repatriación incluida</strong><p>Comprueba que incluya traslado sanitario y repatriación durante todo el viaje.</p></div>
+<div class="vl-trust-item"><strong>Fechas completas</strong><p>Debe cubrir desde tu salida de Colombia hasta el regreso, incluyendo escalas.</p></div>
+<div class="vl-trust-item"><strong>Asistencia en español</strong><p>Muy importante si viajas con familia o si no quieres complicarte en una emergencia.</p></div>
+<div class="vl-trust-item"><strong>Franquicia y exclusiones</strong><p>Revisa si debes pagar algo de tu bolsillo y qué situaciones quedan fuera.</p></div>
+<div class="vl-trust-item"><strong>Póliza PDF</strong><p>Guarda el documento para migración, consulado, aerolínea o cualquier emergencia.</p></div>
+</div>
+</section>
+<section class="vl-trust-block">
+<h2>Cómo elegimos los seguros recomendados</h2>
+<p style="color:#4A647E;max-width:820px">En ViajeroLatam priorizamos aseguradoras con experiencia en viajes, contratación online, información clara, atención útil y buen encaje para latinoamericanos que viajan a España o Europa.</p>
+<div class="vl-trust-grid">
+<div class="vl-trust-item"><strong>Claridad</strong><p>Que el usuario pueda entender cobertura, precio, límites y condiciones antes de contratar.</p></div>
+<div class="vl-trust-item"><strong>Confianza</strong><p>Marcas con presencia en el sector de viajes y productos enfocados en asistencia internacional.</p></div>
+<div class="vl-trust-item"><strong>Conversión útil</strong><p>Botones hacia webs oficiales, cupón cuando existe y aviso de afiliación transparente.</p></div>
+</div>
+</section>
 <section class="seo-content-block">
-  <div class="content-card">
-    <div class="kicker">Guía de decisión</div>
-    <h2>Cómo comparar seguros de viaje de Colombia a España sin equivocarte</h2>
-    <p>Cuando viajas de Colombia a España, elegir un seguro no debería depender solo del precio. La diferencia real está en lo que ocurre si tienes una urgencia médica, pierdes una conexión, necesitas asistencia en español o tienes que presentar una póliza clara durante el viaje. Por eso, en ViajeroLatam recomendamos comparar el seguro como una herramienta de protección, no como un trámite más.</p>
-    <p>Para una ruta como Colombia a España, lo más importante es revisar si el seguro cubre toda la estancia, si incluye asistencia médica internacional, si contempla repatriación y si la compañía ofrece canales de ayuda fáciles de usar. También conviene mirar el idioma de atención, porque en una emergencia no quieres perder tiempo interpretando condiciones complicadas.</p>
-
-    <h3>Qué debe tener un buen seguro para España</h3>
-    <p>Un buen seguro para viajar a España debería cubrir al menos los problemas más habituales de un viaje internacional: asistencia médica, urgencias, hospitalización, repatriación, pérdida o demora de equipaje y asistencia 24/7. En algunos casos también puede interesar añadir anulación, deportes, crucero, larga estancia o cobertura para dispositivos, pero eso depende del tipo de viaje.</p>
-    <ul>
-      <li><strong>Cobertura médica:</strong> revisa el límite máximo y si aplica para toda Europa o solo para España.</li>
-      <li><strong>Repatriación:</strong> una cobertura importante en viajes internacionales.</li>
-      <li><strong>Franquicia:</strong> algunos planes pueden exigir un pago inicial por parte del viajero.</li>
-      <li><strong>Asistencia en español:</strong> clave para viajeros colombianos y familias.</li>
-      <li><strong>Documento de póliza:</strong> debe ser fácil de descargar y guardar en PDF.</li>
-    </ul>
-
-    <h3>IATI o InterMundial: cómo decidir</h3>
-    <p>IATI puede ser una opción fuerte si buscas una experiencia de contratación sencilla, comunicación clara y enfoque en viajeros hispanohablantes. InterMundial puede ser interesante si quieres comparar una aseguradora especializada en viajes en España y aprovechar el cupón de ViajeroLatam. La decisión final debería salir de comparar el precio final, la cobertura médica, la franquicia, la duración del viaje y las condiciones concretas del producto elegido.</p>
-    <p>Si viajas pocos días por turismo, puede bastar un plan equilibrado con buena asistencia médica. Si viajas por estudios, larga estancia o visitas familiares, conviene mirar coberturas más amplias. Y si viajas con niños o personas mayores, prioriza asistencia médica y atención rápida por encima de ahorrar unos pocos euros.</p>
-
-    <div class="seo-mini-table">
-      <div class="th">Situación</div><div class="th">Qué priorizar</div><div class="th">Consejo ViajeroLatam</div>
-      <div>Turismo 7–20 días</div><div>Cobertura médica, equipaje y asistencia</div><div>Compara IATI e InterMundial y mira precio final.</div>
-      <div>Viaje familiar</div><div>Asistencia en español y urgencias médicas</div><div>No elijas solo el plan más barato.</div>
-      <div>Larga estancia</div><div>Límites altos y duración completa</div><div>Revisa condiciones antes de contratar.</div>
-      <div>Visa o requisito Schengen</div><div>Póliza clara, cobertura y repatriación</div><div>Guarda el PDF y revisa requisitos oficiales.</div>
-    </div>
-  </div>
-
-  <div class="content-card">
-    <div class="kicker">Errores comunes</div>
-    <h2>Errores que deberías evitar antes de contratar</h2>
-    <p>Uno de los errores más comunes es contratar el seguro más barato sin leer la cobertura. Otro error es poner fechas incompletas: el seguro debe cubrir desde el día de salida de Colombia hasta el día de regreso. También es frecuente olvidar las escalas, especialmente si el viaje pasa por otro país antes de llegar a España.</p>
-    <p>Otro punto importante es la franquicia. Un seguro puede parecer barato, pero si tiene franquicia alta, podrías terminar pagando parte de la atención médica. También conviene revisar exclusiones: enfermedades preexistentes, deportes, embarazo, objetos de valor o viajes de larga duración pueden tener condiciones especiales.</p>
-
-    <h3>Checklist rápido antes de pagar</h3>
-    <ul>
-      <li>Confirma que el destino sea España o Europa/zona Schengen.</li>
-      <li>Comprueba que las fechas cubran todo el viaje.</li>
-      <li>Revisa si hay franquicia.</li>
-      <li>Guarda el PDF de la póliza.</li>
-      <li>Verifica teléfono o app de emergencia.</li>
-      <li>Comprueba si el precio incluye el descuento o cupón aplicado.</li>
-    </ul>
-
-    <p>En InterMundial puedes revisar el precio usando el cupón <strong>VIAJEROLATAM</strong>. En IATI, revisa el precio final directamente desde la página oficial. En ambos casos, antes de pagar, compara no solo el precio, sino la cobertura real que estás comprando.</p>
-  </div>
-
-  <div class="content-card">
-    <div class="kicker">Opinión práctica</div>
-    <h2>Qué recomendaríamos según el tipo de viajero</h2>
-    <p>Para un viajero colombiano que va por turismo a España durante dos o tres semanas, buscaríamos un equilibrio entre precio, cobertura médica y facilidad de uso. Para una familia, pondríamos más peso en la asistencia en español y en una cobertura médica sólida. Para estudiantes o viajeros de larga estancia, revisaríamos condiciones específicas, duración máxima permitida y ampliaciones de cobertura.</p>
-    <p>ViajeroLatam no vende seguros directamente. Nuestro objetivo es ayudarte a comparar mejor y dirigirte a páginas oficiales. Si contratas desde nuestros enlaces, podemos recibir una comisión sin coste adicional para ti. Esto nos permite mantener la web gratuita y seguir creando guías para latinoamericanos que viajan a España y Europa.</p>
-  </div>
+<div class="content-card">
+<div class="kicker">Guía de decisión</div>
+<h2>Cómo comparar seguros de viaje de Colombia a España sin equivocarte</h2>
+<p>Cuando viajas de Colombia a España, elegir un seguro no debería depender solo del precio. La diferencia real está en lo que ocurre si tienes una urgencia médica, pierdes una conexión, necesitas asistencia en español o tienes que presentar una póliza clara durante el viaje. Por eso, en ViajeroLatam recomendamos comparar el seguro como una herramienta de protección, no como un trámite más.</p>
+<p>Para una ruta como Colombia a España, lo más importante es revisar si el seguro cubre toda la estancia, si incluye asistencia médica internacional, si contempla repatriación y si la compañía ofrece canales de ayuda fáciles de usar. También conviene mirar el idioma de atención, porque en una emergencia no quieres perder tiempo interpretando condiciones complicadas.</p>
+<h3>Qué debe tener un buen seguro para España</h3>
+<p>Un buen seguro para viajar a España debería cubrir al menos los problemas más habituales de un viaje internacional: asistencia médica, urgencias, hospitalización, repatriación, pérdida o demora de equipaje y asistencia 24/7. En algunos casos también puede interesar añadir anulación, deportes, crucero, larga estancia o cobertura para dispositivos, pero eso depende del tipo de viaje.</p>
+<ul>
+<li><strong>Cobertura médica:</strong> revisa el límite máximo y si aplica para toda Europa o solo para España.</li>
+<li><strong>Repatriación:</strong> una cobertura importante en viajes internacionales.</li>
+<li><strong>Franquicia:</strong> algunos planes pueden exigir un pago inicial por parte del viajero.</li>
+<li><strong>Asistencia en español:</strong> clave para viajeros colombianos y familias.</li>
+<li><strong>Documento de póliza:</strong> debe ser fácil de descargar y guardar en PDF.</li>
+</ul>
+<h3>IATI o InterMundial: cómo decidir</h3>
+<p>IATI puede ser una opción fuerte si buscas una experiencia de contratación sencilla, comunicación clara y enfoque en viajeros hispanohablantes. InterMundial puede ser interesante si quieres comparar una aseguradora especializada en viajes en España y aprovechar el cupón de ViajeroLatam. La decisión final debería salir de comparar el precio final, la cobertura médica, la franquicia, la duración del viaje y las condiciones concretas del producto elegido.</p>
+<p>Si viajas pocos días por turismo, puede bastar un plan equilibrado con buena asistencia médica. Si viajas por estudios, larga estancia o visitas familiares, conviene mirar coberturas más amplias. Y si viajas con niños o personas mayores, prioriza asistencia médica y atención rápida por encima de ahorrar unos pocos euros.</p>
+<div class="seo-mini-table">
+<div class="th">Situación</div><div class="th">Qué priorizar</div><div class="th">Consejo ViajeroLatam</div>
+<div>Turismo 7–20 días</div><div>Cobertura médica, equipaje y asistencia</div><div>Compara IATI e InterMundial y mira precio final.</div>
+<div>Viaje familiar</div><div>Asistencia en español y urgencias médicas</div><div>No elijas solo el plan más barato.</div>
+<div>Larga estancia</div><div>Límites altos y duración completa</div><div>Revisa condiciones antes de contratar.</div>
+<div>Visa o requisito Schengen</div><div>Póliza clara, cobertura y repatriación</div><div>Guarda el PDF y revisa requisitos oficiales.</div>
+</div>
+</div>
+<div class="content-card">
+<div class="kicker">Errores comunes</div>
+<h2>Errores que deberías evitar antes de contratar</h2>
+<p>Uno de los errores más comunes es contratar el seguro más barato sin leer la cobertura. Otro error es poner fechas incompletas: el seguro debe cubrir desde el día de salida de Colombia hasta el día de regreso. También es frecuente olvidar las escalas, especialmente si el viaje pasa por otro país antes de llegar a España.</p>
+<p>Otro punto importante es la franquicia. Un seguro puede parecer barato, pero si tiene franquicia alta, podrías terminar pagando parte de la atención médica. También conviene revisar exclusiones: enfermedades preexistentes, deportes, embarazo, objetos de valor o viajes de larga duración pueden tener condiciones especiales.</p>
+<h3>Checklist rápido antes de pagar</h3>
+<ul>
+<li>Confirma que el destino sea España o Europa/zona Schengen.</li>
+<li>Comprueba que las fechas cubran todo el viaje.</li>
+<li>Revisa si hay franquicia.</li>
+<li>Guarda el PDF de la póliza.</li>
+<li>Verifica teléfono o app de emergencia.</li>
+<li>Comprueba si el precio incluye el descuento o cupón aplicado.</li>
+</ul>
+<p>En InterMundial puedes revisar el precio usando el cupón <strong>VIAJEROLATAM</strong>. En IATI, revisa el precio final directamente desde la página oficial. En ambos casos, antes de pagar, compara no solo el precio, sino la cobertura real que estás comprando.</p>
+</div>
+<div class="content-card">
+<div class="kicker">Opinión práctica</div>
+<h2>Qué recomendaríamos según el tipo de viajero</h2>
+<p>Para un viajero colombiano que va por turismo a España durante dos o tres semanas, buscaríamos un equilibrio entre precio, cobertura médica y facilidad de uso. Para una familia, pondríamos más peso en la asistencia en español y en una cobertura médica sólida. Para estudiantes o viajeros de larga estancia, revisaríamos condiciones específicas, duración máxima permitida y ampliaciones de cobertura.</p>
+<p>ViajeroLatam no vende seguros directamente. Nuestro objetivo es ayudarte a comparar mejor y dirigirte a páginas oficiales. Si contratas desde nuestros enlaces, podemos recibir una comisión sin coste adicional para ti. Esto nos permite mantener la web gratuita y seguir creando guías para latinoamericanos que viajan a España y Europa.</p>
+</div>
 </section>
-
 <section class="faq">
-    <div class="wrap">
-      <div class="kicker">FAQ</div>
-      <h2>Preguntas frecuentes</h2>
-      <details><summary>¿IATI o InterMundial: cuál es mejor?</summary><p>Depende del viajero. IATI puede encajar bien por experiencia online y asistencia en español. InterMundial es fuerte por especialización en viajes y cupón VIAJEROLATAM.</p></details>
-      <details><summary>¿Puedo usar el cupón VIAJEROLATAM?</summary><p>Sí, úsalo en la web de InterMundial si el formulario de compra lo permite. Revisa siempre el precio final antes de pagar.</p></details>
-      <details><summary>¿Necesito seguro si viajo de Colombia a España?</summary><p>Es muy recomendable viajar con seguro médico internacional. En casos relacionados con visa o requisitos Schengen, revisa condiciones oficiales y de la póliza.</p></details>
-      <details><summary>¿ViajeroLatam vende seguros directamente?</summary><p>No. ViajeroLatam compara y recomienda enlaces oficiales. La contratación se realiza en la web de cada aseguradora.</p></details>
-    </div>
-  </section>
-
-  
-  
+<div class="wrap">
+<div class="kicker">FAQ</div>
+<h2>Preguntas frecuentes</h2>
+<details><summary>¿IATI o InterMundial: cuál es mejor?</summary><p>Depende del viajero. IATI puede encajar bien por experiencia online y asistencia en español. InterMundial es fuerte por especialización en viajes y cupón VIAJEROLATAM.</p></details>
+<details><summary>¿Puedo usar el cupón VIAJEROLATAM?</summary><p>Sí, úsalo en la web de InterMundial si el formulario de compra lo permite. Revisa siempre el precio final antes de pagar.</p></details>
+<details><summary>¿Necesito seguro si viajo de Colombia a España?</summary><p>Es muy recomendable viajar con seguro médico internacional. En casos relacionados con visa o requisitos Schengen, revisa condiciones oficiales y de la póliza.</p></details>
+<details><summary>¿ViajeroLatam vende seguros directamente?</summary><p>No. ViajeroLatam compara y recomienda enlaces oficiales. La contratación se realiza en la web de cada aseguradora.</p></details>
+</div>
+</section>
+<footer><div class="wrap">© 2026 ViajeroLatam. Comparador independiente para viajeros latinoamericanos.</div> · <a href="/sobre-nosotros/" style="color:#fff;text-decoration:none;font-weight:800">Sobre nosotros</a> · <a href="/contacto/" style="color:#fff;text-decoration:none;font-weight:800">Contacto</a><p><a href="/como-elegimos/">Cómo elegimos las aseguradoras</a></p></footer>
 <script>
 document.addEventListener('click', function(e){
   var link = e.target.closest('a');
@@ -1219,14 +1032,13 @@ document.addEventListener('click', function(e){
   }
 });
 </script>
-
-<div id="mob-overlay" onclick="closeMobMenu()" aria-hidden="true"></div>
-<nav id="mob-drawer" aria-label="Menú móvil">
-  <a href="/">Inicio</a>
-  <a href="/seguro-viaje/colombia-a-espana/">Colombia a España</a>
-  <a href="/visa-schengen/">Visa Schengen</a>
-  <a href="/blog/">Artículos</a>
-  <a href="/resultados/">Comparar seguros →</a>
+<div aria-hidden="true" id="mob-overlay" onclick="closeMobMenu()"></div>
+<nav aria-label="Menú móvil" id="mob-drawer">
+<a href="/">Inicio</a>
+<a href="/seguro-viaje/colombia-a-espana/">Colombia a España</a>
+<a href="/visa-schengen/">Visa Schengen</a>
+<a href="/blog/">Artículos</a>
+<a href="/resultados/">Comparar seguros →</a>
 </nav>
 <script>
 function openMobMenu(){document.getElementById('mob-drawer').classList.add('open');document.getElementById('mob-overlay').classList.add('open');document.body.style.overflow='hidden'}
@@ -1235,19 +1047,19 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
 </script>
 <!-- Exit intent -->
 <div id="exit-overlay" style="display:none;position:fixed;inset:0;background:rgba(11,31,58,.65);z-index:9999;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(6px)">
-  <div id="exit-box" style="background:#fff;border-radius:20px;padding:32px 28px;max-width:420px;width:100%;position:relative;box-shadow:0 20px 60px rgba(11,31,58,.25)">
-    <button onclick="closeExit()" style="position:absolute;top:12px;right:12px;width:30px;height:30px;border-radius:50%;background:#F0F4F8;border:none;cursor:pointer;font-size:16px;color:#4A647E">✕</button>
-    <div style="font-size:40px;text-align:center;margin-bottom:10px">✈️</div>
-    <h3 style="font-family:Georgia,serif;font-size:22px;color:#0B1F3A;text-align:center;margin-bottom:8px">¿Ya tienes seguro<br>para tu viaje?</h3>
-    <p style="font-size:13px;color:#4A647E;text-align:center;margin-bottom:16px">Compara IATI e Intermundial en 2 minutos. Gratis, en español.</p>
-    <div style="display:flex;gap:12px;justify-content:center;margin-bottom:16px;flex-wrap:wrap">
-      <span style="font-size:12px;color:#4A647E">✓ Desde €1.75/día</span>
-      <span style="font-size:12px;color:#4A647E">✓ Sin franquicia</span>
-      <span style="font-size:12px;color:#4A647E">✓ Cupón VIAJEROLATAM</span>
-    </div>
-    <a href="/resultados/" onclick="closeExit()" style="display:block;width:100%;background:#00C4A1;color:#0B1F3A;padding:14px;border-radius:50px;font-family:inherit;font-size:14px;font-weight:700;text-decoration:none;text-align:center;margin-bottom:8px">🔍 Comparar seguros gratis</a>
-    <button onclick="closeExit()" style="display:block;width:100%;background:none;border:none;font-family:inherit;font-size:12px;color:#8FA4B8;cursor:pointer;text-decoration:underline">Ahora no</button>
-  </div>
+<div id="exit-box" style="background:#fff;border-radius:20px;padding:32px 28px;max-width:420px;width:100%;position:relative;box-shadow:0 20px 60px rgba(11,31,58,.25)">
+<button onclick="closeExit()" style="position:absolute;top:12px;right:12px;width:30px;height:30px;border-radius:50%;background:#F0F4F8;border:none;cursor:pointer;font-size:16px;color:#4A647E">✕</button>
+<div style="font-size:40px;text-align:center;margin-bottom:10px">✈️</div>
+<h3 style="font-family:Georgia,serif;font-size:22px;color:#0B1F3A;text-align:center;margin-bottom:8px">¿Ya tienes seguro<br/>para tu viaje?</h3>
+<p style="font-size:13px;color:#4A647E;text-align:center;margin-bottom:16px">Compara IATI e Intermundial en 2 minutos. Gratis, en español.</p>
+<div style="display:flex;gap:12px;justify-content:center;margin-bottom:16px;flex-wrap:wrap">
+<span style="font-size:12px;color:#4A647E">✓ Precio según fechas</span>
+<span style="font-size:12px;color:#4A647E">✓ Revisa condiciones</span>
+<span style="font-size:12px;color:#4A647E">✓ Cupón VIAJEROLATAM</span>
+</div>
+<a href="/resultados/" onclick="closeExit()" style="display:block;width:100%;background:#00C4A1;color:#0B1F3A;padding:14px;border-radius:50px;font-family:inherit;font-size:14px;font-weight:700;text-decoration:none;text-align:center;margin-bottom:8px">🔍 Comparar seguros gratis</a>
+<button onclick="closeExit()" style="display:block;width:100%;background:none;border:none;font-family:inherit;font-size:12px;color:#8FA4B8;cursor:pointer;text-decoration:underline">Ahora no</button>
+</div>
 </div>
 <script>
 (function(){
@@ -1273,164 +1085,5 @@ function closeExit(){var o=document.getElementById('exit-overlay');if(o){o.style
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeExit()});
 document.getElementById('exit-overlay').addEventListener('click',function(e){if(e.target===this)closeExit()});
 </script>
-
-<!-- FOOTER -->
-<footer class="vl-footer">
-  <div class="vl-footer-inner">
-    <div class="vl-footer-grid">
-      <div class="vl-footer-brand">
-        <a href="/"><img src="/logo-vl-original-20260528.png" alt="ViajeroLatam" width="220" height="68" style="height:68px;width:auto;max-width:220px;display:block;object-fit:contain;opacity:1!important;filter:none!important"></a>
-        <p>Comparador independiente de seguros de viaje para latinoamericanos que preparan viajes a España, Europa y otros destinos.</p>
-        <div class="vl-footer-social">
-          <a href="https://www.instagram.com/" target="_blank" rel="nofollow noopener" aria-label="Instagram">ig</a>
-          <a href="https://www.tiktok.com/" target="_blank" rel="nofollow noopener" aria-label="TikTok">tk</a>
-          <a href="https://www.youtube.com/" target="_blank" rel="nofollow noopener" aria-label="YouTube">yt</a>
-          <a href="https://www.facebook.com/" target="_blank" rel="nofollow noopener" aria-label="Facebook">fb</a>
-        </div>
-      </div>
-      <div class="vl-footer-col">
-        <h4>Comparar</h4>
-        <ul>
-          <li><a href="/resultados/">Comparar seguros gratis</a></li>
-          <li><a href="/comparar-seguros-viaje-colombia-espana/">Colombia → España</a></li>
-          <li><a href="/visa-schengen/">Visa Schengen</a></li>
-          <li><a href="/esim/espana-colombianos/">eSIM para España</a></li>
-          <li><a href="/blog/">Artículos y guías</a></li>
-        </ul>
-      </div>
-      <div class="vl-footer-col">
-        <h4>Aseguradoras</h4>
-        <ul>
-          <li><a href="/seguros/iati/">IATI Seguros</a></li>
-          <li><a href="/seguros/intermundial/" target="_blank" rel="nofollow sponsored noopener">InterMundial</a></li>
-          <li><a href="/seguros/holins/" target="_blank" rel="nofollow sponsored noopener">Holins</a></li>
-          <li><a href="/seguros/axa/">AXA</a></li>
-          <li><a href="/#aseguradoras">Todas las opciones</a></li>
-        </ul>
-      </div>
-      <div class="vl-footer-col">
-        <h4>Empresa</h4>
-        <ul>
-          <li><a href="/sobre-nosotros/">Sobre nosotros</a></li>
-          <li><a href="/como-elegimos/">Cómo elegimos</a></li>
-          <li><a href="/contacto/">Contacto</a></li>
-          <li><a href="/aviso-legal/">Aviso legal</a></li>
-          <li><a href="/privacidad/">Privacidad</a></li>
-          <li><a href="/cookies/">Cookies</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="vl-footer-bottom">
-      <span>© 2026 ViajeroLatam. Todos los derechos reservados.</span>
-      <div class="vl-legal">
-        <a href="/privacidad/">Privacidad</a>
-        <a href="/aviso-legal/">Aviso legal</a>
-        <a href="/cookies/">Cookies</a>
-        <a href="/contacto/">Contacto</a>
-      </div>
-      <span>Comparador independiente · No somos aseguradora</span>
-    </div>
-  </div>
-</footer>
-
-
-
-<!-- STICKY MOBILE CTA -->
-<div id="vl-sticky" aria-label="Comparar seguros gratis">
-  <a href="/resultados/" onclick="if(typeof gtag!='undefined')gtag('event','click_sticky_mob',{page:location.pathname})">
-    🔍 Comparar seguros gratis
-  </a>
-  <p>Sin coste · 4 aseguradoras · Póliza en 2 minutos</p>
-</div>
-
-
-
-<style id="vl-footer-override">
-.vl-footer,.vl-footer *{box-sizing:border-box}
-footer.vl-footer{width:100%;max-width:none!important;margin-left:0!important;margin-right:0!important}
-.vl-footer-grid>*{min-width:0;word-break:break-word}
-</style>
-
-<script id="vl-affiliate-click-tracking">
-(function(){
-  function affiliateFromUrl(url){
-    var href = String(url || '').toLowerCase();
-
-    if(href.indexOf('iatiseguros.com') !== -1 || href.indexOf('r=84208681926165') !== -1){
-      return 'iati';
-    }
-    if(href.indexOf('intermundial.es') !== -1 || href.indexOf('kbnnqvpvcy490') !== -1){
-      return 'intermundial';
-    }
-    if(href.indexOf('kiwi.tpx.lv') !== -1){
-      return 'kiwi';
-    }
-    if(href.indexOf('saily.tpx.lv') !== -1){
-      return 'saily';
-    }
-    if(href.indexOf('clk.tradedoubler.com') !== -1){
-      try{
-        var u = new URL(url, window.location.href);
-        var p = u.searchParams.get('p');
-        if(p === '343758') return 'axa';
-        if(p === '301095') return 'holins';
-      }catch(e){}
-      if(href.indexOf('343758') !== -1 || href.indexOf('axa') !== -1) return 'axa';
-      if(href.indexOf('301095') !== -1 || href.indexOf('holins') !== -1) return 'holins';
-    }
-    if(href.indexOf('axa-assistance') !== -1) return 'axa';
-    if(href.indexOf('holins') !== -1) return 'holins';
-
-    return '';
-  }
-
-  function eventName(affiliate){
-    var map = {
-      iati:'click_iati',
-      intermundial:'click_intermundial',
-      axa:'click_axa',
-      holins:'click_holins',
-      kiwi:'click_kiwi',
-      saily:'click_saily'
-    };
-    return map[affiliate] || 'click_affiliate';
-  }
-
-  function track(link, affiliate){
-    var data = {
-      affiliate_name: affiliate,
-      page_path: window.location.pathname,
-      page_location: window.location.href,
-      link_url: link.href,
-      link_text: (link.innerText || link.textContent || '').trim().slice(0,100),
-      outbound: true
-    };
-
-    if(typeof window.gtag === 'function'){
-      window.gtag('event', eventName(affiliate), data);
-      window.gtag('event', 'click_affiliate', data);
-    }
-
-    try{
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({
-        event: eventName(affiliate),
-        affiliate_name: affiliate,
-        page_path: window.location.pathname,
-        link_url: link.href
-      });
-    }catch(e){}
-  }
-
-  document.addEventListener('click', function(e){
-    var link = e.target && e.target.closest ? e.target.closest('a[href]') : null;
-    if(!link) return;
-    var affiliate = affiliateFromUrl(link.href);
-    if(!affiliate) return;
-    track(link, affiliate);
-  }, true);
-})();
-</script>
-
 </body>
 </html>
