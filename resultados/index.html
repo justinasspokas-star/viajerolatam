@@ -991,16 +991,6 @@ nav .brand-logo img{height:38px!important;max-width:170px!important;width:auto!i
     border:1px solid #DDE8F2!important;
     box-shadow:0 2px 10px rgba(11,31,58,.04)!important;
   }
-  .search-pill:after{
-    content:"Toca para editar";
-    display:block;
-    margin-top:2px;
-    font-size:8.5px;
-    font-weight:800;
-    color:#00A989;
-    line-height:1;
-    white-space:nowrap;
-  }
   .search-pill-travelers{display:none!important}
   .pill-label{font-size:9px!important;line-height:1!important;color:#8FA4B8!important}
   .pill-val{
@@ -1083,6 +1073,25 @@ nav .brand-logo img{height:38px!important;max-width:170px!important;width:auto!i
 }
 @media(min-width:769px){
   .search-pill-click:hover{background:#F6FAFD}
+}
+</style>
+
+
+<style id="vl-results-all-latam-select">
+@media(max-width:768px){
+  #ep-origen{
+    max-height:56px!important;
+  }
+  #edit-panel select option{
+    font-size:15px;
+  }
+}
+</style>
+
+
+<style id="vl-remove-toca-editar">
+@media(max-width:768px){
+  .search-pill:after{content:none!important;display:none!important}
 }
 </style>
 
@@ -1295,6 +1304,20 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
 <option value="venezuela">🇻🇪 Venezuela</option>
 <option value="peru">🇵🇪 Perú</option>
 <option value="chile">🇨🇱 Chile</option>
+<option value="ecuador">🇪🇨 Ecuador</option>
+<option value="bolivia">🇧🇴 Bolivia</option>
+<option value="paraguay">🇵🇾 Paraguay</option>
+<option value="uruguay">🇺🇾 Uruguay</option>
+<option value="brasil">🇧🇷 Brasil</option>
+<option value="costa-rica">🇨🇷 Costa Rica</option>
+<option value="panama">🇵🇦 Panamá</option>
+<option value="guatemala">🇬🇹 Guatemala</option>
+<option value="el-salvador">🇸🇻 El Salvador</option>
+<option value="honduras">🇭🇳 Honduras</option>
+<option value="nicaragua">🇳🇮 Nicaragua</option>
+<option value="republica-dominicana">🇩🇴 R. Dominicana</option>
+<option value="cuba">🇨🇺 Cuba</option>
+<option value="puerto-rico">🇵🇷 Puerto Rico</option>
 </select>
 </div>
 <div>
@@ -1767,7 +1790,28 @@ function toggleEditPanel(){
   else openEditPanel('ep-origen');
 }
 function updatePillsDisplay(origen, dest, ida, vuelta, viajeros){
-  var originLabels = {colombia:'Colombia 🇨🇴', mexico:'México 🇲🇽', argentina:'Argentina 🇦🇷', venezuela:'Venezuela 🇻🇪', peru:'Perú 🇵🇪', chile:'Chile 🇨🇱'};
+  var originLabels = {
+    colombia:'Colombia 🇨🇴',
+    mexico:'México 🇲🇽',
+    argentina:'Argentina 🇦🇷',
+    venezuela:'Venezuela 🇻🇪',
+    peru:'Perú 🇵🇪',
+    chile:'Chile 🇨🇱',
+    ecuador:'Ecuador 🇪🇨',
+    bolivia:'Bolivia 🇧🇴',
+    paraguay:'Paraguay 🇵🇾',
+    uruguay:'Uruguay 🇺🇾',
+    brasil:'Brasil 🇧🇷',
+    'costa-rica':'Costa Rica 🇨🇷',
+    panama:'Panamá 🇵🇦',
+    guatemala:'Guatemala 🇬🇹',
+    'el-salvador':'El Salvador 🇸🇻',
+    honduras:'Honduras 🇭🇳',
+    nicaragua:'Nicaragua 🇳🇮',
+    'republica-dominicana':'R. Dominicana 🇩🇴',
+    cuba:'Cuba 🇨🇺',
+    'puerto-rico':'Puerto Rico 🇵🇷'
+  };
   var destLabels = {europa:'España / Schengen 🇪🇺', eeuu:'Estados Unidos 🇺🇸', mundial:'Mundial 🌍'};
   var pillVals = document.querySelectorAll('.pill-val');
   if(pillVals[0]) pillVals[0].textContent = originLabels[origen] || origen;
