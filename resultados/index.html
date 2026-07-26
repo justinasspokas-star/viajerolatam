@@ -948,6 +948,144 @@ nav .brand-logo img{height:38px!important;max-width:170px!important;width:auto!i
   .price-cop,.price-cop-day{text-align:left!important}
 }
 </style>
+
+<style id="vl-mobile-edit-search-fix">
+/* Resultados: edición rápida desde/destino/fechas */
+.search-pill-click{
+  border:none;
+  font-family:inherit;
+  text-align:left;
+  cursor:pointer;
+  appearance:none;
+  -webkit-appearance:none;
+}
+.search-pill-click:active{transform:scale(.98)}
+.search-pill-click:focus-visible{outline:3px solid rgba(0,196,161,.35);outline-offset:2px}
+
+@media(max-width:768px){
+  nav{position:sticky!important;top:0!important;z-index:220!important}
+  .search-bar{
+    position:sticky!important;
+    top:56px!important;
+    z-index:210!important;
+    padding:8px 10px!important;
+    overflow:visible!important;
+    border-bottom:1px solid #E4EDF5!important;
+    box-shadow:0 8px 22px rgba(11,31,58,.08)!important;
+  }
+  .search-inner{
+    width:100%!important;
+    max-width:100%!important;
+    min-width:0!important;
+    display:grid!important;
+    grid-template-columns:1fr 1fr 1fr!important;
+    gap:7px!important;
+    overflow:visible!important;
+  }
+  .search-pill{
+    min-width:0!important;
+    width:100%!important;
+    padding:8px 9px!important;
+    border-radius:16px!important;
+    background:#fff!important;
+    border:1px solid #DDE8F2!important;
+    box-shadow:0 2px 10px rgba(11,31,58,.04)!important;
+  }
+  .search-pill:after{
+    content:"Toca para editar";
+    display:block;
+    margin-top:2px;
+    font-size:8.5px;
+    font-weight:800;
+    color:#00A989;
+    line-height:1;
+    white-space:nowrap;
+  }
+  .search-pill-travelers{display:none!important}
+  .pill-label{font-size:9px!important;line-height:1!important;color:#8FA4B8!important}
+  .pill-val{
+    font-size:11px!important;
+    line-height:1.18!important;
+    white-space:nowrap!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+    max-width:100%!important;
+  }
+  .pill-btn{
+    grid-column:1 / -1!important;
+    width:100%!important;
+    justify-content:center!important;
+    margin-left:0!important;
+    padding:10px 14px!important;
+    border-radius:16px!important;
+    min-height:42px!important;
+    order:5!important;
+  }
+  .mobile-filters-btn{
+    grid-column:1 / -1!important;
+    width:100%!important;
+    justify-content:center!important;
+    border-radius:16px!important;
+    min-height:40px!important;
+    order:6!important;
+  }
+  #edit-panel{
+    position:fixed!important;
+    left:0!important;
+    right:0!important;
+    top:0!important;
+    bottom:0!important;
+    z-index:700!important;
+    background:rgba(11,31,58,.45)!important;
+    border-bottom:0!important;
+    padding:0!important;
+    overflow-y:auto!important;
+    backdrop-filter:blur(4px)!important;
+  }
+  #edit-panel > div{
+    max-width:none!important;
+    width:100%!important;
+    margin:76px 0 0!important;
+    background:#fff!important;
+    border-radius:22px 22px 0 0!important;
+    padding:18px 16px 24px!important;
+    box-shadow:0 -18px 50px rgba(11,31,58,.22)!important;
+    min-height:calc(100vh - 76px)!important;
+  }
+  #edit-panel h3{font-size:18px!important}
+  #edit-panel > div > div[style*="grid-template-columns"]{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    gap:12px!important;
+  }
+  #edit-panel label{font-size:10px!important}
+  #edit-panel select,
+  #edit-panel input{
+    min-height:48px!important;
+    font-size:16px!important;
+    border-radius:14px!important;
+  }
+  #edit-panel div[style*="justify-content:flex-end"]{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    gap:10px!important;
+  }
+  #edit-panel div[style*="justify-content:flex-end"] button{
+    width:100%!important;
+    min-height:48px!important;
+    border-radius:16px!important;
+    font-size:15px!important;
+  }
+}
+@media(max-width:390px){
+  .search-inner{grid-template-columns:1fr 1fr!important}
+  .pill-btn,.mobile-filters-btn{grid-column:1 / -1!important}
+}
+@media(min-width:769px){
+  .search-pill-click:hover{background:#F6FAFD}
+}
+</style>
+
 </head>
 <body>
 <!-- H1 principal movido al bloque de resultados para evitar espacio superior -->
@@ -1118,18 +1256,18 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
 <!-- SEARCH BAR -->
 <div class="search-bar">
 <div class="search-inner">
-<div class="search-pill">
+<button class="search-pill search-pill-click" type="button" onclick="openEditPanel('ep-origen')" aria-label="Editar país de origen">
 <div><div class="pill-label">Desde</div><div class="pill-val">Colombia 🇨🇴</div></div>
-</div>
-<div class="search-pill">
+</button>
+<button class="search-pill search-pill-click" type="button" onclick="openEditPanel('ep-destino')" aria-label="Editar destino">
 <div><div class="pill-label">Destino</div><div class="pill-val">España / Schengen 🇪🇺</div></div>
-</div>
-<div class="search-pill">
+</button>
+<button class="search-pill search-pill-click" type="button" onclick="openEditPanel('ep-ida')" aria-label="Editar fechas">
 <div><div class="pill-label">Fechas</div><div class="pill-val">12 jun → 27 jun</div></div>
-</div>
-<div class="search-pill">
+</button>
+<button class="search-pill search-pill-click search-pill-travelers" type="button" onclick="openEditPanel('ep-viajeros')" aria-label="Editar viajeros">
 <div><div class="pill-label">Viajeros</div><div class="pill-val">1 adulto</div></div>
-</div>
+</button>
 <button class="pill-btn" onclick="toggleEditPanel()" style="margin-left:auto">
 <svg viewbox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
       Editar búsqueda
@@ -1147,7 +1285,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
 <h3 style="font-size:15px;font-weight:700;color:#0B1F3A">Editar búsqueda</h3>
 <button onclick="toggleEditPanel()" style="background:none;border:none;cursor:pointer;font-size:20px;color:#4A647E;padding:4px">✕</button>
 </div>
-<div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;align-items:end">
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;align-items:end">
 <div>
 <label style="font-size:11px;font-weight:700;color:#8FA4B8;text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:6px">Voy desde</label>
 <select id="ep-origen" style="width:100%;padding:10px 12px;border:1.5px solid #E4EDF5;border-radius:10px;font-family:inherit;font-size:14px;color:#0B1F3A;background:#fff;outline:none">
@@ -1168,8 +1306,13 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
 </select>
 </div>
 <div>
-<label style="font-size:11px;font-weight:700;color:#8FA4B8;text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:6px">Fechas (días)</label>
-<input id="ep-dias" max="365" min="1" style="width:100%;padding:10px 12px;border:1.5px solid #E4EDF5;border-radius:10px;font-family:inherit;font-size:14px;color:#0B1F3A;background:#fff;outline:none" type="number" value="15"/>
+<label style="font-size:11px;font-weight:700;color:#8FA4B8;text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:6px">Fecha de ida</label>
+<input id="ep-ida" style="width:100%;padding:10px 12px;border:1.5px solid #E4EDF5;border-radius:10px;font-family:inherit;font-size:14px;color:#0B1F3A;background:#fff;outline:none" type="date"/>
+</div>
+<div>
+<label style="font-size:11px;font-weight:700;color:#8FA4B8;text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:6px">Fecha de vuelta</label>
+<input id="ep-vuelta" style="width:100%;padding:10px 12px;border:1.5px solid #E4EDF5;border-radius:10px;font-family:inherit;font-size:14px;color:#0B1F3A;background:#fff;outline:none" type="date"/>
+<input id="ep-dias" type="hidden" value="15"/>
 </div>
 <div>
 <label style="font-size:11px;font-weight:700;color:#8FA4B8;text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:6px">Viajeros</label>
@@ -1558,39 +1701,119 @@ function contractClick(name, plan) {
 })();
 
 
+
+function parseDateSafe(v){
+  if(!v) return null;
+  var d = new Date(v + 'T00:00:00');
+  return isNaN(d.getTime()) ? null : d;
+}
+function isoDate(d){
+  var y=d.getFullYear();
+  var m=String(d.getMonth()+1).padStart(2,'0');
+  var day=String(d.getDate()).padStart(2,'0');
+  return y+'-'+m+'-'+day;
+}
+function addDays(d,n){
+  var x=new Date(d.getTime());
+  x.setDate(x.getDate()+n);
+  return x;
+}
+function daysBetween(a,b){
+  var ms = parseDateSafe(b) - parseDateSafe(a);
+  var d = Math.round(ms / 86400000);
+  return isFinite(d) && d > 0 ? d : 15;
+}
+function fmtDateShort(v){
+  var d = parseDateSafe(v);
+  if(!d) return '';
+  return d.toLocaleDateString('es-ES', {day:'2-digit', month:'short'}).replace('.', '');
+}
+function normalizedDest(v){
+  v = String(v || '').toLowerCase();
+  if(v.indexOf('eeuu') !== -1 || v.indexOf('usa') !== -1 || v.indexOf('estados') !== -1) return 'eeuu';
+  if(v.indexOf('mundial') !== -1) return 'mundial';
+  return 'europa';
+}
+function urlDestValue(v){
+  v = normalizedDest(v);
+  if(v === 'eeuu') return 'eeuu';
+  if(v === 'mundial') return 'mundial';
+  return 'espana-schengen';
+}
+function openEditPanel(focusId){
+  var p = document.getElementById('edit-panel');
+  if(!p) return;
+  p.style.display = 'block';
+  document.body.style.overflow = window.innerWidth <= 768 ? 'hidden' : '';
+  setTimeout(function(){
+    var el = document.getElementById(focusId);
+    if(el){
+      try{ el.focus({preventScroll:false}); }catch(e){ el.focus(); }
+      if(el.tagName === 'SELECT' && window.innerWidth > 768) el.click();
+    }
+  }, 80);
+}
+function closeEditPanel(){
+  var p = document.getElementById('edit-panel');
+  if(!p) return;
+  p.style.display = 'none';
+  document.body.style.overflow = '';
+}
 function toggleEditPanel(){
   var p = document.getElementById('edit-panel');
   if(!p) return;
   var isOpen = p.style.display !== 'none';
-  p.style.display = isOpen ? 'none' : 'block';
-  if(!isOpen) p.scrollIntoView({behavior:'smooth', block:'nearest'});
+  if(isOpen) closeEditPanel();
+  else openEditPanel('ep-origen');
 }
-
-function applyEditSearch(){
-  var dias = parseInt(document.getElementById('ep-dias').value) || 15;
-  var origen = (document.getElementById('ep-origen') && document.getElementById('ep-origen').value) || 'colombia';
-  var dest = document.getElementById('ep-destino').value;
-  var viajeros = parseInt(document.getElementById('ep-viajeros').value) || 1;
-  window.currentSearchOrigin = String(origen || '').toLowerCase();
-  window.currentSearchDest = String(dest || '').toLowerCase();
-  
-  // Update pills display
+function updatePillsDisplay(origen, dest, ida, vuelta, viajeros){
   var originLabels = {colombia:'Colombia 🇨🇴', mexico:'México 🇲🇽', argentina:'Argentina 🇦🇷', venezuela:'Venezuela 🇻🇪', peru:'Perú 🇵🇪', chile:'Chile 🇨🇱'};
-  var destLabels = {europa:'España / Schengen 🇪🇺', eeuu:'EEUU 🇺🇸', mundial:'Mundial 🌍'};
+  var destLabels = {europa:'España / Schengen 🇪🇺', eeuu:'Estados Unidos 🇺🇸', mundial:'Mundial 🌍'};
   var pillVals = document.querySelectorAll('.pill-val');
   if(pillVals[0]) pillVals[0].textContent = originLabels[origen] || origen;
-  if(pillVals[1]) pillVals[1].textContent = destLabels[dest] || dest;
-  if(pillVals[2]) pillVals[2].textContent = dias + ' días';
-  if(pillVals[3]) pillVals[3].textContent = viajeros + (viajeros===1?' adulto':' adultos');
-  
-  // Update prices based on days
+  if(pillVals[1]) pillVals[1].textContent = destLabels[normalizedDest(dest)] || dest;
+  var fechasText = (ida && vuelta) ? (fmtDateShort(ida) + ' → ' + fmtDateShort(vuelta)) : (daysBetween(ida, vuelta) + ' días');
+  if(pillVals[2]) pillVals[2].textContent = fechasText;
+  if(pillVals[3]) pillVals[3].textContent = viajeros + (parseInt(viajeros)===1?' adulto':' adultos');
+}
+function applyEditSearch(){
+  var origen = (document.getElementById('ep-origen') && document.getElementById('ep-origen').value) || 'colombia';
+  var dest = (document.getElementById('ep-destino') && document.getElementById('ep-destino').value) || 'europa';
+  var viajeros = parseInt(document.getElementById('ep-viajeros').value) || 1;
+  var ida = document.getElementById('ep-ida') ? document.getElementById('ep-ida').value : '';
+  var vuelta = document.getElementById('ep-vuelta') ? document.getElementById('ep-vuelta').value : '';
+  if(!ida){
+    var today = new Date();
+    ida = isoDate(addDays(today, 7));
+    if(document.getElementById('ep-ida')) document.getElementById('ep-ida').value = ida;
+  }
+  if(!vuelta || parseDateSafe(vuelta) <= parseDateSafe(ida)){
+    vuelta = isoDate(addDays(parseDateSafe(ida), 15));
+    if(document.getElementById('ep-vuelta')) document.getElementById('ep-vuelta').value = vuelta;
+  }
+  var dias = daysBetween(ida, vuelta);
+  var diasInput = document.getElementById('ep-dias');
+  if(diasInput) diasInput.value = dias;
+  window.currentSearchOrigin = String(origen || '').toLowerCase();
+  window.currentSearchDest = urlDestValue(dest);
+
+  updatePillsDisplay(origen, dest, ida, vuelta, viajeros);
+
   DATA.forEach(function(d){
     d.price = (d.priceDay * dias).toFixed(2) * 1;
   });
-  
-  // Re-render with new dest filter
-  setDest(null, dest);
-  toggleEditPanel();
+
+  var params = new URLSearchParams(window.location.search);
+  params.set('origen', origen);
+  params.set('destino', urlDestValue(dest));
+  params.set('dias', dias);
+  params.set('personas', viajeros);
+  params.set('ida', ida);
+  params.set('vuelta', vuelta);
+  history.replaceState(null, '', window.location.pathname + '?' + params.toString());
+
+  setDest(null, normalizedDest(dest));
+  closeEditPanel();
 }
 
 // Initial render
@@ -1598,24 +1821,53 @@ function applyEditSearch(){
   const params = new URLSearchParams(window.location.search);
   const origen = (params.get('origen') || 'colombia').toLowerCase();
   const destinoRaw = (params.get('destino') || 'espana-schengen').toLowerCase();
+  const diasParam = parseInt(params.get('dias') || '15') || 15;
+  const personasParam = parseInt(params.get('personas') || params.get('viajeros') || '1') || 1;
+
+  var ida = params.get('ida') || params.get('salida') || '';
+  var vuelta = params.get('vuelta') || params.get('regreso') || '';
+  if(!ida){
+    var today = new Date();
+    ida = isoDate(addDays(today, 7));
+  }
+  if(!vuelta || parseDateSafe(vuelta) <= parseDateSafe(ida)){
+    vuelta = isoDate(addDays(parseDateSafe(ida), diasParam));
+  }
+  var dias = daysBetween(ida, vuelta);
+
   window.currentSearchOrigin = origen;
   window.currentSearchDest = destinoRaw;
+
   const origenSelect = document.getElementById('ep-origen');
   if(origenSelect && Array.from(origenSelect.options).some(o => o.value === origen)) origenSelect.value = origen;
+
   const destSelect = document.getElementById('ep-destino');
-  if(destSelect){
-    if(destinoRaw.includes('eeuu')) destSelect.value = 'eeuu';
-    else if(destinoRaw.includes('mundial')) destSelect.value = 'mundial';
-    else destSelect.value = 'europa';
-  }
+  if(destSelect) destSelect.value = normalizedDest(destinoRaw);
+
+  const idaInput = document.getElementById('ep-ida');
+  const vueltaInput = document.getElementById('ep-vuelta');
+  const diasInput = document.getElementById('ep-dias');
+  const viajerosSelect = document.getElementById('ep-viajeros');
+  if(idaInput) idaInput.value = ida;
+  if(vueltaInput) vueltaInput.value = vuelta;
+  if(diasInput) diasInput.value = dias;
+  if(viajerosSelect && Array.from(viajerosSelect.options).some(o => parseInt(o.value) === personasParam)) viajerosSelect.value = String(personasParam);
+
+  updatePillsDisplay(origen, normalizedDest(destinoRaw), ida, vuelta, personasParam);
+
+  DATA.forEach(function(d){
+    d.price = (d.priceDay * dias).toFixed(2) * 1;
+  });
+
   const slider = document.getElementById('price-slider');
   const priceDisplay = document.getElementById('price-display');
   if(slider && priceDisplay){
     const v = parseFloat(slider.value || '10');
     priceDisplay.textContent = shouldShowCOP() ? `€${v.toFixed(2)}/día · ≈ ${formatCOPApprox(v)}/día` : `€${v.toFixed(2)}/día`;
   }
+
+  render(sortData(DATA, 'recomendado'));
 })();
-render(sortData(DATA, 'recomendado'));
 </script>
 <script>
 document.addEventListener('click', function(e){
@@ -1706,5 +1958,17 @@ function closeMobFilters(){
   if(el){ el.classList.remove('open'); document.body.style.overflow=''; }
 }
 </script>
+
+<script id="vl-edit-panel-close-script">
+document.addEventListener('click', function(e){
+  var panel = document.getElementById('edit-panel');
+  if(!panel || panel.style.display === 'none') return;
+  if(e.target === panel) closeEditPanel();
+});
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape') closeEditPanel();
+});
+</script>
+
 </body>
 </html>
