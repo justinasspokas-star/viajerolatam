@@ -1,0 +1,28 @@
+ViajeroLatam — SEO critical fixes applied
+
+1) Homepage structured data
+- Removed unsupported/fabricated aggregateRating from homepage JSON-LD.
+- Replaced InsuranceAgency schema with safer Organization schema.
+- Verified aggregateRating/ratingValue/reviewCount no longer exists in index.html.
+
+2) Doorway / duplicate page risk
+- Kept the travel-insurance architecture, but added unique local sections to the pages most exposed to duplication risk:
+  /seguro-viaje/bogota-a-espana/
+  /seguro-viaje/medellin-a-espana/
+  /seguro-viaje/cali-a-espana/
+  /seguro-viaje/colombia-a-espana/
+  /seguro-viaje/argentina-a-espana/
+  /seguro-viaje/mexico-a-espana/
+  /seguro-viaje/peru-a-espana/
+  /seguro-viaje/venezuela-a-espana/
+  /seguro-viaje/ecuador-a-espana/
+  /seguro-viaje/bolivia-a-espana/
+  /seguro-viaje/cuba-a-espana/
+
+3) Noindex decision
+- I did NOT noindex pages in this version because each risky page now has unique local content.
+- If after 30-60 days a page has impressions but 0 clicks or no ranking movement, consider noindex/follow or consolidate it.
+
+After uploading:
+- Test homepage with Rich Results Test / Schema validator.
+- Request reindexing for the homepage and changed pages in Search Console.
