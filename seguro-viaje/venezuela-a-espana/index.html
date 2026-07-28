@@ -40,6 +40,100 @@
 @media(max-width:860px){.vl-step5-related .links{display:grid;grid-template-columns:1fr}.vl-step5-related a{text-decoration:none!important;padding:10px 12px;border-radius:12px;background:#fff;border:1px solid #EAE3D5;display:flex;width:100%}}
 </style>
 
+
+<style id="vl-local-layout-fix">
+.vl-local-block{
+  max-width:1050px;
+  margin:44px auto;
+  padding:30px;
+  background:#fff;
+  border:1px solid #EAE3D5;
+  border-radius:26px;
+  box-shadow:0 14px 40px rgba(11,31,58,.06);
+  color:#0B1F3A;
+}
+.vl-local-kicker{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  padding:6px 12px;
+  border-radius:999px;
+  background:rgba(0,196,161,.10);
+  color:#008E78;
+  font-size:12px;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+  margin-bottom:12px;
+}
+.vl-local-block h2{
+  font-family:var(--display, Georgia, serif);
+  font-size:clamp(28px,3.4vw,42px);
+  line-height:1.12;
+  margin:0 0 12px;
+  color:#0B1F3A;
+}
+.vl-local-block p{
+  color:#4A647E;
+  font-size:15px;
+  line-height:1.75;
+  margin:0 0 16px;
+}
+.vl-local-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+  margin:20px 0;
+}
+.vl-local-mini{
+  background:#F7F4EE;
+  border:1px solid #EAE3D5;
+  border-radius:18px;
+  padding:16px;
+}
+.vl-local-mini strong{
+  display:block;
+  color:#0B1F3A;
+  font-size:14px;
+  margin-bottom:6px;
+}
+.vl-local-mini span{
+  display:block;
+  color:#4A647E;
+  font-size:13px;
+  line-height:1.55;
+}
+.vl-local-block ul{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px 18px;
+  margin:18px 0 0;
+  padding-left:20px;
+  color:#4A647E;
+}
+.vl-local-block li{
+  margin:0;
+  line-height:1.65;
+  font-size:14px;
+}
+@media(max-width:860px){
+  .vl-local-block{
+    margin:30px 16px;
+    padding:22px;
+    border-radius:22px;
+  }
+  .vl-local-grid{
+    grid-template-columns:1fr;
+  }
+  .vl-local-block ul{
+    grid-template-columns:1fr;
+  }
+  .vl-local-block h2{
+    font-size:30px;
+  }
+}
+</style>
+
 </head>
 <body>
 <nav><a href="/"><img alt="ViajeroLatam" src="/logo-vl-original-20260528.png"/></a><div class="nav-links"><a href="/seguro-viaje/colombia-a-espana/">Colombia a España</a><a href="/seguro-viaje/venezuela-a-espana/">Venezuela a España</a><a href="/visa-schengen/">Visa Schengen</a><a class="nav-cta" href="/resultados/">Comparar ahora</a></div></nav>
@@ -56,17 +150,22 @@
 <div class="cta"><h2>Compara antes de contratar</h2><p>Revisa opciones actuales y confirma el precio final en la aseguradora.</p><a href="/resultados/?origen=venezuela&destino=espana-schengen">Comparar seguro Venezuela → España</a></div>
 <h2>Errores comunes</h2><ul><li>Indicar una residencia que no corresponde a tu caso.</li><li>No cubrir todos los días del viaje.</li><li>Contratar sin revisar repatriación o asistencia médica.</li><li>No descargar la póliza antes de viajar.</li><li>Confundir requisitos de visa, ETIAS y seguro de viaje.</li></ul>
 
-<section id="vl-local-venezuela-a-espana" style="background:#F5F0E8;border:1px solid #EAE3D5;border-radius:24px;padding:24px;margin:34px 0;color:#0B1F3A" >
-<h2 style="font-family:var(--display, Georgia, serif);font-size:clamp(28px,3.6vw,42px);line-height:1.15;margin:0 0 14px;color:#0B1F3A">Información específica para venezolanos que viajan a España</h2>
-<p style="color:#4A647E;margin:0 0 14px">Desde Venezuela, muchos viajeros preparan el viaje con especial atención a documentación, alojamiento y prueba de medios económicos. El seguro ayuda a demostrar planificación del viaje y, sobre todo, te protege ante urgencias médicas fuera del país.</p>
-<h3 style="font-size:20px;line-height:1.3;margin:18px 0 8px;color:#0B1F3A">Qué revisar antes de contratar</h3>
-<ul style="color:#4A647E;margin:12px 0 0;padding-left:22px">
-<li>Que el certificado indique claramente España o zona Schengen.</li>
-<li>Que incluya asistencia médica, hospitalización de emergencia y repatriación.</li>
-<li>Que puedas descargar la póliza en PDF y mostrarla en el móvil.</li>
-<li>Que las fechas cubran desde el día de salida hasta el regreso real.</li>
-</ul>
-<p style="color:#4A647E;margin:0 0 14px">No todos los viajeros tienen la misma situación migratoria; por eso conviene revisar requisitos oficiales y elegir una póliza con cobertura clara.</p>
+<section class="vl-local-block" id="vl-local-venezuela-a-espana">
+  <div class="vl-local-kicker">Guía local</div>
+  <h2>Información específica para venezolanos que viajan a España</h2>
+  <p>Desde Venezuela, la preparación documental es especialmente importante. El seguro ayuda a viajar más protegido y puede ser relevante si tu situación requiere trámites Schengen o documentación adicional.</p>
+  <div class="vl-local-grid">
+    <div class="vl-local-mini"><strong>Prioridad</strong><span>Documentación clara y certificado descargable.</span></div>
+<div class="vl-local-mini"><strong>Cobertura</strong><span>Urgencias médicas, hospitalización y repatriación.</span></div>
+<div class="vl-local-mini"><strong>Consejo</strong><span>Revisa requisitos oficiales según tu situación personal.</span></div>
+  </div>
+  <ul>
+    <li>Verifica que el certificado indique España o Schengen.</li>
+<li>Cubre todas las fechas reales del viaje.</li>
+<li>Guarda póliza y alojamiento en el móvil.</li>
+<li>Compara condiciones y exclusiones antes de contratar.</li>
+  </ul>
+  <p style="margin-top:18px">Para Venezuela, la página debe ser prudente y clara: no todos los viajeros tienen la misma situación migratoria.</p>
 </section>
 
 <div class="related"><strong>También puede interesarte:</strong><a href="/seguro-viaje/seguro-schengen-venezuela-colombia/">Seguro Schengen Venezuela y Colombia</a><a href="/visa-schengen/">Guía Visa Schengen</a><a href="/seguros/iati/">Guía IATI</a><a href="/seguros/intermundial/">Guía InterMundial</a></div>

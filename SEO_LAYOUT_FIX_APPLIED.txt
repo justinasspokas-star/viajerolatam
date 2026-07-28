@@ -1,0 +1,11 @@
+ViajeroLatam — layout fix after local SEO blocks
+
+Applied fixes:
+- Removed badly positioned local SEO blocks that appeared after the footer.
+- Reinserted local SEO sections before footer / before CTA where appropriate.
+- Added responsive CSS .vl-local-block so sections render correctly on desktop and mobile.
+- Kept unique city/country content for anti-doorway/duplicate risk.
+- Kept homepage schema cleaned from unsupported reviews.
+
+Pages fixed:
+- Bogotá, Medellín, Cali, Colombia, Argentina, México, Perú, Venezuela, Ecuador, Bolivia, Cuba.

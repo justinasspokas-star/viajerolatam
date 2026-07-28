@@ -1,0 +1,24 @@
+ViajeroLatam — full layout audit and footer fix
+
+Base file used: viajerolatam_layout_fix_completo.zip
+
+Pages checked: 56 HTML files
+
+Fix applied:
+- Moved affiliate CTA blocks that were accidentally inside the footer to the correct position before the footer.
+- Fixed footer extra links wrapper for desktop/mobile.
+- Rechecked local SEO blocks to ensure they appear before the footer.
+- Rechecked homepage structured data to ensure no fake ratings remain.
+
+Pages changed:
+- seguro-viaje/bogota-a-espana/index.html
+- seguro-viaje/cali-a-espana/index.html
+- seguro-viaje/medellin-a-espana/index.html
+
+Audit result:
+- Affiliate CTA inside footer: 0
+- Local SEO block after footer: 0
+- Fake rating schema terms in HTML: 0
+- Argentina page Mexico/MXN leftovers: 0
+
+If any number above is not 0, review manually.
