@@ -1,0 +1,25 @@
+ViajeroLatam — GA4 affiliate tracking audit
+
+HTML files with normalizer: 53
+Uppercase event names left: []
+Intermundial case fragments left in event names: []
+
+Event names found after cleanup:
+- click_affiliate_axa: 2 file(s)
+- click_affiliate_holins: 2 file(s)
+- click_affiliate_iati: 31 file(s)
+- click_affiliate_intermundial: 32 file(s)
+- click_affiliate_saily: 1 file(s)
+- click_affiliate_tradedoubler: 3 file(s)
+- click_comparar_argentina_espana: 1 file(s)
+- click_comparar_mexico_espana: 1 file(s)
+- click_comparar_seguros_gratis: 17 file(s)
+- click_contratar: 1 file(s)
+- click_exit_popup: 8 file(s)
+- click_saily: 6 file(s)
+- click_sticky_mob: 8 file(s)
+- contact_form_submit: 1 file(s)
+- exit_popup_shown: 8 file(s)
+- gracias_page_view: 1 file(s)
+- lead_capture: 1 file(s)
+- pdf_download: 1 file(s)

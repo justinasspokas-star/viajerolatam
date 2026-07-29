@@ -1,0 +1,61 @@
+ViajeroLatam — GA4 affiliate tracking cleanup
+
+What was fixed in code:
+1) Event naming standardized:
+   - click_affiliate_Intermundial was changed to click_affiliate_intermundial.
+   - All gtag('event', ...) names are now lower-case.
+
+2) Added a global GA4 normalizer:
+   - Normalizes affiliate event names to lower-case before sending to GA4.
+   - Adds common parameters:
+     affiliate_partner
+     affiliate_click_id
+     outbound_url
+     page_path
+     page_location
+   - Also sends one generic event:
+     affiliate_outbound_click
+   This lets you create one GA4 report by affiliate_partner instead of hunting many event names.
+
+3) Partner-specific events preserved:
+   - click_affiliate_iati
+   - click_affiliate_intermundial
+   - click_affiliate_holins
+   - click_affiliate_axa
+   - click_affiliate_saily
+   - click_affiliate_tradedoubler
+
+Recommended GA4 setup:
+1) Admin > Data display > Events:
+   Mark these as key events:
+   - affiliate_outbound_click
+   Optional secondary key events:
+   - click_affiliate_iati
+   - click_affiliate_intermundial
+   - click_affiliate_holins
+   - click_affiliate_axa
+
+2) Admin > Custom definitions:
+   Create event-scoped custom dimensions:
+   - affiliate_partner
+   - affiliate_click_id
+   - outbound_url
+   - page_path
+   - source_event
+
+3) Reports/Explore:
+   Build a funnel:
+   page_view > click_comparar_seguros_gratis > affiliate_outbound_click
+   Breakdown by:
+   - affiliate_partner
+   - page_path
+   - session source / medium
+
+Important limitation:
+GA4 click tracking still does NOT prove a real affiliate sale. It only proves that a user clicked from ViajeroLatam to the partner.
+
+Real sales tracking:
+- For AXA/Holins via Tradedoubler: use Tradedoubler conversion reporting/postback/subID features if available in your publisher account.
+- For IATI and InterMundial: ask affiliate support if they support subID, postback, pixel, or transaction export with referrer/page data.
+- If a network supports S2S postback, you need a small backend endpoint to receive sales/conversion callbacks and then send server-side events to GA4/Google Ads.
+- Static GitHub Pages alone cannot receive postbacks.
