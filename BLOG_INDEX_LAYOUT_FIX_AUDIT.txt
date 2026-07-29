@@ -1,0 +1,20 @@
+ViajeroLatam — blog index layout fix
+
+Fixed:
+/blog/index.html
+
+What changed:
+- Rebuilt the blog index with clean, isolated CSS classes.
+- Removed broken grid/nested duplicated sections that caused narrow vertical cards on desktop.
+- Added responsive desktop/tablet/mobile card layout.
+- Reordered content around pages that already have Search Console demand.
+- Removed unknown external script from the blog page.
+- Preserved internal links to money pages, ETIAS, Schengen and comparison pages.
+- Added filter buttons that work without breaking layout.
+- Updated sitemap lastmod for /blog/ if sitemap entry exists.
+
+Desktop check:
+- Max content width 1180px.
+- Card grid 3 columns; featured grid 2 columns.
+Mobile check:
+- 1 column cards, horizontal filter scroll, readable card text.
