@@ -1,0 +1,23 @@
+ViajeroLatam — homepage fake stats/trust cleanup
+
+Files changed:
+- index.html
+- blog/index.html
+- sitemap.xml if present
+
+What changed on homepage:
+- Removed the 'Nueva comparativa' banner under the hero.
+- Removed the country strip under the hero.
+- Removed the stats section with unsupported claims:
+  50K+, 4.9 rating, user rating, 2min.
+- Removed fake-looking testimonial/review block and star ratings.
+- Replaced with factual partner section: IATI, InterMundial, AXA/Holins.
+- Reworded claims to avoid unsupported superlatives and fake review signals.
+- Kept affiliate transparency and official-price CTAs.
+
+What changed on blog:
+- Replaced internal SEO phrase 'Empieza por lo que Google ya está mostrando'
+  with visitor-facing copy.
+
+Audit issues found after cleanup:
+None
