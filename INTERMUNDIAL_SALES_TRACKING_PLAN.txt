@@ -1,0 +1,47 @@
+ViajeroLatam — InterMundial page-level tracking
+
+What was changed:
+- All InterMundial affiliate links now keep the original affiliate URL and original utm_term/utm_content values.
+- Added extra parameters to every InterMundial link:
+  vl_site=viajerolatam
+  vl_partner=intermundial
+  vl_page=<page_slug>
+  vl_link=<number_on_that_page>
+- Added data attributes on InterMundial anchors:
+  data-affiliate-partner="intermundial"
+  data-vl-page="<page_slug>"
+
+Important:
+- This will not break the original affiliate link because the original affiliate parameters are preserved.
+- It should help if InterMundial records full landing URLs or custom parameters.
+- It is NOT guaranteed that InterMundial will show these custom parameters in the transaction list.
+- If custom parameters are not visible, ask InterMundial which exact subID/channel parameter they support.
+
+Files:
+- INTERMUNDIAL_PAGE_TRACKING_LINKS.csv contains all page-specific links.
+
+How to verify:
+1. Upload the full ZIP.
+2. Open one page, for example /seguro-viaje/colombia-a-espana/.
+3. Hover/copy the InterMundial button.
+4. Confirm the URL includes:
+   vl_page=seguro_viaje_colombia_a_espana
+5. When a new sale appears, export CSV and check if vl_page / channel / note appears.
+6. If not, use the support message below.
+
+Support message:
+Hola equipo de InterMundial,
+
+Trabajo con ViajeroLatam.com y ya veo ventas aprobadas en el panel.
+Quiero identificar desde qué página concreta llega cada venta.
+
+¿Podéis confirmarme si vuestro sistema registra parámetros personalizados en el enlace, por ejemplo:
+vl_page=seguro_viaje_colombia_a_espana
+vl_link=1
+
+O si debo usar un parámetro concreto de subID/canal, por ejemplo subid, channel, chan, clickref u otro?
+
+También me gustaría saber dónde aparece ese dato en el panel o en el CSV de transacciones.
+
+Gracias.
+

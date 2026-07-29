@@ -1,0 +1,23 @@
+ViajeroLatam — InterMundial affiliate link tracking audit
+
+Base ZIP:
+viajerolatam_home_restore_buscador_completo.zip
+
+InterMundial HTML pages changed:
+30
+
+Total InterMundial links tagged:
+44
+
+Pages where InterMundial link exists but vl_page was not found:
+None
+
+Sample tagged URLs:
+- blog/cuando-volar-argentina-espana-barato/index.html: https://www.intermundial.es/afiliados/seguros-de-viaje-recomendado?utm_source=Affiliates&utm_medium=Affiliates&utm_campaign=General&utm_term=kbnnqvpvcy490&utm_content=kbnnqvpvcy490&coupon=VIAJEROLATAM&vl_site=viajerolatam&vl_partner=intermundial&vl_page=blog_c
+- blog/cuando-volar-colombia-espana-barato/index.html: https://www.intermundial.es/afiliados/seguros-de-viaje-recomendado?utm_source=Affiliates&utm_medium=Affiliates&utm_campaign=General&utm_term=kbnnqvpvcy490&utm_content=kbnnqvpvcy490&coupon=VIAJEROLATAM&vl_site=viajerolatam&vl_partner=intermundial&vl_page=blog_c
+- blog/cuanto-cuesta-seguro-viaje-colombia-espana/index.html: https://www.intermundial.es/afiliados/seguros-de-viaje-recomendado?utm_source=Affiliates&utm_medium=Affiliates&utm_campaign=General&utm_term=kbnnqvpvcy490&utm_content=kbnnqvpvcy490&coupon=VIAJEROLATAM&vl_site=viajerolatam&vl_partner=intermundial&vl_page=blog_c
+- blog/requisitos-entrada-espana-colombianos-seguro-viaje/index.html: https://www.intermundial.es/afiliados/seguros-de-viaje-recomendado?utm_source=Affiliates&utm_medium=Affiliates&utm_campaign=General&utm_term=kbnnqvpvcy490&utm_content=kbnnqvpvcy490&coupon=VIAJEROLATAM&vl_site=viajerolatam&vl_partner=intermundial&vl_page=blog_r
+- blog/requisitos-viajar-espana-desde-venezuela/index.html: https://www.intermundial.es/afiliados/seguros-de-viaje-recomendado?utm_source=Affiliates&utm_medium=Affiliates&utm_campaign=General&utm_term=kbnnqvpvcy490&utm_content=kbnnqvpvcy490&coupon=VIAJEROLATAM&vl_site=viajerolatam&vl_partner=intermundial&vl_page=blog_r
+
+Note:
+Custom vl_page/vl_link parameters are added without changing the original affiliate ID parameters.
