@@ -1,0 +1,23 @@
+ViajeroLatam — visa-schengen LATAM update
+
+Updated page:
+/visa-schengen/index.html
+
+Changes:
+- Added missing LATAM countries/territories to the visa/insurance table.
+- Added mobile-responsive country cards/table behavior.
+- Updated visible hero copy and requirement cards.
+- Updated ETIAS country list.
+- Removed unsupported absolute claims like visa approval guarantees.
+- Corrected footer links for México, Venezuela and Argentina.
+- Removed an unknown external script from this page.
+- Updated sitemap lastmod for /visa-schengen/.
+
+Country rows in table: 21
+
+Audit:
+- Bad terms in visa page: []
+- Fake rating schema pages: []
+- Unknown external script pages: ['colombia-espana.html', 'index.html', 'resultados/index.html', 'blog/index.html', 'blog/etias-colombianos/index.html', 'blog/documentos-viajar-espana-desde-colombia-2026/index.html', 'blog/seguro-viaje-obligatorio-europa-latinoamericanos/index.html', 'blog/seguro-viaje-etias/index.html', 'blog/cuando-volar-colombia-espana-barato/index.html', 'blog/ses-ees-colombianos-europa-2026/index.html', 'seguro-viaje/bogota-a-espana/index.html', 'seguro-viaje/cali-a-espana/index.html', 'seguro-viaje/medellin-a-espana/index.html', 'seguro-viaje/colombia-a-espana/index.html']
+- Affiliate CTA inside footer pages: []
+- Local blocks after footer pages: []
