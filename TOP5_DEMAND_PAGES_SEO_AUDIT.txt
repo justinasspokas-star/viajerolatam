@@ -1,0 +1,15 @@
+ViajeroLatam — Top 5 demand pages improved
+
+Based on Search Console last 28 days shown by user: 47 clicks, 6.15K impressions, CTR 0.8%, average position 23.3.
+
+Improved pages:
+- blog/cuando-volar-colombia-espana-barato/index.html | size 50106 | issues [] | has tracking True
+- blog/cuanto-cuesta-seguro-viaje-colombia-espana/index.html | size 46835 | issues [] | has tracking True
+- blog/etias-colombianos/index.html | size 73156 | issues [] | has tracking True
+- seguro-viaje/colombia-a-espana/index.html | size 84422 | issues [] | has tracking True
+- seguro-viaje/venezuela-a-espana/index.html | size 27951 | issues [] | has tracking True
+
+SEO strategy:
+- Focused on pages that already receive impressions instead of creating more city pages.
+- Added conversion blocks near the top, internal links, FAQ copy matching Search Console queries, and safer ETIAS/Schengen language.
+- Kept GA4 affiliate tracking from previous version.
