@@ -1,0 +1,15 @@
+ViajeroLatam — visa-schengen mobile table fix
+
+Fixed:
+/visa-schengen/index.html
+
+What changed:
+- Mobile country table now renders as clean cards.
+- Removed side-by-side layout on mobile that squeezed notes into a narrow right column.
+- Country, visa status, insurance and CTA each appear as readable full-width rows.
+- Long notes now wrap normally under the badge.
+- CTA links become full-width green buttons on mobile.
+- Added bottom padding so sticky CTA does not cover table content.
+
+Audit:
+- Applied only CSS override; desktop table remains unchanged.
