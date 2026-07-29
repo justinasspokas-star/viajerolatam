@@ -1,0 +1,76 @@
+ViajeroLatam — official favicon added
+
+Source logo:
+- logo-vl-original-20260528.png
+- Original dimensions: 1522x482px
+
+Generated files:
+- /favicon.ico
+- /favicon-16x16.png
+- /favicon-32x32.png
+- /favicon-48x48.png
+- /apple-touch-icon.png
+- /android-chrome-192x192.png
+- /android-chrome-512x512.png
+- /site.webmanifest
+
+HTML pages updated with favicon tags:
+- 404.html
+- aviso-legal/index.html
+- blog/cuando-volar-argentina-espana-barato/index.html
+- blog/cuando-volar-colombia-espana-barato/index.html
+- blog/cuanto-cuesta-seguro-viaje-colombia-espana/index.html
+- blog/documentos-viajar-espana-desde-colombia-2026/index.html
+- blog/etias-colombianos/index.html
+- blog/index.html
+- blog/requisitos-entrada-espana-colombianos-seguro-viaje/index.html
+- blog/requisitos-viajar-espana-desde-venezuela/index.html
+- blog/seguro-schengen-venezolanos/index.html
+- blog/seguro-viaje-etias/index.html
+- blog/seguro-viaje-obligatorio-europa-latinoamericanos/index.html
+- blog/seguro-viaje-schengen-colombianos/index.html
+- blog/ses-ees-colombianos-europa-2026/index.html
+- colombia-espana.html
+- como-elegimos/index.html
+- comparar-seguros-viaje-colombia-espana/index.html
+- contacto/index.html
+- cookies/index.html
+- esim/espana-colombianos/index.html
+- fo-verify.html
+- google562df6fdb8d9394a.html
+- guia-viajero-latam/gracias/index.html
+- guia-viajero-latam/index.html
+- index.html
+- privacidad/index.html
+- resultados/index.html
+- seguro-viaje/argentina-a-espana/index.html
+- seguro-viaje/bogota-a-espana/index.html
+- seguro-viaje/bolivia-a-espana/index.html
+- seguro-viaje/cali-a-espana/index.html
+- seguro-viaje/colombia-a-eeuu/index.html
+- seguro-viaje/colombia-a-espana/index.html
+- seguro-viaje/colombia-a-estados-unidos/index.html
+- seguro-viaje/colombia-a-europa/index.html
+- seguro-viaje/cuba-a-espana/index.html
+- seguro-viaje/ecuador-a-espana/index.html
+- seguro-viaje/medellin-a-espana/index.html
+- seguro-viaje/mexico-a-espana/index.html
+- seguro-viaje/peru-a-espana/index.html
+- seguro-viaje/peru-a-europa/index.html
+- seguro-viaje/seguro-schengen-venezuela-colombia/index.html
+- seguro-viaje/venezuela-a-espana/index.html
+- seguros/axa/index.html
+- seguros/holins/index.html
+- seguros/iati/index.html
+- seguros/intermundial/index.html
+- sobre-nosotros/index.html
+- visa-schengen/cuanto-tiempo-valido-seguro-schengen/index.html
+- visa-schengen/index.html
+- visa-schengen/peruanos/index.html
+- visa-schengen/seguro-colombianos/index.html
+- visa-schengen/tramitar-visa-schengen-colombia/index.html
+- visa-schengen/visado-espana-colombianos-requisitos/index.html
+- visa-schengen.html
+
+Note:
+Browsers can cache favicons strongly. After upload, test in incognito or add /favicon.ico directly in the browser.
