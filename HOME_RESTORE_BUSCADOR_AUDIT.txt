@@ -1,0 +1,11 @@
+ViajeroLatam — homepage restore audit
+
+Fix:
+- Root /index.html is confirmed as the comparator homepage with the search form.
+- Blog page remains at /blog/index.html.
+- Favicon files remain included.
+- Fake stats/review claims remain removed from homepage.
+
+Important:
+If your live homepage shows the blog page, it usually means blog/index.html or blog-index-layout-corregido.html was uploaded/renamed as root index.html by mistake.
+Upload this FULL ZIP, preserving folder structure.
