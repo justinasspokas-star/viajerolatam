@@ -1,0 +1,15 @@
+ViajeroLatam — /resultados/ noindex fix
+
+Problem:
+- Search Console showed /resultados/ as: Excluded by 'noindex' tag.
+- The page had: <meta content="noindex, follow" name="robots"/>
+
+Fix applied:
+- /resultados/index.html robots meta changed to: <meta name="robots" content="index, follow"/>
+- sitemap.xml lastmod for /resultados/ updated if entry existed.
+
+Remaining pages with noindex after fix:
+- guia-viajero-latam/gracias/index.html: ['<meta content="noindex, nofollow" name="robots"/>']
+
+Note:
+- /guia-viajero-latam/gracias/ remains noindex intentionally because it is a thank-you page.
