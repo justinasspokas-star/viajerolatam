@@ -305,6 +305,9 @@ img, video, iframe, svg {
 }
 </style>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link rel="stylesheet" href="/cookie-consent.css"/>
+<script src="/cookie-consent.js"></script>
+
 <!-- Favicon / browser tab icon -->
 <link rel="icon" href="/favicon.ico" sizes="any"/>
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
@@ -493,102 +496,6 @@ nav a.brand-logo img, nav a.logo img{height:64px !important; width:auto !importa
 </style>
 <meta content="es_CO" property="og:locale"/>
 <meta content="ViajeroLatam" property="og:site_name"/>
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-P1Q2TSMVNJ"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-P1Q2TSMVNJ');
-<script id="vl-ga4-affiliate-normalizer">
-(function(){
-  if (window.vlGa4AffiliateNormalizerInstalled) return;
-  window.vlGa4AffiliateNormalizerInstalled = true;
-
-  function getClickId(){
-    try {
-      var key = 'vl_affiliate_click_id';
-      var id = sessionStorage.getItem(key);
-      if (!id) {
-        id = 'vl_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 10);
-        sessionStorage.setItem(key, id);
-      }
-      return id;
-    } catch(e) {
-      return 'vl_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 10);
-    }
-  }
-
-  function cleanPartner(partner){
-    return String(partner || '')
-      .toLowerCase()
-      .replace(/[^a-z0-9_]+/g, '_')
-      .replace(/^_+|_+$/g, '');
-  }
-
-  function partnerFromEvent(eventName, params){
-    var partner = '';
-    if (eventName.indexOf('click_affiliate_') === 0) {
-      partner = eventName.replace('click_affiliate_', '');
-    }
-    if (!partner && params && params.affiliate_partner) partner = params.affiliate_partner;
-    return cleanPartner(partner || 'unknown');
-  }
-
-  function install(){
-    if (typeof window.gtag !== 'function') {
-      window.setTimeout(install, 50);
-      return;
-    }
-    if (window.gtag.vlAffiliateNormalized) return;
-
-    var originalGtag = window.gtag;
-    function normalizedGtag(){
-      var args = Array.prototype.slice.call(arguments);
-
-      if (args[0] === 'event' && typeof args[1] === 'string') {
-        var originalEventName = args[1];
-        var eventName = originalEventName.toLowerCase();
-
-        if (eventName !== originalEventName) {
-          args[1] = eventName;
-        }
-
-        if (eventName.indexOf('click_affiliate_') === 0) {
-          var params = args[2] && typeof args[2] === 'object' ? args[2] : {};
-          var partner = partnerFromEvent(eventName, params);
-          var clickId = params.affiliate_click_id || getClickId();
-
-          params.event_category = params.event_category || 'affiliate';
-          params.affiliate_partner = partner;
-          params.affiliate_click_id = clickId;
-          params.page_path = window.location.pathname;
-          params.page_location = params.page_location || window.location.href;
-          params.outbound_url = params.outbound_url || params.event_label || params.link_url || '';
-          params.link_text = params.link_text || '';
-
-          args[2] = params;
-
-          originalGtag.apply(window, args);
-
-          originalGtag('event', 'affiliate_outbound_click', {
-            event_category: 'affiliate',
-            affiliate_partner: partner,
-            affiliate_click_id: clickId,
-            source_event: eventName,
-            outbound_url: params.outbound_url,
-            page_path: window.location.pathname,
-            page_location: window.location.href
-          });
-          return;
-        }
-      }
-
-      return originalGtag.apply(window, args);
-    }
-
-    normalizedGtag.vlAffiliateNormalized = true;
-    window.gtag = normalizedGtag;
-  }
-
-  install();
-})();
-</script>
 </script>
 <style id="no-travel-icons">.travel-icons,#travel-canvas,canvas{display:none!important}</style>
 <meta content="Guía sobre visa Schengen, seguro médico de viaje, requisitos y documentos para viajar a España y Europa." name="description"/><meta content="Visa Schengen | Requisitos y seguro de viaje | ViajeroLatam" property="og:title"/><meta content="Guía sobre visa Schengen, seguro médico de viaje, requisitos y documentos para viajar a España y Europa." property="og:description"/><meta content="Visa Schengen | Requisitos y seguro de viaje | ViajeroLatam" name="twitter:title"/><meta content="Guía sobre visa Schengen, seguro médico de viaje, requisitos y documentos para viajar a España y Europa." name="twitter:description"/></head><body><p>Redirigiendo a <a href="/visa-schengen/">Visa Schengen</a>...</p>

@@ -1,0 +1,29 @@
+ViajeroLatam — cookie banner + GA4 consent audit
+
+Base ZIP used: viajerolatam_resultados_noindex_fix_completo.zip
+
+Implemented:
+- Cookie banner in all HTML pages.
+- Buttons: Aceptar todas, Rechazar no esenciales, Configurar.
+- Link to /cookies/ in the banner.
+- Floating “Cookies” button to change the decision later.
+- Google Analytics 4 is NOT loaded before analytics consent.
+- Consent is stored in localStorage key: vl_cookie_consent_v1.
+- If rejected, analytics cookies like _ga/_gid/_gat/_gcl are deleted when possible.
+- Google Consent Mode defaults are set to denied before any GA4 load.
+
+Files added:
+- cookie-consent.js
+- cookie-consent.css
+
+HTML pages updated: 56
+
+Audit:
+- HTML pages without cookie script: None
+- HTML pages still loading gtag/js directly: None
+- HTML pages still calling gtag config directly: None
+- HTML pages with noindex after this change: ['guia-viajero-latam/gracias/index.html']
+
+Note:
+- /guia-viajero-latam/gracias/ may remain noindex intentionally as a thank-you page.
+- This is a technical implementation, not legal advice.
