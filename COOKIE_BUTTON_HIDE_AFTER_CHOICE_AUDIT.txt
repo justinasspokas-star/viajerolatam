@@ -1,0 +1,12 @@
+ViajeroLatam — cookie button hide after choice
+
+Changed:
+- The floating "Cookies" button no longer appears after the user accepts or rejects cookies.
+- After choosing, the banner and floating button disappear.
+- Existing consent still loads GA4 only if analytics consent is granted.
+- Rejection still blocks GA4 and attempts to delete analytics cookies.
+- The cookies policy page includes a manual "Configurar cookies" button so the user can later change the decision without a floating button.
+
+Files changed:
+- cookie-consent.js
+- cookies/index.html if present
