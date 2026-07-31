@@ -1334,6 +1334,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
 <option value="nicaragua">🇳🇮 Nicaragua</option>
 <option value="republica-dominicana">🇩🇴 R. Dominicana</option>
 <option value="cuba">🇨🇺 Cuba</option>
+<option value="haiti">🇭🇹 Haití</option>
 <option value="puerto-rico">🇵🇷 Puerto Rico</option>
 <option value="espana-schengen">🇪🇺 España / Schengen</option>
 <option value="europa">🌍 Europa (toda)</option>
@@ -1802,6 +1803,7 @@ var VL_RESULTS_SPAIN_LATAM_DESTINATIONS = [
   {value:'nicaragua', label:'🇳🇮 Nicaragua'},
   {value:'republica-dominicana', label:'🇩🇴 R. Dominicana'},
   {value:'cuba', label:'🇨🇺 Cuba'},
+  {value:'haiti', label:'🇭🇹 Haití'},
   {value:'puerto-rico', label:'🇵🇷 Puerto Rico'}
 ];
 var VL_LATAM_DEST_LABELS = {
@@ -1964,6 +1966,7 @@ function updatePillsDisplay(origen, dest, ida, vuelta, viajeros){
     nicaragua:'Nicaragua 🇳🇮',
     'republica-dominicana':'R. Dominicana 🇩🇴',
     cuba:'Cuba 🇨🇺',
+    haiti:'Haití 🇭🇹',
     'puerto-rico':'Puerto Rico 🇵🇷'
   };
   var destLabels = Object.assign({europa:'España / Schengen 🇪🇺', eeuu:'Estados Unidos 🇺🇸', mundial:'Mundial 🌍'}, VL_LATAM_DEST_LABELS);
