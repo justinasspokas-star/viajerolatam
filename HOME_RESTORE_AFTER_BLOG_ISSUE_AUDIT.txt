@@ -1,0 +1,16 @@
+ViajeroLatam — restaurar home correcta
+
+Problema visto:
+- En viajerolatam.com se estaba viendo la página de Artículos en la raíz (/).
+- Eso suele pasar cuando se sube blog/index.html como index.html por error o cuando GitHub Pages recibe una versión equivocada del archivo raíz.
+
+Validación de este paquete:
+- /index.html contiene el comparador principal: True
+- /index.html NO es la página de Artículos: True
+- /blog/index.html mantiene la página de Artículos: True
+- Flecha ⇄ con España/Europa/EEUU/Mundial ↔ LATAM: True
+- Banner cookies/GA4 consentimiento sigue presente: True
+- /resultados/ sigue indexable: True
+
+Qué subir:
+- Sube el ZIP completo o, como mínimo, sube /index.html a la raíz y /blog/index.html dentro de la carpeta /blog/.
