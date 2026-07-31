@@ -1,0 +1,27 @@
+ViajeroLatam — ajuste blog cuándo volar Colombia a España
+
+Cambios aplicados:
+- Title más corto para evitar corte en Google.
+- Meta description ajustada.
+- Bloque superior reforzado hacia seguro Colombia → España.
+- Bloque añadido/renombrado: Después de comprar vuelo, revisa seguro de viaje.
+- Enlace fuerte a /seguro-viaje/colombia-a-espana/.
+- CTA visible a /resultados/ con origen Colombia y destino España/Schengen.
+- Botón flotante inferior solo en móvil: 🔍 Comparar seguros gratis.
+- sitemap.xml actualizado para esta URL.
+
+Validación:
+{
+  "title": "Mes más barato para volar Colombia España 2026",
+  "title_length": 46,
+  "meta_description": "Meses más baratos para volar de Colombia a España en 2026, cuándo comprar vuelos y qué seguro revisar después de reservar.",
+  "canonical": "https://viajerolatam.com/blog/cuando-volar-colombia-espana-barato/",
+  "schema_count": 2,
+  "sticky_mobile_button": true,
+  "sticky_href": "/resultados/?origen=colombia&destino=espana-schengen&dias=15&personas=1",
+  "has_after_flight_block": true,
+  "colombia_insurance_links": 8,
+  "compare_links_colombia": 3,
+  "sitemap_updated": false,
+  "words_visible": 2039
+}
