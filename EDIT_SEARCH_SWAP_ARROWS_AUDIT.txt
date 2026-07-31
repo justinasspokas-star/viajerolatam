@@ -1,0 +1,17 @@
+ViajeroLatam — flechas ⇄ también en Editar búsqueda
+
+Cambio aplicado:
+- Añadido botón ⇄ dentro del panel “Editar búsqueda” de /resultados/.
+- Permite intercambiar:
+  LATAM → España/Schengen, Europa, Estados Unidos, EEUU+Canadá o Mundial
+  hacia:
+  España/Schengen, Europa, Estados Unidos, EEUU+Canadá o Mundial → LATAM
+- Mantiene la misma lógica que la flecha del buscador principal.
+- No se crean páginas nuevas ni cambios SEO de contenido.
+- Solo se modifica /resultados/index.html.
+
+Prueba:
+1. En /resultados/, pulsa cualquier bloque de Desde/Destino para abrir “Editar búsqueda”.
+2. Pulsa ⇄.
+3. Comprueba que Colombia → Estados Unidos pasa a Estados Unidos → Colombia.
+4. Pulsa “Actualizar resultados”.
