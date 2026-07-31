@@ -1,0 +1,20 @@
+ViajeroLatam — buscador principal con botón de intercambio ⇄
+
+Cambio aplicado:
+- Se añadió un botón ⇄ entre “Voy desde” y “Destino” en la home.
+- Al hacer clic:
+  - LATAM → España/Schengen se convierte en España → mismo país LATAM.
+  - España → país LATAM se convierte otra vez en país LATAM → España/Schengen.
+- España ya no aparece como opción normal al final del selector “Voy desde”.
+- No se crean páginas SEO nuevas.
+- Se mantiene /resultados/ preparado para mostrar España → LATAM correctamente.
+- Se mantiene el banner de cookies/GA4 con consentimiento y /resultados/ indexable.
+
+Archivos modificados:
+- index.html
+
+Prueba:
+1. Home carga con Colombia → España/Schengen.
+2. Pulsar ⇄ muestra España → Colombia.
+3. Cambiar destino a México, Argentina, Perú, etc.
+4. Pulsar ⇄ vuelve a México/Argentina/Perú → España/Schengen.

@@ -1,0 +1,17 @@
+ViajeroLatam — España → LATAM en buscador principal
+
+Objetivo:
+- Añadir España como origen solo en el buscador principal de la home.
+- Cuando el usuario elige España, el campo Destino cambia a países LATAM.
+- No se han creado nuevas páginas SEO ni se ha cambiado el enfoque principal del sitio.
+- Se ajustó /resultados/ solo para entender y mostrar correctamente la búsqueda España → LATAM.
+
+Archivos modificados:
+- index.html
+- resultados/index.html
+
+Pruebas rápidas:
+- Home: origen Colombia mantiene destinos España/Schengen, Europa, Estados Unidos, EEUU+Canadá, Mundial.
+- Home: origen España muestra destinos Colombia, México, Argentina, Perú, Chile, Ecuador, Bolivia, Venezuela, etc.
+- Home: comparar España → Colombia envía a /resultados/?origen=espana&destino=colombia...
+- Resultados: muestra “España → Colombia” en vez de forzar “Colombia → España”.

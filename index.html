@@ -1795,6 +1795,53 @@ nav .logo img{
 
 <!-- VL SEO CRITICAL FIX: structured data cleaned -->
 <!-- VL HOME RESTORE: comparator homepage verified -->
+
+<style id="vl-home-swap-route-css">
+.vl-route-swap-btn{
+  width:44px;
+  height:44px;
+  border-radius:999px;
+  border:1.5px solid rgba(0,196,161,.35);
+  background:#F3FFFB;
+  color:#0B1F3A;
+  font-size:22px;
+  font-weight:900;
+  line-height:1;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 8px 22px rgba(11,31,58,.08);
+  transition:transform .15s ease, background .2s ease, border-color .2s ease;
+}
+.vl-route-swap-btn:hover{background:#00C4A1;border-color:#00C4A1;transform:rotate(180deg)}
+.vl-route-swap-btn:active{transform:scale(.94) rotate(180deg)}
+@media(max-width:768px){
+  .search-top-row{
+    grid-template-columns:1fr 44px 1fr!important;
+    gap:8px!important;
+    align-items:end!important;
+  }
+  .vl-route-swap-btn{
+    width:42px;
+    height:42px;
+    font-size:20px;
+    margin-bottom:1px;
+  }
+}
+@media(max-width:430px){
+  .search-top-row{
+    grid-template-columns:1fr!important;
+  }
+  .vl-route-swap-btn{
+    width:100%;
+    height:40px;
+    margin:0;
+    border-radius:14px;
+  }
+}
+</style>
+
 </head>
 <body>
 <!-- ═══ MOBILE NAV SYSTEM ═══ -->
@@ -1880,7 +1927,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
 <h1>Tu viaje, <em>protegido</em><br/>al mejor precio</h1>
 <div class="search-box" style="display:block;padding:20px 24px;max-width:720px">
 <!-- Row 1: Origen + Destino -->
-<div class="search-top-row" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
+<div class="search-top-row" style="display:grid;grid-template-columns:1fr auto 1fr;gap:10px;margin-bottom:10px;align-items:end">
 <div>
 <div class="sb-label" style="margin-bottom:6px">Voy desde</div>
 <select id="sb-origen" onblur="this.style.borderColor='var(--border)'" onclick="event.stopPropagation()" onfocus="this.style.borderColor='var(--teal)'" style="width:100%;border:1.5px solid var(--border);border-radius:10px;padding:10px 14px;font-family:var(--font-body);font-size:15px;font-weight:600;color:var(--text-dark);background:var(--white);outline:none;cursor:pointer;transition:border-color .2s">
@@ -1906,6 +1953,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
 <option value="puerto-rico">🇵🇷 Puerto Rico</option>
 </select>
 </div>
+<button type="button" class="vl-route-swap-btn" onclick="event.stopPropagation(); vlSwapHomeRoute()" aria-label="Intercambiar origen y destino" title="Intercambiar origen y destino">⇄</button>
 <div>
 <div class="sb-label" style="margin-bottom:6px">Destino</div>
 <select id="sb-destino" onblur="this.style.borderColor='var(--border)'" onclick="event.stopPropagation()" onfocus="this.style.borderColor='var(--teal)'" style="width:100%;border:1.5px solid var(--border);border-radius:10px;padding:10px 14px;font-family:var(--font-body);font-size:15px;font-weight:600;color:var(--text-dark);background:var(--white);outline:none;cursor:pointer;transition:border-color .2s;text-overflow:ellipsis;overflow:hidden">
@@ -2201,6 +2249,97 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
   });
 </script>
 <script>
+
+// VL: botón ⇄ para intercambiar LATAM ↔ España en el buscador principal
+var VL_HOME_LATAM_ORIGINS = [
+  {value:'colombia', label:'🇨🇴 Colombia'},
+  {value:'mexico', label:'🇲🇽 México'},
+  {value:'argentina', label:'🇦🇷 Argentina'},
+  {value:'venezuela', label:'🇻🇪 Venezuela'},
+  {value:'peru', label:'🇵🇪 Perú'},
+  {value:'chile', label:'🇨🇱 Chile'},
+  {value:'ecuador', label:'🇪🇨 Ecuador'},
+  {value:'bolivia', label:'🇧🇴 Bolivia'},
+  {value:'paraguay', label:'🇵🇾 Paraguay'},
+  {value:'uruguay', label:'🇺🇾 Uruguay'},
+  {value:'brasil', label:'🇧🇷 Brasil'},
+  {value:'costa-rica', label:'🇨🇷 Costa Rica'},
+  {value:'panama', label:'🇵🇦 Panamá'},
+  {value:'guatemala', label:'🇬🇹 Guatemala'},
+  {value:'el-salvador', label:'🇸🇻 El Salvador'},
+  {value:'honduras', label:'🇭🇳 Honduras'},
+  {value:'nicaragua', label:'🇳🇮 Nicaragua'},
+  {value:'republica-dominicana', label:'🇩🇴 R. Dominicana'},
+  {value:'cuba', label:'🇨🇺 Cuba'},
+  {value:'puerto-rico', label:'🇵🇷 Puerto Rico'}
+];
+var VL_HOME_DEFAULT_DESTINATIONS = [
+  {value:'espana-schengen', label:'🇪🇺 España / Schengen'},
+  {value:'europa', label:'🌍 Europa (toda)'},
+  {value:'estados-unidos', label:'🇺🇸 Estados Unidos'},
+  {value:'eeuu-canada', label:'🇺🇸🇨🇦 EEUU + Canadá'},
+  {value:'mundial', label:'🌎 Mundial'}
+];
+var VL_HOME_SPAIN_LATAM_DESTINATIONS = VL_HOME_LATAM_ORIGINS.slice();
+function vlSetOptions(select, options, preferred){
+  if(!select) return;
+  var current = preferred || select.value;
+  select.innerHTML = options.map(function(o){
+    return '<option value="' + o.value + '">' + o.label + '</option>';
+  }).join('');
+  var exists = options.some(function(o){ return o.value === current; });
+  select.value = exists ? current : options[0].value;
+}
+function vlIsHomeLatam(v){
+  v = String(v || '').toLowerCase();
+  return VL_HOME_LATAM_ORIGINS.some(function(o){ return o.value === v; });
+}
+function vlHomeIsSpainMode(){
+  var origin = document.getElementById('sb-origen');
+  return !!(origin && origin.value === 'espana');
+}
+function vlSwapHomeRoute(){
+  var origin = document.getElementById('sb-origen');
+  var dest = document.getElementById('sb-destino');
+  if(!origin || !dest) return;
+
+  var oldOrigin = origin.value;
+  var oldDest = dest.value;
+
+  if(vlHomeIsSpainMode()){
+    var latamOrigin = vlIsHomeLatam(oldDest) ? oldDest : 'colombia';
+    vlSetOptions(origin, VL_HOME_LATAM_ORIGINS, latamOrigin);
+    vlSetOptions(dest, VL_HOME_DEFAULT_DESTINATIONS, 'espana-schengen');
+  } else {
+    var latamDest = vlIsHomeLatam(oldOrigin) ? oldOrigin : 'colombia';
+    vlSetOptions(origin, [{value:'espana', label:'🇪🇸 España'}], 'espana');
+    vlSetOptions(dest, VL_HOME_SPAIN_LATAM_DESTINATIONS, latamDest);
+  }
+
+  if(typeof sbDateChange === 'function') sbDateChange();
+  try {
+    if(typeof gtag === 'function'){
+      gtag('event','click_swap_route',{
+        event_category:'search',
+        from_origin: oldOrigin,
+        from_destino: oldDest,
+        to_origin: origin.value,
+        to_destino: dest.value,
+        page_location: window.location.href
+      });
+    }
+  } catch(e){}
+}
+function vlUpdateHomeDestinationOptions(){
+  var origin = document.getElementById('sb-origen');
+  var dest = document.getElementById('sb-destino');
+  if(!origin || !dest) return;
+  if(origin.value !== 'espana'){
+    vlSetOptions(dest, VL_HOME_DEFAULT_DESTINATIONS, dest.value);
+  }
+  if(typeof sbDateChange === 'function') sbDateChange();
+}
+
 (function() {
   var today = new Date();
   var ret = new Date();
@@ -2210,6 +2349,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
   var vuelta = document.getElementById('sb-vuelta');
   if (ida)    { ida.value = fmt(today);    ida.min = fmt(today); }
   if (vuelta) { vuelta.value = fmt(ret);   vuelta.min = fmt(today); }
+  if (typeof vlUpdateHomeDestinationOptions === 'function') vlUpdateHomeDestinationOptions();
   if (typeof sbDateChange === 'function') sbDateChange();
 })();
 
@@ -2247,6 +2387,10 @@ function sbDateChange() {
     // Cambios orientativos solo para mostrar presupuesto aproximado.
     // El precio final siempre lo calcula cada aseguradora.
     var currencyByOrigin = {
+      espana: {
+        EUR: { rate: 1, symbol: '€', code: 'EUR', locale: 'es-ES', decimals: 2 },
+        USD: { rate: 0.92, symbol: '€', code: 'EUR', locale: 'es-ES', decimals: 2 }
+      },
       colombia: {
         EUR: { rate: 3720, symbol: '$', code: 'COP', locale: 'es-CO', decimals: 0 },
         USD: { rate: 4000, symbol: '$', code: 'COP', locale: 'es-CO', decimals: 0 }
@@ -2329,6 +2473,13 @@ function sbDateChange() {
       }
     };
 
+    if (origen === 'espana') {
+      var baseTextSpain = dias + ' días';
+      if (personas > 1) baseTextSpain += ' · ' + personas + ' viajeros';
+      txt.textContent = baseTextSpain + ' · Desde ' + fmtBase(minBase) + '–' + fmtBase(maxBase) + ' aprox.';
+      return;
+    }
+
     var infoSet = currencyByOrigin[origen] || currencyByOrigin.colombia;
     var info = infoSet[baseCurrency] || infoSet.EUR;
 
@@ -2356,6 +2507,8 @@ function sbDateChange() {
   var el = document.getElementById(id);
   if (el) el.addEventListener('change', sbDateChange);
 });
+var vlHomeOriginSelect = document.getElementById('sb-origen');
+if (vlHomeOriginSelect) vlHomeOriginSelect.addEventListener('change', vlUpdateHomeDestinationOptions);
 
 function goCompare() {
   var o  = (document.getElementById('sb-origen')   || {}).value || 'colombia';
