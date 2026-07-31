@@ -1061,6 +1061,57 @@ nav .brand-logo img{height:38px!important;max-width:170px!important;width:auto!i
 </style>
 
 <!-- VL FIX: resultados indexable -->
+
+<style id="vl-edit-search-swap-css">
+.vl-edit-route-swap-wrap{
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+}
+.vl-edit-route-swap-label{
+  font-size:11px;
+  font-weight:700;
+  color:#8FA4B8;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+  display:block;
+  margin-bottom:6px;
+  text-align:center;
+}
+.vl-edit-route-swap-btn{
+  min-height:42px;
+  width:100%;
+  border-radius:999px;
+  border:1.5px solid rgba(0,196,161,.35);
+  background:#F3FFFB;
+  color:#0B1F3A;
+  font-size:22px;
+  font-weight:900;
+  line-height:1;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 6px 18px rgba(11,31,58,.07);
+  transition:transform .15s ease, background .2s ease, border-color .2s ease;
+}
+.vl-edit-route-swap-btn:hover{background:#00C4A1;border-color:#00C4A1;transform:rotate(180deg)}
+.vl-edit-route-swap-btn:active{transform:scale(.94) rotate(180deg)}
+@media(max-width:768px){
+  .vl-edit-route-swap-wrap{
+    grid-column:1 / -1;
+  }
+  .vl-edit-route-swap-label{
+    display:none;
+  }
+  .vl-edit-route-swap-btn{
+    min-height:44px;
+    border-radius:16px;
+    font-size:21px;
+  }
+}
+</style>
+
 </head>
 <body>
 <!-- H1 principal movido al bloque de resultados para evitar espacio superior -->
@@ -1860,6 +1911,7 @@ function urlDestValue(v){
   return 'espana-schengen';
 }
 function openEditPanel(focusId){
+  if(typeof vlUpdateResultsDestinationOptions === 'function') vlUpdateResultsDestinationOptions(window.currentSearchDest);
   var p = document.getElementById('edit-panel');
   if(!p) return;
   p.style.display = 'block';
@@ -1922,6 +1974,44 @@ function updatePillsDisplay(origen, dest, ida, vuelta, viajeros){
   if(pillVals[2]) pillVals[2].textContent = fechasText;
   if(pillVals[3]) pillVals[3].textContent = viajeros + (parseInt(viajeros)===1?' adulto':' adultos');
 }
+
+function vlSwapEditRoute(){
+  var origin = document.getElementById('ep-origen');
+  var dest = document.getElementById('ep-destino');
+  if(!origin || !dest) return;
+
+  var oldOrigin = String(origin.value || '').toLowerCase();
+  var oldDest = String(dest.value || '').toLowerCase();
+
+  if(typeof vlIsRouteOrigin === 'function' && vlIsRouteOrigin(oldOrigin)){
+    // Ruta general → LATAM vuelve a LATAM → misma ruta general.
+    var latamOrigin = (typeof vlIsLatamDest === 'function' && vlIsLatamDest(oldDest)) ? oldDest : 'colombia';
+    var routeDest = vlIsRouteOrigin(oldOrigin) ? oldOrigin : 'espana-schengen';
+    vlSetResultsOptions(origin, VL_RESULTS_SPAIN_LATAM_DESTINATIONS, latamOrigin);
+    vlSetResultsOptions(dest, VL_RESULTS_DEFAULT_DESTINATIONS, routeDest);
+  } else {
+    // LATAM → ruta general pasa a ruta general → ese país LATAM.
+    var routeOrigin = vlIsRouteOrigin(oldDest) ? oldDest : normalizedDest(oldDest);
+    if(!vlIsRouteOrigin(routeOrigin)) routeOrigin = 'espana-schengen';
+    var latamDest = (typeof vlIsLatamDest === 'function' && vlIsLatamDest(oldOrigin)) ? oldOrigin : 'colombia';
+    vlSetResultsOptions(origin, VL_RESULTS_DEFAULT_DESTINATIONS, routeOrigin);
+    vlSetResultsOptions(dest, VL_RESULTS_SPAIN_LATAM_DESTINATIONS, latamDest);
+  }
+
+  try {
+    if(typeof gtag === 'function'){
+      gtag('event','click_swap_route_edit',{
+        event_category:'search',
+        from_origin: oldOrigin,
+        from_destino: oldDest,
+        to_origin: origin.value,
+        to_destino: dest.value,
+        page_location: window.location.href
+      });
+    }
+  } catch(e){}
+}
+
 function applyEditSearch(){
   var origen = (document.getElementById('ep-origen') && document.getElementById('ep-origen').value) || 'colombia';
   var dest = (document.getElementById('ep-destino') && document.getElementById('ep-destino').value) || 'europa';
