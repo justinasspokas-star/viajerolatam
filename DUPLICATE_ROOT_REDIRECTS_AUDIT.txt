@@ -1,0 +1,29 @@
+ViajeroLatam — limpieza de duplicados raíz
+
+Objetivo:
+- Evitar que archivos HTML antiguos en raíz compitan con URLs limpias actuales.
+
+Cambios aplicados:
+- Eliminados de la raíz:
+- colombia-espana.html
+- visa-schengen.html
+
+- Añadidas arriba del todo en _redirects estas reglas 301:
+- /colombia-espana.html /seguro-viaje/colombia-a-espana/ 301!
+- /visa-schengen.html /visa-schengen/ 301!
+
+URLs canónicas que quedan como principales:
+- /seguro-viaje/colombia-a-espana/
+- /visa-schengen/
+
+Sitemap:
+- Actualizado lastmod de las URLs canónicas principales: False
+
+Validación:
+- Archivos duplicados aún presentes en raíz: ninguno
+- _redirects existe: True
+- Regla Colombia presente: True
+- Regla Visa presente: True
+
+Importante:
+- No se cambió diseño, logo, textos, GA4, cookies, afiliados ni resultados.
