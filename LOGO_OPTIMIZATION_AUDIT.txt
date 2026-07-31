@@ -1,0 +1,78 @@
+ViajeroLatam — logo optimization
+
+Goal:
+- Replace heavy header logo references without changing visual design.
+
+Original logo:
+- File: logo-vl-original-20260528.png
+- Size: 645,892 bytes (630.8 KB)
+- Dimensions: 1522 x 482px
+
+Optimized logo:
+- File: logo-vl-header.webp
+- Size: 31,330 bytes (30.6 KB)
+- Dimensions: 640 x 203px
+- Format: WebP with transparency
+- Same aspect ratio, intended to render at the same CSS height/width as before.
+
+Changes:
+- Replaced logo-vl-original-20260528.png with logo-vl-header.webp in 51 HTML pages.
+- Kept the original PNG in the project as backup.
+- Updated sitemap.xml lastmod to 2026-07-31.
+
+Design:
+- No layout, copy, SEO title/meta, cookies, GA4, affiliate links, results logic, or CSS sizing changed.
+- The image is still controlled by the same existing CSS, so visual size should remain the same.
+
+Changed HTML files:
+- 404.html
+- aviso-legal/index.html
+- blog/cuando-volar-argentina-espana-barato/index.html
+- blog/cuando-volar-colombia-espana-barato/index.html
+- blog/cuanto-cuesta-seguro-viaje-colombia-espana/index.html
+- blog/documentos-viajar-espana-desde-colombia-2026/index.html
+- blog/etias-colombianos/index.html
+- blog/index.html
+- blog/requisitos-entrada-espana-colombianos-seguro-viaje/index.html
+- blog/requisitos-viajar-espana-desde-venezuela/index.html
+- blog/seguro-schengen-venezolanos/index.html
+- blog/seguro-viaje-etias/index.html
+- blog/seguro-viaje-obligatorio-europa-latinoamericanos/index.html
+- blog/seguro-viaje-schengen-colombianos/index.html
+- blog/ses-ees-colombianos-europa-2026/index.html
+- colombia-espana.html
+- comparar-seguros-viaje-colombia-espana/index.html
+- contacto/index.html
+- esim/espana-colombianos/index.html
+- guia-viajero-latam/gracias/index.html
+- guia-viajero-latam/index.html
+- index.html
+- privacidad/index.html
+- resultados/index.html
+- seguro-viaje/argentina-a-espana/index.html
+- seguro-viaje/bogota-a-espana/index.html
+- seguro-viaje/bolivia-a-espana/index.html
+- seguro-viaje/cali-a-espana/index.html
+- seguro-viaje/colombia-a-eeuu/index.html
+- seguro-viaje/colombia-a-espana/index.html
+- seguro-viaje/colombia-a-estados-unidos/index.html
+- seguro-viaje/colombia-a-europa/index.html
+- seguro-viaje/cuba-a-espana/index.html
+- seguro-viaje/ecuador-a-espana/index.html
+- seguro-viaje/medellin-a-espana/index.html
+- seguro-viaje/mexico-a-espana/index.html
+- seguro-viaje/peru-a-espana/index.html
+- seguro-viaje/peru-a-europa/index.html
+- seguro-viaje/seguro-schengen-venezuela-colombia/index.html
+- seguro-viaje/venezuela-a-espana/index.html
+- seguros/axa/index.html
+- seguros/holins/index.html
+- seguros/iati/index.html
+- seguros/intermundial/index.html
+- sobre-nosotros/index.html
+- visa-schengen/cuanto-tiempo-valido-seguro-schengen/index.html
+- visa-schengen/index.html
+- visa-schengen/peruanos/index.html
+- visa-schengen/seguro-colombianos/index.html
+- visa-schengen/tramitar-visa-schengen-colombia/index.html
+- visa-schengen/visado-espana-colombianos-requisitos/index.html
