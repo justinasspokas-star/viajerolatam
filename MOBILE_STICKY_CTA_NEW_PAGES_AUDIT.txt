@@ -1,0 +1,51 @@
+ViajeroLatam — botón sticky móvil en páginas nuevas
+
+Cambio aplicado:
+- Añadido botón fijo inferior SOLO en móvil: 🔍 Comparar seguros gratis
+- Aplicado a las 5 páginas nuevas de países con visa Schengen.
+- Cada botón apunta a /resultados/ con el origen correspondiente.
+- No se cambió diseño desktop, canonical, schema, GA4, cookies ni contenido.
+
+Validación:
+{
+  "seguro-viaje/ecuador-a-espana/index.html": {
+    "exists": true,
+    "button_added": true,
+    "href": "/resultados/?origen=ecuador&destino=espana-schengen&dias=15&personas=1",
+    "mobile_css_added": true,
+    "canonical": "https://viajerolatam.com/seguro-viaje/ecuador-a-espana/",
+    "schema_count": 2
+  },
+  "seguro-viaje/bolivia-a-espana/index.html": {
+    "exists": true,
+    "button_added": true,
+    "href": "/resultados/?origen=bolivia&destino=espana-schengen&dias=15&personas=1",
+    "mobile_css_added": true,
+    "canonical": "https://viajerolatam.com/seguro-viaje/bolivia-a-espana/",
+    "schema_count": 2
+  },
+  "seguro-viaje/cuba-a-espana/index.html": {
+    "exists": true,
+    "button_added": true,
+    "href": "/resultados/?origen=cuba&destino=espana-schengen&dias=15&personas=1",
+    "mobile_css_added": true,
+    "canonical": "https://viajerolatam.com/seguro-viaje/cuba-a-espana/",
+    "schema_count": 2
+  },
+  "seguro-viaje/republica-dominicana-a-espana/index.html": {
+    "exists": true,
+    "button_added": true,
+    "href": "/resultados/?origen=republica-dominicana&destino=espana-schengen&dias=15&personas=1",
+    "mobile_css_added": true,
+    "canonical": "https://viajerolatam.com/seguro-viaje/republica-dominicana-a-espana/",
+    "schema_count": 2
+  },
+  "seguro-viaje/haiti-a-espana/index.html": {
+    "exists": true,
+    "button_added": true,
+    "href": "/resultados/?origen=haiti&destino=espana-schengen&dias=15&personas=1",
+    "mobile_css_added": true,
+    "canonical": "https://viajerolatam.com/seguro-viaje/haiti-a-espana/",
+    "schema_count": 2
+  }
+}
