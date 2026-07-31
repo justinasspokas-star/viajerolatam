@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<link as="image" href="/hero-bg.webp" rel="preload" type="image/webp"/>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link rel="stylesheet" href="/cookie-consent.css"/>
+<script src="/cookie-consent.js"></script>
+
+<!-- Favicon / browser tab icon -->
+<link rel="icon" href="/favicon.ico" sizes="any"/>
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+<link rel="manifest" href="/site.webmanifest"/>
+<meta name="theme-color" content="#0B1F3A"/>
+
+<title>Tu guía está lista para descargar | ViajeroLatam</title>
+<meta content="noindex, nofollow" name="robots"/>
+<meta content="es_CO" property="og:locale"/>
+<meta content="ViajeroLatam" property="og:site_name"/>
+</script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0B1F3A;--teal:#00C4A1;--teal-dark:#009C7F;
+  --white:#fff;--bg:#F0F4F8;--text-dark:#0B1F3A;--text-mid:#4A647E;
+  --text-light:#8FA4B8;--border:#E4EDF5;
+  --font-d:'DM Serif Display',Georgia,serif;
+  --font-b:'Plus Jakarta Sans',sans-serif;
+}
+html{overflow-x:hidden}
+body{font-family:var(--font-b);color:var(--text-dark);background:var(--bg);overflow-x:hidden;min-height:100vh}
+nav{background:rgba(255,255,255,.95);border-bottom:1px solid var(--border);padding:0 5%;height:68px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.logo,.brand-logo{display:flex;align-items:center;text-decoration:none}
+.logo img,.brand-logo img{height:54px;width:auto;max-width:200px}
+.nav-links{display:flex;align-items:center;gap:24px}
+.nav-links a{font-size:14px;font-weight:500;color:var(--text-mid);text-decoration:none}
+.nav-cta{background:var(--navy);color:var(--white)!important;padding:9px 20px;border-radius:50px;font-weight:600!important}
+.mob-btn{display:none;flex-direction:column;justify-content:center;gap:5px;width:40px;height:40px;padding:8px;border-radius:10px;border:1.5px solid rgba(11,31,58,.15);background:rgba(11,31,58,.06);cursor:pointer;flex-shrink:0}
+.mob-btn span{display:block;height:2px;width:100%;background:#0B1F3A;border-radius:2px}
+@media(max-width:768px){.nav-links{display:none}.mob-btn{display:flex!important}}
+.main{max-width:680px;margin:0 auto;padding:48px 5%;text-align:center}
+.check-circle{width:72px;height:72px;background:#E8FDF4;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:32px;margin:0 auto 20px}
+.title{font-family:var(--font-d);font-size:clamp(28px,5vw,40px);color:var(--navy);margin-bottom:10px}
+.name-span{color:var(--teal)}
+.subtitle{font-size:15px;color:var(--text-mid);margin-bottom:32px;line-height:1.6}
+.download-card{background:var(--white);border:2px solid var(--teal);border-radius:20px;padding:28px;margin-bottom:28px}
+.dl-icon{font-size:48px;margin-bottom:12px}
+.dl-title{font-size:18px;font-weight:700;color:var(--navy);margin-bottom:6px}
+.dl-meta{font-size:13px;color:var(--text-mid);margin-bottom:20px}
+.btn-dl{display:block;background:var(--teal);color:var(--navy);padding:15px 32px;border-radius:50px;font-weight:700;font-size:16px;text-decoration:none;transition:background .2s}
+.btn-dl:hover{background:var(--teal-dark)}
+.next-steps{background:var(--white);border-radius:16px;padding:24px;margin-bottom:24px;text-align:left}
+.ns-title{font-size:16px;font-weight:700;color:var(--navy);margin-bottom:14px;text-align:center}
+.ns-item{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);align-items:center}
+.ns-item:last-child{border-bottom:none}
+.ns-icon{font-size:20px;flex-shrink:0}
+.ns-text{font-size:13px;color:var(--text-mid)}
+.ns-text a{color:var(--teal);text-decoration:none;font-weight:600}
+.share-section{background:var(--navy);border-radius:16px;padding:24px;color:var(--white)}
+.share-title{font-size:16px;font-weight:700;margin-bottom:8px}
+.share-sub{font-size:13px;color:rgba(255,255,255,.65);margin-bottom:16px}
+.share-btn{display:inline-block;background:rgba(255,255,255,.1);color:var(--white);padding:10px 18px;border-radius:50px;font-size:13px;font-weight:600;text-decoration:none;border:1px solid rgba(255,255,255,.2);cursor:pointer}
+.share-btn:hover{background:rgba(255,255,255,.2)}
+footer{background:var(--navy);color:rgba(255,255,255,.45);padding:48px 5% 24px;margin-top:40px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px;margin-bottom:32px;max-width:1100px;margin-left:auto;margin-right:auto}
+.footer-col h4{font-size:11px;font-weight:700;color:var(--white);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+.footer-col a{display:block;font-size:13px;color:rgba(255,255,255,.45);text-decoration:none;margin-bottom:6px}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;max-width:1100px;margin:0 auto}
+@media(max-width:768px){
+  .nav-links{display:none!important}.mob-btn,#mob-btn{display:flex!important}
+  nav{padding:0 16px!important;height:62px!important}
+  .main{padding:32px 16px!important}
+  .footer-grid{grid-template-columns:1fr 1fr!important}
+  .footer-grid>*:first-child{grid-column:1/-1!important}
+}
+</style>
+<meta content="https://viajerolatam.com/og-image.jpg" property="og:image"/>
+<style id="webp-hero">@supports(background-image:url("data:image/webp,")){.hero,section.hero{background-image:url('/hero-bg.webp')!important}}</style>
+</head>
+<body>
+<nav>
+<a aria-label="ViajeroLatam inicio" class="brand-logo" href="/"><img alt="ViajeroLatam" src="/logo-vl-original-20260528.png"/></a>
+<div class="nav-links">
+<a href="/">Inicio</a>
+<a href="/visa-schengen/">Visa Schengen</a>
+<a href="/seguro-viaje/colombia-a-espana/">Colombia → España</a>
+<a href="/blog/">Artículos</a><a href="/sobre-nosotros/">Sobre nosotros</a>
+<a class="nav-cta" href="/resultados/">Comparar seguros</a>
+</div>
+<button aria-label="Menú" class="mob-btn" onclick="openMobMenu()">
+<span></span><span></span><span></span>
+</button>
+</nav>
+<div id="mob-overlay" onclick="closeMobMenu()" style="display:none;position:fixed;inset:0;background:rgba(11,31,58,0.6);z-index:998;backdrop-filter:blur(4px)"></div>
+<div id="mob-drawer" style="display:none;position:fixed;top:0;right:0;bottom:0;width:min(300px,85vw);background:#fff;z-index:999;box-shadow:-8px 0 40px rgba(11,31,58,0.25);flex-direction:column;transform:translateX(100%);transition:transform .28s cubic-bezier(.4,0,.2,1)">
+<div style="display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:#0B1F3A;flex-shrink:0">
+<img alt="ViajeroLatam" src="/logo-vl-original-20260528.png"/>
+<button onclick="closeMobMenu()" style="width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,0.12);border:none;color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1">✕</button>
+</div>
+<div style="flex:1;overflow-y:auto">
+<a href="/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">🏠 Inicio</a>
+<a href="/#como-funciona" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">❓ ¿Cómo funciona?</a>
+<a href="/#aseguradoras" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">🏢 Aseguradoras</a>
+<a href="/visa-schengen/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">🛂 Visa Schengen</a>
+<a href="/blog/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">📚 Artículos</a>
+<a href="/#faq" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">💬 FAQ</a>
+<a href="/seguro-viaje/colombia-a-espana/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">🇨🇴 Colombia → España</a>
+<a href="/blog/etias-colombianos/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">⚡ ETIAS 2026</a>
+</div>
+<div style="padding:16px 18px;border-top:1px solid #E4EDF5;flex-shrink:0">
+<a href="/resultados/" onclick="closeMobMenu()" style="display:flex;align-items:center;justify-content:center;gap:8px;background:#00C4A1;color:#0B1F3A;padding:14px;border-radius:50px;font-size:15px;font-weight:700;text-decoration:none">🔍 Comparar seguros gratis</a>
+<p style="font-size:11px;color:#8FA4B8;text-align:center;margin-top:8px">Sin coste · Póliza en 2 minutos</p>
+</div>
+</div>
+<style>
+.mob-btn{display:none;flex-direction:column;justify-content:center;gap:5px;width:40px;height:40px;padding:8px;border-radius:10px;border:1.5px solid rgba(11,31,58,0.15);background:rgba(11,31,58,0.06);cursor:pointer;flex-shrink:0}
+.mob-btn span{display:block;height:2px;width:100%;background:#0B1F3A;border-radius:2px;transition:all .25s ease}
+.mob-btn.is-open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.mob-btn.is-open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.mob-btn.is-open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+#mob-drawer.is-open{transform:translateX(0)!important}
+@media(max-width:768px){.mob-btn{display:flex!important}}
+</style>
+<script>
+function openMobMenu(){
+  var d=document.getElementById('mob-drawer');
+  var o=document.getElementById('mob-overlay');
+  var b=document.querySelector('.mob-btn');
+  if(!d)return;
+  d.style.display='flex';
+  o.style.display='block';
+  requestAnimationFrame(function(){
+    d.classList.add('is-open');
+    if(b)b.classList.add('is-open');
+  });
+  document.body.style.overflow='hidden';
+}
+function closeMobMenu(){
+  var d=document.getElementById('mob-drawer');
+  var o=document.getElementById('mob-overlay');
+  var b=document.querySelector('.mob-btn');
+  if(!d)return;
+  d.classList.remove('is-open');
+  if(b)b.classList.remove('is-open');
+  document.body.style.overflow='';
+  setTimeout(function(){d.style.display='none';o.style.display='none';},280);
+}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu();});
+</script>
+<div class="main">
+<div class="check-circle">✅</div>
+<h1 class="title">¡Tu guía está lista, <span class="name-span" id="user-name">viajero</span>!</h1>
+<p class="subtitle">La <strong>Guía del Viajero Latinoamericano a Europa 2026</strong> está lista para descargar. Guárdala en tu móvil para tenerla sin internet cuando la necesites.</p>
+<div class="download-card">
+<div class="dl-icon">📋</div>
+<div class="dl-title">Guía del Viajero Latinoamericano — Europa 2026</div>
+<div class="dl-meta">PDF · 10 páginas · Actualizado julio 2026 · Gratis</div>
+<a class="btn-dl" download="Guia-Viajero-Latam-Europa-2026.pdf" href="/guia-viajero-latam-2026.pdf" onclick="if(typeof gtag!='undefined')gtag('event','pdf_download',{event_category:'guia'})">
+      📥 Descargar PDF ahora →
+    </a>
+</div>
+<div class="next-steps">
+<div class="ns-title">Mientras tanto, no te pierdas esto:</div>
+<div class="ns-item">
+<span class="ns-icon">🛡️</span>
+<div class="ns-text"><a href="/resultados/">Compara seguros de viaje gratis</a> — precios según fechas, cupón VIAJEROLATAM en Intermundial</div>
+</div>
+<div class="ns-item">
+<span class="ns-icon">⚡</span>
+<div class="ns-text"><a href="/blog/etias-colombianos/">Guía completa del ETIAS</a> — cuándo aplica y cómo no caer en estafas</div>
+</div>
+<div class="ns-item">
+<span class="ns-icon">🔍</span>
+<div class="ns-text"><a href="/blog/ses-ees-colombianos-europa-2026/">SES/EES explicado</a> — el nuevo control digital activo desde abril 2026</div>
+</div>
+<div class="ns-item">
+<span class="ns-icon">✈️</span>
+<div class="ns-text"><a href="/blog/cuando-volar-colombia-espana-barato/">Cuándo volar más barato</a> — los mejores meses y cómo ahorrar $1M+ en el tiquete</div>
+</div>
+</div>
+<div class="share-section">
+<div class="share-title">¿Tienes amigos que también viajan a Europa?</div>
+<div class="share-sub">Comparte la guía — es gratis y les puede salvar el viaje</div>
+<a class="share-btn" onclick="navigator.share ? navigator.share({title:'Guía del Viajero Latinoamericano Europa 2026',text:'Mira esta guía gratuita para viajar a Europa',url:'https://viajerolatam.com/guia-viajero-latam/'}) : window.open('https://wa.me/?text=Mira+esta+guía+gratis+para+viajar+a+Europa%3A+viajerolatam.com%2Fguia-viajero-latam%2F','_blank')">
+      📤 Compartir por WhatsApp
+    </a>
+</div>
+</div>
+<footer>
+<div class="footer-inner">
+<div class="footer-grid">
+<div>
+<div class="footer-logo"><img alt="ViajeroLatam" src="/logo-vl-original-20260528.png"/></div>
+<p class="footer-desc">Comparador de seguros de viaje para latinoamericanos que viajan a España, Europa y Estados Unidos.</p>
+</div>
+<div class="footer-col">
+<h4>Colombia → España</h4>
+<a href="/seguro-viaje/colombia-a-espana/">Seguro de viaje</a>
+<a href="/blog/etias-colombianos/">ETIAS 2026</a>
+<a href="/resultados/">Comparar precios</a>
+</div>
+<div class="footer-col">
+<h4>Otros destinos</h4>
+<a href="/visa-schengen/">Visa Schengen</a>
+<a href="/resultados/">Ver todos los seguros</a>
+</div>
+</div>
+<div style="max-width:1100px;margin:0 auto;padding-bottom:12px;display:flex;gap:20px;flex-wrap:wrap"><a href="/privacidad/" style="font-size:12px;color:rgba(255,255,255,.35);text-decoration:none">Privacidad</a><a href="/aviso-legal/" style="font-size:12px;color:rgba(255,255,255,.35);text-decoration:none">Aviso Legal</a><a href="/contacto/" style="font-size:12px;color:rgba(255,255,255,.35);text-decoration:none">Contacto</a></div><div class="footer-bottom">
+<p>© 2026 ViajeroLatam · Comparador independiente</p>
+<p>ETIAS Colombia España 2026 · Guía actualizada julio 2026</p>
+</div>
+</div>
+ · <a href="/sobre-nosotros/" style="color:#fff;text-decoration:none;font-weight:800">Sobre nosotros</a> · <a href="/contacto/" style="color:#fff;text-decoration:none;font-weight:800">Contacto</a></footer>
+<script>
+// Show name from URL param
+var params = new URLSearchParams(window.location.search);
+var name = params.get('name');
+if (name) {
+  document.getElementById('user-name').textContent = name.split(' ')[0];
+}
+// Track page view
+if (typeof gtag !== 'undefined') {
+  gtag('event', 'gracias_page_view', {event_category: 'guia_pdf'});
+}
+</script>
+</body>
+</html>
