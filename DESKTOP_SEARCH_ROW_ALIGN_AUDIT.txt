@@ -1,0 +1,12 @@
+ViajeroLatam — ajuste desktop del comparador principal
+
+Cambio aplicado:
+- Solo en ordenador/tablet desktop (min-width: 769px).
+- En la home, el comparador principal muestra:
+  Voy desde | ⇄ | Destino
+  en una sola línea horizontal.
+- No se tocó la versión móvil.
+- No se cambió contenido, enlaces, cookies, GA4, /resultados/ ni SEO.
+
+Archivo modificado:
+- index.html

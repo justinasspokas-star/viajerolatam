@@ -1842,6 +1842,30 @@ nav .logo img{
 }
 </style>
 
+
+<style id="vl-home-desktop-search-row-align-fix">
+/* Desktop only: origen + flecha + destino en la misma línea */
+@media (min-width: 769px){
+  #comparar .search-top-row{
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) 44px minmax(0,1fr)!important;
+    gap:10px!important;
+    align-items:end!important;
+  }
+  #comparar .vl-route-swap-btn{
+    width:44px!important;
+    height:44px!important;
+    min-width:44px!important;
+    margin:0!important;
+    align-self:end!important;
+  }
+  #comparar #sb-origen,
+  #comparar #sb-destino{
+    width:100%!important;
+  }
+}
+</style>
+
 </head>
 <body>
 <!-- ═══ MOBILE NAV SYSTEM ═══ -->
