@@ -1,0 +1,42 @@
+ViajeroLatam — mejora de contenido fino en páginas comerciales
+
+Base usada:
+- viajerolatam_duplicate_root_redirects_completo.zip
+
+Páginas mejoradas:
+1. /seguro-viaje/colombia-a-eeuu/
+2. /seguro-viaje/peru-a-europa/
+
+Cambios de contenido:
+- Se amplió el contenido útil y visible.
+- Se añadieron secciones de decisión, errores comunes, checklist y FAQ real.
+- Se añadieron enlaces a fuentes oficiales donde corresponde.
+- Se mantuvieron CTAs y enlaces afiliados.
+- No se cambió diseño global, home, resultados, cookies ni GA4.
+- Se mantuvo logo optimizado logo-vl-header.webp.
+- Se mantuvieron redirects de duplicados raíz.
+
+Schema:
+- Colombia → EEUU conserva BreadcrumbList y FAQPage actualizado.
+- Perú → Europa añade BreadcrumbList y FAQPage visible/coherente.
+
+Sitemap:
+- lastmod actualizado para las dos URLs: False
+
+Validación:
+{
+  "seguro-viaje/colombia-a-eeuu/index.html": {
+    "word_count": 1113,
+    "schema_count": 2,
+    "has_optimized_logo": true,
+    "has_old_logo": false,
+    "has_official_links": true
+  },
+  "seguro-viaje/peru-a-europa/index.html": {
+    "word_count": 1066,
+    "schema_count": 2,
+    "has_optimized_logo": true,
+    "has_old_logo": false,
+    "has_official_links": true
+  }
+}
