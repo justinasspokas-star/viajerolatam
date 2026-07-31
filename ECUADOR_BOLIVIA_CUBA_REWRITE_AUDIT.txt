@@ -1,0 +1,79 @@
+ViajeroLatam — reescritura editorial Ecuador, Bolivia y Cuba
+
+Objetivo:
+- Reducir el patrón de páginas plantilladas entre /seguro-viaje/ecuador-a-espana/, /seguro-viaje/bolivia-a-espana/ y /seguro-viaje/cuba-a-espana/.
+- Aportar valor más específico por país sin tocar diseño global, canonical, schema o CTAs.
+
+Cambios aplicados:
+- Ecuador: enfoque en Quito/Guayaquil, pagos en USD, rutas multiciudad y viajes familiares.
+- Bolivia: enfoque en escalas largas, tiempo total de desplazamiento, margen de días y comparación en bolivianos.
+- Cuba: enfoque en claridad documental, visitas familiares, PDF/copia impresa y coherencia del expediente.
+
+Elementos técnicos preservados:
+- canonical correcto
+- BreadcrumbList + FAQPage
+- CTAs a /resultados/
+- enlaces afiliados
+- logo optimizado
+- cookies/GA4 sin cambios
+- sitemap lastmod actualizado para estas 3 URLs
+
+Similitud antes (solo las 3 páginas reescritas):
+{
+  "ecuador vs bolivia": {
+    "jaccard": 0.843,
+    "cosine": 0.966
+  },
+  "ecuador vs cuba": {
+    "jaccard": 0.868,
+    "cosine": 0.965
+  },
+  "bolivia vs cuba": {
+    "jaccard": 0.859,
+    "cosine": 0.968
+  }
+}
+
+Similitud después (5 páginas visa obligatoria):
+{
+  "ecuador vs bolivia": {
+    "jaccard": 0.44,
+    "cosine": 0.866
+  },
+  "ecuador vs cuba": {
+    "jaccard": 0.39,
+    "cosine": 0.866
+  },
+  "ecuador vs rd": {
+    "jaccard": 0.421,
+    "cosine": 0.863
+  },
+  "ecuador vs haiti": {
+    "jaccard": 0.384,
+    "cosine": 0.833
+  },
+  "bolivia vs cuba": {
+    "jaccard": 0.409,
+    "cosine": 0.825
+  },
+  "bolivia vs rd": {
+    "jaccard": 0.374,
+    "cosine": 0.815
+  },
+  "bolivia vs haiti": {
+    "jaccard": 0.355,
+    "cosine": 0.789
+  },
+  "cuba vs rd": {
+    "jaccard": 0.378,
+    "cosine": 0.857
+  },
+  "cuba vs haiti": {
+    "jaccard": 0.379,
+    "cosine": 0.832
+  },
+  "rd vs haiti": {
+    "jaccard": 0.435,
+    "cosine": 0.864
+  }
+}

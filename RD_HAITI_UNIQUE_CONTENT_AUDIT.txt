@@ -1,0 +1,101 @@
+ViajeroLatam — mejora editorial República Dominicana y Haití
+
+Motivo:
+- Las páginas /seguro-viaje/republica-dominicana-a-espana/ y /seguro-viaje/haiti-a-espana/ eran demasiado parecidas.
+- El problema era editorial: contenido creado por plantilla con cambios mínimos.
+
+Cambios aplicados:
+- Reescritura completa de República Dominicana con enfoque en:
+  - visita familiar
+  - turismo / curso corto
+  - salidas Santo Domingo, Punta Cana, Santiago
+  - precio en pesos dominicanos
+  - cita Schengen y certificado para familia
+  - FAQ específica para dominicanos
+
+- Reescritura completa de Haití con enfoque en:
+  - preparación documental más compleja
+  - confirmación de consulado o centro de solicitud
+  - copias impresas y digitales
+  - idioma/formato del certificado
+  - escalas o solicitudes desde otro país
+  - FAQ específica para haitianos
+
+Técnico mantenido:
+- Canonical correcto
+- BreadcrumbList + FAQPage
+- CTAs a resultados
+- Enlaces afiliados
+- Logo optimizado
+- Cookies/GA4 no tocados
+- Sitemap lastmod actualizado para estas dos URLs
+
+Similitud antes:
+{
+  "rd_words": 834,
+  "haiti_words": 824,
+  "jaccard": 0.853,
+  "cosine": 0.955
+}
+
+Similitud después:
+{
+  "rd_words": 857,
+  "haiti_words": 814,
+  "jaccard": 0.435,
+  "cosine": 0.864,
+  "rd_schema_count": 2,
+  "haiti_schema_count": 2,
+  "rd_canonical": true,
+  "haiti_canonical": true,
+  "rd_official_sources": true,
+  "haiti_official_sources": true
+}
+
+Revisión entre las 5 páginas de visa:
+{
+  "ecuador vs bolivia": {
+    "jaccard": 0.843,
+    "cosine": 0.966
+  },
+  "ecuador vs cuba": {
+    "jaccard": 0.868,
+    "cosine": 0.965
+  },
+  "ecuador vs republica-dominicana": {
+    "jaccard": 0.398,
+    "cosine": 0.848
+  },
+  "ecuador vs haiti": {
+    "jaccard": 0.389,
+    "cosine": 0.834
+  },
+  "bolivia vs cuba": {
+    "jaccard": 0.859,
+    "cosine": 0.968
+  },
+  "bolivia vs republica-dominicana": {
+    "jaccard": 0.4,
+    "cosine": 0.853
+  },
+  "bolivia vs haiti": {
+    "jaccard": 0.393,
+    "cosine": 0.842
+  },
+  "cuba vs republica-dominicana": {
+    "jaccard": 0.396,
+    "cosine": 0.858
+  },
+  "cuba vs haiti": {
+    "jaccard": 0.411,
+    "cosine": 0.848
+  },
+  "republica-dominicana vs haiti": {
+    "jaccard": 0.435,
+    "cosine": 0.864
+  }
+}
+
+Recomendación editorial:
+- Haití y República Dominicana ya son mucho más diferenciadas.
+- Bolivia/Cuba/Ecuador todavía tienen más patrón de plantilla entre sí; no es urgente como Haití/RD, pero conviene revisarlas si se quiere máxima calidad.
