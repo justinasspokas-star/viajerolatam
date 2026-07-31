@@ -1,0 +1,28 @@
+ViajeroLatam — CTA móvil y conversión en Venezuela a España
+
+Cambios aplicados:
+- Añadido botón flotante inferior solo en móvil: 🔍 Comparar seguros gratis.
+- Añadido texto bajo el botón: Sin coste · Póliza en 2 minutos · 4 aseguradoras.
+- Hero CTA ahora apunta a resultados con origen Venezuela.
+- CTA principal convertido a 'Comparar seguros gratis'.
+- Añadido bloque: Si ya tienes fechas, compara el seguro antes de cerrar el viaje.
+- Eliminado texto interno de SEO/Search Console visible para usuarios.
+- Title ligeramente más corto y orientado a cobertura/precio.
+- Meta description ajustada.
+- sitemap.xml actualizado si el lastmod no estaba ya en 2026-07-31.
+
+Validación:
+{
+  "title": "Seguro viaje Venezuela España 2026 | Precio y cobertura",
+  "title_length": 55,
+  "meta_description": "Compara seguro de viaje Venezuela España: cobertura médica, repatriación, asistencia, equipaje y precio final antes de contratar.",
+  "canonical": "https://viajerolatam.com/seguro-viaje/venezuela-a-espana/",
+  "schema_count": 2,
+  "mobile_sticky_added": true,
+  "sticky_href": "/resultados/?origen=venezuela&destino=espana-schengen&dias=15&personas=1",
+  "conversion_block_added": true,
+  "internal_seo_text_removed": true,
+  "compare_links_venezuela": 6,
+  "words_visible": 862,
+  "sitemap_changed": false
+}

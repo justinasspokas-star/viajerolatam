@@ -1,0 +1,19 @@
+ViajeroLatam — tips de valor para Venezuela a España
+
+Cambios aplicados:
+- Añadido bloque de consejos prácticos antes de la comparativa.
+- 6 tips específicos para Venezuela → España.
+- Checklist rápido antes de salir.
+- Añadida FAQ visible sobre cuándo comprar el seguro.
+- Mantengo botón móvil sticky, canonical, schema, afiliados y diseño global.
+
+Validación:
+{
+  "tips_block_added": true,
+  "tip_cards": 9,
+  "mobile_sticky_still_exists": true,
+  "canonical": "https://viajerolatam.com/seguro-viaje/venezuela-a-espana/",
+  "schema_count": 2,
+  "visible_words": 1150,
+  "sitemap_changed": false
+}
