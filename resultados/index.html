@@ -1284,6 +1284,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
 <option value="republica-dominicana">🇩🇴 R. Dominicana</option>
 <option value="cuba">🇨🇺 Cuba</option>
 <option value="puerto-rico">🇵🇷 Puerto Rico</option>
+<option value="espana">🇪🇸 España</option>
 </select>
 </div>
 <div>
@@ -1717,14 +1718,113 @@ function fmtDateShort(v){
   if(!d) return '';
   return d.toLocaleDateString('es-ES', {day:'2-digit', month:'short'}).replace('.', '');
 }
+
+// VL: soporte funcional para búsquedas España → LATAM, sin crear nuevas páginas SEO
+var VL_RESULTS_DEFAULT_DESTINATIONS = [
+  {value:'europa', label:'🇪🇺 España / Schengen'},
+  {value:'eeuu', label:'🇺🇸 EEUU'},
+  {value:'mundial', label:'🌍 Mundial'}
+];
+var VL_RESULTS_SPAIN_LATAM_DESTINATIONS = [
+  {value:'colombia', label:'🇨🇴 Colombia'},
+  {value:'mexico', label:'🇲🇽 México'},
+  {value:'argentina', label:'🇦🇷 Argentina'},
+  {value:'peru', label:'🇵🇪 Perú'},
+  {value:'chile', label:'🇨🇱 Chile'},
+  {value:'ecuador', label:'🇪🇨 Ecuador'},
+  {value:'bolivia', label:'🇧🇴 Bolivia'},
+  {value:'venezuela', label:'🇻🇪 Venezuela'},
+  {value:'paraguay', label:'🇵🇾 Paraguay'},
+  {value:'uruguay', label:'🇺🇾 Uruguay'},
+  {value:'brasil', label:'🇧🇷 Brasil'},
+  {value:'costa-rica', label:'🇨🇷 Costa Rica'},
+  {value:'panama', label:'🇵🇦 Panamá'},
+  {value:'guatemala', label:'🇬🇹 Guatemala'},
+  {value:'el-salvador', label:'🇸🇻 El Salvador'},
+  {value:'honduras', label:'🇭🇳 Honduras'},
+  {value:'nicaragua', label:'🇳🇮 Nicaragua'},
+  {value:'republica-dominicana', label:'🇩🇴 R. Dominicana'},
+  {value:'cuba', label:'🇨🇺 Cuba'},
+  {value:'puerto-rico', label:'🇵🇷 Puerto Rico'}
+];
+var VL_LATAM_DEST_LABELS = {
+  colombia:'Colombia 🇨🇴',
+  mexico:'México 🇲🇽',
+  argentina:'Argentina 🇦🇷',
+  peru:'Perú 🇵🇪',
+  chile:'Chile 🇨🇱',
+  ecuador:'Ecuador 🇪🇨',
+  bolivia:'Bolivia 🇧🇴',
+  venezuela:'Venezuela 🇻🇪',
+  paraguay:'Paraguay 🇵🇾',
+  uruguay:'Uruguay 🇺🇾',
+  brasil:'Brasil 🇧🇷',
+  'costa-rica':'Costa Rica 🇨🇷',
+  panama:'Panamá 🇵🇦',
+  guatemala:'Guatemala 🇬🇹',
+  'el-salvador':'El Salvador 🇸🇻',
+  honduras:'Honduras 🇭🇳',
+  nicaragua:'Nicaragua 🇳🇮',
+  'republica-dominicana':'R. Dominicana 🇩🇴',
+  cuba:'Cuba 🇨🇺',
+  'puerto-rico':'Puerto Rico 🇵🇷'
+};
+function vlIsLatamDest(v){
+  return Object.prototype.hasOwnProperty.call(VL_LATAM_DEST_LABELS, String(v || '').toLowerCase());
+}
+function vlPlainLabel(label){
+  return String(label || '').replace(/\s*[🇦-🇿]{2,}\s*$/u, '').trim();
+}
+function vlSetResultsOptions(select, options, preferred){
+  if(!select) return;
+  var current = preferred || select.value;
+  select.innerHTML = options.map(function(o){
+    return '<option value="' + o.value + '">' + o.label + '</option>';
+  }).join('');
+  var exists = options.some(function(o){ return o.value === current; });
+  select.value = exists ? current : options[0].value;
+}
+function vlUpdateResultsDestinationOptions(preferred){
+  var origin = document.getElementById('ep-origen');
+  var dest = document.getElementById('ep-destino');
+  if(!origin || !dest) return;
+  if(origin.value === 'espana'){
+    vlSetResultsOptions(dest, VL_RESULTS_SPAIN_LATAM_DESTINATIONS, preferred || dest.value);
+  } else {
+    vlSetResultsOptions(dest, VL_RESULTS_DEFAULT_DESTINATIONS, preferred || dest.value);
+  }
+}
+function vlUpdateResultsIntro(origen, dest){
+  var o = String(origen || '').toLowerCase();
+  var d = String(dest || '').toLowerCase();
+  var h = document.getElementById('resultados-title');
+  var p = document.querySelector('.results-top p');
+  var toolbar = document.querySelector('.results-toolbar-left span');
+  var schengenBtn = document.querySelector('.results-top .sc-btn');
+  if(o === 'espana' && vlIsLatamDest(d)){
+    var destLabel = vlPlainLabel(VL_LATAM_DEST_LABELS[d] || d);
+    if(h) h.textContent = 'Comparar seguros de viaje de España a ' + destLabel;
+    if(p) p.innerHTML = '<strong>Resultados recomendados</strong> para España → ' + destLabel + '. Compara precio, cobertura médica, repatriación y condiciones antes de contratar.';
+    if(toolbar) toolbar.textContent = 'Opciones de seguro para viaje internacional · revisa siempre cobertura médica, repatriación, equipaje y condiciones finales.';
+    if(schengenBtn){ schengenBtn.textContent = 'Nueva búsqueda'; schengenBtn.setAttribute('href','/'); }
+  } else {
+    if(h) h.textContent = 'Comparar seguros de viaje para España y Schengen';
+    if(p) p.innerHTML = '<strong>Resultados recomendados</strong> para Colombia → España. Compara precio, cobertura médica, repatriación y condiciones antes de contratar.';
+    if(toolbar) toolbar.textContent = 'Opciones válidas para Schengen · cobertura médica mínima 30.000 € · revisa siempre condiciones finales.';
+    if(schengenBtn){ schengenBtn.textContent = '¿Qué es Schengen?'; schengenBtn.setAttribute('href','/visa-schengen/'); }
+  }
+}
+
 function normalizedDest(v){
   v = String(v || '').toLowerCase();
+  if(vlIsLatamDest(v)) return v;
   if(v.indexOf('eeuu') !== -1 || v.indexOf('usa') !== -1 || v.indexOf('estados') !== -1) return 'eeuu';
   if(v.indexOf('mundial') !== -1) return 'mundial';
   return 'europa';
 }
 function urlDestValue(v){
   v = normalizedDest(v);
+  if(vlIsLatamDest(v)) return v;
   if(v === 'eeuu') return 'eeuu';
   if(v === 'mundial') return 'mundial';
   return 'espana-schengen';
@@ -1753,10 +1853,11 @@ function toggleEditPanel(){
   if(!p) return;
   var isOpen = p.style.display !== 'none';
   if(isOpen) closeEditPanel();
-  else openEditPanel('ep-origen');
+  else { vlUpdateResultsDestinationOptions(window.currentSearchDest); openEditPanel('ep-origen'); }
 }
 function updatePillsDisplay(origen, dest, ida, vuelta, viajeros){
   var originLabels = {
+    espana:'España 🇪🇸',
     colombia:'Colombia 🇨🇴',
     mexico:'México 🇲🇽',
     argentina:'Argentina 🇦🇷',
@@ -1778,7 +1879,7 @@ function updatePillsDisplay(origen, dest, ida, vuelta, viajeros){
     cuba:'Cuba 🇨🇺',
     'puerto-rico':'Puerto Rico 🇵🇷'
   };
-  var destLabels = {europa:'España / Schengen 🇪🇺', eeuu:'Estados Unidos 🇺🇸', mundial:'Mundial 🌍'};
+  var destLabels = Object.assign({europa:'España / Schengen 🇪🇺', eeuu:'Estados Unidos 🇺🇸', mundial:'Mundial 🌍'}, VL_LATAM_DEST_LABELS);
   var pillVals = document.querySelectorAll('.pill-val');
   if(pillVals[0]) pillVals[0].textContent = originLabels[origen] || origen;
   if(pillVals[1]) pillVals[1].textContent = destLabels[normalizedDest(dest)] || dest;
@@ -1808,6 +1909,7 @@ function applyEditSearch(){
   window.currentSearchDest = urlDestValue(dest);
 
   updatePillsDisplay(origen, dest, ida, vuelta, viajeros);
+  vlUpdateResultsIntro(origen, urlDestValue(dest));
 
   DATA.forEach(function(d){
     d.price = (d.priceDay * dias).toFixed(2) * 1;
@@ -1825,6 +1927,9 @@ function applyEditSearch(){
   setDest(null, normalizedDest(dest));
   closeEditPanel();
 }
+
+var vlResultsOriginSelect = document.getElementById('ep-origen');
+if(vlResultsOriginSelect) vlResultsOriginSelect.addEventListener('change', function(){ vlUpdateResultsDestinationOptions(); });
 
 // Initial render
 (function initSearchFromURL(){
@@ -1851,6 +1956,7 @@ function applyEditSearch(){
   const origenSelect = document.getElementById('ep-origen');
   if(origenSelect && Array.from(origenSelect.options).some(o => o.value === origen)) origenSelect.value = origen;
 
+  vlUpdateResultsDestinationOptions(normalizedDest(destinoRaw));
   const destSelect = document.getElementById('ep-destino');
   if(destSelect) destSelect.value = normalizedDest(destinoRaw);
 
@@ -1864,6 +1970,7 @@ function applyEditSearch(){
   if(viajerosSelect && Array.from(viajerosSelect.options).some(o => parseInt(o.value) === personasParam)) viajerosSelect.value = String(personasParam);
 
   updatePillsDisplay(origen, normalizedDest(destinoRaw), ida, vuelta, personasParam);
+  vlUpdateResultsIntro(origen, normalizedDest(destinoRaw));
 
   DATA.forEach(function(d){
     d.price = (d.priceDay * dias).toFixed(2) * 1;
