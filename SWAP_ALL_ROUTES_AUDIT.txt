@@ -1,0 +1,15 @@
+ViajeroLatam — flecha ⇄ con todas las rutas
+
+Cambio:
+- La flecha ⇄ ahora intercambia realmente:
+  LATAM → España/Schengen, Europa, Estados Unidos, EEUU+Canadá o Mundial
+  hacia:
+  España/Schengen, Europa, Estados Unidos, EEUU+Canadá o Mundial → LATAM
+
+Ejemplos:
+- Colombia → España/Schengen ⇄ España/Schengen → Colombia
+- México → Estados Unidos ⇄ Estados Unidos → México
+- Argentina → Mundial ⇄ Mundial → Argentina
+- Perú → Europa ⇄ Europa → Perú
+
+No se crean nuevas páginas SEO. Solo funciona en el buscador principal y en /resultados/.
