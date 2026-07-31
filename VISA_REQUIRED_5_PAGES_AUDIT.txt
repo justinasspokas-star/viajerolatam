@@ -1,0 +1,78 @@
+ViajeroLatam — 5 páginas para países LATAM con visa Schengen
+
+Páginas creadas/mejoradas:
+- /seguro-viaje/ecuador-a-espana/
+- /seguro-viaje/bolivia-a-espana/
+- /seguro-viaje/cuba-a-espana/
+- /seguro-viaje/republica-dominicana-a-espana/
+- /seguro-viaje/haiti-a-espana/
+
+Objetivo SEO:
+- Reforzar países donde el seguro médico de viaje es parte de la solicitud de visa Schengen.
+- Evitar contenido fino: cada página incluye guía útil, documentos, errores frecuentes, FAQ y CTAs.
+- Diferenciar cada país con moneda, salidas frecuentes y notas específicas.
+- Añadir FAQPage + BreadcrumbList JSON-LD en cada página.
+- Enlazar desde /visa-schengen/ a las 5 páginas específicas.
+- Añadir Haití al buscador principal y a Editar búsqueda en /resultados/.
+- Añadir/actualizar sitemap.xml con las 5 URLs.
+
+No se cambió:
+- Diseño global
+- Logo optimizado
+- Cookies/GA4
+- Afiliados
+- Home visual, salvo añadir Haití como opción de país
+
+Validación:
+{
+  "ecuador-a-espana": {
+    "exists": true,
+    "words": 1105,
+    "schema_count": 2,
+    "canonical": true,
+    "optimized_logo": true,
+    "old_logo": false,
+    "official_sources": true,
+    "cta_results": true
+  },
+  "bolivia-a-espana": {
+    "exists": true,
+    "words": 1113,
+    "schema_count": 2,
+    "canonical": true,
+    "optimized_logo": true,
+    "old_logo": false,
+    "official_sources": true,
+    "cta_results": true
+  },
+  "cuba-a-espana": {
+    "exists": true,
+    "words": 1099,
+    "schema_count": 2,
+    "canonical": true,
+    "optimized_logo": true,
+    "old_logo": false,
+    "official_sources": true,
+    "cta_results": true
+  },
+  "republica-dominicana-a-espana": {
+    "exists": true,
+    "words": 1105,
+    "schema_count": 2,
+    "canonical": true,
+    "optimized_logo": true,
+    "old_logo": false,
+    "official_sources": true,
+    "cta_results": true
+  },
+  "haiti-a-espana": {
+    "exists": true,
+    "words": 1104,
+    "schema_count": 2,
+    "canonical": true,
+    "optimized_logo": true,
+    "old_logo": false,
+    "official_sources": true,
+    "cta_results": true
+  }
+}

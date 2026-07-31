@@ -1,0 +1,24 @@
+IMPORTANTE — limpieza en GitHub
+
+Este paquete NO incluye:
+- seguro-viaje/colombia-a-estados-unidos/index.html
+
+También añade redirecciones 301! forzadas en _redirects.
+
+Pero si en GitHub el archivo antiguo ya existe, puede quedarse si solo subes archivos nuevos mediante “Add files via upload”.
+Para limpiar de verdad el repo:
+
+1. En GitHub abre:
+   seguro-viaje/colombia-a-estados-unidos/index.html
+
+2. Pulsa el icono de papelera / Delete this file.
+
+3. Commit changes.
+
+4. Verifica que estas URLs redirigen:
+   https://viajerolatam.com/seguro-viaje/colombia-a-estados-unidos/
+   https://viajerolatam.com/seguro-viaje/colombia-a-estados-unidos
+   https://viajerolatam.com/seguro-viaje/colombia-a-estados-unidos/index.html
+
+Deben ir a:
+   https://viajerolatam.com/seguro-viaje/colombia-a-eeuu/

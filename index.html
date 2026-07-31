@@ -1974,6 +1974,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
 <option value="nicaragua">🇳🇮 Nicaragua</option>
 <option value="republica-dominicana">🇩🇴 R. Dominicana</option>
 <option value="cuba">🇨🇺 Cuba</option>
+<option value="haiti">🇭🇹 Haití</option>
 <option value="puerto-rico">🇵🇷 Puerto Rico</option>
 </select>
 </div>
@@ -2296,6 +2297,7 @@ var VL_HOME_LATAM_ORIGINS = [
   {value:'nicaragua', label:'🇳🇮 Nicaragua'},
   {value:'republica-dominicana', label:'🇩🇴 R. Dominicana'},
   {value:'cuba', label:'🇨🇺 Cuba'},
+  {value:'haiti', label:'🇭🇹 Haití'},
   {value:'puerto-rico', label:'🇵🇷 Puerto Rico'}
 ];
 var VL_HOME_ROUTE_OPTIONS = [
@@ -2503,6 +2505,10 @@ function sbDateChange() {
       cuba: {
         EUR: { rate: 130, symbol: '$', code: 'CUP', locale: 'es-CU', decimals: 0 },
         USD: { rate: 120, symbol: '$', code: 'CUP', locale: 'es-CU', decimals: 0 }
+      },
+      haiti: {
+        EUR: { rate: 145, symbol: 'G', code: 'HTG', locale: 'fr-HT', decimals: 0 },
+        USD: { rate: 132, symbol: 'G', code: 'HTG', locale: 'fr-HT', decimals: 0 }
       },
       'puerto-rico': {
         EUR: { rate: 1.1, symbol: 'US$', code: 'USD', locale: 'es-PR', decimals: 2 },

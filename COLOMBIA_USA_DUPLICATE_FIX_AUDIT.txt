@@ -1,0 +1,65 @@
+ViajeroLatam — arreglo duplicado Colombia a Estados Unidos
+
+Problema:
+- Existía /seguro-viaje/colombia-a-estados-unidos/index.html como duplicado de /seguro-viaje/colombia-a-eeuu/.
+- Esto podía competir por la misma intención SEO.
+
+Cambios aplicados:
+- Eliminado del paquete: ['seguro-viaje/colombia-a-estados-unidos/index.html', 'seguro-viaje/colombia-a-estados-unidos/']
+- Añadidas reglas 301 forzadas arriba de _redirects:
+- /seguro-viaje/colombia-a-estados-unidos/ /seguro-viaje/colombia-a-eeuu/ 301!
+- /seguro-viaje/colombia-a-estados-unidos /seguro-viaje/colombia-a-eeuu/ 301!
+- /seguro-viaje/colombia-a-estados-unidos/index.html /seguro-viaje/colombia-a-eeuu/ 301!
+
+URL principal que queda:
+- /seguro-viaje/colombia-a-eeuu/
+
+Sitemap:
+{
+  "duplicate_url_was_in_sitemap": false,
+  "duplicate_url_now_in_sitemap": false,
+  "target_url_in_sitemap": true
+}
+
+Antes:
+{
+  "base": "viajerolatam_visa_required_5_pages_completo.zip",
+  "duplicate_file_existed": true,
+  "target_file_exists": true,
+  "duplicate_title": "Seguro de viaje Colombia a Estados Unidos 2026 | Precio y cobertura médica",
+  "duplicate_h1": "Seguro de viaje Colombia a Estados Unidos",
+  "duplicate_words": 492,
+  "duplicate_robots_index": true,
+  "duplicate_canonical_to_target": true,
+  "target_title": "Seguro de viaje Colombia a Estados Unidos 2026 | Precio y cobertura médica",
+  "target_h1": "Seguro de viaje Colombia a Estados Unidos",
+  "target_words": 1113
+}
+
+Después:
+{
+  "duplicate_file_exists_after": false,
+  "duplicate_dir_exists_after": false,
+  "redirect_rules_first_lines": [
+    "/seguro-viaje/colombia-a-estados-unidos/ /seguro-viaje/colombia-a-eeuu/ 301!",
+    "/seguro-viaje/colombia-a-estados-unidos /seguro-viaje/colombia-a-eeuu/ 301!",
+    "/seguro-viaje/colombia-a-estados-unidos/index.html /seguro-viaje/colombia-a-eeuu/ 301!",
+    "",
+    "/colombia-espana.html /seguro-viaje/colombia-a-espana/ 301!",
+    "/visa-schengen.html /visa-schengen/ 301!"
+  ],
+  "sitemap": {
+    "duplicate_url_was_in_sitemap": false,
+    "duplicate_url_now_in_sitemap": false,
+    "target_url_in_sitemap": true
+  },
+  "target_file_still_exists": true
+}
+
+Archivos importantes:
+- _redirects
+- sitemap.xml
+- GITHUB_DELETE_DUPLICATE_INSTRUCTIONS.txt
+
+Nota:
+- Si subes con GitHub “Add files via upload”, los archivos antiguos no siempre se eliminan. Borra manualmente la carpeta duplicada si todavía aparece en el repo.

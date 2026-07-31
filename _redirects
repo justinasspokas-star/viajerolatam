@@ -1,3 +1,7 @@
+/seguro-viaje/colombia-a-estados-unidos/ /seguro-viaje/colombia-a-eeuu/ 301!
+/seguro-viaje/colombia-a-estados-unidos /seguro-viaje/colombia-a-eeuu/ 301!
+/seguro-viaje/colombia-a-estados-unidos/index.html /seguro-viaje/colombia-a-eeuu/ 301!
+
 /colombia-espana.html /seguro-viaje/colombia-a-espana/ 301!
 /visa-schengen.html /visa-schengen/ 301!
 
@@ -75,4 +79,3 @@
 https://www.viajerolatam.com/*       https://viajerolatam.com/:splat                301!
 
 # Alias SEO Colombia Estados Unidos
-/seguro-viaje/colombia-a-estados-unidos/ /seguro-viaje/colombia-a-eeuu/ 301
