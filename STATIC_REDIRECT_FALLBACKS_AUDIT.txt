@@ -1,0 +1,69 @@
+ViajeroLatam — redirecciones fallback para URLs antiguas
+
+Problema:
+- /colombia-espana.html estaba mostrando 404 en producción.
+
+Solución:
+- Añadidos archivos HTML mínimos de redirección con noindex + canonical + meta refresh + JavaScript.
+- Reforzadas reglas 301! en _redirects.
+- Los fallback NO son contenido duplicado: solo redirigen.
+
+Validación:
+{
+  "colombia-espana.html": {
+    "target": "/seguro-viaje/colombia-a-espana/",
+    "exists": true,
+    "noindex": true,
+    "canonical_target": true,
+    "meta_refresh": true,
+    "js_redirect": true
+  },
+  "visa-schengen.html": {
+    "target": "/visa-schengen/",
+    "exists": true,
+    "noindex": true,
+    "canonical_target": true,
+    "meta_refresh": true,
+    "js_redirect": true
+  },
+  "seguro-viaje/colombia-a-estados-unidos/index.html": {
+    "target": "/seguro-viaje/colombia-a-eeuu/",
+    "exists": true,
+    "noindex": true,
+    "canonical_target": true,
+    "meta_refresh": true,
+    "js_redirect": true
+  },
+  "blog/cuando-volar-argentina-espana-barato/index.htm": {
+    "target": "/blog/cuando-volar-argentina-espana-barato/",
+    "exists": true,
+    "noindex": true,
+    "canonical_target": true,
+    "meta_refresh": true,
+    "js_redirect": true
+  }
+}
+
+Sitemap limpiado:
+{
+  "https://viajerolatam.com/colombia-espana.html": {
+    "was_in_sitemap": false,
+    "now_in_sitemap": false
+  },
+  "https://viajerolatam.com/visa-schengen.html": {
+    "was_in_sitemap": false,
+    "now_in_sitemap": false
+  },
+  "https://viajerolatam.com/seguro-viaje/colombia-a-estados-unidos/": {
+    "was_in_sitemap": false,
+    "now_in_sitemap": false
+  },
+  "https://viajerolatam.com/seguro-viaje/colombia-a-estados-unidos/index.html": {
+    "was_in_sitemap": false,
+    "now_in_sitemap": false
+  },
+  "https://viajerolatam.com/blog/cuando-volar-argentina-espana-barato/index.htm": {
+    "was_in_sitemap": false,
+    "now_in_sitemap": false
+  }
+}
