@@ -1611,6 +1611,7 @@ nav a.brand-logo img, nav a.logo img{height:64px !important; width:auto !importa
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-P1Q2TSMVNJ');
+</script>
 <script id="vl-ga4-affiliate-normalizer">
 (function(){
   if (window.vlGa4AffiliateNormalizerInstalled) return;
@@ -1704,8 +1705,6 @@ nav a.brand-logo img, nav a.logo img{height:64px !important; width:auto !importa
 
   install();
 })();
-</script>
-
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Organization",
@@ -2078,142 +2077,91 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
   </div>
 <h1>Tu viaje, <em>protegido</em><br/>al mejor precio</h1>
 <div class="search-box" style="display:block;padding:20px 24px;max-width:720px">
-
-<style id="vl-search-swap-style">
-.search-top-row{
-  display:grid!important;
-  grid-template-columns:minmax(0,1fr) 46px minmax(0,1fr)!important;
-  gap:10px!important;
-  align-items:end!important;
-}
-.vl-swap-wrap{
-  display:flex;
-  align-items:flex-end;
-  justify-content:center;
-  padding-bottom:1px;
-}
-.vl-swap-btn{
-  width:42px;
-  height:42px;
-  border-radius:50%;
-  border:1.5px solid rgba(11,31,58,.14);
-  background:#fff;
-  color:#0B1F3A;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  cursor:pointer;
-  box-shadow:0 7px 18px rgba(11,31,58,.12);
-  transition:transform .25s ease,background .2s ease,border-color .2s ease;
-}
-.vl-swap-btn:hover{
-  background:rgba(0,196,161,.10);
-  border-color:#00C4A1;
-}
+<style id="vl-search-functional-style">
+.vl-search-form{display:block}
+.search-top-row{display:grid;grid-template-columns:minmax(0,1fr) 46px minmax(0,1fr);gap:10px;align-items:end;margin-bottom:10px}
+.search-dates-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:14px}
+.vl-field{min-width:0}
+.vl-field label{display:block;margin-bottom:6px}
+.vl-control{width:100%;border:1.5px solid var(--border);border-radius:10px;padding:10px 14px;font-family:var(--font-body);font-size:15px;font-weight:600;color:var(--text-dark);background:var(--white);outline:none;cursor:pointer;transition:border-color .2s;min-height:43px}
+.vl-control:focus{border-color:var(--teal)}
+.vl-swap-wrap{display:flex;align-items:flex-end;justify-content:center;padding-bottom:1px}
+.vl-swap-btn{width:42px;height:42px;border-radius:50%;border:1.5px solid rgba(11,31,58,.14);background:#fff;color:#0B1F3A;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 7px 18px rgba(11,31,58,.12);transition:transform .2s ease,background .2s ease,border-color .2s ease}
+.vl-swap-btn:hover{background:rgba(0,196,161,.10);border-color:#00C4A1}
 .vl-swap-btn:active{transform:scale(.94)}
+.vl-swap-btn svg{width:22px;height:22px;transition:transform .28s ease}
 .vl-swap-btn.is-reversed svg{transform:rotate(180deg)}
-.vl-swap-btn svg{
-  width:22px;
-  height:22px;
-  transition:transform .28s ease;
-}
+#sb-duracion-display{display:none;background:rgba(0,196,161,.1);border-radius:8px;padding:8px 14px;margin-bottom:12px;font-size:13px;font-weight:500;color:var(--teal-dark);line-height:1.35}
+.vl-submit{width:100%;justify-content:center;border:0}
 @media(max-width:560px){
-  .search-box{padding:18px 14px!important}
-  .search-top-row{
-    grid-template-columns:minmax(0,1fr) 38px minmax(0,1fr)!important;
-    gap:6px!important;
-  }
-  .vl-swap-btn{width:36px;height:36px}
-  .vl-swap-btn svg{width:19px;height:19px}
-  #sb-origen,#sb-destino{
-    padding:10px 8px!important;
-    font-size:13px!important;
-  }
+ .search-box{padding:18px 14px!important}
+ .search-top-row{grid-template-columns:minmax(0,1fr) 38px minmax(0,1fr);gap:6px}
+ .search-dates-row{grid-template-columns:1fr 1fr;gap:8px}
+ .search-dates-row .vl-field:last-child{grid-column:1/-1}
+ .vl-swap-btn{width:36px;height:36px}
+ .vl-swap-btn svg{width:19px;height:19px}
+ .vl-control{padding:10px 8px;font-size:13px}
 }
 </style>
 
-<!-- Row 1: Origen + Destino -->
-<div class="search-top-row" style="margin-bottom:10px">
-<div>
-<div class="sb-label" style="margin-bottom:6px">Voy desde</div>
-<select id="sb-origen" onblur="this.style.borderColor='var(--border)'" onclick="event.stopPropagation()" onfocus="this.style.borderColor='var(--teal)'" style="width:100%;border:1.5px solid var(--border);border-radius:10px;padding:10px 14px;font-family:var(--font-body);font-size:15px;font-weight:600;color:var(--text-dark);background:var(--white);outline:none;cursor:pointer;transition:border-color .2s">
-<option value="colombia">🇨🇴 Colombia</option>
-<option value="mexico">🇲🇽 México</option>
-<option value="argentina">🇦🇷 Argentina</option>
-<option value="venezuela">🇻🇪 Venezuela</option>
-<option value="peru">🇵🇪 Perú</option>
-<option value="chile">🇨🇱 Chile</option>
-<option value="ecuador">🇪🇨 Ecuador</option>
-<option value="bolivia">🇧🇴 Bolivia</option>
-<option value="paraguay">🇵🇾 Paraguay</option>
-<option value="uruguay">🇺🇾 Uruguay</option>
-<option value="brasil">🇧🇷 Brasil</option>
-<option value="costa-rica">🇨🇷 Costa Rica</option>
-<option value="panama">🇵🇦 Panamá</option>
-<option value="guatemala">🇬🇹 Guatemala</option>
-<option value="el-salvador">🇸🇻 El Salvador</option>
-<option value="honduras">🇭🇳 Honduras</option>
-<option value="nicaragua">🇳🇮 Nicaragua</option>
-<option value="republica-dominicana">🇩🇴 R. Dominicana</option>
-<option value="cuba">🇨🇺 Cuba</option>
-<option value="puerto-rico">🇵🇷 Puerto Rico</option>
+<form action="/resultados/" class="vl-search-form" id="vl-search-form" method="get">
+<div class="search-top-row">
+<div class="vl-field">
+<label class="sb-label" for="sb-origen">Voy desde</label>
+<select class="vl-control" id="sb-origen" name="origen">
+<option value="colombia">🇨🇴 Colombia</option><option value="mexico">🇲🇽 México</option>
+<option value="argentina">🇦🇷 Argentina</option><option value="venezuela">🇻🇪 Venezuela</option>
+<option value="peru">🇵🇪 Perú</option><option value="chile">🇨🇱 Chile</option>
+<option value="ecuador">🇪🇨 Ecuador</option><option value="bolivia">🇧🇴 Bolivia</option>
+<option value="paraguay">🇵🇾 Paraguay</option><option value="uruguay">🇺🇾 Uruguay</option>
+<option value="brasil">🇧🇷 Brasil</option><option value="costa-rica">🇨🇷 Costa Rica</option>
+<option value="panama">🇵🇦 Panamá</option><option value="guatemala">🇬🇹 Guatemala</option>
+<option value="el-salvador">🇸🇻 El Salvador</option><option value="honduras">🇭🇳 Honduras</option>
+<option value="nicaragua">🇳🇮 Nicaragua</option><option value="republica-dominicana">🇩🇴 R. Dominicana</option>
+<option value="cuba">🇨🇺 Cuba</option><option value="puerto-rico">🇵🇷 Puerto Rico</option>
 </select>
 </div>
+
 <div class="vl-swap-wrap">
-<button aria-label="Intercambiar origen y destino" class="vl-swap-btn" id="vl-swap-btn" onclick="event.stopPropagation(); swapSearchDirection()" title="Intercambiar origen y destino" type="button">
+<button aria-label="Intercambiar origen y destino" class="vl-swap-btn" id="vl-swap-btn" title="Intercambiar origen y destino" type="button">
 <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewBox="0 0 24 24">
 <path d="M7 7h11"></path><path d="m15 4 3 3-3 3"></path>
 <path d="M17 17H6"></path><path d="m9 14-3 3 3 3"></path>
 </svg>
 </button>
 </div>
-<div>
-<div class="sb-label" style="margin-bottom:6px">Destino</div>
-<select id="sb-destino" onblur="this.style.borderColor='var(--border)'" onclick="event.stopPropagation()" onfocus="this.style.borderColor='var(--teal)'" style="width:100%;border:1.5px solid var(--border);border-radius:10px;padding:10px 14px;font-family:var(--font-body);font-size:15px;font-weight:600;color:var(--text-dark);background:var(--white);outline:none;cursor:pointer;transition:border-color .2s;text-overflow:ellipsis;overflow:hidden">
-<option value="espana-schengen">🇪🇺 España / Schengen</option>
-<option value="europa">🌍 Europa (toda)</option>
-<option value="estados-unidos">🇺🇸 Estados Unidos</option>
-<option value="eeuu-canada">🇺🇸🇨🇦 EEUU + Canadá</option>
+
+<div class="vl-field">
+<label class="sb-label" for="sb-destino">Destino</label>
+<select class="vl-control" id="sb-destino" name="destino">
+<option value="espana-schengen">🇪🇺 España / Schengen</option><option value="europa">🌍 Europa (toda)</option>
+<option value="estados-unidos">🇺🇸 Estados Unidos</option><option value="eeuu-canada">🇺🇸🇨🇦 EEUU + Canadá</option>
 <option value="mundial">🌎 Mundial</option>
 </select>
 </div>
 </div>
-<!-- Row 2: Fechas + Personas -->
-<div class="search-dates-row" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:14px">
-<div>
-<div class="sb-label" style="margin-bottom:6px">Fecha de ida</div>
-<input id="sb-ida" onblur="this.style.borderColor='var(--border)'" onchange="sbDateChange()" onfocus="this.style.borderColor='var(--teal)'" style="width:100%;border:1.5px solid var(--border);border-radius:10px;padding:10px 14px;font-family:var(--font-body);font-size:14px;font-weight:600;color:var(--text-dark);background:var(--white);outline:none;cursor:pointer" type="date"/>
-</div>
-<div>
-<div class="sb-label" style="margin-bottom:6px">Fecha de vuelta</div>
-<input id="sb-vuelta" onblur="this.style.borderColor='var(--border)'" onchange="sbDateChange()" onfocus="this.style.borderColor='var(--teal)'" style="width:100%;border:1.5px solid var(--border);border-radius:10px;padding:10px 14px;font-family:var(--font-body);font-size:14px;font-weight:600;color:var(--text-dark);background:var(--white);outline:none;cursor:pointer" type="date"/>
-</div>
-<div>
-<div class="sb-label" style="margin-bottom:6px">Viajeros</div>
-<select id="sb-personas" onblur="this.style.borderColor='var(--border)'" onclick="event.stopPropagation()" onfocus="this.style.borderColor='var(--teal)'" style="width:100%;border:1.5px solid var(--border);border-radius:10px;padding:10px 14px;font-family:var(--font-body);font-size:14px;font-weight:600;color:var(--text-dark);background:var(--white);outline:none;cursor:pointer">
-<option value="1">1 persona</option>
-<option value="2">2 personas</option>
-<option value="3">3 personas</option>
-<option value="4">4 personas</option>
-<option value="5">5+</option>
-</select>
+
+<div class="search-dates-row">
+<div class="vl-field"><label class="sb-label" for="sb-ida">Fecha de ida</label><input class="vl-control" id="sb-ida" name="ida" required type="date"/></div>
+<div class="vl-field"><label class="sb-label" for="sb-vuelta">Fecha de vuelta</label><input class="vl-control" id="sb-vuelta" name="vuelta" required type="date"/></div>
+<div class="vl-field"><label class="sb-label" for="sb-personas">Viajeros</label>
+<select class="vl-control" id="sb-personas" name="personas"><option value="1">1 persona</option><option value="2">2 personas</option><option value="3">3 personas</option><option value="4">4 personas</option><option value="5">5+</option></select>
 </div>
 </div>
-<!-- Duración auto -->
-<div id="sb-duracion-display" style="display:none;background:rgba(0,196,161,0.1);border-radius:8px;padding:8px 14px;margin-bottom:12px;font-size:13px;font-weight:500;color:var(--teal-dark);line-height:1.35">
-      📅 <span id="sb-duracion-text">15 días de cobertura</span>
-</div>
-<!-- Button -->
-<button class="sb-btn" onclick="event.stopPropagation(); goCompare()" style="width:100%;justify-content:center">
-<svg fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
-      Comparar gratis
-    </button>
+
+<input id="sb-dias" name="dias" type="hidden" value="15"/>
+<div id="sb-duracion-display">📅 <span id="sb-duracion-text">15 días de cobertura</span></div>
+<button class="sb-btn vl-submit" type="submit">
+<svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
+Comparar gratis
+</button>
+</form>
 </div>
 <div class="hero-trust">
 <div class="trust-item"><span class="trust-icon">✓</span> Sin coste para ti</div>
 <div class="trust-item"><span class="trust-icon">✓</span> Válido para visa Schengen</div>
 <div class="trust-item"><span class="trust-icon">✓</span> Soporte en español 24/7</div>
-<div class="trust-item"><span class="trust-icon">✓</span> comparación independiente para viajeros latinoamericanos</div>
+<div class="trust-item"><span class="trust-icon">✓</span> Comparador independiente</div>
 </div>
 </div>
 </section>
@@ -2461,243 +2409,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
     nav.style.boxShadow = window.scrollY > 20 ? '0 2px 20px rgba(11,31,58,0.1)' : 'none';
   });
 </script>
-<script>
-(function() {
-  var today = new Date();
-  var ret = new Date();
-  ret.setDate(today.getDate() + 15);
-  var fmt = function(d) { return d.toISOString().split('T')[0]; };
-  var ida = document.getElementById('sb-ida');
-  var vuelta = document.getElementById('sb-vuelta');
-  if (ida)    { ida.value = fmt(today);    ida.min = fmt(today); }
-  if (vuelta) { vuelta.value = fmt(ret);   vuelta.min = fmt(today); }
-  if (typeof sbDateChange === 'function') sbDateChange();
-})();
 
-function sbDateChange() {
-  var ida    = document.getElementById('sb-ida');
-  var vuelta = document.getElementById('sb-vuelta');
-  var disp   = document.getElementById('sb-duracion-display');
-  var txt    = document.getElementById('sb-duracion-text');
-  if (!ida || !vuelta || !ida.value || !vuelta.value) {
-    if (disp) disp.style.display = 'none'; return;
-  }
-  var d1 = new Date(ida.value), d2 = new Date(vuelta.value);
-  if (d2 <= d1) {
-    var f = new Date(d1); f.setDate(f.getDate() + 1);
-    vuelta.value = f.toISOString().split('T')[0]; d2 = f;
-  }
-  var dias = Math.round((d2 - d1) / (1000 * 60 * 60 * 24));
-  if (disp) disp.style.display = 'block';
-  if (txt) {
-    var origen = (document.getElementById('sb-origen') || {}).value || 'colombia';
-    var destino = (document.getElementById('sb-destino') || {}).value || 'espana-schengen';
-    var personas = parseInt(((document.getElementById('sb-personas') || {}).value || '1'), 10);
-    if (!isFinite(personas) || personas < 1) personas = 1;
-
-    var isUSDestination = destino === 'estados-unidos' || destino === 'eeuu-canada';
-
-    // Si el destino es Estados Unidos / EEUU + Canadá, mostramos precio base en USD.
-    // Para España / Schengen, Europa y Mundial mantenemos precio base en EUR.
-    var baseCurrency = isUSDestination ? 'USD' : 'EUR';
-    var baseSymbol = isUSDestination ? 'US$' : '€';
-
-    var minBase = (isUSDestination ? 2.20 : 1.75) * dias * personas;
-    var maxBase = (isUSDestination ? 2.80 : 2.10) * dias * personas;
-
-    // Cambios orientativos solo para mostrar presupuesto aproximado.
-    // El precio final siempre lo calcula cada aseguradora.
-    var currencyByOrigin = {
-      colombia: {
-        EUR: { rate: 3720, symbol: '$', code: 'COP', locale: 'es-CO', decimals: 0 },
-        USD: { rate: 4000, symbol: '$', code: 'COP', locale: 'es-CO', decimals: 0 }
-      },
-      mexico: {
-        EUR: { rate: 21.5, symbol: '$', code: 'MXN', locale: 'es-MX', decimals: 0 },
-        USD: { rate: 18.5, symbol: '$', code: 'MXN', locale: 'es-MX', decimals: 0 }
-      },
-      argentina: {
-        EUR: { rate: 1690, symbol: '$', code: 'ARS', locale: 'es-AR', decimals: 0 },
-        USD: { rate: 1530, symbol: '$', code: 'ARS', locale: 'es-AR', decimals: 0 }
-      },
-      venezuela: {
-        EUR: { rate: 120, symbol: 'Bs.', code: 'VES', locale: 'es-VE', decimals: 0 },
-        USD: { rate: 110, symbol: 'Bs.', code: 'VES', locale: 'es-VE', decimals: 0 }
-      },
-      peru: {
-        EUR: { rate: 4.1, symbol: 'S/', code: 'PEN', locale: 'es-PE', decimals: 0 },
-        USD: { rate: 3.75, symbol: 'S/', code: 'PEN', locale: 'es-PE', decimals: 0 }
-      },
-      chile: {
-        EUR: { rate: 1080, symbol: '$', code: 'CLP', locale: 'es-CL', decimals: 0 },
-        USD: { rate: 980, symbol: '$', code: 'CLP', locale: 'es-CL', decimals: 0 }
-      },
-      ecuador: {
-        EUR: { rate: 1.1, symbol: 'US$', code: 'USD', locale: 'es-EC', decimals: 2 },
-        USD: { rate: 1, symbol: 'US$', code: 'USD', locale: 'es-EC', decimals: 2 }
-      },
-      bolivia: {
-        EUR: { rate: 7.6, symbol: 'Bs', code: 'BOB', locale: 'es-BO', decimals: 0 },
-        USD: { rate: 6.9, symbol: 'Bs', code: 'BOB', locale: 'es-BO', decimals: 0 }
-      },
-      paraguay: {
-        EUR: { rate: 8500, symbol: '₲', code: 'PYG', locale: 'es-PY', decimals: 0 },
-        USD: { rate: 7600, symbol: '₲', code: 'PYG', locale: 'es-PY', decimals: 0 }
-      },
-      uruguay: {
-        EUR: { rate: 47, symbol: '$', code: 'UYU', locale: 'es-UY', decimals: 0 },
-        USD: { rate: 43, symbol: '$', code: 'UYU', locale: 'es-UY', decimals: 0 }
-      },
-      brasil: {
-        EUR: { rate: 6.4, symbol: 'R$', code: 'BRL', locale: 'pt-BR', decimals: 0 },
-        USD: { rate: 5.6, symbol: 'R$', code: 'BRL', locale: 'pt-BR', decimals: 0 }
-      },
-      'costa-rica': {
-        EUR: { rate: 570, symbol: '₡', code: 'CRC', locale: 'es-CR', decimals: 0 },
-        USD: { rate: 515, symbol: '₡', code: 'CRC', locale: 'es-CR', decimals: 0 }
-      },
-      panama: {
-        EUR: { rate: 1.1, symbol: 'US$', code: 'USD', locale: 'es-PA', decimals: 2 },
-        USD: { rate: 1, symbol: 'US$', code: 'USD', locale: 'es-PA', decimals: 2 }
-      },
-      guatemala: {
-        EUR: { rate: 8.5, symbol: 'Q', code: 'GTQ', locale: 'es-GT', decimals: 0 },
-        USD: { rate: 7.7, symbol: 'Q', code: 'GTQ', locale: 'es-GT', decimals: 0 }
-      },
-      'el-salvador': {
-        EUR: { rate: 1.1, symbol: 'US$', code: 'USD', locale: 'es-SV', decimals: 2 },
-        USD: { rate: 1, symbol: 'US$', code: 'USD', locale: 'es-SV', decimals: 2 }
-      },
-      honduras: {
-        EUR: { rate: 28, symbol: 'L', code: 'HNL', locale: 'es-HN', decimals: 0 },
-        USD: { rate: 25, symbol: 'L', code: 'HNL', locale: 'es-HN', decimals: 0 }
-      },
-      nicaragua: {
-        EUR: { rate: 40, symbol: 'C$', code: 'NIO', locale: 'es-NI', decimals: 0 },
-        USD: { rate: 37, symbol: 'C$', code: 'NIO', locale: 'es-NI', decimals: 0 }
-      },
-      'republica-dominicana': {
-        EUR: { rate: 67, symbol: 'RD$', code: 'DOP', locale: 'es-DO', decimals: 0 },
-        USD: { rate: 61, symbol: 'RD$', code: 'DOP', locale: 'es-DO', decimals: 0 }
-      },
-      cuba: {
-        EUR: { rate: 130, symbol: '$', code: 'CUP', locale: 'es-CU', decimals: 0 },
-        USD: { rate: 120, symbol: '$', code: 'CUP', locale: 'es-CU', decimals: 0 }
-      },
-      'puerto-rico': {
-        EUR: { rate: 1.1, symbol: 'US$', code: 'USD', locale: 'es-PR', decimals: 2 },
-        USD: { rate: 1, symbol: 'US$', code: 'USD', locale: 'es-PR', decimals: 2 }
-      }
-    };
-
-    var infoSet = currencyByOrigin[origen] || currencyByOrigin.colombia;
-    var info = infoSet[baseCurrency] || infoSet.EUR;
-
-    var fmtBase = function(n) {
-      return baseSymbol + n.toFixed(2);
-    };
-
-    var fmtLocal = function(n) {
-      var value = n * info.rate;
-      var formatted = value.toLocaleString(info.locale, {
-        minimumFractionDigits: info.decimals,
-        maximumFractionDigits: info.decimals
-      });
-      return info.symbol + formatted + ' ' + info.code;
-    };
-
-    var base = dias + ' días';
-    if (personas > 1) base += ' · ' + personas + ' viajeros';
-
-    txt.textContent = base + ' · Desde ' + fmtBase(minBase) + '–' + fmtBase(maxBase) + ' · aprox. ' + fmtLocal(minBase) + '–' + fmtLocal(maxBase);
-  }
-}
-
-
-<script id="vl-search-swap-script">
-(function(){
-  var countryOptions = [
-    ['colombia','🇨🇴 Colombia'],['mexico','🇲🇽 México'],['argentina','🇦🇷 Argentina'],
-    ['venezuela','🇻🇪 Venezuela'],['peru','🇵🇪 Perú'],['chile','🇨🇱 Chile'],
-    ['ecuador','🇪🇨 Ecuador'],['bolivia','🇧🇴 Bolivia'],['paraguay','🇵🇾 Paraguay'],
-    ['uruguay','🇺🇾 Uruguay'],['brasil','🇧🇷 Brasil'],['costa-rica','🇨🇷 Costa Rica'],
-    ['panama','🇵🇦 Panamá'],['guatemala','🇬🇹 Guatemala'],['el-salvador','🇸🇻 El Salvador'],
-    ['honduras','🇭🇳 Honduras'],['nicaragua','🇳🇮 Nicaragua'],
-    ['republica-dominicana','🇩🇴 R. Dominicana'],['cuba','🇨🇺 Cuba'],['puerto-rico','🇵🇷 Puerto Rico']
-  ];
-  var destinationOptions = [
-    ['espana-schengen','🇪🇺 España / Schengen'],['europa','🌍 Europa (toda)'],
-    ['estados-unidos','🇺🇸 Estados Unidos'],['eeuu-canada','🇺🇸🇨🇦 EEUU + Canadá'],
-    ['mundial','🌎 Mundial']
-  ];
-  var reversed = false;
-
-  function setOptions(select, items, selectedValue){
-    select.innerHTML = '';
-    items.forEach(function(item){
-      var option = document.createElement('option');
-      option.value = item[0];
-      option.textContent = item[1];
-      select.appendChild(option);
-    });
-    if(selectedValue && Array.prototype.some.call(select.options,function(o){return o.value===selectedValue;})){
-      select.value = selectedValue;
-    }
-  }
-
-  window.swapSearchDirection = function(){
-    var origin = document.getElementById('sb-origen');
-    var destination = document.getElementById('sb-destino');
-    var button = document.getElementById('vl-swap-btn');
-    if(!origin || !destination) return;
-
-    var oldOrigin = origin.value;
-    var oldDestination = destination.value;
-
-    if(!reversed){
-      setOptions(origin, destinationOptions, oldDestination);
-      setOptions(destination, countryOptions, oldOrigin);
-      reversed = true;
-    }else{
-      setOptions(origin, countryOptions, oldDestination);
-      setOptions(destination, destinationOptions, oldOrigin);
-      reversed = false;
-    }
-
-    if(button){
-      button.classList.toggle('is-reversed', reversed);
-      button.setAttribute('aria-label', reversed ? 'Intercambiar para viajar desde Latinoamérica' : 'Intercambiar origen y destino');
-    }
-
-    origin.dispatchEvent(new Event('change', {bubbles:true}));
-    destination.dispatchEvent(new Event('change', {bubbles:true}));
-    if(typeof sbUpdatePrice === 'function') sbUpdatePrice();
-  };
-})();
-</script>
-
-['sb-origen','sb-destino','sb-personas'].forEach(function(id){
-  var el = document.getElementById(id);
-  if (el) el.addEventListener('change', sbDateChange);
-});
-
-function goCompare() {
-  var o  = (document.getElementById('sb-origen')   || {}).value || 'colombia';
-  var d  = (document.getElementById('sb-destino')  || {}).value || 'espana-schengen';
-  var p  = (document.getElementById('sb-personas') || {}).value || '1';
-  var fi = (document.getElementById('sb-ida')      || {}).value || '';
-  var fv = (document.getElementById('sb-vuelta')   || {}).value || '';
-  var dias = 15;
-  if (fi && fv) {
-    var diff = Math.round((new Date(fv) - new Date(fi)) / 86400000);
-    if (diff > 0) dias = diff;
-  }
-  window.location.href = '/resultados/?origen=' + encodeURIComponent(o)
-    + '&destino=' + encodeURIComponent(d)
-    + '&dias=' + dias + '&personas=' + p
-    + (fi ? '&ida=' + fi : '') + (fv ? '&vuelta=' + fv : '');
-}
-</script>
 <script>
 document.addEventListener('click', function(e){
   var link = e.target.closest('a');
@@ -2727,206 +2439,114 @@ document.addEventListener('click', function(e){
   }
 });
 </script>
-<!-- ═══ EXIT INTENT + STICKY CTA ═══ -->
-<style id="exit-sticky-css">
-/* ── STICKY CTA MÓVIL ── */
-#sticky-mob{
-  display:none;
-  position:fixed;
-  bottom:0;left:0;right:0;
-  z-index:990;
-  padding:12px 16px 16px;
-  background:linear-gradient(to top,rgba(255,255,255,1) 60%,rgba(255,255,255,0));
-  pointer-events:none;
-}
-#sticky-mob a{
-  display:flex;align-items:center;justify-content:center;gap:8px;
-  background:#00C4A1;color:#0B1F3A;
-  padding:15px;border-radius:50px;
-  font-family:'Plus Jakarta Sans',sans-serif;
-  font-size:16px;font-weight:700;
-  text-decoration:none;
-  box-shadow:0 4px 24px rgba(0,196,161,.45);
-  pointer-events:all;
-  transition:background .2s, transform .15s;
-}
-#sticky-mob a:active{transform:scale(.97)}
-#sticky-mob p{
-  font-size:11px;color:#8FA4B8;
-  text-align:center;margin-top:6px;
-  font-family:'Plus Jakarta Sans',sans-serif;
-}
-@media(max-width:768px){
-  #sticky-mob{display:block}
-  body{padding-bottom:90px}
-}
-@media(min-width:769px){
-  #sticky-mob{display:none!important}
-}
 
-/* ── EXIT INTENT POPUP ── */
-#exit-overlay{
-  display:none;position:fixed;inset:0;
-  background:rgba(11,31,58,.65);
-  z-index:9999;
-  backdrop-filter:blur(6px);
-  align-items:center;justify-content:center;
-  padding:20px;
-}
-#exit-box{
-  background:#fff;
-  border-radius:24px;
-  padding:36px 32px;
-  max-width:440px;width:100%;
-  position:relative;
-  box-shadow:0 24px 80px rgba(11,31,58,.25);
-  animation:exitPop .3s cubic-bezier(.34,1.56,.64,1);
-}
-@keyframes exitPop{
-  from{opacity:0;transform:scale(.85) translateY(20px)}
-  to{opacity:1;transform:scale(1) translateY(0)}
-}
-#exit-close{
-  position:absolute;top:14px;right:14px;
-  width:32px;height:32px;border-radius:50%;
-  background:#F0F4F8;border:none;cursor:pointer;
-  font-size:16px;color:#4A647E;
-  display:flex;align-items:center;justify-content:center;
-  transition:background .15s;
-}
-#exit-close:hover{background:#E4EDF5}
-.exit-emoji{font-size:48px;text-align:center;margin-bottom:12px}
-.exit-title{
-  font-family:'DM Serif Display',Georgia,serif;
-  font-size:26px;color:#0B1F3A;line-height:1.2;
-  text-align:center;margin-bottom:8px;
-}
-.exit-title em{color:#00C4A1;font-style:italic}
-.exit-sub{
-  font-size:14px;color:#4A647E;text-align:center;
-  line-height:1.6;margin-bottom:20px;
-}
-.exit-proof{
-  display:flex;gap:16px;justify-content:center;
-  margin-bottom:20px;flex-wrap:wrap;
-}
-.exit-proof span{
-  font-size:12px;color:#4A647E;
-  display:flex;align-items:center;gap:4px;
-}
-#exit-cta{
-  display:flex;align-items:center;justify-content:center;gap:8px;
-  width:100%;background:#00C4A1;color:#0B1F3A;
-  padding:15px;border-radius:50px;
-  font-family:'Plus Jakarta Sans',sans-serif;
-  font-size:15px;font-weight:700;
-  text-decoration:none;border:none;cursor:pointer;
-  transition:background .2s;
-  margin-bottom:10px;
-}
-#exit-cta:hover{background:#009C7F}
-#exit-skip{
-  display:block;width:100%;text-align:center;
-  font-size:12px;color:#8FA4B8;
-  background:none;border:none;cursor:pointer;
-  font-family:'Plus Jakarta Sans',sans-serif;
-  padding:6px;text-decoration:underline;
-}
-</style>
-<!-- STICKY MÓVIL -->
-<div aria-label="Comparar seguros gratis" id="sticky-mob">
-<a href="/resultados/" onclick="if(typeof gtag!='undefined')gtag('event','click_sticky_mob',{page:location.pathname})">
-    🔍 Comparar seguros gratis
-  </a>
-<p>Sin coste · Póliza en 2 minutos · 4 aseguradoras</p>
-</div>
-<!-- EXIT INTENT POPUP -->
-<div aria-label="Antes de irte" aria-modal="true" id="exit-overlay" role="dialog">
-<div id="exit-box">
-<button aria-label="Cerrar" id="exit-close" onclick="closeExitPopup()">✕</button>
-<div class="exit-emoji">✈️</div>
-<div class="exit-title">¿Seguro para tu viaje <em>ya tienes</em>?</div>
-<div class="exit-sub">Compara seguros de viaje para España en pocos minutos. Revisa precio, cobertura médica, repatriación y condiciones antes de contratar.</div>
-<div class="exit-proof">
-<span>✓ Precio según fechas</span>
-<span>✓ Revisa condiciones</span>
-<span>✓ Cobertura médica alta</span>
-</div>
-<a href="/resultados/" id="exit-cta" onclick="closeExitPopup();if(typeof gtag!='undefined')gtag('event','click_exit_popup',{page:location.pathname})">
-      🔍 Comparar seguros gratis
-    </a>
-<button id="exit-skip" onclick="closeExitPopup()">No me interesa por ahora</button>
-</div>
-</div>
-<script id="exit-sticky-js">
+
+<script id="vl-comparator-functional-script">
 (function(){
-  var shown = false;
-  var dismissed = false;
+  'use strict';
 
-  // ── Exit intent — desktop (mouse leaves top)
-  document.addEventListener('mouseleave', function(e){
-    if(e.clientY > 20) return;
-    if(shown || dismissed) return;
-    if(sessionStorage.getItem('vl_exit_shown')) return;
-    showExitPopup();
-  });
+  var countries = [
+    ['colombia','🇨🇴 Colombia'],['mexico','🇲🇽 México'],['argentina','🇦🇷 Argentina'],
+    ['venezuela','🇻🇪 Venezuela'],['peru','🇵🇪 Perú'],['chile','🇨🇱 Chile'],
+    ['ecuador','🇪🇨 Ecuador'],['bolivia','🇧🇴 Bolivia'],['paraguay','🇵🇾 Paraguay'],
+    ['uruguay','🇺🇾 Uruguay'],['brasil','🇧🇷 Brasil'],['costa-rica','🇨🇷 Costa Rica'],
+    ['panama','🇵🇦 Panamá'],['guatemala','🇬🇹 Guatemala'],['el-salvador','🇸🇻 El Salvador'],
+    ['honduras','🇭🇳 Honduras'],['nicaragua','🇳🇮 Nicaragua'],
+    ['republica-dominicana','🇩🇴 R. Dominicana'],['cuba','🇨🇺 Cuba'],['puerto-rico','🇵🇷 Puerto Rico']
+  ];
+  var destinations = [
+    ['espana-schengen','🇪🇺 España / Schengen'],['europa','🌍 Europa (toda)'],
+    ['estados-unidos','🇺🇸 Estados Unidos'],['eeuu-canada','🇺🇸🇨🇦 EEUU + Canadá'],
+    ['mundial','🌎 Mundial']
+  ];
+  var reversed = false;
 
-  // ── Exit intent — mobile (back button / scroll up fast)
-  var lastScrollY = 0;
-  var scrollTimer;
-  window.addEventListener('scroll', function(){
-    var currentY = window.scrollY;
-    clearTimeout(scrollTimer);
-    scrollTimer = setTimeout(function(){
-      var delta = lastScrollY - currentY;
-      if(delta > 120 && currentY > 400 && !shown && !dismissed){
-        if(!sessionStorage.getItem('vl_exit_shown')) showExitPopup();
-      }
-      lastScrollY = currentY;
-    }, 150);
-    lastScrollY = currentY;
-  });
-
-  // ── Sticky CTA — hide when hero CTA visible
-  var hero = document.querySelector('.hero, header.hero, .hero-inner');
-  var sticky = document.getElementById('sticky-mob');
-  if(sticky && hero){
-    var io = new IntersectionObserver(function(entries){
-      sticky.style.opacity = entries[0].isIntersecting ? '0' : '1';
-      sticky.style.pointerEvents = entries[0].isIntersecting ? 'none' : 'all';
-    }, {threshold: 0.2});
-    io.observe(hero);
+  function fill(select, options, selected){
+    while(select.firstChild) select.removeChild(select.firstChild);
+    options.forEach(function(item){
+      var option=document.createElement('option');
+      option.value=item[0]; option.textContent=item[1]; select.appendChild(option);
+    });
+    if(selected && Array.prototype.some.call(select.options,function(o){return o.value===selected;})){
+      select.value=selected;
+    }
   }
+
+  function iso(date){
+    var y=date.getFullYear();
+    var m=String(date.getMonth()+1).padStart(2,'0');
+    var d=String(date.getDate()).padStart(2,'0');
+    return y+'-'+m+'-'+d;
+  }
+
+  function update(){
+    var ida=document.getElementById('sb-ida');
+    var vuelta=document.getElementById('sb-vuelta');
+    var display=document.getElementById('sb-duracion-display');
+    var text=document.getElementById('sb-duracion-text');
+    var diasInput=document.getElementById('sb-dias');
+    if(!ida||!vuelta||!ida.value||!vuelta.value) return;
+
+    var d1=new Date(ida.value+'T00:00:00');
+    var d2=new Date(vuelta.value+'T00:00:00');
+    if(d2<=d1){ d2=new Date(d1); d2.setDate(d2.getDate()+1); vuelta.value=iso(d2); }
+    var days=Math.max(1,Math.round((d2-d1)/86400000));
+    diasInput.value=String(days);
+    display.style.display='block';
+
+    var origin=document.getElementById('sb-origen').value;
+    var destination=document.getElementById('sb-destino').value;
+    var people=parseInt(document.getElementById('sb-personas').value,10)||1;
+    var usd=destination==='estados-unidos'||destination==='eeuu-canada';
+    var min=(usd?2.20:1.75)*days*people;
+    var max=(usd?2.80:2.10)*days*people;
+    var symbol=usd?'US$':'€';
+    var line=days+' días'+(people>1?' · '+people+' viajeros':'')+' · Desde '+symbol+min.toFixed(2)+'–'+symbol+max.toFixed(2);
+    text.textContent=line;
+  }
+
+  document.addEventListener('DOMContentLoaded',function(){
+    var form=document.getElementById('vl-search-form');
+    var origin=document.getElementById('sb-origen');
+    var destination=document.getElementById('sb-destino');
+    var swap=document.getElementById('vl-swap-btn');
+    var ida=document.getElementById('sb-ida');
+    var vuelta=document.getElementById('sb-vuelta');
+    if(!form||!origin||!destination||!swap||!ida||!vuelta) return;
+
+    var today=new Date();
+    var back=new Date(); back.setDate(today.getDate()+15);
+    ida.min=iso(today); vuelta.min=iso(today);
+    if(!ida.value) ida.value=iso(today);
+    if(!vuelta.value) vuelta.value=iso(back);
+
+    swap.addEventListener('click',function(){
+      var oldOrigin=origin.value, oldDestination=destination.value;
+      if(!reversed){ fill(origin,destinations,oldDestination); fill(destination,countries,oldOrigin); }
+      else { fill(origin,countries,oldDestination); fill(destination,destinations,oldOrigin); }
+      reversed=!reversed;
+      swap.classList.toggle('is-reversed',reversed);
+      update();
+    });
+
+    [origin,destination,ida,vuelta,document.getElementById('sb-personas')].forEach(function(el){
+      if(el) el.addEventListener('change',update);
+    });
+
+    form.addEventListener('submit',function(){
+      update();
+      if(typeof gtag==='function'){
+        gtag('event','click_comparar_seguros_gratis',{
+          event_category:'lead',
+          event_label:origin.value+'_a_'+destination.value,
+          page_location:location.href
+        });
+      }
+    });
+    update();
+  });
 })();
-
-function showExitPopup(){
-  shown = true;
-  var overlay = document.getElementById('exit-overlay');
-  if(!overlay) return;
-  overlay.style.display = 'flex';
-  document.body.style.overflow = 'hidden';
-  sessionStorage.setItem('vl_exit_shown','1');
-  if(typeof gtag !== 'undefined') gtag('event','exit_popup_shown',{page:location.pathname});
-}
-
-function closeExitPopup(){
-  dismissed = true;
-  var overlay = document.getElementById('exit-overlay');
-  if(!overlay) return;
-  overlay.style.display = 'none';
-  document.body.style.overflow = '';
-}
-
-// Close on overlay click
-document.getElementById('exit-overlay').addEventListener('click', function(e){
-  if(e.target === this) closeExitPopup();
-});
-
-// Close on Escape
-document.addEventListener('keydown', function(e){
-  if(e.key === 'Escape') closeExitPopup();
-});
 </script>
-<!-- ═══ END EXIT INTENT + STICKY ═══ -->
+
 </body>
 </html>

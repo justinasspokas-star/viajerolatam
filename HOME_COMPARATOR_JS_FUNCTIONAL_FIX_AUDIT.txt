@@ -1,0 +1,14 @@
+ViajeroLatam — homepage comparator JavaScript functional fix
+
+Fixed:
+- Active origin/destination swap arrows.
+- Active "Comparar gratis" button.
+- Date, traveller and estimated-price updates.
+- GA4 initialization and affiliate normalizer split into valid script blocks.
+- Removed a nested script tag that stopped the homepage JavaScript.
+
+Expected behavior:
+1. Click the arrows to exchange origin and destination.
+2. Click again to return to LATAM → destination.
+3. Click "Comparar gratis" to open /resultados/ with origin, destination, dates, days and travellers.
+4. Works on desktop and mobile.

@@ -1,0 +1,22 @@
+ViajeroLatam — reparación final del comparador
+
+Problema:
+- Las flechas se veían, pero no intercambiaban origen y destino.
+- El botón “Comparar gratis” no reaccionaba.
+- Había código conflictivo que también afectaba la parte inferior de la página.
+
+Solución aplicada:
+- Comparador reconstruido como formulario HTML nativo GET.
+- El botón funciona incluso si Analytics o cualquier otro JavaScript falla.
+- Flechas conectadas mediante un script aislado y addEventListener.
+- Fechas predeterminadas, validación de regreso y cálculo de días.
+- Parámetros enviados a /resultados/: origen, destino, ida, vuelta, personas y días.
+- Eliminados scripts antiguos y bloque emergente que podían romper el footer.
+- Texto inferior acortado para evitar desbordamiento.
+- Todos los bloques JavaScript validados con Node.js.
+
+Prueba:
+1. Abrir la home en incógnito.
+2. Pulsar flechas: deben intercambiar los selectores.
+3. Pulsar Comparar gratis: debe abrir /resultados/ con parámetros.
+4. Probar también en móvil.
