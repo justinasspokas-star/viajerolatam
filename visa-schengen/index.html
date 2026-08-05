@@ -1,323 +1,10 @@
 <!DOCTYPE html>
-
 <html lang="es">
 <head>
-<link as="image" href="/hero-bg.webp" rel="preload" type="image/webp"/>
-<style id="vl-responsive">
-/* ================================================
-   VIAJEROLATAM — RESPONSIVE CSS (definitive)
-   Works: mobile portrait, landscape, tablet, desktop
-   ================================================ */
-
-/* 1. PREVENT OVERFLOW ALWAYS */
-html { overflow-x: hidden; }
-body { overflow-x: hidden; max-width: 100vw; }
-*, *::before, *::after {
-  box-sizing: border-box;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-}
-img, video, iframe, svg {
-  max-width: 100%;
-  height: auto;
-}
-
-/* 2. MOBILE — 768px */
-@media screen and (max-width: 768px) {
-
-  /* NAV */
-  .nav-links { display: none !important; }
-  .mob-btn, #mob-btn { display: flex !important; }
-  nav { padding: 0 16px !important; height: 62px !important; }
-  nav img, .logo img, .brand-logo img {
-    height: 42px !important;
-    width: auto !important;
-    max-width: 180px !important;
-  }
-
-  /* HERO */
-  .hero, section.hero, header.hero {
-    padding: 68px 16px 32px !important;
-    min-height: auto !important;
-    text-align: center !important;
-    overflow: hidden !important;
-  }
-  .hero-inner, .hero-content, .hero-text {
-    position: relative !important;
-    z-index: 5 !important;
-    max-width: 100% !important;
-    padding: 0 !important;
-  }
-  .hero h1, h1 {
-    font-size: clamp(22px, 7vw, 34px) !important;
-    line-height: 1.2 !important;
-  }
-  .hero p, .hero-sub { font-size: 14px !important; }
-  .travel-icons, #travel-canvas, canvas { display: none !important; }
-  .hcard, .hero-card, aside.hero-card { display: none !important; }
-
-  /* BREADCRUMB */
-  .breadcrumb-bar, .bc, .breadcrumb {
-    padding: 8px 16px !important;
-    overflow-x: auto !important;
-    white-space: nowrap !important;
-  }
-
-  /* PAGE WRAPPER */
-  .page, .wrap, .inner, .container,
-  .article-inner, .content-wrap {
-    max-width: 100% !important;
-    width: 100% !important;
-    padding: 16px !important;
-    margin: 0 !important;
-    grid-template-columns: 1fr !important;
-  }
-
-  /* SIDEBAR — always hide */
-  .sidebar, .sticky-sidebar, aside,
-  .article-aside, [class*="sidebar"] {
-    display: none !important;
-  }
-
-  /* SECTIONS */
-  .section, section {
-    padding: 20px 16px !important;
-    border-radius: 12px !important;
-    margin-bottom: 14px !important;
-    overflow: hidden !important;
-  }
-
-  /* SECTION HEADERS with icon */
-  .sec-head, [class*="sec-head"], [class*="section-head"] {
-    padding: 12px 14px !important;
-    display: flex !important;
-    flex-wrap: wrap !important;
-    align-items: center !important;
-    gap: 8px !important;
-    min-width: 0 !important;
-  }
-  .sec-title, .sec-head h2, .sec-head h3,
-  [class*="sec-title"] {
-    font-size: 14px !important;
-    line-height: 1.35 !important;
-    word-break: break-word !important;
-    flex: 1 !important;
-    min-width: 0 !important;
-  }
-  .sec-icon {
-    flex-shrink: 0 !important;
-    width: 28px !important;
-    height: 28px !important;
-  }
-  .sec-body { padding: 14px !important; }
-
-  /* STEPS / PASOS */
-  .step-row, .paso {
-    display: flex !important;
-    flex-direction: row !important;
-    gap: 10px !important;
-    padding: 12px 0 !important;
-    align-items: flex-start !important;
-    min-width: 0 !important;
-  }
-  .step-num, .paso-num {
-    flex-shrink: 0 !important;
-    width: 26px !important;
-    height: 26px !important;
-    min-width: 26px !important;
-    font-size: 12px !important;
-  }
-  .step-title, .paso-title {
-    font-size: 13px !important;
-    font-weight: 700 !important;
-    line-height: 1.3 !important;
-    min-width: 0 !important;
-  }
-  .step-desc, .paso-desc {
-    font-size: 12px !important;
-    line-height: 1.5 !important;
-  }
-
-  /* H2 / H3 */
-  h2, .section-title, .sec-title {
-    font-size: clamp(18px, 5.5vw, 24px) !important;
-    line-height: 1.25 !important;
-    word-break: break-word !important;
-  }
-  h3 { font-size: clamp(15px, 5vw, 19px) !important; }
-  h4 { font-size: 14px !important; }
-  p, li { font-size: 13px !important; line-height: 1.6 !important; }
-
-  /* GRIDS */
-  [class*="grid"], [class*="Grid"] {
-    grid-template-columns: 1fr !important;
-    gap: 10px !important;
-  }
-  .req-grid, .sch-grid, .inc-grid, .steps-grid,
-  .related-grid, .cards-grid, .blog-grid {
-    grid-template-columns: 1fr !important;
-  }
-  .etias-vs, .vs-grid { grid-template-columns: 1fr !important; }
-  .footer-grid, .fg { grid-template-columns: 1fr 1fr !important; gap: 14px !important; }
-  .footer-grid > *:first-child, .fl { grid-column: 1 / -1 !important; }
-
-  /* TABLES */
-  table, .price-table, .comp-table {
-    display: block !important;
-    overflow-x: auto !important;
-    -webkit-overflow-scrolling: touch !important;
-    font-size: 12px !important;
-    width: 100% !important;
-    max-width: 100% !important;
-  }
-  td, th {
-    padding: 8px !important;
-    font-size: 12px !important;
-    min-width: 60px !important;
-    word-break: break-word !important;
-    white-space: normal !important;
-  }
-
-  /* BUTTONS */
-  .btn-row, .cta-row, .hero-cta, .btn-group {
-    flex-direction: column !important;
-    gap: 10px !important;
-    width: 100% !important;
-  }
-  .btn, .btn-cta, .btn-teal, .btn-primary,
-  .btn-secondary, a.btn, button.btn,
-  .leer-btn, .cta-btn, .sb-btn {
-    width: 100% !important;
-    text-align: center !important;
-    justify-content: center !important;
-    padding: 12px 16px !important;
-    font-size: 14px !important;
-  }
-
-  /* SEARCH */
-  .search-box, .sb-inner {
-    padding: 14px !important;
-    border-radius: 14px !important;
-  }
-  .sb-row, .search-dates-row {
-    grid-template-columns: 1fr 1fr !important;
-    gap: 8px !important;
-  }
-  .sb-field { min-width: 0 !important; }
-  .sb-full, .sb-btn { grid-column: 1 / -1 !important; }
-
-  /* COUNTRY CHIPS */
-  .pais-tags, .country-tags, [class*="pais-chip"],
-  [class*="country-chip"], [class*="flag-"] {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    gap: 6px !important;
-    width: 100% !important;
-  }
-
-  /* INFO BOXES */
-  .info-box, .tip-box, .alert-box, .cta-banner,
-  [class*="-box"], [class*="-banner"] {
-    flex-direction: column !important;
-    padding: 14px !important;
-    width: 100% !important;
-    border-radius: 10px !important;
-  }
-
-  /* BLOG CARDS */
-  .blog-card, .article-card, .featured {
-    padding: 14px !important;
-    border-radius: 12px !important;
-  }
-  .featured .btn, .leer-btn { width: 100% !important; margin-top: 10px !important; }
-
-  /* CALCULATOR */
-  .calc-results { grid-template-columns: 1fr !important; }
-  .dias-selector { flex-wrap: wrap !important; gap: 6px !important; }
-  .dias-btn { font-size: 12px !important; padding: 6px 10px !important; }
-
-  /* NEWSLETTER */
-  .nl-form { flex-direction: column !important; }
-  .nl-input, .nl-btn { width: 100% !important; }
-
-  /* TRUST STRIP */
-  .trust, .hero-badges, [class*="trust-"] {
-    flex-wrap: wrap !important;
-    justify-content: center !important;
-    gap: 8px !important;
-  }
-
-  /* STICKY + BODY PADDING */
-  #sticky-mob { display: block !important; }
-  body { padding-bottom: 84px !important; }
-
-  /* EXIT POPUP */
-  #exit-box {
-    padding: 24px 16px !important;
-    margin: 12px !important;
-    max-width: calc(100vw - 24px) !important;
-  }
-
-  /* FIX INLINE FIXED WIDTHS */
-  [style*="width:900px"], [style*="width: 900px"],
-  [style*="width:800px"], [style*="width: 800px"],
-  [style*="width:700px"], [style*="width: 700px"],
-  [style*="width:600px"], [style*="width: 600px"],
-  [style*="width:500px"], [style*="width: 500px"],
-  [style*="min-width:769px"], [style*="min-width: 769px"] {
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: unset !important;
-  }
-
-  /* LANDSCAPE MOBILE */
-  @media screen and (orientation: landscape) and (max-height: 500px) {
-    .hero, section.hero { padding: 52px 16px 20px !important; min-height: auto !important; }
-    h1 { font-size: 22px !important; }
-    #sticky-mob { display: none !important; }
-    body { padding-bottom: 0 !important; }
-  }
-}
-
-/* 3. TABLET — 481px to 1024px */
-@media screen and (min-width: 481px) and (max-width: 1024px) {
-  .page, .wrap, .inner, .container {
-    padding: 24px 20px !important;
-    max-width: 100% !important;
-  }
-  [class*="grid-4"], [class*="grid-3"] {
-    grid-template-columns: 1fr 1fr !important;
-  }
-  .footer-grid { grid-template-columns: 1fr 1fr !important; }
-  h1 { font-size: clamp(28px, 5vw, 48px) !important; }
-  h2 { font-size: clamp(22px, 4vw, 32px) !important; }
-}
-
-/* 4. SMALL PHONES — 380px */
-@media screen and (max-width: 380px) {
-  nav img, .logo img { height: 36px !important; }
-  h1 { font-size: 20px !important; }
-  h2 { font-size: 17px !important; }
-  .sec-title { font-size: 13px !important; }
-  .step-title, .paso-title { font-size: 13px !important; }
-  p, li { font-size: 12px !important; }
-  td, th { font-size: 11px !important; padding: 6px !important; }
-  .section, section { padding: 14px 12px !important; }
-  .sb-row, .search-dates-row { grid-template-columns: 1fr !important; }
-  #sticky-mob a { font-size: 14px !important; }
-}
-
-.vl-seo-cta{margin:34px 0;padding:24px;border-radius:24px;background:linear-gradient(135deg,#0B1F3A,#17365A);color:#fff;box-shadow:0 16px 42px rgba(11,31,58,.14)}
-.vl-seo-cta h2{color:#fff!important;margin:0 0 10px!important;font-family:'DM Serif Display',Georgia,serif!important;font-size:clamp(26px,3.2vw,38px)!important;line-height:1.12!important}.vl-seo-cta p{color:rgba(255,255,255,.76)!important;margin:0 0 16px!important;line-height:1.65!important}
-.vl-seo-cta .actions{display:flex;gap:10px;flex-wrap:wrap}.vl-seo-cta a{display:inline-flex;align-items:center;justify-content:center;padding:12px 18px;border-radius:999px;text-decoration:none!important;font-weight:900}.vl-seo-cta a.primary{background:#00C4A1;color:#0B1F3A!important}.vl-seo-cta a.secondary{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.20);color:#fff!important}
-.vl-related-links{margin:28px 0;padding:18px 20px;border-radius:20px;background:#F5F0E8;border:1px solid #EAE3D5}.vl-related-links strong{display:block;color:#0B1F3A;margin-bottom:8px}.vl-related-links a{display:inline-flex;margin:4px 10px 4px 0;color:#0B1F3A!important;font-weight:900;text-decoration:underline}
-@media(max-width:620px){.vl-seo-cta .actions{display:grid}.vl-seo-cta a{width:100%}}
-
-</style>
 <meta charset="utf-8"/>
-<meta content="fnxi-_Liw22SOQakruhikIUAjmf3u6mdT79inMc9x9A" name="google-site-verification"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<!-- Favicon / browser tab icon -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="google-site-verification" content="fnxi-_Liw22SOQakruhikIUAjmf3u6mdT79inMc9x9A"/>
+
 <link rel="icon" href="/favicon.ico" sizes="any"/>
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
@@ -325,1549 +12,519 @@ img, video, iframe, svg {
 <link rel="manifest" href="/site.webmanifest"/>
 <meta name="theme-color" content="#0B1F3A"/>
 
-<title>Visa Schengen LATAM 2026 | Países, ETIAS y seguro obligatorio</title>
-<meta content="Guía actualizada de visa Schengen para países LATAM: qué nacionalidades necesitan visa para España, quiénes deberán pedir ETIAS, seguro médico obligatorio y documentos." name="description"/>
-<meta content="index, follow" name="robots"/>
-<link href="https://viajerolatam.com/visa-schengen/" rel="canonical"/>
-<link href="https://viajerolatam.com/visa-schengen/" hreflang="es" rel="alternate"/>
-<link href="https://viajerolatam.com/visa-schengen/" hreflang="x-default" rel="alternate"/>
-<meta content="article" property="og:type"/>
-<meta content="https://viajerolatam.com/visa-schengen/" property="og:url"/>
-<meta content="Visa Schengen LATAM 2026 | Países, ETIAS y seguro obligatorio" property="og:title"/>
-<meta content="Tabla actualizada para viajeros LATAM: visa Schengen, ETIAS, seguro médico obligatorio y enlaces para comparar seguro por país." property="og:description"/>
-<meta content="https://viajerolatam.com/og-image.jpg" property="og:image"/>
-<meta content="ViajeroLatam" property="og:site_name"/>
-<meta content="summary_large_image" name="twitter:card"/>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "¿Qué países LATAM necesitan visa Schengen para viajar a España?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "En esta guía marcamos como países que deben revisar o tramitar visa Schengen a Bolivia, Cuba, Ecuador, República Dominicana y Haití. La situación puede variar por pasaporte, residencia o tipo de viaje, por eso siempre debe verificarse con el consulado o fuente oficial antes de viajar."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "¿Qué países LATAM no necesitan visa Schengen para turismo corto?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Para turismo corto de hasta 90 días en 180 días, suelen estar exentos de visa países como Argentina, Brasil, Chile, Colombia, Costa Rica, El Salvador, Guatemala, Honduras, México, Nicaragua, Panamá, Paraguay, Perú, Uruguay y Venezuela. Cuando ETIAS sea obligatorio, estos viajeros exentos deberán solicitar autorización ETIAS."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "¿El seguro médico es obligatorio para visa Schengen?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Sí. Para solicitar visa Schengen se exige seguro médico de viaje válido para los Estados Schengen, durante toda la estancia prevista, con cobertura mínima de 30.000 euros para urgencias médicas, hospitalización y repatriación."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "¿Necesito seguro si no necesito visa?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Puede no ser obligatorio para entrar como turista sin visa, pero es muy recomendable. España puede pedir documentos de viaje y una urgencia médica o repatriación puede ser costosa sin cobertura."
-      }
-    }
-  ]
-}
+<title>Visa Schengen para LATAM 2026/2027 | Seguro y ETIAS</title>
+<meta name="description" content="Guía clara sobre visa Schengen para latinoamericanos, seguro médico de viaje, ETIAS 2026/2027, países LATAM que necesitan visa y opciones para España."/>
+<link rel="canonical" href="https://viajerolatam.com/visa-schengen/"/>
+<meta name="robots" content="index, follow"/>
+
+<meta property="og:type" content="article"/>
+<meta property="og:title" content="Visa Schengen para LATAM 2026/2027 | Seguro y ETIAS"/>
+<meta property="og:description" content="Países LATAM que necesitan visa Schengen, seguro médico obligatorio cuando aplica, ETIAS y comparador de seguros para España."/>
+<meta property="og:url" content="https://viajerolatam.com/visa-schengen/"/>
+<meta property="og:image" content="https://viajerolatam.com/logo-vl-original-20260528.png"/>
+<meta property="og:site_name" content="ViajeroLatam"/>
+<meta name="twitter:card" content="summary_large_image"/>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P1Q2TSMVNJ"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){ dataLayer.push(arguments); }
+gtag('js', new Date());
+gtag('config', 'G-P1Q2TSMVNJ');
 </script>
-<link href="https://fonts.googleapis.com" rel="dns-prefetch"/>
-<link href="https://fonts.gstatic.com" rel="dns-prefetch"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link as="style" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" onload="this.onload=null;this.rel='stylesheet'" rel="preload"/>
-<noscript><link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/></noscript>
+
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://viajerolatam.com/"}, {"@type": "ListItem", "position": 2, "name": "Visa Schengen", "item": "https://viajerolatam.com/visa-schengen/"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Visa Schengen, seguro de viaje y ETIAS para viajeros LATAM", "description": "Hub actualizado sobre visa Schengen para latinoamericanos, seguro médico de viaje, ETIAS, países que necesitan visado y comparador de seguros para España.", "inLanguage": "es", "datePublished": "2026-07-26", "dateModified": "2026-08-05", "author": {"@type": "Organization", "name": "ViajeroLatam"}, "publisher": {"@type": "Organization", "name": "ViajeroLatam", "logo": {"@type": "ImageObject", "url": "https://viajerolatam.com/logo-vl-original-20260528.png"}}, "mainEntityOfPage": "https://viajerolatam.com/visa-schengen/"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "¿Un seguro de viaje garantiza la aprobación de la visa Schengen?", "acceptedAnswer": {"@type": "Answer", "text": "No. Un seguro válido puede ayudarte a cumplir el requisito médico del visado Schengen, pero no garantiza la aprobación. La decisión depende del consulado y de toda la documentación presentada."}}, {"@type": "Question", "name": "¿Qué cobertura médica mínima exige el visado Schengen?", "acceptedAnswer": {"@type": "Answer", "text": "La normativa del Código de Visados Schengen exige seguro médico de viaje válido en todo el territorio de los Estados miembros, durante toda la estancia o tránsito, con cobertura mínima de 30.000 euros para repatriación por motivos médicos, atención médica urgente y hospitalización de emergencia."}}, {"@type": "Question", "name": "¿Los mexicanos, colombianos, peruanos o argentinos necesitan visa Schengen para España?", "acceptedAnswer": {"@type": "Answer", "text": "En condiciones generales de turismo corto, esos pasaportes aparecen entre los exentos de visado para estancias de hasta 90 días en cualquier periodo de 180 días. Deben cumplir condiciones de entrada y, cuando ETIAS esté operativo, solicitar ETIAS si aplica."}}, {"@type": "Question", "name": "¿Qué países LATAM necesitan visa Schengen para España?", "acceptedAnswer": {"@type": "Answer", "text": "Según la lista europea actual, entre los países latinoamericanos que aparecen sujetos a visado están Bolivia, Cuba, Ecuador, Haití y República Dominicana. Revisa siempre el consulado correspondiente antes de viajar."}}, {"@type": "Question", "name": "¿ETIAS ya es obligatorio?", "acceptedAnswer": {"@type": "Answer", "text": "La web oficial de ETIAS indica que empezará a funcionar en el último trimestre de 2026 y que por ahora los viajeros no tienen que hacer ninguna solicitud."}}, {"@type": "Question", "name": "¿ETIAS sustituye al seguro de viaje?", "acceptedAnswer": {"@type": "Answer", "text": "No. ETIAS es una autorización de viaje para viajeros exentos de visado cuando esté operativa. El seguro es una póliza privada para asistencia médica, repatriación y otros imprevistos."}}, {"@type": "Question", "name": "¿El seguro es recomendable si no necesito visa?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. Aunque no siempre sea obligatorio para turismo corto con pasaporte exento de visado, puede ayudarte ante urgencias médicas, hospitalización, repatriación, equipaje o demoras."}}]}</script>
+
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{max-width:100%;overflow-x:hidden}
 :root{
-  --navy:#0B1F3A;--navy-mid:#1A3558;--teal:#00C4A1;--teal-dark:#009C7F;
-  --teal-pale:rgba(0,196,161,0.10);--sand:#F5F0E8;--sand-dark:#E8E2D8;
-  --white:#fff;--bg:#F0F4F8;--text-dark:#0B1F3A;--text-mid:#4A647E;
-  --text-light:#8FA4B8;--border:#E4EDF5;
-  --green-pale:#E8FDF4;--green:#0F6E56;
-  --amber-pale:#FEF3E2;--amber:#854F0B;
-  --red-pale:#FEE8E8;--red:#A32D2D;
-  --font-d:'DM Serif Display',Georgia,serif;
-  --font-b:'Plus Jakarta Sans',sans-serif;
-  --r-md:14px;--r-lg:20px;--r-xl:28px;
-  --sh:0 4px 24px rgba(11,31,58,0.08);
+  --navy:#0B1F3A; --navy2:#173C66; --teal:#00C4A1; --mint:#E7FAF5;
+  --cream:#F6F0E6; --bg:#F4F7FB; --border:#E3ECF5; --text:#0B1F3A;
+  --muted:#536B86; --soft:#F7FAFD; --white:#fff;
+  --display:'DM Serif Display',Georgia,serif; --body:'Plus Jakarta Sans',Arial,sans-serif;
 }
-html{scroll-behavior:smooth}
-body{font-family:var(--font-b);color:var(--text-dark);background:var(--bg);line-height:1.6;font-size:15px}
-
-nav{background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 5%;height:68px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
-.logo{display:flex;align-items:center;text-decoration:none}
-.logo img{height:58px;width:auto}
-.nav-links{display:flex;align-items:center;gap:24px}
-.nav-links a{font-size:14px;font-weight:500;color:var(--text-mid);text-decoration:none;transition:color .2s}
-.nav-links a:hover,.nav-links a.active{color:var(--navy)}
-.nav-cta{background:var(--navy);color:var(--white)!important;padding:9px 20px;border-radius:50px;font-weight:600!important}
-@media(max-width:700px){.nav-links{display:none}}
-
-.breadcrumb-bar{background:var(--white);border-bottom:1px solid var(--border);padding:10px 5%}
-.bc-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-light);flex-wrap:wrap}
-.bc-inner a{color:var(--text-mid);text-decoration:none}
-.bc-sep{color:var(--border)}
-
-/* HERO */
-.hero{background: url('/hero-bg.jpg') center center / cover no-repeat;padding:56px 5% 48px;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;inset:0;background: rgba(5,12,40,0.55);pointer-events:none}
-.hero-inner{max-width:1100px;margin:0 auto}
-.hero-eyebrow{display:inline-flex;align-items:center;gap:7px;background:rgba(0,196,161,0.15);border:1px solid rgba(0,196,161,0.3);border-radius:50px;padding:5px 14px;font-size:12px;font-weight:600;color:var(--teal);letter-spacing:0.04em;margin-bottom:20px}
-.hero h1{font-family:var(--font-d);font-size:clamp(30px,5vw,52px);color:var(--white);line-height:1.1;margin-bottom:16px;max-width:800px}
-.hero h1 em{color:var(--teal);font-style:italic}
-.hero-desc{font-size:16px;color:rgba(255,255,255,0.65);line-height:1.7;margin-bottom:32px;max-width:640px}
-
-/* REQUISITOS GRID */
-.req-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:1100px;margin:0 auto}
-@media(max-width:800px){.req-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:500px){.req-grid{grid-template-columns:1fr}}
-.req-card{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:var(--r-lg);padding:20px}
-.req-num{font-family:var(--font-d);font-size:32px;color:rgba(255,255,255,0.12);margin-bottom:8px;line-height:1}
-.req-label{font-size:11px;font-weight:700;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:5px}
-.req-val{font-size:15px;font-weight:600;color:var(--white);margin-bottom:4px}
-.req-check{font-size:11px;color:var(--teal);font-weight:600;display:flex;align-items:center;gap:4px}
-
-/* PAGE */
-.page{max-width:1100px;margin:0 auto;padding:36px 5%;display:grid;grid-template-columns:1fr 300px;gap:28px;align-items:start}
-@media(max-width:900px){.page{grid-template-columns:1fr}}
-
-/* SECTION */
-.section{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;margin-bottom:20px}
-.sec-head{padding:16px 22px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
-.sec-icon{width:32px;height:32px;border-radius:10px;background:var(--sand);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
-.sec-title{font-size:16px;font-weight:700;color:var(--navy)}
-.sec-body{padding:22px}
-
-/* PAÍSES TABLE */
-.paises-table{width:100%;border-collapse:collapse;font-size:13px}
-.paises-table th{padding:10px 12px;font-size:11px;font-weight:700;color:var(--text-light);text-transform:uppercase;letter-spacing:0.05em;background:var(--sand);text-align:left;border-bottom:1px solid var(--border)}
-.paises-table td{padding:12px;border-bottom:1px solid var(--border);vertical-align:middle}
-.paises-table tr:last-child td{border-bottom:none}
-.paises-table tr:hover td{background:rgba(0,196,161,0.03)}
-.badge-visa{font-size:10px;font-weight:700;padding:3px 8px;border-radius:10px}
-.bv-yes{background:var(--red-pale);color:var(--red)}
-.bv-no{background:var(--green-pale);color:var(--green)}
-.bv-etias{background:var(--amber-pale);color:var(--amber)}
-.flag-name{display:flex;align-items:center;gap:8px;font-weight:600;color:var(--text-dark)}
-.flag-emoji{font-size:18px}
-.seg-link{color:var(--teal-dark);text-decoration:none;font-weight:600;font-size:12px}
-.seg-link:hover{text-decoration:underline}
-
-/* COMPARATIVA */
-.comp-row{display:grid;grid-template-columns:auto 1fr auto auto auto auto;gap:12px;align-items:center;padding:14px 16px;border-bottom:1px solid var(--border)}
-.comp-row:last-child{border-bottom:none}
-.comp-row.winner{background:rgba(0,196,161,0.04);border-left:3px solid var(--teal)}
-.ins-box{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:var(--font-d);font-size:14px;flex-shrink:0}
-.ins-name{font-size:14px;font-weight:700;color:var(--navy)}
-.ins-sub{font-size:11px;color:var(--text-light)}
-.price-main{font-family:var(--font-d);font-size:20px;color:var(--navy);text-align:right}
-.price-day{font-size:10px;color:var(--text-light);text-align:right}
-.check-ok{color:var(--green);font-size:14px;text-align:center}
-.check-warn{color:var(--amber);font-size:12px;text-align:center}
-.btn-ver{background:var(--navy);color:var(--white);border:none;border-radius:50px;padding:8px 16px;font-family:var(--font-b);font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;transition:background .2s}
-.btn-ver:hover{background:var(--navy-mid)}
-.comp-row.winner .btn-ver{background:var(--teal);color:var(--navy)}
-.comp-row.winner .btn-ver:hover{background:var(--teal-dark)}
-
-/* PASO A PASO */
-.paso{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--border)}
-.paso:last-child{border-bottom:none}
-.paso-num{width:30px;height:30px;border-radius:50%;background:var(--navy);color:var(--white);font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
-.paso-title{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:5px}
-.paso-desc{font-size:13px;color:var(--text-mid);line-height:1.65}
-.paso-tip{font-size:11px;color:var(--teal-dark);background:var(--teal-pale);border-radius:6px;padding:5px 10px;margin-top:6px;display:inline-block;font-weight:500}
-
-/* FAQ */
-details{border-bottom:1px solid var(--border)}
-details:last-child{border-bottom:none}
-details summary{padding:15px 0;font-size:14px;font-weight:600;color:var(--text-dark);cursor:pointer;display:flex;justify-content:space-between;align-items:center;list-style:none}
-details summary::marker,details summary::-webkit-details-marker{display:none}
-.faq-icon{width:22px;height:22px;border-radius:50%;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--text-mid);flex-shrink:0}
-details[open] .faq-icon{border-color:var(--teal);color:var(--teal)}
-.faq-ans{font-size:14px;color:var(--text-mid);line-height:1.75;padding-bottom:15px}
-.faq-ans strong{color:var(--text-dark)}
-.faq-ans a{color:var(--teal-dark);text-decoration:none}
-
-/* ETIAS BOX */
-.etias-box{background:linear-gradient(135deg,#062040,#0D3560);border-radius:var(--r-lg);padding:24px;margin-bottom:20px;border:1px solid rgba(0,196,161,0.2)}
-.etias-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(0,196,161,0.15);border:1px solid rgba(0,196,161,0.3);border-radius:50px;padding:4px 12px;font-size:11px;font-weight:700;color:var(--teal);margin-bottom:12px}
-.etias-title{font-family:var(--font-d);font-size:20px;color:var(--white);margin-bottom:10px}
-.etias-desc{font-size:13px;color:rgba(255,255,255,0.6);line-height:1.7;margin-bottom:14px}
-.etias-paises{display:flex;flex-wrap:wrap;gap:6px}
-.etias-pais{background:rgba(255,255,255,0.08);border-radius:20px;padding:4px 10px;font-size:12px;color:rgba(255,255,255,0.75)}
-
-/* SIDEBAR */
-.sidebar{position:sticky;top:88px;display:flex;flex-direction:column;gap:14px}
-@media(max-width:900px){.sidebar{display:none}}
-.sb-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden}
-.sb-head{background:var(--navy);padding:14px 18px}
-.sb-title{font-size:13px;font-weight:600;color:var(--white);margin-bottom:3px}
-.sb-sub{font-size:11px;color:rgba(255,255,255,0.5)}
-.sb-body{padding:16px 18px}
-.sb-item{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px}
-.sb-item:last-child{border-bottom:none}
-.sb-label{color:var(--text-mid)}
-.sb-val{font-weight:600;color:var(--text-dark)}
-.btn-sb{width:100%;background:var(--teal);color:var(--navy);border:none;border-radius:50px;padding:12px;font-family:var(--font-b);font-size:14px;font-weight:700;cursor:pointer;margin-top:12px;display:block;text-align:center;text-decoration:none;transition:background .2s}
-.btn-sb:hover{background:var(--teal-dark)}
-.info-note{background:var(--sand);border-radius:var(--r-md);padding:12px 14px;font-size:12px;color:var(--text-mid);line-height:1.6;border-left:3px solid var(--teal)}
-.info-note strong{color:var(--text-dark);display:block;margin-bottom:3px}
-
-/* DEST LINKS */
-.dest-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.dest-link{display:flex;align-items:center;gap:8px;padding:10px 14px;background:var(--sand);border-radius:var(--r-md);text-decoration:none;font-size:13px;font-weight:500;color:var(--text-dark);border:1px solid var(--sand-dark);transition:all .2s}
-.dest-link:hover{background:var(--white);transform:translateY(-1px);border-color:var(--teal)}
-
-/* FOOTER */
-footer{background:var(--navy);padding:44px 5% 26px;margin-top:40px}
-.footer-inner{max-width:1100px;margin:0 auto}
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:36px}
-@media(max-width:700px){.footer-grid{grid-template-columns:1fr 1fr}}
-.footer-logo img{height:44px;margin-bottom:12px}
-.footer-desc{font-size:13px;color:rgba(255,255,255,0.4);line-height:1.7;max-width:240px}
-.footer-col h4{font-size:11px;font-weight:700;color:var(--white);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px}
-.footer-col a{display:block;font-size:13px;color:rgba(255,255,255,0.45);text-decoration:none;margin-bottom:8px;transition:color .2s}
-.footer-col a:hover{color:var(--teal)}
-.footer-bottom{border-top:1px solid rgba(255,255,255,0.07);padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
-.footer-bottom p{font-size:12px;color:rgba(255,255,255,0.3)}
-
-/* LOGO FIX — visible, transparent, no ghost/fade */
-nav .logo,
-.logo{opacity:1!important;filter:none!important;mix-blend-mode:normal!important}
-.logo img,
-.logo-img,
-.logo-img-header,
-nav .logo img{
-  opacity:1!important;
-  filter:none!important;
-  mix-blend-mode:normal!important;
-  background:transparent!important;
-  box-shadow:none!important;
+body{font-family:var(--body);background:var(--bg);color:var(--text);line-height:1.66}
+a{color:inherit}
+nav{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.96);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:9px 5%;backdrop-filter:blur(12px)}
+.logo img{height:55px;width:auto;display:block}
+.nav-links{display:flex;gap:18px;align-items:center}
+.nav-links a{font-size:14px;text-decoration:none;font-weight:800;color:var(--muted)}
+.nav-links .cta{background:var(--navy);color:#fff;border-radius:999px;padding:10px 16px}
+.mobile-nav-cta{display:none;text-decoration:none;background:var(--teal);color:var(--navy);border-radius:999px;padding:9px 13px;font-weight:900;font-size:13px}
+.hero{background:radial-gradient(circle at 13% 17%,rgba(0,196,161,.25),transparent 30%),linear-gradient(135deg,#071A33,#173C66);color:#fff;padding:66px 5% 58px}
+.hero-inner{max-width:1180px;margin:auto;display:grid;grid-template-columns:minmax(0,1fr) 365px;gap:34px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:8px 13px;color:#9EEBD6;font-size:13px;font-weight:900;margin-bottom:16px}
+h1{font-family:var(--display);font-size:clamp(42px,6vw,72px);line-height:1.02;letter-spacing:-.035em;margin-bottom:16px}
+h1 em{color:#8DE0C5;font-style:italic}
+.hero p{font-size:18px;color:rgba(255,255,255,.84);max-width:780px}
+.btn-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+.btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;border-radius:999px;padding:13px 18px;font-weight:900;border:1px solid transparent;cursor:pointer}
+.btn-primary{background:var(--teal);color:var(--navy)}
+.btn-secondary{background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.25);color:#fff}
+.hero-card{background:#fff;color:var(--navy);border-radius:28px;padding:24px;box-shadow:0 24px 70px rgba(0,0,0,.25)}
+.hero-card strong{display:block;font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--teal);margin-bottom:9px}
+.hero-card ul{list-style:none;margin:14px 0 0 0}
+.hero-card li{position:relative;padding-left:28px;margin:10px 0;color:var(--muted);font-size:14px}
+.hero-card li:before{content:'✓';position:absolute;left:0;top:0;color:var(--teal);font-weight:900}
+main{max-width:1180px;margin:auto;padding:32px 22px 80px;display:grid;grid-template-columns:minmax(0,1fr) 318px;gap:24px}
+article,aside{min-width:0}
+section,.box{background:#fff;border:1px solid var(--border);border-radius:26px;padding:26px;margin-bottom:18px;box-shadow:0 10px 28px rgba(11,31,58,.045)}
+.answer{background:var(--mint);border-color:#BDEEE2}
+.kicker{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--teal);font-weight:900;margin-bottom:8px}
+h2{font-family:var(--display);font-size:clamp(28px,4vw,42px);line-height:1.1;margin:4px 0 14px;color:var(--navy)}
+h3{font-size:20px;margin:20px 0 8px;color:var(--navy)}
+p{color:var(--muted);margin-bottom:13px}
+ul,ol{margin:12px 0 0 22px;color:var(--muted)}
+li{margin:8px 0}
+.quick-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:16px}
+.quick-card{background:#fff;border:1px solid var(--border);border-radius:18px;padding:16px}
+.quick-card strong{display:block;color:var(--navy);margin-bottom:6px}
+.table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:20px;background:#fff;margin-top:16px}
+table{width:100%;border-collapse:collapse;min-width:760px}
+th,td{padding:13px 14px;border-bottom:1px solid var(--border);text-align:left;font-size:14px;color:var(--muted);vertical-align:top}
+th{background:var(--navy);color:#fff;font-weight:900}
+td a{font-weight:900;color:var(--navy);text-decoration:none}
+.badge{display:inline-flex;border-radius:999px;padding:5px 10px;font-weight:900;font-size:12px}
+.badge.ok{background:#E9F8F3;color:#007F67}
+.badge.visa{background:#FFF0DB;color:#9A5800}
+.search-box{display:flex;gap:10px;margin-top:14px}
+.search-box input{width:100%;border:1px solid var(--border);border-radius:999px;padding:13px 16px;font:inherit}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:16px}
+.card{background:var(--soft);border:1px solid var(--border);border-radius:18px;padding:16px}
+.card strong{display:block;color:var(--navy);margin-bottom:5px}
+.note{font-size:13px;background:#FFF8E7;border:1px solid #F0D99A;color:#665017;border-radius:16px;padding:13px;margin-top:12px}
+.cta-panel{background:linear-gradient(135deg,var(--navy),#173C66);color:white;border-radius:28px;padding:28px;margin:22px 0;box-shadow:0 18px 48px rgba(11,31,58,.16)}
+.cta-panel h2,.cta-panel p{color:white}
+.cta-panel p{opacity:.84}
+.mini-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:16px}
+.mini-card{display:flex;gap:12px;align-items:flex-start;text-decoration:none;background:var(--soft);border:1px solid var(--border);border-radius:18px;padding:15px;color:var(--navy)}
+.mini-icon{font-size:24px;line-height:1}
+.mini-card strong{display:block;margin-bottom:3px}
+.mini-card span{display:block;color:var(--muted);font-size:13px}
+.side-card{position:sticky;top:86px;background:#fff;border:1px solid var(--border);border-radius:26px;padding:20px;box-shadow:0 10px 28px rgba(11,31,58,.05)}
+.side-card h3{margin-top:0}
+.side-card a{display:block;text-decoration:none;border-radius:14px;padding:12px;margin-top:9px;background:#F5F8FC;color:var(--navy);font-weight:900;font-size:14px}
+.side-card a.primary{background:var(--teal);text-align:center}
+.source-box{font-size:13px;background:#F7FAFD;border:1px solid var(--border);border-radius:20px;padding:18px;color:var(--muted)}
+.source-box a{font-weight:800;color:var(--navy)}
+footer{background:var(--navy);color:rgba(255,255,255,.72);padding:34px 5%;margin-top:40px}
+.footer-inner{max-width:1180px;margin:auto;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.footer-inner a{color:rgba(255,255,255,.82);text-decoration:none;margin-right:14px}
+.mobile-sticky{display:none}
+@media(max-width:900px){
+  nav{padding:8px 16px} .logo img{height:44px} .nav-links{display:none} .mobile-nav-cta{display:inline-flex}
+  .hero{padding:42px 16px 36px} .hero-inner{grid-template-columns:1fr} .hero-card{display:none}
+  .hero p{font-size:15px}
+  main{display:block;padding:24px 14px 92px}
+  section,.box,.cta-panel{padding:20px;border-radius:22px}
+  .quick-grid,.grid,.mini-grid{grid-template-columns:1fr}
+  .btn-row{display:grid;grid-template-columns:1fr}
+  .btn{width:100%;text-align:center}
+  .side-card{display:none}
+  .table-wrap{border-radius:18px}
+  table{min-width:0}
+  thead{display:none}
+  tr{display:block;border-bottom:1px solid var(--border);padding:10px 0}
+  td{display:grid;grid-template-columns:43% 57%;gap:10px;border-bottom:0;padding:8px 12px}
+  td:nth-child(1)::before{content:'País';font-weight:900;color:var(--navy)}
+  td:nth-child(2)::before{content:'Visa';font-weight:900;color:var(--navy)}
+  td:nth-child(3)::before{content:'Seguro';font-weight:900;color:var(--navy)}
+  td:nth-child(4)::before{content:'ETIAS';font-weight:900;color:var(--navy)}
+  td:nth-child(5)::before{content:'Guía';font-weight:900;color:var(--navy)}
+  .mobile-sticky{display:block;position:fixed;left:14px;right:14px;bottom:14px;z-index:100;text-align:center}
+  .mobile-sticky .btn{box-shadow:0 16px 40px rgba(0,196,161,.35)}
 }
-nav .logo img,
-.logo-img-header{height:58px!important;max-width:300px!important;width:auto!important;object-fit:contain!important}
-@media(max-width:700px){
-  nav .logo img,
-  .logo-img-header{height:44px!important;max-width:220px!important}
-}
-
-
-/* InterMundial affiliate CTA */
-.intermundial-affiliate-box{
-  margin-top:24px;
-  padding:22px;
-  border-radius:22px;
-  border:1px solid rgba(0,196,161,.25);
-  background:linear-gradient(135deg,rgba(0,196,161,.10),rgba(245,240,232,.72));
-}
-.intermundial-affiliate-box h3{margin:0 0 8px;color:#0B1F3A}
-.intermundial-affiliate-box p{margin:0 0 14px;color:#4A647E}
-.intermundial-coupon{
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  background:#fff;
-  border:1px dashed #00A989;
-  color:#0B1F3A;
-  padding:8px 12px;
-  border-radius:12px;
-  font-weight:900;
-  margin:0 0 14px;
-}
-.intermundial-btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  background:#0B1F3A;
-  color:#fff!important;
-  text-decoration:none!important;
-  padding:13px 22px;
-  border-radius:999px;
-  font-weight:900;
-}
-
-
-/* Trust checklist + conversion blocks */
-.vl-trust-block{margin:34px auto;padding:26px;border-radius:26px;background:#F5F0E8;border:1px solid #EAE3D5;max-width:1120px}
-.vl-trust-block h2,.vl-trust-block h3{color:#0B1F3A;margin-bottom:12px}
-.vl-trust-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
-.vl-trust-item{background:#fff;border:1px solid #EAE3D5;border-radius:18px;padding:18px}
-.vl-trust-item strong{display:block;color:#0B1F3A;margin-bottom:5px}
-.vl-trust-item p{color:#4A647E;font-size:14px;line-height:1.6;margin:0}
-.vl-affiliate-transparency{margin:26px auto;padding:18px 20px;border-left:4px solid #00C4A1;background:rgba(0,196,161,.08);border-radius:16px;color:#4A647E;max-width:1120px;font-size:14px;line-height:1.65}
-.vl-cta-comparison{margin:30px auto;padding:28px;border-radius:26px;background:linear-gradient(135deg,#0B1F3A,#1A3558);color:#fff;max-width:1120px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
-.vl-cta-comparison h3{font-size:24px;margin:0 0 6px;color:#fff}
-.vl-cta-comparison p{color:rgba(255,255,255,.7);margin:0}
-.vl-cta-buttons{display:flex;gap:10px;flex-wrap:wrap}
-.vl-cta-btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 20px;border-radius:999px;text-decoration:none!important;font-weight:900}
-.vl-cta-btn.primary{background:#00C4A1;color:#0B1F3A!important}
-.vl-cta-btn.secondary{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.22);color:#fff!important}
-.vl-coupon-mini{display:inline-flex;background:#fff;color:#0B1F3A;border:1px dashed #00A989;border-radius:10px;padding:6px 10px;font-weight:900;font-size:13px;margin-top:8px}
-@media(max-width:800px){.vl-trust-grid{grid-template-columns:1fr}.vl-cta-comparison{align-items:flex-start}.vl-cta-buttons{width:100%}.vl-cta-btn{width:100%}}
-
-
-/* ViajeroLatam original logo — desktop/mobile fix */
-.site-header .brand-logo,
-nav .brand-logo{
-  display:inline-flex;
-  align-items:center;
-  flex:0 0 auto;
-  min-width:170px;
-  max-width:260px;
-  height:62px;
-  text-decoration:none;
-}
-.site-header .brand-logo picture,
-nav .brand-logo picture{display:flex;align-items:center;height:100%}
-.site-header .brand-logo img,
-nav .brand-logo img,
-.brand-logo img{
-  display:block!important;
-  width:auto!important;
-  height:56px!important;
-  max-width:250px!important;
-  object-fit:contain!important;
-}
-@media(max-width:768px){
-  .site-header .brand-logo,
-  nav .brand-logo{
-    min-width:138px;
-    max-width:180px;
-    height:54px;
-  }
-  .site-header .brand-logo img,
-  nav .brand-logo img,
-  .brand-logo img{
-    height:46px!important;
-    max-width:178px!important;
-  }
-}
-@media(max-width:380px){
-  .site-header .brand-logo,
-  nav .brand-logo{max-width:155px;min-width:125px}
-  .site-header .brand-logo img,
-  nav .brand-logo img,
-  .brand-logo img{height:40px!important;max-width:155px!important}
-}
-
-
-/* LOGO FIX — exact original logo, larger and clearer on desktop/mobile */
-a.brand-logo, a.logo, .mobile-logo, .footer-logo{
-  display:inline-flex !important;
-  align-items:center !important;
-  text-decoration:none !important;
-}
-nav a.brand-logo, nav a.logo{
-  flex:0 0 auto !important;
-  min-width:220px !important;
-  max-width:320px !important;
-  height:72px !important;
-}
-nav a.brand-logo img, nav a.logo img,
-.mobile-logo img, .footer-logo img, .fl img{
-  display:block !important;
-  width:auto !important;
-  height:64px !important;
-  max-width:320px !important;
-  object-fit:contain !important;
-  opacity:1 !important;
-  filter:none !important;
-  mix-blend-mode:normal !important;
-}
-@media (max-width: 768px){
-  nav{min-height:74px !important}
-  nav a.brand-logo, nav a.logo{
-    min-width:150px !important;
-    max-width:220px !important;
-    height:58px !important;
-  }
-  nav a.brand-logo img, nav a.logo img,
-  .mobile-logo img, .footer-logo img, .fl img{
-    height:48px !important;
-    max-width:210px !important;
-  }
-}
-@media (max-width: 420px){
-  nav a.brand-logo, nav a.logo{
-    min-width:135px !important;
-    max-width:190px !important;
-    height:52px !important;
-  }
-  nav a.brand-logo img, nav a.logo img,
-  .mobile-logo img, .footer-logo img, .fl img{
-    height:42px !important;
-    max-width:185px !important;
-  }
-}
-
-
-/* EXACT COLOR LOGO FIX */
-a.brand-logo img,
-a.logo img,
-.mobile-logo img,
-.footer-logo img,
-.fl img{
-  opacity: 1 !important;
-  filter: none !important;
-  mix-blend-mode: normal !important;
-  image-rendering: -webkit-optimize-contrast !important;
-  object-fit: contain !important;
-  background: transparent !important;
-}
-nav a.brand-logo, nav a.logo{
-  display:inline-flex !important;
-  align-items:center !important;
-  min-height:72px !important;
-}
-nav a.brand-logo img, nav a.logo img{
-  height:64px !important;
-  width:auto !important;
-  max-width:320px !important;
-}
-@media (max-width:768px){
-  nav a.brand-logo img, nav a.logo img,
-  .mobile-logo img{
-    height:44px !important;
-    width:auto !important;
-    max-width:200px !important;
-  }
-}
-
-
-/* CACHE-BUSTER LOGO FIX */
-a.brand-logo, a.logo, .mobile-logo, .footer-logo {opacity:1 !important; filter:none !important;}
-a.brand-logo img, a.logo img, .mobile-logo img, .footer-logo img, header img[src*="logo"]{
-  opacity:1 !important;
-  filter:none !important;
-  mix-blend-mode:normal !important;
-  object-fit:contain !important;
-  image-rendering:auto !important;
-  background:transparent !important;
-}
-nav a.brand-logo img, nav a.logo img{height:64px !important; width:auto !important; max-width:320px !important;}
-@media (max-width:768px){ nav a.brand-logo img, nav a.logo img, .mobile-logo img{height:44px !important; max-width:220px !important;} }
-
-
-/* Mobile header + CTA conversion polish */
-@media (max-width: 768px){
-  nav{
-    min-height:72px!important;
-    padding:8px 16px!important;
-    gap:10px!important;
-  }
-  nav .nav-links{
-    gap:8px!important;
-  }
-  nav .nav-links a:not(.nav-cta){
-    display:none!important;
-  }
-  nav .nav-cta{
-    display:inline-flex!important;
-    align-items:center!important;
-    justify-content:center!important;
-    padding:10px 15px!important;
-    font-size:13px!important;
-    white-space:nowrap!important;
-    border-radius:999px!important;
-  }
-  .hero{
-    padding-top:56px!important;
-    padding-bottom:54px!important;
-  }
-  .hero-inner{
-    gap:26px!important;
-  }
-  .hero h1,
-  h1{
-    font-size:clamp(38px,11vw,52px)!important;
-    line-height:1.04!important;
-  }
-  .hero p{
-    font-size:16px!important;
-  }
-  .hero-box{
-    border-radius:22px!important;
-    padding:20px!important;
-  }
-  .btn-row,
-  .vl-cta-buttons{
-    display:grid!important;
-    grid-template-columns:1fr!important;
-    width:100%!important;
-  }
-  .btn,
-  .vl-cta-btn,
-  .intermundial-btn{
-    width:100%!important;
-    min-height:48px!important;
-    text-align:center!important;
-  }
-  .cards{
-    gap:16px!important;
-  }
-  .insurer{
-    padding:22px!important;
-  }
-  .vl-trust-block{
-    margin:24px 16px!important;
-    padding:22px!important;
-    border-radius:22px!important;
-  }
-  .vl-cta-comparison{
-    margin:24px 16px!important;
-    padding:22px!important;
-    border-radius:22px!important;
-  }
-}
-
-/* Sticky mobile affiliate bar */
-.mobile-affiliate-bar{
-  position:fixed;
-  left:12px;
-  right:12px;
-  bottom:12px;
-  z-index:999;
-  display:none;
-  gap:8px;
-  padding:9px;
-  border-radius:999px;
-  background:rgba(11,31,58,.94);
-  box-shadow:0 18px 45px rgba(0,0,0,.24);
-  backdrop-filter:blur(12px);
-}
-.mobile-affiliate-bar a{
-  flex:1;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  min-height:42px;
-  border-radius:999px;
-  text-decoration:none!important;
-  font-weight:900;
-  font-size:13px;
-}
-.mobile-affiliate-bar .ma-primary{background:#00C4A1;color:#0B1F3A!important}
-.mobile-affiliate-bar .ma-secondary{background:#fff;color:#0B1F3A!important}
-@media (max-width:768px){
-  body{padding-bottom:74px!important}
-  .mobile-affiliate-bar{display:flex}
-}
-
-</style>
-<!-- Google Analytics 4 -->
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-P1Q2TSMVNJ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-P1Q2TSMVNJ');
-</script>
-<style>@font-face{font-display:swap}</style>
-<meta content="es_CO" property="og:locale"/>
-<meta content="ViajeroLatam" property="og:site_name"/>
-<style id="no-travel-icons">.travel-icons,#travel-canvas,canvas{display:none!important}</style>
-<style id="webp-hero">@supports(background-image:url("data:image/webp,")){.hero,section.hero{background-image:url('/hero-bg.webp')!important}}</style>
-<meta content="Visa Schengen 2026 | Seguro de viaje, requisitos y documentos" name="twitter:title"/><meta content="Guía de visa Schengen para latinoamericanos: requisitos, seguro médico de viaje, cobertura mínima, ETIAS y documentos para viajar a España y Europa." name="twitter:description"/><style id="vl-single-compare-cta-style">
-
-/* Mobile sticky CTA — one clean compare button */
-.mobile-affiliate-bar.single-compare-cta,
-.mobile-affiliate-bar.vl-single-compare-cta{
-  background:rgba(255,255,255,.96)!important;
-  border:1px solid #E4EDF5!important;
-  border-radius:22px!important;
-  padding:10px 12px 9px!important;
-  flex-direction:column!important;
-  gap:6px!important;
-  box-shadow:0 16px 45px rgba(11,31,58,.18)!important;
-}
-.mobile-affiliate-bar.single-compare-cta .ma-big,
-.mobile-affiliate-bar.vl-single-compare-cta .ma-big{
-  width:100%!important;
-  min-height:52px!important;
-  border-radius:999px!important;
-  background:#69C7AD!important;
-  color:#0B1F3A!important;
-  font-size:15px!important;
-  font-weight:900!important;
-  box-shadow:0 10px 22px rgba(0,196,161,.24)!important;
-}
-.mobile-affiliate-bar.single-compare-cta span,
-.mobile-affiliate-bar.vl-single-compare-cta span{
-  display:block;
-  text-align:center;
-  font-size:11px;
-  line-height:1.25;
-  color:#8FA4B8;
-  font-weight:600;
-}
-@media(max-width:480px){
-  .mobile-affiliate-bar.single-compare-cta .ma-big,
-  .mobile-affiliate-bar.vl-single-compare-cta .ma-big{font-size:14px!important}
-  .mobile-affiliate-bar.single-compare-cta span,
-  .mobile-affiliate-bar.vl-single-compare-cta span{font-size:10.5px}
-}
-
-</style>
-
-<style id="vl-visa-latam-update">
-.vl-update-note{
-  margin:0 0 16px;
-  padding:14px 16px;
-  border-radius:16px;
-  background:rgba(0,196,161,.08);
-  border:1px solid rgba(0,196,161,.22);
-  color:#4A647E;
-  font-size:13px;
-  line-height:1.65;
-}
-.vl-country-summary{
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:12px;
-  padding:16px 18px 0;
-}
-.vl-country-summary .mini{
-  background:#F5F0E8;
-  border:1px solid #EAE3D5;
-  border-radius:16px;
-  padding:14px;
-}
-.vl-country-summary strong{
-  display:block;
-  color:#0B1F3A;
-  font-size:20px;
-  line-height:1;
-  margin-bottom:5px;
-}
-.vl-country-summary span{
-  color:#4A647E;
-  font-size:12px;
-  line-height:1.45;
-}
-#visa-country-table .paises-table{
-  min-width:760px;
-}
-#visa-country-table .country-note{
-  display:block;
-  font-size:11px;
-  color:#6F8299;
-  line-height:1.35;
-  margin-top:3px;
-}
-#visa-country-table .badge-visa{
-  display:inline-flex;
-  align-items:center;
-  white-space:nowrap;
-}
-#visa-country-table .link-seguro,
-#visa-country-table .seg-link{
-  color:#008E78!important;
-  font-weight:900!important;
-  text-decoration:none!important;
-}
-#visa-country-table .link-seguro:hover,
-#visa-country-table .seg-link:hover{
-  text-decoration:underline!important;
-}
-.vl-source-box{
-  margin:16px 18px 20px;
-  padding:16px;
-  border-radius:16px;
-  background:#fff;
-  border:1px solid #EAE3D5;
-  color:#4A647E;
-  font-size:13px;
-  line-height:1.65;
-}
-.vl-source-box strong{color:#0B1F3A}
-.vl-source-box a{color:#008E78;font-weight:800}
-@media(max-width:760px){
-  .vl-country-summary{grid-template-columns:1fr;padding:14px}
-  #visa-country-table{overflow:visible!important}
-  #visa-country-table .paises-table{
-    min-width:0!important;
-    width:100%!important;
-    display:block!important;
-    border-collapse:separate!important;
-  }
-  #visa-country-table .paises-table thead{display:none!important}
-  #visa-country-table .paises-table tbody{display:block!important}
-  #visa-country-table .paises-table tr{
-    display:block!important;
-    background:#fff;
-    border:1px solid #E4EDF5;
-    border-radius:18px;
-    margin:12px 0;
-    overflow:hidden;
-    box-shadow:0 8px 22px rgba(11,31,58,.04);
-  }
-  #visa-country-table .paises-table td{
-    display:flex!important;
-    justify-content:space-between;
-    gap:14px;
-    align-items:flex-start;
-    padding:12px 14px!important;
-    border-bottom:1px solid #EEF2F6!important;
-    min-width:0!important;
-    font-size:13px!important;
-    text-align:right;
-  }
-  #visa-country-table .paises-table td:last-child{border-bottom:none!important}
-  #visa-country-table .paises-table td::before{
-    content:attr(data-label);
-    flex:0 0 42%;
-    color:#8FA4B8;
-    font-size:11px;
-    font-weight:900;
-    text-transform:uppercase;
-    letter-spacing:.04em;
-    text-align:left;
-  }
-  #visa-country-table .flag-name{
-    justify-content:flex-end;
-    text-align:right;
-  }
-  #visa-country-table .country-note{text-align:right}
+@media(max-width:420px){
+  h1{font-size:34px} h2{font-size:28px}
+  td{grid-template-columns:1fr;gap:3px}
 }
 </style>
-
-<!-- VL VISA LATAM UPDATE 2026 -->
-
-<style id="vl-visa-mobile-table-final-fix">
-@media(max-width:760px){
-  body{padding-bottom:112px!important;}
-  .page{
-    padding-left:12px!important;
-    padding-right:12px!important;
-  }
-  .section{
-    border-radius:22px!important;
-    overflow:hidden!important;
-  }
-  .sec-head{
-    padding:16px 18px!important;
-    align-items:flex-start!important;
-  }
-  .sec-title{
-    font-size:16px!important;
-    line-height:1.35!important;
-  }
-  #visa-country-table{
-    overflow:visible!important;
-    padding:0 12px 14px!important;
-  }
-  #visa-country-table .paises-table,
-  #visa-country-table .paises-table tbody,
-  #visa-country-table .paises-table tr,
-  #visa-country-table .paises-table td{
-    display:block!important;
-    width:100%!important;
-    min-width:0!important;
-  }
-  #visa-country-table .paises-table{
-    border-collapse:separate!important;
-    border-spacing:0!important;
-    font-size:14px!important;
-  }
-  #visa-country-table .paises-table thead{
-    display:none!important;
-  }
-  #visa-country-table .paises-table tr{
-    margin:14px 0!important;
-    border:1px solid #E4EDF5!important;
-    border-radius:22px!important;
-    background:#fff!important;
-    box-shadow:0 10px 28px rgba(11,31,58,.06)!important;
-    overflow:hidden!important;
-  }
-  #visa-country-table .paises-table td{
-    padding:14px 16px!important;
-    border:0!important;
-    border-bottom:1px solid #EEF2F6!important;
-    text-align:left!important;
-    white-space:normal!important;
-    word-break:normal!important;
-    overflow-wrap:anywhere!important;
-  }
-  #visa-country-table .paises-table td:last-child{
-    border-bottom:0!important;
-  }
-  #visa-country-table .paises-table td::before{
-    content:attr(data-label);
-    display:block!important;
-    margin-bottom:8px!important;
-    color:#8FA4B8!important;
-    font-size:11px!important;
-    font-weight:900!important;
-    text-transform:uppercase!important;
-    letter-spacing:.06em!important;
-    text-align:left!important;
-  }
-  #visa-country-table .paises-table td[data-label="País"]{
-    background:#FAFCFD!important;
-    padding-top:18px!important;
-    padding-bottom:18px!important;
-  }
-  #visa-country-table .flag-name{
-    display:flex!important;
-    align-items:center!important;
-    justify-content:flex-start!important;
-    gap:10px!important;
-    text-align:left!important;
-    color:#0B1F3A!important;
-    font-size:18px!important;
-    line-height:1.25!important;
-  }
-  #visa-country-table .flag-name strong{
-    font-size:13px!important;
-    letter-spacing:.04em!important;
-    margin-right:4px!important;
-  }
-  #visa-country-table .flag-emoji{
-    font-size:24px!important;
-    line-height:1!important;
-    flex:0 0 auto!important;
-  }
-  #visa-country-table .badge-visa{
-    display:inline-flex!important;
-    width:auto!important;
-    max-width:100%!important;
-    white-space:normal!important;
-    line-height:1.35!important;
-    font-size:12px!important;
-    padding:7px 11px!important;
-    border-radius:999px!important;
-  }
-  #visa-country-table .country-note{
-    display:block!important;
-    width:100%!important;
-    max-width:none!important;
-    margin-top:9px!important;
-    color:#6F8299!important;
-    font-size:13px!important;
-    line-height:1.55!important;
-    text-align:left!important;
-    overflow-wrap:normal!important;
-    word-break:normal!important;
-  }
-  #visa-country-table td[data-label="Seguro"] strong{
-    display:block!important;
-    font-size:16px!important;
-    line-height:1.35!important;
-    color:#854F0B!important;
-  }
-  #visa-country-table .link-seguro,
-  #visa-country-table .seg-link{
-    display:inline-flex!important;
-    align-items:center!important;
-    justify-content:center!important;
-    width:100%!important;
-    min-height:46px!important;
-    padding:11px 14px!important;
-    border-radius:999px!important;
-    background:#00C4A1!important;
-    color:#0B1F3A!important;
-    font-weight:900!important;
-    text-decoration:none!important;
-    text-align:center!important;
-    box-shadow:0 8px 20px rgba(0,196,161,.20)!important;
-  }
-  .vl-country-summary{
-    grid-template-columns:1fr!important;
-    padding:14px!important;
-    gap:10px!important;
-  }
-  .vl-update-note,
-  .vl-source-box{
-    margin-left:14px!important;
-    margin-right:14px!important;
-    font-size:13px!important;
-  }
-  .mobile-affiliate-bar{
-    left:10px!important;
-    right:10px!important;
-    bottom:10px!important;
-    border-radius:24px!important;
-  }
-  .mobile-affiliate-bar a{
-    min-height:54px!important;
-    font-size:16px!important;
-  }
-}
-@media(max-width:390px){
-  #visa-country-table .paises-table td{
-    padding:13px 14px!important;
-  }
-  #visa-country-table .flag-name{
-    font-size:17px!important;
-  }
-  #visa-country-table .country-note{
-    font-size:12.5px!important;
-  }
-}
-</style>
-
 </head>
+
 <body>
-<!-- MOBILE NAV -->
-<div id="mob-overlay" onclick="closeMobMenu()" style="display:none;position:fixed;inset:0;background:rgba(11,31,58,.6);z-index:998;backdrop-filter:blur(4px)"></div>
-<div id="mob-drawer" style="display:none;position:fixed;top:0;right:0;bottom:0;width:min(300px,85vw);background:#fff;z-index:999;box-shadow:-8px 0 40px rgba(11,31,58,.25);flex-direction:column;transform:translateX(100%);transition:transform .28s cubic-bezier(.4,0,.2,1)">
-<div style="display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:#0B1F3A;flex-shrink:0">
-<img alt="ViajeroLatam" src="/logo-vl-original-20260528.png"/>
-<button onclick="closeMobMenu()" style="width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.12);border:none;color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center">✕</button>
-</div>
-<div style="flex:1;overflow-y:auto">
-<a href="/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">🏠 Inicio</a>
-<a href="/blog/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">📚 Artículos</a>
-<a href="/visa-schengen/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">🛂 Visa Schengen</a>
-<a href="/blog/etias-colombianos/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">⚡ ETIAS 2026</a>
-<a href="/seguro-viaje/colombia-a-espana/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">🇨🇴 Colombia a España</a>
-<a href="/seguro-viaje/bogota-a-espana/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">🏙️ Bogotá → España</a>
-<a href="/seguro-viaje/medellin-a-espana/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">🏙️ Medellín → España</a>
-<a href="/seguro-viaje/cali-a-espana/" onclick="closeMobMenu()" style="display:flex;align-items:center;gap:14px;padding:15px 20px;text-decoration:none;color:#0B1F3A;font-size:15px;font-weight:500;border-bottom:1px solid #F0F4F8">🏙️ Cali → España</a>
-</div>
-<div style="padding:16px 18px;border-top:1px solid #E4EDF5;flex-shrink:0">
-<a href="/resultados/" onclick="closeMobMenu()" style="display:flex;align-items:center;justify-content:center;gap:8px;background:#00C4A1;color:#0B1F3A;padding:14px;border-radius:50px;font-size:15px;font-weight:700;text-decoration:none">🔍 Comparar seguros gratis</a>
-</div>
-</div>
-<style>
-.mob-btn{display:none;flex-direction:column;justify-content:center;gap:5px;width:40px;height:40px;padding:8px;border-radius:10px;border:1.5px solid rgba(11,31,58,.15);background:rgba(11,31,58,.06);cursor:pointer;flex-shrink:0}
-.mob-btn span{display:block;height:2px;width:100%;background:#0B1F3A;border-radius:2px;transition:all .25s}
-.mob-btn.is-open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-.mob-btn.is-open span:nth-child(2){opacity:0;transform:scaleX(0)}
-.mob-btn.is-open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-#mob-drawer.is-open{transform:translateX(0)!important}
-@media(max-width:768px){.mob-btn{display:flex!important}}
-</style>
-<script>
-function openMobMenu(){var d=document.getElementById('mob-drawer'),o=document.getElementById('mob-overlay'),b=document.querySelector('.mob-btn');if(!d)return;d.style.display='flex';o.style.display='block';requestAnimationFrame(function(){d.classList.add('is-open');if(b)b.classList.add('is-open');});document.body.style.overflow='hidden';}
-function closeMobMenu(){var d=document.getElementById('mob-drawer'),o=document.getElementById('mob-overlay'),b=document.querySelector('.mob-btn');if(!d)return;d.classList.remove('is-open');if(b)b.classList.remove('is-open');document.body.style.overflow='';setTimeout(function(){d.style.display='none';o.style.display='none';},280);}
-document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu();});
-</script>
 <nav>
-<a aria-label="ViajeroLatam inicio" class="brand-logo" href="/"><img alt="ViajeroLatam" src="/logo-vl-original-20260528.png"/></a>
+<a class="logo" href="/"><img src="/logo-vl-original-20260528.png" alt="ViajeroLatam"/></a>
+<a class="mobile-nav-cta vl-compare-link" href="/resultados/?destino=espana-schengen">Comparar</a>
 <div class="nav-links">
-<a href="/#como-funciona">¿Cómo funciona?</a>
-<a href="/#aseguradoras">Aseguradoras</a>
-<a class="active" href="/visa-schengen/">Visa Schengen</a>
-<a href="/blog/">Artículos</a><a href="/sobre-nosotros/">Sobre nosotros</a>
-<a href="/#faq">FAQ</a>
-<a class="nav-cta" href="/resultados/">Comparar ahora</a>
+<a href="/">Inicio</a>
+<a href="/blog/">Artículos</a>
+<a href="/seguro-viaje/mexico-a-espana/">México</a>
+<a href="/seguro-viaje/colombia-a-espana/">Colombia</a>
+<a href="/seguro-viaje/venezuela-a-espana/">Venezuela</a>
+<a class="cta vl-compare-link" href="/resultados/?destino=espana-schengen">Comparar seguro</a>
 </div>
-<button aria-label="Menú" class="mob-btn" onclick="openMobMenu()"><span></span><span></span><span></span></button>
 </nav>
-<div class="breadcrumb-bar">
-<div class="bc-inner">
-<a href="/">Inicio</a><span class="bc-sep">/</span>
-<span>Visa Schengen para latinoamericanos</span>
-</div>
-</div>
-<!-- HERO -->
-<div class="hero">
+
+<header class="hero">
 <div class="hero-inner">
-<div class="hero-eyebrow">🛂 Visa Schengen, ETIAS y seguro para viajeros LATAM</div>
-<h1>Visa Schengen para<br/><em>Latinoamericanos</em><br/>2026</h1>
-<p class="hero-desc">Revisa qué países LATAM necesitan visa para España, cuáles viajarán con ETIAS cuando sea obligatorio y cuándo el seguro médico es obligatorio o simplemente muy recomendable.</p>
-</div>
-<div style="max-width:1100px;margin:28px auto 0">
-<div class="req-grid">
-<div class="req-card">
-<div class="req-num">01</div>
-<div class="req-label">Cobertura médica</div>
-<div class="req-val">Mínimo 30.000 €</div>
-<div class="req-check">✓ Gastos hospitalarios incluidos</div>
-</div>
-<div class="req-card">
-<div class="req-num">02</div>
-<div class="req-label">Repatriación</div>
-<div class="req-val">Sin límite</div>
-<div class="req-check">✓ Traslado médico + restos mortales</div>
-</div>
-<div class="req-card">
-<div class="req-num">03</div>
-<div class="req-label">Franquicia</div>
-<div class="req-val">€0 — Sin franquicia</div>
-<div class="req-check">✓ Revisa condiciones y exclusiones</div>
-</div>
-<div class="req-card">
-<div class="req-num">04</div>
-<div class="req-label">Sede aseguradora</div>
-<div class="req-val">País de la UE</div>
-<div class="req-check">✓ España, Francia, Alemania, etc.</div>
-</div>
-</div>
-</div>
-</div>
-<!-- PAGE -->
-<div class="page">
 <div>
-<!-- PAÍSES -->
-<div class="section">
-  <div class="sec-head"><div class="sec-icon">🌎</div><h2 class="sec-title">¿Tu país LATAM necesita visa Schengen para ir a España?</h2></div>
-  <div class="vl-country-summary">
-    <div class="mini"><strong>21</strong><span>países/territorios LATAM revisados</span></div>
-    <div class="mini"><strong>5</strong><span>marcados como visa Schengen: Bolivia, Cuba, R. Dominicana, Ecuador y Haití</span></div>
-    <div class="mini"><strong>ETIAS</strong><span>para viajeros exentos de visa cuando sea obligatorio</span></div>
-  </div>
-  <div class="sec-body" style="padding-bottom:0">
-    <p class="vl-update-note"><strong>Actualizado julio 2026:</strong> esta tabla es una guía rápida para viajes turísticos cortos a España/Schengen. Puede cambiar según nacionalidad exacta, pasaporte, residencia, duración, motivo del viaje o escala. Verifica siempre con fuente oficial o consulado antes de comprar vuelos o presentar documentos.</p>
-  </div>
-  <div id="visa-country-table" style="overflow-x:auto">
-    <table class="paises-table">
-      <thead>
-        <tr>
-          <th>País</th>
-          <th>¿Necesita visa?</th>
-          <th>¿Seguro obligatorio?</th>
-          <th>Seguro específico</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-<td data-label="País"><div class="flag-name"><span class="flag-emoji">🇨🇴</span><span><strong>CO</strong>&nbsp; Colombia</span></div></td>
-<td data-label="¿Necesita visa?"><span class="badge-visa bv-no">No necesita visa</span><span class="country-note">El seguro no suele ser obligatorio para turismo corto, pero ETIAS aplicará cuando sea obligatorio.</span></td>
-<td data-label="Seguro"><strong style="color:#854F0B">Muy recomendado</strong></td>
-<td data-label="Seguro específico"><a class="link-seguro" href="/seguro-viaje/colombia-a-espana/">Ver seguro Colombia →</a></td>
-</tr><tr>
-<td data-label="País"><div class="flag-name"><span class="flag-emoji">🇧🇴</span><span><strong>BO</strong>&nbsp; Bolivia</span></div></td>
-<td data-label="¿Necesita visa?"><span class="badge-visa bv-yes">Sí — visa Schengen</span><span class="country-note">El seguro médico de viaje forma parte de la solicitud de visa Schengen.</span></td>
-<td data-label="Seguro"><strong style="color:#C0392B">Obligatorio para visa</strong></td>
-<td data-label="Seguro específico"><a class="link-seguro" href="/seguro-viaje/bolivia-a-espana/">Ver seguro Bolivia →</a></td>
-</tr><tr>
-<td data-label="País"><div class="flag-name"><span class="flag-emoji">🇨🇺</span><span><strong>CU</strong>&nbsp; Cuba</span></div></td>
-<td data-label="¿Necesita visa?"><span class="badge-visa bv-yes">Sí — visa Schengen</span><span class="country-note">Revisa cita, documentos y seguro válido para todo Schengen.</span></td>
-<td data-label="Seguro"><strong style="color:#C0392B">Obligatorio para visa</strong></td>
-<td data-label="Seguro específico"><a class="link-seguro" href="/seguro-viaje/cuba-a-espana/">Ver seguro Cuba →</a></td>
-</tr><tr>
-<td data-label="País"><div class="flag-name"><span class="flag-emoji">🇩🇴</span><span><strong>DO</strong>&nbsp; República Dominicana</span></div></td>
-<td data-label="¿Necesita visa?"><span class="badge-visa bv-yes">Sí — visa Schengen</span><span class="country-note">Necesita seguro para presentar solicitud de visa de corta estancia.</span></td>
-<td data-label="Seguro"><strong style="color:#C0392B">Obligatorio para visa</strong></td>
-<td data-label="Seguro específico"><a class="link-seguro" href="/resultados/?origen=republica-dominicana&destino=espana-schengen">Comparar seguros →</a></td>
-</tr><tr>
-<td data-label="País"><div class="flag-name"><span class="flag-emoji">🇪🇨</span><span><strong>EC</strong>&nbsp; Ecuador</span></div></td>
-<td data-label="¿Necesita visa?"><span class="badge-visa bv-yes">Sí — visa Schengen</span><span class="country-note">El seguro debe cubrir urgencias médicas, hospitalización y repatriación.</span></td>
-<td data-label="Seguro"><strong style="color:#C0392B">Obligatorio para visa</strong></td>
-<td data-label="Seguro específico"><a class="link-seguro" href="/seguro-viaje/ecuador-a-espana/">Ver seguro Ecuador →</a></td>
-</tr><tr>
-<td data-label="País"><div class="flag-name"><span class="flag-emoji">🇭🇹</span><span><strong>HT</strong>&nbsp; Haití</span></div></td>
-<td data-label="¿Necesita visa?"><span class="badge-visa bv-yes">Sí — visa Schengen</span><span class="country-note">Verifica requisitos con el consulado español correspondiente.</span></td>
-<td data-label="Seguro"><strong style="color:#C0392B">Obligatorio para visa</strong></td>
-<td data-label="Seguro específico"><a class="link-seguro" href="/resultados/?destino=espana-schengen">Comparar seguros →</a></td>
-</tr><tr>
-<td data-label="País"><div class="flag-name"><span class="flag-emoji">🇲🇽</span><span><strong>MX</strong>&nbsp; México</span></div></td>
-<td data-label="¿Necesita visa?"><span class="badge-visa bv-no">No necesita visa</span><span class="country-note">ETIAS aplicará cuando sea obligatorio para viajeros exentos de visa.</span></td>
-<td data-label="Seguro"><strong style="color:#854F0B">Muy recomendado</strong></td>
-<td data-label="Seguro específico"><a class="link-seguro" href="/seguro-viaje/mexico-a-espana/">Ver seguro México →</a></td>
-</tr><tr>
-<td data-label="País"><div class="flag-name"><span class="flag-emoji">🇦🇷</span><span><strong>AR</strong>&nbsp; Argentina</span></div></td>
-<td data-label="¿Necesita visa?"><span class="badge-visa bv-no">No necesita visa</span><span class="country-note">ETIAS aplicará cuando sea obligatorio; seguro recomendado por coste médico.</span></td>
-<td data-label="Seguro"><strong style="color:#854F0B">Muy recomendado</strong></td>
-<td data-label="Seguro específico"><a class="link-seguro" href="/seguro-viaje/argentina-a-espana/">Ver seguro Argentina →</a></td>
-</tr><tr>
-<td data-label="País"><div class="flag-name"><span class="flag-emoji">🇨🇱</span><span><strong>CL</strong>&nbsp; Chile</span></div></td>
-<td data-label="¿Necesita visa?"><span class="badge-visa bv-no">No necesita visa</span><span class="country-note">Turismo corto normalmente sin visa; ETIAS cuando aplique.</span></td>
-<td data-label="Seguro"><strong style="color:#854F0B">Muy recomendado</strong></td>
-<td data-label="Seguro específico"><a class="link-seguro" href="/resultados/?origen=chile&destino=espana-schengen">Comparar seguros →</a></td>
-</tr><tr>
-<td data-label="País"><div class="flag-name"><span class="flag-emoji">🇻🇪</span><span><strong>VE</strong>&nbsp; Venezuela</span></div></td>
-<td data-label="¿Necesita visa?"><span class="badge-visa bv-no">No necesita visa</span><span class="country-note">Revisa siempre requisitos según pasaporte, residencia y motivo de viaje.</span></td>
-<td data-label="Seguro"><strong style="color:#854F0B">Muy recomendado</strong></td>
-<td data-label="Seguro específico"><a class="link-seguro" href="/seguro-viaje/venezuela-a-espana/">Ver seguro Venezuela →</a></td>
-</tr><tr>
-<td data-label="País"><div class="flag-name"><span class="flag-emoji">🇵🇪</span><span><strong>PE</strong>&nbsp; Perú</span></div></td>
-<td data-label="¿Necesita visa?"><span class="badge-visa bv-no">No necesita visa</span><span class="country-note">ETIAS aplicará cuando sea obligatorio para viajeros exentos de visa.</span></td>
-<td data-label="Seguro"><strong style="color:#854F0B">Muy recomendado</strong></td>
-<td data-label="Seguro específico"><a class="link-seguro" href="/seguro-viaje/peru-a-espana/">Ver seguro Perú →</a></td>
-</tr><tr>
-<td data-label="País"><div class="flag-name"><span class="flag-emoji">🇧🇷</span><span><strong>BR</strong>&nbsp; Brasil</span></div></td>
-<td data-label="¿Necesita visa?"><span class="badge-visa bv-no">No necesita visa</span><span class="country-note">ETIAS aplicará cuando sea obligatorio; seguro recomendable para salud y repatriación.</span></td>
-<td data-label="Seguro"><strong style="color:#854F0B">Muy recomendado</strong></td>
-<td data-label="Seguro específico"><a class="link-seguro" href="/resultados/?origen=brasil&destino=espana-schengen">Comparar seguros →</a></td>
-</tr><tr>
-<td data-label="País"><div class="flag-name"><span class="flag-emoji">🇺🇾</span><span><strong>UY</strong>&nbsp; Uruguay</span></div></td>
-<td data-label="¿Necesita visa?"><span class="badge-visa bv-no">No necesita visa</span><span class="country-note">Turismo corto normalmente sin visa; ETIAS cuando aplique.</span></td>
-<td data-label="Seguro"><strong style="color:#854F0B">Muy recomendado</strong></td>
-<td data-label="Seguro específico"><a class="link-seguro" href="/resultados/?origen=uruguay&destino=espana-schengen">Comparar seguros →</a></td>
-</tr><tr>
-<td data-label="País"><div class="flag-name"><span class="flag-emoji">🇵🇾</span><span><strong>PY</strong>&nbsp; Paraguay</span></div></td>
-<td data-label="¿Necesita visa?"><span class="badge-visa bv-no">No necesita visa</span><span class="country-note">ETIAS aplicará cuando sea obligatorio.</span></td>
-<td data-label="Seguro"><strong style="color:#854F0B">Muy recomendado</strong></td>
-<td data-label="Seguro específico"><a class="link-seguro" href="/resultados/?origen=paraguay&destino=espana-schengen">Comparar seguros →</a></td>
-</tr><tr>
-<td data-label="País"><div class="flag-name"><span class="flag-emoji">🇨🇷</span><span><strong>CR</strong>&nbsp; Costa Rica</span></div></td>
-<td data-label="¿Necesita visa?"><span class="badge-visa bv-no">No necesita visa</span><span class="country-note">Turismo corto normalmente sin visa; ETIAS cuando aplique.</span></td>
-<td data-label="Seguro"><strong style="color:#854F0B">Muy recomendado</strong></td>
-<td data-label="Seguro específico"><a class="link-seguro" href="/resultados/?origen=costa-rica&destino=espana-schengen">Comparar seguros →</a></td>
-</tr><tr>
-<td data-label="País"><div class="flag-name"><span class="flag-emoji">🇵🇦</span><span><strong>PA</strong>&nbsp; Panamá</span></div></td>
-<td data-label="¿Necesita visa?"><span class="badge-visa bv-no">No necesita visa</span><span class="country-note">Turismo corto normalmente sin visa; ETIAS cuando aplique.</span></td>
-<td data-label="Seguro"><strong style="color:#854F0B">Muy recomendado</strong></td>
-<td data-label="Seguro específico"><a class="link-seguro" href="/resultados/?origen=panama&destino=espana-schengen">Comparar seguros →</a></td>
-</tr><tr>
-<td data-label="País"><div class="flag-name"><span class="flag-emoji">🇬🇹</span><span><strong>GT</strong>&nbsp; Guatemala</span></div></td>
-<td data-label="¿Necesita visa?"><span class="badge-visa bv-no">No necesita visa</span><span class="country-note">ETIAS aplicará cuando sea obligatorio.</span></td>
-<td data-label="Seguro"><strong style="color:#854F0B">Muy recomendado</strong></td>
-<td data-label="Seguro específico"><a class="link-seguro" href="/resultados/?origen=guatemala&destino=espana-schengen">Comparar seguros →</a></td>
-</tr><tr>
-<td data-label="País"><div class="flag-name"><span class="flag-emoji">🇸🇻</span><span><strong>SV</strong>&nbsp; El Salvador</span></div></td>
-<td data-label="¿Necesita visa?"><span class="badge-visa bv-no">No necesita visa</span><span class="country-note">Turismo corto normalmente sin visa; ETIAS cuando aplique.</span></td>
-<td data-label="Seguro"><strong style="color:#854F0B">Muy recomendado</strong></td>
-<td data-label="Seguro específico"><a class="link-seguro" href="/resultados/?origen=el-salvador&destino=espana-schengen">Comparar seguros →</a></td>
-</tr><tr>
-<td data-label="País"><div class="flag-name"><span class="flag-emoji">🇭🇳</span><span><strong>HN</strong>&nbsp; Honduras</span></div></td>
-<td data-label="¿Necesita visa?"><span class="badge-visa bv-no">No necesita visa</span><span class="country-note">ETIAS aplicará cuando sea obligatorio.</span></td>
-<td data-label="Seguro"><strong style="color:#854F0B">Muy recomendado</strong></td>
-<td data-label="Seguro específico"><a class="link-seguro" href="/resultados/?origen=honduras&destino=espana-schengen">Comparar seguros →</a></td>
-</tr><tr>
-<td data-label="País"><div class="flag-name"><span class="flag-emoji">🇳🇮</span><span><strong>NI</strong>&nbsp; Nicaragua</span></div></td>
-<td data-label="¿Necesita visa?"><span class="badge-visa bv-no">No necesita visa</span><span class="country-note">Turismo corto normalmente sin visa; ETIAS cuando aplique.</span></td>
-<td data-label="Seguro"><strong style="color:#854F0B">Muy recomendado</strong></td>
-<td data-label="Seguro específico"><a class="link-seguro" href="/resultados/?origen=nicaragua&destino=espana-schengen">Comparar seguros →</a></td>
-</tr><tr>
-<td data-label="País"><div class="flag-name"><span class="flag-emoji">🇵🇷</span><span><strong>PR</strong>&nbsp; Puerto Rico</span></div></td>
-<td data-label="¿Necesita visa?"><span class="badge-visa bv-etias">Según pasaporte</span><span class="country-note">Con pasaporte de EE. UU., turismo corto normalmente sin visa; ETIAS cuando aplique.</span></td>
-<td data-label="Seguro"><strong style="color:#854F0B">Muy recomendado</strong></td>
-<td data-label="Seguro específico"><a class="link-seguro" href="/resultados/?origen=puerto-rico&destino=espana-schengen">Comparar seguros →</a></td>
-</tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="vl-source-box">
-    <strong>Cómo leer la tabla:</strong> si tu país necesita visa Schengen, el seguro médico de viaje es parte del expediente de visa. Si tu país no necesita visa, el seguro puede no ser obligatorio para turismo corto, pero es muy recomendable y ETIAS será necesario cuando entre en vigor para viajeros exentos de visa. Fuentes: <a href="https://eur-lex.europa.eu/eli/reg/2018/1806/oj?locale=es" target="_blank" rel="noopener">Reglamento UE 2018/1806</a>, <a href="https://www.spain.info/es/consejos-viaje/visado-pasaporte/" target="_blank" rel="noopener">Spain.info</a> y <a href="https://travel-europe.europa.eu/es/etias/about-etias/who-should-apply" target="_blank" rel="noopener">ETIAS oficial</a>.
-  </div>
-</div>
-<!-- COMPARATIVA SEGUROS SCHENGEN -->
-<div class="section">
-<div class="sec-head"><div class="sec-icon">🏆</div><h2 class="sec-title">Mejores seguros para visa Schengen 2026 — Comparativa</h2></div>
-<div>
-<!-- ETIAS BOX -->
-<div class="etias-box">
-<div class="etias-badge">⚡ Novedad último trimestre de 2026</div>
-<h2 class="etias-title">¿Qué es el ETIAS y cómo te afecta?</h2>
-<p class="etias-desc">El ETIAS está previsto como requisito para viajeros exentos de visa cuando sea obligatorio. No reemplaza la visa Schengen: si tu país necesita visa, sigues necesitando visa. Aplica a viajeros exentos de visa como Colombia, México, Argentina, Chile, Brasil y otros países LATAM exentos. Países/territorios LATAM más habituales:</p>
-<div class="etias-paises">
-<span class="etias-pais">🇦🇷 Argentina</span>
-<span class="etias-pais">🇧🇷 Brasil</span>
-<span class="etias-pais">🇨🇱 Chile</span>
-<span class="etias-pais">🇨🇴 Colombia</span>
-<span class="etias-pais">🇨🇷 Costa Rica</span>
-<span class="etias-pais">🇸🇻 El Salvador</span>
-<span class="etias-pais">🇬🇹 Guatemala</span>
-<span class="etias-pais">🇭🇳 Honduras</span>
-<span class="etias-pais">🇲🇽 México</span>
-<span class="etias-pais">🇳🇮 Nicaragua</span>
-<span class="etias-pais">🇵🇦 Panamá</span>
-<span class="etias-pais">🇵🇾 Paraguay</span>
-<span class="etias-pais">🇵🇪 Perú</span>
-<span class="etias-pais">🇺🇾 Uruguay</span>
-<span class="etias-pais">🇻🇪 Venezuela</span>
-<span class="etias-pais">🇵🇷 Puerto Rico*</span>
+<div class="eyebrow">🌍 LATAM → España · Schengen 2026/2027</div>
+<h1>Visa Schengen, <em>seguro de viaje</em> y ETIAS para LATAM</h1>
+<p>Guía hub para saber si necesitas visa Schengen, cuándo el seguro médico es obligatorio, qué pasa con ETIAS y qué revisar antes de viajar a España desde Latinoamérica.</p>
+<div class="btn-row">
+<a class="btn btn-primary vl-compare-link" href="/resultados/?destino=espana-schengen">Comparar seguro para España / Schengen</a>
+<a class="btn btn-secondary" href="#tabla-paises">Ver mi país</a>
 </div>
 </div>
-<!-- PASO A PASO -->
-<div class="section">
-<div class="sec-head"><div class="sec-icon">📋</div><h2 class="sec-title">Cómo tramitar el seguro para la visa Schengen — Paso a paso</h2></div>
-<div class="sec-body">
-<div class="paso">
-<div class="paso-num">1</div>
-<div>
-<div class="paso-title">Verifica que tu país necesita visa Schengen</div>
-<div class="paso-desc">Consulta la tabla de arriba. Bolivia, Cuba, Ecuador, República Dominicana y Haití deben revisar requisitos de visa Schengen. Colombia, México, Argentina, Chile, Brasil, Perú y otros países LATAM suelen estar exentos para turismo corto, pero deben cumplir condiciones de entrada y ETIAS cuando sea obligatorio.</div>
+<div class="hero-card">
+<strong>Regla simple</strong>
+<ul>
+<li>Si necesitas visa Schengen, el seguro médico de viaje forma parte de los requisitos.</li>
+<li>Si no necesitas visa, el seguro puede no ser obligatorio, pero sigue siendo recomendable.</li>
+<li>ETIAS está previsto para el último trimestre de 2026; ahora no hay que solicitar nada.</li>
+</ul>
 </div>
 </div>
-<div class="paso">
-<div class="paso-num">2</div>
-<div>
-<div class="paso-title">Pide cita en el consulado español de tu ciudad</div>
-<div class="paso-desc">Si tu país necesita visa Schengen, revisa el consulado o centro autorizado correspondiente. La cita puede tardar semanas, así que conviene preparar documentos con antelación.</div>
-<span class="paso-tip">Pide la cita ANTES de contratar el seguro para ajustar las fechas exactas.</span>
-</div>
-</div>
-<div class="paso">
-<div class="paso-num">3</div>
-<div>
-<div class="paso-title">Compara y contrata el seguro en ViajeroLatam</div>
-<div class="paso-desc">Usa nuestro comparador para elegir el seguro que mejor se adapte a tu viaje. Compara opciones marcadas para España o Schengen y revisa cobertura médica, repatriación, fechas, exclusiones y precio final antes de contratar.</div>
-</div>
-</div>
-<div class="paso">
-<div class="paso-num">4</div>
-<div>
-<div class="paso-title">Recibe la póliza por email en menos de 2 minutos</div>
-<div class="paso-desc">La póliza llega en PDF a tu correo. Es el documento oficial que llevas a la cita en el consulado. Guárdala en PDF y revisa si tu consulado o aerolínea exige llevar copia impresa.</div>
-<span class="paso-tip">Guarda también el justificante de pago — algunos consulados lo piden junto a la póliza.</span>
-</div>
-</div>
-<div class="paso" style="border:none">
-<div class="paso-num">5</div>
-<div>
-<div class="paso-title">Presenta la póliza en el consulado</div>
-<div class="paso-desc">El funcionario o centro autorizado puede revisar que el seguro cubra al menos 30.000 € para gastos médicos, hospitalización y repatriación, que sea válido para Schengen y que cubra toda la estancia. Ningún comparador puede garantizar la aprobación de una visa.</div>
-</div>
-</div>
-</div>
-</div>
-<!-- FAQ -->
-<div class="section">
-<div class="sec-head"><div class="sec-icon">❓</div><h2 class="sec-title">Preguntas frecuentes sobre el seguro para visa Schengen</h2></div>
-<div class="sec-body" style="padding-bottom:8px">
-<details><summary>¿Qué pasa si mi seguro tiene franquicia? <span class="faq-icon">+</span></summary>
-<p class="faq-ans">El consulado puede no aceptar seguros que no cumplan las condiciones exigidas. Es uno de los errores más comunes. Verifica siempre que el seguro diga "Sin franquicia" o "Deducible €0". Revisa siempre las condiciones finales de la póliza antes de pagar.</p>
-</details>
-<details><summary>¿Puedo usar un seguro de mi banco o tarjeta de crédito? <span class="faq-icon">+</span></summary>
-<p class="faq-ans">Depende de las condiciones exactas. Algunos seguros de tarjeta pueden no cubrir repatriación, no cubrir toda la estancia o tener límites insuficientes. Antes de usarlo para una visa, pide certificado y verifica que cumple los requisitos del consulado.</p>
-</details>
-<details><summary>¿Cuánto tiempo antes de viajar debo contratar el seguro? <span class="faq-icon">+</span></summary>
-<p class="faq-ans">Contrátalo <strong>entre 1 y 7 días antes de la cita en el consulado</strong>. Las fechas del seguro deben coincidir exactamente con las fechas de tu viaje previsto. No lo contrates demasiado pronto porque si el consulado te pide modificar las fechas tendrías que hacer un nuevo seguro.</p>
-</details>
-<details><summary>¿El seguro cubre todos los países Schengen o solo España? <span class="faq-icon">+</span></summary>
-<p class="faq-ans">Asegúrate de que la póliza especifique <strong>España, Europa o espacio Schengen</strong> como zona de cobertura. No des por hecho que cualquier seguro internacional cubre todos los países de tu ruta.</p>
-</details>
-<details><summary>¿Necesito seguro si tengo residencia en España? <span class="faq-icon">+</span></summary>
-<p class="faq-ans">Si tienes <strong>residencia legal en España</strong>, no necesitas visa Schengen para viajar dentro del espacio Schengen. Sin embargo, si viajas fuera del Schengen (EEUU, Latinoamérica, etc.) y regresas, sí es recomendable tener un seguro de viaje aunque no sea obligatorio.</p>
-</details>
-</div>
-</div>
-<!-- OTROS DESTINOS -->
-<div class="section">
-<div class="sec-head"><div class="sec-icon">🗺️</div><h2 class="sec-title">Seguros por país de origen</h2></div>
-<div class="sec-body">
-<div class="dest-grid">
-<a class="dest-link" href="/seguro-viaje/colombia-a-espana/"><span style="font-size:18px">🇨🇴</span>Colombia a España</a>
-<a class="dest-link" href="/resultados/"><span style="font-size:18px">🇧🇴</span>Bolivia → Europa</a>
-<a class="dest-link" href="/resultados/"><span style="font-size:18px">🇪🇨</span>Ecuador → España</a>
-<a class="dest-link" href="/resultados/"><span style="font-size:18px">🇻🇪</span>Venezuela → EEUU</a>
-<a class="dest-link" href="/resultados/"><span style="font-size:18px">🇲🇽</span>México → España</a>
-<a class="dest-link" href="/resultados/"><span style="font-size:18px">🇦🇷</span>Argentina → Europa</a>
-</div>
-</div>
-</div>
-</div>
-<!-- SIDEBAR -->
-<aside class="sidebar">
-<div class="sb-card">
-<div class="sb-head">
-<div class="sb-title">🛂 Seguro para Visa Schengen</div>
-<div class="sb-sub">Precio según fechas · Válido consulado</div>
-</div>
-<div class="sb-body">
-<div class="sb-item"><span class="sb-label">Cobertura médica</span><span class="sb-val">≥30.000€ ✓</span></div>
-<div class="sb-item"><span class="sb-label">Franquicia</span><span class="sb-val" style="color:var(--green)">€0 ✓</span></div>
-<div class="sb-item"><span class="sb-label">Repatriación</span><span class="sb-val" style="color:var(--green)">Incluida ✓</span></div>
-<div class="sb-item"><span class="sb-label">Sede aseguradora</span><span class="sb-val" style="color:var(--green)">España ✓</span></div>
-<a class="btn-sb" href="/resultados/">Comparar seguros →</a>
-<p style="font-size:11px;color:var(--text-light);text-align:center;margin-top:8px">Gratis · Póliza en 2 minutos</p>
-</div>
-</div>
-<div class="info-note">
-<strong>⚠ Cuidado con la franquicia</strong>
-    El error más común es contratar un seguro barato con franquicia de €150. El consulado puede no aceptarlo. Verifica siempre que diga "Sin franquicia".
-  </div>
-<div class="info-note" style="border-color:var(--amber)">
-<strong>📅 ETIAS último trimestre de 2026</strong>
-    Si eres de México, Argentina o Chile, necesitarás el ETIAS para entrar a Europa a partir de octubre 2026. El seguro de viaje seguirá siendo recomendable aunque no obligatorio.
-  </div>
-</aside>
-</div>
-<footer>
-<div class="footer-inner">
-<div class="footer-grid">
-<div>
-<div class="footer-logo"><img alt="ViajeroLatam" src="/logo-vl-original-20260528.png"/></div>
-<p class="footer-desc">Comparador de seguros de viaje para latinoamericanos que viajan a Europa y Estados Unidos.</p>
-</div>
-<div class="footer-col">
-<h4>Visa Schengen</h4>
-<a href="/seguro-viaje/colombia-a-espana/">Seguro colombianos</a>
-<a href="/seguro-viaje/bolivia-a-espana/">Seguro bolivianos</a>
-<a href="/seguro-viaje/ecuador-a-espana/">Seguro ecuatorianos</a>
-<a href="/visa-schengen/">Requisitos Colombia</a>
-</div>
-<div class="footer-col">
-<h4>Por destino</h4>
-<a href="/seguro-viaje/colombia-a-espana/">Colombia a España</a>
-<a href="/seguro-viaje/mexico-a-espana/">México → España</a>
-<a href="/seguro-viaje/venezuela-a-espana/">Venezuela → España</a>
-<a href="/seguro-viaje/argentina-a-espana/">Argentina → España</a>
-</div>
-<div class="footer-col">
-<h4>Comparar</h4>
-<a href="/resultados/">Ver todos los seguros</a>
-<a href="/comparar-seguros-viaje-colombia-espana/">Mejor seguro LATAM</a>
-</div>
-</div>
-<div style="max-width:1100px;margin:0 auto;padding-bottom:12px;display:flex;gap:20px;flex-wrap:wrap"><a href="/privacidad/" style="font-size:12px;color:rgba(255,255,255,.35);text-decoration:none">Privacidad</a><a href="/aviso-legal/" style="font-size:12px;color:rgba(255,255,255,.35);text-decoration:none">Aviso Legal</a><a href="/contacto/" style="font-size:12px;color:rgba(255,255,255,.35);text-decoration:none">Contacto</a></div><div class="footer-bottom">
-<p>© 2026 ViajeroLatam · Comparador independiente · No somos aseguradora</p>
-<p>Seguro para visa Schengen latinoamericanos · Válido consulado español</p>
-</div>
-</div>
- · <a href="/sobre-nosotros/" style="color:#fff;text-decoration:none;font-weight:800">Sobre nosotros</a> · <a href="/contacto/" style="color:#fff;text-decoration:none;font-weight:800">Contacto</a><p><a href="/como-elegimos/">Cómo elegimos las aseguradoras</a></p></footer>
-<script>
-document.querySelectorAll('details').forEach(d=>{
-  d.addEventListener('toggle',()=>{
-    const ic = d.querySelector('.faq-icon');
-    if(ic) ic.textContent = d.open ? '−' : '+';
-  });
-});
-</script>
-<script>
-document.addEventListener('click', function(e){
-  var link = e.target.closest('a');
-  if(!link || typeof gtag !== 'function') return;
-  var href = link.getAttribute('href') || '';
-  if(href.indexOf('iatiseguros.com') !== -1){
-    gtag('event', 'click_affiliate_iati', {
-      event_category: 'affiliate',
-      event_label: href,
-      page_location: window.location.href
-    });
-  }
+</header>
 
-  if(href.indexOf('intermundial.es') !== -1){
-    gtag('event', 'click_affiliate_intermundial', {
-      event_category: 'affiliate',
-      event_label: href,
-      page_location: window.location.href
-    });
-  }
-});
-</script>
-<!-- ═══ EXIT INTENT + STICKY CTA ═══ -->
-<style id="exit-sticky-css">
-/* ── STICKY CTA MÓVIL ── */
-#sticky-mob{
-  display:none;
-  position:fixed;
-  bottom:0;left:0;right:0;
-  z-index:990;
-  padding:12px 16px 16px;
-  background:linear-gradient(to top,rgba(255,255,255,1) 60%,rgba(255,255,255,0));
-  pointer-events:none;
-}
-#sticky-mob a{
-  display:flex;align-items:center;justify-content:center;gap:8px;
-  background:#00C4A1;color:#0B1F3A;
-  padding:15px;border-radius:50px;
-  font-family:'Plus Jakarta Sans',sans-serif;
-  font-size:16px;font-weight:700;
-  text-decoration:none;
-  box-shadow:0 4px 24px rgba(0,196,161,.45);
-  pointer-events:all;
-  transition:background .2s, transform .15s;
-}
-#sticky-mob a:active{transform:scale(.97)}
-#sticky-mob p{
-  font-size:11px;color:#8FA4B8;
-  text-align:center;margin-top:6px;
-  font-family:'Plus Jakarta Sans',sans-serif;
-}
-@media(max-width:768px){
-  #sticky-mob{display:block}
-  body{padding-bottom:90px}
-}
-@media(min-width:769px){
-  #sticky-mob{display:none!important}
-}
+<main>
+<article>
 
-/* ── EXIT INTENT POPUP ── */
-#exit-overlay{
-  display:none;position:fixed;inset:0;
-  background:rgba(11,31,58,.65);
-  z-index:9999;
-  backdrop-filter:blur(6px);
-  align-items:center;justify-content:center;
-  padding:20px;
-}
-#exit-box{
-  background:#fff;
-  border-radius:24px;
-  padding:36px 32px;
-  max-width:440px;width:100%;
-  position:relative;
-  box-shadow:0 24px 80px rgba(11,31,58,.25);
-  animation:exitPop .3s cubic-bezier(.34,1.56,.64,1);
-}
-@keyframes exitPop{
-  from{opacity:0;transform:scale(.85) translateY(20px)}
-  to{opacity:1;transform:scale(1) translateY(0)}
-}
-#exit-close{
-  position:absolute;top:14px;right:14px;
-  width:32px;height:32px;border-radius:50%;
-  background:#F0F4F8;border:none;cursor:pointer;
-  font-size:16px;color:#4A647E;
-  display:flex;align-items:center;justify-content:center;
-  transition:background .15s;
-}
-#exit-close:hover{background:#E4EDF5}
-.exit-emoji{font-size:48px;text-align:center;margin-bottom:12px}
-.exit-title{
-  font-family:'DM Serif Display',Georgia,serif;
-  font-size:26px;color:#0B1F3A;line-height:1.2;
-  text-align:center;margin-bottom:8px;
-}
-.exit-title em{color:#00C4A1;font-style:italic}
-.exit-sub{
-  font-size:14px;color:#4A647E;text-align:center;
-  line-height:1.6;margin-bottom:20px;
-}
-.exit-proof{
-  display:flex;gap:16px;justify-content:center;
-  margin-bottom:20px;flex-wrap:wrap;
-}
-.exit-proof span{
-  font-size:12px;color:#4A647E;
-  display:flex;align-items:center;gap:4px;
-}
-#exit-cta{
-  display:flex;align-items:center;justify-content:center;gap:8px;
-  width:100%;background:#00C4A1;color:#0B1F3A;
-  padding:15px;border-radius:50px;
-  font-family:'Plus Jakarta Sans',sans-serif;
-  font-size:15px;font-weight:700;
-  text-decoration:none;border:none;cursor:pointer;
-  transition:background .2s;
-  margin-bottom:10px;
-}
-#exit-cta:hover{background:#009C7F}
-#exit-skip{
-  display:block;width:100%;text-align:center;
-  font-size:12px;color:#8FA4B8;
-  background:none;border:none;cursor:pointer;
-  font-family:'Plus Jakarta Sans',sans-serif;
-  padding:6px;text-decoration:underline;
-}
-</style>
-<!-- STICKY MÓVIL -->
-<div aria-label="Comparar seguros gratis" id="sticky-mob">
-<a href="/resultados/" onclick="if(typeof gtag!='undefined')gtag('event','click_sticky_mob',{page:location.pathname})">
-    🔍 Comparar seguros gratis
-  </a>
-<p>Sin coste · Póliza en 2 minutos · 4 aseguradoras</p>
-</div>
-<!-- EXIT INTENT POPUP -->
-<div aria-label="Antes de irte" aria-modal="true" id="exit-overlay" role="dialog">
-<div id="exit-box">
-<button aria-label="Cerrar" id="exit-close" onclick="closeExitPopup()">✕</button>
-<div class="exit-emoji">✈️</div>
-<div class="exit-title">¿Seguro para tu viaje <em>ya tienes</em>?</div>
-<div class="exit-sub">Compara seguros de viaje para España en pocos minutos. Revisa precio, cobertura médica, repatriación y condiciones antes de contratar.</div>
-<div class="exit-proof">
-<span>✓ Precio según fechas</span>
-<span>✓ Revisa condiciones</span>
-<span>✓ Cobertura médica alta</span>
-</div>
-<a href="/resultados/" id="exit-cta" onclick="closeExitPopup();if(typeof gtag!='undefined')gtag('event','click_exit_popup',{page:location.pathname})">
-      🔍 Comparar seguros gratis
-    </a>
-<button id="exit-skip" onclick="closeExitPopup()">No me interesa por ahora</button>
-</div>
-</div>
-<script id="exit-sticky-js">
-(function(){
-  var shown = false;
-  var dismissed = false;
-
-  // ── Exit intent — desktop (mouse leaves top)
-  document.addEventListener('mouseleave', function(e){
-    if(e.clientY > 20) return;
-    if(shown || dismissed) return;
-    if(sessionStorage.getItem('vl_exit_shown')) return;
-    showExitPopup();
-  });
-
-  // ── Exit intent — mobile (back button / scroll up fast)
-  var lastScrollY = 0;
-  var scrollTimer;
-  window.addEventListener('scroll', function(){
-    var currentY = window.scrollY;
-    clearTimeout(scrollTimer);
-    scrollTimer = setTimeout(function(){
-      var delta = lastScrollY - currentY;
-      if(delta > 120 && currentY > 400 && !shown && !dismissed){
-        if(!sessionStorage.getItem('vl_exit_shown')) showExitPopup();
-      }
-      lastScrollY = currentY;
-    }, 150);
-    lastScrollY = currentY;
-  });
-
-  // ── Sticky CTA — hide when hero CTA visible
-  var hero = document.querySelector('.hero, header.hero, .hero-inner');
-  var sticky = document.getElementById('sticky-mob');
-  if(sticky && hero){
-    var io = new IntersectionObserver(function(entries){
-      sticky.style.opacity = entries[0].isIntersecting ? '0' : '1';
-      sticky.style.pointerEvents = entries[0].isIntersecting ? 'none' : 'all';
-    }, {threshold: 0.2});
-    io.observe(hero);
-  }
-})();
-
-function showExitPopup(){
-  shown = true;
-  var overlay = document.getElementById('exit-overlay');
-  if(!overlay) return;
-  overlay.style.display = 'flex';
-  document.body.style.overflow = 'hidden';
-  sessionStorage.setItem('vl_exit_shown','1');
-  if(typeof gtag !== 'undefined') gtag('event','exit_popup_shown',{page:location.pathname});
-}
-
-function closeExitPopup(){
-  dismissed = true;
-  var overlay = document.getElementById('exit-overlay');
-  if(!overlay) return;
-  overlay.style.display = 'none';
-  document.body.style.overflow = '';
-}
-
-// Close on overlay click
-document.getElementById('exit-overlay').addEventListener('click', function(e){
-  if(e.target === this) closeExitPopup();
-});
-
-// Close on Escape
-document.addEventListener('keydown', function(e){
-  if(e.key === 'Escape') closeExitPopup();
-});
-</script>
-<!-- ═══ END EXIT INTENT + STICKY ═══ -->
-<div style="margin-top:24px;padding:20px;border-radius:20px;background:#F5F0E8;border:1px solid #EAE3D5">
-<strong style="color:#0B1F3A">Nueva comparativa:</strong>
-<span style="color:#4A647E"> revisa IATI vs InterMundial para viajar de Colombia a España.</span>
-<a href="/comparar-seguros-viaje-colombia-espana/" style="display:inline-flex;margin-left:8px;color:#00A989;font-weight:900;text-decoration:none">Ver comparativa →</a>
-</div>
-<section style="padding:38px 5%;background:#F5F0E8">
-<div style="max-width:1060px;margin:0 auto;background:#fff;border:1px solid #EAE3D5;border-radius:24px;padding:24px">
-<h2 style="margin-bottom:8px">Seguro Schengen para colombianos</h2>
-<p style="color:#4A647E">Guía específica sobre coberturas, repatriación y póliza para viajar a España o Europa.</p>
-<a href="/blog/seguro-viaje-schengen-colombianos/" style="display:inline-flex;margin-top:12px;background:#0B1F3A;color:white;text-decoration:none;padding:12px 18px;border-radius:999px;font-weight:900">Leer guía Schengen →</a>
+<section class="answer">
+<div class="kicker">Respuesta rápida</div>
+<h2>¿Necesito seguro para la visa Schengen?</h2>
+<p><strong>Sí, si vas a solicitar un visado Schengen.</strong> La normativa europea exige un seguro médico de viaje válido durante toda la estancia o tránsito, válido en el territorio de los Estados miembros y con cobertura mínima de <strong>30.000 €</strong> para repatriación por motivos médicos, atención médica urgente y hospitalización de emergencia.</p>
+<p><strong>No prometemos aprobación de visa.</strong> Un seguro válido ayuda a cumplir el requisito médico, pero la decisión final depende del consulado y del resto de documentos: motivo del viaje, fondos, alojamiento, billetes, historial y situación personal.</p>
+<div class="quick-grid">
+<div class="quick-card"><strong>Con visa Schengen</strong><p>Seguro médico obligatorio para la solicitud.</p></div>
+<div class="quick-card"><strong>Sin visa Schengen</strong><p>Seguro recomendable para entrar y viajar protegido.</p></div>
+<div class="quick-card"><strong>ETIAS</strong><p>Será una autorización, no un seguro ni una visa.</p></div>
 </div>
 </section>
-</div></div>
-<script id="vl-compare-click-tracking">
-document.addEventListener('click', function(e){
+
+<section id="tabla-paises">
+<div class="kicker">Tabla LATAM</div>
+<h2>Países LATAM: visa Schengen, seguro y ETIAS</h2>
+<p>Tabla orientativa para viajes cortos a España. La situación puede variar por nacionalidad, residencia, tipo de pasaporte o motivo del viaje. Confirma siempre con el consulado correspondiente antes de comprar vuelos.</p>
+<div class="search-box">
+<input id="countrySearch" type="search" placeholder="Buscar país: México, Colombia, Ecuador, Venezuela..."/>
+</div>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>País</th>
+<th>¿Visa Schengen?</th>
+<th>Seguro de viaje</th>
+<th>ETIAS cuando esté operativo</th>
+<th>Guía</th>
+</tr>
+</thead>
+<tbody id="countryTable">
+<tr data-country="argentina">
+<td><strong>Argentina</strong></td>
+<td><span class="badge ok">No</span></td>
+<td>Recomendado</td>
+<td>Sí, cuando ETIAS esté operativo</td>
+<td><a href="/seguro-viaje/argentina-a-espana/">Ver seguro</a></td>
+</tr>
+<tr data-country="bolivia">
+<td><strong>Bolivia</strong></td>
+<td><span class="badge visa">Sí</span></td>
+<td>Obligatorio para visado</td>
+<td>No, si viaja con visado</td>
+<td><a href="/seguro-viaje/bolivia-a-espana/">Ver seguro</a></td>
+</tr>
+<tr data-country="brasil">
+<td><strong>Brasil</strong></td>
+<td><span class="badge ok">No</span></td>
+<td>Recomendado</td>
+<td>Sí, cuando ETIAS esté operativo</td>
+<td><a href="/resultados/?destino=espana-schengen">Comparar</a></td>
+</tr>
+<tr data-country="chile">
+<td><strong>Chile</strong></td>
+<td><span class="badge ok">No</span></td>
+<td>Recomendado</td>
+<td>Sí, cuando ETIAS esté operativo</td>
+<td><a href="/resultados/?destino=espana-schengen">Comparar</a></td>
+</tr>
+<tr data-country="colombia">
+<td><strong>Colombia</strong></td>
+<td><span class="badge ok">No</span></td>
+<td>Recomendado</td>
+<td>Sí, cuando ETIAS esté operativo</td>
+<td><a href="/seguro-viaje/colombia-a-espana/">Ver seguro</a></td>
+</tr>
+<tr data-country="costa rica">
+<td><strong>Costa Rica</strong></td>
+<td><span class="badge ok">No</span></td>
+<td>Recomendado</td>
+<td>Sí, cuando ETIAS esté operativo</td>
+<td><a href="/resultados/?destino=espana-schengen">Comparar</a></td>
+</tr>
+<tr data-country="cuba">
+<td><strong>Cuba</strong></td>
+<td><span class="badge visa">Sí</span></td>
+<td>Obligatorio para visado</td>
+<td>No, si viaja con visado</td>
+<td><a href="/seguro-viaje/cuba-a-espana/">Ver seguro</a></td>
+</tr>
+<tr data-country="ecuador">
+<td><strong>Ecuador</strong></td>
+<td><span class="badge visa">Sí</span></td>
+<td>Obligatorio para visado</td>
+<td>No, si viaja con visado</td>
+<td><a href="/seguro-viaje/ecuador-a-espana/">Ver seguro</a></td>
+</tr>
+<tr data-country="el salvador">
+<td><strong>El Salvador</strong></td>
+<td><span class="badge ok">No</span></td>
+<td>Recomendado</td>
+<td>Sí, cuando ETIAS esté operativo</td>
+<td><a href="/resultados/?destino=espana-schengen">Comparar</a></td>
+</tr>
+<tr data-country="guatemala">
+<td><strong>Guatemala</strong></td>
+<td><span class="badge ok">No</span></td>
+<td>Recomendado</td>
+<td>Sí, cuando ETIAS esté operativo</td>
+<td><a href="/resultados/?destino=espana-schengen">Comparar</a></td>
+</tr>
+<tr data-country="haití">
+<td><strong>Haití</strong></td>
+<td><span class="badge visa">Sí</span></td>
+<td>Obligatorio para visado</td>
+<td>No, si viaja con visado</td>
+<td><a href="/seguro-viaje/haiti-a-espana/">Ver seguro</a></td>
+</tr>
+<tr data-country="honduras">
+<td><strong>Honduras</strong></td>
+<td><span class="badge ok">No</span></td>
+<td>Recomendado</td>
+<td>Sí, cuando ETIAS esté operativo</td>
+<td><a href="/resultados/?destino=espana-schengen">Comparar</a></td>
+</tr>
+<tr data-country="méxico">
+<td><strong>México</strong></td>
+<td><span class="badge ok">No</span></td>
+<td>Recomendado</td>
+<td>Sí, cuando ETIAS esté operativo</td>
+<td><a href="/seguro-viaje/mexico-a-espana/">Ver seguro</a></td>
+</tr>
+<tr data-country="nicaragua">
+<td><strong>Nicaragua</strong></td>
+<td><span class="badge ok">No</span></td>
+<td>Recomendado</td>
+<td>Sí, cuando ETIAS esté operativo</td>
+<td><a href="/resultados/?destino=espana-schengen">Comparar</a></td>
+</tr>
+<tr data-country="panamá">
+<td><strong>Panamá</strong></td>
+<td><span class="badge ok">No</span></td>
+<td>Recomendado</td>
+<td>Sí, cuando ETIAS esté operativo</td>
+<td><a href="/resultados/?destino=espana-schengen">Comparar</a></td>
+</tr>
+<tr data-country="paraguay">
+<td><strong>Paraguay</strong></td>
+<td><span class="badge ok">No</span></td>
+<td>Recomendado</td>
+<td>Sí, cuando ETIAS esté operativo</td>
+<td><a href="/resultados/?destino=espana-schengen">Comparar</a></td>
+</tr>
+<tr data-country="perú">
+<td><strong>Perú</strong></td>
+<td><span class="badge ok">No</span></td>
+<td>Recomendado</td>
+<td>Sí, cuando ETIAS esté operativo</td>
+<td><a href="/seguro-viaje/peru-a-espana/">Ver seguro</a></td>
+</tr>
+<tr data-country="república dominicana">
+<td><strong>República Dominicana</strong></td>
+<td><span class="badge visa">Sí</span></td>
+<td>Obligatorio para visado</td>
+<td>No, si viaja con visado</td>
+<td><a href="/seguro-viaje/republica-dominicana-a-espana/">Ver seguro</a></td>
+</tr>
+<tr data-country="uruguay">
+<td><strong>Uruguay</strong></td>
+<td><span class="badge ok">No</span></td>
+<td>Recomendado</td>
+<td>Sí, cuando ETIAS esté operativo</td>
+<td><a href="/resultados/?destino=espana-schengen">Comparar</a></td>
+</tr>
+<tr data-country="venezuela">
+<td><strong>Venezuela</strong></td>
+<td><span class="badge ok">No</span></td>
+<td>Recomendado</td>
+<td>Sí, cuando ETIAS esté operativo</td>
+<td><a href="/seguro-viaje/venezuela-a-espana/">Ver seguro</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="note"><strong>Lectura rápida:</strong> si tu país aparece como exento de visa, ETIAS será relevante cuando empiece. Si necesitas visa Schengen, el seguro médico de viaje es parte del expediente de visado.</p>
+</section>
+
+<section>
+<div class="kicker">Seguro válido</div>
+<h2>Qué debe tener el seguro para visa Schengen</h2>
+<div class="grid">
+<div class="card"><strong>Cobertura mínima</strong><p>Para visado Schengen, mínimo 30.000 € de cobertura médica según la normativa europea.</p></div>
+<div class="card"><strong>Validez territorial</strong><p>Debe cubrir el territorio de los Estados Schengen durante la estancia o tránsito previsto.</p></div>
+<div class="card"><strong>Repatriación</strong><p>Debe incluir repatriación por motivos médicos y cobertura ante urgencias graves.</p></div>
+<div class="card"><strong>Fechas correctas</strong><p>La póliza debe cubrir todo el viaje: desde la salida hasta el regreso o tránsito.</p></div>
+</div>
+<p class="note">Evita frases como “aprobación garantizada”. Lo correcto es hablar de seguro compatible con el requisito médico, no de aprobación automática.</p>
+</section>
+
+<section>
+<div class="kicker">ETIAS 2026/2027</div>
+<h2>ETIAS no es una visa ni un seguro</h2>
+<p>ETIAS será una autorización de viaje para personas exentas de visado que quieran viajar a ciertos países europeos para estancias cortas. La web oficial de la Unión Europea indica que empezará a funcionar en el <strong>último trimestre de 2026</strong> y que actualmente los viajeros no tienen que hacer ninguna solicitud.</p>
+<p>Cuando esté operativo, países exentos de visado como México, Colombia, Perú, Argentina, Chile, Uruguay, Venezuela o Brasil deberán revisar si necesitan ETIAS antes de viajar. Los países que necesitan visa Schengen seguirán tramitando visado; ETIAS no sustituye esa visa.</p>
+</section>
+
+<div class="cta-panel">
+<h2>Compara seguro para España / Schengen</h2>
+<p>Elige tu país de origen y revisa opciones con cobertura médica internacional, repatriación, asistencia 24/7, equipaje y certificado por email. Compara siempre condiciones finales antes de contratar.</p>
+<div class="btn-row">
+<a class="btn btn-primary vl-compare-link" href="/resultados/?destino=espana-schengen">Comparar seguros gratis</a>
+<a class="btn btn-secondary" href="/resultados/?origen=mexico&destino=espana-schengen">México → España</a>
+</div>
+</div>
+
+<section>
+<div class="kicker">Hub por país</div>
+<h2>Guías recomendadas por país</h2>
+<p>Usa esta página como centro de decisión y después entra a la guía específica de tu país.</p>
+<div class="mini-grid">
+<a class="mini-card" href="/seguro-viaje/mexico-a-espana/">
+<div class="mini-icon">🇲🇽</div>
+<div><strong>México a España</strong><span>Seguro, precio en MXN y ETIAS para mexicanos.</span></div>
+</a>
+<a class="mini-card" href="/blog/cuanto-cuesta-seguro-viaje-mexico-espana/">
+<div class="mini-icon">💶</div>
+<div><strong>Precio México 2026/2027</strong><span>Tabla en MXN y calculadora visual.</span></div>
+</a>
+<a class="mini-card" href="/seguro-viaje/colombia-a-espana/">
+<div class="mini-icon">🇨🇴</div>
+<div><strong>Colombia a España</strong><span>Seguro recomendado para viajar a España.</span></div>
+</a>
+<a class="mini-card" href="/seguro-viaje/venezuela-a-espana/">
+<div class="mini-icon">🇻🇪</div>
+<div><strong>Venezuela a España</strong><span>Seguro y requisitos para venezolanos.</span></div>
+</a>
+<a class="mini-card" href="/seguro-viaje/ecuador-a-espana/">
+<div class="mini-icon">🇪🇨</div>
+<div><strong>Ecuador a España</strong><span>Visa Schengen y seguro obligatorio si aplica.</span></div>
+</a>
+<a class="mini-card" href="/seguro-viaje/republica-dominicana-a-espana/">
+<div class="mini-icon">🇩🇴</div>
+<div><strong>República Dominicana a España</strong><span>Seguro para solicitud de visa y viaje.</span></div>
+</a>
+</div>
+</section>
+
+<section>
+<div class="kicker">Documentos</div>
+<h2>Qué más pueden pedir para entrar a España</h2>
+<p>Además del seguro cuando corresponda, las autoridades pueden revisar otros requisitos de entrada para estancias cortas. En general, conviene llevar documentación clara y coherente con el viaje.</p>
+<ol>
+<li>Pasaporte válido y en buen estado.</li>
+<li>Billete de regreso o salida del espacio Schengen.</li>
+<li>Reserva de alojamiento o carta de invitación si aplica.</li>
+<li>Medios económicos suficientes para la estancia.</li>
+<li>Motivo del viaje claro: turismo, visita familiar, estudios cortos, negocio, etc.</li>
+<li>Seguro médico de viaje si vas a solicitar visado o quieres viajar protegido.</li>
+</ol>
+</section>
+
+<section>
+<div class="kicker">FAQ</div>
+<h2>Preguntas frecuentes sobre visa Schengen y seguro</h2>
+<h3>¿Un seguro de viaje garantiza la aprobación de la visa Schengen?</h3>
+<p>No. Un seguro válido puede ayudarte a cumplir el requisito médico del visado Schengen, pero no garantiza la aprobación. La decisión depende del consulado y de toda la documentación presentada.</p>
+<h3>¿Qué cobertura médica mínima exige el visado Schengen?</h3>
+<p>La normativa del Código de Visados Schengen exige seguro médico de viaje válido en todo el territorio de los Estados miembros, durante toda la estancia o tránsito, con cobertura mínima de 30.000 euros para repatriación por motivos médicos, atención médica urgente y hospitalización de emergencia.</p>
+<h3>¿Los mexicanos, colombianos, peruanos o argentinos necesitan visa Schengen para España?</h3>
+<p>En condiciones generales de turismo corto, esos pasaportes aparecen entre los exentos de visado para estancias de hasta 90 días en cualquier periodo de 180 días. Deben cumplir condiciones de entrada y, cuando ETIAS esté operativo, solicitar ETIAS si aplica.</p>
+<h3>¿Qué países LATAM necesitan visa Schengen para España?</h3>
+<p>Según la lista europea actual, entre los países latinoamericanos que aparecen sujetos a visado están Bolivia, Cuba, Ecuador, Haití y República Dominicana. Revisa siempre el consulado correspondiente antes de viajar.</p>
+<h3>¿ETIAS ya es obligatorio?</h3>
+<p>La web oficial de ETIAS indica que empezará a funcionar en el último trimestre de 2026 y que por ahora los viajeros no tienen que hacer ninguna solicitud.</p>
+<h3>¿ETIAS sustituye al seguro de viaje?</h3>
+<p>No. ETIAS es una autorización de viaje para viajeros exentos de visado cuando esté operativa. El seguro es una póliza privada para asistencia médica, repatriación y otros imprevistos.</p>
+<h3>¿El seguro es recomendable si no necesito visa?</h3>
+<p>Sí. Aunque no siempre sea obligatorio para turismo corto con pasaporte exento de visado, puede ayudarte ante urgencias médicas, hospitalización, repatriación, equipaje o demoras.</p>
+</section>
+
+<div class="source-box">
+<strong>Fuentes oficiales y aviso editorial</strong>
+<p>Información orientativa actualizada para 2026/2027. No somos una embajada ni un consulado. Antes de viajar o solicitar visa, confirma requisitos en fuentes oficiales.</p>
+<ul>
+<li><a href="https://eur-lex.europa.eu/legal-content/EN/ALL/?uri=CELEX%3A02009R0810-20240628" target="_blank" rel="noopener">Código de Visados Schengen: seguro médico de viaje</a></li>
+<li><a href="https://eur-lex.europa.eu/legal-content/ES/TXT/?uri=CELEX%3A02018R1806-20230204" target="_blank" rel="noopener">Reglamento UE 2018/1806: países con visa y exentos</a></li>
+<li><a href="https://travel-europe.europa.eu/es/etias" target="_blank" rel="noopener">ETIAS oficial de la Unión Europea</a></li>
+<li><a href="https://www.exteriores.gob.es/" target="_blank" rel="noopener">Ministerio de Asuntos Exteriores de España</a></li>
+</ul>
+</div>
+
+</article>
+
+<aside>
+<div class="side-card">
+<h3>Centro Schengen</h3>
+<p>Empieza por tu país y compara seguro si vas a viajar a España.</p>
+<a class="primary vl-compare-link" href="/resultados/?destino=espana-schengen">Comparar seguro</a>
+<a href="#tabla-paises">Ver tabla por país</a>
+<a href="/seguro-viaje/mexico-a-espana/">México a España</a>
+<a href="/blog/cuanto-cuesta-seguro-viaje-mexico-espana/">Precio México 2026/2027</a>
+<a href="/seguro-viaje/colombia-a-espana/">Colombia a España</a>
+<a href="/seguro-viaje/venezuela-a-espana/">Venezuela a España</a>
+</div>
+</aside>
+</main>
+
+<div class="mobile-sticky">
+<a class="btn btn-primary vl-compare-link" href="/resultados/?destino=espana-schengen">🔍 Comparar seguro Schengen</a>
+</div>
+
+<footer>
+<div class="footer-inner">
+<div>© 2026 ViajeroLatam · Comparador independiente</div>
+<div>
+<a href="/sobre-nosotros/">Sobre nosotros</a>
+<a href="/contacto/">Contacto</a>
+<a href="/blog/">Artículos</a>
+</div>
+</div>
+</footer>
+
+<script>
+document.getElementById('countrySearch').addEventListener('input', function() {
+  var q = this.value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  document.querySelectorAll('#countryTable tr').forEach(function(row) {
+    var txt = row.textContent.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    row.style.display = txt.indexOf(q) !== -1 ? '' : 'none';
+  });
+});
+
+document.addEventListener('click', function(e) {
   var link = e.target.closest('a');
-  if(!link || typeof gtag !== 'function') return;
+  if (!link || typeof gtag !== 'function') return;
   var href = link.getAttribute('href') || '';
-  if(href.indexOf('/resultados/') !== -1){
-    gtag('event', 'click_comparar_seguros_gratis', {
+  if (link.classList.contains('vl-compare-link') || href.indexOf('/resultados/') === 0) {
+    gtag('event', 'click_comparar_visa_schengen', {
       event_category: 'lead',
       event_label: href,
       page_location: window.location.href
     });
+    gtag('event', 'click_comparar_seguros_gratis', {
+      event_category: 'lead',
+      event_label: 'visa_schengen_hub',
+      page_location: window.location.href
+    });
   }
 });
 </script>
-
 </body>
 </html>
