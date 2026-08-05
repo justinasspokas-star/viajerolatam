@@ -891,6 +891,7 @@ nav a.brand-logo img, nav a.logo img{height:64px !important; width:auto !importa
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-P1Q2TSMVNJ');
+</script>
 <script id="vl-ga4-affiliate-normalizer">
 (function(){
   if (window.vlGa4AffiliateNormalizerInstalled) return;
@@ -1198,6 +1199,50 @@ nav .brand-logo img{height:38px!important;max-width:170px!important;width:auto!i
 }
 </style>
 
+
+<style id="vl-results-all-countries-style">
+.price-route{
+  font-size:11px;
+  font-weight:800;
+  color:#4A647E;
+  background:#F5F8FC;
+  border:1px solid #E4EDF5;
+  border-radius:999px;
+  padding:5px 9px;
+  margin:0 0 9px;
+  display:inline-flex;
+  max-width:100%;
+  line-height:1.25;
+}
+.route-availability{
+  font-size:10px;
+  color:#6D8196;
+  margin-top:7px;
+  line-height:1.3;
+}
+.currency-note-cop{
+  display:block!important;
+}
+#edit-panel select{
+  min-width:0;
+}
+@media(max-width:768px){
+  .price-route{
+    white-space:normal;
+    text-align:center;
+    justify-content:center;
+  }
+  #edit-panel > div > div:nth-of-type(2){
+    grid-template-columns:1fr 1fr!important;
+  }
+}
+@media(max-width:520px){
+  #edit-panel > div > div:nth-of-type(2){
+    grid-template-columns:1fr!important;
+  }
+}
+</style>
+
 </head>
 <body>
 <!-- H1 principal movido al bloque de resultados para evitar espacio superior -->
@@ -1401,34 +1446,298 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
 <div>
 <label style="font-size:11px;font-weight:700;color:#8FA4B8;text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:6px">Voy desde</label>
 <select id="ep-origen" style="width:100%;padding:10px 12px;border:1.5px solid #E4EDF5;border-radius:10px;font-family:inherit;font-size:14px;color:#0B1F3A;background:#fff;outline:none">
-<option value="colombia">🇨🇴 Colombia</option>
-<option value="mexico">🇲🇽 México</option>
-<option value="argentina">🇦🇷 Argentina</option>
-<option value="venezuela">🇻🇪 Venezuela</option>
-<option value="peru">🇵🇪 Perú</option>
-<option value="chile">🇨🇱 Chile</option>
-<option value="ecuador">🇪🇨 Ecuador</option>
-<option value="bolivia">🇧🇴 Bolivia</option>
-<option value="paraguay">🇵🇾 Paraguay</option>
-<option value="uruguay">🇺🇾 Uruguay</option>
-<option value="brasil">🇧🇷 Brasil</option>
-<option value="costa-rica">🇨🇷 Costa Rica</option>
-<option value="panama">🇵🇦 Panamá</option>
-<option value="guatemala">🇬🇹 Guatemala</option>
-<option value="el-salvador">🇸🇻 El Salvador</option>
-<option value="honduras">🇭🇳 Honduras</option>
-<option value="nicaragua">🇳🇮 Nicaragua</option>
-<option value="republica-dominicana">🇩🇴 R. Dominicana</option>
-<option value="cuba">🇨🇺 Cuba</option>
-<option value="puerto-rico">🇵🇷 Puerto Rico</option>
+<option value="co">🇨🇴 Colombia</option>
+<option value="mx">🇲🇽 México</option>
+<option value="ar">🇦🇷 Argentina</option>
+<option value="ve">🇻🇪 Venezuela</option>
+<option value="pe">🇵🇪 Perú</option>
+<option value="cl">🇨🇱 Chile</option>
+<option value="ec">🇪🇨 Ecuador</option>
+<option value="bo">🇧🇴 Bolivia</option>
+<option value="br">🇧🇷 Brasil</option>
+<option value="uy">🇺🇾 Uruguay</option>
+<option value="py">🇵🇾 Paraguay</option>
+<option value="cr">🇨🇷 Costa Rica</option>
+<option value="pa">🇵🇦 Panamá</option>
+<option value="gt">🇬🇹 Guatemala</option>
+<option value="sv">🇸🇻 El Salvador</option>
+<option value="hn">🇭🇳 Honduras</option>
+<option value="ni">🇳🇮 Nicaragua</option>
+<option value="do">🇩🇴 República Dominicana</option>
+<option value="cu">🇨🇺 Cuba</option>
+<option value="ht">🇭🇹 Haití</option>
+<option value="pr">🇵🇷 Puerto Rico</option>
+<option value="ag">🇦🇬 Antigua y Barbuda</option>
+<option value="bs">🇧🇸 Bahamas</option>
+<option value="bb">🇧🇧 Barbados</option>
+<option value="bz">🇧🇿 Belice</option>
+<option value="dm">🇩🇲 Dominica</option>
+<option value="gd">🇬🇩 Granada</option>
+<option value="gy">🇬🇾 Guyana</option>
+<option value="jm">🇯🇲 Jamaica</option>
+<option value="kn">🇰🇳 San Cristóbal y Nieves</option>
+<option value="lc">🇱🇨 Santa Lucía</option>
+<option value="vc">🇻🇨 San Vicente y las Granadinas</option>
+<option value="sr">🇸🇷 Surinam</option>
+<option value="tt">🇹🇹 Trinidad y Tobago</option>
 </select>
 </div>
 <div>
 <label style="font-size:11px;font-weight:700;color:#8FA4B8;text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:6px">Destino</label>
 <select id="ep-destino" style="width:100%;padding:10px 12px;border:1.5px solid #E4EDF5;border-radius:10px;font-family:inherit;font-size:14px;color:#0B1F3A;background:#fff;outline:none">
-<option value="europa">🇪🇺 España / Schengen</option>
-<option value="eeuu">🇺🇸 EEUU</option>
-<option value="mundial">🌍 Mundial</option>
+<option value="espana-schengen">🇪🇺 España / Schengen</option>
+<option value="europa">🌍 Europa completa</option>
+<option value="eeuu-canada">🇺🇸🇨🇦 Estados Unidos + Canadá</option>
+<option value="mundial">🌎 Mundial</option>
+<option value="es">🇪🇸 España</option>
+<option value="us">🇺🇸 Estados Unidos</option>
+<option value="ca">🇨🇦 Canadá</option>
+<option value="fr">🇫🇷 Francia</option>
+<option value="it">🇮🇹 Italia</option>
+<option value="pt">🇵🇹 Portugal</option>
+<option value="de">🇩🇪 Alemania</option>
+<option value="gb">🇬🇧 Reino Unido</option>
+<option value="ie">🇮🇪 Irlanda</option>
+<option value="ch">🇨🇭 Suiza</option>
+<option value="nl">🇳🇱 Países Bajos</option>
+<option value="be">🇧🇪 Bélgica</option>
+<option value="gr">🇬🇷 Grecia</option>
+<option value="at">🇦🇹 Austria</option>
+<option value="au">🇦🇺 Australia</option>
+<option value="nz">🇳🇿 Nueva Zelanda</option>
+<option value="jp">🇯🇵 Japón</option>
+<option value="kr">🇰🇷 Corea del Sur</option>
+<option value="th">🇹🇭 Tailandia</option>
+<option value="tr">🇹🇷 Turquía</option>
+<option value="ma">🇲🇦 Marruecos</option>
+<option value="ae">🇦🇪 Emiratos Árabes Unidos</option>
+<option value="af">🇦🇫 Afganistán</option>
+<option value="al">🇦🇱 Albania</option>
+<option value="ad">🇦🇩 Andorra</option>
+<option value="ao">🇦🇴 Angola</option>
+<option value="ai">🇦🇮 Anguila</option>
+<option value="ag">🇦🇬 Antigua y Barbuda</option>
+<option value="aq">🇦🇶 Antártida</option>
+<option value="sa">🇸🇦 Arabia Saudí</option>
+<option value="dz">🇩🇿 Argelia</option>
+<option value="ar">🇦🇷 Argentina</option>
+<option value="am">🇦🇲 Armenia</option>
+<option value="aw">🇦🇼 Aruba</option>
+<option value="az">🇦🇿 Azerbaiyán</option>
+<option value="bs">🇧🇸 Bahamas</option>
+<option value="bd">🇧🇩 Bangladés</option>
+<option value="bb">🇧🇧 Barbados</option>
+<option value="bh">🇧🇭 Baréin</option>
+<option value="bz">🇧🇿 Belice</option>
+<option value="bj">🇧🇯 Benín</option>
+<option value="bm">🇧🇲 Bermudas</option>
+<option value="by">🇧🇾 Bielorrusia</option>
+<option value="bo">🇧🇴 Bolivia</option>
+<option value="ba">🇧🇦 Bosnia y Herzegovina</option>
+<option value="bw">🇧🇼 Botsuana</option>
+<option value="br">🇧🇷 Brasil</option>
+<option value="bn">🇧🇳 Brunéi</option>
+<option value="bg">🇧🇬 Bulgaria</option>
+<option value="bf">🇧🇫 Burkina Faso</option>
+<option value="bi">🇧🇮 Burundi</option>
+<option value="bt">🇧🇹 Bután</option>
+<option value="cv">🇨🇻 Cabo Verde</option>
+<option value="kh">🇰🇭 Camboya</option>
+<option value="cm">🇨🇲 Camerún</option>
+<option value="bq">🇧🇶 Caribe neerlandés</option>
+<option value="qa">🇶🇦 Catar</option>
+<option value="td">🇹🇩 Chad</option>
+<option value="cz">🇨🇿 Chequia</option>
+<option value="cl">🇨🇱 Chile</option>
+<option value="cn">🇨🇳 China</option>
+<option value="cy">🇨🇾 Chipre</option>
+<option value="va">🇻🇦 Ciudad del Vaticano</option>
+<option value="co">🇨🇴 Colombia</option>
+<option value="km">🇰🇲 Comoras</option>
+<option value="cg">🇨🇬 Congo</option>
+<option value="kp">🇰🇵 Corea del Norte</option>
+<option value="cr">🇨🇷 Costa Rica</option>
+<option value="hr">🇭🇷 Croacia</option>
+<option value="cu">🇨🇺 Cuba</option>
+<option value="cw">🇨🇼 Curazao</option>
+<option value="ci">🇨🇮 Côte d’Ivoire</option>
+<option value="dk">🇩🇰 Dinamarca</option>
+<option value="dm">🇩🇲 Dominica</option>
+<option value="ec">🇪🇨 Ecuador</option>
+<option value="eg">🇪🇬 Egipto</option>
+<option value="sv">🇸🇻 El Salvador</option>
+<option value="er">🇪🇷 Eritrea</option>
+<option value="sk">🇸🇰 Eslovaquia</option>
+<option value="si">🇸🇮 Eslovenia</option>
+<option value="ee">🇪🇪 Estonia</option>
+<option value="sz">🇸🇿 Esuatini</option>
+<option value="et">🇪🇹 Etiopía</option>
+<option value="ph">🇵🇭 Filipinas</option>
+<option value="fi">🇫🇮 Finlandia</option>
+<option value="fj">🇫🇯 Fiyi</option>
+<option value="ga">🇬🇦 Gabón</option>
+<option value="gm">🇬🇲 Gambia</option>
+<option value="ge">🇬🇪 Georgia</option>
+<option value="gh">🇬🇭 Ghana</option>
+<option value="gi">🇬🇮 Gibraltar</option>
+<option value="gd">🇬🇩 Granada</option>
+<option value="gl">🇬🇱 Groenlandia</option>
+<option value="gp">🇬🇵 Guadalupe</option>
+<option value="gu">🇬🇺 Guam</option>
+<option value="gt">🇬🇹 Guatemala</option>
+<option value="gf">🇬🇫 Guayana Francesa</option>
+<option value="gg">🇬🇬 Guernesey</option>
+<option value="gn">🇬🇳 Guinea</option>
+<option value="gq">🇬🇶 Guinea Ecuatorial</option>
+<option value="gw">🇬🇼 Guinea-Bisáu</option>
+<option value="gy">🇬🇾 Guyana</option>
+<option value="ht">🇭🇹 Haití</option>
+<option value="hn">🇭🇳 Honduras</option>
+<option value="hu">🇭🇺 Hungría</option>
+<option value="in">🇮🇳 India</option>
+<option value="id">🇮🇩 Indonesia</option>
+<option value="iq">🇮🇶 Irak</option>
+<option value="ir">🇮🇷 Irán</option>
+<option value="bv">🇧🇻 Isla Bouvet</option>
+<option value="im">🇮🇲 Isla de Man</option>
+<option value="cx">🇨🇽 Isla de Navidad</option>
+<option value="nf">🇳🇫 Isla Norfolk</option>
+<option value="is">🇮🇸 Islandia</option>
+<option value="ax">🇦🇽 Islas Aland</option>
+<option value="ky">🇰🇾 Islas Caimán</option>
+<option value="cc">🇨🇨 Islas Cocos</option>
+<option value="ck">🇨🇰 Islas Cook</option>
+<option value="fo">🇫🇴 Islas Feroe</option>
+<option value="gs">🇬🇸 Islas Georgia del Sur y Sandwich del Sur</option>
+<option value="hm">🇭🇲 Islas Heard y McDonald</option>
+<option value="fk">🇫🇰 Islas Malvinas</option>
+<option value="mp">🇲🇵 Islas Marianas del Norte</option>
+<option value="mh">🇲🇭 Islas Marshall</option>
+<option value="um">🇺🇲 Islas menores alejadas de EE. UU.</option>
+<option value="pn">🇵🇳 Islas Pitcairn</option>
+<option value="sb">🇸🇧 Islas Salomón</option>
+<option value="tc">🇹🇨 Islas Turcas y Caicos</option>
+<option value="vg">🇻🇬 Islas Vírgenes Británicas</option>
+<option value="vi">🇻🇮 Islas Vírgenes de EE. UU.</option>
+<option value="il">🇮🇱 Israel</option>
+<option value="jm">🇯🇲 Jamaica</option>
+<option value="je">🇯🇪 Jersey</option>
+<option value="jo">🇯🇴 Jordania</option>
+<option value="kz">🇰🇿 Kazajistán</option>
+<option value="ke">🇰🇪 Kenia</option>
+<option value="kg">🇰🇬 Kirguistán</option>
+<option value="ki">🇰🇮 Kiribati</option>
+<option value="kw">🇰🇼 Kuwait</option>
+<option value="la">🇱🇦 Laos</option>
+<option value="ls">🇱🇸 Lesoto</option>
+<option value="lv">🇱🇻 Letonia</option>
+<option value="lr">🇱🇷 Liberia</option>
+<option value="ly">🇱🇾 Libia</option>
+<option value="li">🇱🇮 Liechtenstein</option>
+<option value="lt">🇱🇹 Lituania</option>
+<option value="lu">🇱🇺 Luxemburgo</option>
+<option value="lb">🇱🇧 Líbano</option>
+<option value="mk">🇲🇰 Macedonia del Norte</option>
+<option value="mg">🇲🇬 Madagascar</option>
+<option value="my">🇲🇾 Malasia</option>
+<option value="mw">🇲🇼 Malaui</option>
+<option value="mv">🇲🇻 Maldivas</option>
+<option value="ml">🇲🇱 Mali</option>
+<option value="mt">🇲🇹 Malta</option>
+<option value="mq">🇲🇶 Martinica</option>
+<option value="mu">🇲🇺 Mauricio</option>
+<option value="mr">🇲🇷 Mauritania</option>
+<option value="yt">🇾🇹 Mayotte</option>
+<option value="fm">🇫🇲 Micronesia</option>
+<option value="md">🇲🇩 Moldavia</option>
+<option value="mn">🇲🇳 Mongolia</option>
+<option value="me">🇲🇪 Montenegro</option>
+<option value="ms">🇲🇸 Montserrat</option>
+<option value="mz">🇲🇿 Mozambique</option>
+<option value="mm">🇲🇲 Myanmar (Birmania)</option>
+<option value="mx">🇲🇽 México</option>
+<option value="mc">🇲🇨 Mónaco</option>
+<option value="na">🇳🇦 Namibia</option>
+<option value="nr">🇳🇷 Nauru</option>
+<option value="np">🇳🇵 Nepal</option>
+<option value="ni">🇳🇮 Nicaragua</option>
+<option value="ng">🇳🇬 Nigeria</option>
+<option value="nu">🇳🇺 Niue</option>
+<option value="no">🇳🇴 Noruega</option>
+<option value="nc">🇳🇨 Nueva Caledonia</option>
+<option value="ne">🇳🇪 Níger</option>
+<option value="om">🇴🇲 Omán</option>
+<option value="pk">🇵🇰 Pakistán</option>
+<option value="pw">🇵🇼 Palaos</option>
+<option value="pa">🇵🇦 Panamá</option>
+<option value="pg">🇵🇬 Papúa Nueva Guinea</option>
+<option value="py">🇵🇾 Paraguay</option>
+<option value="pe">🇵🇪 Perú</option>
+<option value="pf">🇵🇫 Polinesia Francesa</option>
+<option value="pl">🇵🇱 Polonia</option>
+<option value="pr">🇵🇷 Puerto Rico</option>
+<option value="hk">🇭🇰 RAE de Hong Kong (China)</option>
+<option value="mo">🇲🇴 RAE de Macao (China)</option>
+<option value="cf">🇨🇫 República Centroafricana</option>
+<option value="cd">🇨🇩 República Democrática del Congo</option>
+<option value="do">🇩🇴 República Dominicana</option>
+<option value="re">🇷🇪 Reunión</option>
+<option value="rw">🇷🇼 Ruanda</option>
+<option value="ro">🇷🇴 Rumanía</option>
+<option value="ru">🇷🇺 Rusia</option>
+<option value="ws">🇼🇸 Samoa</option>
+<option value="as">🇦🇸 Samoa Americana</option>
+<option value="bl">🇧🇱 San Bartolomé</option>
+<option value="kn">🇰🇳 San Cristóbal y Nieves</option>
+<option value="sm">🇸🇲 San Marino</option>
+<option value="mf">🇲🇫 San Martín</option>
+<option value="pm">🇵🇲 San Pedro y Miquelón</option>
+<option value="vc">🇻🇨 San Vicente y las Granadinas</option>
+<option value="sh">🇸🇭 Santa Elena</option>
+<option value="lc">🇱🇨 Santa Lucía</option>
+<option value="st">🇸🇹 Santo Tomé y Príncipe</option>
+<option value="sn">🇸🇳 Senegal</option>
+<option value="rs">🇷🇸 Serbia</option>
+<option value="sc">🇸🇨 Seychelles</option>
+<option value="sl">🇸🇱 Sierra Leona</option>
+<option value="sg">🇸🇬 Singapur</option>
+<option value="sx">🇸🇽 Sint Maarten</option>
+<option value="sy">🇸🇾 Siria</option>
+<option value="so">🇸🇴 Somalia</option>
+<option value="lk">🇱🇰 Sri Lanka</option>
+<option value="za">🇿🇦 Sudáfrica</option>
+<option value="sd">🇸🇩 Sudán</option>
+<option value="ss">🇸🇸 Sudán del Sur</option>
+<option value="se">🇸🇪 Suecia</option>
+<option value="sr">🇸🇷 Surinam</option>
+<option value="sj">🇸🇯 Svalbard y Jan Mayen</option>
+<option value="eh">🇪🇭 Sáhara Occidental</option>
+<option value="tw">🇹🇼 Taiwán</option>
+<option value="tz">🇹🇿 Tanzania</option>
+<option value="tj">🇹🇯 Tayikistán</option>
+<option value="io">🇮🇴 Territorio Británico del Océano Índico</option>
+<option value="tf">🇹🇫 Territorios Australes Franceses</option>
+<option value="ps">🇵🇸 Territorios Palestinos</option>
+<option value="tl">🇹🇱 Timor-Leste</option>
+<option value="tg">🇹🇬 Togo</option>
+<option value="tk">🇹🇰 Tokelau</option>
+<option value="to">🇹🇴 Tonga</option>
+<option value="tt">🇹🇹 Trinidad y Tobago</option>
+<option value="tm">🇹🇲 Turkmenistán</option>
+<option value="tv">🇹🇻 Tuvalu</option>
+<option value="tn">🇹🇳 Túnez</option>
+<option value="ua">🇺🇦 Ucrania</option>
+<option value="ug">🇺🇬 Uganda</option>
+<option value="uy">🇺🇾 Uruguay</option>
+<option value="uz">🇺🇿 Uzbekistán</option>
+<option value="vu">🇻🇺 Vanuatu</option>
+<option value="ve">🇻🇪 Venezuela</option>
+<option value="vn">🇻🇳 Vietnam</option>
+<option value="wf">🇼🇫 Wallis y Futuna</option>
+<option value="ye">🇾🇪 Yemen</option>
+<option value="dj">🇩🇯 Yibuti</option>
+<option value="zm">🇿🇲 Zambia</option>
+<option value="zw">🇿🇼 Zimbabue</option>
 </select>
 </div>
 <div>
@@ -1465,12 +1774,8 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
 <button class="clear-btn" onclick="clearFilters()">Limpiar todo</button>
 </div>
 <div class="filter-section">
-<div class="filter-title">Destino</div>
-<div class="dest-tabs">
-<button class="dest-tab active" onclick="setDest(this,'europa')">🇪🇺 Europa</button>
-<button class="dest-tab" onclick="setDest(this,'eeuu')">🇺🇸 EEUU</button>
-<button class="dest-tab" onclick="setDest(this,'mundial')">🌍 Mundial</button>
-</div>
+<div class="filter-title">Ruta seleccionada</div>
+<div id="sidebar-route" style="background:#F5F8FC;border:1px solid #E4EDF5;border-radius:12px;padding:12px;font-size:13px;font-weight:700;color:#0B1F3A;line-height:1.45">Colombia → España</div>
 </div>
 <div class="filter-section">
 <div class="filter-title">Precio máximo por día</div>
@@ -1508,7 +1813,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
   <section class="results-top" aria-labelledby="resultados-title">
     <div>
       <h1 id="resultados-title">Comparar seguros de viaje para España y Schengen</h1>
-      <p><strong>Resultados recomendados</strong> para Colombia → España. Compara precio, cobertura médica, repatriación y condiciones antes de contratar.</p>
+      <p id="route-summary"><strong>Resultados recomendados</strong> para Colombia → España. Compara precio, cobertura médica, repatriación y condiciones antes de contratar.</p>
     </div>
     <a class="sc-btn" href="/visa-schengen/">¿Qué es Schengen?</a>
   </section>
@@ -1516,7 +1821,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
   <div class="results-toolbar">
     <div class="results-toolbar-left">
       <svg fill="none" height="14" stroke="#00C4A1" stroke-width="2.5" viewBox="0 0 24 24" width="14"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-      <span>Opciones válidas para Schengen · cobertura médica mínima 30.000 € · revisa siempre condiciones finales.</span>
+      <span id="coverage-route-note">Precios orientativos para la ruta seleccionada · revisa disponibilidad y condiciones finales en la aseguradora.</span>
     </div>
     <div class="results-toolbar-right">
       <span id="count-slim" style="font-size:12px;color:#8FA4B8"></span>
@@ -1530,7 +1835,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
     </div>
   </div>
 
-  <div id="cop-currency-note" class="currency-note-cop">
+  <div id="cop-currency-note" class="currency-note-cop is-visible">
     Precios en euros y referencia aproximada en pesos colombianos para viajes Colombia → España. El precio final y el cambio pueden variar al contratar.
   </div>
 
@@ -2016,6 +2321,260 @@ function applyEditSearch(){
   render(sortData(DATA, 'recomendado'));
 })();
 </script>
+
+
+<script id="vl-results-latam-world-script">
+(function(){
+  'use strict';
+
+  var PLACE_META = {"af": {"label": "Afganistán", "flag": "🇦🇫"}, "al": {"label": "Albania", "flag": "🇦🇱"}, "de": {"label": "Alemania", "flag": "🇩🇪"}, "ad": {"label": "Andorra", "flag": "🇦🇩"}, "ao": {"label": "Angola", "flag": "🇦🇴"}, "ai": {"label": "Anguila", "flag": "🇦🇮"}, "ag": {"label": "Antigua y Barbuda", "flag": "🇦🇬"}, "aq": {"label": "Antártida", "flag": "🇦🇶"}, "sa": {"label": "Arabia Saudí", "flag": "🇸🇦"}, "dz": {"label": "Argelia", "flag": "🇩🇿"}, "ar": {"label": "Argentina", "flag": "🇦🇷"}, "am": {"label": "Armenia", "flag": "🇦🇲"}, "aw": {"label": "Aruba", "flag": "🇦🇼"}, "au": {"label": "Australia", "flag": "🇦🇺"}, "at": {"label": "Austria", "flag": "🇦🇹"}, "az": {"label": "Azerbaiyán", "flag": "🇦🇿"}, "bs": {"label": "Bahamas", "flag": "🇧🇸"}, "bd": {"label": "Bangladés", "flag": "🇧🇩"}, "bb": {"label": "Barbados", "flag": "🇧🇧"}, "bh": {"label": "Baréin", "flag": "🇧🇭"}, "bz": {"label": "Belice", "flag": "🇧🇿"}, "bj": {"label": "Benín", "flag": "🇧🇯"}, "bm": {"label": "Bermudas", "flag": "🇧🇲"}, "by": {"label": "Bielorrusia", "flag": "🇧🇾"}, "bo": {"label": "Bolivia", "flag": "🇧🇴"}, "ba": {"label": "Bosnia y Herzegovina", "flag": "🇧🇦"}, "bw": {"label": "Botsuana", "flag": "🇧🇼"}, "br": {"label": "Brasil", "flag": "🇧🇷"}, "bn": {"label": "Brunéi", "flag": "🇧🇳"}, "bg": {"label": "Bulgaria", "flag": "🇧🇬"}, "bf": {"label": "Burkina Faso", "flag": "🇧🇫"}, "bi": {"label": "Burundi", "flag": "🇧🇮"}, "bt": {"label": "Bután", "flag": "🇧🇹"}, "be": {"label": "Bélgica", "flag": "🇧🇪"}, "cv": {"label": "Cabo Verde", "flag": "🇨🇻"}, "kh": {"label": "Camboya", "flag": "🇰🇭"}, "cm": {"label": "Camerún", "flag": "🇨🇲"}, "ca": {"label": "Canadá", "flag": "🇨🇦"}, "bq": {"label": "Caribe neerlandés", "flag": "🇧🇶"}, "qa": {"label": "Catar", "flag": "🇶🇦"}, "td": {"label": "Chad", "flag": "🇹🇩"}, "cz": {"label": "Chequia", "flag": "🇨🇿"}, "cl": {"label": "Chile", "flag": "🇨🇱"}, "cn": {"label": "China", "flag": "🇨🇳"}, "cy": {"label": "Chipre", "flag": "🇨🇾"}, "va": {"label": "Ciudad del Vaticano", "flag": "🇻🇦"}, "co": {"label": "Colombia", "flag": "🇨🇴"}, "km": {"label": "Comoras", "flag": "🇰🇲"}, "cg": {"label": "Congo", "flag": "🇨🇬"}, "kp": {"label": "Corea del Norte", "flag": "🇰🇵"}, "kr": {"label": "Corea del Sur", "flag": "🇰🇷"}, "cr": {"label": "Costa Rica", "flag": "🇨🇷"}, "hr": {"label": "Croacia", "flag": "🇭🇷"}, "cu": {"label": "Cuba", "flag": "🇨🇺"}, "cw": {"label": "Curazao", "flag": "🇨🇼"}, "ci": {"label": "Côte d’Ivoire", "flag": "🇨🇮"}, "dk": {"label": "Dinamarca", "flag": "🇩🇰"}, "dm": {"label": "Dominica", "flag": "🇩🇲"}, "ec": {"label": "Ecuador", "flag": "🇪🇨"}, "eg": {"label": "Egipto", "flag": "🇪🇬"}, "sv": {"label": "El Salvador", "flag": "🇸🇻"}, "ae": {"label": "Emiratos Árabes Unidos", "flag": "🇦🇪"}, "er": {"label": "Eritrea", "flag": "🇪🇷"}, "sk": {"label": "Eslovaquia", "flag": "🇸🇰"}, "si": {"label": "Eslovenia", "flag": "🇸🇮"}, "es": {"label": "España", "flag": "🇪🇸"}, "us": {"label": "Estados Unidos", "flag": "🇺🇸"}, "ee": {"label": "Estonia", "flag": "🇪🇪"}, "sz": {"label": "Esuatini", "flag": "🇸🇿"}, "et": {"label": "Etiopía", "flag": "🇪🇹"}, "ph": {"label": "Filipinas", "flag": "🇵🇭"}, "fi": {"label": "Finlandia", "flag": "🇫🇮"}, "fj": {"label": "Fiyi", "flag": "🇫🇯"}, "fr": {"label": "Francia", "flag": "🇫🇷"}, "ga": {"label": "Gabón", "flag": "🇬🇦"}, "gm": {"label": "Gambia", "flag": "🇬🇲"}, "ge": {"label": "Georgia", "flag": "🇬🇪"}, "gh": {"label": "Ghana", "flag": "🇬🇭"}, "gi": {"label": "Gibraltar", "flag": "🇬🇮"}, "gd": {"label": "Granada", "flag": "🇬🇩"}, "gr": {"label": "Grecia", "flag": "🇬🇷"}, "gl": {"label": "Groenlandia", "flag": "🇬🇱"}, "gp": {"label": "Guadalupe", "flag": "🇬🇵"}, "gu": {"label": "Guam", "flag": "🇬🇺"}, "gt": {"label": "Guatemala", "flag": "🇬🇹"}, "gf": {"label": "Guayana Francesa", "flag": "🇬🇫"}, "gg": {"label": "Guernesey", "flag": "🇬🇬"}, "gn": {"label": "Guinea", "flag": "🇬🇳"}, "gq": {"label": "Guinea Ecuatorial", "flag": "🇬🇶"}, "gw": {"label": "Guinea-Bisáu", "flag": "🇬🇼"}, "gy": {"label": "Guyana", "flag": "🇬🇾"}, "ht": {"label": "Haití", "flag": "🇭🇹"}, "hn": {"label": "Honduras", "flag": "🇭🇳"}, "hu": {"label": "Hungría", "flag": "🇭🇺"}, "in": {"label": "India", "flag": "🇮🇳"}, "id": {"label": "Indonesia", "flag": "🇮🇩"}, "iq": {"label": "Irak", "flag": "🇮🇶"}, "ie": {"label": "Irlanda", "flag": "🇮🇪"}, "ir": {"label": "Irán", "flag": "🇮🇷"}, "bv": {"label": "Isla Bouvet", "flag": "🇧🇻"}, "im": {"label": "Isla de Man", "flag": "🇮🇲"}, "cx": {"label": "Isla de Navidad", "flag": "🇨🇽"}, "nf": {"label": "Isla Norfolk", "flag": "🇳🇫"}, "is": {"label": "Islandia", "flag": "🇮🇸"}, "ax": {"label": "Islas Aland", "flag": "🇦🇽"}, "ky": {"label": "Islas Caimán", "flag": "🇰🇾"}, "cc": {"label": "Islas Cocos", "flag": "🇨🇨"}, "ck": {"label": "Islas Cook", "flag": "🇨🇰"}, "fo": {"label": "Islas Feroe", "flag": "🇫🇴"}, "gs": {"label": "Islas Georgia del Sur y Sandwich del Sur", "flag": "🇬🇸"}, "hm": {"label": "Islas Heard y McDonald", "flag": "🇭🇲"}, "fk": {"label": "Islas Malvinas", "flag": "🇫🇰"}, "mp": {"label": "Islas Marianas del Norte", "flag": "🇲🇵"}, "mh": {"label": "Islas Marshall", "flag": "🇲🇭"}, "um": {"label": "Islas menores alejadas de EE. UU.", "flag": "🇺🇲"}, "pn": {"label": "Islas Pitcairn", "flag": "🇵🇳"}, "sb": {"label": "Islas Salomón", "flag": "🇸🇧"}, "tc": {"label": "Islas Turcas y Caicos", "flag": "🇹🇨"}, "vg": {"label": "Islas Vírgenes Británicas", "flag": "🇻🇬"}, "vi": {"label": "Islas Vírgenes de EE. UU.", "flag": "🇻🇮"}, "il": {"label": "Israel", "flag": "🇮🇱"}, "it": {"label": "Italia", "flag": "🇮🇹"}, "jm": {"label": "Jamaica", "flag": "🇯🇲"}, "jp": {"label": "Japón", "flag": "🇯🇵"}, "je": {"label": "Jersey", "flag": "🇯🇪"}, "jo": {"label": "Jordania", "flag": "🇯🇴"}, "kz": {"label": "Kazajistán", "flag": "🇰🇿"}, "ke": {"label": "Kenia", "flag": "🇰🇪"}, "kg": {"label": "Kirguistán", "flag": "🇰🇬"}, "ki": {"label": "Kiribati", "flag": "🇰🇮"}, "kw": {"label": "Kuwait", "flag": "🇰🇼"}, "la": {"label": "Laos", "flag": "🇱🇦"}, "ls": {"label": "Lesoto", "flag": "🇱🇸"}, "lv": {"label": "Letonia", "flag": "🇱🇻"}, "lr": {"label": "Liberia", "flag": "🇱🇷"}, "ly": {"label": "Libia", "flag": "🇱🇾"}, "li": {"label": "Liechtenstein", "flag": "🇱🇮"}, "lt": {"label": "Lituania", "flag": "🇱🇹"}, "lu": {"label": "Luxemburgo", "flag": "🇱🇺"}, "lb": {"label": "Líbano", "flag": "🇱🇧"}, "mk": {"label": "Macedonia del Norte", "flag": "🇲🇰"}, "mg": {"label": "Madagascar", "flag": "🇲🇬"}, "my": {"label": "Malasia", "flag": "🇲🇾"}, "mw": {"label": "Malaui", "flag": "🇲🇼"}, "mv": {"label": "Maldivas", "flag": "🇲🇻"}, "ml": {"label": "Mali", "flag": "🇲🇱"}, "mt": {"label": "Malta", "flag": "🇲🇹"}, "ma": {"label": "Marruecos", "flag": "🇲🇦"}, "mq": {"label": "Martinica", "flag": "🇲🇶"}, "mu": {"label": "Mauricio", "flag": "🇲🇺"}, "mr": {"label": "Mauritania", "flag": "🇲🇷"}, "yt": {"label": "Mayotte", "flag": "🇾🇹"}, "fm": {"label": "Micronesia", "flag": "🇫🇲"}, "md": {"label": "Moldavia", "flag": "🇲🇩"}, "mn": {"label": "Mongolia", "flag": "🇲🇳"}, "me": {"label": "Montenegro", "flag": "🇲🇪"}, "ms": {"label": "Montserrat", "flag": "🇲🇸"}, "mz": {"label": "Mozambique", "flag": "🇲🇿"}, "mm": {"label": "Myanmar (Birmania)", "flag": "🇲🇲"}, "mx": {"label": "México", "flag": "🇲🇽"}, "mc": {"label": "Mónaco", "flag": "🇲🇨"}, "na": {"label": "Namibia", "flag": "🇳🇦"}, "nr": {"label": "Nauru", "flag": "🇳🇷"}, "np": {"label": "Nepal", "flag": "🇳🇵"}, "ni": {"label": "Nicaragua", "flag": "🇳🇮"}, "ng": {"label": "Nigeria", "flag": "🇳🇬"}, "nu": {"label": "Niue", "flag": "🇳🇺"}, "no": {"label": "Noruega", "flag": "🇳🇴"}, "nc": {"label": "Nueva Caledonia", "flag": "🇳🇨"}, "nz": {"label": "Nueva Zelanda", "flag": "🇳🇿"}, "ne": {"label": "Níger", "flag": "🇳🇪"}, "om": {"label": "Omán", "flag": "🇴🇲"}, "pk": {"label": "Pakistán", "flag": "🇵🇰"}, "pw": {"label": "Palaos", "flag": "🇵🇼"}, "pa": {"label": "Panamá", "flag": "🇵🇦"}, "pg": {"label": "Papúa Nueva Guinea", "flag": "🇵🇬"}, "py": {"label": "Paraguay", "flag": "🇵🇾"}, "nl": {"label": "Países Bajos", "flag": "🇳🇱"}, "pe": {"label": "Perú", "flag": "🇵🇪"}, "pf": {"label": "Polinesia Francesa", "flag": "🇵🇫"}, "pl": {"label": "Polonia", "flag": "🇵🇱"}, "pt": {"label": "Portugal", "flag": "🇵🇹"}, "pr": {"label": "Puerto Rico", "flag": "🇵🇷"}, "hk": {"label": "RAE de Hong Kong (China)", "flag": "🇭🇰"}, "mo": {"label": "RAE de Macao (China)", "flag": "🇲🇴"}, "gb": {"label": "Reino Unido", "flag": "🇬🇧"}, "cf": {"label": "República Centroafricana", "flag": "🇨🇫"}, "cd": {"label": "República Democrática del Congo", "flag": "🇨🇩"}, "do": {"label": "República Dominicana", "flag": "🇩🇴"}, "re": {"label": "Reunión", "flag": "🇷🇪"}, "rw": {"label": "Ruanda", "flag": "🇷🇼"}, "ro": {"label": "Rumanía", "flag": "🇷🇴"}, "ru": {"label": "Rusia", "flag": "🇷🇺"}, "ws": {"label": "Samoa", "flag": "🇼🇸"}, "as": {"label": "Samoa Americana", "flag": "🇦🇸"}, "bl": {"label": "San Bartolomé", "flag": "🇧🇱"}, "kn": {"label": "San Cristóbal y Nieves", "flag": "🇰🇳"}, "sm": {"label": "San Marino", "flag": "🇸🇲"}, "mf": {"label": "San Martín", "flag": "🇲🇫"}, "pm": {"label": "San Pedro y Miquelón", "flag": "🇵🇲"}, "vc": {"label": "San Vicente y las Granadinas", "flag": "🇻🇨"}, "sh": {"label": "Santa Elena", "flag": "🇸🇭"}, "lc": {"label": "Santa Lucía", "flag": "🇱🇨"}, "st": {"label": "Santo Tomé y Príncipe", "flag": "🇸🇹"}, "sn": {"label": "Senegal", "flag": "🇸🇳"}, "rs": {"label": "Serbia", "flag": "🇷🇸"}, "sc": {"label": "Seychelles", "flag": "🇸🇨"}, "sl": {"label": "Sierra Leona", "flag": "🇸🇱"}, "sg": {"label": "Singapur", "flag": "🇸🇬"}, "sx": {"label": "Sint Maarten", "flag": "🇸🇽"}, "sy": {"label": "Siria", "flag": "🇸🇾"}, "so": {"label": "Somalia", "flag": "🇸🇴"}, "lk": {"label": "Sri Lanka", "flag": "🇱🇰"}, "za": {"label": "Sudáfrica", "flag": "🇿🇦"}, "sd": {"label": "Sudán", "flag": "🇸🇩"}, "ss": {"label": "Sudán del Sur", "flag": "🇸🇸"}, "se": {"label": "Suecia", "flag": "🇸🇪"}, "ch": {"label": "Suiza", "flag": "🇨🇭"}, "sr": {"label": "Surinam", "flag": "🇸🇷"}, "sj": {"label": "Svalbard y Jan Mayen", "flag": "🇸🇯"}, "eh": {"label": "Sáhara Occidental", "flag": "🇪🇭"}, "th": {"label": "Tailandia", "flag": "🇹🇭"}, "tw": {"label": "Taiwán", "flag": "🇹🇼"}, "tz": {"label": "Tanzania", "flag": "🇹🇿"}, "tj": {"label": "Tayikistán", "flag": "🇹🇯"}, "io": {"label": "Territorio Británico del Océano Índico", "flag": "🇮🇴"}, "tf": {"label": "Territorios Australes Franceses", "flag": "🇹🇫"}, "ps": {"label": "Territorios Palestinos", "flag": "🇵🇸"}, "tl": {"label": "Timor-Leste", "flag": "🇹🇱"}, "tg": {"label": "Togo", "flag": "🇹🇬"}, "tk": {"label": "Tokelau", "flag": "🇹🇰"}, "to": {"label": "Tonga", "flag": "🇹🇴"}, "tt": {"label": "Trinidad y Tobago", "flag": "🇹🇹"}, "tm": {"label": "Turkmenistán", "flag": "🇹🇲"}, "tr": {"label": "Turquía", "flag": "🇹🇷"}, "tv": {"label": "Tuvalu", "flag": "🇹🇻"}, "tn": {"label": "Túnez", "flag": "🇹🇳"}, "ua": {"label": "Ucrania", "flag": "🇺🇦"}, "ug": {"label": "Uganda", "flag": "🇺🇬"}, "uy": {"label": "Uruguay", "flag": "🇺🇾"}, "uz": {"label": "Uzbekistán", "flag": "🇺🇿"}, "vu": {"label": "Vanuatu", "flag": "🇻🇺"}, "ve": {"label": "Venezuela", "flag": "🇻🇪"}, "vn": {"label": "Vietnam", "flag": "🇻🇳"}, "wf": {"label": "Wallis y Futuna", "flag": "🇼🇫"}, "ye": {"label": "Yemen", "flag": "🇾🇪"}, "dj": {"label": "Yibuti", "flag": "🇩🇯"}, "zm": {"label": "Zambia", "flag": "🇿🇲"}, "zw": {"label": "Zimbabue", "flag": "🇿🇼"}, "espana-schengen": {"label": "España / Schengen", "flag": "🇪🇺"}, "europa": {"label": "Europa completa", "flag": "🌍"}, "eeuu-canada": {"label": "Estados Unidos + Canadá", "flag": "🇺🇸🇨🇦"}, "mundial": {"label": "Mundial", "flag": "🌎"}};
+  var ALIASES = {"colombia": "co", "mexico": "mx", "méxico": "mx", "argentina": "ar", "venezuela": "ve", "peru": "pe", "perú": "pe", "chile": "cl", "ecuador": "ec", "bolivia": "bo", "paraguay": "py", "uruguay": "uy", "brasil": "br", "brazil": "br", "costa-rica": "cr", "costa rica": "cr", "panama": "pa", "panamá": "pa", "guatemala": "gt", "el-salvador": "sv", "el salvador": "sv", "honduras": "hn", "nicaragua": "ni", "republica-dominicana": "do", "república dominicana": "do", "cuba": "cu", "haiti": "ht", "haití": "ht", "puerto-rico": "pr", "puerto rico": "pr", "estados-unidos": "us", "estados unidos": "us", "eeuu": "us", "usa": "us", "espana": "es", "españa": "es", "espana-schengen": "espana-schengen", "eeuu-canada": "eeuu-canada", "mundial": "mundial", "europa": "europa"};
+  var CURRENCY_BY_ORIGIN = {"ag": "XCD", "ar": "ARS", "bs": "BSD", "bb": "BBD", "bz": "BZD", "bo": "BOB", "br": "BRL", "cl": "CLP", "co": "COP", "cr": "CRC", "cu": "CUP", "dm": "XCD", "do": "DOP", "ec": "USD", "sv": "USD", "gd": "XCD", "gt": "GTQ", "gy": "GYD", "ht": "HTG", "hn": "HNL", "jm": "JMD", "mx": "MXN", "ni": "NIO", "pa": "PAB", "py": "PYG", "pe": "PEN", "kn": "XCD", "lc": "XCD", "vc": "XCD", "sr": "SRD", "tt": "TTD", "uy": "UYU", "ve": "VES", "pr": "USD"};
+  var FALLBACK_RATES = {"EUR": 1, "USD": 1.08, "XCD": 2.92, "ARS": 1600, "BSD": 1.08, "BBD": 2.16, "BZD": 2.16, "BOB": 7.5, "BRL": 6.3, "CLP": 1080, "COP": 4300, "CRC": 565, "CUP": 26, "DOP": 69, "GTQ": 8.3, "GYD": 225, "HTG": 142, "HNL": 27, "JMD": 170, "MXN": 21, "NIO": 40, "PAB": 1.08, "PYG": 8500, "PEN": 4.1, "SRD": 40, "TTD": 7.3, "UYU": 47, "VES": 200};
+  var EUROPE = new Set(["ad", "al", "at", "ba", "be", "bg", "by", "ch", "cy", "cz", "de", "dk", "ee", "es", "fi", "fr", "gb", "gr", "hr", "hu", "ie", "is", "it", "li", "lt", "lu", "lv", "mc", "md", "me", "mk", "mt", "nl", "no", "pl", "pt", "ro", "rs", "ru", "se", "si", "sk", "sm", "ua", "va"]);
+  var NORTH_AMERICA = new Set(["bm", "ca", "gl", "us"]);
+  var LATAM = new Set(["ag", "ar", "bb", "bo", "br", "bs", "bz", "cl", "co", "cr", "cu", "dm", "do", "ec", "gd", "gt", "gy", "hn", "ht", "jm", "kn", "lc", "mx", "ni", "pa", "pe", "pr", "py", "sr", "sv", "tt", "uy", "vc", "ve"]);
+  var fxRates = Object.assign({}, FALLBACK_RATES);
+
+  function normalizePlace(value){
+    var raw=String(value||'').trim().toLowerCase();
+    return ALIASES[raw] || raw || 'co';
+  }
+  function meta(value){
+    var key=normalizePlace(value);
+    return PLACE_META[key] || {label:String(value||'País'),flag:'🌍'};
+  }
+  function placeText(value){
+    var m=meta(value);
+    return m.flag+' '+m.label;
+  }
+  function routeText(){
+    return placeText(window.currentSearchOrigin)+' → '+placeText(window.currentSearchDest);
+  }
+  function destinationKind(value){
+    var v=normalizePlace(value);
+    if(v==='mundial') return 'world';
+    if(v==='eeuu-canada' || NORTH_AMERICA.has(v)) return 'north-america';
+    if(v==='espana-schengen' || v==='europa' || EUROPE.has(v)) return 'europe';
+    if(LATAM.has(v)) return 'latam';
+    return 'international';
+  }
+  function multiplier(value){
+    var kind=destinationKind(value);
+    if(kind==='north-america') return 1.36;
+    if(kind==='world') return 1.42;
+    if(kind==='international') return 1.22;
+    if(kind==='latam') return 0.90;
+    return 1.00;
+  }
+  function coverageLabel(){
+    var kind=destinationKind(window.currentSearchDest);
+    if(kind==='north-america') return 'Cobertura para Estados Unidos / Canadá';
+    if(kind==='europe') return 'Cobertura para Europa / Schengen';
+    if(kind==='latam') return 'Cobertura para Latinoamérica y Caribe';
+    if(kind==='world') return 'Cobertura mundial';
+    return 'Cobertura internacional';
+  }
+  function days(){
+    var el=document.getElementById('ep-dias');
+    return Math.max(1,parseInt(el&&el.value||'15',10)||15);
+  }
+  function people(){
+    var el=document.getElementById('ep-viajeros');
+    return Math.max(1,parseInt(el&&el.value||'1',10)||1);
+  }
+  function originCurrency(){
+    return CURRENCY_BY_ORIGIN[normalizePlace(window.currentSearchOrigin)] || null;
+  }
+  function formatCurrency(amount,currency){
+    try {
+      return new Intl.NumberFormat('es',{
+        style:'currency',currency:currency,
+        maximumFractionDigits:(currency==='PYG'||currency==='CLP'||currency==='COP')?0:2
+      }).format(amount);
+    } catch(e) {
+      return currency+' '+Math.round(amount).toLocaleString('es');
+    }
+  }
+
+  DATA.forEach(function(item){
+    if(typeof item.basePriceDay!=='number') item.basePriceDay=Number(item.priceDay)||1.75;
+  });
+
+  function recalculate(){
+    var factor=multiplier(window.currentSearchDest);
+    var totalDays=days();
+    var totalPeople=people();
+    DATA.forEach(function(item){
+      item.priceDay=Math.round(item.basePriceDay*factor*100)/100;
+      item.price=Math.round(item.priceDay*totalDays*totalPeople*100)/100;
+    });
+  }
+
+  shouldShowCOP=function(){
+    return !!originCurrency();
+  };
+  formatCOPApprox=function(eurAmount){
+    var currency=originCurrency();
+    var rate=currency && fxRates[currency];
+    if(!currency || !rate) return '€'+Number(eurAmount).toFixed(2);
+    return formatCurrency(Number(eurAmount)*rate,currency);
+  };
+  updateCOPNote=function(){
+    var el=document.getElementById('cop-currency-note');
+    if(!el) return;
+    var currency=originCurrency();
+    var local=currency ? ' y una conversión aproximada a '+currency : '';
+    el.classList.add('is-visible');
+    el.innerHTML='<strong>Precios orientativos para '+routeText()+'.</strong> Mostramos EUR'+local+
+      '. La tarifa final, moneda de cobro y disponibilidad se confirman en la aseguradora. '+
+      '<a href="https://frankfurter.dev/" target="_blank" rel="noopener nofollow" style="color:inherit;text-decoration:underline">Conversión diaria</a>.';
+  };
+
+  updatePillsDisplay=function(origen,dest,ida,vuelta,viajeros){
+    var values=document.querySelectorAll('.pill-val');
+    if(values[0]) values[0].textContent=placeText(origen);
+    if(values[1]) values[1].textContent=placeText(dest);
+    if(values[2]) values[2].textContent=(ida&&vuelta)?fmtDateShort(ida)+' → '+fmtDateShort(vuelta):daysBetween(ida,vuelta)+' días';
+    if(values[3]) values[3].textContent=viajeros+(parseInt(viajeros,10)===1?' persona':' personas');
+  };
+
+  function updateHeadings(){
+    var route=routeText();
+    var title=document.getElementById('resultados-title');
+    var summary=document.getElementById('route-summary');
+    var note=document.getElementById('coverage-route-note');
+    var side=document.getElementById('sidebar-route');
+    if(title) title.textContent='Comparar seguros de viaje: '+route;
+    if(summary) summary.innerHTML='<strong>Resultados con precios orientativos</strong> para '+route+'. Compara cobertura médica, repatriación, deducible y condiciones.';
+    if(note) note.textContent=coverageLabel()+' · precios calculados según días y viajeros.';
+    if(side) side.textContent=route;
+    document.title='Seguros de viaje '+meta(window.currentSearchOrigin).label+' a '+meta(window.currentSearchDest).label+' | Precios';
+  }
+
+  var originalRenderCard=renderCard;
+  renderCard=function(item){
+    var markup=originalRenderCard(item);
+    var totalDays=days(), totalPeople=people();
+    var total='Total '+totalDays+' día'+(totalDays===1?'':'s')+(totalPeople>1?' · '+totalPeople+' viajeros':'');
+    markup=markup.replace('<div class="price-from">Total 15 días</div>',
+      '<div class="price-route">'+routeText()+'</div><div class="price-from">'+total+'</div>');
+    markup=markup.replace('Válido Schengen',coverageLabel());
+    markup=markup.replace('⚠ No válido Schengen',coverageLabel());
+    markup=markup.replace('<button class="btn-details"',
+      '<div class="route-availability">Precio orientativo. Confirma residencia admitida, destino, coberturas y precio final.</div><button class="btn-details"');
+    return markup;
+  };
+
+  setDest=function(){
+    recalculate();
+    updateHeadings();
+    render(sortData(DATA,document.getElementById('sort-select').value||'recomendado'));
+  };
+
+  applyEditSearch=function(){
+    var origin=document.getElementById('ep-origen');
+    var destination=document.getElementById('ep-destino');
+    var travelers=document.getElementById('ep-viajeros');
+    var idaEl=document.getElementById('ep-ida');
+    var vueltaEl=document.getElementById('ep-vuelta');
+    var originValue=normalizePlace(origin&&origin.value||'co');
+    var destinationValue=normalizePlace(destination&&destination.value||'es');
+    var travelerValue=Math.max(1,parseInt(travelers&&travelers.value||'1',10)||1);
+    var ida=idaEl&&idaEl.value||'';
+    var vuelta=vueltaEl&&vueltaEl.value||'';
+
+    if(!ida){
+      var now=new Date();
+      ida=isoDate(addDays(now,7));
+      if(idaEl) idaEl.value=ida;
+    }
+    if(!vuelta || parseDateSafe(vuelta)<=parseDateSafe(ida)){
+      vuelta=isoDate(addDays(parseDateSafe(ida),15));
+      if(vueltaEl) vueltaEl.value=vuelta;
+    }
+    var totalDays=daysBetween(ida,vuelta);
+    var daysEl=document.getElementById('ep-dias');
+    if(daysEl) daysEl.value=totalDays;
+
+    window.currentSearchOrigin=originValue;
+    window.currentSearchDest=destinationValue;
+    updatePillsDisplay(originValue,destinationValue,ida,vuelta,travelerValue);
+
+    var params=new URLSearchParams(location.search);
+    params.set('origen',originValue);
+    params.set('destino',destinationValue);
+    params.set('dias',String(totalDays));
+    params.set('personas',String(travelerValue));
+    params.set('ida',ida);
+    params.set('vuelta',vuelta);
+    history.replaceState(null,'',location.pathname+'?'+params.toString());
+
+    recalculate();
+    updateHeadings();
+    closeEditPanel();
+    applyFilters();
+  };
+
+  function initialize(){
+    var params=new URLSearchParams(location.search);
+    var originValue=normalizePlace(params.get('origen')||'co');
+    if(!LATAM.has(originValue)) originValue='co';
+    var destinationValue=normalizePlace(params.get('destino')||'es');
+    var requestedDays=Math.max(1,parseInt(params.get('dias')||'15',10)||15);
+    var travelerValue=Math.max(1,parseInt(params.get('personas')||params.get('viajeros')||'1',10)||1);
+    var ida=params.get('ida')||params.get('salida')||'';
+    var vuelta=params.get('vuelta')||params.get('regreso')||'';
+
+    if(!ida){
+      var now=new Date();
+      ida=isoDate(addDays(now,7));
+    }
+    if(!vuelta || parseDateSafe(vuelta)<=parseDateSafe(ida)){
+      vuelta=isoDate(addDays(parseDateSafe(ida),requestedDays));
+    }
+
+    window.currentSearchOrigin=originValue;
+    window.currentSearchDest=destinationValue;
+
+    var origin=document.getElementById('ep-origen');
+    var destination=document.getElementById('ep-destino');
+    if(origin && Array.from(origin.options).some(function(o){return o.value===originValue;})) origin.value=originValue;
+    if(destination && Array.from(destination.options).some(function(o){return o.value===destinationValue;})) destination.value=destinationValue;
+
+    var idaEl=document.getElementById('ep-ida');
+    var vueltaEl=document.getElementById('ep-vuelta');
+    var daysEl=document.getElementById('ep-dias');
+    var travelers=document.getElementById('ep-viajeros');
+    if(idaEl) idaEl.value=ida;
+    if(vueltaEl) vueltaEl.value=vuelta;
+    if(daysEl) daysEl.value=daysBetween(ida,vuelta);
+    if(travelers){
+      var value=travelerValue>=4?'4':String(travelerValue);
+      if(Array.from(travelers.options).some(function(o){return o.value===value;})) travelers.value=value;
+    }
+
+    updatePillsDisplay(originValue,destinationValue,ida,vuelta,travelerValue);
+    recalculate();
+    updateHeadings();
+    applyFilters();
+
+    fetch('https://api.frankfurter.dev/v1/latest?base=EUR')
+      .then(function(r){if(!r.ok) throw new Error('FX'); return r.json();})
+      .then(function(data){
+        if(data&&data.rates) fxRates=Object.assign({},fxRates,data.rates,{EUR:1});
+        render(sortData(DATA,document.getElementById('sort-select').value||'recomendado'));
+      })
+      .catch(function(){
+        render(sortData(DATA,document.getElementById('sort-select').value||'recomendado'));
+      });
+  }
+
+  initialize();
+})();
+</script>
+
+
 <script>
 document.addEventListener('click', function(e){
   var link = e.target.closest('a');
