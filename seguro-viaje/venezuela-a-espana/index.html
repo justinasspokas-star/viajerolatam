@@ -31,7 +31,7 @@
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-P1Q2TSMVNJ"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-P1Q2TSMVNJ');
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-P1Q2TSMVNJ');</script>
 <script id="vl-ga4-affiliate-normalizer">
 (function(){
   if (window.vlGa4AffiliateNormalizerInstalled) return;
@@ -125,7 +125,6 @@
 
   install();
 })();
-</script>
 </script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://viajerolatam.com/"},{"@type":"ListItem","position":2,"name":"Seguro de viaje","item":"https://viajerolatam.com/seguro-viaje/"},{"@type":"ListItem","position":3,"name":"Seguro de viaje &lt;em&gt;Venezuela a España&lt;/em&gt;","item":"https://viajerolatam.com/seguro-viaje/venezuela-a-espana/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Es obligatorio el seguro para viajar de Venezuela a España?","acceptedAnswer":{"@type":"Answer","text":"Depende de tu situación, nacionalidad, residencia y si necesitas visa. Para solicitudes Schengen se exige seguro médico de viaje; para otros casos puede no ser obligatorio, pero es muy recomendable."}},
@@ -377,6 +376,62 @@
 }
 </style>
 
+
+<style id="vl-venezuela-mobile-sticky-style">
+.vl-ve-mobile-sticky{display:none}
+@media(max-width:720px){
+  body{padding-bottom:106px}
+  .vl-ve-mobile-sticky{
+    position:fixed;
+    left:10px;
+    right:10px;
+    bottom:calc(10px + env(safe-area-inset-bottom,0px));
+    z-index:80;
+    display:block;
+    padding:8px;
+    border:1px solid rgba(11,31,58,.10);
+    border-radius:24px;
+    background:rgba(255,255,255,.96);
+    box-shadow:0 16px 42px rgba(5,12,40,.22);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+    transition:opacity .2s ease,transform .2s ease,visibility .2s ease
+  }
+  .vl-ve-mobile-sticky.is-hidden{
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(120%);
+    pointer-events:none
+  }
+  .vl-ve-mobile-sticky__button{
+    display:flex;
+    width:100%;
+    min-height:50px;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    border-radius:999px;
+    background:#75D8BC;
+    color:#0B1F3A!important;
+    text-decoration:none!important;
+    text-align:center;
+    font-size:14px;
+    font-weight:900;
+    line-height:1.2;
+    box-shadow:0 8px 20px rgba(0,196,161,.20)
+  }
+  .vl-ve-mobile-sticky__note{
+    display:block;
+    padding:5px 8px 1px;
+    color:#60758A;
+    text-align:center;
+    font-size:10.5px;
+    font-weight:700;
+    line-height:1.3
+  }
+}
+</style>
+
 </head>
 <body>
 <nav><a href="/"><img alt="ViajeroLatam" src="/logo-vl-original-20260528.png"/></a><div class="nav-links"><a href="/seguro-viaje/colombia-a-espana/">Colombia a España</a><a href="/seguro-viaje/venezuela-a-espana/">Venezuela a España</a><a href="/visa-schengen/">Visa Schengen</a><a class="nav-cta" href="/resultados/">Comparar ahora</a></div></nav>
@@ -441,6 +496,57 @@
 <a href="/resultados/?origen=venezuela&destino=espana-schengen">Comparar seguros ahora</a>
 </div></div>
 </article><aside><div class="side-card"><h3>Comparar opciones</h3><p>Compara precio, cobertura médica, repatriación, equipaje y condiciones antes de contratar.</p><a class="btn btn-primary" href="/resultados/">Comparar ahora</a></div><div class="side-card"><h3>IATI</h3><p>Revisa precio oficial para tus fechas.</p><a class="btn btn-dark" href="https://www.iatiseguros.com?r=84208681926165" rel="nofollow sponsored noopener" target="_blank">Ver IATI</a></div><div class="side-card"><h3>InterMundial</h3><p>Cupón recomendado: <strong>VIAJEROLATAM</strong>.</p><a class="btn btn-dark" href="https://www.intermundial.es/afiliados/seguros-de-viaje-recomendado?utm_source=Affiliates&utm_medium=Affiliates&utm_campaign=General&utm_term=kbnnqvpvcy490&utm_content=kbnnqvpvcy490&coupon=VIAJEROLATAM" rel="nofollow sponsored noopener" target="_blank" data-affiliate-partner="intermundial" data-vl-page="seguro_viaje_venezuela_a_espana">Ver InterMundial</a></div></aside></div></main>
+
+<div class="vl-ve-mobile-sticky" id="vl-ve-mobile-sticky">
+  <a class="vl-ve-mobile-sticky__button"
+     href="/resultados/?origen=venezuela&amp;destino=espana-schengen"
+     id="vl-ve-mobile-sticky-link">
+    <span aria-hidden="true">🔍</span>
+    <span>Comparar seguros Venezuela → España</span>
+  </a>
+  <span class="vl-ve-mobile-sticky__note">Gratis · Precios y coberturas orientativas</span>
+</div>
+
 <footer>© 2026 ViajeroLatam. Comparador independiente · No somos aseguradora. <a href="/como-elegimos/">Cómo elegimos las aseguradoras</a></footer>
 <script>document.addEventListener('click',function(e){var a=e.target.closest('a');if(!a||typeof gtag!=='function')return;var h=a.getAttribute('href')||'';if(h.indexOf('iatiseguros.com')!==-1)gtag('event','click_affiliate_iati',{event_category:'affiliate',event_label:h,page_location:location.href});if(h.indexOf('intermundial.es')!==-1)gtag('event','click_affiliate_intermundial',{event_category:'affiliate',event_label:h,page_location:location.href});if(h.indexOf('tradedoubler.com')!==-1)gtag('event','click_affiliate_tradedoubler',{event_category:'affiliate',event_label:h,page_location:location.href});});</script>
+
+<script id="vl-venezuela-mobile-sticky-script">
+(function(){
+  'use strict';
+
+  document.addEventListener('DOMContentLoaded', function(){
+    var sticky = document.getElementById('vl-ve-mobile-sticky');
+    var link = document.getElementById('vl-ve-mobile-sticky-link');
+    var footer = document.querySelector('footer');
+
+    if (!sticky || !link) return;
+
+    link.addEventListener('click', function(){
+      if (typeof gtag === 'function') {
+        gtag('event', 'click_comparar_seguros_gratis', {
+          event_category: 'lead',
+          event_label: 'venezuela_mobile_sticky',
+          route: 'venezuela_espana',
+          page_location: window.location.href
+        });
+        gtag('event', 'click_comparar_venezuela_espana', {
+          event_category: 'lead',
+          event_label: 'mobile_sticky',
+          page_location: window.location.href
+        });
+      }
+    });
+
+    if ('IntersectionObserver' in window && footer) {
+      var observer = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          sticky.classList.toggle('is-hidden', entry.isIntersecting);
+        });
+      }, {threshold:0.05});
+      observer.observe(footer);
+    }
+  });
+})();
+</script>
+
 </body></html>
