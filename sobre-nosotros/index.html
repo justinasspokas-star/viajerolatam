@@ -2,6 +2,37 @@
 
 <html lang="es-CO">
 <head>
+
+<script id="vl-consent-bootstrap">
+window.dataLayer=window.dataLayer||[];
+window.gtag=window.gtag||function(){window.dataLayer.push(arguments);};
+(function(){
+  var analytics='denied';
+  var marketing='denied';
+  try{
+    var raw=localStorage.getItem('vl_cookie_consent_v1');
+    if(raw){
+      var saved=JSON.parse(raw);
+      if(saved&&saved.version===1&&saved.expiresAt>Date.now()){
+        analytics=saved.analytics?'granted':'denied';
+        marketing=saved.marketing?'granted':'denied';
+      }else{
+        localStorage.removeItem('vl_cookie_consent_v1');
+      }
+    }
+  }catch(error){}
+  gtag('consent','default',{
+    analytics_storage:analytics,
+    ad_storage:marketing,
+    ad_user_data:marketing,
+    ad_personalization:marketing,
+    wait_for_update:500
+  });
+})();
+</script>
+<link rel="stylesheet" href="/assets/vl-cookie-consent.css">
+<script defer src="/assets/vl-cookie-consent.js"></script>
+
 <link as="image" href="/hero-bg.webp" rel="preload" type="image/webp"/>
 <meta charset="utf-8"/>
 <meta content="fnxi-_Liw22SOQakruhikIUAjmf3u6mdT79inMc9x9A" name="google-site-verification"/>
@@ -30,7 +61,7 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-P1Q2TSMVNJ');
+    gtag('config', 'G-P1Q2TSMVNJ');</script>
 <script id="vl-ga4-affiliate-normalizer">
 (function(){
   if (window.vlGa4AffiliateNormalizerInstalled) return;
@@ -125,8 +156,6 @@
   install();
 })();
 </script>
-
-  </script>
 <script type="application/ld+json">
   {
     "@context":"https://schema.org",

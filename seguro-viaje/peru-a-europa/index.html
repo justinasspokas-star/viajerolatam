@@ -1,5 +1,36 @@
 <!DOCTYPE html>
 <html lang="es-PE"><head>
+
+<script id="vl-consent-bootstrap">
+window.dataLayer=window.dataLayer||[];
+window.gtag=window.gtag||function(){window.dataLayer.push(arguments);};
+(function(){
+  var analytics='denied';
+  var marketing='denied';
+  try{
+    var raw=localStorage.getItem('vl_cookie_consent_v1');
+    if(raw){
+      var saved=JSON.parse(raw);
+      if(saved&&saved.version===1&&saved.expiresAt>Date.now()){
+        analytics=saved.analytics?'granted':'denied';
+        marketing=saved.marketing?'granted':'denied';
+      }else{
+        localStorage.removeItem('vl_cookie_consent_v1');
+      }
+    }
+  }catch(error){}
+  gtag('consent','default',{
+    analytics_storage:analytics,
+    ad_storage:marketing,
+    ad_user_data:marketing,
+    ad_personalization:marketing,
+    wait_for_update:500
+  });
+})();
+</script>
+<link rel="stylesheet" href="/assets/vl-cookie-consent.css">
+<script defer src="/assets/vl-cookie-consent.js"></script>
+
 <link as="image" href="/hero-bg.webp" rel="preload" type="image/webp"/><meta charset="utf-8"/><meta content="fnxi-_Liw22SOQakruhikIUAjmf3u6mdT79inMc9x9A" name="google-site-verification"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <!-- Favicon / browser tab icon -->
 <link rel="icon" href="/favicon.ico" sizes="any"/>
@@ -8,7 +39,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
 <link rel="manifest" href="/site.webmanifest"/>
 <meta name="theme-color" content="#0B1F3A"/>
-<title>Seguro viaje Perú Europa 2026 | Schengen, ETIAS y cobertura</title><meta content="Seguro de viaje Perú Europa para peruanos que visitan varios países Schengen: cobertura médica, repatriación, ETIAS, eSIM, IATI e InterMundial." name="description"/><meta content="index, follow" name="robots"/><link href="https://viajerolatam.com/seguro-viaje/peru-a-europa/" rel="canonical"/><meta content="article" property="og:type"/><meta content="Seguro viaje Perú Europa 2026 | Schengen, ETIAS y cobertura" property="og:title"/><meta content="Seguro de viaje Perú Europa para peruanos que visitan varios países Schengen: cobertura médica, repatriación, ETIAS, eSIM, IATI e InterMundial." property="og:description"/><meta content="https://viajerolatam.com/seguro-viaje/peru-a-europa/" property="og:url"/><meta content="https://viajerolatam.com/logo-vl-original-20260528.png" property="og:image"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-P1Q2TSMVNJ"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-P1Q2TSMVNJ');
+<title>Seguro viaje Perú Europa 2026 | Schengen, ETIAS y cobertura</title><meta content="Seguro de viaje Perú Europa para peruanos que visitan varios países Schengen: cobertura médica, repatriación, ETIAS, eSIM, IATI e InterMundial." name="description"/><meta content="index, follow" name="robots"/><link href="https://viajerolatam.com/seguro-viaje/peru-a-europa/" rel="canonical"/><meta content="article" property="og:type"/><meta content="Seguro viaje Perú Europa 2026 | Schengen, ETIAS y cobertura" property="og:title"/><meta content="Seguro de viaje Perú Europa para peruanos que visitan varios países Schengen: cobertura médica, repatriación, ETIAS, eSIM, IATI e InterMundial." property="og:description"/><meta content="https://viajerolatam.com/seguro-viaje/peru-a-europa/" property="og:url"/><meta content="https://viajerolatam.com/logo-vl-original-20260528.png" property="og:image"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-P1Q2TSMVNJ"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-P1Q2TSMVNJ');</script>
 <script id="vl-ga4-affiliate-normalizer">
 (function(){
   if (window.vlGa4AffiliateNormalizerInstalled) return;
@@ -102,7 +133,6 @@
 
   install();
 })();
-</script>
 </script><style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{--navy:#0B1F3A;--teal:#00C4A1;--sand:#F5F0E8;--border:#EAE3D5;--muted:#4A647E;--display:'DM Serif Display',Georgia,serif;--body:'Plus Jakarta Sans',sans-serif}
