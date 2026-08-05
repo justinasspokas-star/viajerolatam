@@ -1,0 +1,29 @@
+ViajeroLatam — CTA móvil fijo Venezuela → España
+
+Base:
+- viajerolatam_restaurado_como_antes.zip
+
+Actualizado:
+- /seguro-viaje/venezuela-a-espana/index.html
+
+Añadido:
+- Botón fijo inferior solo en móvil.
+- Texto: Comparar seguros Venezuela → España.
+- Subtexto: Gratis · Precios y coberturas orientativas.
+- Enlace:
+  /resultados/?origen=venezuela&destino=espana-schengen
+- Safe area para iPhone.
+- Espacio inferior para no tapar contenido.
+- Se oculta cuando el footer entra en pantalla.
+- Eventos GA4:
+  click_comparar_seguros_gratis
+  click_comparar_venezuela_espana
+
+Corregido:
+- Script GA4 anidado que podía bloquear JavaScript en esta página.
+
+Escritorio:
+- El botón fijo no aparece.
+
+Validación:
+- Todos los scripts inline comprobados con Node.js.
