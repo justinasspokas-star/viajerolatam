@@ -1,0 +1,23 @@
+ViajeroLatam — precio local visible en la homepage
+
+Actualizado:
+- /index.html
+
+Cambios:
+- La franja de precio muestra dos líneas:
+  1. Precio orientativo en EUR.
+  2. Conversión aproximada a la moneda del país LATAM de origen.
+- La moneda local aparece inmediatamente usando una tasa de respaldo.
+- Después se actualiza con el servicio de cambio cuando está disponible.
+- Se añadieron alias para valores antiguos como colombia, mexico, peru, etc.
+- Incluye todos los países LATAM y Caribe disponibles en el selector.
+- Diseño adaptado a escritorio y móvil.
+- Scripts validados con Node.js.
+
+Ejemplo Colombia:
+- 14 días · Desde €24.50–€29.40
+- Colombia: aprox. $105.350–$126.420 COP
+
+Aviso:
+- La conversión es orientativa.
+- La aseguradora confirma moneda y precio final.

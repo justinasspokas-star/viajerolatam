@@ -1,0 +1,22 @@
+ViajeroLatam — resultados con todos los países y precios
+
+Actualizado:
+- /resultados/index.html
+
+Cambios:
+- "Voy desde" incluye todos los países y territorios.
+- "Destino" incluye todos los países y también España/Schengen, Europa, EEUU+Canadá y Mundial.
+- Compatible con valores antiguos de la home como colombia, mexico, espana-schengen y estados-unidos.
+- Título, pills, resumen y sidebar muestran siempre país de origen → país de destino.
+- Todas las combinaciones muestran precios orientativos.
+- El total se recalcula por duración, viajeros y tipo de destino.
+- Cada tarjeta muestra la ruta elegida.
+- Para origen Colombia se mantiene la referencia aproximada en COP.
+- En el resto de rutas siempre aparece el precio en EUR.
+- Se corrigió un script GA4 anidado que podía bloquear JavaScript.
+- Scripts comprobados sintácticamente con Node.js.
+- Ajustado para móvil y escritorio.
+
+Aviso:
+- Los precios son orientativos.
+- La aseguradora confirma disponibilidad, residencia admitida, moneda y precio final.

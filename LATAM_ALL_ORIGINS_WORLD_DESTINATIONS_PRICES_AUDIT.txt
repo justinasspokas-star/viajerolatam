@@ -1,0 +1,37 @@
+ViajeroLatam — todos los países LATAM, destinos mundiales y precios locales
+
+Fecha:
+- 2026-08-05
+
+Actualizado:
+- /index.html
+- /resultados/index.html
+
+Origen:
+- 33 países soberanos de América Latina y el Caribe.
+- Puerto Rico incluido como territorio.
+- Total: 34 opciones de origen.
+
+Destino:
+- Todos los países y territorios ISO disponibles.
+- Opciones adicionales: España/Schengen, Europa completa, Estados Unidos + Canadá y Mundial.
+
+Precios:
+- Cambian según duración, viajeros y región de destino.
+- Europa/Schengen, Norteamérica, LATAM/Caribe, internacional y mundial usan factores distintos.
+- Siempre se muestra el precio base en EUR.
+- Para cada país LATAM se muestra también una conversión aproximada a su moneda:
+  ARS, BOB, BRL, CLP, COP, CRC, CUP, DOP, USD, GTQ, GYD, HTG, HNL, JMD,
+  MXN, NIO, PAB, PYG, PEN, XCD, SRD, TTD, UYU, VES, BSD, BBD y BZD.
+- Las tasas se actualizan en el navegador mediante Frankfurter.
+- Si el servicio no responde, se utilizan tasas de respaldo únicamente orientativas.
+
+Compatibilidad:
+- Se mantienen alias antiguos como colombia, mexico, espana-schengen y estados-unidos.
+- Flechas de intercambio de la home mantienen LATAM ↔ todos los destinos.
+- Diseño web y móvil conservado.
+- JavaScript validado con Node.js.
+
+Aviso:
+- Los importes son orientativos.
+- La disponibilidad, moneda de cobro y precio final se confirman en la aseguradora.
