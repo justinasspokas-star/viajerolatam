@@ -1,0 +1,24 @@
+ViajeroLatam — selector simplificado
+
+Actualizado:
+- /index.html
+- /resultados/index.html
+
+Voy desde:
+- Solo países de Latinoamérica y Caribe.
+- Se mantienen todos los países LATAM añadidos anteriormente.
+
+Destino:
+- Solo 3 opciones:
+  1. España / Schengen
+  2. Europa completa
+  3. Estados Unidos + Canadá
+
+Compatibilidad:
+- Las URLs antiguas con destino=es, estados-unidos, us, canada o similares se convierten automáticamente a una de las 3 opciones permitidas.
+- Las flechas siguen funcionando:
+  - estado normal: LATAM → España/Europa/EEUU+Canadá
+  - estado invertido: España/Europa/EEUU+Canadá → LATAM
+- Los precios y conversiones por moneda local se mantienen.
+- Ajustado para móvil y escritorio.
+- JavaScript validado con Node.js.

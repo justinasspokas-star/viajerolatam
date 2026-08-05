@@ -1,0 +1,32 @@
+ViajeroLatam — solo países LATAM sin Caribe
+
+Actualizado:
+- /index.html
+- /resultados/index.html
+
+Voy desde:
+- Solo 17 países LATAM continentales:
+  México, Guatemala, El Salvador, Honduras, Nicaragua, Costa Rica, Panamá,
+  Colombia, Venezuela, Ecuador, Perú, Bolivia, Chile, Argentina, Uruguay,
+  Paraguay y Brasil.
+
+Eliminados del selector:
+- Países y territorios del Caribe.
+- Cuba, República Dominicana, Haití y Puerto Rico.
+- Bahamas, Barbados, Jamaica, Trinidad y Tobago, Dominica, Granada,
+  Santa Lucía, San Vicente y las Granadinas, Antigua y Barbuda,
+  San Cristóbal y Nieves.
+- También se excluyen Belice, Guyana y Surinam del selector LATAM.
+
+Destino:
+- España / Schengen
+- Europa completa
+- Estados Unidos + Canadá
+
+Se mantienen:
+- Flechas activas.
+- Precios en EUR y moneda local.
+- Conversión por país.
+- Resultados móviles y escritorio.
+- URLs antiguas con origen no permitido vuelven automáticamente a Colombia.
+- JavaScript validado.
