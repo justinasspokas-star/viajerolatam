@@ -1,0 +1,25 @@
+ViajeroLatam — double slash internal URL fix
+
+Base ZIP:
+viajerolatam_intermundial_page_tracking_completo.zip
+
+Problem:
+GA4 showed a path like:
+//blog/seguro-schengen-venezolanos/
+
+Fix applied:
+- Normalized internal same-site double-slash paths:
+  //blog/... -> /blog/...
+  https://viajerolatam.com//... -> https://viajerolatam.com/...
+- Added a small safety redirect script in /index.html and /404.html.
+  If a user or bot opens a same-domain URL with double slash, it redirects to the clean path.
+
+Files changed:
+- 404.html
+- index.html
+
+Double-slash internal paths found before fix:
+None found in files. GA4 may have recorded a malformed URL from a user/bot/manual test.
+
+Remaining suspicious same-site double-slash paths after fix:
+None

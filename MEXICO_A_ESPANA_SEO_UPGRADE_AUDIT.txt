@@ -1,0 +1,26 @@
+ViajeroLatam — México a España SEO upgrade
+
+Page updated:
+- /seguro-viaje/mexico-a-espana/index.html
+
+Date:
+- 2026-08-05
+
+Main improvements:
+- Cleaner SEO title and meta description targeting "seguro de viaje México a España".
+- Stronger H1 and first-answer block.
+- Added price table in EUR and approximate MXN.
+- Added official requirements/ETIAS/Schengen insurance sections.
+- Added commercial CTA blocks to /resultados/?origen=mexico&destino=espana-schengen.
+- Added FAQ schema, Article schema and Breadcrumb schema.
+- Removed weak/unfinished wording.
+- Fixed malformed GA4 snippet on this page.
+- Added GA4 events for Mexico compare clicks:
+  click_comparar_mexico_espana
+  click_comparar_seguros_gratis
+- Updated sitemap lastmod if sitemap.xml exists.
+
+Important:
+- No fake ratings or review snippets added.
+- All prices are orientative. The final price is confirmed by the insurer.
+- Official sources are linked in the page footer/source box.
