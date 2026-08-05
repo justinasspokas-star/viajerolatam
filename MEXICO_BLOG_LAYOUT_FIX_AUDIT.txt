@@ -1,0 +1,22 @@
+ViajeroLatam — Mexico blog layout/order fix
+
+Date:
+- 2026-08-05
+
+Fixed:
+- Blog index now shows the Mexico support article as a normal ViajeroLatam card, not as a separate unstyled box.
+- Added Mexico filter button to blog index.
+- Removed the old "Nuevo para México" block from the bottom of /blog/.
+- Added the Mexico price article into the normal blog/card layout.
+- Added responsive polish to /blog/cuanto-cuesta-seguro-viaje-mexico-espana/:
+  - Better mobile spacing.
+  - One-column CTAs on mobile.
+  - Mobile-friendly table rows.
+  - Hidden sticky sidebar on mobile.
+  - Clear top mobile CTA.
+- Kept SEO metadata, FAQ schema, Article schema and sitemap from the previous Mexico support page.
+
+Files updated:
+- blog/index.html
+- blog/cuanto-cuesta-seguro-viaje-mexico-espana/index.html
+- seguro-viaje/mexico-a-espana/index.html
