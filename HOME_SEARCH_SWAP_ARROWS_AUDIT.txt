@@ -1,0 +1,20 @@
+ViajeroLatam — home search swap arrows
+
+Updated:
+- /index.html
+
+Added:
+- Circular origin/destination swap button between the two selectors.
+- Two-direction arrow icon.
+- Dynamic option swapping:
+  LATAM origin → Spain/Europe/USA destination
+  Spain/Europe/USA origin → LATAM destination
+- Desktop and mobile responsive sizing.
+- Accessible aria-label and button title.
+- Existing dates, travellers, pricing and compare button preserved.
+
+Test:
+1. Open homepage.
+2. Press the arrows between 'Voy desde' and 'Destino'.
+3. The current origin and destination should exchange sides.
+4. Press again to restore the original direction.

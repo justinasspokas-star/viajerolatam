@@ -2078,8 +2078,62 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
   </div>
 <h1>Tu viaje, <em>protegido</em><br/>al mejor precio</h1>
 <div class="search-box" style="display:block;padding:20px 24px;max-width:720px">
+
+<style id="vl-search-swap-style">
+.search-top-row{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) 46px minmax(0,1fr)!important;
+  gap:10px!important;
+  align-items:end!important;
+}
+.vl-swap-wrap{
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  padding-bottom:1px;
+}
+.vl-swap-btn{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  border:1.5px solid rgba(11,31,58,.14);
+  background:#fff;
+  color:#0B1F3A;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  box-shadow:0 7px 18px rgba(11,31,58,.12);
+  transition:transform .25s ease,background .2s ease,border-color .2s ease;
+}
+.vl-swap-btn:hover{
+  background:rgba(0,196,161,.10);
+  border-color:#00C4A1;
+}
+.vl-swap-btn:active{transform:scale(.94)}
+.vl-swap-btn.is-reversed svg{transform:rotate(180deg)}
+.vl-swap-btn svg{
+  width:22px;
+  height:22px;
+  transition:transform .28s ease;
+}
+@media(max-width:560px){
+  .search-box{padding:18px 14px!important}
+  .search-top-row{
+    grid-template-columns:minmax(0,1fr) 38px minmax(0,1fr)!important;
+    gap:6px!important;
+  }
+  .vl-swap-btn{width:36px;height:36px}
+  .vl-swap-btn svg{width:19px;height:19px}
+  #sb-origen,#sb-destino{
+    padding:10px 8px!important;
+    font-size:13px!important;
+  }
+}
+</style>
+
 <!-- Row 1: Origen + Destino -->
-<div class="search-top-row" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
+<div class="search-top-row" style="margin-bottom:10px">
 <div>
 <div class="sb-label" style="margin-bottom:6px">Voy desde</div>
 <select id="sb-origen" onblur="this.style.borderColor='var(--border)'" onclick="event.stopPropagation()" onfocus="this.style.borderColor='var(--teal)'" style="width:100%;border:1.5px solid var(--border);border-radius:10px;padding:10px 14px;font-family:var(--font-body);font-size:15px;font-weight:600;color:var(--text-dark);background:var(--white);outline:none;cursor:pointer;transition:border-color .2s">
@@ -2104,6 +2158,14 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
 <option value="cuba">🇨🇺 Cuba</option>
 <option value="puerto-rico">🇵🇷 Puerto Rico</option>
 </select>
+</div>
+<div class="vl-swap-wrap">
+<button aria-label="Intercambiar origen y destino" class="vl-swap-btn" id="vl-swap-btn" onclick="event.stopPropagation(); swapSearchDirection()" title="Intercambiar origen y destino" type="button">
+<svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewBox="0 0 24 24">
+<path d="M7 7h11"></path><path d="m15 4 3 3-3 3"></path>
+<path d="M17 17H6"></path><path d="m9 14-3 3 3 3"></path>
+</svg>
+</button>
 </div>
 <div>
 <div class="sb-label" style="margin-bottom:6px">Destino</div>
@@ -2550,6 +2612,69 @@ function sbDateChange() {
     txt.textContent = base + ' · Desde ' + fmtBase(minBase) + '–' + fmtBase(maxBase) + ' · aprox. ' + fmtLocal(minBase) + '–' + fmtLocal(maxBase);
   }
 }
+
+
+<script id="vl-search-swap-script">
+(function(){
+  var countryOptions = [
+    ['colombia','🇨🇴 Colombia'],['mexico','🇲🇽 México'],['argentina','🇦🇷 Argentina'],
+    ['venezuela','🇻🇪 Venezuela'],['peru','🇵🇪 Perú'],['chile','🇨🇱 Chile'],
+    ['ecuador','🇪🇨 Ecuador'],['bolivia','🇧🇴 Bolivia'],['paraguay','🇵🇾 Paraguay'],
+    ['uruguay','🇺🇾 Uruguay'],['brasil','🇧🇷 Brasil'],['costa-rica','🇨🇷 Costa Rica'],
+    ['panama','🇵🇦 Panamá'],['guatemala','🇬🇹 Guatemala'],['el-salvador','🇸🇻 El Salvador'],
+    ['honduras','🇭🇳 Honduras'],['nicaragua','🇳🇮 Nicaragua'],
+    ['republica-dominicana','🇩🇴 R. Dominicana'],['cuba','🇨🇺 Cuba'],['puerto-rico','🇵🇷 Puerto Rico']
+  ];
+  var destinationOptions = [
+    ['espana-schengen','🇪🇺 España / Schengen'],['europa','🌍 Europa (toda)'],
+    ['estados-unidos','🇺🇸 Estados Unidos'],['eeuu-canada','🇺🇸🇨🇦 EEUU + Canadá'],
+    ['mundial','🌎 Mundial']
+  ];
+  var reversed = false;
+
+  function setOptions(select, items, selectedValue){
+    select.innerHTML = '';
+    items.forEach(function(item){
+      var option = document.createElement('option');
+      option.value = item[0];
+      option.textContent = item[1];
+      select.appendChild(option);
+    });
+    if(selectedValue && Array.prototype.some.call(select.options,function(o){return o.value===selectedValue;})){
+      select.value = selectedValue;
+    }
+  }
+
+  window.swapSearchDirection = function(){
+    var origin = document.getElementById('sb-origen');
+    var destination = document.getElementById('sb-destino');
+    var button = document.getElementById('vl-swap-btn');
+    if(!origin || !destination) return;
+
+    var oldOrigin = origin.value;
+    var oldDestination = destination.value;
+
+    if(!reversed){
+      setOptions(origin, destinationOptions, oldDestination);
+      setOptions(destination, countryOptions, oldOrigin);
+      reversed = true;
+    }else{
+      setOptions(origin, countryOptions, oldDestination);
+      setOptions(destination, destinationOptions, oldOrigin);
+      reversed = false;
+    }
+
+    if(button){
+      button.classList.toggle('is-reversed', reversed);
+      button.setAttribute('aria-label', reversed ? 'Intercambiar para viajar desde Latinoamérica' : 'Intercambiar origen y destino');
+    }
+
+    origin.dispatchEvent(new Event('change', {bubbles:true}));
+    destination.dispatchEvent(new Event('change', {bubbles:true}));
+    if(typeof sbUpdatePrice === 'function') sbUpdatePrice();
+  };
+})();
+</script>
 
 ['sb-origen','sb-destino','sb-personas'].forEach(function(id){
   var el = document.getElementById(id);
