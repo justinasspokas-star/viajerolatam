@@ -1,0 +1,33 @@
+ViajeroLatam — Visa Schengen hub risk cleanup
+
+Date:
+- 2026-08-05
+
+Updated:
+- /visa-schengen/index.html
+- /visa-schengen.html
+- /sitemap.xml
+
+What changed:
+- Removed/avoided risky wording such as visa approval guarantees.
+- Rebuilt /visa-schengen/ as a clear hub:
+  1. Quick answer on when insurance is mandatory.
+  2. LATAM country table: visa, insurance and ETIAS guidance.
+  3. Insurance requirements for Schengen visa.
+  4. ETIAS 2026/2027 explanation.
+  5. Internal links to Mexico, Colombia, Venezuela, Ecuador, Dominican Republic, Haiti and Mexico price guide.
+  6. FAQPage schema, Article schema and Breadcrumb schema.
+  7. Official source box.
+- Added table search by country.
+- Improved responsive mobile table/cards and sticky CTA.
+- Added GA4 click events:
+  click_comparar_visa_schengen
+  click_comparar_seguros_gratis
+- Redirected legacy /visa-schengen.html to canonical /visa-schengen/.
+- Updated sitemap lastmod.
+
+SEO/trust safety:
+- No fake aggregateRating/reviews.
+- No visa approval guarantee.
+- No claim that ETIAS is currently mandatory.
+- Clear disclaimer: ViajeroLatam is not an embassy/consulate.
