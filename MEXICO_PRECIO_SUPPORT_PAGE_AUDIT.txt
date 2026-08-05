@@ -1,0 +1,39 @@
+ViajeroLatam — Mexico support page 2026/2027
+
+Created:
+- /blog/cuanto-cuesta-seguro-viaje-mexico-espana/index.html
+
+Updated:
+- /seguro-viaje/mexico-a-espana/index.html
+- /blog/index.html if structure allowed insertion
+- /sitemap.xml
+
+Date:
+- 2026-08-05
+
+Purpose:
+- Support page for Mexico -> Spain cluster.
+- Query target: "cuanto cuesta seguro de viaje mexico españa", "precio seguro de viaje mexico españa", "seguro viaje mexico españa precio MXN".
+- Designed to support 2026 and 2027 with evergreen price logic.
+
+Value added:
+- Price table by travel duration in EUR + MXN.
+- Visual calculator for estimated price.
+- Explanations of what changes the price.
+- Coverage recommendations by travel type.
+- ETIAS, Schengen and Mexican traveller notes.
+- Common expensive mistakes.
+- FAQPage schema, Article schema and Breadcrumb schema.
+- Internal links to the Mexico money page and comparator.
+
+SEO safety:
+- No fake ratings/reviews.
+- No guaranteed approval language.
+- Prices marked clearly as orientative.
+- Sources linked in page.
+- Affiliate/comparator CTAs track click_comparar_mexico_precio and click_comparar_seguros_gratis.
+
+After upload:
+- Request indexing for:
+  https://viajerolatam.com/blog/cuanto-cuesta-seguro-viaje-mexico-espana/
+  https://viajerolatam.com/seguro-viaje/mexico-a-espana/
