@@ -1,0 +1,44 @@
+ViajeroLatam — consentimiento de cookies en todas las páginas
+
+Base utilizada:
+- viajerolatam_venezuela_mobile_sticky_completo.zip
+
+Fecha:
+- 2026-08-05
+
+Páginas HTML protegidas:
+- 59
+
+Implementación:
+- Banner global con Aceptar todas, Rechazar todas y Configurar.
+- Aceptar y rechazar tienen el mismo nivel visual y botones equivalentes.
+- Panel granular:
+  - Necesarias: siempre activas.
+  - Analíticas: opcionales.
+  - Marketing y medición publicitaria: opcionales.
+- Consent Mode v2:
+  - analytics_storage
+  - ad_storage
+  - ad_user_data
+  - ad_personalization
+- Estado predeterminado: denied antes de cualquier gtag config/event.
+- Preferencia guardada en localStorage por un máximo de 24 meses.
+- Posibilidad de retirar o cambiar consentimiento con el botón Configurar cookies.
+- Eliminación de cookies propias de GA/Ads conocidas cuando se revoca el permiso.
+- Política nueva:
+  /politica-cookies/
+- Página añadida al sitemap.
+- Diseño responsive para móvil y escritorio.
+- Compatibilidad con safe area de iPhone.
+- Se conserva el CTA móvil de Venezuela → España.
+- Se repararon 45 páginas con un script GA4 anidado previamente.
+
+Archivos globales:
+- /assets/vl-cookie-consent.css
+- /assets/vl-cookie-consent.js
+
+Validaciones:
+- Bootstrap presente en todas las páginas.
+- Bootstrap colocado antes de gtag config.
+- JavaScript inline validado con Node.js.
+- Sin scripts anidados restantes.
