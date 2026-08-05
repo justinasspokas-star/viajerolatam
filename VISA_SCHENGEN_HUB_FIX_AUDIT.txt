@@ -28,6 +28,6 @@ What changed:
 
 SEO/trust safety:
 - No fake aggregateRating/reviews.
-- No visa approval guarantee.
+- No promise that a visa will be approved.
 - No claim that ETIAS is currently mandatory.
 - Clear disclaimer: ViajeroLatam is not an embassy/consulate.
