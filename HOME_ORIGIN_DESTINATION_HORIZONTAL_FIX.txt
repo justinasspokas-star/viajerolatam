@@ -1,0 +1,15 @@
+ViajeroLatam — origin/destination horizontal layout
+
+Updated:
+- /index.html
+
+Fixed:
+- "Voy desde", swap arrows and "Destino" remain on one horizontal row.
+- Applied on desktop, tablet and mobile.
+- Added strong CSS overrides because older responsive styles used !important and stacked the fields.
+- Kept swap functionality and native compare form unchanged.
+- Mobile selectors use smaller text and a compact arrow to fit cleanly.
+
+Expected:
+Desktop: [Voy desde] [swap] [Destino]
+Mobile:  [Voy desde] [swap] [Destino]
