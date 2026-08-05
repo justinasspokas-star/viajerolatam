@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="es-PE"><head>
 <link as="image" href="/hero-bg.webp" rel="preload" type="image/webp"/><meta charset="utf-8"/><meta content="fnxi-_Liw22SOQakruhikIUAjmf3u6mdT79inMc9x9A" name="google-site-verification"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<link rel="stylesheet" href="/cookie-consent.css"/>
-<script src="/cookie-consent.js"></script>
-
 <!-- Favicon / browser tab icon -->
 <link rel="icon" href="/favicon.ico" sizes="any"/>
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
@@ -11,7 +8,101 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
 <link rel="manifest" href="/site.webmanifest"/>
 <meta name="theme-color" content="#0B1F3A"/>
-<title>Seguro de viaje Perú a España 2026 | Compara opciones en español</title><meta content="Compara seguros de viaje para viajar de Perú a España. Revisa cobertura médica, repatriación, Schengen, precio final y condiciones oficiales." name="description"/><meta name="robots" content="index, follow"/><link href="https://viajerolatam.com/seguro-viaje/peru-a-espana/" rel="canonical"/><meta content="article" property="og:type"/><meta content="Seguro de viaje Perú a España 2026 | Compara opciones en español" property="og:title"/><meta content="Compara seguros de viaje para viajar de Perú a España. Revisa cobertura médica, repatriación, Schengen, precio final y condiciones oficiales." property="og:description"/><meta content="https://viajerolatam.com/seguro-viaje/peru-a-espana/" property="og:url"/><meta content="https://viajerolatam.com/logo-vl-header.webp" property="og:image"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<title>Seguro de viaje Perú a España 2026 | Compara opciones en español</title><meta content="Compara seguros de viaje para viajar de Perú a España. Revisa cobertura médica, repatriación, Schengen, precio final y condiciones oficiales." name="description"/><meta name="robots" content="index, follow"/><link href="https://viajerolatam.com/seguro-viaje/peru-a-espana/" rel="canonical"/><meta content="article" property="og:type"/><meta content="Seguro de viaje Perú a España 2026 | Compara opciones en español" property="og:title"/><meta content="Compara seguros de viaje para viajar de Perú a España. Revisa cobertura médica, repatriación, Schengen, precio final y condiciones oficiales." property="og:description"/><meta content="https://viajerolatam.com/seguro-viaje/peru-a-espana/" property="og:url"/><meta content="https://viajerolatam.com/logo-vl-original-20260528.png" property="og:image"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-P1Q2TSMVNJ"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-P1Q2TSMVNJ');
+<script id="vl-ga4-affiliate-normalizer">
+(function(){
+  if (window.vlGa4AffiliateNormalizerInstalled) return;
+  window.vlGa4AffiliateNormalizerInstalled = true;
+
+  function getClickId(){
+    try {
+      var key = 'vl_affiliate_click_id';
+      var id = sessionStorage.getItem(key);
+      if (!id) {
+        id = 'vl_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 10);
+        sessionStorage.setItem(key, id);
+      }
+      return id;
+    } catch(e) {
+      return 'vl_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 10);
+    }
+  }
+
+  function cleanPartner(partner){
+    return String(partner || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9_]+/g, '_')
+      .replace(/^_+|_+$/g, '');
+  }
+
+  function partnerFromEvent(eventName, params){
+    var partner = '';
+    if (eventName.indexOf('click_affiliate_') === 0) {
+      partner = eventName.replace('click_affiliate_', '');
+    }
+    if (!partner && params && params.affiliate_partner) partner = params.affiliate_partner;
+    return cleanPartner(partner || 'unknown');
+  }
+
+  function install(){
+    if (typeof window.gtag !== 'function') {
+      window.setTimeout(install, 50);
+      return;
+    }
+    if (window.gtag.vlAffiliateNormalized) return;
+
+    var originalGtag = window.gtag;
+    function normalizedGtag(){
+      var args = Array.prototype.slice.call(arguments);
+
+      if (args[0] === 'event' && typeof args[1] === 'string') {
+        var originalEventName = args[1];
+        var eventName = originalEventName.toLowerCase();
+
+        if (eventName !== originalEventName) {
+          args[1] = eventName;
+        }
+
+        if (eventName.indexOf('click_affiliate_') === 0) {
+          var params = args[2] && typeof args[2] === 'object' ? args[2] : {};
+          var partner = partnerFromEvent(eventName, params);
+          var clickId = params.affiliate_click_id || getClickId();
+
+          params.event_category = params.event_category || 'affiliate';
+          params.affiliate_partner = partner;
+          params.affiliate_click_id = clickId;
+          params.page_path = window.location.pathname;
+          params.page_location = params.page_location || window.location.href;
+          params.outbound_url = params.outbound_url || params.event_label || params.link_url || '';
+          params.link_text = params.link_text || '';
+
+          args[2] = params;
+
+          originalGtag.apply(window, args);
+
+          originalGtag('event', 'affiliate_outbound_click', {
+            event_category: 'affiliate',
+            affiliate_partner: partner,
+            affiliate_click_id: clickId,
+            source_event: eventName,
+            outbound_url: params.outbound_url,
+            page_path: window.location.pathname,
+            page_location: window.location.href
+          });
+          return;
+        }
+      }
+
+      return originalGtag.apply(window, args);
+    }
+
+    normalizedGtag.vlAffiliateNormalized = true;
+    window.gtag = normalizedGtag;
+  }
+
+  install();
+})();
+</script>
 </script><style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{--navy:#0B1F3A;--teal:#00C4A1;--sand:#F5F0E8;--border:#EAE3D5;--muted:#4A647E;--display:'DM Serif Display',Georgia,serif;--body:'Plus Jakarta Sans',sans-serif}
@@ -168,7 +259,7 @@ footer{background:#0B1F3A;color:rgba(255,255,255,.58);padding:36px 5%;font-size:
 }
 </style>
 
-</head><body><nav><a class="brand-logo" href="/"><img alt="ViajeroLatam" src="/logo-vl-header.webp"/></a><div class="nav-links"><a href="/seguro-viaje/peru-a-espana/">Perú → España</a><a href="/seguro-viaje/peru-a-europa/">Perú → Europa</a><a href="/visa-schengen/peruanos/">Schengen Perú</a><a class="nav-cta" href="/resultados/">Comparar ahora</a></div></nav><header class="hero"><div class="hero-inner"><div class="eyebrow">Perú</div><h1>Seguro de viaje Perú España</h1><p>Guía práctica para viajeros peruanos que preparan viaje a España: seguro, requisitos, ETIAS, documentos y conectividad.</p><div class="btn-row"><a class="btn btn-primary" href="/seguro-viaje/peru-a-espana/">Perú → España</a><a class="btn btn-secondary" href="/esim/espana-colombianos/">eSIM para España</a></div></div></header><main><div class="wrap"><article>
+</head><body><nav><a class="brand-logo" href="/"><img alt="ViajeroLatam" src="/logo-vl-original-20260528.png"/></a><div class="nav-links"><a href="/seguro-viaje/peru-a-espana/">Perú → España</a><a href="/seguro-viaje/peru-a-europa/">Perú → Europa</a><a href="/visa-schengen/peruanos/">Schengen Perú</a><a class="nav-cta" href="/resultados/">Comparar ahora</a></div></nav><header class="hero"><div class="hero-inner"><div class="eyebrow">Perú</div><h1>Seguro de viaje Perú España</h1><p>Guía práctica para viajeros peruanos que preparan viaje a España: seguro, requisitos, ETIAS, documentos y conectividad.</p><div class="btn-row"><a class="btn btn-primary" href="/seguro-viaje/peru-a-espana/">Perú → España</a><a class="btn btn-secondary" href="/esim/espana-colombianos/">eSIM para España</a></div></div></header><main><div class="wrap"><article>
 <div class="box"><p><strong>Resumen:</strong> si viajas de Perú a España, revisa condiciones de entrada, seguro médico internacional, pasaporte, alojamiento, billete de salida y ETIAS cuando corresponda. El seguro no debe elegirse solo por precio: revisa cobertura médica, repatriación y fechas completas.</p></div>
 <h2>Seguro de viaje Perú España: qué revisar primero</h2><p>Perú tiene una comunidad viajera importante hacia España por turismo, visitas familiares, estudios y conexiones hacia otros países europeos. Para un viaje corto, muchos viajeros se concentran en vuelos y alojamiento, pero el seguro de viaje puede marcar la diferencia si aparece una urgencia médica, una pérdida de equipaje o un problema durante el trayecto.</p><p>El seguro ideal para viajar desde Perú a España debe cubrir todo el viaje, desde la salida hasta el regreso. También debe indicar claramente el destino, la cobertura médica, la repatriación y el canal de asistencia.</p>
 <div class="grid"><div class="item"><strong>Cobertura médica</strong><p>Revisa límite máximo y si cubre España o Europa.</p></div><div class="item"><strong>Repatriación</strong><p>Debe estar incluida de forma clara.</p></div><div class="item"><strong>Fechas completas</strong><p>Desde la salida de Perú hasta el regreso.</p></div><div class="item"><strong>Asistencia</strong><p>Canal 24/7 y fácil de usar desde España.</p></div></div>

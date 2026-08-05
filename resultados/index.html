@@ -428,11 +428,16 @@ img, video, iframe, svg {
 
 </style>
 <!-- Travelpayouts Drive -->
+<script data-cfasync="false" data-no-defer="1" data-noptimize="1" data-wpfc-render="false" nowpocket="" seraph-accel-crit="1">
+  (function () {
+    var script = document.createElement("script");
+    script.async = 1;
+    script.src = 'https://emrldtp.cc/NTMzNzMw.js?t=533730';
+    document.head.appendChild(script);
+  })();
+</script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<link rel="stylesheet" href="/cookie-consent.css"/>
-<script src="/cookie-consent.js"></script>
-
 <!-- Favicon / browser tab icon -->
 <link rel="icon" href="/favicon.ico" sizes="any"/>
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
@@ -443,7 +448,7 @@ img, video, iframe, svg {
 
 <title>Comparar seguros de viaje para España y Schengen | ViajeroLatam</title>
 <meta content="Compara seguros de viaje para España y Europa. Revisa precio, cobertura médica, repatriación, equipaje y condiciones de IATI, InterMundial, Holins y AXA." name="description"/>
-<meta name="robots" content="index, follow"/>
+<meta content="noindex, follow" name="robots"/>
 <link href="https://viajerolatam.com/resultados/" rel="canonical"/>
 <!-- Open Graph -->
 <meta content="website" property="og:type"/>
@@ -458,6 +463,38 @@ img, video, iframe, svg {
 <meta content="Revisa seguros de viaje para España, Schengen y Europa." name="twitter:description"/>
 <meta content="https://viajerolatam.com/og-image.jpg" name="twitter:image"/>
 <!-- Schema: ItemList of insurance products -->
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Comparativa de seguros de viaje para latinoamericanos a España y Europa",
+    "description": "Los mejores seguros de viaje para latinoamericanos ordenados por relación calidad-precio",
+    "numberOfItems": 8,
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": " Direct",
+        "url": "https://viajerolatam.com/seguros/-viaje-premium/",
+        "description": "Mejor valorado. Gastos médicos ilimitados, sin franquicia, app 24/7 en español. Válido para visa Schengen."
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "IATI Estrella",
+        "url": "https://viajerolatam.com/seguros/iati-estrella/",
+        "description": "Sin franquicia, cobertura médica alta según póliza, pago directo desde el primer euro."
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Intermundial InterMundial Totaltravel",
+        "url": "https://viajerolatam.com/seguros/intermundial-totaltravel/",
+        "description": "Mejor precio. 10.000.000€ de cobertura médica desde €1.75 por día."
+      }
+    ]
+  }
+  </script>
 <link href="https://fonts.googleapis.com" rel="dns-prefetch"/>
 <link href="https://fonts.gstatic.com" rel="dns-prefetch"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
@@ -848,6 +885,107 @@ nav a.brand-logo img, nav a.logo img{height:64px !important; width:auto !importa
 
 </style>
 <!-- Google Analytics 4 -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-P1Q2TSMVNJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-P1Q2TSMVNJ');
+<script id="vl-ga4-affiliate-normalizer">
+(function(){
+  if (window.vlGa4AffiliateNormalizerInstalled) return;
+  window.vlGa4AffiliateNormalizerInstalled = true;
+
+  function getClickId(){
+    try {
+      var key = 'vl_affiliate_click_id';
+      var id = sessionStorage.getItem(key);
+      if (!id) {
+        id = 'vl_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 10);
+        sessionStorage.setItem(key, id);
+      }
+      return id;
+    } catch(e) {
+      return 'vl_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 10);
+    }
+  }
+
+  function cleanPartner(partner){
+    return String(partner || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9_]+/g, '_')
+      .replace(/^_+|_+$/g, '');
+  }
+
+  function partnerFromEvent(eventName, params){
+    var partner = '';
+    if (eventName.indexOf('click_affiliate_') === 0) {
+      partner = eventName.replace('click_affiliate_', '');
+    }
+    if (!partner && params && params.affiliate_partner) partner = params.affiliate_partner;
+    return cleanPartner(partner || 'unknown');
+  }
+
+  function install(){
+    if (typeof window.gtag !== 'function') {
+      window.setTimeout(install, 50);
+      return;
+    }
+    if (window.gtag.vlAffiliateNormalized) return;
+
+    var originalGtag = window.gtag;
+    function normalizedGtag(){
+      var args = Array.prototype.slice.call(arguments);
+
+      if (args[0] === 'event' && typeof args[1] === 'string') {
+        var originalEventName = args[1];
+        var eventName = originalEventName.toLowerCase();
+
+        if (eventName !== originalEventName) {
+          args[1] = eventName;
+        }
+
+        if (eventName.indexOf('click_affiliate_') === 0) {
+          var params = args[2] && typeof args[2] === 'object' ? args[2] : {};
+          var partner = partnerFromEvent(eventName, params);
+          var clickId = params.affiliate_click_id || getClickId();
+
+          params.event_category = params.event_category || 'affiliate';
+          params.affiliate_partner = partner;
+          params.affiliate_click_id = clickId;
+          params.page_path = window.location.pathname;
+          params.page_location = params.page_location || window.location.href;
+          params.outbound_url = params.outbound_url || params.event_label || params.link_url || '';
+          params.link_text = params.link_text || '';
+
+          args[2] = params;
+
+          originalGtag.apply(window, args);
+
+          originalGtag('event', 'affiliate_outbound_click', {
+            event_category: 'affiliate',
+            affiliate_partner: partner,
+            affiliate_click_id: clickId,
+            source_event: eventName,
+            outbound_url: params.outbound_url,
+            page_path: window.location.pathname,
+            page_location: window.location.href
+          });
+          return;
+        }
+      }
+
+      return originalGtag.apply(window, args);
+    }
+
+    normalizedGtag.vlAffiliateNormalized = true;
+    window.gtag = normalizedGtag;
+  }
+
+  install();
+})();
+</script>
+
 </script>
 <style>@font-face{font-display:swap}</style>
 <meta content="es_CO" property="og:locale"/>
@@ -1060,58 +1198,6 @@ nav .brand-logo img{height:38px!important;max-width:170px!important;width:auto!i
 }
 </style>
 
-<!-- VL FIX: resultados indexable -->
-
-<style id="vl-edit-search-swap-css">
-.vl-edit-route-swap-wrap{
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-end;
-}
-.vl-edit-route-swap-label{
-  font-size:11px;
-  font-weight:700;
-  color:#8FA4B8;
-  text-transform:uppercase;
-  letter-spacing:.06em;
-  display:block;
-  margin-bottom:6px;
-  text-align:center;
-}
-.vl-edit-route-swap-btn{
-  min-height:42px;
-  width:100%;
-  border-radius:999px;
-  border:1.5px solid rgba(0,196,161,.35);
-  background:#F3FFFB;
-  color:#0B1F3A;
-  font-size:22px;
-  font-weight:900;
-  line-height:1;
-  cursor:pointer;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  box-shadow:0 6px 18px rgba(11,31,58,.07);
-  transition:transform .15s ease, background .2s ease, border-color .2s ease;
-}
-.vl-edit-route-swap-btn:hover{background:#00C4A1;border-color:#00C4A1;transform:rotate(180deg)}
-.vl-edit-route-swap-btn:active{transform:scale(.94) rotate(180deg)}
-@media(max-width:768px){
-  .vl-edit-route-swap-wrap{
-    grid-column:1 / -1;
-  }
-  .vl-edit-route-swap-label{
-    display:none;
-  }
-  .vl-edit-route-swap-btn{
-    min-height:44px;
-    border-radius:16px;
-    font-size:21px;
-  }
-}
-</style>
-
 </head>
 <body>
 <!-- H1 principal movido al bloque de resultados para evitar espacio superior -->
@@ -1119,7 +1205,7 @@ nav .brand-logo img{height:38px!important;max-width:170px!important;width:auto!i
 <div id="mob-overlay" onclick="closeMobMenu()" style="display:none;position:fixed;inset:0;background:rgba(11,31,58,.6);z-index:998;backdrop-filter:blur(4px)"></div>
 <div id="mob-drawer" style="display:none;position:fixed;top:0;right:0;bottom:0;width:min(300px,85vw);background:#fff;z-index:999;box-shadow:-8px 0 40px rgba(11,31,58,.25);flex-direction:column;transform:translateX(100%);transition:transform .28s cubic-bezier(.4,0,.2,1)">
 <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:#0B1F3A;flex-shrink:0">
-<img alt="ViajeroLatam" src="/logo-vl-header.webp"/>
+<img alt="ViajeroLatam" src="/logo-vl-original-20260528.png"/>
 <button onclick="closeMobMenu()" style="width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.12);border:none;color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center">✕</button>
 </div>
 <div style="flex:1;overflow-y:auto">
@@ -1272,7 +1358,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
 </script>
 <!-- NAV -->
 <nav>
-<a aria-label="ViajeroLatam inicio" class="brand-logo" href="/"><img alt="ViajeroLatam" src="/logo-vl-header.webp"/></a>
+<a aria-label="ViajeroLatam inicio" class="brand-logo" href="/"><img alt="ViajeroLatam" src="/logo-vl-original-20260528.png"/></a>
 <a class="nav-back" href="/">
 <svg viewbox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"></path></svg>
     Nueva búsqueda
@@ -1334,13 +1420,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
 <option value="nicaragua">🇳🇮 Nicaragua</option>
 <option value="republica-dominicana">🇩🇴 R. Dominicana</option>
 <option value="cuba">🇨🇺 Cuba</option>
-<option value="haiti">🇭🇹 Haití</option>
 <option value="puerto-rico">🇵🇷 Puerto Rico</option>
-<option value="espana-schengen">🇪🇺 España / Schengen</option>
-<option value="europa">🌍 Europa (toda)</option>
-<option value="estados-unidos">🇺🇸 Estados Unidos</option>
-<option value="eeuu-canada">🇺🇸🇨🇦 EEUU + Canadá</option>
-<option value="mundial">🌎 Mundial</option>
 </select>
 </div>
 <div>
@@ -1774,146 +1854,19 @@ function fmtDateShort(v){
   if(!d) return '';
   return d.toLocaleDateString('es-ES', {day:'2-digit', month:'short'}).replace('.', '');
 }
-
-// VL: soporte funcional para búsquedas España → LATAM, sin crear nuevas páginas SEO
-var VL_RESULTS_DEFAULT_DESTINATIONS = [
-  {value:'espana-schengen', label:'🇪🇺 España / Schengen'},
-  {value:'europa', label:'🌍 Europa (toda)'},
-  {value:'estados-unidos', label:'🇺🇸 Estados Unidos'},
-  {value:'eeuu-canada', label:'🇺🇸🇨🇦 EEUU + Canadá'},
-  {value:'mundial', label:'🌎 Mundial'}
-];
-var VL_RESULTS_SPAIN_LATAM_DESTINATIONS = [
-  {value:'colombia', label:'🇨🇴 Colombia'},
-  {value:'mexico', label:'🇲🇽 México'},
-  {value:'argentina', label:'🇦🇷 Argentina'},
-  {value:'peru', label:'🇵🇪 Perú'},
-  {value:'chile', label:'🇨🇱 Chile'},
-  {value:'ecuador', label:'🇪🇨 Ecuador'},
-  {value:'bolivia', label:'🇧🇴 Bolivia'},
-  {value:'venezuela', label:'🇻🇪 Venezuela'},
-  {value:'paraguay', label:'🇵🇾 Paraguay'},
-  {value:'uruguay', label:'🇺🇾 Uruguay'},
-  {value:'brasil', label:'🇧🇷 Brasil'},
-  {value:'costa-rica', label:'🇨🇷 Costa Rica'},
-  {value:'panama', label:'🇵🇦 Panamá'},
-  {value:'guatemala', label:'🇬🇹 Guatemala'},
-  {value:'el-salvador', label:'🇸🇻 El Salvador'},
-  {value:'honduras', label:'🇭🇳 Honduras'},
-  {value:'nicaragua', label:'🇳🇮 Nicaragua'},
-  {value:'republica-dominicana', label:'🇩🇴 R. Dominicana'},
-  {value:'cuba', label:'🇨🇺 Cuba'},
-  {value:'haiti', label:'🇭🇹 Haití'},
-  {value:'puerto-rico', label:'🇵🇷 Puerto Rico'}
-];
-var VL_LATAM_DEST_LABELS = {
-  colombia:'Colombia 🇨🇴',
-  mexico:'México 🇲🇽',
-  argentina:'Argentina 🇦🇷',
-  peru:'Perú 🇵🇪',
-  chile:'Chile 🇨🇱',
-  ecuador:'Ecuador 🇪🇨',
-  bolivia:'Bolivia 🇧🇴',
-  venezuela:'Venezuela 🇻🇪',
-  paraguay:'Paraguay 🇵🇾',
-  uruguay:'Uruguay 🇺🇾',
-  brasil:'Brasil 🇧🇷',
-  'costa-rica':'Costa Rica 🇨🇷',
-  panama:'Panamá 🇵🇦',
-  guatemala:'Guatemala 🇬🇹',
-  'el-salvador':'El Salvador 🇸🇻',
-  honduras:'Honduras 🇭🇳',
-  nicaragua:'Nicaragua 🇳🇮',
-  'republica-dominicana':'R. Dominicana 🇩🇴',
-  cuba:'Cuba 🇨🇺',
-  'puerto-rico':'Puerto Rico 🇵🇷'
-};
-
-var VL_ROUTE_ORIGIN_LABELS = {
-  'espana':'España',
-  'espana-schengen':'España / Schengen',
-  'europa':'Europa',
-  'eeuu':'Estados Unidos',
-  'estados-unidos':'Estados Unidos',
-  'eeuu-canada':'EEUU + Canadá',
-  'mundial':'Mundial'
-};
-function vlIsRouteOrigin(v){
-  v = String(v || '').toLowerCase();
-  return Object.prototype.hasOwnProperty.call(VL_ROUTE_ORIGIN_LABELS, v);
-}
-function vlRouteOriginLabel(v){
-  v = String(v || '').toLowerCase();
-  return VL_ROUTE_ORIGIN_LABELS[v] || v;
-}
-function vlIsLatamDest(v){
-  return Object.prototype.hasOwnProperty.call(VL_LATAM_DEST_LABELS, String(v || '').toLowerCase());
-}
-function vlPlainLabel(label){
-  return String(label || '').replace(/\s*[🇦-🇿]{2,}\s*$/u, '').trim();
-}
-function vlSetResultsOptions(select, options, preferred){
-  if(!select) return;
-  var current = preferred || select.value;
-  select.innerHTML = options.map(function(o){
-    return '<option value="' + o.value + '">' + o.label + '</option>';
-  }).join('');
-  var exists = options.some(function(o){ return o.value === current; });
-  select.value = exists ? current : options[0].value;
-}
-function vlUpdateResultsDestinationOptions(preferred){
-  var origin = document.getElementById('ep-origen');
-  var dest = document.getElementById('ep-destino');
-  if(!origin || !dest) return;
-  if(vlIsRouteOrigin(origin.value)){
-    vlSetResultsOptions(dest, VL_RESULTS_SPAIN_LATAM_DESTINATIONS, preferred || dest.value);
-  } else {
-    vlSetResultsOptions(dest, VL_RESULTS_DEFAULT_DESTINATIONS, preferred || dest.value);
-  }
-}
-function vlUpdateResultsIntro(origen, dest){
-  var o = String(origen || '').toLowerCase();
-  var d = String(dest || '').toLowerCase();
-  var h = document.getElementById('resultados-title');
-  var p = document.querySelector('.results-top p');
-  var toolbar = document.querySelector('.results-toolbar-left span');
-  var schengenBtn = document.querySelector('.results-top .sc-btn');
-  if(vlIsRouteOrigin(o) && vlIsLatamDest(d)){
-    var originLabel = vlRouteOriginLabel(o);
-    var destLabel = vlPlainLabel(VL_LATAM_DEST_LABELS[d] || d);
-    if(h) h.textContent = 'Comparar seguros de viaje de ' + originLabel + ' a ' + destLabel;
-    if(p) p.innerHTML = '<strong>Resultados recomendados</strong> para ' + originLabel + ' → ' + destLabel + '. Compara precio, cobertura médica, repatriación y condiciones antes de contratar.';
-    if(toolbar) toolbar.textContent = 'Opciones de seguro para viaje internacional · revisa siempre cobertura médica, repatriación, equipaje y condiciones finales.';
-    if(schengenBtn){ schengenBtn.textContent = 'Nueva búsqueda'; schengenBtn.setAttribute('href','/'); }
-  } else {
-    if(h) h.textContent = 'Comparar seguros de viaje para España y Schengen';
-    if(p) p.innerHTML = '<strong>Resultados recomendados</strong> para Colombia → España. Compara precio, cobertura médica, repatriación y condiciones antes de contratar.';
-    if(toolbar) toolbar.textContent = 'Opciones válidas para Schengen · cobertura médica mínima 30.000 € · revisa siempre condiciones finales.';
-    if(schengenBtn){ schengenBtn.textContent = '¿Qué es Schengen?'; schengenBtn.setAttribute('href','/visa-schengen/'); }
-  }
-}
-
 function normalizedDest(v){
   v = String(v || '').toLowerCase();
-  if(vlIsLatamDest(v)) return v;
-  if(v === 'espana-schengen' || v.indexOf('schengen') !== -1 || v.indexOf('espana') !== -1 || v.indexOf('españa') !== -1) return 'espana-schengen';
-  if(v === 'eeuu-canada') return 'eeuu-canada';
-  if(v.indexOf('eeuu') !== -1 || v.indexOf('usa') !== -1 || v.indexOf('estados') !== -1) return 'estados-unidos';
+  if(v.indexOf('eeuu') !== -1 || v.indexOf('usa') !== -1 || v.indexOf('estados') !== -1) return 'eeuu';
   if(v.indexOf('mundial') !== -1) return 'mundial';
-  if(v.indexOf('europa') !== -1) return 'europa';
-  return 'espana-schengen';
+  return 'europa';
 }
 function urlDestValue(v){
   v = normalizedDest(v);
-  if(vlIsLatamDest(v)) return v;
-  if(v === 'estados-unidos') return 'estados-unidos';
-  if(v === 'eeuu-canada') return 'eeuu-canada';
-  if(v === 'europa') return 'europa';
+  if(v === 'eeuu') return 'eeuu';
   if(v === 'mundial') return 'mundial';
   return 'espana-schengen';
 }
 function openEditPanel(focusId){
-  if(typeof vlUpdateResultsDestinationOptions === 'function') vlUpdateResultsDestinationOptions(window.currentSearchDest);
   var p = document.getElementById('edit-panel');
   if(!p) return;
   p.style.display = 'block';
@@ -1937,16 +1890,10 @@ function toggleEditPanel(){
   if(!p) return;
   var isOpen = p.style.display !== 'none';
   if(isOpen) closeEditPanel();
-  else { vlUpdateResultsDestinationOptions(window.currentSearchDest); openEditPanel('ep-origen'); }
+  else openEditPanel('ep-origen');
 }
 function updatePillsDisplay(origen, dest, ida, vuelta, viajeros){
   var originLabels = {
-    'espana':'España 🇪🇸',
-    'espana-schengen':'España / Schengen 🇪🇺',
-    europa:'Europa 🌍',
-    'estados-unidos':'Estados Unidos 🇺🇸',
-    'eeuu-canada':'EEUU + Canadá 🇺🇸🇨🇦',
-    mundial:'Mundial 🌎',
     colombia:'Colombia 🇨🇴',
     mexico:'México 🇲🇽',
     argentina:'Argentina 🇦🇷',
@@ -1966,10 +1913,9 @@ function updatePillsDisplay(origen, dest, ida, vuelta, viajeros){
     nicaragua:'Nicaragua 🇳🇮',
     'republica-dominicana':'R. Dominicana 🇩🇴',
     cuba:'Cuba 🇨🇺',
-    haiti:'Haití 🇭🇹',
     'puerto-rico':'Puerto Rico 🇵🇷'
   };
-  var destLabels = Object.assign({europa:'España / Schengen 🇪🇺', eeuu:'Estados Unidos 🇺🇸', mundial:'Mundial 🌍'}, VL_LATAM_DEST_LABELS);
+  var destLabels = {europa:'España / Schengen 🇪🇺', eeuu:'Estados Unidos 🇺🇸', mundial:'Mundial 🌍'};
   var pillVals = document.querySelectorAll('.pill-val');
   if(pillVals[0]) pillVals[0].textContent = originLabels[origen] || origen;
   if(pillVals[1]) pillVals[1].textContent = destLabels[normalizedDest(dest)] || dest;
@@ -1977,44 +1923,6 @@ function updatePillsDisplay(origen, dest, ida, vuelta, viajeros){
   if(pillVals[2]) pillVals[2].textContent = fechasText;
   if(pillVals[3]) pillVals[3].textContent = viajeros + (parseInt(viajeros)===1?' adulto':' adultos');
 }
-
-function vlSwapEditRoute(){
-  var origin = document.getElementById('ep-origen');
-  var dest = document.getElementById('ep-destino');
-  if(!origin || !dest) return;
-
-  var oldOrigin = String(origin.value || '').toLowerCase();
-  var oldDest = String(dest.value || '').toLowerCase();
-
-  if(typeof vlIsRouteOrigin === 'function' && vlIsRouteOrigin(oldOrigin)){
-    // Ruta general → LATAM vuelve a LATAM → misma ruta general.
-    var latamOrigin = (typeof vlIsLatamDest === 'function' && vlIsLatamDest(oldDest)) ? oldDest : 'colombia';
-    var routeDest = vlIsRouteOrigin(oldOrigin) ? oldOrigin : 'espana-schengen';
-    vlSetResultsOptions(origin, VL_RESULTS_SPAIN_LATAM_DESTINATIONS, latamOrigin);
-    vlSetResultsOptions(dest, VL_RESULTS_DEFAULT_DESTINATIONS, routeDest);
-  } else {
-    // LATAM → ruta general pasa a ruta general → ese país LATAM.
-    var routeOrigin = vlIsRouteOrigin(oldDest) ? oldDest : normalizedDest(oldDest);
-    if(!vlIsRouteOrigin(routeOrigin)) routeOrigin = 'espana-schengen';
-    var latamDest = (typeof vlIsLatamDest === 'function' && vlIsLatamDest(oldOrigin)) ? oldOrigin : 'colombia';
-    vlSetResultsOptions(origin, VL_RESULTS_DEFAULT_DESTINATIONS, routeOrigin);
-    vlSetResultsOptions(dest, VL_RESULTS_SPAIN_LATAM_DESTINATIONS, latamDest);
-  }
-
-  try {
-    if(typeof gtag === 'function'){
-      gtag('event','click_swap_route_edit',{
-        event_category:'search',
-        from_origin: oldOrigin,
-        from_destino: oldDest,
-        to_origin: origin.value,
-        to_destino: dest.value,
-        page_location: window.location.href
-      });
-    }
-  } catch(e){}
-}
-
 function applyEditSearch(){
   var origen = (document.getElementById('ep-origen') && document.getElementById('ep-origen').value) || 'colombia';
   var dest = (document.getElementById('ep-destino') && document.getElementById('ep-destino').value) || 'europa';
@@ -2037,7 +1945,6 @@ function applyEditSearch(){
   window.currentSearchDest = urlDestValue(dest);
 
   updatePillsDisplay(origen, dest, ida, vuelta, viajeros);
-  vlUpdateResultsIntro(origen, urlDestValue(dest));
 
   DATA.forEach(function(d){
     d.price = (d.priceDay * dias).toFixed(2) * 1;
@@ -2055,9 +1962,6 @@ function applyEditSearch(){
   setDest(null, normalizedDest(dest));
   closeEditPanel();
 }
-
-var vlResultsOriginSelect = document.getElementById('ep-origen');
-if(vlResultsOriginSelect) vlResultsOriginSelect.addEventListener('change', function(){ vlUpdateResultsDestinationOptions(); });
 
 // Initial render
 (function initSearchFromURL(){
@@ -2084,7 +1988,6 @@ if(vlResultsOriginSelect) vlResultsOriginSelect.addEventListener('change', funct
   const origenSelect = document.getElementById('ep-origen');
   if(origenSelect && Array.from(origenSelect.options).some(o => o.value === origen)) origenSelect.value = origen;
 
-  vlUpdateResultsDestinationOptions(normalizedDest(destinoRaw));
   const destSelect = document.getElementById('ep-destino');
   if(destSelect) destSelect.value = normalizedDest(destinoRaw);
 
@@ -2098,7 +2001,6 @@ if(vlResultsOriginSelect) vlResultsOriginSelect.addEventListener('change', funct
   if(viajerosSelect && Array.from(viajerosSelect.options).some(o => parseInt(o.value) === personasParam)) viajerosSelect.value = String(personasParam);
 
   updatePillsDisplay(origen, normalizedDest(destinoRaw), ida, vuelta, personasParam);
-  vlUpdateResultsIntro(origen, normalizedDest(destinoRaw));
 
   DATA.forEach(function(d){
     d.price = (d.priceDay * dias).toFixed(2) * 1;

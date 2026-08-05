@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="es-PE"><head>
 <link as="image" href="/hero-bg.webp" rel="preload" type="image/webp"/><meta charset="utf-8"/><meta content="fnxi-_Liw22SOQakruhikIUAjmf3u6mdT79inMc9x9A" name="google-site-verification"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<link rel="stylesheet" href="/cookie-consent.css"/>
-<script src="/cookie-consent.js"></script>
-
 <!-- Favicon / browser tab icon -->
 <link rel="icon" href="/favicon.ico" sizes="any"/>
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
@@ -11,7 +8,101 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
 <link rel="manifest" href="/site.webmanifest"/>
 <meta name="theme-color" content="#0B1F3A"/>
-<title>Seguro viaje Perú Europa 2026 | Schengen, ETIAS y cobertura</title><meta content="Seguro de viaje Perú Europa para peruanos que visitan varios países Schengen: cobertura médica, repatriación, ETIAS, eSIM, IATI e InterMundial." name="description"/><meta content="index, follow" name="robots"/><link href="https://viajerolatam.com/seguro-viaje/peru-a-europa/" rel="canonical"/><meta content="article" property="og:type"/><meta content="Seguro viaje Perú Europa 2026 | Schengen, ETIAS y cobertura" property="og:title"/><meta content="Seguro de viaje Perú Europa para peruanos que visitan varios países Schengen: cobertura médica, repatriación, ETIAS, eSIM, IATI e InterMundial." property="og:description"/><meta content="https://viajerolatam.com/seguro-viaje/peru-a-europa/" property="og:url"/><meta content="https://viajerolatam.com/logo-vl-header.webp" property="og:image"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<title>Seguro viaje Perú Europa 2026 | Schengen, ETIAS y cobertura</title><meta content="Seguro de viaje Perú Europa para peruanos que visitan varios países Schengen: cobertura médica, repatriación, ETIAS, eSIM, IATI e InterMundial." name="description"/><meta content="index, follow" name="robots"/><link href="https://viajerolatam.com/seguro-viaje/peru-a-europa/" rel="canonical"/><meta content="article" property="og:type"/><meta content="Seguro viaje Perú Europa 2026 | Schengen, ETIAS y cobertura" property="og:title"/><meta content="Seguro de viaje Perú Europa para peruanos que visitan varios países Schengen: cobertura médica, repatriación, ETIAS, eSIM, IATI e InterMundial." property="og:description"/><meta content="https://viajerolatam.com/seguro-viaje/peru-a-europa/" property="og:url"/><meta content="https://viajerolatam.com/logo-vl-original-20260528.png" property="og:image"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-P1Q2TSMVNJ"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-P1Q2TSMVNJ');
+<script id="vl-ga4-affiliate-normalizer">
+(function(){
+  if (window.vlGa4AffiliateNormalizerInstalled) return;
+  window.vlGa4AffiliateNormalizerInstalled = true;
+
+  function getClickId(){
+    try {
+      var key = 'vl_affiliate_click_id';
+      var id = sessionStorage.getItem(key);
+      if (!id) {
+        id = 'vl_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 10);
+        sessionStorage.setItem(key, id);
+      }
+      return id;
+    } catch(e) {
+      return 'vl_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 10);
+    }
+  }
+
+  function cleanPartner(partner){
+    return String(partner || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9_]+/g, '_')
+      .replace(/^_+|_+$/g, '');
+  }
+
+  function partnerFromEvent(eventName, params){
+    var partner = '';
+    if (eventName.indexOf('click_affiliate_') === 0) {
+      partner = eventName.replace('click_affiliate_', '');
+    }
+    if (!partner && params && params.affiliate_partner) partner = params.affiliate_partner;
+    return cleanPartner(partner || 'unknown');
+  }
+
+  function install(){
+    if (typeof window.gtag !== 'function') {
+      window.setTimeout(install, 50);
+      return;
+    }
+    if (window.gtag.vlAffiliateNormalized) return;
+
+    var originalGtag = window.gtag;
+    function normalizedGtag(){
+      var args = Array.prototype.slice.call(arguments);
+
+      if (args[0] === 'event' && typeof args[1] === 'string') {
+        var originalEventName = args[1];
+        var eventName = originalEventName.toLowerCase();
+
+        if (eventName !== originalEventName) {
+          args[1] = eventName;
+        }
+
+        if (eventName.indexOf('click_affiliate_') === 0) {
+          var params = args[2] && typeof args[2] === 'object' ? args[2] : {};
+          var partner = partnerFromEvent(eventName, params);
+          var clickId = params.affiliate_click_id || getClickId();
+
+          params.event_category = params.event_category || 'affiliate';
+          params.affiliate_partner = partner;
+          params.affiliate_click_id = clickId;
+          params.page_path = window.location.pathname;
+          params.page_location = params.page_location || window.location.href;
+          params.outbound_url = params.outbound_url || params.event_label || params.link_url || '';
+          params.link_text = params.link_text || '';
+
+          args[2] = params;
+
+          originalGtag.apply(window, args);
+
+          originalGtag('event', 'affiliate_outbound_click', {
+            event_category: 'affiliate',
+            affiliate_partner: partner,
+            affiliate_click_id: clickId,
+            source_event: eventName,
+            outbound_url: params.outbound_url,
+            page_path: window.location.pathname,
+            page_location: window.location.href
+          });
+          return;
+        }
+      }
+
+      return originalGtag.apply(window, args);
+    }
+
+    normalizedGtag.vlAffiliateNormalized = true;
+    window.gtag = normalizedGtag;
+  }
+
+  install();
+})();
+</script>
 </script><style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{--navy:#0B1F3A;--teal:#00C4A1;--sand:#F5F0E8;--border:#EAE3D5;--muted:#4A647E;--display:'DM Serif Display',Georgia,serif;--body:'Plus Jakarta Sans',sans-serif}
@@ -31,52 +122,13 @@ footer{background:#0B1F3A;color:rgba(255,255,255,.58);padding:36px 5%;font-size:
 </style><style id="webp-hero">@supports(background-image:url("data:image/webp,")){.hero,section.hero{background-image:url('/hero-bg.webp')!important}}</style>
 <meta content="es_CO" property="og:locale"/>
 <meta content="ViajeroLatam" property="og:site_name"/>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://viajerolatam.com/"},{"@type":"ListItem","position":2,"name":"Seguro de viaje","item":"https://viajerolatam.com/seguro-viaje/"},{"@type":"ListItem","position":3,"name":"Seguro de viaje Perú Europa","item":"https://viajerolatam.com/seguro-viaje/peru-a-europa/"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Los peruanos necesitan visa para viajar a Europa?","acceptedAnswer":{"@type":"Answer","text":"Para estancias cortas y no remuneradas, los ciudadanos peruanos están exentos de visa en varios países europeos hasta 90 días dentro de 180 días. Aun así, la entrada no es automática y pueden pedir documentos de viaje."}},{"@type":"Question","name":"¿Es obligatorio el seguro de viaje para Perú a Europa?","acceptedAnswer":{"@type":"Answer","text":"Depende del país, tipo de viaje y situación del viajero. Aunque no siempre sea obligatorio para viajeros exentos de visa, es muy recomendable y puede ser solicitado como prueba de medios o preparación del viaje."}},{"@type":"Question","name":"¿Qué destino debo elegir en la póliza?","acceptedAnswer":{"@type":"Answer","text":"Si solo vas a España, elige España o Schengen según ofrezca la aseguradora. Si visitarás varios países, elige Europa, Schengen o una cobertura que incluya todos los países concretos."}},{"@type":"Question","name":"¿ETIAS sustituye al seguro?","acceptedAnswer":{"@type":"Answer","text":"No. ETIAS es una autorización de viaje para entrar a países europeos participantes cuando esté operativo. El seguro cubre asistencia médica y otros riesgos del viaje según condiciones."}},{"@type":"Question","name":"¿Cuándo conviene contratar?","acceptedAnswer":{"@type":"Answer","text":"Antes de salir de Perú, idealmente cuando ya tienes fechas y ruta. Así puedes cubrir desde el primer día y revisar cancelación si contrataste vuelos u hoteles no reembolsables."}}]}</script>
-</head><body><nav><a class="brand-logo" href="/"><img alt="ViajeroLatam" src="/logo-vl-header.webp"/></a><div class="nav-links"><a href="/seguro-viaje/peru-a-espana/">Perú → España</a><a href="/seguro-viaje/peru-a-europa/">Perú → Europa</a><a href="/visa-schengen/peruanos/">Schengen Perú</a><a class="nav-cta" href="/resultados/">Comparar ahora</a></div></nav><header class="hero"><div class="hero-inner"><div class="eyebrow">Perú</div><h1>Seguro de viaje Perú Europa</h1><p>Guía para peruanos que viajan por España y otros países europeos y necesitan cobertura para toda la ruta.</p><div class="btn-row"><a class="btn btn-primary" href="/seguro-viaje/peru-a-espana/">Perú → España</a><a class="btn btn-secondary" href="/esim/espana-colombianos/">eSIM para España</a></div></div></header><main><div class="wrap"><article>
-<div class="box"><p><strong>Resumen:</strong> si viajas desde Perú a varios países europeos, el seguro debe cubrir toda la ruta, no solo el país donde aterrizas. Para una ruta por España, Francia, Italia, Portugal, Alemania u otros destinos, revisa que la póliza indique Europa, Schengen o los países concretos de tu itinerario.</p></div>
-
-<h2>Seguro de viaje Perú Europa: por qué es diferente</h2>
-<p>Un viaje Perú → Europa suele incluir más variables que un viaje de un solo destino. Muchos viajeros aterrizan en Madrid o Barcelona, pero luego toman trenes, buses o vuelos internos hacia Francia, Italia, Portugal, Alemania, Países Bajos u otros países. Si tu seguro solo cubre España y después tienes una urgencia en otro país, podrías tener problemas con la asistencia.</p>
-<p>Por eso, la primera decisión no es la aseguradora, sino el alcance geográfico correcto: España, Schengen, Europa o mundial. En un viaje de varias ciudades, la póliza debe coincidir con el itinerario real y cubrir todos los días desde la salida de Perú hasta el regreso.</p>
-<div class="grid"><div class="item"><strong>Destino correcto</strong><p>Europa o Schengen si visitarás varios países dentro de esa zona.</p></div><div class="item"><strong>Fechas reales</strong><p>Incluye salida desde Perú, regreso y posibles escalas.</p></div><div class="item"><strong>Transporte interno</strong><p>Guarda reservas de trenes, buses o vuelos entre ciudades.</p></div><div class="item"><strong>Asistencia clara</strong><p>Teléfono, app o canal de emergencia disponible durante todo el viaje.</p></div></div>
-
-<h2>Peruanos en Europa: visa, Schengen y ETIAS</h2>
-<p>El Gobierno del Perú informa que los ciudadanos peruanos pueden viajar sin visa a varios países europeos para estancias cortas y no remuneradas de hasta 90 días dentro de un periodo de 180 días. Esta exención no significa entrada automática: las autoridades fronterizas pueden pedir documentos que justifiquen el viaje.</p>
-<p>Además, España informa que ETIAS será un requisito para viajeros de países exentos de visa a partir del último trimestre de 2026. Antes de viajar, conviene revisar fuentes oficiales porque las fechas y sistemas fronterizos pueden actualizarse.</p>
-<div class="box"><p><strong>Fuentes oficiales útiles:</strong> revisa la guía del Gobierno del Perú sobre <a href="https://www.gob.pe/100157-europa-sin-visa" target="_blank" rel="noopener">Europa sin visa</a> y la información oficial de España sobre <a href="https://www.spain.info/es/consejos-viaje/visado-pasaporte/" target="_blank" rel="noopener">visado, pasaporte y ETIAS</a>.</p></div>
-
-<h2>Europa no siempre significa Schengen</h2>
-<p>Para comprar bien, distingue entre Europa y Schengen. España, Francia, Italia, Portugal y Alemania forman parte del espacio Schengen. Otros destinos europeos pueden tener reglas diferentes. Si tu ruta incluye Reino Unido, Irlanda, Turquía u otros países fuera de Schengen, revisa que la póliza los cubra expresamente.</p>
-<p>También importa la escala. Si haces una escala larga con salida del aeropuerto o pasas una noche en otro país, incluye ese tramo en la preparación del viaje.</p>
-
-<h2>Qué debe cubrir una buena póliza Perú → Europa</h2>
-<ul><li><strong>Cobertura médica y hospitalización:</strong> asistencia ante urgencias, pruebas, medicación y tratamiento indicado durante el viaje.</li><li><strong>Repatriación:</strong> cobertura clave ante emergencias graves o fallecimiento.</li><li><strong>Equipaje:</strong> pérdida, robo, daño o demora, especialmente si haces conexiones.</li><li><strong>Retrasos y cancelación:</strong> útil si tienes vuelos internos, trenes, hoteles o tours pagados.</li><li><strong>Actividades:</strong> revisa exclusiones si harás esquí, senderismo exigente, deportes o excursiones especiales.</li><li><strong>Preexistencias:</strong> si tienes una condición médica previa, comprueba si está cubierta o excluida.</li></ul>
-
-<h2>Errores frecuentes al contratar desde Perú</h2>
-<div class="grid"><div class="item"><strong>Comprar solo para España</strong><p>Error común si después viajas por Francia, Italia o Portugal.</p></div><div class="item"><strong>No cubrir todos los días</strong><p>Incluye vuelo de ida, regreso y noches de escala.</p></div><div class="item"><strong>Mirar solo el precio</strong><p>Compara límite médico, franquicia, repatriación y exclusiones.</p></div><div class="item"><strong>No leer condiciones</strong><p>Guarda la póliza y revisa cómo pedir asistencia antes de viajar.</p></div></div>
-
-<h2>Seguro + eSIM para una ruta europea</h2>
-<p>En una ruta por varios países, el seguro y la conectividad trabajan juntos. El seguro te ayuda si tienes una urgencia médica o problema cubierto. La eSIM te ayuda a usar mapas, contactar alojamiento, descargar billetes de tren, llamar a asistencia y moverte desde el primer día sin depender de WiFi público.</p>
-<p>La eSIM no es imprescindible, pero en viajes con varias ciudades puede ahorrar tiempo y evitar errores de transporte o comunicación.</p>
-
-<div class="cta"><h2>Compara antes de contratar</h2><p>Revisa seguro de viaje y eSIM para preparar mejor tu ruta Perú → Europa.</p><div class="coupon">Cupón InterMundial: VIAJEROLATAM</div><a class="primary" href="/resultados/?origen=peru&destino=europa&dias=15&personas=1">Comparar seguros →</a><a class="secondary" href="https://www.iatiseguros.com?r=84208681926165" rel="nofollow sponsored noopener" target="_blank">IATI →</a><a class="secondary" href="https://www.intermundial.es/afiliados/seguros-de-viaje-recomendado?utm_source=Affiliates&utm_medium=Affiliates&utm_campaign=General&utm_term=kbnnqvpvcy490&utm_content=kbnnqvpvcy490&coupon=VIAJEROLATAM&vl_site=viajerolatam&vl_partner=intermundial&vl_page=seguro_viaje_peru_a_europa&vl_link=1" rel="nofollow sponsored noopener" target="_blank" data-affiliate-partner="intermundial" data-vl-page="seguro_viaje_peru_a_europa">InterMundial →</a><a class="secondary" href="https://saily.tpx.lv/Bf6yTl42" rel="nofollow sponsored noopener" target="_blank">Saily eSIM →</a></div>
-
-<h2>Checklist Perú a Europa</h2>
-<ul><li>Selecciona destino Europa, Schengen o todos los países de tu ruta.</li><li>Incluye las fechas reales desde la salida de Perú hasta el regreso.</li><li>Guarda póliza PDF, número de certificado y teléfono de asistencia.</li><li>Confirma alojamiento, billete de salida y transporte interno.</li><li>Revisa ETIAS si aplica en tu fecha de viaje.</li><li>Comprueba si deportes, excursiones o preexistencias están cubiertos.</li><li>Compra eSIM o prepara roaming si necesitas mapas y reservas desde el primer día.</li></ul>
-
-<h2>Preguntas frecuentes</h2>
-<h3>¿Los peruanos necesitan visa para viajar a Europa?</h3>
-<p>Para estancias cortas y no remuneradas, los ciudadanos peruanos están exentos de visa en varios países europeos hasta 90 días dentro de 180 días. Aun así, la entrada no es automática y pueden pedir documentos de viaje.</p>
-<h3>¿Es obligatorio el seguro de viaje para Perú → Europa?</h3>
-<p>Depende del país, tipo de viaje y situación del viajero. Aunque no siempre sea obligatorio para viajeros exentos de visa, es muy recomendable y puede ser solicitado como prueba de medios o preparación del viaje.</p>
-<h3>¿Qué destino debo elegir en la póliza?</h3>
-<p>Si solo vas a España, elige España o Schengen según ofrezca la aseguradora. Si visitarás varios países, elige Europa, Schengen o una cobertura que incluya todos los países concretos.</p>
-<h3>¿ETIAS sustituye al seguro?</h3>
-<p>No. ETIAS es una autorización de viaje para entrar a países europeos participantes cuando esté operativo. El seguro cubre asistencia médica y otros riesgos del viaje según condiciones.</p>
-<h3>¿Cuándo conviene contratar?</h3>
-<p>Antes de salir de Perú, idealmente cuando ya tienes fechas y ruta. Así puedes cubrir desde el primer día y revisar cancelación si contrataste vuelos u hoteles no reembolsables.</p>
-
-<h2>Conclusión</h2><p>Para viajar de Perú a Europa, no basta con mirar el primer destino. Prepara seguro, documentos, conectividad y cobertura para todo el itinerario. Una buena comparación debe ayudarte a entender el riesgo principal de tu viaje, no solo mostrar el precio más barato.</p>
-<div class="box"><strong>Nota actualizada:</strong> información orientativa actualizada en julio de 2026. Revisa siempre fuentes oficiales y condiciones finales de la aseguradora antes de viajar.</div>
+</head><body><nav><a class="brand-logo" href="/"><img alt="ViajeroLatam" src="/logo-vl-original-20260528.png"/></a><div class="nav-links"><a href="/seguro-viaje/peru-a-espana/">Perú → España</a><a href="/seguro-viaje/peru-a-europa/">Perú → Europa</a><a href="/visa-schengen/peruanos/">Schengen Perú</a><a class="nav-cta" href="/resultados/">Comparar ahora</a></div></nav><header class="hero"><div class="hero-inner"><div class="eyebrow">Perú</div><h1>Seguro de viaje Perú Europa</h1><p>Guía para peruanos que viajan por España y otros países europeos y necesitan cobertura para toda la ruta.</p><div class="btn-row"><a class="btn btn-primary" href="/seguro-viaje/peru-a-espana/">Perú → España</a><a class="btn btn-secondary" href="/esim/espana-colombianos/">eSIM para España</a></div></div></header><main><div class="wrap"><article>
+<div class="box"><p><strong>Resumen:</strong> si viajas desde Perú a varios países europeos, el seguro debe cubrir toda la zona Schengen o todos los países de tu itinerario, no solo el primer destino de llegada.</p></div>
+<h2>Seguro de viaje Perú Europa: por qué es diferente</h2><p>Muchos viajeros peruanos llegan primero a Madrid o Barcelona, pero después visitan Francia, Italia, Portugal, Alemania u otros países europeos. En esos casos, el seguro debe cubrir el viaje completo y todos los destinos principales.</p><p>El error más común es contratar una póliza pensando solo en España cuando el viaje realmente incluye varios países. Si vas a recorrer Europa, revisa que el destino contratado sea Europa, Schengen o una zona equivalente según el proveedor.</p>
+<div class="grid"><div class="item"><strong>Destino correcto</strong><p>Europa o Schengen si visitarás varios países.</p></div><div class="item"><strong>Transporte interno</strong><p>Guarda reservas de trenes, buses o vuelos internos.</p></div><div class="item"><strong>Fechas reales</strong><p>Incluye salida, regreso y escalas.</p></div><div class="item"><strong>eSIM</strong><p>Útil para mapas y reservas durante la ruta.</p></div></div>
+<h2>Documentos y preparación</h2><p>Para turismo corto, los viajeros peruanos suelen estar exentos de visa Schengen, pero deben cumplir condiciones de entrada. Si ETIAS está operativo para tu fecha de viaje, deberás revisar la autorización correspondiente. También conviene tener alojamiento, billete de salida, seguro y medios económicos preparados.</p>
+<h2>Seguro + eSIM para una ruta europea</h2><p>En una ruta por varios países, el seguro médico internacional y la conectividad son especialmente útiles. El seguro ayuda ante urgencias médicas o asistencia; la eSIM ayuda con mapas, reservas, transporte y comunicación desde el primer día.</p>
+<div class="cta"><h2>Compara antes de contratar</h2><p>Revisa seguro de viaje y eSIM para preparar mejor tu ruta Perú → Europa.</p><div class="coupon">Cupón InterMundial: VIAJEROLATAM</div><a class="primary" href="/comparar-seguros-viaje-colombia-espana/">Ver comparativa →</a><a class="secondary" href="https://www.iatiseguros.com?r=84208681926165" rel="nofollow sponsored noopener" target="_blank">IATI →</a><a class="secondary" href="https://www.intermundial.es/afiliados/seguros-de-viaje-recomendado?utm_source=Affiliates&amp;utm_medium=Affiliates&amp;utm_campaign=General&amp;utm_term=kbnnqvpvcy490&amp;utm_content=kbnnqvpvcy490&amp;vl_site=viajerolatam&amp;vl_partner=intermundial&amp;vl_page=seguro_viaje_peru_a_europa&amp;vl_link=1" rel="nofollow sponsored noopener" target="_blank" data-affiliate-partner="intermundial" data-vl-page="seguro_viaje_peru_a_europa">InterMundial →</a><a class="secondary" href="https://saily.tpx.lv/Bf6yTl42" rel="nofollow sponsored noopener" target="_blank">Saily eSIM →</a></div>
+<h2>Checklist Perú a Europa</h2><ul><li>Selecciona cobertura Europa o Schengen.</li><li>Revisa duración máxima del plan.</li><li>Guarda póliza PDF y datos de asistencia.</li><li>Confirma alojamiento y transporte interno.</li><li>Revisa ETIAS si aplica en tu fecha de viaje.</li><li>Compra eSIM si quieres evitar roaming.</li></ul><h2>Conclusión</h2><p>Para viajar de Perú a Europa, no basta con mirar el primer destino. Prepara seguro, documentos y conectividad para todo el itinerario.</p>
+<div class="box"><strong>Nota actualizada:</strong> Revisa siempre fuentes oficiales antes de viajar. ETIAS está previsto para el último trimestre de 2026 y el EES está plenamente operativo desde el 10 de abril de 2026.</div>
 </article><aside><div class="side-card"><h3>Comparativa recomendada</h3><p>Usa la comparativa principal para revisar IATI e InterMundial.</p><a class="btn btn-primary" href="/comparar-seguros-viaje-colombia-espana/">Ver comparativa</a></div><div class="side-card"><h3>Más Perú</h3><p>Lee también la guía Schengen para peruanos.</p><a class="btn btn-primary" href="/visa-schengen/peruanos/">Ver guía</a></div></aside></div></main><footer>© 2026 ViajeroLatam. Comparador independiente para viajeros latinoamericanos.<p><a href="/como-elegimos/">Cómo elegimos las aseguradoras</a></p></footer></body></html>
