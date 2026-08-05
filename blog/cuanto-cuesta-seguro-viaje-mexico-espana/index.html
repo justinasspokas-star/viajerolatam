@@ -108,8 +108,9 @@ footer{background:var(--navy);color:rgba(255,255,255,.72);padding:34px 5%;margin
 .footer-inner{max-width:1180px;margin:auto;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
 .footer-inner a{color:rgba(255,255,255,.82);text-decoration:none;margin-right:14px}
 .mobile-sticky{display:none}
+.mobile-nav-cta{display:none;text-decoration:none;background:var(--teal);color:var(--navy);border-radius:999px;padding:9px 13px;font-weight:900;font-size:13px}
 @media(max-width:900px){
-  nav{padding:8px 16px} .logo img{height:44px} .nav-links{display:none}
+  nav{padding:8px 16px} .logo img{height:44px} .nav-links{display:none}.mobile-nav-cta{display:inline-flex}
   .hero{padding:42px 16px 36px} .hero-inner{grid-template-columns:1fr} .hero-card{display:none}
   main{display:block;padding:24px 14px 92px}
   .grid,.calc-row{grid-template-columns:1fr}
@@ -121,11 +122,40 @@ footer{background:var(--navy);color:rgba(255,255,255,.72);padding:34px 5%;margin
   .mobile-sticky .btn{width:100%;box-shadow:0 16px 40px rgba(0,196,161,.35)}
 }
 </style>
+
+<style id="vl-mexico-post-polish">
+/* Mexico support post layout polish: consistent cards, tables and mobile spacing */
+main { align-items: start; }
+article section, article .box, .cta-panel { max-width: 100%; }
+.table, .calc, .grid, .related-links { max-width: 100%; }
+.card, .check, .calc-result { overflow-wrap: anywhere; }
+@media(max-width: 900px) {
+  .hero { padding-top: 38px !important; }
+  .hero p { font-size: 15px !important; }
+  section, .box, .cta-panel { padding: 20px !important; border-radius: 22px !important; }
+  .btn-row { display: grid !important; grid-template-columns: 1fr !important; }
+  .btn { width: 100% !important; text-align: center !important; }
+  .table { display: block !important; border-radius: 18px !important; overflow: hidden !important; }
+  .table div { display: grid !important; grid-template-columns: 42% 58% !important; gap: 10px !important; padding: 12px 14px !important; border-right: 0 !important; }
+  .table .th { display: none !important; }
+  .table div:nth-child(3n+1)::before { content: "Duración"; font-weight: 900; color: var(--navy); }
+  .table div:nth-child(3n+2)::before { content: "EUR"; font-weight: 900; color: var(--navy); }
+  .table div:nth-child(3n)::before { content: "MXN aprox."; font-weight: 900; color: var(--navy); }
+  .side-card { display: none !important; }
+}
+@media(max-width: 420px) {
+  h1 { font-size: 34px !important; }
+  h2 { font-size: 28px !important; }
+  .mobile-sticky { left: 10px !important; right: 10px !important; bottom: 10px !important; }
+}
+</style>
+
 </head>
 
 <body>
 <nav>
 <a class="logo" href="/"><img src="/logo-vl-original-20260528.png" alt="ViajeroLatam"/></a>
+<a class="mobile-nav-cta vl-compare-link" href="/resultados/?origen=mexico&destino=espana-schengen">Comparar</a>
 <div class="nav-links">
 <a href="/">Inicio</a>
 <a href="/blog/">Artículos</a>
