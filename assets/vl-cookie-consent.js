@@ -189,7 +189,7 @@
 
     function hideBanner(){
       banner.hidden = true;
-      reopen.hidden = false;
+      reopen.hidden = true;
     }
 
     function openSettings(){
