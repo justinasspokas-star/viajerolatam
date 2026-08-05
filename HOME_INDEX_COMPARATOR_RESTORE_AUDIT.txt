@@ -1,0 +1,19 @@
+ViajeroLatam — homepage index restore
+
+Problem observed:
+- viajerolatam.com was displaying the blog page as the homepage.
+
+Fix:
+- Confirmed /index.html is the comparator homepage.
+- Kept /blog/index.html as the articles page.
+- Rebuilt the delivery ZIP with both files in their correct paths.
+
+Deployment:
+- Upload the ZIP preserving the folder structure.
+- /index.html must be at the root of the domain.
+- /blog/index.html must remain inside /blog/.
+
+Checks:
+- Root index contains the comparator CTA and destination fields.
+- Root index does not contain the blog hero.
+- Blog index still contains the articles page.
