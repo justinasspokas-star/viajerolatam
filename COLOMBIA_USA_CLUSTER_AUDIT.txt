@@ -1,0 +1,51 @@
+ViajeroLatam — Colombia to USA cluster upgrade
+
+Base:
+- viajerolatam_visa_schengen_hub_fix_completo (2).zip
+
+Date:
+- 2026-08-05
+
+Rebuilt:
+- /seguro-viaje/colombia-a-eeuu/index.html
+
+Created:
+- /blog/cuanto-cuesta-seguro-viaje-colombia-estados-unidos/index.html
+
+Updated:
+- /blog/index.html
+- /sitemap.xml
+
+Money page:
+- Strong SEO title/H1 for seguro médico de viaje Colombia a Estados Unidos.
+- B1/B2 explanation without claiming insurance is universally mandatory.
+- Coverage comparison, deductible, pre-existing conditions, assistance and repatriation.
+- Responsive desktop/mobile layout.
+- FAQPage, Article and Breadcrumb schemas.
+- GA4 events:
+  click_comparar_colombia_eeuu
+  click_comparar_seguros_gratis
+
+Support article:
+- Original 2026/2027 price guide.
+- Editable USD/COP calculator.
+- Illustrative USD 3–8/day scenarios clearly disclosed as budgeting examples, not official market averages.
+- Pricing factors, cases, savings advice and FAQs.
+- Responsive desktop/mobile layout.
+- FAQPage, Article and Breadcrumb schemas.
+- GA4 events:
+  click_comparar_colombia_eeuu_precio
+  click_comparar_seguros_gratis
+
+Trust/safety:
+- No fake ratings.
+- No guaranteed visa or entry claims.
+- No claim that tourist travel insurance is universally mandatory.
+- Official U.S. State Department and Banco de la República sources linked.
+- Affiliate price and conditions are always confirmed by the insurer.
+
+Index after upload:
+- https://viajerolatam.com/seguro-viaje/colombia-a-eeuu/
+- https://viajerolatam.com/blog/cuanto-cuesta-seguro-viaje-colombia-estados-unidos/
+- https://viajerolatam.com/blog/
+- Re-submit https://viajerolatam.com/sitemap.xml
