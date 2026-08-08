@@ -1,0 +1,17 @@
+ViajeroLatam — Bolivia redirect fix
+Date: 2026-08-08
+
+Changed only the Bolivia clean-URL redirect rules:
+
+OLD
+/seguro-viaje/bolivia-a-espana/ -> /seguro-viaje/bolivia-a-espana/index.html (200 rewrite)
+/seguro-viaje/bolivia-a-espana  -> /seguro-viaje/bolivia-a-espana/index.html (200 rewrite)
+
+NEW
+/seguro-viaje/bolivia-a-espana  -> /seguro-viaje/bolivia-a-espana/ (301 permanent, forced)
+/seguro-viaje/bolivia-a-espana/ -> /seguro-viaje/bolivia-a-espana/index.html (200 rewrite)
+
+Canonical and sitemap already use the trailing-slash URL:
+https://viajerolatam.com/seguro-viaje/bolivia-a-espana/
+
+No other site pages or SEO content were changed.
