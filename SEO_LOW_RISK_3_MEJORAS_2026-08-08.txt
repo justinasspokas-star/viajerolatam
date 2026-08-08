@@ -1,0 +1,20 @@
+VIAJEROLATAM — SEO LOW-RISK UPDATE — 2026-08-08
+
+1) Venezuela -> España
+- Añadidos enlaces internos contextuales desde la página Schengen Venezuela/Colombia y el artículo seguro + ETIAS.
+- Mejorado el anchor existente en la guía general de seguro para Europa.
+
+2) Colombia -> España
+- Añadida una sección breve y específica: “Seguro Schengen para colombianos que viajan a España”.
+- Añadidos enlaces internos hacia las guías Schengen de colombianos.
+- No se cambió URL, title, H1 ni meta description.
+
+3) ETIAS para colombianos
+- Actualización de frescura a agosto 2026.
+- Corregido el estado: ETIAS aún no operativo; previsto para el último trimestre de 2026; fecha exacta pendiente.
+- Actualizado EES: plenamente operativo desde 10 abril 2026.
+- Corregida tasa visible obsoleta de 7 € a 20 € en la guía seguro + ETIAS.
+- dateModified actualizado a 2026-08-08.
+
+HOME
+- index.html NO fue modificado. SHA256: 406c6f885a030cead61f8bdbe318f1aa89b4f378a465fbb9ca2f3e23a311d1f2
