@@ -1542,7 +1542,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
 <div class="filter-section">
 <div class="filter-title">Precio máximo por día</div>
 <div class="price-range-display">
-<span class="price-val">€0</span>
+<span class="price-val" id="price-min-display">€0</span>
 <span class="price-val" id="price-display">€5/día</span>
 </div>
 <input id="price-slider" max="10" min="1" oninput="onPriceChange(this)" type="range" value="5"/>
@@ -2165,6 +2165,20 @@ function applyEditSearch(){
   function originCurrency(){
     return CURRENCY_BY_ORIGIN[normalizePlace(window.currentSearchOrigin)] || null;
   }
+  function usesUSDPrimaryCurrency(){
+    return normalizeAllowedDestination(window.currentSearchDest)==='eeuu-canada';
+  }
+  function usdRate(){
+    return Number(fxRates.USD)||1.08;
+  }
+  function primaryPriceAmount(eurAmount){
+    var amount=Number(eurAmount)||0;
+    return usesUSDPrimaryCurrency() ? amount*usdRate() : amount;
+  }
+  function primaryPriceText(eurAmount){
+    var amount=primaryPriceAmount(eurAmount);
+    return (usesUSDPrimaryCurrency()?'$':'€')+amount.toFixed(2);
+  }
   function formatCurrency(amount,currency){
     try {
       return new Intl.NumberFormat('es',{
@@ -2191,7 +2205,8 @@ function applyEditSearch(){
   }
 
   shouldShowCOP=function(){
-    return !!originCurrency();
+    var currency=originCurrency();
+    return !!currency && !(usesUSDPrimaryCurrency() && currency==='USD');
   };
   formatCOPApprox=function(eurAmount){
     var currency=originCurrency();
@@ -2203,9 +2218,10 @@ function applyEditSearch(){
     var el=document.getElementById('cop-currency-note');
     if(!el) return;
     var currency=originCurrency();
-    var local=currency ? ' y una conversión aproximada a '+currency : '';
+    var primary=usesUSDPrimaryCurrency() ? 'USD' : 'EUR';
+    var local=(currency && currency!==primary) ? ' y una conversión aproximada a '+currency : '';
     el.classList.add('is-visible');
-    el.innerHTML='<strong>Precios orientativos para '+routeText()+'.</strong> Mostramos EUR'+local+
+    el.innerHTML='<strong>Precios orientativos para '+routeText()+'.</strong> Mostramos '+primary+local+
       '. La tarifa final, moneda de cobro y disponibilidad se confirman en la aseguradora. '+
       '<a href="https://frankfurter.dev/" target="_blank" rel="noopener nofollow" style="color:inherit;text-decoration:underline">Conversión diaria</a>.';
   };
@@ -2238,6 +2254,22 @@ function applyEditSearch(){
     var total='Total '+totalDays+' día'+(totalDays===1?'':'s')+(totalPeople>1?' · '+totalPeople+' viajeros':'');
     markup=markup.replace('<div class="price-from">Total 15 días</div>',
       '<div class="price-route">'+routeText()+'</div><div class="price-from">'+total+'</div>');
+    if(usesUSDPrimaryCurrency()){
+      var eurWhole=Math.floor(item.price);
+      var eurDec=(item.price%1).toFixed(2).slice(1);
+      var usdTotal=primaryPriceAmount(item.price);
+      var usdDay=primaryPriceAmount(item.priceDay);
+      var usdWhole=Math.floor(usdTotal);
+      var usdDec=(usdTotal%1).toFixed(2).slice(1);
+      markup=markup.replace(
+        '<div class="price-main"><sup>€</sup>'+eurWhole+'<sup>'+eurDec+'</sup></div>',
+        '<div class="price-main"><sup>$</sup>'+usdWhole+'<sup>'+usdDec+'</sup></div>'
+      );
+      markup=markup.replace(
+        '<div class="price-per">€'+item.priceDay.toFixed(2)+' / día</div>',
+        '<div class="price-per">$'+usdDay.toFixed(2)+' / día</div>'
+      );
+    }
     markup=markup.replace('Válido Schengen',coverageLabel());
     markup=markup.replace('⚠ No válido Schengen',coverageLabel());
     markup=markup.replace('<button class="btn-details"',
@@ -2245,9 +2277,41 @@ function applyEditSearch(){
     return markup;
   };
 
+  function updatePriceSliderDisplay(){
+    var slider=document.getElementById('price-slider');
+    var priceDisplay=document.getElementById('price-display');
+    var priceMinDisplay=document.getElementById('price-min-display');
+    if(priceMinDisplay) priceMinDisplay.textContent=usesUSDPrimaryCurrency()?'$0':'€0';
+    if(!slider || !priceDisplay) return;
+    var v=parseFloat(slider.value||'10');
+    var text=primaryPriceText(v)+'/día';
+    if(shouldShowCOP()) text+=' · ≈ '+formatCOPApprox(v)+'/día';
+    priceDisplay.textContent=text;
+  }
+
+  onPriceChange=function(el){
+    var v=parseFloat(el.value);
+    var pct=((v-1)/(10-1)*100).toFixed(0);
+    el.style.setProperty('--val',pct+'%');
+    updatePriceSliderDisplay();
+    applyFilters();
+  };
+
+  clearFilters=function(){
+    document.getElementById('price-slider').value=10;
+    document.getElementById('price-slider').style.setProperty('--val','100%');
+    updatePriceSliderDisplay();
+    ['c1','c2','c3','c4','f1','f2','f3','f4','f5','f6','t1','t2','t3'].forEach(function(id){
+      var el=document.getElementById(id);
+      if(el) el.checked=['c1','f1','t1'].includes(id);
+    });
+    applyFilters();
+  };
+
   setDest=function(){
     recalculate();
     updateHeadings();
+    updatePriceSliderDisplay();
     render(sortData(DATA,document.getElementById('sort-select').value||'recomendado'));
   };
 
@@ -2291,6 +2355,7 @@ function applyEditSearch(){
 
     recalculate();
     updateHeadings();
+    updatePriceSliderDisplay();
     closeEditPanel();
     applyFilters();
   };
@@ -2336,15 +2401,18 @@ function applyEditSearch(){
     updatePillsDisplay(originValue,destinationValue,ida,vuelta,travelerValue);
     recalculate();
     updateHeadings();
+    updatePriceSliderDisplay();
     applyFilters();
 
     fetch('https://api.frankfurter.dev/v1/latest?base=EUR')
       .then(function(r){if(!r.ok) throw new Error('FX'); return r.json();})
       .then(function(data){
         if(data&&data.rates) fxRates=Object.assign({},fxRates,data.rates,{EUR:1});
+        if(usesUSDPrimaryCurrency()) updatePriceSliderDisplay();
         render(sortData(DATA,document.getElementById('sort-select').value||'recomendado'));
       })
       .catch(function(){
+        if(usesUSDPrimaryCurrency()) updatePriceSliderDisplay();
         render(sortData(DATA,document.getElementById('sort-select').value||'recomendado'));
       });
   }
