@@ -2588,9 +2588,9 @@ document.addEventListener('click', function(e){
 
   var LATAM = [["co", "🇨🇴 Colombia"], ["mx", "🇲🇽 México"], ["ar", "🇦🇷 Argentina"], ["ve", "🇻🇪 Venezuela"], ["pe", "🇵🇪 Perú"], ["cl", "🇨🇱 Chile"], ["ec", "🇪🇨 Ecuador"], ["bo", "🇧🇴 Bolivia"], ["br", "🇧🇷 Brasil"], ["uy", "🇺🇾 Uruguay"], ["py", "🇵🇾 Paraguay"], ["cr", "🇨🇷 Costa Rica"], ["pa", "🇵🇦 Panamá"], ["gt", "🇬🇹 Guatemala"], ["sv", "🇸🇻 El Salvador"], ["hn", "🇭🇳 Honduras"], ["ni", "🇳🇮 Nicaragua"]];
   var DESTINATIONS = [["espana-schengen", "🇪🇺 España / Schengen"], ["europa", "🌍 Europa completa"], ["eeuu-canada", "🇺🇸🇨🇦 Estados Unidos + Canadá"], ["mundial", "🌎 Mundial"]];
-  var ORIGIN_INFO = {"co": {"label": "Colombia", "flag": "🇨🇴", "currency": "COP"}, "mx": {"label": "México", "flag": "🇲🇽", "currency": "MXN"}, "ar": {"label": "Argentina", "flag": "🇦🇷", "currency": "ARS"}, "ve": {"label": "Venezuela", "flag": "🇻🇪", "currency": "VES"}, "pe": {"label": "Perú", "flag": "🇵🇪", "currency": "PEN"}, "cl": {"label": "Chile", "flag": "🇨🇱", "currency": "CLP"}, "ec": {"label": "Ecuador", "flag": "🇪🇨", "currency": "USD"}, "bo": {"label": "Bolivia", "flag": "🇧🇴", "currency": "BOB"}, "br": {"label": "Brasil", "flag": "🇧🇷", "currency": "BRL"}, "uy": {"label": "Uruguay", "flag": "🇺🇾", "currency": "UYU"}, "py": {"label": "Paraguay", "flag": "🇵🇾", "currency": "PYG"}, "cr": {"label": "Costa Rica", "flag": "🇨🇷", "currency": "CRC"}, "pa": {"label": "Panamá", "flag": "🇵🇦", "currency": "PAB"}, "gt": {"label": "Guatemala", "flag": "🇬🇹", "currency": "GTQ"}, "sv": {"label": "El Salvador", "flag": "🇸🇻", "currency": "USD"}, "hn": {"label": "Honduras", "flag": "🇭🇳", "currency": "HNL"}, "ni": {"label": "Nicaragua", "flag": "🇳🇮", "currency": "NIO"}};
+  var ORIGIN_INFO = {"co": {"label": "Colombia", "flag": "🇨🇴", "currency": "COP"}, "mx": {"label": "México", "flag": "🇲🇽", "currency": "MXN"}, "ar": {"label": "Argentina", "flag": "🇦🇷", "currency": "ARS"}, "ve": {"label": "Venezuela", "flag": "🇻🇪", "currency": "VES"}, "pe": {"label": "Perú", "flag": "🇵🇪", "currency": "PEN"}, "cl": {"label": "Chile", "flag": "🇨🇱", "currency": "CLP"}, "ec": {"label": "Ecuador", "flag": "🇪🇨", "currency": "USD"}, "bo": {"label": "Bolivia", "flag": "🇧🇴", "currency": "BOB"}, "br": {"label": "Brasil", "flag": "🇧🇷", "currency": "BRL"}, "uy": {"label": "Uruguay", "flag": "🇺🇾", "currency": "UYU"}, "py": {"label": "Paraguay", "flag": "🇵🇾", "currency": "PYG"}, "cr": {"label": "Costa Rica", "flag": "🇨🇷", "currency": "CRC"}, "pa": {"label": "Panamá", "flag": "🇵🇦", "currency": "PAB"}, "gt": {"label": "Guatemala", "flag": "🇬🇹", "currency": "GTQ"}, "sv": {"label": "El Salvador", "flag": "🇸🇻", "currency": "USD"}, "hn": {"label": "Honduras", "flag": "🇭🇳", "currency": "HNL"}, "ni": {"label": "Nicaragua", "flag": "🇳🇮", "currency": "NIO"}, "espana-schengen": {"label": "España / Schengen", "flag": "🇪🇺", "currency": "EUR"}, "europa": {"label": "Europa completa", "flag": "🌍", "currency": "EUR"}, "eeuu-canada": {"label": "Estados Unidos + Canadá", "flag": "🇺🇸🇨🇦", "currency": "USD"}, "mundial": {"label": "Mundial", "flag": "🌎", "currency": "EUR"}};
   var ORIGIN_ALIASES = {"colombia": "co", "mexico": "mx", "méxico": "mx", "argentina": "ar", "venezuela": "ve", "peru": "pe", "perú": "pe", "chile": "cl", "ecuador": "ec", "bolivia": "bo", "paraguay": "py", "uruguay": "uy", "brasil": "br", "brazil": "br", "costa-rica": "cr", "costa rica": "cr", "panama": "pa", "panamá": "pa", "guatemala": "gt", "el-salvador": "sv", "el salvador": "sv", "honduras": "hn", "nicaragua": "ni"};
-  var CURRENCY_BY_ORIGIN = {"co": "COP", "mx": "MXN", "ar": "ARS", "ve": "VES", "pe": "PEN", "cl": "CLP", "ec": "USD", "bo": "BOB", "br": "BRL", "uy": "UYU", "py": "PYG", "cr": "CRC", "pa": "PAB", "gt": "GTQ", "sv": "USD", "hn": "HNL", "ni": "NIO"};
+  var CURRENCY_BY_ORIGIN = {"co": "COP", "mx": "MXN", "ar": "ARS", "ve": "VES", "pe": "PEN", "cl": "CLP", "ec": "USD", "bo": "BOB", "br": "BRL", "uy": "UYU", "py": "PYG", "cr": "CRC", "pa": "PAB", "gt": "GTQ", "sv": "USD", "hn": "HNL", "ni": "NIO", "espana-schengen": "EUR", "europa": "EUR", "eeuu-canada": "USD", "mundial": "EUR"};
   var FALLBACK_RATES = {"EUR": 1, "USD": 1.08, "XCD": 2.92, "ARS": 1600, "BSD": 1.08, "BBD": 2.16, "BZD": 2.16, "BOB": 7.5, "BRL": 6.3, "CLP": 1080, "COP": 4300, "CRC": 565, "CUP": 26, "DOP": 69, "GTQ": 8.3, "GYD": 225, "HTG": 142, "HNL": 27, "JMD": 170, "MXN": 21, "NIO": 40, "PAB": 1.08, "PYG": 8500, "PEN": 4.1, "SRD": 40, "TTD": 7.3, "UYU": 47, "VES": 200};
   var EUROPE = new Set(["ad", "al", "at", "ba", "be", "bg", "by", "ch", "cy", "cz", "de", "dk", "ee", "es", "fi", "fr", "gb", "gr", "hr", "hu", "ie", "is", "it", "li", "lt", "lu", "lv", "mc", "md", "me", "mk", "mt", "nl", "no", "pl", "pt", "ro", "rs", "ru", "se", "si", "sk", "sm", "ua", "va"]);
   var NORTH_AMERICA = new Set(["bm", "ca", "gl", "us"]);
@@ -2675,18 +2675,19 @@ document.addEventListener('click', function(e){
     var localDisplay=document.getElementById('sb-local-price-display');
     var localText=document.getElementById('sb-local-price-text');
     var normalizedOrigin=normalizeOrigin(origin);
-    var info=ORIGIN_INFO[normalizedOrigin] || null;
-    var currency=info ? info.currency : CURRENCY_BY_ORIGIN[normalizedOrigin];
-    var rate=currency && fxRates[currency];
+    var normalizedDestination=normalizeOrigin(destination);
+    var originInfo=ORIGIN_INFO[normalizedOrigin] || {label:normalizedOrigin.toUpperCase(),flag:'🌍',currency:CURRENCY_BY_ORIGIN[normalizedOrigin]||'EUR'};
+    var destinationInfo=ORIGIN_INFO[normalizedDestination] || {label:normalizedDestination.toUpperCase(),flag:'🌍',currency:CURRENCY_BY_ORIGIN[normalizedDestination]||'EUR'};
+    var originCurrency=originInfo.currency || 'EUR';
+    var destinationCurrency=destinationInfo.currency || 'EUR';
+    var originRate=Number(fxRates[originCurrency]) || 1;
+    var destinationRate=Number(fxRates[destinationCurrency]) || 1;
 
-    text.textContent=days+' días'+(people>1?' · '+people+' viajeros':'')+' · Desde €'+min.toFixed(2)+'–€'+max.toFixed(2);
+    text.textContent=days+' días'+(people>1?' · '+people+' viajeros':'')+' · Desde '+originInfo.flag+': '+formatCurrency(min*originRate,originCurrency)+'–'+formatCurrency(max*originRate,originCurrency)+' ('+originCurrency+')';
 
-    if(localDisplay && localText && currency && rate){
-      var countryLabel=info ? info.flag+' '+info.label : normalizedOrigin.toUpperCase();
-      localText.textContent=countryLabel+': aprox. '+formatCurrency(min*rate,currency)+'–'+formatCurrency(max*rate,currency)+' ('+currency+')';
+    if(localDisplay && localText){
+      localText.textContent='Destino '+destinationInfo.flag+': aprox. '+formatCurrency(min*destinationRate,destinationCurrency)+'–'+formatCurrency(max*destinationRate,destinationCurrency)+' ('+destinationCurrency+')';
       localDisplay.classList.remove('is-hidden');
-    }else if(localDisplay){
-      localDisplay.classList.add('is-hidden');
     }
   }
 

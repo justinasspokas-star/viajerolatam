@@ -1,0 +1,10 @@
+ViajeroLatam — dual currency route price fix — 2026-08-08
+
+Cambios solicitados:
+- La home conserva exactamente su comparador principal.
+- El bloque de precio muestra SIEMPRE dos referencias: moneda de "Voy desde" y moneda de "Destino".
+- Estados Unidos + Canadá usa USD en cualquiera de los dos lados del swap.
+- Países LATAM usan su moneda local (COP, MXN, ARS, PEN, etc.).
+- España / Schengen y Europa usan EUR; Mundial usa EUR como referencia.
+- Resultados muestran destino en su moneda y, debajo, país/zona de salida en su moneda.
+- Se mantiene el resto del sitio sin cambios.
