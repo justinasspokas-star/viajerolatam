@@ -2092,7 +2092,8 @@ function applyEditSearch(){
   var PLACE_META = {"af": {"label": "Afganistán", "flag": "🇦🇫"}, "al": {"label": "Albania", "flag": "🇦🇱"}, "de": {"label": "Alemania", "flag": "🇩🇪"}, "ad": {"label": "Andorra", "flag": "🇦🇩"}, "ao": {"label": "Angola", "flag": "🇦🇴"}, "ai": {"label": "Anguila", "flag": "🇦🇮"}, "ag": {"label": "Antigua y Barbuda", "flag": "🇦🇬"}, "aq": {"label": "Antártida", "flag": "🇦🇶"}, "sa": {"label": "Arabia Saudí", "flag": "🇸🇦"}, "dz": {"label": "Argelia", "flag": "🇩🇿"}, "ar": {"label": "Argentina", "flag": "🇦🇷"}, "am": {"label": "Armenia", "flag": "🇦🇲"}, "aw": {"label": "Aruba", "flag": "🇦🇼"}, "au": {"label": "Australia", "flag": "🇦🇺"}, "at": {"label": "Austria", "flag": "🇦🇹"}, "az": {"label": "Azerbaiyán", "flag": "🇦🇿"}, "bs": {"label": "Bahamas", "flag": "🇧🇸"}, "bd": {"label": "Bangladés", "flag": "🇧🇩"}, "bb": {"label": "Barbados", "flag": "🇧🇧"}, "bh": {"label": "Baréin", "flag": "🇧🇭"}, "bz": {"label": "Belice", "flag": "🇧🇿"}, "bj": {"label": "Benín", "flag": "🇧🇯"}, "bm": {"label": "Bermudas", "flag": "🇧🇲"}, "by": {"label": "Bielorrusia", "flag": "🇧🇾"}, "bo": {"label": "Bolivia", "flag": "🇧🇴"}, "ba": {"label": "Bosnia y Herzegovina", "flag": "🇧🇦"}, "bw": {"label": "Botsuana", "flag": "🇧🇼"}, "br": {"label": "Brasil", "flag": "🇧🇷"}, "bn": {"label": "Brunéi", "flag": "🇧🇳"}, "bg": {"label": "Bulgaria", "flag": "🇧🇬"}, "bf": {"label": "Burkina Faso", "flag": "🇧🇫"}, "bi": {"label": "Burundi", "flag": "🇧🇮"}, "bt": {"label": "Bután", "flag": "🇧🇹"}, "be": {"label": "Bélgica", "flag": "🇧🇪"}, "cv": {"label": "Cabo Verde", "flag": "🇨🇻"}, "kh": {"label": "Camboya", "flag": "🇰🇭"}, "cm": {"label": "Camerún", "flag": "🇨🇲"}, "ca": {"label": "Canadá", "flag": "🇨🇦"}, "bq": {"label": "Caribe neerlandés", "flag": "🇧🇶"}, "qa": {"label": "Catar", "flag": "🇶🇦"}, "td": {"label": "Chad", "flag": "🇹🇩"}, "cz": {"label": "Chequia", "flag": "🇨🇿"}, "cl": {"label": "Chile", "flag": "🇨🇱"}, "cn": {"label": "China", "flag": "🇨🇳"}, "cy": {"label": "Chipre", "flag": "🇨🇾"}, "va": {"label": "Ciudad del Vaticano", "flag": "🇻🇦"}, "co": {"label": "Colombia", "flag": "🇨🇴"}, "km": {"label": "Comoras", "flag": "🇰🇲"}, "cg": {"label": "Congo", "flag": "🇨🇬"}, "kp": {"label": "Corea del Norte", "flag": "🇰🇵"}, "kr": {"label": "Corea del Sur", "flag": "🇰🇷"}, "cr": {"label": "Costa Rica", "flag": "🇨🇷"}, "hr": {"label": "Croacia", "flag": "🇭🇷"}, "cu": {"label": "Cuba", "flag": "🇨🇺"}, "cw": {"label": "Curazao", "flag": "🇨🇼"}, "ci": {"label": "Côte d’Ivoire", "flag": "🇨🇮"}, "dk": {"label": "Dinamarca", "flag": "🇩🇰"}, "dm": {"label": "Dominica", "flag": "🇩🇲"}, "ec": {"label": "Ecuador", "flag": "🇪🇨"}, "eg": {"label": "Egipto", "flag": "🇪🇬"}, "sv": {"label": "El Salvador", "flag": "🇸🇻"}, "ae": {"label": "Emiratos Árabes Unidos", "flag": "🇦🇪"}, "er": {"label": "Eritrea", "flag": "🇪🇷"}, "sk": {"label": "Eslovaquia", "flag": "🇸🇰"}, "si": {"label": "Eslovenia", "flag": "🇸🇮"}, "es": {"label": "España", "flag": "🇪🇸"}, "us": {"label": "Estados Unidos", "flag": "🇺🇸"}, "ee": {"label": "Estonia", "flag": "🇪🇪"}, "sz": {"label": "Esuatini", "flag": "🇸🇿"}, "et": {"label": "Etiopía", "flag": "🇪🇹"}, "ph": {"label": "Filipinas", "flag": "🇵🇭"}, "fi": {"label": "Finlandia", "flag": "🇫🇮"}, "fj": {"label": "Fiyi", "flag": "🇫🇯"}, "fr": {"label": "Francia", "flag": "🇫🇷"}, "ga": {"label": "Gabón", "flag": "🇬🇦"}, "gm": {"label": "Gambia", "flag": "🇬🇲"}, "ge": {"label": "Georgia", "flag": "🇬🇪"}, "gh": {"label": "Ghana", "flag": "🇬🇭"}, "gi": {"label": "Gibraltar", "flag": "🇬🇮"}, "gd": {"label": "Granada", "flag": "🇬🇩"}, "gr": {"label": "Grecia", "flag": "🇬🇷"}, "gl": {"label": "Groenlandia", "flag": "🇬🇱"}, "gp": {"label": "Guadalupe", "flag": "🇬🇵"}, "gu": {"label": "Guam", "flag": "🇬🇺"}, "gt": {"label": "Guatemala", "flag": "🇬🇹"}, "gf": {"label": "Guayana Francesa", "flag": "🇬🇫"}, "gg": {"label": "Guernesey", "flag": "🇬🇬"}, "gn": {"label": "Guinea", "flag": "🇬🇳"}, "gq": {"label": "Guinea Ecuatorial", "flag": "🇬🇶"}, "gw": {"label": "Guinea-Bisáu", "flag": "🇬🇼"}, "gy": {"label": "Guyana", "flag": "🇬🇾"}, "ht": {"label": "Haití", "flag": "🇭🇹"}, "hn": {"label": "Honduras", "flag": "🇭🇳"}, "hu": {"label": "Hungría", "flag": "🇭🇺"}, "in": {"label": "India", "flag": "🇮🇳"}, "id": {"label": "Indonesia", "flag": "🇮🇩"}, "iq": {"label": "Irak", "flag": "🇮🇶"}, "ie": {"label": "Irlanda", "flag": "🇮🇪"}, "ir": {"label": "Irán", "flag": "🇮🇷"}, "bv": {"label": "Isla Bouvet", "flag": "🇧🇻"}, "im": {"label": "Isla de Man", "flag": "🇮🇲"}, "cx": {"label": "Isla de Navidad", "flag": "🇨🇽"}, "nf": {"label": "Isla Norfolk", "flag": "🇳🇫"}, "is": {"label": "Islandia", "flag": "🇮🇸"}, "ax": {"label": "Islas Aland", "flag": "🇦🇽"}, "ky": {"label": "Islas Caimán", "flag": "🇰🇾"}, "cc": {"label": "Islas Cocos", "flag": "🇨🇨"}, "ck": {"label": "Islas Cook", "flag": "🇨🇰"}, "fo": {"label": "Islas Feroe", "flag": "🇫🇴"}, "gs": {"label": "Islas Georgia del Sur y Sandwich del Sur", "flag": "🇬🇸"}, "hm": {"label": "Islas Heard y McDonald", "flag": "🇭🇲"}, "fk": {"label": "Islas Malvinas", "flag": "🇫🇰"}, "mp": {"label": "Islas Marianas del Norte", "flag": "🇲🇵"}, "mh": {"label": "Islas Marshall", "flag": "🇲🇭"}, "um": {"label": "Islas menores alejadas de EE. UU.", "flag": "🇺🇲"}, "pn": {"label": "Islas Pitcairn", "flag": "🇵🇳"}, "sb": {"label": "Islas Salomón", "flag": "🇸🇧"}, "tc": {"label": "Islas Turcas y Caicos", "flag": "🇹🇨"}, "vg": {"label": "Islas Vírgenes Británicas", "flag": "🇻🇬"}, "vi": {"label": "Islas Vírgenes de EE. UU.", "flag": "🇻🇮"}, "il": {"label": "Israel", "flag": "🇮🇱"}, "it": {"label": "Italia", "flag": "🇮🇹"}, "jm": {"label": "Jamaica", "flag": "🇯🇲"}, "jp": {"label": "Japón", "flag": "🇯🇵"}, "je": {"label": "Jersey", "flag": "🇯🇪"}, "jo": {"label": "Jordania", "flag": "🇯🇴"}, "kz": {"label": "Kazajistán", "flag": "🇰🇿"}, "ke": {"label": "Kenia", "flag": "🇰🇪"}, "kg": {"label": "Kirguistán", "flag": "🇰🇬"}, "ki": {"label": "Kiribati", "flag": "🇰🇮"}, "kw": {"label": "Kuwait", "flag": "🇰🇼"}, "la": {"label": "Laos", "flag": "🇱🇦"}, "ls": {"label": "Lesoto", "flag": "🇱🇸"}, "lv": {"label": "Letonia", "flag": "🇱🇻"}, "lr": {"label": "Liberia", "flag": "🇱🇷"}, "ly": {"label": "Libia", "flag": "🇱🇾"}, "li": {"label": "Liechtenstein", "flag": "🇱🇮"}, "lt": {"label": "Lituania", "flag": "🇱🇹"}, "lu": {"label": "Luxemburgo", "flag": "🇱🇺"}, "lb": {"label": "Líbano", "flag": "🇱🇧"}, "mk": {"label": "Macedonia del Norte", "flag": "🇲🇰"}, "mg": {"label": "Madagascar", "flag": "🇲🇬"}, "my": {"label": "Malasia", "flag": "🇲🇾"}, "mw": {"label": "Malaui", "flag": "🇲🇼"}, "mv": {"label": "Maldivas", "flag": "🇲🇻"}, "ml": {"label": "Mali", "flag": "🇲🇱"}, "mt": {"label": "Malta", "flag": "🇲🇹"}, "ma": {"label": "Marruecos", "flag": "🇲🇦"}, "mq": {"label": "Martinica", "flag": "🇲🇶"}, "mu": {"label": "Mauricio", "flag": "🇲🇺"}, "mr": {"label": "Mauritania", "flag": "🇲🇷"}, "yt": {"label": "Mayotte", "flag": "🇾🇹"}, "fm": {"label": "Micronesia", "flag": "🇫🇲"}, "md": {"label": "Moldavia", "flag": "🇲🇩"}, "mn": {"label": "Mongolia", "flag": "🇲🇳"}, "me": {"label": "Montenegro", "flag": "🇲🇪"}, "ms": {"label": "Montserrat", "flag": "🇲🇸"}, "mz": {"label": "Mozambique", "flag": "🇲🇿"}, "mm": {"label": "Myanmar (Birmania)", "flag": "🇲🇲"}, "mx": {"label": "México", "flag": "🇲🇽"}, "mc": {"label": "Mónaco", "flag": "🇲🇨"}, "na": {"label": "Namibia", "flag": "🇳🇦"}, "nr": {"label": "Nauru", "flag": "🇳🇷"}, "np": {"label": "Nepal", "flag": "🇳🇵"}, "ni": {"label": "Nicaragua", "flag": "🇳🇮"}, "ng": {"label": "Nigeria", "flag": "🇳🇬"}, "nu": {"label": "Niue", "flag": "🇳🇺"}, "no": {"label": "Noruega", "flag": "🇳🇴"}, "nc": {"label": "Nueva Caledonia", "flag": "🇳🇨"}, "nz": {"label": "Nueva Zelanda", "flag": "🇳🇿"}, "ne": {"label": "Níger", "flag": "🇳🇪"}, "om": {"label": "Omán", "flag": "🇴🇲"}, "pk": {"label": "Pakistán", "flag": "🇵🇰"}, "pw": {"label": "Palaos", "flag": "🇵🇼"}, "pa": {"label": "Panamá", "flag": "🇵🇦"}, "pg": {"label": "Papúa Nueva Guinea", "flag": "🇵🇬"}, "py": {"label": "Paraguay", "flag": "🇵🇾"}, "nl": {"label": "Países Bajos", "flag": "🇳🇱"}, "pe": {"label": "Perú", "flag": "🇵🇪"}, "pf": {"label": "Polinesia Francesa", "flag": "🇵🇫"}, "pl": {"label": "Polonia", "flag": "🇵🇱"}, "pt": {"label": "Portugal", "flag": "🇵🇹"}, "pr": {"label": "Puerto Rico", "flag": "🇵🇷"}, "hk": {"label": "RAE de Hong Kong (China)", "flag": "🇭🇰"}, "mo": {"label": "RAE de Macao (China)", "flag": "🇲🇴"}, "gb": {"label": "Reino Unido", "flag": "🇬🇧"}, "cf": {"label": "República Centroafricana", "flag": "🇨🇫"}, "cd": {"label": "República Democrática del Congo", "flag": "🇨🇩"}, "do": {"label": "República Dominicana", "flag": "🇩🇴"}, "re": {"label": "Reunión", "flag": "🇷🇪"}, "rw": {"label": "Ruanda", "flag": "🇷🇼"}, "ro": {"label": "Rumanía", "flag": "🇷🇴"}, "ru": {"label": "Rusia", "flag": "🇷🇺"}, "ws": {"label": "Samoa", "flag": "🇼🇸"}, "as": {"label": "Samoa Americana", "flag": "🇦🇸"}, "bl": {"label": "San Bartolomé", "flag": "🇧🇱"}, "kn": {"label": "San Cristóbal y Nieves", "flag": "🇰🇳"}, "sm": {"label": "San Marino", "flag": "🇸🇲"}, "mf": {"label": "San Martín", "flag": "🇲🇫"}, "pm": {"label": "San Pedro y Miquelón", "flag": "🇵🇲"}, "vc": {"label": "San Vicente y las Granadinas", "flag": "🇻🇨"}, "sh": {"label": "Santa Elena", "flag": "🇸🇭"}, "lc": {"label": "Santa Lucía", "flag": "🇱🇨"}, "st": {"label": "Santo Tomé y Príncipe", "flag": "🇸🇹"}, "sn": {"label": "Senegal", "flag": "🇸🇳"}, "rs": {"label": "Serbia", "flag": "🇷🇸"}, "sc": {"label": "Seychelles", "flag": "🇸🇨"}, "sl": {"label": "Sierra Leona", "flag": "🇸🇱"}, "sg": {"label": "Singapur", "flag": "🇸🇬"}, "sx": {"label": "Sint Maarten", "flag": "🇸🇽"}, "sy": {"label": "Siria", "flag": "🇸🇾"}, "so": {"label": "Somalia", "flag": "🇸🇴"}, "lk": {"label": "Sri Lanka", "flag": "🇱🇰"}, "za": {"label": "Sudáfrica", "flag": "🇿🇦"}, "sd": {"label": "Sudán", "flag": "🇸🇩"}, "ss": {"label": "Sudán del Sur", "flag": "🇸🇸"}, "se": {"label": "Suecia", "flag": "🇸🇪"}, "ch": {"label": "Suiza", "flag": "🇨🇭"}, "sr": {"label": "Surinam", "flag": "🇸🇷"}, "sj": {"label": "Svalbard y Jan Mayen", "flag": "🇸🇯"}, "eh": {"label": "Sáhara Occidental", "flag": "🇪🇭"}, "th": {"label": "Tailandia", "flag": "🇹🇭"}, "tw": {"label": "Taiwán", "flag": "🇹🇼"}, "tz": {"label": "Tanzania", "flag": "🇹🇿"}, "tj": {"label": "Tayikistán", "flag": "🇹🇯"}, "io": {"label": "Territorio Británico del Océano Índico", "flag": "🇮🇴"}, "tf": {"label": "Territorios Australes Franceses", "flag": "🇹🇫"}, "ps": {"label": "Territorios Palestinos", "flag": "🇵🇸"}, "tl": {"label": "Timor-Leste", "flag": "🇹🇱"}, "tg": {"label": "Togo", "flag": "🇹🇬"}, "tk": {"label": "Tokelau", "flag": "🇹🇰"}, "to": {"label": "Tonga", "flag": "🇹🇴"}, "tt": {"label": "Trinidad y Tobago", "flag": "🇹🇹"}, "tm": {"label": "Turkmenistán", "flag": "🇹🇲"}, "tr": {"label": "Turquía", "flag": "🇹🇷"}, "tv": {"label": "Tuvalu", "flag": "🇹🇻"}, "tn": {"label": "Túnez", "flag": "🇹🇳"}, "ua": {"label": "Ucrania", "flag": "🇺🇦"}, "ug": {"label": "Uganda", "flag": "🇺🇬"}, "uy": {"label": "Uruguay", "flag": "🇺🇾"}, "uz": {"label": "Uzbekistán", "flag": "🇺🇿"}, "vu": {"label": "Vanuatu", "flag": "🇻🇺"}, "ve": {"label": "Venezuela", "flag": "🇻🇪"}, "vn": {"label": "Vietnam", "flag": "🇻🇳"}, "wf": {"label": "Wallis y Futuna", "flag": "🇼🇫"}, "ye": {"label": "Yemen", "flag": "🇾🇪"}, "dj": {"label": "Yibuti", "flag": "🇩🇯"}, "zm": {"label": "Zambia", "flag": "🇿🇲"}, "zw": {"label": "Zimbabue", "flag": "🇿🇼"}, "espana-schengen": {"label": "España / Schengen", "flag": "🇪🇺"}, "europa": {"label": "Europa completa", "flag": "🌍"}, "eeuu-canada": {"label": "Estados Unidos + Canadá", "flag": "🇺🇸🇨🇦"}, "mundial": {"label": "Mundial", "flag": "🌎"}};
   var ALIASES = {"colombia": "co", "mexico": "mx", "méxico": "mx", "argentina": "ar", "venezuela": "ve", "peru": "pe", "perú": "pe", "chile": "cl", "ecuador": "ec", "bolivia": "bo", "paraguay": "py", "uruguay": "uy", "brasil": "br", "brazil": "br", "costa-rica": "cr", "costa rica": "cr", "panama": "pa", "panamá": "pa", "guatemala": "gt", "el-salvador": "sv", "el salvador": "sv", "honduras": "hn", "nicaragua": "ni", "republica-dominicana": "do", "república dominicana": "do", "cuba": "cu", "haiti": "ht", "haití": "ht", "puerto-rico": "pr", "puerto rico": "pr", "estados-unidos": "us", "estados unidos": "us", "eeuu": "us", "usa": "us", "espana": "es", "españa": "es", "espana-schengen": "espana-schengen", "eeuu-canada": "eeuu-canada", "mundial": "mundial", "europa": "europa"};
   var ALLOWED_ORIGINS = new Set(["co", "mx", "ar", "ve", "pe", "cl", "ec", "bo", "br", "uy", "py", "cr", "pa", "gt", "sv", "hn", "ni"]);
-  var CURRENCY_BY_ORIGIN = {"co": "COP", "mx": "MXN", "ar": "ARS", "ve": "VES", "pe": "PEN", "cl": "CLP", "ec": "USD", "bo": "BOB", "br": "BRL", "uy": "UYU", "py": "PYG", "cr": "CRC", "pa": "PAB", "gt": "GTQ", "sv": "USD", "hn": "HNL", "ni": "NIO"};
+  var CURRENCY_BY_ORIGIN = {"co": "COP", "mx": "MXN", "ar": "ARS", "ve": "VES", "pe": "PEN", "cl": "CLP", "ec": "USD", "bo": "BOB", "br": "BRL", "uy": "UYU", "py": "PYG", "cr": "CRC", "pa": "PAB", "gt": "GTQ", "sv": "USD", "hn": "HNL", "ni": "NIO", "espana-schengen": "EUR", "europa": "EUR", "eeuu-canada": "USD", "mundial": "EUR"};
+  var ROUTE_GROUPS = new Set(["espana-schengen","europa","eeuu-canada","mundial"]);
   var FALLBACK_RATES = {"EUR": 1, "USD": 1.08, "XCD": 2.92, "ARS": 1600, "BSD": 1.08, "BBD": 2.16, "BZD": 2.16, "BOB": 7.5, "BRL": 6.3, "CLP": 1080, "COP": 4300, "CRC": 565, "CUP": 26, "DOP": 69, "GTQ": 8.3, "GYD": 225, "HTG": 142, "HNL": 27, "JMD": 170, "MXN": 21, "NIO": 40, "PAB": 1.08, "PYG": 8500, "PEN": 4.1, "SRD": 40, "TTD": 7.3, "UYU": 47, "VES": 200};
   var EUROPE = new Set(["ad", "al", "at", "ba", "be", "bg", "by", "ch", "cy", "cz", "de", "dk", "ee", "es", "fi", "fr", "gb", "gr", "hr", "hu", "ie", "is", "it", "li", "lt", "lu", "lv", "mc", "md", "me", "mk", "mt", "nl", "no", "pl", "pt", "ro", "rs", "ru", "se", "si", "sk", "sm", "ua", "va"]);
   var NORTH_AMERICA = new Set(["bm", "ca", "gl", "us"]);
@@ -2105,13 +2106,14 @@ function applyEditSearch(){
     if(raw==='espana' || raw==='españa' || raw==='es' || raw==='spain' || raw==='schengen' || raw==='espana-schengen'){
       return 'espana-schengen';
     }
-    if(raw==='europa' || raw==='europe'){
-      return 'europa';
-    }
+    if(raw==='europa' || raw==='europe') return 'europa';
+    if(raw==='mundial' || raw==='world') return 'mundial';
     if(raw==='us' || raw==='usa' || raw==='eeuu' || raw==='estados-unidos' || raw==='estados unidos' ||
        raw==='canada' || raw==='canadá' || raw==='ca' || raw==='eeuu-canada'){
       return 'eeuu-canada';
     }
+    var key=ALIASES[raw] || raw;
+    if(LATAM.has(key)) return key;
     return 'espana-schengen';
   }
 
@@ -2162,22 +2164,24 @@ function applyEditSearch(){
     var el=document.getElementById('ep-viajeros');
     return Math.max(1,parseInt(el&&el.value||'1',10)||1);
   }
+  function placeCurrency(value){
+    return CURRENCY_BY_ORIGIN[normalizePlace(value)] || 'EUR';
+  }
   function originCurrency(){
-    return CURRENCY_BY_ORIGIN[normalizePlace(window.currentSearchOrigin)] || null;
+    return placeCurrency(window.currentSearchOrigin);
+  }
+  function destinationCurrency(){
+    return placeCurrency(window.currentSearchDest);
+  }
+  function currencyRate(currency){
+    return Number(fxRates[currency]) || 1;
   }
   function usesUSDPrimaryCurrency(){
-    return normalizeAllowedDestination(window.currentSearchDest)==='eeuu-canada';
-  }
-  function usdRate(){
-    return Number(fxRates.USD)||1.08;
+    return destinationCurrency()==='USD';
   }
   function primaryPriceAmount(eurAmount){
     var amount=Number(eurAmount)||0;
-    return usesUSDPrimaryCurrency() ? amount*usdRate() : amount;
-  }
-  function primaryPriceText(eurAmount){
-    var amount=primaryPriceAmount(eurAmount);
-    return (usesUSDPrimaryCurrency()?'$':'€')+amount.toFixed(2);
+    return amount*currencyRate(destinationCurrency());
   }
   function formatCurrency(amount,currency){
     try {
@@ -2188,6 +2192,13 @@ function applyEditSearch(){
     } catch(e) {
       return currency+' '+Math.round(amount).toLocaleString('es');
     }
+  }
+  function placePriceText(eurAmount,value){
+    var currency=placeCurrency(value);
+    return formatCurrency((Number(eurAmount)||0)*currencyRate(currency),currency);
+  }
+  function primaryPriceText(eurAmount){
+    return placePriceText(eurAmount,window.currentSearchDest);
   }
 
   DATA.forEach(function(item){
@@ -2204,25 +2215,18 @@ function applyEditSearch(){
     });
   }
 
-  shouldShowCOP=function(){
-    var currency=originCurrency();
-    return !!currency && !(usesUSDPrimaryCurrency() && currency==='USD');
-  };
+  shouldShowCOP=function(){ return true; };
   formatCOPApprox=function(eurAmount){
-    var currency=originCurrency();
-    var rate=currency && fxRates[currency];
-    if(!currency || !rate) return '€'+Number(eurAmount).toFixed(2);
-    return formatCurrency(Number(eurAmount)*rate,currency);
+    return placePriceText(eurAmount,window.currentSearchOrigin);
   };
   updateCOPNote=function(){
     var el=document.getElementById('cop-currency-note');
     if(!el) return;
-    var currency=originCurrency();
-    var primary=usesUSDPrimaryCurrency() ? 'USD' : 'EUR';
-    var local=(currency && currency!==primary) ? ' y una conversión aproximada a '+currency : '';
+    var originCode=originCurrency();
+    var destinationCode=destinationCurrency();
     el.classList.add('is-visible');
-    el.innerHTML='<strong>Precios orientativos para '+routeText()+'.</strong> Mostramos '+primary+local+
-      '. La tarifa final, moneda de cobro y disponibilidad se confirman en la aseguradora. '+
+    el.innerHTML='<strong>Dos precios para '+routeText()+'.</strong> Destino en <strong>'+destinationCode+'</strong> y país de salida en <strong>'+originCode+'</strong>. '+
+      'Son importes orientativos; la tarifa final y la moneda de cobro se confirman en la aseguradora. '+
       '<a href="https://frankfurter.dev/" target="_blank" rel="noopener nofollow" style="color:inherit;text-decoration:underline">Conversión diaria</a>.';
   };
 
@@ -2252,24 +2256,23 @@ function applyEditSearch(){
     var markup=originalRenderCard(item);
     var totalDays=days(), totalPeople=people();
     var total='Total '+totalDays+' día'+(totalDays===1?'':'s')+(totalPeople>1?' · '+totalPeople+' viajeros':'');
+    var destMeta=meta(window.currentSearchDest);
+    var originMeta=meta(window.currentSearchOrigin);
+    var destCode=destinationCurrency();
+    var originCode=originCurrency();
+    var destTotal=placePriceText(item.price,window.currentSearchDest);
+    var destDay=placePriceText(item.priceDay,window.currentSearchDest);
+    var originTotal=placePriceText(item.price,window.currentSearchOrigin);
+    var originDay=placePriceText(item.priceDay,window.currentSearchOrigin);
+
     markup=markup.replace('<div class="price-from">Total 15 días</div>',
-      '<div class="price-route">'+routeText()+'</div><div class="price-from">'+total+'</div>');
-    if(usesUSDPrimaryCurrency()){
-      var eurWhole=Math.floor(item.price);
-      var eurDec=(item.price%1).toFixed(2).slice(1);
-      var usdTotal=primaryPriceAmount(item.price);
-      var usdDay=primaryPriceAmount(item.priceDay);
-      var usdWhole=Math.floor(usdTotal);
-      var usdDec=(usdTotal%1).toFixed(2).slice(1);
-      markup=markup.replace(
-        '<div class="price-main"><sup>€</sup>'+eurWhole+'<sup>'+eurDec+'</sup></div>',
-        '<div class="price-main"><sup>$</sup>'+usdWhole+'<sup>'+usdDec+'</sup></div>'
-      );
-      markup=markup.replace(
-        '<div class="price-per">€'+item.priceDay.toFixed(2)+' / día</div>',
-        '<div class="price-per">$'+usdDay.toFixed(2)+' / día</div>'
-      );
-    }
+      '<div class="price-route">'+routeText()+'</div><div class="price-from">'+total+' · Destino '+destMeta.flag+' ('+destCode+')</div>');
+    markup=markup.replace(/<div class="price-main">[\s\S]*?<\/div>/,
+      '<div class="price-main">'+destTotal+'</div>');
+    markup=markup.replace(/<div class="price-per">[\s\S]*?<\/div>/,
+      '<div class="price-per">'+destDay+' / día</div>');
+    markup=markup.replace(/<div class="price-cop">[\s\S]*?<\/div><div class="price-cop-day">[\s\S]*?<\/div>/,
+      '<div class="price-cop">Voy desde '+originMeta.flag+': ≈ '+originTotal+' ('+originCode+')</div><div class="price-cop-day">≈ '+originDay+' / día</div>');
     markup=markup.replace('Válido Schengen',coverageLabel());
     markup=markup.replace('⚠ No válido Schengen',coverageLabel());
     markup=markup.replace('<button class="btn-details"',
@@ -2281,12 +2284,10 @@ function applyEditSearch(){
     var slider=document.getElementById('price-slider');
     var priceDisplay=document.getElementById('price-display');
     var priceMinDisplay=document.getElementById('price-min-display');
-    if(priceMinDisplay) priceMinDisplay.textContent=usesUSDPrimaryCurrency()?'$0':'€0';
+    if(priceMinDisplay) priceMinDisplay.textContent=placePriceText(0,window.currentSearchDest);
     if(!slider || !priceDisplay) return;
     var v=parseFloat(slider.value||'10');
-    var text=primaryPriceText(v)+'/día';
-    if(shouldShowCOP()) text+=' · ≈ '+formatCOPApprox(v)+'/día';
-    priceDisplay.textContent=text;
+    priceDisplay.textContent='Destino: '+primaryPriceText(v)+'/día · Desde: '+placePriceText(v,window.currentSearchOrigin)+'/día';
   }
 
   onPriceChange=function(el){
@@ -2363,7 +2364,7 @@ function applyEditSearch(){
   function initialize(){
     var params=new URLSearchParams(location.search);
     var originValue=normalizePlace(params.get('origen')||'co');
-    if(!ALLOWED_ORIGINS.has(originValue)) originValue='co';
+    if(!ALLOWED_ORIGINS.has(originValue) && !ROUTE_GROUPS.has(originValue)) originValue='co';
     var destinationValue=normalizeAllowedDestination(params.get('destino')||'espana-schengen');
     var requestedDays=Math.max(1,parseInt(params.get('dias')||'15',10)||15);
     var travelerValue=Math.max(1,parseInt(params.get('personas')||params.get('viajeros')||'1',10)||1);
@@ -2408,11 +2409,13 @@ function applyEditSearch(){
       .then(function(r){if(!r.ok) throw new Error('FX'); return r.json();})
       .then(function(data){
         if(data&&data.rates) fxRates=Object.assign({},fxRates,data.rates,{EUR:1});
-        if(usesUSDPrimaryCurrency()) updatePriceSliderDisplay();
+        updatePriceSliderDisplay();
+        updateCOPNote();
         render(sortData(DATA,document.getElementById('sort-select').value||'recomendado'));
       })
       .catch(function(){
-        if(usesUSDPrimaryCurrency()) updatePriceSliderDisplay();
+        updatePriceSliderDisplay();
+        updateCOPNote();
         render(sortData(DATA,document.getElementById('sort-select').value||'recomendado'));
       });
   }
