@@ -2683,7 +2683,7 @@ document.addEventListener('click', function(e){
     var originRate=Number(fxRates[originCurrency]) || 1;
     var destinationRate=Number(fxRates[destinationCurrency]) || 1;
 
-    text.textContent=days+' días'+(people>1?' · '+people+' viajeros':'')+' · Desde '+originInfo.flag+': '+formatCurrency(min*originRate,originCurrency)+'–'+formatCurrency(max*originRate,originCurrency)+' ('+originCurrency+')';
+    text.textContent=days+' días'+(people>1?' · '+people+' viajeros':'')+' · Aprox. desde '+originInfo.flag+': '+formatCurrency(min*originRate,originCurrency)+'–'+formatCurrency(max*originRate,originCurrency)+' ('+originCurrency+')';
 
     if(localDisplay && localText){
       localText.textContent='Destino '+destinationInfo.flag+': aprox. '+formatCurrency(min*destinationRate,destinationCurrency)+'–'+formatCurrency(max*destinationRate,destinationCurrency)+' ('+destinationCurrency+')';
