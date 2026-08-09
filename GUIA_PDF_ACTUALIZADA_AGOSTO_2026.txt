@@ -1,0 +1,3 @@
+Guía PDF actualizada en agosto de 2026.
+Cambios: logo oficial ViajeroLatam en las 10 páginas, actualización ETIAS (20 EUR / último trimestre 2026), EES plenamente operativo desde 10/04/2026, requisitos de pasaporte, visados LATAM incluyendo Haití, precisión de requisitos del seguro Schengen, disclaimer de precios y fuentes oficiales.
+La página principal index.html no fue modificada.
