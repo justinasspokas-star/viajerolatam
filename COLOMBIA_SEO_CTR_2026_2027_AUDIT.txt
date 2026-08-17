@@ -1,0 +1,18 @@
+ViajeroLatam — Colombia → España SEO/CTR update
+Fecha: 2026-08-17
+
+Cambios:
+- Title/OG/Twitter: 2026/2027, keyword principal intacta.
+- Meta description orientada a CTR: COP + cobertura + requisitos + IATI/InterMundial.
+- Hero actualizado y fecha visible 17 agosto 2026.
+- Eliminada referencia pública a métricas internas/Search Console.
+- Conversión EUR→COP de referencia actualizada a 1 EUR ≈ 3.605 COP (17/08/2026).
+- Precios COP derivados recalculados y claramente marcados como orientativos.
+- Requisitos de entrada redactados con mayor precisión para colombianos exentos de visado.
+- Añadida sección EES/ETIAS 2026/2027: EES operativo; ETIAS aún no operativo a esta fecha.
+- FAQ visible y FAQPage schema actualizados.
+- WebPage schema dateModified actualizado a 2026-08-17.
+- Enlaces InterMundial limpiados de parámetros vl_* duplicados; se mantienen tracking afiliado y cupón.
+- Enlace interno a comparativa reposicionado como IATI vs InterMundial Colombia España 2027.
+- Sitemap lastmod actualizado.
+- Sin cambio de URL/canonical/H1 principal.

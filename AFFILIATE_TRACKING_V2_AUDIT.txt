@@ -1,0 +1,73 @@
+ViajeroLatam — Affiliate Tracking V2 audit — 2026-08-17
+
+Goal
+- Make future IATI / InterMundial outbound clicks easy to trace in GA4 by exact source page and GA4 country.
+- Preserve the existing affiliate URLs and legacy tracking while adding one clean V2 event per affiliate click.
+
+New global asset
+- /assets/vl-affiliate-tracking-v2.js
+- Included on 59/59 HTML pages so the session entry page can be remembered before the user reaches /resultados/.
+
+New canonical GA4 events
+- affiliate_click_iati_v2
+- affiliate_click_intermundial_v2
+- affiliate_click_holins_v2
+- affiliate_click_axa_v2
+- affiliate_click_saily_v2
+
+Each V2 click records (when analytics consent is granted)
+- affiliate_click_id: unique per outbound click
+- source_page / source_path: exact page where the affiliate button was clicked
+- entry_page / entry_path: first ViajeroLatam page of that session
+- traffic_hint / entry_referrer_host
+- route_origin / route_destination when available
+- link_position / link_text
+- outbound_host
+
+Important GA4 advantage
+- Country and City remain GA4 automatic dimensions. Filter by Event name + Country + Page path to see which page and country produced the outbound click.
+- Page path does NOT need a custom definition.
+
+InterMundial enhancement
+- On click, the outbound URL keeps all original affiliate parameters and adds/updates:
+  vl_site=viajerolatam
+  vl_partner=intermundial
+  vl_page=<exact source page>
+  vl_link=<button number>
+  vl_click_id=<unique click id>
+  vl_origin=<route origin, when known>
+  vl_destination=<route destination, when known>
+- Existing duplicate vl_* parameters were cleaned from the static HTML.
+- Static InterMundial URL inventory regenerated: 42 URL occurrences.
+- Duplicate vl_* parameter occurrences remaining: 0.
+
+Affiliate coverage
+- HTML pages containing IATI or InterMundial links: 37
+- All HTML pages load the V2 tracker, including landing pages and /resultados/.
+
+Privacy / consent
+- V2 GA4 events and session attribution storage only activate when the visitor has granted analytics consent in ViajeroLatam's cookie preferences.
+- If analytics consent is denied, the affiliate link still works but GA4 attribution is intentionally not recorded.
+
+How to inspect the next sale candidate in GA4
+1. Reports > Engagement > Events.
+2. Open affiliate_click_intermundial_v2 (or affiliate_click_iati_v2).
+3. Set the sale date.
+4. Inspect Page path and screen class (or Page path + query string) to see the exact click page.
+5. Inspect Demographic details > Country / City for the same date and event.
+6. In Traffic acquisition inspect Session source / medium for that session/date.
+
+For /resultados/
+- Page path + query string can retain origen/destino.
+- The V2 event also sends route_origin and route_destination.
+
+Important limitation
+- GA4 proves an outbound affiliate click, not the final purchase itself.
+- A 100% sale-to-click match requires IATI/InterMundial to expose a supported subID/clickref or a postback/S2S conversion mechanism.
+- The added InterMundial vl_click_id/vl_page parameters may help only if InterMundial records or exposes those URL parameters.
+
+Files changed
+- assets/vl-affiliate-tracking-v2.js (new)
+- all HTML pages: one deferred script reference added
+- InterMundial URLs with repeated vl_* parameters cleaned
+- INTERMUNDIAL_PAGE_TRACKING_LINKS.csv regenerated

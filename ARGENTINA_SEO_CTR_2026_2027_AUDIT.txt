@@ -1,0 +1,17 @@
+ViajeroLatam — Argentina → España SEO/CTR update
+Fecha: 2026-08-17
+
+Cambios:
+- Title/meta/OG orientados a 2026/2027 + precio en ARS.
+- H1 actualizado sin cambiar la URL canónica.
+- Article schema añadido y FAQ schema ampliado.
+- Referencia EUR/ARS actualizada a ~1.725 ARS por EUR (17/08/2026).
+- Tabla ARS recalculada como orientación.
+- Requisitos de entrada precisados: exención de visado 90/180, validez del pasaporte, medios económicos 2026 y estado ETIAS.
+- Copy sobre obligatoriedad del seguro corregido para no confundirlo con un requisito general de entrada.
+- CTA comercial reforzado sin crear una URL nueva.
+- Texto interno/SEO poco natural sustituido por copy útil al usuario.
+- Enlace interno Perú corregido a /seguro-viaje/peru-a-espana/.
+- Fuentes oficiales reforzadas.
+- sitemap lastmod actualizado a 2026-08-17.
+- Tracking click_comparar_argentina_espana conservado.

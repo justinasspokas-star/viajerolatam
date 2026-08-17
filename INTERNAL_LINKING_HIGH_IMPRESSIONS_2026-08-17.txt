@@ -1,0 +1,26 @@
+VIAJEROLATAM — INTERNAL LINKING HIGH-IMPRESSION PAGES
+Date: 2026-08-17
+
+OBJECTIVE
+Send stronger, contextually relevant internal authority from blog pages already receiving Google impressions to commercial country routes, without creating new URLs or changing the core intent of those articles.
+
+CHANGES
+1. Argentina flights article
+- Replaced an irrelevant Colombia insurance-cost link with Argentina-specific links.
+- Hero now links directly to /seguro-viaje/argentina-a-espana/.
+- Added contextual Argentina money-page links in the insurance tip and conclusion.
+- Main insurance CTA now prioritizes the Argentina commercial landing.
+
+2. Colombia flights article
+- Existing strong links to /seguro-viaje/colombia-a-espana/ were preserved.
+- Removed public-facing SEO/Search Console jargon ("Convierte tráfico..." / "página con más impresiones") and replaced it with user-facing copy.
+
+3. Seguro de viaje Europa / latinoamericanos article
+- Country names in the main country table now link directly to matching Spain insurance routes for Colombia, Venezuela, Mexico, Argentina, Peru, Bolivia, Cuba and Ecuador.
+- Related-guides section now also surfaces Mexico and Argentina money pages.
+
+4. Sitemap
+- Updated lastmod to 2026-08-17 for the three modified blog URLs.
+
+SEO PRINCIPLE
+Contextual links were preferred over adding repetitive sitewide anchors. Existing high-value Colombia/Venezuela links were not duplicated unnecessarily.
