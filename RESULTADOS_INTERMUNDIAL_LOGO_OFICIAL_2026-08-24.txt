@@ -1,0 +1,3 @@
+Se ha sustituido el logo de InterMundial en /resultados/ por la imagen oficial proporcionada por el usuario.
+Archivo añadido: /assets/intermundial-logo-oficial.png
+Solo se ha modificado resultados/index.html para apuntar al nuevo recurso local.

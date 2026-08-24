@@ -1,0 +1,16 @@
+VIAJEROLATAM — RESULTADOS: TOTALES POR DIAS Y VIAJEROS
+Fecha: 2026-08-24
+
+Cambios:
+- Recuperado cálculo de total orientativo por viaje.
+- Fórmula: precio orientativo diario x días entre fecha de ida/vuelta x viajeros.
+- Las fechas muestran también el número de días calculado.
+- Cada tarjeta muestra:
+  1) total orientativo en moneda del destino,
+  2) equivalente aproximado en moneda del país de origen,
+  3) referencia diaria y fórmula usada.
+- La tabla comparativa muestra total orientativo y referencia diaria.
+- Al editar fechas o viajeros, los totales se recalculan automáticamente.
+- Las divisas usan referencia aproximada y pueden actualizarse con el feed FX existente cuando está disponible.
+- El precio final siempre lo confirma la aseguradora/proveedor.
+- Logos grandes y mejoras anteriores conservadas.
