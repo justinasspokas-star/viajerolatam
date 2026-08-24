@@ -1557,6 +1557,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
 <div>
 <label style="font-size:11px;font-weight:700;color:#8FA4B8;text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:6px">Voy desde</label>
 <select id="ep-origen" style="width:100%;padding:10px 12px;border:1.5px solid #E4EDF5;border-radius:10px;font-family:inherit;font-size:14px;color:#0B1F3A;background:#fff;outline:none">
+<option value="espana-schengen">🇪🇸 España</option>
 <option value="co">🇨🇴 Colombia</option>
 <option value="mx">🇲🇽 México</option>
 <option value="ar">🇦🇷 Argentina</option>
@@ -1582,6 +1583,23 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
 <option value="espana-schengen">🇪🇺 España / Schengen</option>
 <option value="europa">🌍 Europa completa</option>
 <option value="eeuu-canada">🇺🇸🇨🇦 Estados Unidos + Canadá</option>
+<option value="co">🇨🇴 Colombia</option>
+<option value="mx">🇲🇽 México</option>
+<option value="ar">🇦🇷 Argentina</option>
+<option value="ve">🇻🇪 Venezuela</option>
+<option value="pe">🇵🇪 Perú</option>
+<option value="cl">🇨🇱 Chile</option>
+<option value="ec">🇪🇨 Ecuador</option>
+<option value="bo">🇧🇴 Bolivia</option>
+<option value="br">🇧🇷 Brasil</option>
+<option value="uy">🇺🇾 Uruguay</option>
+<option value="py">🇵🇾 Paraguay</option>
+<option value="cr">🇨🇷 Costa Rica</option>
+<option value="pa">🇵🇦 Panamá</option>
+<option value="gt">🇬🇹 Guatemala</option>
+<option value="sv">🇸🇻 El Salvador</option>
+<option value="hn">🇭🇳 Honduras</option>
+<option value="ni">🇳🇮 Nicaragua</option>
 </select>
 </div>
 <div>
@@ -1806,7 +1824,7 @@ let expandedCard = null;
 
 function normalizedOrigin(){
   const raw=String(window.currentSearchOrigin||'').toLowerCase();
-  const map={colombia:'co',mexico:'mx',méxico:'mx',argentina:'ar',venezuela:'ve',peru:'pe','perú':'pe',chile:'cl',ecuador:'ec',bolivia:'bo',brasil:'br',uruguay:'uy',paraguay:'py','costa-rica':'cr',panama:'pa','panamá':'pa',guatemala:'gt','el-salvador':'sv',honduras:'hn',nicaragua:'ni',espana:'es','españa':'es'};
+  const map={colombia:'co',mexico:'mx',méxico:'mx',argentina:'ar',venezuela:'ve',peru:'pe','perú':'pe',chile:'cl',ecuador:'ec',bolivia:'bo',brasil:'br',uruguay:'uy',paraguay:'py','costa-rica':'cr',panama:'pa','panamá':'pa',guatemala:'gt','el-salvador':'sv',honduras:'hn',nicaragua:'ni',espana:'es','españa':'es',spain:'es',es:'es','espana-schengen':'es',schengen:'es'};
   return map[raw]||raw;
 }
 function normalizedDest(){
@@ -2111,6 +2129,9 @@ function toggleEditPanel(){
 }
 function updatePillsDisplay(origen, dest, ida, vuelta, viajeros){
   var originLabels = {
+    'espana-schengen':'España 🇪🇸',
+    espana:'España 🇪🇸',
+    es:'España 🇪🇸',
     colombia:'Colombia 🇨🇴',
     mexico:'México 🇲🇽',
     argentina:'Argentina 🇦🇷',
@@ -2132,7 +2153,7 @@ function updatePillsDisplay(origen, dest, ida, vuelta, viajeros){
     cuba:'Cuba 🇨🇺',
     'puerto-rico':'Puerto Rico 🇵🇷'
   };
-  var destLabels = {europa:'España / Schengen 🇪🇺', eeuu:'Estados Unidos 🇺🇸', mundial:'Mundial 🌍'};
+  var destLabels = {europa:'España / Schengen 🇪🇺', eeuu:'Estados Unidos 🇺🇸', mundial:'Mundial 🌍', co:'Colombia 🇨🇴', mx:'México 🇲🇽', ar:'Argentina 🇦🇷', ve:'Venezuela 🇻🇪', pe:'Perú 🇵🇪', cl:'Chile 🇨🇱', ec:'Ecuador 🇪🇨', bo:'Bolivia 🇧🇴', br:'Brasil 🇧🇷', uy:'Uruguay 🇺🇾', py:'Paraguay 🇵🇾', cr:'Costa Rica 🇨🇷', pa:'Panamá 🇵🇦', gt:'Guatemala 🇬🇹', sv:'El Salvador 🇸🇻', hn:'Honduras 🇭🇳', ni:'Nicaragua 🇳🇮'};
   var pillVals = document.querySelectorAll('.pill-val');
   if(pillVals[0]) pillVals[0].textContent = originLabels[origen] || origen;
   if(pillVals[1]) pillVals[1].textContent = destLabels[normalizedEditDest(dest)] || dest;
