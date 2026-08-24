@@ -1,0 +1,16 @@
+RESULTADOS — ELEGIBILIDAD SCHENGEN HOLINS + AXA — 2026-08-24
+
+Cambios en /resultados/:
+- Para residentes fuera de España con destino España/Schengen:
+  * Holins se muestra como Travel Schengen y pasa a ser contratable.
+  * AXA se muestra como AXA Schengen Mini y pasa a ser contratable.
+- Se mantienen las pólizas generales de Holins/AXA para residentes en España.
+- Para residentes fuera de España y destinos no Schengen, Holins/AXA no se fuerzan como contratables si la oferta verificada no corresponde.
+- Precio orientativo de referencia para LATAM -> España/Schengen:
+  * Holins Travel Schengen: 2,00 EUR/persona/día.
+  * AXA Schengen Mini: 2,66 EUR/persona/día.
+- El total sigue calculándose por precio diario x días x viajeros y conserva la doble moneda.
+- Logos oficiales locales y comparación rápida colapsable se mantienen.
+- Enlaces afiliados existentes se conservan.
+
+Fuentes verificadas al 24/08/2026: páginas oficiales de Holins Travel Schengen y AXA Seguro de Viaje Schengen.
