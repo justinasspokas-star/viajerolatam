@@ -2,6 +2,7 @@
 
 <html lang="es">
 <head>
+<!-- VL_RESULTS_ELIGIBILITY_FIX_V2_2026-08-24 -->
 
 <script id="vl-consent-bootstrap">
 window.dataLayer=window.dataLayer||[];
@@ -2070,14 +2071,14 @@ function fmtDateShort(v){
   if(!d) return '';
   return d.toLocaleDateString('es-ES', {day:'2-digit', month:'short'}).replace('.', '');
 }
-function normalizedDest(v){
+function normalizedEditDest(v){
   v = String(v || '').toLowerCase();
   if(v.indexOf('eeuu') !== -1 || v.indexOf('usa') !== -1 || v.indexOf('estados') !== -1) return 'eeuu';
   if(v.indexOf('mundial') !== -1) return 'mundial';
   return 'europa';
 }
 function urlDestValue(v){
-  v = normalizedDest(v);
+  v = normalizedEditDest(v);
   if(v === 'eeuu') return 'eeuu';
   if(v === 'mundial') return 'mundial';
   return 'espana-schengen';
@@ -2134,7 +2135,7 @@ function updatePillsDisplay(origen, dest, ida, vuelta, viajeros){
   var destLabels = {europa:'España / Schengen 🇪🇺', eeuu:'Estados Unidos 🇺🇸', mundial:'Mundial 🌍'};
   var pillVals = document.querySelectorAll('.pill-val');
   if(pillVals[0]) pillVals[0].textContent = originLabels[origen] || origen;
-  if(pillVals[1]) pillVals[1].textContent = destLabels[normalizedDest(dest)] || dest;
+  if(pillVals[1]) pillVals[1].textContent = destLabels[normalizedEditDest(dest)] || dest;
   var totalDiasPill=daysBetween(ida,vuelta);
   var fechasText = (ida && vuelta) ? (fmtDateShort(ida) + ' → ' + fmtDateShort(vuelta) + ' · ' + totalDiasPill + ' días') : (totalDiasPill + ' días');
   if(pillVals[2]) pillVals[2].textContent = fechasText;
@@ -2174,7 +2175,7 @@ function applyEditSearch(){
   params.set('vuelta', vuelta);
   history.replaceState(null, '', window.location.pathname + '?' + params.toString());
 
-  setDest(null, normalizedDest(dest));
+  setDest(null, normalizedEditDest(dest));
   closeEditPanel();
 }
 
@@ -2204,7 +2205,7 @@ function applyEditSearch(){
   if(origenSelect && Array.from(origenSelect.options).some(o => o.value === origen)) origenSelect.value = origen;
 
   const destSelect = document.getElementById('ep-destino');
-  if(destSelect) destSelect.value = normalizedDest(destinoRaw);
+  if(destSelect) destSelect.value = normalizedEditDest(destinoRaw);
 
   const idaInput = document.getElementById('ep-ida');
   const vueltaInput = document.getElementById('ep-vuelta');
@@ -2215,7 +2216,7 @@ function applyEditSearch(){
   if(diasInput) diasInput.value = dias;
   if(viajerosSelect && Array.from(viajerosSelect.options).some(o => parseInt(o.value) === personasParam)) viajerosSelect.value = String(personasParam);
 
-  updatePillsDisplay(origen, normalizedDest(destinoRaw), ida, vuelta, personasParam);
+  updatePillsDisplay(origen, normalizedEditDest(destinoRaw), ida, vuelta, personasParam);
 
   // El total orientativo se recalcula con días y viajeros; el proveedor confirma la tarifa final.
 
