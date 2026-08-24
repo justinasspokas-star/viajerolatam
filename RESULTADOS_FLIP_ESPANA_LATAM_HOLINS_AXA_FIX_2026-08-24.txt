@@ -1,0 +1,8 @@
+Corrección resultados España → LATAM
+
+- espana-schengen se interpreta como residencia España en providerProfile().
+- Holins Viaje y AXA Asistencia en Viaje quedan elegibles para residentes en España.
+- Se añade España al selector de origen de /resultados/.
+- Se añaden los países LATAM al selector de destino para editar búsquedas España → LATAM.
+- Se mantienen productos Schengen específicos para el sentido LATAM → España/Schengen.
+- Se mantienen cálculo de días × viajeros, precios orientativos, logos oficiales y tabla colapsable.
