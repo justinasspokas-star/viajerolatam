@@ -1,0 +1,11 @@
+Actualización de /como-elegimos/
+
+- Metodología completa por residencia, destino, elegibilidad, cobertura y precio.
+- Explicación del cálculo de precios orientativos por día × días × viajeros.
+- Explicación del orden predeterminado y transparencia de afiliación.
+- Ejemplos de producto LATAM → Schengen y España → LATAM.
+- Fuentes oficiales de IATI, InterMundial, Holins y AXA.
+- FAQ visible + schema FAQPage.
+- WebPage/Organization/WebSite schema.
+- Diseño responsive móvil/escritorio.
+- sitemap.xml: lastmod /como-elegimos/ actualizado a 2026-08-24.

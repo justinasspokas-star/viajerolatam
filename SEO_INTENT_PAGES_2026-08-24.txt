@@ -1,0 +1,8 @@
+Nuevas páginas SEO por intención comercial:
+- /seguro-viaje/schengen-barato/
+- /seguro-viaje/mayores-70/
+- /seguro-viaje/estados-unidos-medico/
+
+Cada página incluye canonical, meta robots index/follow, Article, BreadcrumbList, FAQPage, CTA al comparador, metodología, FAQ, enlaces relacionados y diseño responsive.
+Se añadieron al sitemap con lastmod 2026-08-24 y enlaces internos desde la home y páginas estratégicas.
+Objetivo: captar intención por necesidad sin duplicar las páginas de rutas por país.

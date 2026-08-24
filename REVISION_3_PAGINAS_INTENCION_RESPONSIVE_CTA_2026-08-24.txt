@@ -1,0 +1,26 @@
+REVISIÓN 3 PÁGINAS DE INTENCIÓN — 24/08/2026
+
+Páginas revisadas:
+- /seguro-viaje/schengen-barato/
+- /seguro-viaje/mayores-70/
+- /seguro-viaje/estados-unidos-medico/
+
+VALIDACIONES
+- Desktop y móvil revisados mediante render real del HTML.
+- Sin overflow horizontal a 360, 375, 390, 430, 768, 1024 y 1440 px.
+- 1 H1 por página.
+- Canonical, meta description y robots presentes.
+- Sin IDs HTML duplicados.
+- JSON-LD válido en las 3 páginas.
+- Enlaces y recursos locales de las 3 páginas sin rutas rotas.
+- URLs presentes en sitemap.xml.
+
+CORRECCIONES REALIZADAS
+1. Se eliminaron etiquetas HTML <em> que habían quedado dentro de campos JSON-LD (headline/nombres de breadcrumb).
+2. Se corrigió BreadcrumbList para no enlazar a /seguro-viaje/, ya que no existe un index propio en esa ruta.
+3. Se añadió CTA final visible en escritorio: “Compara seguros gratis”.
+4. Se mantiene CTA flotante inferior en móvil: “Comparar seguros gratis”.
+5. Se añadió espacio inferior en móvil para evitar que el CTA flotante interfiera con el footer y soporte safe-area.
+
+RESULTADO
+Las 3 páginas quedan listas para subir y probar en producción en escritorio y móvil.
