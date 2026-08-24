@@ -1,0 +1,3 @@
+Se sustituyen los logos de Holins y AXA en /resultados/ por las imágenes oficiales aportadas por el usuario.
+Archivos añadidos: /assets/holins-logo-oficial.png y /assets/axa-logo-oficial.png
+Archivo modificado: /resultados/index.html
