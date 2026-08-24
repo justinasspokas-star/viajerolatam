@@ -1,0 +1,26 @@
+ViajeroLatam — HOME trust + conversion upgrade
+Fecha: 2026-08-24
+Base: viajerolatam_GUIA_ACTUALIZADA_AGOSTO_2026_COMPLETO.zip
+
+Cambios aplicados SOLO a index.html de la HOME:
+1. H1 orientado a intención comercial: comparar seguros de viaje antes de contratar.
+2. Subtítulo claro: precio, coberturas, condiciones y contratación directa con proveedor.
+3. Claims de confianza corregidos: se elimina la impresión de que ViajeroLatam presta soporte 24/7.
+4. Nueva trust bar inmediatamente bajo el comparador.
+5. Enlaces visibles a metodología y transparencia de afiliación.
+6. FAQ visible y FAQPage schema alineados; se eliminan claims no suficientemente sustentados.
+7. Meta title/description/OG/Twitter mejorados.
+8. Eliminados hreflang es-MX/es-AR incorrectos que apuntaban a Colombia → España.
+9. Corregido id duplicado #aseguradoras en la segunda sección.
+10. Eliminado doble disparo GA4 de click_affiliate_intermundial en HOME.
+11. Copys de "mejor seguro", "al mejor precio" y "Póliza en 2 minutos" sustituidos por mensajes verificables.
+12. Diseño responsive añadido para la nueva trust bar (desktop/tablet/mobile).
+
+No se han cambiado:
+- lógica del comparador,
+- selector de países/destinos,
+- URLs,
+- páginas internas,
+- sitemap.xml,
+- robots.txt,
+- enlaces afiliados existentes.

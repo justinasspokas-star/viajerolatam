@@ -1,0 +1,15 @@
+VIAJEROLATAM — LOGOS DE ASEGURADORAS EN RESULTADOS
+Fecha: 24/08/2026
+
+Cambios aplicados en /resultados/index.html:
+- Sustituidos los placeholders IA / IM / HO / AX por marcas visuales cargadas desde los dominios oficiales de cada proveedor, con fallback de texto si el recurso externo falla.
+- Tarjetas: logo + nombre del proveedor + nombre del plan debajo.
+- Tabla comparativa: aseguradoras como columnas; logo en cabecera y nombre del plan debajo.
+- Planes visibles en Colombia → España:
+  * IATI Estrella
+  * InterMundial go | schengen
+  * Holins Viaje
+  * AXA Asistencia en Viaje
+- Se mantienen precios orientativos, filtros, elegibilidad por residencia, enlaces afiliados y tracking.
+- Responsive ajustado para desktop y móvil.
+- Validación JavaScript: OK.

@@ -1,0 +1,16 @@
+RESULTADOS — PRECIOS ORIENTATIVOS FIJOS
+Fecha: 24/08/2026
+
+Se muestran referencias editoriales fijas por persona/día en las cuatro opciones:
+- IATI: ≈ 2,20 €/persona/día
+- InterMundial: ≈ 1,00 €/persona/día
+- Holins: ≈ 1,50 €/persona/día
+- AXA: ≈ 1,90 €/persona/día
+
+Importante:
+- Son estimaciones de ViajeroLatam, no cotizaciones oficiales ni tarifas garantizadas.
+- El precio final lo confirma cada proveedor al introducir residencia, destino, fechas, edad y viajeros.
+- Se conserva la lógica de elegibilidad por residencia: un precio orientativo puede mostrarse aunque la oferta enlazada no sea contratable para esa residencia; el CTA permanece desactivado en ese caso.
+- Se conserva /resultados/ como noindex, follow.
+- Se mantienen enlaces de afiliación y tracking existentes.
+- Se mantienen los ajustes visuales compactos del bloque superior.
