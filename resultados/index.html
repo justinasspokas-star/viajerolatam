@@ -1256,10 +1256,21 @@ nav .brand-logo img{height:36px!important;max-width:164px!important;width:auto!i
 .comparison-intro h2{font-size:15px;margin:0 0 5px;color:#0B1F3A}
 .comparison-intro p{font-size:12px;line-height:1.55;color:#4A647E;margin:0}
 .comparison-intro a{color:#087A6D;font-weight:700}
-.quick-compare{background:#fff;border:1px solid #E4EDF5;border-radius:16px;overflow:hidden;margin-bottom:14px}
-.quick-compare-head{padding:14px 16px;border-bottom:1px solid #E4EDF5;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.quick-compare-head h2{font-size:15px;color:#0B1F3A;margin:0}
+.quick-compare{background:#fff;border:1px solid #E4EDF5;border-radius:16px;overflow:hidden;margin-bottom:14px;box-shadow:0 3px 14px rgba(11,31,58,.025)}
+.quick-compare-head{padding:13px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;cursor:default}
+.quick-compare.is-open .quick-compare-head{border-bottom:1px solid #E4EDF5}
+.quick-compare-head-copy{min-width:0;flex:1}
+.quick-compare-head h2{font-size:15px;color:#0B1F3A;margin:0 0 3px}
+.quick-compare-sub{font-size:11px;line-height:1.4;color:#71869A;margin:0}
+.quick-compare-actions{display:flex;align-items:center;gap:8px;flex-shrink:0}
 .quick-compare-date{font-size:10px;color:#71869A;background:#F5F8FC;border-radius:999px;padding:5px 9px}
+.quick-compare-toggle{display:inline-flex;align-items:center;gap:7px;border:1px solid #D7E2EC;background:#fff;color:#0B1F3A;border-radius:999px;padding:7px 11px;font-family:var(--font-body);font-size:11px;font-weight:800;cursor:pointer;transition:border-color .2s ease,background .2s ease,box-shadow .2s ease}
+.quick-compare-toggle:hover{border-color:#00C4A1;background:#F2FFFB;box-shadow:0 2px 10px rgba(0,196,161,.10)}
+.quick-compare-toggle:focus-visible{outline:3px solid rgba(0,196,161,.28);outline-offset:2px}
+.quick-compare-toggle svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2.2;transition:transform .25s ease}
+.quick-compare.is-open .quick-compare-toggle svg{transform:rotate(180deg)}
+.quick-compare-collapsible{max-height:0;opacity:0;overflow:hidden;pointer-events:none;transition:max-height .34s ease,opacity .2s ease}
+.quick-compare.is-open .quick-compare-collapsible{max-height:980px;opacity:1;pointer-events:auto}
 .quick-table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
 .quick-table{width:100%;border-collapse:collapse;min-width:760px;font-size:11.5px}
 .quick-table th{background:#F8FAFC;color:#6D8296;text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.04em;padding:10px 12px;border-bottom:1px solid #E4EDF5}
@@ -1298,6 +1309,11 @@ nav .brand-logo img{height:36px!important;max-width:164px!important;width:auto!i
 @media(max-width:600px){
   .comparison-intro h2,.quick-compare-head h2{font-size:14px!important}
   .comparison-intro p{font-size:11.5px!important}
+  .quick-compare-head{padding:12px!important;gap:9px!important}
+  .quick-compare-sub{font-size:10.5px!important}
+  .quick-compare-actions{width:100%;justify-content:space-between}
+  .quick-compare-date{font-size:9px!important}
+  .quick-compare-toggle{padding:7px 10px!important;font-size:10.5px!important}
   .card-fit,.card-caution,.availability-note{font-size:11px!important}
   .public-price{font-size:23px!important}
 }
@@ -1654,9 +1670,23 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
   <div><h2>Comparamos primero si realmente puedes contratarlo</h2>
   <p>La residencia importa: una póliza puede ser excelente y aun así no estar disponible para tu país. Después comparamos cobertura médica, repatriación, franquicia, equipaje y cancelación. <a href="/como-elegimos/">Ver metodología</a>.</p></div>
 </section>
-<section class="quick-compare" aria-labelledby="quick-compare-title">
-  <div class="quick-compare-head"><h2 id="quick-compare-title">Comparación rápida</h2><span class="quick-compare-date">Datos revisados · 24 ago 2026</span></div>
-  <div class="quick-table-wrap"><table class="quick-table quick-table-matrix"><thead id="quick-compare-head"></thead><tbody id="quick-compare-body"></tbody></table></div>
+<section class="quick-compare" id="quick-compare-section" aria-labelledby="quick-compare-title">
+  <div class="quick-compare-head">
+    <div class="quick-compare-head-copy">
+      <h2 id="quick-compare-title">Comparación rápida</h2>
+      <p class="quick-compare-sub">Compara IATI, InterMundial, Holins y AXA: cobertura, franquicia, equipaje y precio total.</p>
+    </div>
+    <div class="quick-compare-actions">
+      <span class="quick-compare-date">Datos revisados · 24 ago 2026</span>
+      <button class="quick-compare-toggle" id="quick-compare-toggle" type="button" aria-expanded="false" aria-controls="quick-compare-content" onclick="toggleQuickCompare()">
+        <span id="quick-compare-toggle-label">Mostrar tabla</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg>
+      </button>
+    </div>
+  </div>
+  <div class="quick-compare-collapsible" id="quick-compare-content" aria-hidden="true">
+    <div class="quick-table-wrap"><table class="quick-table quick-table-matrix"><thead id="quick-compare-head"></thead><tbody id="quick-compare-body"></tbody></table></div>
+  </div>
 </section>
 <div id="cards-container"></div>
   <div class="no-results" id="no-results" style="display:none">
@@ -1870,6 +1900,19 @@ function renderCard(d){
       <div class="detail-source">Fuente de comparación: ${p.source}. Revisión ViajeroLatam: 24/08/2026. La póliza y el precio mostrados por la aseguradora en el momento de contratar prevalecen sobre este resumen.</div>
     </div>
   </div>`;
+}
+
+function toggleQuickCompare(forceOpen){
+  const section=document.getElementById('quick-compare-section');
+  const content=document.getElementById('quick-compare-content');
+  const button=document.getElementById('quick-compare-toggle');
+  const label=document.getElementById('quick-compare-toggle-label');
+  if(!section||!content||!button||!label) return;
+  const shouldOpen=typeof forceOpen==='boolean'?forceOpen:!section.classList.contains('is-open');
+  section.classList.toggle('is-open',shouldOpen);
+  button.setAttribute('aria-expanded',shouldOpen?'true':'false');
+  content.setAttribute('aria-hidden',shouldOpen?'false':'true');
+  label.textContent=shouldOpen?'Ocultar tabla':'Mostrar tabla';
 }
 
 function updateQuickCompare(){
