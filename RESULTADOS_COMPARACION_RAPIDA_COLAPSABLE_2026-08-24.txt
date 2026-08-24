@@ -1,0 +1,9 @@
+RESULTADOS — COMPARACIÓN RÁPIDA COLAPSABLE · 24/08/2026
+
+Cambio aplicado en /resultados/:
+- La tabla "Comparación rápida" está cerrada por defecto en escritorio y móvil.
+- La cabecera permanece visible con una explicación breve.
+- Botón accesible "Mostrar tabla" con flecha; al abrir cambia a "Ocultar tabla".
+- Animación suave de apertura/cierre.
+- Estados aria-expanded / aria-hidden actualizados por JavaScript.
+- Se mantienen intactos cálculo por días y viajeros, precios orientativos, doble moneda, filtros, enlaces afiliados y logos locales existentes.
