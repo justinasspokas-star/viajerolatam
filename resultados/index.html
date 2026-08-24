@@ -1307,7 +1307,8 @@ nav .brand-logo img{height:36px!important;max-width:164px!important;width:auto!i
 .public-price-label{font-weight:800!important;color:#0B1F3A!important}
 .public-price-sub{max-width:180px}
 .quick-table th:last-child,.quick-table td:last-child{white-space:nowrap;font-weight:800;color:#0B1F3A}
-@media(max-width:600px){.public-price-sub{max-width:none}}
+.trip-origin-price{margin-top:5px;font-size:14px;font-weight:900;color:#0B1F3A;line-height:1.2}.trip-origin-price span{font-size:9.5px;font-weight:700;color:#71869A}.matrix-origin-price{margin-top:3px;font-size:9px;color:#71869A;font-weight:600}
+@media(max-width:600px){.public-price-sub{max-width:none}.trip-origin-price{font-size:13px}}
 </style>
 
 <style id="official-insurer-logos">
@@ -1632,7 +1633,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
   <div class="results-toolbar">
     <div class="results-toolbar-left">
       <svg fill="none" height="14" stroke="#00C4A1" stroke-width="2.5" viewBox="0 0 24 24" width="14"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-      <span id="coverage-route-note">Precios orientativos fijos de ViajeroLatam · confirma la tarifa final con la aseguradora.</span>
+      <span id="coverage-route-note">Totales orientativos según fechas y viajeros · confirma la tarifa final con la aseguradora.</span>
     </div>
     <div class="results-toolbar-right">
       <span id="count-slim" style="font-size:12px;color:#8FA4B8"></span>
@@ -1645,7 +1646,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
   </div>
 
   <div id="cop-currency-note" class="currency-note-cop is-visible">
-    Precios orientativos en euros y referencia aproximada en pesos colombianos. Son estimaciones de ViajeroLatam; el precio final puede variar al contratar.
+    El total orientativo se calcula con los días y viajeros seleccionados. Mostramos moneda de destino y equivalencia aproximada en moneda de origen.
   </div>
 
   <section class="comparison-intro" aria-label="Cómo leer esta comparación">
@@ -1668,7 +1669,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
 <script>
 const DATA = [
   {id:2,key:'iati',logo:'IA',logoColor:'#FFF5EA',logoText:'#F58220',logoUrl:'https://www.iatiseguros.com/favicon.ico',logoAlt:'IATI Seguros',name:'IATI Seguros',guideUrl:'/seguros/iati/',ctaUrl:'https://www.iatiseguros.com?r=84208681926165'},
-  {id:3,key:'intermundial',logo:'IM',logoColor:'#F0F8FF',logoText:'#1976D2',logoUrl:'https://www.intermundial.es/favicon.ico',logoAlt:'InterMundial',name:'InterMundial',guideUrl:'/seguros/intermundial/',ctaUrl:'https://www.intermundial.es/afiliados/seguros-de-viaje-recomendado?utm_source=Affiliates&utm_medium=Affiliates&utm_campaign=General&utm_term=kbnnqvpvcy490&utm_content=kbnnqvpvcy490&coupon=VIAJEROLATAM&vl_site=viajerolatam&vl_partner=intermundial&vl_page=resultados&vl_link=2'},
+  {id:3,key:'intermundial',logo:'IM',logoColor:'#F0F8FF',logoText:'#1976D2',logoUrl:'/assets/intermundial-logo-oficial.png',logoAlt:'InterMundial',name:'InterMundial',guideUrl:'/seguros/intermundial/',ctaUrl:'https://www.intermundial.es/afiliados/seguros-de-viaje-recomendado?utm_source=Affiliates&utm_medium=Affiliates&utm_campaign=General&utm_term=kbnnqvpvcy490&utm_content=kbnnqvpvcy490&coupon=VIAJEROLATAM&vl_site=viajerolatam&vl_partner=intermundial&vl_page=resultados&vl_link=2'},
   {id:4,key:'holins',logo:'HO',logoColor:'#F2FBF8',logoText:'#137A70',logoUrl:'https://www.holins.es/favicon.ico',logoAlt:'Holins',name:'Holins',guideUrl:'/seguros/holins/',ctaUrl:'https://clk.tradedoubler.com/click?p=301095&a=3485639'},
   {id:5,key:'axa',logo:'AX',logoColor:'#EEF2FF',logoText:'#1B3A8A',logoUrl:'https://axasegurodeviaje.es/favicon.ico',logoAlt:'AXA Assistance',name:'AXA',guideUrl:'/seguros/axa/',ctaUrl:'https://clk.tradedoubler.com/click?p=343758&a=3485639'}
 ];
@@ -1687,7 +1688,55 @@ function euroFixed(v){
   return Number(v||0).toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2});
 }
 
-const EUR_TO_COP_APPROX = 3720; // Ajuste aproximado para mostrar referencia en COP.
+// Precio total orientativo = tarifa editorial diaria × días de viaje × viajeros.
+const RESULT_CURRENCY_RATES = {
+  EUR:1, USD:1.08, COP:4300, MXN:21, ARS:1600, VES:200, PEN:4.1, CLP:1080,
+  BOB:7.5, BRL:6.3, UYU:47, PYG:8500, CRC:565, PAB:1.08, GTQ:8.3,
+  HNL:27, NIO:40
+};
+const RESULT_ORIGIN_CURRENCY = Object.freeze({
+  co:'COP', colombia:'COP', mx:'MXN', mexico:'MXN', 'méxico':'MXN', ar:'ARS', argentina:'ARS',
+  ve:'VES', venezuela:'VES', pe:'PEN', peru:'PEN', 'perú':'PEN', cl:'CLP', chile:'CLP',
+  ec:'USD', ecuador:'USD', bo:'BOB', bolivia:'BOB', br:'BRL', brasil:'BRL', uy:'UYU', uruguay:'UYU',
+  py:'PYG', paraguay:'PYG', cr:'CRC', 'costa-rica':'CRC', pa:'PAB', panama:'PAB', 'panamá':'PAB',
+  gt:'GTQ', guatemala:'GTQ', sv:'USD', 'el-salvador':'USD', hn:'HNL', honduras:'HNL', ni:'NIO', nicaragua:'NIO'
+});
+function resultTripDays(){
+  const el=document.getElementById('ep-dias');
+  const q=new URLSearchParams(window.location.search);
+  return Math.max(1,parseInt((el&&el.value)||q.get('dias')||'15',10)||15);
+}
+function resultTripPeople(){
+  const el=document.getElementById('ep-viajeros');
+  const q=new URLSearchParams(window.location.search);
+  return Math.max(1,parseInt((el&&el.value)||q.get('personas')||q.get('viajeros')||'1',10)||1);
+}
+function resultOriginCurrency(){
+  const raw=String(window.currentSearchOrigin||'co').toLowerCase();
+  return RESULT_ORIGIN_CURRENCY[raw]||'EUR';
+}
+function resultDestinationCurrency(){
+  const raw=String(window.currentSearchDest||'espana-schengen').toLowerCase();
+  return (raw.includes('eeuu')||raw.includes('canada')||raw==='us'||raw==='usa')?'USD':'EUR';
+}
+function resultFormatCurrencyFromEUR(eurAmount,currency){
+  const c=currency||'EUR';
+  const amount=(Number(eurAmount)||0)*(RESULT_CURRENCY_RATES[c]||1);
+  try{
+    return new Intl.NumberFormat('es',{style:'currency',currency:c,maximumFractionDigits:(c==='COP'||c==='CLP'||c==='PYG')?0:2}).format(amount);
+  }catch(e){
+    return c+' '+Math.round(amount).toLocaleString('es');
+  }
+}
+function resultTotalEUR(key){
+  return fixedOrientativeRate(key)*resultTripDays()*resultTripPeople();
+}
+function resultTripLabel(){
+  const d=resultTripDays(), p=resultTripPeople();
+  return d+' día'+(d===1?'':'s')+' · '+p+' viajero'+(p===1?'':'s');
+}
+
+const EUR_TO_COP_APPROX = 4300; // Ajuste aproximado para mostrar referencia en COP.
 window.currentSearchOrigin = (new URLSearchParams(window.location.search).get('origen') || 'colombia').toLowerCase();
 window.currentSearchDest = (new URLSearchParams(window.location.search).get('destino') || 'espana-schengen').toLowerCase();
 
@@ -1774,7 +1823,13 @@ function renderCard(d){
     p.cancel?pill('Cancelación disponible','cpill-amber'):''
   ].join('');
   const fixedRate=fixedOrientativeRate(d.key);
-  const price=`<div class="public-price-label">Precio orientativo</div><div class="public-price">≈ €${euroFixed(fixedRate)} <small>/ persona / día</small></div><div class="public-price-sub">Estimación fija de ViajeroLatam · no es una cotización. Confirma el precio real con el proveedor.</div>`;
+  const totalEUR=resultTotalEUR(d.key);
+  const originCur=resultOriginCurrency();
+  const destCur=resultDestinationCurrency();
+  const destTotal=resultFormatCurrencyFromEUR(totalEUR,destCur);
+  const originTotal=resultFormatCurrencyFromEUR(totalEUR,originCur);
+  const destDaily=resultFormatCurrencyFromEUR(fixedRate,destCur);
+  const price=`<div class="public-price-label">Total orientativo · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>total viaje</small></div><div class="trip-origin-price">≈ ${originTotal} <span>en moneda de origen</span></div><div class="public-price-sub">${destDaily}/persona/día × ${resultTripDays()} día${resultTripDays()===1?'':'s'} × ${resultTripPeople()} viajero${resultTripPeople()===1?'':'s'}. Estimación ViajeroLatam; confirma el precio final con el proveedor.</div>`;
   const availability=unavailable
     ? `<div class="availability-note no">⚠ ${p.eligibility}</div>`
     : `<div class="availability-note ok">✓ ${p.eligibility}</div>`;
@@ -1830,7 +1885,8 @@ function updateQuickCompare(){
     row('Franquicia',(_,p)=>p.franquicia),
     row('Cancelación',(_,p)=>p.cancelacion),
     row('Equipaje',(_,p)=>p.equipaje),
-    row('Precio orientativo',(d)=>'<strong>≈ €'+euroFixed(fixedOrientativeRate(d.key))+'/día</strong>')
+    row('Total orientativo · '+resultTripLabel(),(d)=>'<strong>≈ '+resultFormatCurrencyFromEUR(resultTotalEUR(d.key),resultDestinationCurrency())+'</strong><div class="matrix-origin-price">≈ '+resultFormatCurrencyFromEUR(resultTotalEUR(d.key),resultOriginCurrency())+' origen</div>'),
+    row('Referencia diaria',(d)=>'<span>≈ '+resultFormatCurrencyFromEUR(fixedOrientativeRate(d.key),resultDestinationCurrency())+'/persona/día</span>')
   ].join('');
 }
 function render(data){
@@ -2024,7 +2080,8 @@ function updatePillsDisplay(origen, dest, ida, vuelta, viajeros){
   var pillVals = document.querySelectorAll('.pill-val');
   if(pillVals[0]) pillVals[0].textContent = originLabels[origen] || origen;
   if(pillVals[1]) pillVals[1].textContent = destLabels[normalizedDest(dest)] || dest;
-  var fechasText = (ida && vuelta) ? (fmtDateShort(ida) + ' → ' + fmtDateShort(vuelta)) : (daysBetween(ida, vuelta) + ' días');
+  var totalDiasPill=daysBetween(ida,vuelta);
+  var fechasText = (ida && vuelta) ? (fmtDateShort(ida) + ' → ' + fmtDateShort(vuelta) + ' · ' + totalDiasPill + ' días') : (totalDiasPill + ' días');
   if(pillVals[2]) pillVals[2].textContent = fechasText;
   if(pillVals[3]) pillVals[3].textContent = viajeros + (parseInt(viajeros)===1?' adulto':' adultos');
 }
@@ -2051,7 +2108,7 @@ function applyEditSearch(){
 
   updatePillsDisplay(origen, dest, ida, vuelta, viajeros);
 
-  // Los importes finales ya no se estiman multiplicando una tarifa diaria: se confirman en cada proveedor.
+  // El total orientativo se recalcula con días y viajeros; el proveedor confirma la tarifa final.
 
   var params = new URLSearchParams(window.location.search);
   params.set('origen', origen);
@@ -2105,7 +2162,7 @@ function applyEditSearch(){
 
   updatePillsDisplay(origen, normalizedDest(destinoRaw), ida, vuelta, personasParam);
 
-  // Los importes finales ya no se estiman multiplicando una tarifa diaria: se confirman en cada proveedor.
+  // El total orientativo se recalcula con días y viajeros; el proveedor confirma la tarifa final.
 
   const slider = document.getElementById('price-slider');
   const priceDisplay = document.getElementById('price-display');
@@ -2259,14 +2316,14 @@ function applyEditSearch(){
     var originCode=originCurrency();
     var destinationCode=destinationCurrency();
     el.classList.add('is-visible');
-    el.innerHTML='<strong>Precios orientativos.</strong> ViajeroLatam muestra una referencia fija por persona y día para facilitar la comparación. No es una cotización ni una tarifa garantizada; el importe final se confirma con el proveedor antes del pago.';
+    el.innerHTML='<strong>Total orientativo calculado.</strong> Multiplicamos la referencia diaria por <strong>'+resultTripDays()+' día'+(resultTripDays()===1?'':'s')+'</strong> y <strong>'+resultTripPeople()+' viajero'+(resultTripPeople()===1?'':'s')+'</strong>. Mostramos la moneda del destino y una equivalencia aproximada en la moneda de origen. El precio final lo confirma el proveedor.';
   };
 
   updatePillsDisplay=function(origen,dest,ida,vuelta,viajeros){
     var values=document.querySelectorAll('.pill-val');
     if(values[0]) values[0].textContent=placeText(origen);
     if(values[1]) values[1].textContent=placeText(dest);
-    if(values[2]) values[2].textContent=(ida&&vuelta)?fmtDateShort(ida)+' → '+fmtDateShort(vuelta):daysBetween(ida,vuelta)+' días';
+    if(values[2]){ var totalDias=daysBetween(ida,vuelta); values[2].textContent=(ida&&vuelta)?fmtDateShort(ida)+' → '+fmtDateShort(vuelta)+' · '+totalDias+' días':totalDias+' días'; }
     if(values[3]) values[3].textContent=viajeros+(parseInt(viajeros,10)===1?' persona':' personas');
   };
 
@@ -2405,7 +2462,7 @@ function applyEditSearch(){
     fetch('https://api.frankfurter.dev/v1/latest?base=EUR')
       .then(function(r){if(!r.ok) throw new Error('FX'); return r.json();})
       .then(function(data){
-        if(data&&data.rates) fxRates=Object.assign({},fxRates,data.rates,{EUR:1});
+        if(data&&data.rates){ fxRates=Object.assign({},fxRates,data.rates,{EUR:1}); Object.assign(RESULT_CURRENCY_RATES,data.rates,{EUR:1}); }
         updatePriceSliderDisplay();
         updateCOPNote();
         applyFilters();
