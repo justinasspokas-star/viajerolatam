@@ -1,0 +1,23 @@
+CORRECCIÓN CRÍTICA /resultados/ — 24/08/2026
+
+Problema detectado:
+- Había dos funciones JavaScript globales llamadas normalizedDest().
+- La función del editor de búsqueda sobrescribía la función usada por la lógica de elegibilidad.
+- Para ?destino=espana-schengen, providerProfile() recibía "europa" en vez de "europe".
+- Resultado incorrecto: InterMundial go | world, Holins no disponible y AXA no disponible.
+
+Corrección:
+- La función del editor se renombra a normalizedEditDest().
+- normalizedDest() queda exclusivamente para la lógica de productos/elegibilidad.
+- Se mantienen sin cambios los parámetros de URL y el editor de búsqueda.
+
+Prueba ejecutada para:
+?origen=co&destino=espana-schengen&dias=15&personas=1
+
+Resultado esperado y verificado:
+- IATI Estrella: disponible · 33,00 € total aprox.
+- InterMundial go | schengen: disponible · 15,00 € total aprox.
+- Holins Travel Schengen: disponible · 30,00 € total aprox.
+- AXA Schengen Mini: disponible · 39,90 € total aprox.
+
+También probado destino eeuu-canada para confirmar que no se convierte erróneamente en Schengen.
