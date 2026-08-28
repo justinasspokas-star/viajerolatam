@@ -4,7 +4,7 @@ Actualización de /como-elegimos/
 - Explicación del cálculo de precios orientativos por día × días × viajeros.
 - Explicación del orden predeterminado y transparencia de afiliación.
 - Ejemplos de producto LATAM → Schengen y España → LATAM.
-- Fuentes oficiales de IATI, InterMundial, Holins y AXA.
+- Fuentes oficiales de IATI, Intermundial, Holins y AXA.
 - FAQ visible + schema FAQPage.
 - WebPage/Organization/WebSite schema.
 - Diseño responsive móvil/escritorio.

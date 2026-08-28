@@ -11,7 +11,7 @@ What changed on homepage:
 - Removed the stats section with unsupported claims:
   50K+, 4.9 rating, user rating, 2min.
 - Removed fake-looking testimonial/review block and star ratings.
-- Replaced with factual partner section: IATI, InterMundial, AXA/Holins.
+- Replaced with factual partner section: IATI, Intermundial, AXA/Holins.
 - Reworded claims to avoid unsupported superlatives and fake review signals.
 - Kept affiliate transparency and official-price CTAs.
 

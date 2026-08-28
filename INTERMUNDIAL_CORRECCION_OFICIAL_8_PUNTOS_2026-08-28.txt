@@ -1,0 +1,12 @@
+ViajeroLatam — corrección oficial Intermundial — 28/08/2026
+
+1. LATAM → Europa usa go | world, no go | schengen.
+2. go | world: gastos médicos hasta 500.000 €.
+3. go | world: equipaje hasta 2.500 €.
+4. Repatriación incluida según condiciones.
+5. Intermundial queda compatible con los 4 filtros del comparador: sin franquicia médica, telemedicina/asistencia digital, cancelación disponible y equipaje incluido.
+6. Marca normalizada en toda la web: Intermundial.
+7. Producto normalizado: Totaltravel.
+8. Routing por residencia en resultados y CTAs de páginas específicas: Colombia → intermundial.com.co; México → intermundial.com.mx; resto LATAM/España → intermundial.es.
+
+Extra necesario: referencia orientativa de Intermundial actualizada a go | world (5,10 €/persona/día fuera de España) y Totaltravel (1,85 €/persona/día para origen España), para no seguir calculando totales con la referencia antigua de go | schengen.

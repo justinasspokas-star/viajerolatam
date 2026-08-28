@@ -7,7 +7,7 @@ Cambios aplicados en /resultados/index.html:
 - Tabla comparativa: aseguradoras como columnas; logo en cabecera y nombre del plan debajo.
 - Planes visibles en Colombia → España:
   * IATI Estrella
-  * InterMundial go | schengen
+  * Intermundial go | schengen
   * Holins Viaje
   * AXA Asistencia en Viaje
 - Se mantienen precios orientativos, filtros, elegibilidad por residencia, enlaces afiliados y tracking.

@@ -56,6 +56,6 @@ GA4 click tracking still does NOT prove a real affiliate sale. It only proves th
 
 Real sales tracking:
 - For AXA/Holins via Tradedoubler: use Tradedoubler conversion reporting/postback/subID features if available in your publisher account.
-- For IATI and InterMundial: ask affiliate support if they support subID, postback, pixel, or transaction export with referrer/page data.
+- For IATI and Intermundial: ask affiliate support if they support subID, postback, pixel, or transaction export with referrer/page data.
 - If a network supports S2S postback, you need a small backend endpoint to receive sales/conversion callbacks and then send server-side events to GA4/Google Ads.
 - Static GitHub Pages alone cannot receive postbacks.

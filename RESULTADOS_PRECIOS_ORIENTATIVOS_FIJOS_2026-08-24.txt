@@ -3,7 +3,7 @@ Fecha: 24/08/2026
 
 Se muestran referencias editoriales fijas por persona/día en las cuatro opciones:
 - IATI: ≈ 2,20 €/persona/día
-- InterMundial: ≈ 1,00 €/persona/día
+- Intermundial: ≈ 1,00 €/persona/día
 - Holins: ≈ 1,50 €/persona/día
 - AXA: ≈ 1,90 €/persona/día
 

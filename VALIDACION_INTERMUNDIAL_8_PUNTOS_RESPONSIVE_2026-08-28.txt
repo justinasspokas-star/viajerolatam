@@ -1,0 +1,36 @@
+ViajeroLatam — Validación corrección Intermundial — 28/08/2026
+
+CAMBIOS CONFIRMADOS
+1. LATAM → Europa: Intermundial go | world, no go | schengen.
+2. go | world: hasta 500.000 € gastos médicos.
+3. go | world: hasta 2.500 € equipaje.
+4. Repatriación incluida según condiciones.
+5. Intermundial supera los 4 filtros del comparador: sin franquicia médica, telemedicina/asistencia digital, cancelación disponible, equipaje incluido.
+6. Marca normalizada en toda la web a “Intermundial”.
+7. Nombre de producto normalizado a “Totaltravel”.
+8. Routing por residencia: Colombia → intermundial.com.co; México → intermundial.com.mx; resto LATAM y España → intermundial.es.
+
+AJUSTE ADICIONAL NECESARIO
+- Precio orientativo Intermundial fuera de España actualizado a referencia go | world: 5,10 €/persona/día.
+- Origen España mantiene referencia Totaltravel: 1,85 €/persona/día.
+- Se corrigió el drawer móvil de filtros que podía aparecer al final de la página en escritorio.
+
+VALIDACIONES TÉCNICAS
+- Colombia → España: go | world + dominio Colombia + 5,10 €/día: PASS.
+- México → España: go | world + dominio México + 5,10 €/día: PASS.
+- Perú → España: go | world + dominio .es + 5,10 €/día: PASS.
+- España → Colombia: Totaltravel + dominio .es + 1,85 €/día: PASS.
+- 4 filtros individuales mantienen Intermundial: PASS.
+- 30 comprobaciones responsive: 5 páginas × 6 anchos (360, 390, 430, 768, 1024, 1440): PASS sin scroll horizontal del documento.
+- JavaScript inline de páginas críticas: PASS syntax.
+- IDs duplicados en páginas críticas: 0.
+- “InterMundial” restante en archivos textuales: 0.
+- “TotalTravel” restante en archivos textuales: 0.
+- Asignación antigua Intermundial go | schengen en resultados/metodología: 0.
+
+Páginas revisadas especialmente:
+- /resultados/
+- /como-elegimos/
+- /seguros/intermundial/
+- /seguro-viaje/colombia-a-espana/
+- /seguro-viaje/mexico-a-espana/

@@ -1,15 +1,15 @@
-ViajeroLatam — InterMundial affiliate link tracking audit
+ViajeroLatam — Intermundial affiliate link tracking audit
 
 Base ZIP:
 viajerolatam_home_restore_buscador_completo.zip
 
-InterMundial HTML pages changed:
+Intermundial HTML pages changed:
 30
 
-Total InterMundial links tagged:
+Total Intermundial links tagged:
 44
 
-Pages where InterMundial link exists but vl_page was not found:
+Pages where Intermundial link exists but vl_page was not found:
 None
 
 Sample tagged URLs:

@@ -3,7 +3,7 @@ Fecha: 24/08/2026
 Archivo modificado: /resultados/index.html
 
 OBJETIVO
-Convertir la pantalla de resultados en una comparación útil y transparente entre IATI, InterMundial, Holins y AXA, priorizando elegibilidad por residencia antes de mostrar coberturas.
+Convertir la pantalla de resultados en una comparación útil y transparente entre IATI, Intermundial, Holins y AXA, priorizando elegibilidad por residencia antes de mostrar coberturas.
 
 CAMBIOS PRINCIPALES
 1. Eliminadas estrellas, conteos de opiniones y rankings no sustentados.
@@ -13,7 +13,7 @@ CAMBIOS PRINCIPALES
 5. Las tarjetas explican “Mejor para” y “A tener en cuenta”.
 6. Añadida elegibilidad según residencia/origen:
    - IATI: se mantiene como opción para residencia fuera de España según pólizas de extranjeros.
-   - InterMundial: para residentes fuera de España y viajes Schengen se muestra go | schengen; para otros destinos, go | world; para residentes en España se muestra Totaltravel.
+   - Intermundial: para residentes fuera de España y viajes Schengen se muestra go | schengen; para otros destinos, go | world; para residentes en España se muestra Totaltravel.
    - Holins: la oferta directa publicada se marca como disponible para residentes en España.
    - AXA: el producto enlazado por afiliación se marca como disponible para residentes en España.
 7. Se mantienen todos los enlaces de afiliado existentes.
@@ -29,11 +29,11 @@ IATI Estrella:
 https://www.iatiseguros.com/seguros-viaje/26829/seguro-viaje-iati-estrella/
 Cobertura Europa 1.000.000 €, Mundo/EEUU según ámbito, equipaje hasta 4.000 €, anulación opcional hasta 10.000 €.
 
-InterMundial Totaltravel:
+Intermundial Totaltravel:
 https://www.intermundial.es/seguros-de-viaje/seguro-totaltravel
 Totaltravel desde 1,85 €/persona/día, gastos médicos hasta 5.000.000 €, equipaje hasta 2.500 €, cancelación opcional hasta 5.000 €.
 
-InterMundial go | schengen:
+Intermundial go | schengen:
 https://www.intermundial.es/seguros-de-viaje/seguro-go-schengen
 Disponible para viajeros con residencia fuera de España; desde 0,88 €/persona/día; 30.000 € médicos; repatriación ilimitada; equipaje hasta 300 €.
 
