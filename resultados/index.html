@@ -479,7 +479,7 @@ img, video, iframe, svg {
 <meta name="theme-color" content="#0B1F3A"/>
 
 <title>Comparar seguros de viaje para España y Schengen | ViajeroLatam</title>
-<meta content="Compara seguros de viaje para España y Europa. Revisa precio, cobertura médica, repatriación, equipaje y condiciones de IATI, InterMundial, Holins y AXA." name="description"/>
+<meta content="Compara seguros de viaje para España y Europa. Revisa precio, cobertura médica, repatriación, equipaje y condiciones de IATI, Intermundial, Holins y AXA." name="description"/>
 <meta content="noindex, follow" name="robots"/>
 <link href="https://viajerolatam.com/resultados/" rel="canonical"/>
 <!-- Open Graph -->
@@ -716,7 +716,7 @@ nav .logo img,
 }
 
 
-/* InterMundial affiliate CTA */
+/* Intermundial affiliate CTA */
 .intermundial-affiliate-box{
   margin-top:24px;
   padding:22px;
@@ -1387,6 +1387,8 @@ nav .brand-logo img{height:36px!important;max-width:164px!important;width:auto!i
 #mob-drawer.is-open{transform:translateX(0)!important}
 @media(max-width:768px){.mob-btn{display:flex!important}}
 
+.mobile-filter-drawer{display:none;}
+
 /* ═══════════════════════════════════════════
    MOBILE COMPLETE OVERHAUL - viajerolatam
    ═══════════════════════════════════════════ */
@@ -1693,7 +1695,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
   <div class="quick-compare-head">
     <div class="quick-compare-head-copy">
       <h2 id="quick-compare-title">Comparación rápida</h2>
-      <p class="quick-compare-sub">Compara IATI, InterMundial, Holins y AXA: cobertura, franquicia, equipaje y precio total.</p>
+      <p class="quick-compare-sub">Compara IATI, Intermundial, Holins y AXA: cobertura, franquicia, equipaje y precio total.</p>
     </div>
     <div class="quick-compare-actions">
       <span class="quick-compare-date">Datos revisados · 24 ago 2026</span>
@@ -1718,7 +1720,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
 <script>
 const DATA = [
   {id:2,key:'iati',logo:'IA',logoColor:'#FFF5EA',logoText:'#F58220',logoUrl:'https://www.iatiseguros.com/favicon.ico',logoAlt:'IATI Seguros',name:'IATI Seguros',guideUrl:'/seguros/iati/',ctaUrl:'https://www.iatiseguros.com?r=84208681926165'},
-  {id:3,key:'intermundial',logo:'IM',logoColor:'#F0F8FF',logoText:'#1976D2',logoUrl:'/assets/intermundial-logo-oficial.png',logoAlt:'InterMundial',name:'InterMundial',guideUrl:'/seguros/intermundial/',ctaUrl:'https://www.intermundial.es/afiliados/seguros-de-viaje-recomendado?utm_source=Affiliates&utm_medium=Affiliates&utm_campaign=General&utm_term=kbnnqvpvcy490&utm_content=kbnnqvpvcy490&coupon=VIAJEROLATAM&vl_site=viajerolatam&vl_partner=intermundial&vl_page=resultados&vl_link=2'},
+  {id:3,key:'intermundial',logo:'IM',logoColor:'#F0F8FF',logoText:'#1976D2',logoUrl:'/assets/intermundial-logo-oficial.png',logoAlt:'Intermundial',name:'Intermundial',guideUrl:'/seguros/intermundial/',ctaUrl:'https://www.intermundial.es/afiliados/seguros-de-viaje-recomendado?utm_source=Affiliates&utm_medium=Affiliates&utm_campaign=General&utm_term=kbnnqvpvcy490&utm_content=kbnnqvpvcy490&coupon=VIAJEROLATAM&vl_site=viajerolatam&vl_partner=intermundial&vl_page=resultados&vl_link=2'},
   {id:4,key:'holins',logo:'HO',logoColor:'#F2FBF8',logoText:'#137A70',logoUrl:'/assets/holins-logo-oficial.png',logoAlt:'Holins',name:'Holins',guideUrl:'/seguros/holins/',ctaUrl:'https://clk.tradedoubler.com/click?p=301095&a=3485639'},
   {id:5,key:'axa',logo:'AX',logoColor:'#EEF2FF',logoText:'#1B3A8A',logoUrl:'/assets/axa-logo-oficial.png',logoAlt:'AXA Assistance',name:'AXA',guideUrl:'/seguros/axa/',ctaUrl:'https://clk.tradedoubler.com/click?p=343758&a=3485639'}
 ];
@@ -1726,18 +1728,20 @@ const DATA = [
 // Precios editoriales fijos de referencia. No son cotizaciones ni tarifas garantizadas.
 const FIXED_ORIENTATIVE_RATES = Object.freeze({
   iati: 2.20,
-  intermundial: 1.00,
+  intermundial: 1.85,
   holins: 1.50,
   axa: 1.90
 });
 function fixedOrientativeRate(key){
   const origin = normalizedOrigin();
   const dest = normalizedDest();
-  // Para residentes fuera de España que viajan a España/Schengen usamos
-  // la referencia pública del producto Schengen específico del proveedor.
+  // Intermundial: go | world para residentes fuera de España y Totaltravel
+  // para residentes en España. Referencias públicas; no son cotizaciones.
+  if(key === 'intermundial') return origin === 'es' ? 1.85 : 5.10;
+  // Productos Schengen específicos de Holins y AXA para no residentes en España.
   if(origin !== 'es' && dest === 'europe'){
-    if(key === 'holins') return 2.00;      // Travel Schengen: desde 2 €/día
-    if(key === 'axa') return 2.66;         // AXA Schengen Mini: desde 2,66 €/día
+    if(key === 'holins') return 2.00;
+    if(key === 'axa') return 2.66;
   }
   return Number(FIXED_ORIENTATIVE_RATES[key] || 0);
 }
@@ -1844,9 +1848,11 @@ function providerProfile(d){
     return {plan:'IATI Estrella',eligible:true,eligibility:'Admite residencia fuera de España según póliza',medica:med,repatriacion:'Incluida según condiciones',franquicia:'Sin franquicia',cancelacion:'Hasta 10.000 € · opcional',equipaje:'Hasta 4.000 €',demora:'Hasta 300–360 € según garantía',tele:true,aventura:true,cancel:true,baggage:true,publicRate:null,coverageRank:100,bestFor:'Cobertura médica alta y viajes con costes sanitarios elevados.',caution:'La anulación es opcional y los límites médicos varían según el ámbito geográfico.',source:'IATI Estrella · ficha y condicionado 2026'};
   }
   if(d.key==='intermundial'){
-    if(!spainResident && dest==='europe') return {plan:'go | schengen',eligible:true,eligibility:'Diseñado para viajeros con residencia fuera de España',medica:'30.000 €',repatriacion:'Ilimitada',franquicia:'Revisar condiciones',cancelacion:'Ampliable hasta 6.000 €',equipaje:'Hasta 300 €',demora:'Según condiciones',tele:false,aventura:false,cancel:true,baggage:true,publicRate:0.88,coverageRank:30,bestFor:'Cumplir requisitos de visado Schengen con una opción específica para residentes fuera de España.',caution:'Es una póliza Schengen esencial; para más cobertura conviene comparar go | world.',source:'InterMundial go | schengen · web oficial 2026'};
-    if(!spainResident) return {plan:'go | world',eligible:true,eligibility:'Opción para viajeros con residencia fuera de España',medica:'Hasta 500.000 €',repatriacion:'Incluida según condiciones',franquicia:'Revisar condiciones',cancelacion:'Incluida según condiciones',equipaje:'Incluido según condiciones',demora:'Según condiciones',tele:false,aventura:false,cancel:true,baggage:true,publicRate:5.10,coverageRank:70,bestFor:'Viajes desde LATAM que salen de Schengen o necesitan cobertura mundial.',caution:'El precio y límites exactos dependen del origen, destino y modalidad elegida.',source:'InterMundial go | world · web oficial 2026'};
-    return {plan:'Totaltravel',eligible:true,eligibility:'Disponible para residentes en la UE; España incluida',medica:'Hasta 5.000.000 €',repatriacion:'Ilimitada',franquicia:'Sin franquicia en asistencia médica*',cancelacion:'Hasta 5.000 € · opcional',equipaje:'Hasta 2.500 €',demora:'Según condiciones',tele:true,aventura:false,cancel:true,baggage:true,publicRate:1.85,coverageRank:92,bestFor:'Buena relación entre cobertura médica, equipaje y precio publicado para residentes en España.',caution:'Totaltravel directo está orientado a residentes en la UE; el producto cambia para residentes fuera de España.',source:'InterMundial Totaltravel · web oficial 2026'};
+    if(!spainResident){
+      const siteLabel=origin==='co'?'site de Colombia':(origin==='mx'?'site de México':'site .es para resto de mercados LATAM');
+      return {plan:'go | world',eligible:true,eligibility:'Disponible para residentes fuera de España · contratación dirigida al '+siteLabel,medica:'Hasta 500.000 €',repatriacion:'Incluida según condiciones',franquicia:'Sin franquicia médica',cancelacion:'Hasta 5.000 €',equipaje:'Hasta 2.500 €',demora:'Según condiciones',tele:true,aventura:false,cancel:true,baggage:true,publicRate:5.10,coverageRank:82,bestFor:'Viajeros desde LATAM que necesitan cobertura amplia en Europa o en otros destinos internacionales.',caution:'Intermundial nos ha confirmado que para México, Colombia y el resto de mercados LATAM hacia Europa corresponde go | world, no go | schengen. El precio final depende de residencia, fechas, edad y destino.',source:'Intermundial go | world · información oficial y web del proveedor · revisión 28/08/2026'};
+    }
+    return {plan:'Totaltravel',eligible:true,eligibility:'Disponible para residentes en España',medica:'Hasta 5.000.000 €',repatriacion:'Ilimitada',franquicia:'Sin franquicia médica',cancelacion:'Hasta 5.000 € · opcional',equipaje:'Hasta 2.500 €',demora:'Según condiciones',tele:true,aventura:false,cancel:true,baggage:true,publicRate:1.85,coverageRank:92,bestFor:'Residentes en España que buscan cobertura médica alta, equipaje, asistencia digital y cancelación disponible.',caution:'Para residentes en España mantenemos Totaltravel. El precio y las garantías exactas dependen de la modalidad elegida.',source:'Intermundial Totaltravel · web oficial · revisión 28/08/2026'};
   }
   if(d.key==='holins'){
     if(!spainResident && dest==='europe') return {plan:'Travel Schengen',eligible:true,eligibility:'Disponible para no residentes en España que viajan al espacio Schengen',medica:'Hasta 50.000 €',repatriacion:'100% del coste según condiciones',franquicia:'Revisar condiciones',cancelacion:'Revisar condiciones',equipaje:'Hasta 1.500 €',demora:'Incluida según condiciones',tele:false,aventura:false,cancel:false,baggage:true,publicRate:2.00,coverageRank:55,bestFor:'Viajeros LATAM que van a España o Schengen y quieren una póliza específica para ese destino.',caution:'Travel Schengen es un producto distinto de las pólizas Holins de viaje para residentes en España. Confirma país de residencia, fechas y cobertura final al contratar.',source:'Holins Travel Schengen · web y condiciones 2026'};
@@ -1873,6 +1879,16 @@ function insurerLogoMarkup(d,context){
   const cls=context==='table'?'insurer-logo-table':'insurer-logo-card';
   return `<span class="insurer-logo-shell ${cls}" style="background:${d.logoColor}"><img src="${escAttr(d.logoUrl)}" alt="${escAttr(d.logoAlt||d.name)}" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="insurer-logo-fallback" style="color:${d.logoText}">${d.logo}</span></span>`;
 }
+const INTERMUNDIAL_AFFILIATE_QUERY='utm_source=Affiliates&utm_medium=Affiliates&utm_campaign=General&utm_term=kbnnqvpvcy490&utm_content=kbnnqvpvcy490&coupon=VIAJEROLATAM&vl_site=viajerolatam&vl_partner=intermundial&vl_page=resultados&vl_link=2';
+function intermundialCtaUrl(){
+  const origin=normalizedOrigin();
+  if(origin==='co') return 'https://www.intermundial.com.co/?'+INTERMUNDIAL_AFFILIATE_QUERY;
+  if(origin==='mx') return 'https://www.intermundial.com.mx/?'+INTERMUNDIAL_AFFILIATE_QUERY;
+  return 'https://www.intermundial.es/afiliados/seguros-de-viaje-recomendado?'+INTERMUNDIAL_AFFILIATE_QUERY;
+}
+function providerCtaUrl(d){
+  return d && d.key==='intermundial' ? intermundialCtaUrl() : (d ? d.ctaUrl : '#');
+}
 function renderCard(d){
   const p=providerProfile(d);
   const unavailable=!p.eligible;
@@ -1896,7 +1912,7 @@ function renderCard(d){
     : `<div class="availability-note ok">✓ ${p.eligibility}</div>`;
   const cta=unavailable
     ? `<a class="btn-contract disabled" aria-disabled="true">No disponible para este origen</a>`
-    : `<a class="btn-contract" href="${escAttr(d.ctaUrl)}" target="_blank" rel="nofollow sponsored noopener" onclick="trackContract('${escJs(d.name)}','${escJs(p.plan)}')">Ver precio en ${d.name} →</a>`;
+    : `<a class="btn-contract" href="${escAttr(providerCtaUrl(d))}" target="_blank" rel="nofollow sponsored noopener" onclick="trackContract('${escJs(d.name)}','${escJs(p.plan)}')">Ver precio en ${d.name} →</a>`;
   return `<div class="card ${unavailable?'unavailable':''}" id="card-${d.id}">
     <div class="card-body">
       <div class="card-logo-block">
@@ -1928,7 +1944,7 @@ function renderCard(d){
         <div class="detail-item"><div class="detail-label">Equipaje</div><div class="detail-val">${p.equipaje}</div><div class="detail-sub">Límites y sublímites dependen del plan</div></div>
         <div class="detail-item"><div class="detail-label">Elegibilidad</div><div class="detail-val">${p.eligible?'Compatible con origen seleccionado':'No compatible según oferta enlazada'}</div><div class="detail-sub">Confirma país de residencia real antes de pagar</div></div>
       </div>
-      <div class="detail-source">Fuente de comparación: ${p.source}. Revisión ViajeroLatam: 24/08/2026. La póliza y el precio mostrados por la aseguradora en el momento de contratar prevalecen sobre este resumen.</div>
+      <div class="detail-source">Fuente de comparación: ${p.source}. Revisión ViajeroLatam: 28/08/2026. La póliza y el precio mostrados por la aseguradora en el momento de contratar prevalecen sobre este resumen.</div>
     </div>
   </div>`;
 }
@@ -2048,7 +2064,7 @@ function contractClick(name, plan) {
   var low = String(name || '').toLowerCase();
   var url = '/resultados/';
   if(low.indexOf('iati') !== -1) url = 'https://www.iatiseguros.com?r=84208681926165';
-  else if(low.indexOf('inter') !== -1) url = 'https://www.intermundial.es/afiliados/seguros-de-viaje-recomendado?utm_source=Affiliates&utm_medium=Affiliates&utm_campaign=General&utm_term=kbnnqvpvcy490&utm_content=kbnnqvpvcy490&coupon=VIAJEROLATAM';
+  else if(low.indexOf('inter') !== -1) url = intermundialCtaUrl();
   else if(low.indexOf('holins') !== -1) url = 'https://clk.tradedoubler.com/click?p=301095&a=3485639';
   else if(low.indexOf('axa') !== -1) url = 'https://clk.tradedoubler.com/click?p=343758&a=3485639';
   trackContract(name, plan);
