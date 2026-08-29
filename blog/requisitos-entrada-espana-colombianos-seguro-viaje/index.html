@@ -630,6 +630,57 @@ img, video, iframe, svg {
 }
 
 </style>
+
+<style id="vl-requisitos-layout-clean-20260829">
+/* Clean footer */
+footer.vl-footer{background:#0B1F3A;color:rgba(255,255,255,.72);padding:28px 5%!important;margin:0!important}
+.vl-footer-inner{max-width:1060px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:22px}
+.vl-footer-copy{font-size:12.5px;line-height:1.55}
+.vl-footer-links{display:flex;align-items:center;justify-content:flex-end;gap:14px 18px;flex-wrap:wrap}
+.vl-footer-links a{color:#fff!important;text-decoration:none!important;font-size:12.5px;font-weight:800;white-space:nowrap}
+.vl-footer-links a:hover{text-decoration:underline!important}
+
+/* Real mobile menu — never participates in document flow */
+.mob-btn{display:none;flex-direction:column;justify-content:center;gap:5px;width:40px;height:40px;padding:8px;border-radius:10px;border:1.5px solid rgba(11,31,58,.15);background:rgba(11,31,58,.06);cursor:pointer;flex-shrink:0}
+.mob-btn span{display:block;height:2px;width:100%;background:#0B1F3A;border-radius:2px;transition:all .25s ease}
+.mob-btn.is-open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.mob-btn.is-open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.mob-btn.is-open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+#mob-overlay{display:none;position:fixed;inset:0;background:rgba(11,31,58,.60);z-index:998;backdrop-filter:blur(4px)}
+#mob-drawer{display:none;position:fixed;top:0;right:0;bottom:0;width:min(300px,85vw);background:#fff;z-index:999;box-shadow:-8px 0 40px rgba(11,31,58,.25);flex-direction:column;transform:translateX(100%);transition:transform .28s cubic-bezier(.4,0,.2,1)}
+#mob-drawer.is-open{transform:translateX(0)!important}
+.mob-drawer-head{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:#0B1F3A;flex-shrink:0}
+.mob-drawer-head img{height:42px;width:auto;max-width:190px;object-fit:contain}
+.mob-close{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.12);border:none;color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1}
+.mob-drawer-links{flex:1;overflow-y:auto}
+.mob-drawer-links a{display:flex;align-items:center;gap:12px;padding:14px 20px;text-decoration:none!important;color:#0B1F3A!important;font-size:14px;font-weight:700;border-bottom:1px solid #F0F4F8}
+.mob-drawer-cta{padding:16px 18px;border-top:1px solid #E4EDF5;flex-shrink:0}
+.mob-drawer-cta a{display:flex;align-items:center;justify-content:center;gap:8px;background:#00C4A1;color:#0B1F3A!important;padding:13px;border-radius:50px;font-size:14px;font-weight:800;text-decoration:none!important}
+.mob-drawer-cta p{font-size:10.5px;color:#8FA4B8;text-align:center;margin:7px 0 0}
+
+@media(max-width:860px){
+  .mob-btn{display:flex!important}
+  nav{gap:10px}
+  .nav-links{margin-left:auto}
+  .nav-links .nav-cta{padding:9px 12px!important;font-size:12px!important}
+  main{padding:42px 16px!important}
+  article h2{margin-top:34px!important}
+  footer.vl-footer{padding:24px 16px 112px!important}
+  .vl-footer-inner{display:block;text-align:center}
+  .vl-footer-copy{font-size:12px}
+  .vl-footer-links{justify-content:center;gap:10px 16px;margin-top:14px}
+  .vl-footer-links a{font-size:12px}
+  body{padding-bottom:0!important}
+}
+@media(max-width:430px){
+  nav{padding:8px 12px!important}
+  nav img{max-width:165px!important;height:40px!important}
+  .nav-links .nav-cta{display:none!important}
+  main{padding:34px 14px!important}
+  article h2{font-size:28px!important;line-height:1.14!important}
+  .answer-box,.cta-card,.side-card{border-radius:18px!important;padding:18px!important}
+}
+</style>
 </head>
 <body>
 <nav>
@@ -640,6 +691,7 @@ img, video, iframe, svg {
 <a href="/visa-schengen/">Visa Schengen</a>
 <a class="nav-cta" href="/resultados/">Comparar ahora</a>
 </div>
+<button aria-label="Abrir menú" class="mob-btn" type="button" onclick="openMobMenu()"><span></span><span></span><span></span></button>
 </nav>
 <header class="hero">
 <div class="hero-inner">
@@ -726,7 +778,20 @@ img, video, iframe, svg {
 </aside>
 </div>
 </main>
-<footer>© 2026 ViajeroLatam. Comparador independiente para viajeros latinoamericanos.<p><a href="/como-elegimos/">Cómo elegimos las aseguradoras</a></p></footer>
+<footer class="vl-footer">
+  <div class="vl-footer-inner">
+    <div class="vl-footer-copy">© ViajeroLatam. Comparador independiente para viajeros latinoamericanos.</div>
+    <div class="vl-footer-links" role="navigation" aria-label="Enlaces del pie de página">
+      <a href="/">Inicio</a>
+      <a href="/seguro-viaje/colombia-a-espana/">Colombia → España</a>
+      <a href="/visa-schengen/">Visa Schengen</a>
+      <a href="/blog/">Artículos</a>
+      <a href="/como-elegimos/">Cómo elegimos</a>
+      <a href="/sobre-nosotros/">Sobre nosotros</a>
+      <a href="/contacto/">Contacto</a>
+    </div>
+  </div>
+</footer>
 <div aria-label="Comparar seguros gratis" class="mobile-affiliate-bar vl-single-compare-cta">
 <a class="ma-primary ma-big" href="/resultados/">🔍 Comparar seguros gratis</a>
 <span>Sin coste · Póliza en 2 minutos · 4 aseguradoras</span>
@@ -743,7 +808,7 @@ document.addEventListener('click', function(e){
       page_location: window.location.href
     });
   }
-  if(href.indexOf('intermundial.es') !== -1){
+  if(href.indexOf('intermundial.es') !== -1 || href.indexOf('intermundial.com.co') !== -1 || href.indexOf('intermundial.com.mx') !== -1){
     gtag('event', 'click_affiliate_intermundial', {
       event_category: 'affiliate',
       event_label: href,
@@ -753,17 +818,41 @@ document.addEventListener('click', function(e){
 });
 </script>
 <div aria-hidden="true" id="mob-overlay" onclick="closeMobMenu()"></div>
-<nav aria-label="Menú móvil" id="mob-drawer">
-<a href="/">Inicio</a>
-<a href="/seguro-viaje/colombia-a-espana/">Colombia a España</a>
-<a href="/visa-schengen/">Visa Schengen</a>
-<a href="/blog/">Artículos</a><a href="/sobre-nosotros/">Sobre nosotros</a><a href="/contacto/">Contacto</a>
-<a href="/resultados/">Comparar seguros →</a>
-</nav>
+<div aria-label="Menú móvil" aria-hidden="true" id="mob-drawer">
+  <div class="mob-drawer-head">
+    <img alt="ViajeroLatam" src="/logo-vl-original-20260528.png"/>
+    <button aria-label="Cerrar menú" class="mob-close" type="button" onclick="closeMobMenu()">✕</button>
+  </div>
+  <div class="mob-drawer-links">
+    <a href="/" onclick="closeMobMenu()">🏠 Inicio</a>
+    <a href="/seguro-viaje/colombia-a-espana/" onclick="closeMobMenu()">🇨🇴 Colombia → España</a>
+    <a href="/comparar-seguros-viaje-colombia-espana/" onclick="closeMobMenu()">⚖️ Comparativa</a>
+    <a href="/visa-schengen/" onclick="closeMobMenu()">🛂 Visa Schengen</a>
+    <a href="/blog/" onclick="closeMobMenu()">📚 Artículos</a>
+    <a href="/como-elegimos/" onclick="closeMobMenu()">✓ Cómo elegimos</a>
+    <a href="/sobre-nosotros/" onclick="closeMobMenu()">ℹ️ Sobre nosotros</a>
+    <a href="/contacto/" onclick="closeMobMenu()">✉️ Contacto</a>
+  </div>
+  <div class="mob-drawer-cta">
+    <a href="/resultados/" onclick="closeMobMenu()">🔍 Comparar seguros gratis</a>
+    <p>Sin coste · Compara 4 aseguradoras</p>
+  </div>
+</div>
 <script>
-function openMobMenu(){document.getElementById('mob-drawer').classList.add('open');document.getElementById('mob-overlay').classList.add('open');document.body.style.overflow='hidden'}
-function closeMobMenu(){document.getElementById('mob-drawer').classList.remove('open');document.getElementById('mob-overlay').classList.remove('open');document.body.style.overflow=''}
-document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu()})
+function openMobMenu(){
+  var d=document.getElementById('mob-drawer'),o=document.getElementById('mob-overlay'),b=document.querySelector('.mob-btn');
+  if(!d||!o)return;
+  d.style.display='flex';o.style.display='block';d.setAttribute('aria-hidden','false');
+  requestAnimationFrame(function(){d.classList.add('is-open');if(b)b.classList.add('is-open');});
+  document.body.style.overflow='hidden';
+}
+function closeMobMenu(){
+  var d=document.getElementById('mob-drawer'),o=document.getElementById('mob-overlay'),b=document.querySelector('.mob-btn');
+  if(!d||!o)return;
+  d.classList.remove('is-open');if(b)b.classList.remove('is-open');d.setAttribute('aria-hidden','true');document.body.style.overflow='';
+  setTimeout(function(){d.style.display='none';o.style.display='none';},280);
+}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu();});
 </script>
 <!-- Exit intent -->
 <div id="exit-overlay" style="display:none;position:fixed;inset:0;background:rgba(11,31,58,.65);z-index:9999;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(6px)">
