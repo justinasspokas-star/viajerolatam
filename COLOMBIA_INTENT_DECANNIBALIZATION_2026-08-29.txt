@@ -1,0 +1,11 @@
+Descanibalización del clúster Colombia → España basada en datos de Google Search Console.
+
+Objetivo por URL:
+- /seguro-viaje/colombia-a-espana/: intención comercial principal (comparar/elegir seguro).
+- /blog/cuanto-cuesta-seguro-viaje-colombia-espana/: intención de precio/coste.
+- /seguro-viaje/colombia-a-europa/: itinerarios por varios países europeos.
+- /blog/requisitos-entrada-espana-colombianos-seguro-viaje/: requisitos y documentación.
+
+Se mantienen las URLs y canonicals. No se aplican redirects.
+Se refuerzan enlaces internos hacia la landing comercial cuando la intención es contratar.
+Se elimina /resultados/ del sitemap porque permanece noindex, follow.

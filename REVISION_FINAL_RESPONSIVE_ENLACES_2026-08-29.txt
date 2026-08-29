@@ -1,0 +1,6 @@
+Revisión final tras descanibalización Colombia:
+- Validación responsive en 360, 390, 430, 768, 1024 y 1440 px de las 4 páginas del clúster Colombia modificado.
+- Sin overflow horizontal ni errores JavaScript de ejecución en las páginas revisadas.
+- Corregidos enlaces internos antiguos: /seguro-viaje/peru-espana/ -> /seguro-viaje/peru-a-espana/.
+- Enlaces de Haití y República Dominicana sin página local se dirigen a /seguro-viaje/schengen-barato/ para evitar 404.
+- Sitemap XML válido; /resultados/ permanece fuera del sitemap y con noindex, follow.
