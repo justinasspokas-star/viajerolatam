@@ -1,0 +1,12 @@
+Nueva página SEO/comercial: /seguro-viaje/enfermedades-preexistentes/
+
+Enfoque:
+- explicación en lenguaje normal de qué significa una preexistencia;
+- diferencia entre urgencia imprevisible y tratamiento habitual;
+- comparación IATI Estrella vs Intermundial go | world;
+- fuentes oficiales y advertencias para evitar sobrepromesas;
+- CTA comparador + enlaces afiliados con eventos GA4;
+- FAQ + Article + Breadcrumb schema;
+- responsive;
+- enlaces internos desde home, mayores-70 y EE.UU. médico;
+- sitemap actualizado.

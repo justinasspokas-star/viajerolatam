@@ -1,0 +1,19 @@
+Revisión visual y técnica de /blog/requisitos-entrada-espana-colombianos-seguro-viaje/
+Fecha: 2026-08-29
+
+Cambios:
+- Footer unificado y ordenado.
+- Eliminado el menú móvil que aparecía como enlaces sueltos tras el footer.
+- Añadido drawer móvil real con botón hamburguesa.
+- Footer responsive con espacio suficiente para el CTA móvil fijo.
+- Navegación móvil ajustada para 430 px e inferiores.
+- Tracking de Intermundial actualizado para .es, .com.co y .com.mx.
+
+Validaciones:
+- 1 H1.
+- 0 IDs duplicados.
+- 2 bloques JSON-LD válidos.
+- 0 referencias internas rotas en la página.
+- JavaScript inline válido (excluyendo JSON-LD del chequeo JS).
+- Control de overflow horizontal presente.
+- Sin cambios en URL, canonical ni intención SEO.
