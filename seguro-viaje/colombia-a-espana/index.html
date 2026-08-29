@@ -1219,6 +1219,53 @@ nav a.brand-logo img, nav a.logo img{height:64px !important; width:auto !importa
 }
 </style>
 
+
+<style id="vl-bottom-clean-css">
+.vl-bottom-stack{padding:0 5% 26px!important;max-width:100%!important}
+.vl-bottom-stack,.vl-bottom-stack *{box-sizing:border-box}
+.vl-esim-card,.vl-intent-links{max-width:1120px;margin:0 auto;background:#fff;border:1px solid #E1EAF3;border-radius:18px;overflow:hidden}
+.vl-esim-head{padding:13px 18px;border-bottom:1px solid #E4EDF5;display:flex;align-items:center;gap:10px;background:#F8FAFC}
+.vl-esim-icon{width:30px;height:30px;border-radius:9px;background:#F5F0E8;display:flex;align-items:center;justify-content:center;font-size:15px;flex:0 0 auto}
+.vl-esim-title{font-size:14px;font-weight:800;color:#0B1F3A;line-height:1.35}
+.vl-esim-body{padding:16px 18px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.vl-esim-copy{flex:1;min-width:0}
+.vl-esim-copy p{font-size:13px;color:#4A647E;line-height:1.6;margin:0 0 5px}
+.vl-esim-copy strong{color:#0B1F3A}
+.vl-esim-copy small{display:block;font-size:11px;color:#8FA4B8;line-height:1.5}
+.vl-esim-btn{display:inline-flex;align-items:center;justify-content:center;background:#0B1F3A;color:#fff;padding:11px 18px;border-radius:999px;text-decoration:none;font-weight:800;font-size:13px;white-space:nowrap;flex:0 0 auto;transition:transform .15s,background .15s}
+.vl-esim-btn:hover{background:#173253;transform:translateY(-1px)}
+.vl-intent-links{margin-top:18px;padding:18px 20px;background:#F7FAFD;display:flex;align-items:center;justify-content:space-between;gap:24px;overflow:visible}
+.vl-intent-copy{min-width:0;flex:1}
+.vl-intent-links h2{font-family:var(--display,'DM Serif Display',Georgia,serif);margin:0 0 5px;color:#0B1F3A;font-size:22px;line-height:1.2}
+.vl-intent-links p{margin:0;color:#526B85;font-size:13px;line-height:1.55}
+.vl-intent-pills{display:flex;justify-content:flex-end;gap:8px;flex-wrap:wrap;max-width:520px}
+.vl-intent-pills a{display:inline-flex;align-items:center;justify-content:center;padding:9px 12px;border-radius:999px;background:#fff;border:1px solid #DDE8F1;text-decoration:none;font-size:12.5px;font-weight:800;color:#0B1F3A;line-height:1.2;transition:border-color .15s,transform .15s}
+.vl-intent-pills a:hover{border-color:#00C4A1;transform:translateY(-1px)}
+footer.vl-footer{background:#0B1F3A;color:rgba(255,255,255,.72);padding:28px 5%!important;margin:0!important}
+.vl-footer-inner{max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.vl-footer-copy{font-size:12.5px;line-height:1.55}
+.vl-footer-links{display:flex;align-items:center;justify-content:flex-end;gap:16px;flex-wrap:wrap}
+.vl-footer-links a{color:#fff;text-decoration:none;font-size:12.5px;font-weight:800;white-space:nowrap}
+.vl-footer-links a:hover{text-decoration:underline}
+@media(max-width:768px){
+  .vl-bottom-stack{padding:0 14px 20px!important}
+  .vl-esim-card,.vl-intent-links{border-radius:16px}
+  .vl-esim-head{padding:12px 14px}
+  .vl-esim-body{padding:14px;display:block}
+  .vl-esim-copy p{font-size:12.5px}
+  .vl-esim-btn{width:100%;margin-top:12px;padding:12px 14px}
+  .vl-intent-links{margin-top:14px;padding:16px;display:block}
+  .vl-intent-links h2{font-size:20px}
+  .vl-intent-links p{font-size:12.5px;margin-bottom:12px}
+  .vl-intent-pills{display:grid;grid-template-columns:1fr;max-width:none;gap:8px}
+  .vl-intent-pills a{width:100%;padding:10px 12px;text-align:center}
+  footer.vl-footer{padding:24px 16px 105px!important}
+  .vl-footer-inner{display:block;text-align:center}
+  .vl-footer-copy{font-size:12px}
+  .vl-footer-links{justify-content:center;gap:10px 16px;margin-top:14px}
+  .vl-footer-links a{font-size:12px}
+}
+</style>
 </head>
 <body>
 <!-- MOBILE NAV -->
@@ -1486,22 +1533,44 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
 <details><summary>¿ETIAS sustituye al seguro de viaje?</summary><p>No. ETIAS será una autorización de viaje para personas exentas de visado cuando esté operativo. No sustituye la cobertura médica, la asistencia ni la repatriación de un seguro de viaje.</p></details>
 </div></section>
 <!-- eSIM Saily -->
-<div style="background:#fff;border:1.5px solid #E4EDF5;border-radius:20px;overflow:hidden;margin:0 5% 24px;font-family:'Plus Jakarta Sans',sans-serif">
-<div style="padding:13px 20px;border-bottom:1px solid #E4EDF5;display:flex;align-items:center;gap:10px;background:#F8FAFC">
-<div style="width:30px;height:30px;border-radius:9px;background:#F5F0E8;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0">📱</div>
-<div style="font-size:14px;font-weight:700;color:#0B1F3A">¿Ya tienes datos móviles para Europa?</div>
-</div>
-<div style="padding:16px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
-<div style="flex:1;min-width:160px">
-<p style="font-size:13px;color:#4A647E;line-height:1.6;margin:0 0 6px 0">Sin roaming, sin cambiar tarjeta. Una eSIM te conecta desde que aterrizas. <strong style="color:#0B1F3A">Saily cubre los 29 países Schengen desde €2/día.</strong></p>
-<p style="font-size:11px;color:#8FA4B8;margin:0">✓ iPhone y Android  ·  ✓ 2 min instalación  ·  ✓ 4G/5G</p>
-</div>
-<a href="https://saily.tpx.lv/Bf6yTl42" onclick="if(typeof gtag!='undefined')gtag('event','click_saily',{page:location.pathname})" rel="nofollow sponsored noopener" style="display:block;background:#0B1F3A;color:#fff;padding:11px 20px;border-radius:50px;text-decoration:none;font-weight:700;font-size:13px;white-space:nowrap;flex-shrink:0;text-align:center" target="_blank">
-      📱 Ver planes Saily →
-    </a>
-</div>
-</div>
-<footer><div class="wrap">© 2026 ViajeroLatam. Comparador independiente para viajeros latinoamericanos.</div> · <a href="/sobre-nosotros/" style="color:#fff;text-decoration:none;font-weight:800">Sobre nosotros</a> · <a href="/contacto/" style="color:#fff;text-decoration:none;font-weight:800">Contacto</a><p><a href="/como-elegimos/">Cómo elegimos las aseguradoras</a></p></footer>
+<section class="vl-bottom-stack" aria-label="Recursos adicionales">
+  <div class="vl-esim-card">
+    <div class="vl-esim-head">
+      <div class="vl-esim-icon" aria-hidden="true">📱</div>
+      <div class="vl-esim-title">¿Ya tienes datos móviles para Europa?</div>
+    </div>
+    <div class="vl-esim-body">
+      <div class="vl-esim-copy">
+        <p>Sin roaming, sin cambiar tarjeta. Una eSIM te conecta desde que aterrizas. <strong>Saily cubre los 29 países Schengen desde €2/día.</strong></p>
+        <small>✓ iPhone y Android · ✓ 2 min instalación · ✓ 4G/5G</small>
+      </div>
+      <a class="vl-esim-btn" href="https://saily.tpx.lv/Bf6yTl42" onclick="if(typeof gtag!='undefined')gtag('event','click_saily',{page:location.pathname})" rel="nofollow sponsored noopener" target="_blank">📱 Ver planes Saily →</a>
+    </div>
+  </div>
+
+  <section class="vl-intent-links" aria-labelledby="vl-intent-title">
+    <div class="vl-intent-copy">
+      <h2 id="vl-intent-title">Guías según tu necesidad</h2>
+      <p>Además de comparar por origen y destino, puedes revisar nuestras guías específicas por tipo de viaje.</p>
+    </div>
+    <div class="vl-intent-pills">
+      <a href="/seguro-viaje/schengen-barato/">Schengen barato</a>
+      <a href="/seguro-viaje/mayores-70/">Mayores de 65/70</a>
+      <a href="/seguro-viaje/estados-unidos-medico/">Seguro médico EE. UU.</a>
+    </div>
+  </section>
+</section>
+
+<footer class="vl-footer">
+  <div class="vl-footer-inner">
+    <div class="vl-footer-copy">© 2026 ViajeroLatam. Comparador independiente para viajeros latinoamericanos.</div>
+    <div class="vl-footer-links" role="navigation" aria-label="Enlaces del pie de página">
+      <a href="/sobre-nosotros/">Sobre nosotros</a>
+      <a href="/contacto/">Contacto</a>
+      <a href="/como-elegimos/">Cómo elegimos las aseguradoras</a>
+    </div>
+  </div>
+</footer>
 <script>
 document.addEventListener('click', function(e){
   var link = e.target.closest('a');
@@ -1555,7 +1624,7 @@ document.addEventListener('click', function(e){
 }
 @media(max-width:768px){
   #sticky-mob{display:block}
-  body{padding-bottom:90px}
+  body{padding-bottom:0}
 }
 @media(min-width:769px){
   #sticky-mob{display:none!important}
@@ -1725,9 +1794,6 @@ document.addEventListener('keydown', function(e){
 });
 </script>
 <!-- ═══ END EXIT INTENT + STICKY ═══ -->
-<div class="st">¿Ya tienes datos móviles para Europa?</div>
-<div class="sb" style="display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap">
-</div>
 <script id="vl-compare-click-tracking">
 document.addEventListener('click', function(e){
   var link = e.target.closest('a');
@@ -1742,6 +1808,5 @@ document.addEventListener('click', function(e){
   }
 });
 </script>
-<section class="vl-intent-links" style="max-width:1080px;margin:24px auto;padding:20px;background:#F7FAFD;border:1px solid #E1EAF3;border-radius:18px"><h2 style="margin:0 0 9px;color:#0B1F3A;font-size:22px">Guías según tu necesidad</h2><p style="margin:0 0 12px;color:#526B85">Además de comparar por origen y destino, puedes revisar nuestras guías específicas por tipo de viaje.</p><div style="display:flex;gap:9px;flex-wrap:wrap"><a href="/seguro-viaje/schengen-barato/" style="padding:9px 12px;border-radius:999px;background:#fff;border:1px solid #DDE8F1;text-decoration:none;font-weight:800;color:#0B1F3A">Schengen barato</a><a href="/seguro-viaje/mayores-70/" style="padding:9px 12px;border-radius:999px;background:#fff;border:1px solid #DDE8F1;text-decoration:none;font-weight:800;color:#0B1F3A">Mayores de 65/70</a><a href="/seguro-viaje/estados-unidos-medico/" style="padding:9px 12px;border-radius:999px;background:#fff;border:1px solid #DDE8F1;text-decoration:none;font-weight:800;color:#0B1F3A">Seguro médico EE. UU.</a></div></section>
 </body>
 </html>
