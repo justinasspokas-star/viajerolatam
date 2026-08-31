@@ -1729,15 +1729,20 @@ const DATA = [
 const FIXED_ORIENTATIVE_RATES = Object.freeze({
   iati: 2.20,
   intermundial: 1.85,
-  holins: 1.50,
-  axa: 1.90
+  holins: 1.36,
+  axa: 1.48
 });
 function fixedOrientativeRate(key){
   const origin = normalizedOrigin();
   const dest = normalizedDest();
-  // Intermundial: go | world para residentes fuera de España y Totaltravel
-  // para residentes en España. Referencias públicas; no son cotizaciones.
-  if(key === 'intermundial') return origin === 'es' ? 1.85 : 5.10;
+  // Intermundial: go | schengen para no residentes que viajan a España/Schengen,
+  // go | world para otros destinos y Totaltravel para residentes en España.
+  // Referencias públicas; no son cotizaciones.
+  if(key === 'intermundial'){
+    if(origin === 'es') return 1.85;
+    if(dest === 'europe') return 0.88;
+    return 5.10;
+  }
   // Productos Schengen específicos de Holins y AXA para no residentes en España.
   if(origin !== 'es' && dest === 'europe'){
     if(key === 'holins') return 2.00;
@@ -1849,10 +1854,10 @@ function providerProfile(d){
   }
   if(d.key==='intermundial'){
     if(!spainResident){
-      const siteLabel=origin==='co'?'site de Colombia':(origin==='mx'?'site de México':'site .es para resto de mercados LATAM');
-      return {plan:'go | world',eligible:true,eligibility:'Disponible para residentes fuera de España · contratación dirigida al '+siteLabel,medica:'Hasta 500.000 €',repatriacion:'Incluida según condiciones',franquicia:'Sin franquicia médica',cancelacion:'Hasta 5.000 €',equipaje:'Hasta 2.500 €',demora:'Según condiciones',tele:true,aventura:false,cancel:true,baggage:true,publicRate:5.10,coverageRank:82,bestFor:'Viajeros desde LATAM que necesitan cobertura amplia en Europa o en otros destinos internacionales.',caution:'Intermundial nos ha confirmado que para México, Colombia y el resto de mercados LATAM hacia Europa corresponde go | world, no go | schengen. El precio final depende de residencia, fechas, edad y destino.',source:'Intermundial go | world · información oficial y web del proveedor · revisión 28/08/2026'};
+      if(dest==='europe') return {plan:'go | schengen',eligible:true,eligibility:'Disponible para viajeros con residencia fuera de España que viajan al espacio Schengen',medica:'Hasta 30.000 €',repatriacion:'Ilimitada',franquicia:'Revisar condiciones',cancelacion:'Opcional',equipaje:'Hasta 300 €',demora:'Según condiciones',tele:true,aventura:false,cancel:true,baggage:true,publicRate:0.88,coverageRank:72,bestFor:'Viajeros desde LATAM que van a España o al espacio Schengen y buscan una opción específica para esa zona.',caution:'go | schengen está dirigido a viajeros con residencia fuera de España y es válido para el espacio Schengen. El precio final depende de residencia, fechas, edad, duración y coberturas opcionales.',source:'Intermundial go | schengen · web oficial · revisión 31/08/2026'};
+      return {plan:'go | world',eligible:true,eligibility:'Disponible para residentes fuera de España',medica:'Hasta 500.000 €',repatriacion:'Incluida según condiciones',franquicia:'Sin franquicia médica',cancelacion:'Hasta 5.000 €',equipaje:'Hasta 2.500 €',demora:'Según condiciones',tele:true,aventura:false,cancel:true,baggage:true,publicRate:5.10,coverageRank:82,bestFor:'Viajeros desde LATAM que necesitan cobertura amplia en destinos internacionales fuera del espacio Schengen.',caution:'Para destinos fuera del espacio Schengen usamos go | world como referencia. El precio final depende de residencia, fechas, edad y destino.',source:'Intermundial go | world · web oficial · revisión 31/08/2026'};
     }
-    return {plan:'Totaltravel',eligible:true,eligibility:'Disponible para residentes en España',medica:'Hasta 5.000.000 €',repatriacion:'Ilimitada',franquicia:'Sin franquicia médica',cancelacion:'Hasta 5.000 € · opcional',equipaje:'Hasta 2.500 €',demora:'Según condiciones',tele:true,aventura:false,cancel:true,baggage:true,publicRate:1.85,coverageRank:92,bestFor:'Residentes en España que buscan cobertura médica alta, equipaje, asistencia digital y cancelación disponible.',caution:'Para residentes en España mantenemos Totaltravel. El precio y las garantías exactas dependen de la modalidad elegida.',source:'Intermundial Totaltravel · web oficial · revisión 28/08/2026'};
+    return {plan:'Totaltravel',eligible:true,eligibility:'Disponible para residentes en España',medica:'Hasta 5.000.000 €',repatriacion:'Ilimitada',franquicia:'Sin franquicia médica',cancelacion:'Hasta 5.000 € · opcional',equipaje:'Hasta 2.500 €',demora:'Según condiciones',tele:true,aventura:false,cancel:true,baggage:true,publicRate:1.85,coverageRank:92,bestFor:'Residentes en España que buscan cobertura médica alta, equipaje, asistencia digital y cancelación disponible.',caution:'Para residentes en España mantenemos Totaltravel. El precio y las garantías exactas dependen de la modalidad elegida.',source:'Intermundial Totaltravel · web oficial · revisión 31/08/2026'};
   }
   if(d.key==='holins'){
     if(!spainResident && dest==='europe') return {plan:'Travel Schengen',eligible:true,eligibility:'Disponible para no residentes en España que viajan al espacio Schengen',medica:'Hasta 50.000 €',repatriacion:'100% del coste según condiciones',franquicia:'Revisar condiciones',cancelacion:'Revisar condiciones',equipaje:'Hasta 1.500 €',demora:'Incluida según condiciones',tele:false,aventura:false,cancel:false,baggage:true,publicRate:2.00,coverageRank:55,bestFor:'Viajeros LATAM que van a España o Schengen y quieren una póliza específica para ese destino.',caution:'Travel Schengen es un producto distinto de las pólizas Holins de viaje para residentes en España. Confirma país de residencia, fechas y cobertura final al contratar.',source:'Holins Travel Schengen · web y condiciones 2026'};
@@ -1860,7 +1865,7 @@ function providerProfile(d){
     return {plan:'Holins Viaje',eligible:false,eligibility:'Travel Schengen cubre viajes a Schengen; para otros destinos, la oferta general publicada exige residencia en España',medica:'Según producto',repatriacion:'Según producto',franquicia:'Revisar condiciones',cancelacion:'Revisar condiciones',equipaje:'Según producto',demora:'Según producto',tele:false,aventura:false,cancel:false,baggage:false,publicRate:null,coverageRank:0,bestFor:'Consulta una modalidad compatible con tu residencia y destino.',caution:'No mostramos como contratable la póliza general para residentes fuera de España en destinos no Schengen.',source:'Holins · web y condiciones 2026'};
   }
   if(!spainResident && dest==='europe') return {plan:'AXA Schengen Mini',eligible:true,eligibility:'Disponible para personas que viven fuera de España y viajan a España o Schengen',medica:'Hasta 30.000 €',repatriacion:'Incluida',franquicia:'Revisar condiciones',cancelacion:'Revisar modalidad',equipaje:'Revisar modalidad',demora:'Según condiciones',tele:true,aventura:false,cancel:false,baggage:false,publicRate:2.66,coverageRank:45,bestFor:'Viajeros LATAM que necesitan una opción Schengen con certificado y respaldo internacional.',caution:'AXA ofrece también Schengen Total con hasta 100.000 € de gastos médicos; esta comparación usa Schengen Mini como referencia de entrada.',source:'AXA Seguro de Viaje Schengen · web oficial 2026'};
-  if(spainResident) return {plan:'AXA Asistencia en Viaje',eligible:true,eligibility:'Disponible para residentes en España',medica:'Hasta 5.000.000 €',repatriacion:'Incluida',franquicia:'Revisar condiciones',cancelacion:'Hasta 5.000 € · opcional',equipaje:'Hasta 1.500 €',demora:'Según condiciones',tele:true,aventura:false,cancel:true,baggage:true,publicRate:1.83,coverageRank:90,bestFor:'Residentes en España que valoran una marca internacional y asistencia 24/7.',caution:'El precio y las coberturas dependen de la modalidad elegida.',source:'AXA Seguro de Viaje · web oficial 2026'};
+  if(spainResident) return {plan:'AXA Seguro de viaje Internacional',eligible:true,eligibility:'Disponible para residentes en España',medica:'Hasta 5.000.000 €',repatriacion:'Incluida',franquicia:'Revisar condiciones',cancelacion:'Disponible en modalidad con cancelación',equipaje:'Hasta 1.500 €',demora:'Según condiciones',tele:true,aventura:false,cancel:true,baggage:true,publicRate:1.48,coverageRank:90,bestFor:'Residentes en España que valoran una marca internacional y asistencia 24/7.',caution:'La referencia de 1,48 €/día corresponde al seguro internacional de entrada; la modalidad con cancelación parte de un precio superior.',source:'AXA Seguro de Viaje Internacional · web oficial · revisión 31/08/2026'};
   return {plan:'AXA Asistencia en Viaje',eligible:false,eligibility:'Para residentes fuera de España, AXA Schengen se aplica a viajes a España/Schengen; revisa otra modalidad para este destino',medica:'Según producto',repatriacion:'Según producto',franquicia:'Revisar condiciones',cancelacion:'Revisar condiciones',equipaje:'Según producto',demora:'Según producto',tele:true,aventura:false,cancel:false,baggage:false,publicRate:null,coverageRank:0,bestFor:'Consulta una modalidad compatible con tu residencia y destino.',caution:'No mostramos como contratable el producto para residentes en España cuando el origen está fuera de España.',source:'AXA · web oficial 2026'};
 }
 function escAttr(v){return String(v || '').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
@@ -1944,7 +1949,7 @@ function renderCard(d){
         <div class="detail-item"><div class="detail-label">Equipaje</div><div class="detail-val">${p.equipaje}</div><div class="detail-sub">Límites y sublímites dependen del plan</div></div>
         <div class="detail-item"><div class="detail-label">Elegibilidad</div><div class="detail-val">${p.eligible?'Compatible con origen seleccionado':'No compatible según oferta enlazada'}</div><div class="detail-sub">Confirma país de residencia real antes de pagar</div></div>
       </div>
-      <div class="detail-source">Fuente de comparación: ${p.source}. Revisión ViajeroLatam: 28/08/2026. La póliza y el precio mostrados por la aseguradora en el momento de contratar prevalecen sobre este resumen.</div>
+      <div class="detail-source">Fuente de comparación: ${p.source}. Revisión ViajeroLatam: 31/08/2026. La póliza y el precio mostrados por la aseguradora en el momento de contratar prevalecen sobre este resumen.</div>
     </div>
   </div>`;
 }
@@ -2428,7 +2433,7 @@ function applyEditSearch(){
     var side=document.getElementById('sidebar-route');
     if(title) title.textContent='Comparar seguros de viaje: '+route;
     if(summary) summary.innerHTML='<strong>Comparación según residencia y destino</strong> para '+route+'. Primero comprobamos disponibilidad y después coberturas y condiciones.';
-    if(note) note.textContent=coverageLabel()+' · datos públicos revisados el 24/08/2026; confirma precio y elegibilidad final en la aseguradora.';
+    if(note) note.textContent=coverageLabel()+' · precios públicos revisados el 31/08/2026; confirma precio y elegibilidad final en la aseguradora.';
     if(side) side.textContent=route;
     document.title='Comparar seguros de viaje '+meta(window.currentSearchOrigin).label+' a '+meta(window.currentSearchDest).label+' | ViajeroLatam';
   }
