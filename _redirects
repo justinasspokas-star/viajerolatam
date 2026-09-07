@@ -1,3 +1,6 @@
+/visa-schengen/visado-espana-colombianos-requisitos /visa-schengen/visado-espana-colombianos-requisitos/ 301!
+/visa-schengen/tramitar-visa-schengen-colombia /visa-schengen/tramitar-visa-schengen-colombia/ 301!
+/seguro-viaje/bolivia-a-espana /seguro-viaje/bolivia-a-espana/ 301!
 /como-elegimos/ /como-elegimos/index.html 200
 /como-elegimos /como-elegimos/index.html 200
 /seguro-viaje/venezuela-a-espana/ /seguro-viaje/venezuela-a-espana/index.html 200
@@ -24,20 +27,14 @@
 /seguro-viaje/peru-a-europa /seguro-viaje/peru-a-europa/index.html 200
 /seguro-viaje/seguro-schengen-venezuela-colombia/ /seguro-viaje/seguro-schengen-venezuela-colombia/index.html 200
 /seguro-viaje/seguro-schengen-venezuela-colombia /seguro-viaje/seguro-schengen-venezuela-colombia/index.html 200
-/visa-schengen/visado-espana-colombianos-requisitos/ /visa-schengen/visado-espana-colombianos-requisitos/index.html 200
-/visa-schengen/visado-espana-colombianos-requisitos /visa-schengen/visado-espana-colombianos-requisitos/index.html 200
 /seguro-viaje/peru-a-espana/ /seguro-viaje/peru-a-espana/index.html 200
 /seguro-viaje/peru-a-espana /seguro-viaje/peru-a-espana/index.html 200
 /visa-schengen/cuanto-tiempo-valido-seguro-schengen/ /visa-schengen/cuanto-tiempo-valido-seguro-schengen/index.html 200
 /visa-schengen/cuanto-tiempo-valido-seguro-schengen /visa-schengen/cuanto-tiempo-valido-seguro-schengen/index.html 200
 /seguro-viaje/cuba-a-espana/ /seguro-viaje/cuba-a-espana/index.html 200
 /seguro-viaje/cuba-a-espana /seguro-viaje/cuba-a-espana/index.html 200
-/seguro-viaje/bolivia-a-espana /seguro-viaje/bolivia-a-espana/ 301!
-/seguro-viaje/bolivia-a-espana/ /seguro-viaje/bolivia-a-espana/index.html 200
 /seguro-viaje/ecuador-a-espana/ /seguro-viaje/ecuador-a-espana/index.html 200
 /seguro-viaje/ecuador-a-espana /seguro-viaje/ecuador-a-espana/index.html 200
-/visa-schengen/tramitar-visa-schengen-colombia/ /visa-schengen/tramitar-visa-schengen-colombia/index.html 200
-/visa-schengen/tramitar-visa-schengen-colombia /visa-schengen/tramitar-visa-schengen-colombia/index.html 200
 /esim/espana-colombianos/ /esim/espana-colombianos/index.html 200
 /esim/espana-colombianos /esim/espana-colombianos/index.html 200
 /sobre-nosotros/ /sobre-nosotros/index.html 200
@@ -76,4 +73,3 @@ https://www.viajerolatam.com/*       https://viajerolatam.com/:splat            
 # Fix parent /seguro-viaje/ referenced by BreadcrumbList
 /seguro-viaje/ /resultados/ 301!
 /seguro-viaje /resultados/ 301!
-
