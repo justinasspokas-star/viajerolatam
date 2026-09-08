@@ -1702,7 +1702,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
   <div class="quick-compare-head">
     <div class="quick-compare-head-copy">
       <h2 id="quick-compare-title">Comparación rápida</h2>
-      <p class="quick-compare-sub">Compara IATI, Intermundial, Holins, AXA y Chapka: cobertura, franquicia, equipaje y precio total.</p>
+      <p class="quick-compare-sub">Compara las aseguradoras disponibles para tu ruta: cobertura, franquicia, equipaje y precio total.</p>
     </div>
     <div class="quick-compare-actions">
       <span class="quick-compare-date">Datos revisados · 8 sep 2026</span>
@@ -1876,6 +1876,16 @@ function normalizedDest(){
   if(raw==='mundial') return 'world';
   return 'other';
 }
+function providerVisible(d){
+  // Holins se muestra solo cuando la salida/residencia de referencia es España.
+  // Para LATAM → España (y otros orígenes fuera de España) se oculta por completo
+  // hasta disponer de confirmación contractual de una modalidad compatible.
+  if(d && d.key==='holins' && normalizedOrigin()!=='es') return false;
+  return true;
+}
+function visibleProviders(){
+  return DATA.filter(providerVisible);
+}
 function providerProfile(d){
   const origin=normalizedOrigin();
   const dest=normalizedDest();
@@ -1892,9 +1902,8 @@ function providerProfile(d){
     return {plan:'Totaltravel',eligible:true,eligibility:'Disponible para residentes en España',medica:'Hasta 5.000.000 €',repatriacion:'Ilimitada',franquicia:'Sin franquicia médica',cancelacion:'Hasta 5.000 € · opcional',equipaje:'Hasta 2.500 €',demora:'Según condiciones',tele:true,aventura:false,cancel:true,baggage:true,publicRate:1.85,coverageRank:92,bestFor:'Residentes en España que buscan cobertura médica alta, equipaje, asistencia digital y cancelación disponible.',caution:'Para residentes en España mantenemos Totaltravel. El precio y las garantías exactas dependen de la modalidad elegida.',source:'Intermundial Totaltravel · web oficial · revisión 31/08/2026'};
   }
   if(d.key==='holins'){
-    if(!spainResident && dest==='europe') return {plan:'Travel Schengen',eligible:true,eligibility:'Disponible para no residentes en España que viajan al espacio Schengen',medica:'Hasta 50.000 €',repatriacion:'100% del coste según condiciones',franquicia:'Revisar condiciones',cancelacion:'Revisar condiciones',equipaje:'Hasta 1.500 €',demora:'Incluida según condiciones',tele:false,aventura:false,cancel:false,baggage:true,publicRate:2.00,coverageRank:55,bestFor:'Viajeros LATAM que van a España o Schengen y quieren una póliza específica para ese destino.',caution:'Travel Schengen es un producto distinto de las pólizas Holins de viaje para residentes en España. Confirma país de residencia, fechas y cobertura final al contratar.',source:'Holins Travel Schengen · web y condiciones 2026'};
     if(spainResident) return {plan:'Holins Viaje',eligible:true,eligibility:'Disponible para residentes en España',medica:'Hasta 5.000.000 €',repatriacion:'Incluida según modalidad',franquicia:'Sin franquicia médica',cancelacion:'Hasta 4.000 € según modalidad',equipaje:'Incluido según modalidad',demora:'Según modalidad',tele:false,aventura:false,cancel:true,baggage:true,publicRate:1.36,coverageRank:88,bestFor:'Residentes en España que buscan seguro médico y equipaje configurable.',caution:'La cobertura y el precio final dependen de la modalidad seleccionada.',source:'Holins · web y condiciones 2026'};
-    return {plan:'Holins Viaje',eligible:false,eligibility:'Travel Schengen cubre viajes a Schengen; para otros destinos, la oferta general publicada exige residencia en España',medica:'Según producto',repatriacion:'Según producto',franquicia:'Revisar condiciones',cancelacion:'Revisar condiciones',equipaje:'Según producto',demora:'Según producto',tele:false,aventura:false,cancel:false,baggage:false,publicRate:null,coverageRank:0,bestFor:'Consulta una modalidad compatible con tu residencia y destino.',caution:'No mostramos como contratable la póliza general para residentes fuera de España en destinos no Schengen.',source:'Holins · web y condiciones 2026'};
+    return {plan:'Holins',eligible:false,eligibility:'No mostramos Holins como opción contratable cuando el origen/residencia de referencia está fuera de España',medica:'No aplicable',repatriacion:'No aplicable',franquicia:'No aplicable',cancelacion:'No aplicable',equipaje:'No aplicable',demora:'No aplicable',tele:false,aventura:false,cancel:false,baggage:false,publicRate:null,coverageRank:0,bestFor:'Residentes en España.',caution:'El cotizador público de Holins está orientado a salida/residencia en España. Hasta confirmar por escrito una modalidad LATAM → España compatible, se excluye de esos resultados.',source:'Holins · web y cotizador público · revisión 08/09/2026'};
   }
   if(d.key==='chapka'){
     if(!spainResident && dest==='europe'){
@@ -2045,7 +2054,7 @@ function updateQuickCompare(){
   const head=document.getElementById('quick-compare-head');
   const body=document.getElementById('quick-compare-body');
   if(!head||!body) return;
-  const profiles=DATA.map(d=>({d,p:providerProfile(d)}));
+  const profiles=visibleProviders().map(d=>({d,p:providerProfile(d)}));
   head.innerHTML=`<tr><th class="feature-head">Comparativa</th>${profiles.map(({d,p})=>`<th><div class="matrix-brand">${insurerLogoMarkup(d,'table')}<div class="matrix-brand-name">${d.name}</div><div class="matrix-plan">${p.plan}</div></div></th>`).join('')}</tr>`;
   const row=(label,fn)=>`<tr><td class="matrix-label">${label}</td>${profiles.map(({d,p})=>`<td>${fn(d,p)}</td>`).join('')}</tr>`;
   body.innerHTML=[
@@ -2062,8 +2071,9 @@ function updateQuickCompare(){
 function render(data){
   const container=document.getElementById('cards-container');
   const noResults=document.getElementById('no-results');
-  const eligibleCount=DATA.filter(d=>providerProfile(d).eligible).length;
-  const countText=`${eligibleCount} contratables · ${DATA.length} comparadas`;
+  const routeProviders=visibleProviders();
+  const eligibleCount=routeProviders.filter(d=>providerProfile(d).eligible).length;
+  const countText=`${eligibleCount} contratables · ${routeProviders.length} comparadas`;
   (document.getElementById('count-display')||{textContent:''}).textContent=countText;
   (document.getElementById('count-slim')||{textContent:''}).textContent=countText;
   updateQuickCompare();
@@ -2079,7 +2089,7 @@ function applyFilters(){
   const wantTele=document.getElementById('f5')?document.getElementById('f5').checked:false;
   const wantCancel=document.getElementById('f4')?document.getElementById('f4').checked:false;
   const wantBaggage=document.getElementById('f6')?document.getElementById('f6').checked:false;
-  let filtered=DATA.filter(d=>{
+  let filtered=visibleProviders().filter(d=>{
     const p=providerProfile(d);
     if(onlyEligible&&!p.eligible) return false;
     if(wantNoFranquicia&&!p.franquicia.toLowerCase().includes('sin franquicia')) return false;
