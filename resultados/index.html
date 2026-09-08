@@ -1286,6 +1286,11 @@ nav .brand-logo img{height:36px!important;max-width:164px!important;width:auto!i
 .card-verified{font-size:9.5px;color:#71869A;background:#F5F8FC;border-radius:999px;padding:4px 8px;white-space:nowrap}
 .card-logo-meta{display:flex;flex-direction:column;gap:5px;align-items:center}
 .card-fit{font-size:11px;line-height:1.45;color:#314A61;margin-top:5px;padding:8px 10px;border-radius:10px;background:#F7FAFC}
+.provider-differentiator{display:flex;align-items:flex-start;gap:7px;margin-top:7px;padding:8px 10px;border-radius:10px;background:#F2FFFB;border:1px solid #CBEFE7;color:#0B5E54;font-size:10.8px;line-height:1.4;font-weight:700}
+.provider-differentiator .diff-label{font-weight:900;color:#087A6D;white-space:nowrap}
+.provider-differentiator .diff-text{font-weight:700;color:#234D49}
+.matrix-diff{font-size:10px;line-height:1.35;color:#0B5E54;font-weight:700}
+
 .card-caution{font-size:10.5px;line-height:1.45;color:#7A5424;margin-top:6px;padding:7px 9px;border-radius:9px;background:#FFF8E8;border:1px solid #F5E7BB}
 .availability-note{font-size:10.5px;line-height:1.45;border-radius:10px;padding:8px 9px;text-align:left}
 .availability-note.ok{background:#E9FBF7;color:#087A6D;border:1px solid #C9F1E8}
@@ -1331,6 +1336,7 @@ nav .brand-logo img{height:36px!important;max-width:164px!important;width:auto!i
 <style id="official-insurer-logos">
 .insurer-logo-shell{display:inline-flex;align-items:center;justify-content:center;border:1px solid #E4EDF5;border-radius:12px;overflow:hidden;flex:0 0 auto;box-shadow:0 2px 8px rgba(11,31,58,.05)}
 .insurer-logo-shell img{display:block;width:100%;height:100%;object-fit:contain;padding:7px;background:#fff}
+.insurer-logo-shell.provider-chapka img{padding:4px 2px;transform:scale(1.14);transform-origin:center}
 .insurer-logo-fallback{display:none;width:100%;height:100%;align-items:center;justify-content:center;font-weight:900;font-size:13px;letter-spacing:.02em}
 .insurer-logo-card{width:76px;height:76px}
 .insurer-logo-table{width:56px;height:56px;border-radius:12px}
@@ -1349,6 +1355,7 @@ nav .brand-logo img{height:36px!important;max-width:164px!important;width:auto!i
 @media(max-width:900px){.quick-table-matrix{min-width:710px!important}.quick-table-matrix th{min-width:132px}.quick-table-matrix .feature-head{min-width:120px}.matrix-brand-name{font-size:10.5px}.matrix-plan{font-size:9px}}
 @media(max-width:900px){
   .insurer-logo-card{width:64px;height:64px}
+  .insurer-logo-shell.provider-chapka img{padding:3px 1px;transform:scale(1.16)}
   .card-plan-under-logo{text-align:left;max-width:none;font-size:11.5px}
   .insurer-logo-table{width:44px;height:44px}
   .quick-provider-brand{min-width:155px}
@@ -1901,6 +1908,21 @@ function providerProfile(d){
   if(spainResident) return {plan:'AXA Seguro de viaje Internacional',eligible:true,eligibility:'Disponible para residentes en España',medica:'Hasta 5.000.000 €',repatriacion:'Incluida',franquicia:'Revisar condiciones',cancelacion:'Disponible en modalidad con cancelación',equipaje:'Hasta 1.500 €',demora:'Según condiciones',tele:true,aventura:false,cancel:true,baggage:true,publicRate:1.48,coverageRank:90,bestFor:'Residentes en España que valoran una marca internacional y asistencia 24/7.',caution:'La referencia de 1,48 €/día corresponde al seguro internacional de entrada; la modalidad con cancelación parte de un precio superior.',source:'AXA Seguro de Viaje Internacional · web oficial · revisión 31/08/2026'};
   return {plan:'AXA Asistencia en Viaje',eligible:false,eligibility:'Para residentes fuera de España, AXA Schengen se aplica a viajes a España/Schengen; revisa otra modalidad para este destino',medica:'Según producto',repatriacion:'Según producto',franquicia:'Revisar condiciones',cancelacion:'Revisar condiciones',equipaje:'Según producto',demora:'Según producto',tele:true,aventura:false,cancel:false,baggage:false,publicRate:null,coverageRank:0,bestFor:'Consulta una modalidad compatible con tu residencia y destino.',caution:'No mostramos como contratable el producto para residentes en España cuando el origen está fuera de España.',source:'AXA · web oficial 2026'};
 }
+function providerDifferentiator(d,p){
+  if(!d||!p) return '';
+  if(d.key==='iati') return '✈️ AirHelp opcional: reclaman por ti hasta 600 € por incidencias aéreas elegibles.';
+  if(d.key==='intermundial') return '👤 Tramitador personal para gestionar tu siniestro.';
+  if(d.key==='holins') return '📞 WebCall 24/7 sin coste de llamada desde el extranjero.';
+  if(d.key==='axa'){
+    if(String(p.plan||'').toLowerCase().includes('schengen')) return '📶 Hasta 1 GB de internet incluido en el seguro Schengen.';
+    return '🌍 Red internacional AXA y asistencia digital durante el viaje.';
+  }
+  if(d.key==='chapka'){
+    if(String(p.plan||'').toLowerCase().includes('europa')) return '📅 Cambio de fecha hasta el día anterior a la salida, según condiciones.';
+    return '🛂 Certificado Schengen por email tras la contratación.';
+  }
+  return '';
+}
 function escAttr(v){return String(v || '').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 function escJs(v){return String(v || '').replace(/\\/g,'\\\\').replace(/'/g,"\\'");}
 function trackContract(name, plan){
@@ -1916,9 +1938,10 @@ function trackContract(name, plan){
 }
 function insurerLogoMarkup(d,context){
   const cls=context==='table'?'insurer-logo-table':'insurer-logo-card';
+  const providerCls=d && d.key ? ` provider-${String(d.key).toLowerCase()}` : '';
   const img=d.logoUrl?`<img src="${escAttr(d.logoUrl)}" alt="${escAttr(d.logoAlt||d.name)}" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`:'';
   const fallbackStyle=d.logoUrl?'': 'display:flex;';
-  return `<span class="insurer-logo-shell ${cls}" style="background:${d.logoColor}">${img}<span class="insurer-logo-fallback" style="${fallbackStyle}color:${d.logoText}">${d.logo}</span></span>`;
+  return `<span class="insurer-logo-shell ${cls}${providerCls}" style="background:${d.logoColor}">${img}<span class="insurer-logo-fallback" style="${fallbackStyle}color:${d.logoText}">${d.logo}</span></span>`;
 }
 const INTERMUNDIAL_AFFILIATE_QUERY='utm_source=Affiliates&utm_medium=Affiliates&utm_campaign=General&utm_term=kbnnqvpvcy490&utm_content=kbnnqvpvcy490&coupon=VIAJEROLATAM&vl_site=viajerolatam&vl_partner=intermundial&vl_page=resultados&vl_link=2';
 function intermundialCtaUrl(){
@@ -1976,6 +1999,7 @@ function renderCard(d){
       </div>
       <div class="card-coverage">
         <div class="coverage-pills">${pills}</div>
+        ${providerDifferentiator(d,p)?`<div class="provider-differentiator"><span class="diff-label">✨ Diferencial</span><span class="diff-text">${providerDifferentiator(d,p)}</span></div>`:''}
         <div class="coverage-row"><svg class="cov-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>Gastos médicos: <span class="cov-val">&nbsp;${p.medica}</span></div>
         <div class="coverage-row"><svg class="cov-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Repatriación: <span class="cov-val">&nbsp;${p.repatriacion}</span></div>
         <div class="coverage-row"><svg class="cov-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M7 6v14h10V6M9 10h6"/></svg>Equipaje: <span class="cov-val">&nbsp;${p.equipaje}</span></div>
@@ -2026,6 +2050,7 @@ function updateQuickCompare(){
   const row=(label,fn)=>`<tr><td class="matrix-label">${label}</td>${profiles.map(({d,p})=>`<td>${fn(d,p)}</td>`).join('')}</tr>`;
   body.innerHTML=[
     row('Disponible',(_,p)=>p.eligible?'<span class="status-ok">✓ Sí</span>':'<span class="status-no">No</span>'),
+    row('Diferencial',(d,p)=>`<div class="matrix-diff">${providerDifferentiator(d,p)}</div>`),
     row('Gastos médicos',(_,p)=>p.medica),
     row('Franquicia',(_,p)=>p.franquicia),
     row('Cancelación',(_,p)=>p.cancelacion),
