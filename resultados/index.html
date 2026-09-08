@@ -2663,46 +2663,7 @@ function applyEditSearch(){
 </script>
 
 
-<!-- Exit intent -->
-<div id="exit-overlay" style="display:none;position:fixed;inset:0;background:rgba(11,31,58,.65);z-index:9999;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(6px)">
-<div id="exit-box" style="background:#fff;border-radius:20px;padding:32px 28px;max-width:420px;width:100%;position:relative;box-shadow:0 20px 60px rgba(11,31,58,.25)">
-<button onclick="closeExit()" style="position:absolute;top:12px;right:12px;width:30px;height:30px;border-radius:50%;background:#F0F4F8;border:none;cursor:pointer;font-size:16px;color:#4A647E">✕</button>
-<div style="font-size:40px;text-align:center;margin-bottom:10px">✈️</div>
-<h3 style="font-family:Georgia,serif;font-size:22px;color:#0B1F3A;text-align:center;margin-bottom:8px">¿Ya tienes seguro<br/>para tu viaje?</h3>
-<p style="font-size:13px;color:#4A647E;text-align:center;margin-bottom:16px">Compara opciones disponibles según tu residencia. Gratis y en español.</p>
-<div style="display:flex;gap:12px;justify-content:center;margin-bottom:16px;flex-wrap:wrap">
-<span style="font-size:12px;color:#4A647E">✓ Precio según fechas</span>
-<span style="font-size:12px;color:#4A647E">✓ Revisa condiciones</span>
-<span style="font-size:12px;color:#4A647E">✓ Cupón VIAJEROLATAM</span>
-</div>
-<a href="/resultados/" onclick="closeExit()" style="display:block;width:100%;background:#00C4A1;color:#0B1F3A;padding:14px;border-radius:50px;font-family:inherit;font-size:14px;font-weight:700;text-decoration:none;text-align:center;margin-bottom:8px">🔍 Comparar seguros gratis</a>
-<button onclick="closeExit()" style="display:block;width:100%;background:none;border:none;font-family:inherit;font-size:12px;color:#8FA4B8;cursor:pointer;text-decoration:underline">Ahora no</button>
-</div>
-</div>
-<script>
-(function(){
-  var shown=false;
-  document.addEventListener('mouseleave',function(e){
-    if(e.clientY>15||shown||sessionStorage.getItem('vl_exit'))return;
-    shown=true;sessionStorage.setItem('vl_exit','1');
-    var o=document.getElementById('exit-overlay');
-    if(o){o.style.display='flex';document.body.style.overflow='hidden'}
-  });
-  var lastY=0;
-  window.addEventListener('scroll',function(){
-    var y=window.scrollY;
-    if(lastY-y>100&&y>300&&!shown&&!sessionStorage.getItem('vl_exit')){
-      shown=true;sessionStorage.setItem('vl_exit','1');
-      var o=document.getElementById('exit-overlay');
-      if(o){o.style.display='flex';document.body.style.overflow='hidden'}
-    }
-    lastY=y;
-  });
-})();
-function closeExit(){var o=document.getElementById('exit-overlay');if(o){o.style.display='none';document.body.style.overflow=''}}
-document.addEventListener('keydown',function(e){if(e.key==='Escape')closeExit()});
-document.getElementById('exit-overlay').addEventListener('click',function(e){if(e.target===this)closeExit()});
-</script>
+<!-- Exit intent intentionally disabled on /resultados/: user is already comparing insurance -->
 <!-- Mobile Filter Drawer -->
 <div class="mobile-filter-drawer" id="mob-filter-overlay" onclick="closeMobFilters()">
 <div class="mobile-filter-inner" onclick="event.stopPropagation()">
