@@ -123,4 +123,16 @@
   <url><loc>https://viajerolatam.com/reserva-vuelo/colombia-espana/</loc><lastmod>2026-09-06</lastmod><changefreq>weekly</changefreq><priority>0.82</priority></url>
   <url><loc>https://viajerolatam.com/reserva-alojamiento/colombia-espana/</loc><lastmod>2026-09-06</lastmod><changefreq>weekly</changefreq><priority>0.80</priority></url>
   <url><loc>https://viajerolatam.com/blog/seguro-viaje-europa-mas-3-meses/</loc><lastmod>2026-09-08</lastmod><changefreq>monthly</changefreq><priority>0.80</priority></url>
+  <url>
+    <loc>https://viajerolatam.com/seguro-viaje/haiti-a-espana/</loc>
+    <lastmod>2026-09-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://viajerolatam.com/seguro-viaje/republica-dominicana-a-espana/</loc>
+    <lastmod>2026-09-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
