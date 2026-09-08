@@ -1795,14 +1795,15 @@ function euroFixed(v){
 const RESULT_CURRENCY_RATES = {
   EUR:1, USD:1.08, COP:4300, MXN:21, ARS:1600, VES:200, PEN:4.1, CLP:1080,
   BOB:7.5, BRL:6.3, UYU:47, PYG:8500, CRC:565, PAB:1.08, GTQ:8.3,
-  HNL:27, NIO:40
+  HNL:27, NIO:40, CUP:26, HTG:142, DOP:69
 };
 const RESULT_ORIGIN_CURRENCY = Object.freeze({
   co:'COP', colombia:'COP', mx:'MXN', mexico:'MXN', 'méxico':'MXN', ar:'ARS', argentina:'ARS',
   ve:'VES', venezuela:'VES', pe:'PEN', peru:'PEN', 'perú':'PEN', cl:'CLP', chile:'CLP',
   ec:'USD', ecuador:'USD', bo:'BOB', bolivia:'BOB', br:'BRL', brasil:'BRL', uy:'UYU', uruguay:'UYU',
   py:'PYG', paraguay:'PYG', cr:'CRC', 'costa-rica':'CRC', pa:'PAB', panama:'PAB', 'panamá':'PAB',
-  gt:'GTQ', guatemala:'GTQ', sv:'USD', 'el-salvador':'USD', hn:'HNL', honduras:'HNL', ni:'NIO', nicaragua:'NIO'
+  gt:'GTQ', guatemala:'GTQ', sv:'USD', 'el-salvador':'USD', hn:'HNL', honduras:'HNL', ni:'NIO', nicaragua:'NIO',
+  cu:'CUP', cuba:'CUP', ht:'HTG', haiti:'HTG', 'haití':'HTG', do:'DOP', 'republica-dominicana':'DOP', 'república dominicana':'DOP'
 });
 function resultTripDays(){
   const el=document.getElementById('ep-dias');
@@ -1814,13 +1815,18 @@ function resultTripPeople(){
   const q=new URLSearchParams(window.location.search);
   return Math.max(1,parseInt((el&&el.value)||q.get('personas')||q.get('viajeros')||'1',10)||1);
 }
-function resultOriginCurrency(){
-  const raw=String(window.currentSearchOrigin||'co').toLowerCase();
+function resultPlaceCurrency(value){
+  const raw=String(value||'').trim().toLowerCase();
+  if(raw==='espana' || raw==='españa' || raw==='es' || raw==='spain' || raw==='schengen' || raw==='espana-schengen' || raw==='europa' || raw==='europe') return 'EUR';
+  if(raw==='eeuu-canada' || raw==='eeuu' || raw==='usa' || raw==='us' || raw==='canada' || raw==='ca' || raw==='estados-unidos' || raw==='estados unidos') return 'USD';
+  if(raw==='mundial' || raw==='world') return 'EUR';
   return RESULT_ORIGIN_CURRENCY[raw]||'EUR';
 }
+function resultOriginCurrency(){
+  return resultPlaceCurrency(window.currentSearchOrigin||'co');
+}
 function resultDestinationCurrency(){
-  const raw=String(window.currentSearchDest||'espana-schengen').toLowerCase();
-  return (raw.includes('eeuu')||raw.includes('canada')||raw==='us'||raw==='usa')?'USD':'EUR';
+  return resultPlaceCurrency(window.currentSearchDest||'espana-schengen');
 }
 function resultFormatCurrencyFromEUR(eurAmount,currency){
   const c=currency||'EUR';
@@ -1871,7 +1877,7 @@ let expandedCard = null;
 
 function normalizedOrigin(){
   const raw=String(window.currentSearchOrigin||'').toLowerCase();
-  const map={colombia:'co',mexico:'mx',méxico:'mx',argentina:'ar',venezuela:'ve',peru:'pe','perú':'pe',chile:'cl',ecuador:'ec',bolivia:'bo',brasil:'br',uruguay:'uy',paraguay:'py','costa-rica':'cr',panama:'pa','panamá':'pa',guatemala:'gt','el-salvador':'sv',honduras:'hn',nicaragua:'ni',espana:'es','españa':'es',spain:'es',es:'es','espana-schengen':'es',schengen:'es'};
+  const map={colombia:'co',mexico:'mx',méxico:'mx',argentina:'ar',venezuela:'ve',peru:'pe','perú':'pe',chile:'cl',ecuador:'ec',bolivia:'bo',brasil:'br',uruguay:'uy',paraguay:'py','costa-rica':'cr',panama:'pa','panamá':'pa',guatemala:'gt','el-salvador':'sv',honduras:'hn',nicaragua:'ni',cuba:'cu',haiti:'ht','haití':'ht','republica-dominicana':'do','república dominicana':'do',espana:'es','españa':'es',spain:'es',es:'es','espana-schengen':'es',schengen:'es'};
   return map[raw]||raw;
 }
 function normalizedDest(){
@@ -1992,12 +1998,12 @@ function renderCard(d){
   const destTotal=resultFormatCurrencyFromEUR(totalEUR,destCur);
   const originTotal=resultFormatCurrencyFromEUR(totalEUR,originCur);
   const destDaily=resultFormatCurrencyFromEUR(fixedRate,destCur);
-  let price=`<div class="public-price-label">Total orientativo · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>total viaje</small></div><div class="trip-origin-price">≈ ${originTotal} <span>en moneda de origen</span></div><div class="public-price-sub">${destDaily}/persona/día × ${resultTripDays()} día${resultTripDays()===1?'':'s'} × ${resultTripPeople()} viajero${resultTripPeople()===1?'':'s'}. Estimación ViajeroLatam; confirma el precio final con el proveedor.</div>`;
+  let price=`<div class="public-price-label">Total orientativo · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>moneda de destino · total viaje</small></div><div class="trip-origin-price">≈ ${originTotal} <span>moneda de origen</span></div><div class="public-price-sub">${destDaily}/persona/día × ${resultTripDays()} día${resultTripDays()===1?'':'s'} × ${resultTripPeople()} viajero${resultTripPeople()===1?'':'s'}. Estimación ViajeroLatam; confirma el precio final con el proveedor.</div>`;
   if(d.key==='chapka'){
     if(chapkaPlanType()==='schengen'){
-      price=`<div class="public-price-label">Tarifa pública de referencia · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>total viaje</small></div><div class="trip-origin-price">≈ ${originTotal} <span>en moneda de origen</span></div><div class="public-price-sub">Cap Schengen publica precios por tramos. Referencia Zona 2 (LATAM/resto del mundo), 0–60 años. La web oficial anuncia el producto desde 18 €; confirma edad, residencia y precio final.</div>`;
+      price=`<div class="public-price-label">Tarifa pública de referencia · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>moneda de destino · total viaje</small></div><div class="trip-origin-price">≈ ${originTotal} <span>moneda de origen</span></div><div class="public-price-sub">Cap Schengen publica precios por tramos. Referencia Zona 2 (LATAM/resto del mundo), 0–60 años. La web oficial anuncia el producto desde 18 €; confirma edad, residencia y precio final.</div>`;
     }else{
-      price=`<div class="public-price-label">Tarifa pública de referencia · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>total viaje</small></div><div class="trip-origin-price">≈ ${originTotal} <span>en moneda de origen</span></div><div class="public-price-sub"><strong>Desde 37,50 €/mes (≈ 1,25 €/día)</strong> en la tarifa publicada más baja. Para LATAM usamos como referencia la Zona 2 según duración. Chapka confirma el precio final.</div>`;
+      price=`<div class="public-price-label">Tarifa pública de referencia · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>moneda de destino · total viaje</small></div><div class="trip-origin-price">≈ ${originTotal} <span>moneda de origen</span></div><div class="public-price-sub"><strong>Desde 37,50 €/mes (≈ 1,25 €/día)</strong> en la tarifa publicada más baja. Para LATAM usamos como referencia la Zona 2 según duración. Chapka confirma el precio final.</div>`;
     }
   }
   const availability=unavailable
