@@ -3,8 +3,35 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<link rel="stylesheet" href="/cookie-consent.css"/>
-<script src="/cookie-consent.js"></script>
+<script id="vl-consent-bootstrap">
+window.dataLayer=window.dataLayer||[];
+window.gtag=window.gtag||function(){window.dataLayer.push(arguments);};
+(function(){
+  var analytics='denied';
+  var marketing='denied';
+  try{
+    var raw=localStorage.getItem('vl_cookie_consent_v1');
+    if(raw){
+      var saved=JSON.parse(raw);
+      if(saved&&saved.version===1&&saved.expiresAt>Date.now()){
+        analytics=saved.analytics?'granted':'denied';
+        marketing=saved.marketing?'granted':'denied';
+      }else{
+        localStorage.removeItem('vl_cookie_consent_v1');
+      }
+    }
+  }catch(error){}
+  gtag('consent','default',{
+    analytics_storage:analytics,
+    ad_storage:marketing,
+    ad_user_data:marketing,
+    ad_personalization:marketing,
+    wait_for_update:500
+  });
+})();
+</script>
+<link rel="stylesheet" href="/assets/vl-cookie-consent.css">
+<script defer src="/assets/vl-cookie-consent.js"></script>
 <link rel="icon" href="/favicon.ico" sizes="any"/>
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
@@ -19,10 +46,105 @@
 <meta property="og:title" content="Seguro viaje Haití España 2026 | Visa Schengen y cobertura"/>
 <meta property="og:description" content="Seguro de viaje Haití España para visa Schengen: certificado claro, cobertura mínima, repatriación, documentos y consejos para haitianos."/>
 <meta property="og:url" content="https://viajerolatam.com/seguro-viaje/haiti-a-espana/"/>
-<meta property="og:image" content="https://viajerolatam.com/logo-vl-header.webp"/>
+<meta property="og:image" content="https://viajerolatam.com/og-viajerolatam-seguros.jpg?v=1"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-P1Q2TSMVNJ"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-P1Q2TSMVNJ');</script>
+<script id="vl-ga4-affiliate-normalizer">
+(function(){
+  if (window.vlGa4AffiliateNormalizerInstalled) return;
+  window.vlGa4AffiliateNormalizerInstalled = true;
+
+  function getClickId(){
+    try {
+      var key = 'vl_affiliate_click_id';
+      var id = sessionStorage.getItem(key);
+      if (!id) {
+        id = 'vl_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 10);
+        sessionStorage.setItem(key, id);
+      }
+      return id;
+    } catch(e) {
+      return 'vl_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 10);
+    }
+  }
+
+  function cleanPartner(partner){
+    return String(partner || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9_]+/g, '_')
+      .replace(/^_+|_+$/g, '');
+  }
+
+  function partnerFromEvent(eventName, params){
+    var partner = '';
+    if (eventName.indexOf('click_affiliate_') === 0) {
+      partner = eventName.replace('click_affiliate_', '');
+    }
+    if (!partner && params && params.affiliate_partner) partner = params.affiliate_partner;
+    return cleanPartner(partner || 'unknown');
+  }
+
+  function install(){
+    if (typeof window.gtag !== 'function') {
+      window.setTimeout(install, 50);
+      return;
+    }
+    if (window.gtag.vlAffiliateNormalized) return;
+
+    var originalGtag = window.gtag;
+    function normalizedGtag(){
+      var args = Array.prototype.slice.call(arguments);
+
+      if (args[0] === 'event' && typeof args[1] === 'string') {
+        var originalEventName = args[1];
+        var eventName = originalEventName.toLowerCase();
+
+        if (eventName !== originalEventName) {
+          args[1] = eventName;
+        }
+
+        if (eventName.indexOf('click_affiliate_') === 0) {
+          var params = args[2] && typeof args[2] === 'object' ? args[2] : {};
+          var partner = partnerFromEvent(eventName, params);
+          var clickId = params.affiliate_click_id || getClickId();
+
+          params.event_category = params.event_category || 'affiliate';
+          params.affiliate_partner = partner;
+          params.affiliate_click_id = clickId;
+          params.page_path = window.location.pathname;
+          params.page_location = params.page_location || window.location.href;
+          params.outbound_url = params.outbound_url || params.event_label || params.link_url || '';
+          params.link_text = params.link_text || '';
+
+          args[2] = params;
+
+          originalGtag.apply(window, args);
+
+          originalGtag('event', 'affiliate_outbound_click', {
+            event_category: 'affiliate',
+            affiliate_partner: partner,
+            affiliate_click_id: clickId,
+            source_event: eventName,
+            outbound_url: params.outbound_url,
+            page_path: window.location.pathname,
+            page_location: window.location.href
+          });
+          return;
+        }
+      }
+
+      return originalGtag.apply(window, args);
+    }
+
+    normalizedGtag.vlAffiliateNormalized = true;
+    window.gtag = normalizedGtag;
+  }
+
+  install();
+})();
+</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://viajerolatam.com/"},{"@type":"ListItem","position":2,"name":"Seguro de viaje","item":"https://viajerolatam.com/seguro-viaje/"},{"@type":"ListItem","position":3,"name":"Seguro de viaje Haití España","item":"https://viajerolatam.com/seguro-viaje/haiti-a-espana/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Qué seguro necesita un haitiano para visa Schengen?","acceptedAnswer":{"@type":"Answer","text":"Necesita un seguro médico de viaje válido para el espacio Schengen, con cobertura mínima de 30.000 euros o equivalente, asistencia médica urgente, hospitalización urgente y repatriación."}},{"@type":"Question","name":"¿Dónde debo confirmar los requisitos si viajo desde Haití?","acceptedAnswer":{"@type":"Answer","text":"Debes revisar la información del consulado o centro de solicitud que corresponda a tu lugar de residencia y a tu nacionalidad. Los documentos pueden variar según el caso."}},{"@type":"Question","name":"¿El certificado debe estar impreso?","acceptedAnswer":{"@type":"Answer","text":"Depende del centro de solicitud, pero es prudente llevar copia impresa y digital del certificado, condiciones generales, comprobante de pago y teléfono de asistencia."}},{"@type":"Question","name":"¿Qué pasa si hago escala o presento la solicitud desde otro país?","acceptedAnswer":{"@type":"Answer","text":"Revisa que la póliza cubra todo el viaje y que la documentación coincida con tu ruta real. Si resides o tramitas desde otro país, confirma la demarcación consular correspondiente."}},{"@type":"Question","name":"¿El seguro garantiza que aprueben la visa?","acceptedAnswer":{"@type":"Answer","text":"No. El seguro es un requisito de cobertura y asistencia, pero la decisión de visa depende de toda la documentación y del análisis consular."}}]}</script>
 <style>
@@ -57,8 +179,8 @@
 </style>
 </head>
 <body>
-<nav><a class="brand-logo" href="/"><img alt="ViajeroLatam" src="/logo-vl-header.webp"/></a><div class="nav-links"><a href="/visa-schengen/">Visa Schengen</a><a href="/seguro-viaje/ecuador-a-espana/">Ecuador a España</a><a href="/seguro-viaje/republica-dominicana-a-espana/">R. Dominicana a España</a><a class="nav-cta" href="/resultados/">Comparar ahora</a></div></nav>
-<header class="hero"><div class="hero-inner"><div><div class="eyebrow">🇭🇹 Haití → España</div><h1>Seguro de viaje Haití España</h1><p>Guía para haitianos que preparan un viaje a España y necesitan seguro médico internacional válido para solicitud de visa Schengen.</p><p class="hero-note">Actualizado: julio 2026 · Información orientativa · Verifica siempre con fuentes oficiales o consulado.</p><div class="btn-row"><a class="btn btn-primary" href="/resultados/?origen=haiti&destino=espana-schengen&dias=15&personas=1">Comparar seguros →</a><a class="btn btn-secondary" href="#guia">Leer guía</a></div></div><div class="hero-card"><small>Enfoque principal</small><div class="hero-price">Documentos claros para visa</div><p>Para Haití conviene revisar con especial cuidado consulado correspondiente, idioma de documentos, certificado PDF y fechas de cobertura.</p><ul style="list-style:none;padding-left:0;margin:0 0 18px;color:#4A647E"><li>✓ Cobertura mínima de 30.000 €</li><li>✓ Repatriación y urgencias médicas</li><li>✓ Certificado descargable en PDF</li><li>✓ Fechas completas del viaje</li></ul><a class="btn btn-primary" href="/resultados/?origen=haiti&destino=espana-schengen&dias=15&personas=1">Buscar seguro</a></div></div></header>
+<nav><a class="brand-logo" href="/"><img alt="ViajeroLatam" src="/logo-vl-original-20260528.png"/></a><div class="nav-links"><a href="/visa-schengen/">Visa Schengen</a><a href="/seguro-viaje/ecuador-a-espana/">Ecuador a España</a><a href="/seguro-viaje/republica-dominicana-a-espana/">R. Dominicana a España</a><a class="nav-cta" href="/resultados/">Comparar ahora</a></div></nav>
+<header class="hero"><div class="hero-inner"><div><div class="eyebrow">🇭🇹 Haití → España</div><h1>Seguro de viaje Haití España</h1><p>Guía para haitianos que preparan un viaje a España y necesitan seguro médico internacional válido para solicitud de visa Schengen.</p><p class="hero-note">Actualizado: septiembre 2026 · Información orientativa · Verifica siempre con fuentes oficiales o consulado.</p><div class="btn-row"><a class="btn btn-primary" href="/resultados/?origen=haiti&destino=espana-schengen&dias=15&personas=1">Comparar seguros →</a><a class="btn btn-secondary" href="#guia">Leer guía</a></div></div><div class="hero-card"><small>Enfoque principal</small><div class="hero-price">Documentos claros para visa</div><p>Para Haití conviene revisar con especial cuidado consulado correspondiente, idioma de documentos, certificado PDF y fechas de cobertura.</p><ul style="list-style:none;padding-left:0;margin:0 0 18px;color:#4A647E"><li>✓ Cobertura mínima de 30.000 €</li><li>✓ Repatriación y urgencias médicas</li><li>✓ Certificado descargable en PDF</li><li>✓ Fechas completas del viaje</li></ul><a class="btn btn-primary" href="/resultados/?origen=haiti&destino=espana-schengen&dias=15&personas=1">Buscar seguro</a></div></div></header>
 <main><div class="wrap"><article id="guia">
 
 <div class="box"><p><strong>Resumen rápido:</strong> si tienes pasaporte haitiano y preparas viaje a España, el seguro médico de viaje debe estar listo antes de la solicitud de visa Schengen. En esta ruta conviene priorizar claridad documental: certificado descargable, fechas completas, cobertura Schengen, repatriación y datos de asistencia fáciles de presentar.</p></div>
@@ -87,7 +209,7 @@
 <h2>Errores frecuentes en la ruta Haití → España</h2>
 <ul><li>No confirmar el consulado, centro de solicitud o país donde corresponde tramitar.</li><li>Comprar seguro sin revisar si el certificado menciona Schengen o Europa.</li><li>Olvidar días de escala o regreso y dejar huecos de cobertura.</li><li>Llevar solo una captura de pantalla en vez del PDF completo.</li><li>No revisar si se necesitan traducciones, copias impresas o documentos adicionales.</li><li>Confundir el seguro con una garantía de aprobación de visa.</li></ul>
 
-<section class="compare-section"><h2>Opciones para comparar</h2><p>Para Haití, compara sobre todo claridad del certificado, cobertura Schengen, repatriación, condiciones y facilidad para descargar la póliza.</p><div class="ins-grid"><div class="ins-card featured"><span class="badge">Popular</span><h3>IATI</h3><p>Opción para revisar coberturas internacionales y certificado de viaje.</p><a href="https://www.iatiseguros.com?r=84208681926165" rel="nofollow sponsored noopener" target="_blank">Ver IATI →</a></div><div class="ins-card featured"><span class="badge">Cupón VIAJEROLATAM</span><h3>InterMundial</h3><p>Revisa opciones internacionales y el cupón VIAJEROLATAM si está disponible.</p><a href="https://www.intermundial.es/afiliados/seguros-de-viaje-recomendado?utm_source=Affiliates&utm_medium=Affiliates&utm_campaign=General&utm_term=kbnnqvpvcy490&utm_content=kbnnqvpvcy490&coupon=VIAJEROLATAM&vl_site=viajerolatam&vl_partner=intermundial&vl_page=seguro_viaje_haiti_a_espana&vl_link=1" rel="nofollow sponsored noopener" target="_blank" data-affiliate-partner="intermundial" data-vl-page="seguro_viaje_haiti_a_espana">Ver InterMundial →</a></div><div class="ins-card"><span class="badge">Alternativa</span><h3>Holins</h3><p>Alternativa para comparar coberturas y precio final.</p><a href="https://clk.tradedoubler.com/click?p=301095&a=3485639" rel="nofollow sponsored noopener" target="_blank">Ver Holins →</a></div><div class="ins-card"><span class="badge">Marca internacional</span><h3>AXA</h3><p>Marca reconocida para revisar seguros internacionales.</p><a href="https://clk.tradedoubler.com/click?p=343758&a=3485639" rel="nofollow sponsored noopener" target="_blank">Ver AXA →</a></div></div></section>
+<section class="compare-section"><h2>Opciones para comparar</h2><p>Para Haití, compara sobre todo claridad del certificado, cobertura Schengen, repatriación, condiciones y facilidad para descargar la póliza.</p><div class="ins-grid"><div class="ins-card featured"><span class="badge">Popular</span><h3>IATI</h3><p>Opción para revisar coberturas internacionales y certificado de viaje.</p><a href="https://www.iatiseguros.com?r=84208681926165" rel="nofollow sponsored noopener" target="_blank" onclick="if(window.gtag){gtag('event','click_affiliate_iati',{event_category:'affiliate',event_label:'seguro_viaje',affiliate_partner:'iati',outbound_url:this.href,link_text:this.textContent});}">Ver IATI →</a></div><div class="ins-card featured"><span class="badge">Cupón VIAJEROLATAM</span><h3>InterMundial</h3><p>Revisa opciones internacionales y el cupón VIAJEROLATAM si está disponible.</p><a href="https://www.intermundial.es/afiliados/seguros-de-viaje-recomendado?utm_source=Affiliates&utm_medium=Affiliates&utm_campaign=General&utm_term=kbnnqvpvcy490&utm_content=kbnnqvpvcy490&coupon=VIAJEROLATAM&vl_site=viajerolatam&vl_partner=intermundial&vl_page=seguro_viaje_haiti_a_espana&vl_link=1" rel="nofollow sponsored noopener" target="_blank" onclick="if(window.gtag){gtag('event','click_affiliate_intermundial',{event_category:'affiliate',event_label:'seguro_viaje',affiliate_partner:'intermundial',outbound_url:this.href,link_text:this.textContent});}" data-affiliate-partner="intermundial" data-vl-page="seguro_viaje_haiti_a_espana">Ver InterMundial →</a></div><div class="ins-card"><span class="badge">Visa Schengen</span><h3>Chapka</h3><p>Cap Schengen está orientado a residentes fuera de Schengen que necesitan cobertura para una estancia corta y certificado de seguro.</p><a href="https://www.chapkadirect.es/index.php?action=produit&amp;id=930&amp;app=ViajeroLATAM" rel="nofollow sponsored noopener" target="_blank" onclick="if(window.gtag){gtag('event','click_affiliate_chapka',{event_category:'affiliate',event_label:'cap_schengen',affiliate_partner:'chapka',outbound_url:this.href,link_text:this.textContent});}">Ver Chapka →</a></div><div class="ins-card"><span class="badge">Marca internacional</span><h3>AXA</h3><p>Marca reconocida para revisar seguros internacionales.</p><a href="https://clk.tradedoubler.com/click?p=343758&a=3485639" rel="nofollow sponsored noopener" target="_blank" onclick="if(window.gtag){gtag('event','click_affiliate_axa',{event_category:'affiliate',event_label:'schengen',affiliate_partner:'axa',outbound_url:this.href,link_text:this.textContent});}">Ver AXA →</a></div></div></section>
 
 <div class="cta"><h2>Comparar seguro Haití → España</h2><p>Busca opciones para tus fechas y revisa que el certificado sea claro para visa Schengen.</p><a href="/resultados/?origen=haiti&destino=espana-schengen&dias=15&personas=1">Comparar seguros</a></div>
 
@@ -97,9 +219,9 @@
 <h3>¿El certificado debe estar impreso?</h3><p>Depende del centro de solicitud, pero es prudente llevar copia impresa y digital del certificado, condiciones generales, comprobante de pago y teléfono de asistencia.</p>
 <h3>¿Qué pasa si hago escala o presento la solicitud desde otro país?</h3><p>Revisa que la póliza cubra todo el viaje y que la documentación coincida con tu ruta real. Si resides o tramitas desde otro país, confirma la demarcación consular correspondiente.</p>
 <h3>¿El seguro garantiza que aprueben la visa?</h3><p>No. El seguro es un requisito de cobertura y asistencia, pero la decisión de visa depende de toda la documentación y del análisis consular.</p>
-<div class="related"><strong>Guías relacionadas:</strong><a href="/visa-schengen/">Guía Visa Schengen</a><a href="/seguro-viaje/cuba-a-espana/">Seguro Cuba a España</a><a href="/seguro-viaje/republica-dominicana-a-espana/">Seguro República Dominicana a España</a><a href="/seguros/iati/">IATI</a><a href="/seguros/intermundial/">InterMundial</a></div>
+<div class="related"><strong>Guías relacionadas:</strong><a href="/visa-schengen/">Guía Visa Schengen</a><a href="/seguro-viaje/cuba-a-espana/">Seguro Cuba a España</a><a href="/seguro-viaje/republica-dominicana-a-espana/">Seguro República Dominicana a España</a><a href="/seguros/iati/">IATI</a><a href="/seguros/intermundial/">InterMundial</a><a href="/blog/seguro-viaje-europa-mas-3-meses/">Seguro para más de 3 meses</a></div>
 
-</article><aside><div class="side-card"><h3>Documentos claros</h3><p>Para Haití, prioriza certificado legible, copias y confirmación consular.</p><a class="btn btn-primary" href="/resultados/?origen=haiti&destino=espana-schengen&dias=15&personas=1">Comparar ahora</a></div><div class="side-card"><h3>Guía Schengen</h3><p>Consulta la tabla LATAM y requisitos generales.</p><a class="btn btn-dark" href="/visa-schengen/">Ver guía</a></div><div class="side-card"><h3>InterMundial</h3><p>Cupón recomendado: <strong>VIAJEROLATAM</strong>.</p><a class="btn btn-dark" href="https://www.intermundial.es/afiliados/seguros-de-viaje-recomendado?utm_source=Affiliates&utm_medium=Affiliates&utm_campaign=General&utm_term=kbnnqvpvcy490&utm_content=kbnnqvpvcy490&coupon=VIAJEROLATAM&vl_site=viajerolatam&vl_partner=intermundial&vl_page=seguro_viaje_haiti_a_espana&vl_link=1" rel="nofollow sponsored noopener" target="_blank" data-affiliate-partner="intermundial" data-vl-page="seguro_viaje_haiti_a_espana">Ver InterMundial</a></div></aside></div></main>
+</article><aside><div class="side-card"><h3>Documentos claros</h3><p>Para Haití, prioriza certificado legible, copias y confirmación consular.</p><a class="btn btn-primary" href="/resultados/?origen=haiti&destino=espana-schengen&dias=15&personas=1">Comparar ahora</a></div><div class="side-card"><h3>Guía Schengen</h3><p>Consulta la tabla LATAM y requisitos generales.</p><a class="btn btn-dark" href="/visa-schengen/">Ver guía</a></div><div class="side-card"><h3>InterMundial</h3><p>Cupón recomendado: <strong>VIAJEROLATAM</strong>.</p><a class="btn btn-dark" href="https://www.intermundial.es/afiliados/seguros-de-viaje-recomendado?utm_source=Affiliates&utm_medium=Affiliates&utm_campaign=General&utm_term=kbnnqvpvcy490&utm_content=kbnnqvpvcy490&coupon=VIAJEROLATAM&vl_site=viajerolatam&vl_partner=intermundial&vl_page=seguro_viaje_haiti_a_espana&vl_link=1" rel="nofollow sponsored noopener" target="_blank" onclick="if(window.gtag){gtag('event','click_affiliate_intermundial',{event_category:'affiliate',event_label:'seguro_viaje',affiliate_partner:'intermundial',outbound_url:this.href,link_text:this.textContent});}" data-affiliate-partner="intermundial" data-vl-page="seguro_viaje_haiti_a_espana">Ver InterMundial</a></div></aside></div></main>
 <footer>© 2026 ViajeroLatam. Comparador independiente · No somos aseguradora. <a href="/como-elegimos/">Cómo elegimos las aseguradoras</a></footer>
 <a class="vl-mobile-sticky-cta" href="/resultados/?origen=haiti&destino=espana-schengen&dias=15&personas=1" aria-label="Comparar seguros gratis">🔍 Comparar seguros gratis</a>
 </body></html>
