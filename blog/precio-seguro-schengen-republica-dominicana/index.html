@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es-DO">
+<head>
+
+<script id="vl-consent-bootstrap">
+window.dataLayer=window.dataLayer||[];
+window.gtag=window.gtag||function(){window.dataLayer.push(arguments);};
+(function(){
+  var analytics='denied';
+  var marketing='denied';
+  try{
+    var raw=localStorage.getItem('vl_cookie_consent_v1');
+    if(raw){
+      var saved=JSON.parse(raw);
+      if(saved&&saved.version===1&&saved.expiresAt>Date.now()){
+        analytics=saved.analytics?'granted':'denied';
+        marketing=saved.marketing?'granted':'denied';
+      }else{
+        localStorage.removeItem('vl_cookie_consent_v1');
+      }
+    }
+  }catch(error){}
+  gtag('consent','default',{
+    analytics_storage:analytics,
+    ad_storage:marketing,
+    ad_user_data:marketing,
+    ad_personalization:marketing,
+    wait_for_update:500
+  });
+})();
+</script>
+<link rel="stylesheet" href="/assets/vl-cookie-consent.css">
+<script defer src="/assets/vl-cookie-consent.js"></script>
+
+<link as="image" href="/hero-bg.webp" rel="preload" type="image/webp"/>
+<meta charset="utf-8"/>
+<meta content="fnxi-_Liw22SOQakruhikIUAjmf3u6mdT79inMc9x9A" name="google-site-verification"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<!-- Favicon / browser tab icon -->
+<link rel="icon" href="/favicon.ico" sizes="any"/>
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+<link rel="manifest" href="/site.webmanifest"/>
+<meta name="theme-color" content="#0B1F3A"/>
+
+<title>Precio seguro Schengen República Dominicana → España 2026</title>
+<meta name="description" content="Cuánto cuesta un seguro Schengen desde República Dominicana: precios publicados, ejemplos por duración, qué cambia el coste y cómo comparar en EUR y DOP."/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://viajerolatam.com/blog/precio-seguro-schengen-republica-dominicana/"/>
+<meta property="og:type" content="article"/>
+<meta property="og:title" content="Precio seguro Schengen República Dominicana → España 2026"/>
+<meta property="og:description" content="Cuánto cuesta un seguro Schengen desde República Dominicana: precios publicados, ejemplos por duración, qué cambia el coste y cómo comparar en EUR y DOP."/>
+<meta property="og:url" content="https://viajerolatam.com/blog/precio-seguro-schengen-republica-dominicana/"/>
+<meta property="og:image" content="https://viajerolatam.com/og-viajerolatam-visa.jpg?v=1"/>
+<meta property="og:site_name" content="ViajeroLatam"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P1Q2TSMVNJ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-P1Q2TSMVNJ');</script>
+<script id="vl-ga4-affiliate-normalizer">
+(function(){
+  if (window.vlGa4AffiliateNormalizerInstalled) return;
+  window.vlGa4AffiliateNormalizerInstalled = true;
+
+  function getClickId(){
+    try {
+      var key = 'vl_affiliate_click_id';
+      var id = sessionStorage.getItem(key);
+      if (!id) {
+        id = 'vl_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 10);
+        sessionStorage.setItem(key, id);
+      }
+      return id;
+    } catch(e) {
+      return 'vl_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 10);
+    }
+  }
+
+  function cleanPartner(partner){
+    return String(partner || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9_]+/g, '_')
+      .replace(/^_+|_+$/g, '');
+  }
+
+  function partnerFromEvent(eventName, params){
+    var partner = '';
+    if (eventName.indexOf('click_affiliate_') === 0) {
+      partner = eventName.replace('click_affiliate_', '');
+    }
+    if (!partner && params && params.affiliate_partner) partner = params.affiliate_partner;
+    return cleanPartner(partner || 'unknown');
+  }
+
+  function install(){
+    if (typeof window.gtag !== 'function') {
+      window.setTimeout(install, 50);
+      return;
+    }
+    if (window.gtag.vlAffiliateNormalized) return;
+
+    var originalGtag = window.gtag;
+    function normalizedGtag(){
+      var args = Array.prototype.slice.call(arguments);
+
+      if (args[0] === 'event' && typeof args[1] === 'string') {
+        var originalEventName = args[1];
+        var eventName = originalEventName.toLowerCase();
+
+        if (eventName !== originalEventName) {
+          args[1] = eventName;
+        }
+
+        if (eventName.indexOf('click_affiliate_') === 0) {
+          var params = args[2] && typeof args[2] === 'object' ? args[2] : {};
+          var partner = partnerFromEvent(eventName, params);
+          var clickId = params.affiliate_click_id || getClickId();
+
+          params.event_category = params.event_category || 'affiliate';
+          params.affiliate_partner = partner;
+          params.affiliate_click_id = clickId;
+          params.page_path = window.location.pathname;
+          params.page_location = params.page_location || window.location.href;
+          params.outbound_url = params.outbound_url || params.event_label || params.link_url || '';
+          params.link_text = params.link_text || '';
+
+          args[2] = params;
+
+          originalGtag.apply(window, args);
+
+          originalGtag('event', 'affiliate_outbound_click', {
+            event_category: 'affiliate',
+            affiliate_partner: partner,
+            affiliate_click_id: clickId,
+            source_event: eventName,
+            outbound_url: params.outbound_url,
+            page_path: window.location.pathname,
+            page_location: window.location.href
+          });
+          return;
+        }
+      }
+
+      return originalGtag.apply(window, args);
+    }
+
+    normalizedGtag.vlAffiliateNormalized = true;
+    window.gtag = normalizedGtag;
+  }
+
+  install();
+})();
+</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://viajerolatam.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://viajerolatam.com/blog/"},{"@type":"ListItem","position":3,"name":"Cuánto cuesta el seguro Schengen desde República Dominicana","item":"https://viajerolatam.com/blog/precio-seguro-schengen-republica-dominicana/"}]},{"@type":"Article","headline":"Cuánto cuesta el seguro Schengen desde República Dominicana","description":"Cuánto cuesta un seguro Schengen desde República Dominicana: precios publicados, ejemplos por duración, qué cambia el coste y cómo comparar en EUR y DOP.","datePublished":"2026-09-09","dateModified":"2026-09-09","inLanguage":"es-DO","author":{"@type":"Organization","name":"ViajeroLatam"},"publisher":{"@type":"Organization","name":"ViajeroLatam","url":"https://viajerolatam.com/"},"mainEntityOfPage":"https://viajerolatam.com/blog/precio-seguro-schengen-republica-dominicana/"}]}</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{max-width:100%;overflow-x:hidden}
+:root{--navy:#0B1F3A;--teal:#00C4A1;--mint:#75D8BC;--sand:#F5F0E8;--border:#EAE3D5;--muted:#4A647E;--display:'DM Serif Display',Georgia,serif;--body:'Plus Jakarta Sans',Arial,sans-serif}
+body{font-family:var(--body);color:var(--navy);background:#fff;line-height:1.75}
+nav{position:sticky;top:0;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:10px 5%;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+nav img{height:58px;width:auto;display:block;object-fit:contain}.nav-links{display:flex;gap:22px;align-items:center}.nav-links a{text-decoration:none;color:var(--muted);font-weight:800;font-size:14px}.nav-cta{background:var(--navy);color:#fff!important;padding:10px 18px;border-radius:999px}
+.hero{background:url('/hero-bg.jpg') center center/cover no-repeat;color:#fff;padding:76px 5% 66px;position:relative;overflow:hidden}.hero:before{content:"";position:absolute;inset:0;background:rgba(5,12,40,.68)}.hero-inner{position:relative;max-width:1060px;margin:0 auto}.eyebrow{display:inline-flex;background:rgba(117,216,188,.12);border:1px solid rgba(117,216,188,.28);color:var(--mint);border-radius:999px;padding:7px 15px;font-size:13px;font-weight:900;margin-bottom:18px}h1{font-family:var(--display);font-size:clamp(38px,5.7vw,68px);line-height:1.05;margin-bottom:18px;max-width:900px}h1 em{font-style:italic;color:var(--mint)}.hero p{color:rgba(255,255,255,.78);font-size:18px;max-width:790px;margin-bottom:22px}.btn-row{display:flex;gap:12px;flex-wrap:wrap}.btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 20px;border-radius:999px;text-decoration:none!important;font-weight:900}.btn-primary{background:var(--teal);color:var(--navy)!important}.btn-secondary{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.24);color:#fff!important}.btn-dark{background:var(--navy);color:#fff!important}
+main{padding:58px 5%}.wrap{max-width:1060px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) 310px;gap:34px;align-items:start}article{min-width:0}article h2{font-family:var(--display);font-size:clamp(30px,4vw,46px);line-height:1.15;margin:42px 0 14px;color:var(--navy)}article h3{font-size:23px;line-height:1.25;margin:26px 0 10px;color:var(--navy)}article p{color:var(--muted);margin-bottom:16px}article ul, article ol{color:var(--muted);margin:12px 0 18px;padding-left:22px}article li{margin:8px 0}
+.answer-box,.note,.source-box{background:var(--sand);border:1px solid var(--border);border-radius:24px;padding:24px;margin:28px 0}.note{background:rgba(0,196,161,.08);border-left:4px solid var(--teal)}.source-box a{color:var(--navy);font-weight:800}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:22px 0}.card{background:#fff;border:1px solid var(--border);border-radius:20px;padding:18px}.card strong{display:block;color:var(--navy);margin-bottom:6px}.cta-card{background:linear-gradient(135deg,var(--navy),#17365A);color:#fff;border-radius:26px;padding:26px;margin:34px 0}.cta-card h2,.cta-card h3{color:#fff;margin-top:0}.cta-card p{color:rgba(255,255,255,.74)}.cta-card .btn-secondary{background:rgba(255,255,255,.08)}
+.table{display:grid;grid-template-columns:1.1fr 1.3fr 1.3fr;border:1px solid var(--border);border-radius:22px;overflow:hidden;margin:24px 0}.table div{padding:14px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);color:var(--muted);font-size:14px}.table .th{background:var(--navy);color:#fff;font-weight:900}.table div:nth-child(3n){border-right:0}
+aside{position:sticky;top:92px}.side-card{background:var(--sand);border:1px solid var(--border);border-radius:24px;padding:22px;margin-bottom:18px}.side-card h3{font-size:20px;margin-bottom:10px}.side-card p{color:var(--muted);font-size:14px;margin-bottom:12px}.side-card .btn{width:100%;margin-top:8px}
+.related{margin:30px 0;padding:18px 20px;border-radius:20px;background:var(--sand);border:1px solid var(--border)}.related strong{display:block;color:var(--navy);margin-bottom:8px}.related .links{display:flex;flex-wrap:wrap;gap:10px}.related a{color:var(--navy)!important;font-weight:900;text-decoration:underline}
+.site-footer{background:var(--navy);color:rgba(255,255,255,.72);padding:34px 5% 24px;margin-top:44px}.site-footer .footer-inner{max-width:1060px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap}.site-footer .footer-brand{max-width:520px}.site-footer p{margin:0;color:rgba(255,255,255,.72)}.site-footer .disclosure{margin-top:8px;font-size:12px;color:rgba(255,255,255,.58)}.site-footer .footer-links{display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center}.site-footer .footer-links a,.site-footer a{color:#fff;text-decoration:none;font-weight:700;font-size:14px}
+.mobile-affiliate-bar{position:fixed;left:12px;right:12px;bottom:12px;z-index:999;display:none;gap:8px;padding:9px;border-radius:999px;background:rgba(11,31,58,.94);box-shadow:0 18px 45px rgba(0,0,0,.24);backdrop-filter:blur(12px)}.mobile-affiliate-bar a{flex:1;display:inline-flex;align-items:center;justify-content:center;min-height:42px;border-radius:999px;text-decoration:none!important;font-weight:900;font-size:13px}.ma-primary{background:var(--teal);color:var(--navy)!important}.ma-secondary{background:#fff;color:var(--navy)!important}
+@media(max-width:860px){.nav-links a:not(.nav-cta){display:none}nav{padding:8px 16px;min-height:68px}nav img{height:44px;max-width:205px}.nav-cta{font-size:13px;padding:10px 14px}.hero{padding:56px 16px 42px;text-align:center}.hero p{font-size:15px}.wrap{grid-template-columns:1fr;gap:18px}main{padding:34px 16px}aside{display:none}.grid{grid-template-columns:1fr}.table{grid-template-columns:1fr}.table .th{display:none}.table div{border-right:0}.btn-row{display:grid;grid-template-columns:1fr}.btn{width:100%;padding:12px 16px}.related .links{display:grid;grid-template-columns:1fr}.related a{text-decoration:none!important;padding:10px 12px;border-radius:12px;background:#fff;border:1px solid var(--border);display:flex;width:100%}.site-footer{padding:24px 16px 96px}.site-footer .footer-inner{display:grid;grid-template-columns:1fr;gap:14px}.site-footer .footer-links{display:grid;grid-template-columns:1fr 1fr;gap:10px}.site-footer .footer-links a{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);padding:10px 12px;border-radius:12px;text-align:center}body{padding-bottom:74px}.mobile-affiliate-bar{display:flex}}
+@media(max-width:480px){h1{font-size:33px}.site-footer .footer-links{grid-template-columns:1fr}.mobile-affiliate-bar a{font-size:12px}}
+</style>
+
+<style id="vl-single-compare-cta-style">
+
+/* Mobile sticky CTA — one clean compare button */
+.mobile-affiliate-bar.single-compare-cta,
+.mobile-affiliate-bar.vl-single-compare-cta{
+  background:rgba(255,255,255,.96)!important;
+  border:1px solid #E4EDF5!important;
+  border-radius:22px!important;
+  padding:10px 12px 9px!important;
+  flex-direction:column!important;
+  gap:6px!important;
+  box-shadow:0 16px 45px rgba(11,31,58,.18)!important;
+}
+.mobile-affiliate-bar.single-compare-cta .ma-big,
+.mobile-affiliate-bar.vl-single-compare-cta .ma-big{
+  width:100%!important;
+  min-height:52px!important;
+  border-radius:999px!important;
+  background:#69C7AD!important;
+  color:#0B1F3A!important;
+  font-size:15px!important;
+  font-weight:900!important;
+  box-shadow:0 10px 22px rgba(0,196,161,.24)!important;
+}
+.mobile-affiliate-bar.single-compare-cta span,
+.mobile-affiliate-bar.vl-single-compare-cta span{
+  display:block;
+  text-align:center;
+  font-size:11px;
+  line-height:1.25;
+  color:#8FA4B8;
+  font-weight:600;
+}
+@media(max-width:480px){
+  .mobile-affiliate-bar.single-compare-cta .ma-big,
+  .mobile-affiliate-bar.vl-single-compare-cta .ma-big{font-size:14px!important}
+  .mobile-affiliate-bar.single-compare-cta span,
+  .mobile-affiliate-bar.vl-single-compare-cta span{font-size:10.5px}
+}
+
+</style>
+</head>
+<body><nav>
+<a class="brand-logo" href="/"><img alt="ViajeroLatam" src="/logo-vl-original-20260528.png"/></a>
+<div class="nav-links"><a href="/seguro-viaje/republica-dominicana-a-espana/">RD a España</a><a href="/visa-schengen/">Visa Schengen</a><a href="/blog/">Artículos</a><a class="nav-cta" href="/resultados/?origen=republica-dominicana&destino=espana-schengen">Comparar ahora</a></div>
+</nav><header class="hero"><div class="hero-inner"><div class="eyebrow">💶 Precio · República Dominicana → España</div><h1>¿Cuánto cuesta el seguro Schengen desde <em>República Dominicana</em>?</h1><p>Precios publicados, ejemplos por duración y cómo evitar pagar por una póliza que no sirve para tu solicitud de visa.</p><div class="btn-row"><a class="btn btn-primary" href="/seguro-viaje/republica-dominicana-a-espana/">Guía RD → España</a><a class="btn btn-secondary" href="/resultados/?origen=republica-dominicana&destino=espana-schengen">Comparar seguros</a></div></div></header><main><div class="wrap"><article><div class="answer-box"><p><strong>Respuesta rápida:</strong> el precio depende sobre todo de la duración y la edad. Como referencia pública consultada en septiembre de 2026, InterMundial anuncia su <strong>go | schengen desde 0,88 € por persona y día</strong>. Chapka publica para residentes del resto del mundo precios de Cap Schengen desde <strong>20 € hasta 3 días</strong>, 24 € hasta una semana y 32 € hasta dos semanas para viajeros de 0 a 60 años. Son tarifas publicadas, no una cotización personalizada.</p></div>
+<h2>Ejemplos de precios publicados</h2>
+<p>Para comparar bien hay que usar exactamente las mismas fechas, edad y residencia. La tabla siguiente usa precios públicos de aseguradoras para entender el orden de magnitud; el importe final debe comprobarse en el cotizador antes de contratar.</p>
+<div class="table"><div class="th">Duración</div><div class="th">Chapka Cap Schengen*</div><div class="th">Qué hacer</div><div>Hasta 3 días</div><div>20 €</div><div>Confirmar fechas exactas.</div><div>Hasta 1 semana</div><div>24 €</div><div>Comparar con precio diario.</div><div>Hasta 2 semanas</div><div>32 €</div><div>Revisar certificado y cobertura.</div><div>Hasta 1 mes</div><div>58 €</div><div>Comparar condiciones, no solo precio.</div><div>Hasta 3 meses</div><div>96 €</div><div>Verificar que sigue siendo estancia corta.</div></div>
+<p><small>*Tarifas públicas de Chapka para residentes de “resto del mundo”, 0–60 años, consultadas en septiembre de 2026. Las tarifas pueden cambiar. InterMundial publica go | schengen desde 0,88 €/persona/día.</small></p>
+<h2>¿Cuánto es en pesos dominicanos?</h2>
+<p>El tipo de cambio cambia constantemente. Por eso ViajeroLatam muestra en resultados el precio en <strong>EUR y DOP</strong> para que puedas comparar sin depender de una conversión fija que puede quedar obsoleta. Si la aseguradora cobra en euros, tu banco o tarjeta puede aplicar su propio tipo de cambio y, en algunos casos, comisión por moneda extranjera.</p>
+<h2>Qué hace subir o bajar el precio</h2>
+<div class="grid"><div class="card"><strong>Duración</strong><p>Cuantos más días cubras, mayor suele ser la prima total.</p></div><div class="card"><strong>Edad</strong><p>Algunos productos aplican tramos diferentes para mayores de 60 u 80 años.</p></div><div class="card"><strong>Coberturas extra</strong><p>Cancelación, equipaje o límites médicos superiores pueden encarecer la póliza.</p></div><div class="card"><strong>Producto y franquicia</strong><p>Dos pólizas con igual cobertura mínima Schengen pueden tener condiciones muy distintas.</p></div></div>
+<h2>Precio barato no significa mejor para la visa</h2>
+<p>La cobertura mínima para el visado Schengen es de 30.000 €, válida en todo el territorio Schengen y durante toda la estancia, con repatriación y asistencia médica urgente. Una póliza barata que no cumple estas condiciones no resuelve el problema aunque cueste menos.</p>
+<p>Antes de pagar, descarga o revisa el modelo de certificado y confirma que el producto admite residentes de República Dominicana. Este punto es importante porque algunas aseguradoras comercializan productos distintos según el país de residencia.</p>
+<h2>¿Qué pasa si rechazan la visa?</h2>
+<p>La política de devolución puede tener más valor que ahorrar unos pocos euros. Por ejemplo, Chapka publica que Cap Schengen permite solicitar reembolso por denegación de visado, descontando 15 € de gastos de gestión por persona, siempre que se cumpla el procedimiento y se solicite antes de que empiece la cobertura. Otras aseguradoras tienen condiciones diferentes.</p>
+<div class="cta-card"><h2>Compara precio en EUR y DOP</h2><p>Usa tus fechas reales. Así puedes comparar el coste total del viaje y comprobar qué productos están disponibles para residentes de República Dominicana.</p><div class="btn-row"><a class="btn btn-primary" href="/resultados/?origen=republica-dominicana&destino=espana-schengen">Ver precios</a><a class="btn btn-secondary" href="/seguro-viaje/republica-dominicana-a-espana/">Guía RD → España</a></div></div>
+<h2>Cómo comparar correctamente en 5 pasos</h2><ol><li>Introduce residencia real: República Dominicana.</li><li>Usa las mismas fechas para todas las aseguradoras.</li><li>Compara precio total, no solo “desde X €/día”.</li><li>Revisa cobertura médica, repatriación y validez Schengen.</li><li>Comprueba condiciones de cambio de fecha o devolución si la visa es denegada.</li></ol>
+<h2>Preguntas frecuentes</h2><h3>¿El seguro más barato sirve para la visa?</h3><p>Solo si cumple todos los requisitos exigidos y el certificado es adecuado para tu solicitud. El precio por sí solo no determina si sirve.</p><h3>¿Puedo pagar en pesos dominicanos?</h3><p>Depende de la aseguradora y del medio de pago. ViajeroLatam puede mostrar la equivalencia en DOP para comparar, aunque el cargo final puede realizarse en EUR.</p><h3>¿30.000 € es lo que cuesta?</h3><p>No. 30.000 € es el mínimo de cobertura médica exigido, no la prima que pagas.</p>
+<div class="related"><strong>Guías relacionadas:</strong><div class="links"><a href="/blog/seguro-medico-visa-espana-republica-dominicana/">Seguro médico para visa España desde RD</a><a href="/blog/requisitos-seguro-schengen-dominicanos/">Requisitos del seguro Schengen</a><a href="/seguro-viaje/republica-dominicana-a-espana/">Comparar seguro RD → España</a></div></div>
+<div class="source-box"><strong>Fuentes y tarifas consultadas:</strong><ul><li><a href="https://www.exteriores.gob.es/Consulados/santodomingo/es/ServiciosConsulares/Paginas/index.aspx?scca=Visados&scco=Rep%C3%BAblica+Dominicana&scd=262&scs=Visado+de+estancia+%28visado+Schengen%29" rel="noopener" target="_blank">Consulado General de España en Santo Domingo</a></li><li><a href="https://www.intermundial.es/seguros-de-viaje/seguro-go-schengen" rel="noopener" target="_blank">InterMundial go | schengen</a></li><li><a href="https://www.chapkadirect.es/index.php?action=produit&id=930" rel="noopener" target="_blank">Chapka Cap Schengen: precios publicados</a></li></ul></div></article><aside><div class="side-card"><h3>República Dominicana → España</h3><p>Guía principal con opciones de seguro, requisitos y comparador.</p><a class="btn btn-primary" href="/seguro-viaje/republica-dominicana-a-espana/">Ver guía principal</a></div><div class="side-card"><h3>Visa Schengen</h3><p>Consulta la tabla LATAM y requisitos generales.</p><a class="btn btn-dark" href="/visa-schengen/">Abrir guía Schengen</a></div></aside></div></main><footer class="site-footer"><div class="footer-inner"><div class="footer-brand"><p><strong>© ViajeroLatam</strong> · Comparador independiente para viajeros latinoamericanos.</p><p class="disclosure">Podemos recibir una comisión si contratas desde nuestros enlaces afiliados, sin coste adicional para ti.</p></div><div class="footer-links"><a href="/">Inicio</a><a href="/seguro-viaje/republica-dominicana-a-espana/">RD a España</a><a href="/visa-schengen/">Visa Schengen</a><a href="/blog/">Artículos</a><a href="/contacto/">Contacto</a><a href="/resultados/?origen=republica-dominicana&destino=espana-schengen">Comparar seguros →</a></div></div></footer><div aria-label="Comparar seguros gratis" class="mobile-affiliate-bar vl-single-compare-cta"><a class="ma-primary ma-big" href="/resultados/?origen=republica-dominicana&destino=espana-schengen">🔍 Comparar seguros gratis</a><span>Precios en EUR y DOP · revisa requisitos Schengen</span></div>
+<script>document.addEventListener('click',function(e){var link=e.target.closest('a');if(!link||typeof gtag!=='function')return;var href=link.getAttribute('href')||'';if(href.indexOf('/resultados/')!==-1)gtag('event','click_comparar_seguros_gratis',{event_category:'lead',event_label:href,page_location:window.location.href});});</script></body></html>
