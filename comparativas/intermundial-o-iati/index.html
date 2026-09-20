@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+<head>
+<script id="vl-consent-bootstrap">
+window.dataLayer=window.dataLayer||[];
+window.gtag=window.gtag||function(){window.dataLayer.push(arguments);};
+(function(){var analytics='denied',marketing='denied';try{var raw=localStorage.getItem('vl_cookie_consent_v1');if(raw){var saved=JSON.parse(raw);if(saved&&saved.version===1&&saved.expiresAt>Date.now()){analytics=saved.analytics?'granted':'denied';marketing=saved.marketing?'granted':'denied';}else{localStorage.removeItem('vl_cookie_consent_v1');}}}catch(error){}gtag('consent','default',{analytics_storage:analytics,ad_storage:marketing,ad_user_data:marketing,ad_personalization:marketing,wait_for_update:500});})();
+</script>
+<link rel="stylesheet" href="/assets/vl-cookie-consent.css">
+<script defer src="/assets/vl-cookie-consent.js"></script>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="google-site-verification" content="fnxi-_Liw22SOQakruhikIUAjmf3u6mdT79inMc9x9A"/>
+<link rel="icon" href="/favicon.ico" sizes="any"/>
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+<link rel="manifest" href="/site.webmanifest"/>
+<meta name="theme-color" content="#0B1F3A"/>
+<title>Intermundial o IATI: comparativa de seguros de viaje 2026</title>
+<meta name="description" content="Intermundial o IATI: compara cobertura médica, equipaje, cancelación, repatriación, residencia y productos para viajar desde Latinoamérica a España o Europa."/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://viajerolatam.com/comparativas/intermundial-o-iati/"/>
+<meta property="og:type" content="article"/>
+<meta property="og:title" content="Intermundial o IATI: comparativa de seguros de viaje"/>
+<meta property="og:description" content="Comparación práctica de IATI e Intermundial para elegir según residencia, destino y nivel de cobertura."/>
+<meta property="og:url" content="https://viajerolatam.com/comparativas/intermundial-o-iati/"/>
+<meta property="og:image" content="https://viajerolatam.com/og-viajerolatam-seguros.jpg?v=1"/>
+<meta property="og:locale" content="es_ES"/>
+<meta property="og:site_name" content="ViajeroLatam"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P1Q2TSMVNJ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-P1Q2TSMVNJ');</script>
+<script id="vl-ga4-affiliate-normalizer">
+(function(){
+  if (window.vlGa4AffiliateNormalizerInstalled) return;
+  window.vlGa4AffiliateNormalizerInstalled = true;
+
+  function getClickId(){
+    try {
+      var key = 'vl_affiliate_click_id';
+      var id = sessionStorage.getItem(key);
+      if (!id) {
+        id = 'vl_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 10);
+        sessionStorage.setItem(key, id);
+      }
+      return id;
+    } catch(e) {
+      return 'vl_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 10);
+    }
+  }
+
+  function cleanPartner(partner){
+    return String(partner || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9_]+/g, '_')
+      .replace(/^_+|_+$/g, '');
+  }
+
+  function partnerFromEvent(eventName, params){
+    var partner = '';
+    if (eventName.indexOf('click_affiliate_') === 0) {
+      partner = eventName.replace('click_affiliate_', '');
+    }
+    if (!partner && params && params.affiliate_partner) partner = params.affiliate_partner;
+    return cleanPartner(partner || 'unknown');
+  }
+
+  function install(){
+    if (typeof window.gtag !== 'function') {
+      window.setTimeout(install, 50);
+      return;
+    }
+    if (window.gtag.vlAffiliateNormalized) return;
+
+    var originalGtag = window.gtag;
+    function normalizedGtag(){
+      var args = Array.prototype.slice.call(arguments);
+
+      if (args[0] === 'event' && typeof args[1] === 'string') {
+        var originalEventName = args[1];
+        var eventName = originalEventName.toLowerCase();
+
+        if (eventName !== originalEventName) {
+          args[1] = eventName;
+        }
+
+        if (eventName.indexOf('click_affiliate_') === 0) {
+          var params = args[2] && typeof args[2] === 'object' ? args[2] : {};
+          var partner = partnerFromEvent(eventName, params);
+          var clickId = params.affiliate_click_id || getClickId();
+
+          params.event_category = params.event_category || 'affiliate';
+          params.affiliate_partner = partner;
+          params.affiliate_click_id = clickId;
+          params.page_path = window.location.pathname;
+          params.page_location = params.page_location || window.location.href;
+          params.outbound_url = params.outbound_url || params.event_label || params.link_url || '';
+          params.link_text = params.link_text || '';
+
+          args[2] = params;
+
+          originalGtag.apply(window, args);
+
+          originalGtag('event', 'affiliate_outbound_click', {
+            event_category: 'affiliate',
+            affiliate_partner: partner,
+            affiliate_click_id: clickId,
+            source_event: eventName,
+            outbound_url: params.outbound_url,
+            page_path: window.location.pathname,
+            page_location: window.location.href
+          });
+          return;
+        }
+      }
+
+      return originalGtag.apply(window, args);
+    }
+
+    normalizedGtag.vlAffiliateNormalized = true;
+    window.gtag = normalizedGtag;
+  }
+
+  install();
+})();
+</script>
+<script type="application/ld+json">{
+  "@context":"https://schema.org",
+  "@graph":[
+    {"@type":"Article","headline":"Intermundial o IATI: comparativa de seguros de viaje","dateModified":"2026-09-20","datePublished":"2026-09-20","author":{"@type":"Organization","name":"ViajeroLatam"},"publisher":{"@type":"Organization","name":"ViajeroLatam","url":"https://viajerolatam.com/"},"mainEntityOfPage":"https://viajerolatam.com/comparativas/intermundial-o-iati/"},
+    {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://viajerolatam.com/"},{"@type":"ListItem","position":2,"name":"Comparativas","item":"https://viajerolatam.com/seguro-viaje/mejores-seguros-latinoamericanos/"},{"@type":"ListItem","position":3,"name":"Intermundial o IATI","item":"https://viajerolatam.com/comparativas/intermundial-o-iati/"}]},
+    {"@type":"FAQPage","mainEntity":[
+      {"@type":"Question","name":"¿Intermundial o IATI: cuál conviene más?","acceptedAnswer":{"@type":"Answer","text":"No hay una respuesta universal. Depende del país de residencia, destino, duración y producto disponible. Compara el límite médico, repatriación, equipaje, cancelación y precio final para tu viaje."}},
+      {"@type":"Question","name":"¿Qué debo comparar entre IATI e Intermundial?","acceptedAnswer":{"@type":"Answer","text":"Compara primero elegibilidad por residencia y destino; después gastos médicos, repatriación, equipaje, cancelación, franquicia, asistencia 24/7 y exclusiones."}},
+      {"@type":"Question","name":"¿Sirven IATI e Intermundial para viajar de Latinoamérica a España?","acceptedAnswer":{"@type":"Answer","text":"Puede haber opciones para este tipo de viaje, pero la disponibilidad cambia según residencia y producto. Confirma siempre el presupuesto y las condiciones en la web oficial antes de contratar."}}
+    ]}
+  ]
+}</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}:root{--navy:#0B1F3A;--teal:#00C4A1;--sand:#F5F0E8;--border:#EAE3D5;--muted:#4A647E;--display:'DM Serif Display',Georgia,serif;--body:'Plus Jakarta Sans',sans-serif}body{font-family:var(--body);color:var(--navy);background:#fff;line-height:1.7}a{color:inherit}nav{position:sticky;top:0;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:10px 5%;background:rgba(255,255,255,.97);border-bottom:1px solid var(--border)}nav img{height:58px;width:auto;display:block}.nav-links{display:flex;gap:22px;align-items:center}.nav-links a{text-decoration:none;color:var(--muted);font-weight:800;font-size:14px}.nav-cta{background:var(--navy);color:#fff!important;padding:10px 18px;border-radius:999px}.hero{background:linear-gradient(135deg,#0B1F3A,#17365A);color:#fff;padding:76px 5% 66px;position:relative;overflow:hidden}.hero:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 16% 18%,rgba(0,196,161,.18),transparent 30%),radial-gradient(circle at 84% 78%,rgba(117,216,188,.13),transparent 26%)}.hero-inner{position:relative;max-width:1120px;margin:auto;display:grid;grid-template-columns:minmax(0,1fr) 390px;gap:36px;align-items:center}.eyebrow{display:inline-flex;border:1px solid rgba(117,216,188,.32);background:rgba(117,216,188,.1);color:#75D8BC;border-radius:999px;padding:7px 15px;font-size:13px;font-weight:900;margin-bottom:18px}h1{font-family:var(--display);font-size:clamp(40px,6vw,68px);line-height:1.04;margin-bottom:18px}.hero p{color:rgba(255,255,255,.76);font-size:18px;max-width:720px}.hero-card{background:#fff;color:var(--navy);border-radius:28px;padding:25px;box-shadow:0 24px 70px rgba(0,0,0,.22)}.hero-card h2{font-family:var(--display);font-size:30px;line-height:1.15;margin-bottom:10px}.hero-card p{color:var(--muted);font-size:14px;margin-bottom:12px}.quick{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}.quick span{background:var(--sand);border:1px solid var(--border);border-radius:14px;padding:10px;font-size:12px;font-weight:800;text-align:center}.btn-row{display:flex;gap:11px;flex-wrap:wrap;margin-top:22px}.btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 21px;border-radius:999px;text-decoration:none!important;font-weight:900;border:0}.btn-primary{background:var(--teal);color:var(--navy)!important}.btn-light{background:#fff;color:var(--navy)!important}.btn-outline{background:transparent;color:#fff!important;border:1px solid rgba(255,255,255,.26)}.btn-dark{background:var(--navy);color:#fff!important}main{max-width:1120px;margin:auto;padding:58px 5% 76px}.lede{font-size:19px;color:var(--muted);max-width:850px;margin-bottom:26px}.answer{background:#EAFBF7;border:1px solid #BDEFE3;border-radius:22px;padding:22px;margin:20px 0 32px}.answer strong{display:block;font-size:18px;margin-bottom:6px}h2{font-family:var(--display);font-size:clamp(30px,4vw,44px);line-height:1.14;margin:44px 0 15px}h3{font-size:22px;margin:28px 0 9px}p,li{color:var(--muted)}ul{padding-left:22px;margin:12px 0 18px}.table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:22px;margin:22px 0;background:#fff}table{width:100%;border-collapse:collapse;min-width:760px}th,td{padding:16px 15px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}th{background:var(--sand);font-size:13px;text-transform:uppercase;letter-spacing:.03em}td:first-child{font-weight:800;color:var(--navy);width:24%}tr:last-child td{border-bottom:0}.small{font-size:12px;color:#64788d}.cards{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:24px 0}.card{border:1px solid var(--border);border-radius:24px;padding:23px;background:#fff;box-shadow:0 8px 24px rgba(11,31,58,.04)}.brand{display:flex;align-items:center;gap:12px;margin-bottom:12px}.brandmark{height:46px;min-width:72px;border-radius:14px;background:var(--sand);display:flex;align-items:center;justify-content:center;font-weight:900}.brandmark img{max-height:30px;max-width:110px}.card h3{margin:0;font-size:23px}.card ul{margin-top:12px}.card .btn{margin-top:12px;width:100%}.tag{display:inline-flex;border-radius:999px;background:#F2F6F8;color:#36516b;padding:5px 10px;font-size:12px;font-weight:800;margin:4px 6px 4px 0}.decision{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:22px 0}.decision div{background:var(--sand);border:1px solid var(--border);border-radius:20px;padding:19px}.decision strong{display:block;margin-bottom:6px}.notice{background:#FFF8E9;border:1px solid #F1DFC0;border-radius:20px;padding:18px 20px;margin:25px 0;color:#6E5B35}.cta{background:linear-gradient(135deg,#0B1F3A,#19385D);border-radius:28px;padding:28px;color:#fff;margin:38px 0}.cta h2{color:#fff;margin:0 0 8px}.cta p{color:rgba(255,255,255,.73)}.cta .btn-row{margin-top:17px}details{border:1px solid var(--border);border-radius:18px;padding:16px 18px;margin:12px 0}summary{cursor:pointer;font-weight:900}details p{margin-top:10px}.sources{background:#F8FAFB;border:1px solid #E5EBEF;border-radius:22px;padding:22px;margin-top:30px}.sources ul{margin-bottom:0}.sources a{color:#126C61;font-weight:700}.related{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}.related a{text-decoration:none;border:1px solid var(--border);border-radius:18px;padding:18px;background:#fff;font-weight:900}.related span{display:block;font-weight:500;color:var(--muted);font-size:13px;margin-top:5px}footer{background:var(--navy);color:rgba(255,255,255,.6);padding:36px 5%;font-size:13px}footer a{color:#fff}@media(max-width:860px){.nav-links a:not(.nav-cta){display:none}nav{padding:8px 16px}nav img{height:44px;max-width:205px}.hero-inner,.cards,.decision,.related{grid-template-columns:1fr}.hero{padding:58px 18px 50px}main{padding:40px 18px 70px}.btn-row{display:grid;grid-template-columns:1fr}.btn{width:100%}.hero-card{margin-top:4px}}
+</style>
+</head>
+<body>
+<nav><a href="/" class="brand-logo"><img src="/logo-vl-original-20260528.png" alt="ViajeroLatam"/></a><div class="nav-links"><a href="/seguro-viaje/mejores-seguros-latinoamericanos/">Seguros</a><a href="/seguros/iati/">IATI</a><a href="/seguros/intermundial/">Intermundial</a><a class="nav-cta" href="/resultados/">Comparar ahora</a></div></nav>
+<header class="hero"><div class="hero-inner"><div><div class="eyebrow">Comparativa actualizada · 20 septiembre 2026</div><h1>Intermundial o IATI: ¿qué comparar antes de elegir?</h1><p>Las dos marcas ofrecen seguros de viaje, pero no siempre estás comparando productos equivalentes. Para viajeros de Latinoamérica a España o Europa, la residencia, el destino y el nivel de cobertura cambian mucho el resultado.</p><div class="btn-row"><a href="#comparativa" class="btn btn-primary">Ver comparativa</a><a href="/resultados/" class="btn btn-outline">Comparar para mi viaje</a></div></div><div class="hero-card"><h2>Respuesta corta</h2><p>No elijas solo por marca. Primero confirma qué producto admite tu residencia y destino; después compara asistencia médica, repatriación, equipaje, cancelación y precio final.</p><div class="quick"><span>Residencia</span><span>Destino</span><span>Cobertura médica</span><span>Precio final</span></div><a class="btn btn-dark" href="/resultados/" style="width:100%">Comparar opciones</a></div></div></header>
+<main>
+<p class="lede">Esta página responde a la búsqueda <strong>“Intermundial o IATI”</strong> con una comparación práctica. Las cifras son referencias publicadas por las compañías para productos concretos y pueden cambiar según país, edad, fechas y modalidad.</p>
+<div class="answer"><strong>¿IATI o Intermundial?</strong><p>Para un viajero latinoamericano, empezaría por <strong>elegibilidad</strong>. Intermundial publica <em>go | world</em> para mercados de Sudamérica con hasta 500.000 € de asistencia médica, mientras IATI ofrece distintos planes y la opción disponible debe confirmarse en su cotizador. Si resides en España, la comparación cambia: Intermundial Totaltravel entra en juego junto a IATI Estándar o Estrella.</p></div>
+
+<h2 id="comparativa">IATI vs Intermundial: comparación rápida</h2>
+<div class="table-wrap"><table><thead><tr><th>Qué comparar</th><th>IATI</th><th>Intermundial</th></tr></thead><tbody>
+<tr><td>Producto de referencia para LATAM</td><td>IATI Estándar / Estrella, según cotización y elegibilidad.</td><td>go | world aparece en la propuesta oficial para Sudamérica.</td></tr>
+<tr><td>Asistencia médica</td><td>IATI Estándar publica hasta 1.000.000 €. IATI Estrella publica 1.000.000 € en Europa y cobertura ilimitada en varios ámbitos de Mundo, según condiciones.</td><td>go | world publica hasta 500.000 €. Totaltravel, para otros perfiles/mercados, publica límites superiores según modalidad.</td></tr>
+<tr><td>Equipaje</td><td>Hasta 2.000 € en IATI Estándar y hasta 4.000 € en IATI Estrella.</td><td>go | world publica hasta 2.500 €.</td></tr>
+<tr><td>Cancelación</td><td>Opcional: hasta 3.500 € en IATI Estándar y hasta 10.000 € en IATI Estrella, según condiciones.</td><td>go | world publica cancelación hasta 5.000 €; revisa si está incluida o se configura en tu presupuesto.</td></tr>
+<tr><td>Repatriación</td><td>Incluida según póliza y condiciones del producto.</td><td>Incluida según producto y condiciones; go | schengen publica repatriación ilimitada.</td></tr>
+<tr><td>Asistencia digital</td><td>App IATI y Chat Médico 24/7 en productos publicados.</td><td>Asistencia 24/7 y herramientas digitales; Totaltravel publica telemedicina.</td></tr>
+<tr><td>Precio</td><td>Depende de residencia, destino, duración, edad y modalidad.</td><td>Depende de residencia, destino, duración, edad y modalidad. Puede aplicarse el cupón VIAJEROLATAM según condiciones vigentes.</td></tr>
+</tbody></table></div>
+<p class="small">La tabla no es una cotización ni compara dos pólizas idénticas. Hemos usado cifras publicadas en páginas oficiales vigentes consultadas el 20/09/2026. Comprueba siempre el certificado y las condiciones antes de pagar.</p>
+
+<div class="cards">
+<section class="card"><div class="brand"><div class="brandmark">IATI</div><h3>IATI</h3></div><span class="tag">Estándar</span><span class="tag">Estrella</span><p>Puede encajar si priorizas una combinación de cobertura médica amplia, equipaje y gestión digital. El producto concreto depende de tu viaje y elegibilidad.</p><ul><li>IATI Estándar: hasta 1.000.000 € en gastos médicos.</li><li>IATI Estrella: 1.000.000 € en Europa y cobertura médica publicada como ilimitada en varios ámbitos de Mundo.</li><li>Equipaje: hasta 2.000 € / 4.000 € según las referencias anteriores.</li></ul><a class="btn btn-dark affiliate-iati" href="https://www.iatiseguros.com?r=84208681926165" rel="nofollow sponsored noopener" target="_blank">Consultar IATI →</a><a href="/seguros/iati/" style="display:block;text-align:center;margin-top:12px;font-weight:800;color:#126C61">Ver análisis de IATI</a></section>
+<section class="card"><div class="brand"><div class="brandmark"><img src="/assets/intermundial-logo-oficial.png" alt="Intermundial"/></div><h3>Intermundial</h3></div><span class="tag">go | world</span><span class="tag">Totaltravel</span><p>Para usuarios LATAM, Intermundial publica go | world en su landing de Sudamérica. Si resides en España, la gama Totaltravel es otra referencia a comparar.</p><ul><li>go | world: hasta 500.000 € médicos.</li><li>Equipaje: hasta 2.500 €.</li><li>Cancelación publicada: hasta 5.000 €.</li></ul><a class="btn btn-dark affiliate-intermundial" href="https://www.intermundial.es/afiliados/seguros-de-viaje-recomendado?utm_source=Affiliates&amp;utm_medium=Affiliates&amp;utm_campaign=General&amp;utm_term=kbnnqvpvcy490&amp;utm_content=kbnnqvpvcy490&amp;coupon=VIAJEROLATAM&amp;vl_site=viajerolatam&amp;vl_partner=intermundial&amp;vl_page=intermundial_o_iati&amp;vl_link=1" rel="nofollow sponsored noopener" target="_blank">Consultar Intermundial →</a><div style="text-align:center;margin-top:10px;font-size:13px;font-weight:800">Cupón: VIAJEROLATAM</div><a href="/seguros/intermundial/" style="display:block;text-align:center;margin-top:8px;font-weight:800;color:#126C61">Ver análisis de Intermundial</a></section>
+</div>
+
+<h2>Qué miraría según tu situación</h2>
+<div class="decision"><div><strong>LATAM → España / Schengen</strong><p>Confirmaría primero qué producto admite tu residencia. Después compararía cobertura médica, repatriación y si necesitas certificado para visado o entrada.</p></div><div><strong>LATAM → Estados Unidos</strong><p>Dar prioridad a límites médicos altos suele ser más importante que ahorrar unos pocos euros en prima.</p></div><div><strong>Residente en España → extranjero</strong><p>Compara IATI Estándar/Estrella con la gama Intermundial Totaltravel, usando exactamente las mismas fechas y viajeros.</p></div><div><strong>Viaje ya iniciado</strong><p>No asumas que puedes contratar en destino. Revisa carencias y condiciones específicas de cada producto antes de pagar.</p></div></div>
+
+<h2>Cómo comparar sin equivocarte</h2>
+<ol style="padding-left:22px;color:#4A647E"><li><strong>Usa la misma residencia, destino y fechas</strong> en ambos cotizadores.</li><li><strong>Compara productos equivalentes</strong>: básico con básico, estándar con estándar, premium con premium.</li><li><strong>Mira primero asistencia médica y repatriación</strong>, no solo el precio.</li><li><strong>Comprueba equipaje, cancelación y franquicia</strong> si son importantes para tu viaje.</li><li><strong>Lee exclusiones y preexistencias</strong>, especialmente si tienes una condición médica previa.</li></ol>
+<div class="notice"><strong>Afiliación:</strong> ViajeroLatam puede recibir una comisión si contratas mediante algunos enlaces. Esto no aumenta tu precio y no sustituye la revisión de condiciones oficiales. Consulta <a href="/como-elegimos/">cómo elegimos y comparamos</a>.</div>
+
+<div class="cta"><h2>¿Quieres comparar según tu viaje?</h2><p>Indica origen, destino y fechas para ver opciones antes de salir a las webs de las aseguradoras.</p><div class="btn-row"><a class="btn btn-primary" href="/resultados/">Comparar seguros</a><a class="btn btn-light" href="/comparar-seguros-viaje-colombia-espana/">Colombia → España</a></div></div>
+
+<h2>Preguntas frecuentes</h2>
+<details><summary>¿Intermundial o IATI: cuál conviene más?</summary><p>No existe una respuesta universal. La residencia y el destino pueden cambiar los productos disponibles. Después compara límites médicos, repatriación, equipaje, cancelación y precio final.</p></details>
+<details><summary>¿Cuál tiene más cobertura médica?</summary><p>Depende del producto comparado. Por ejemplo, IATI Estrella publica 1.000.000 € en Europa y cobertura ilimitada en varios ámbitos de Mundo; Intermundial go | world publica hasta 500.000 €. La gama Totaltravel de Intermundial publica límites más altos en otras modalidades. No compares solo la marca: compara la póliza exacta.</p></details>
+<details><summary>¿Puedo contratar desde Latinoamérica?</summary><p>Puede haber opciones, pero la disponibilidad depende del país de residencia y del producto. Intermundial tiene una propuesta específica para Sudamérica; en IATI debes confirmar la opción disponible en el cotizador para tu residencia y viaje.</p></details>
+<details><summary>¿El seguro más barato es suficiente para Schengen?</summary><p>No necesariamente. Si necesitas un seguro para visado Schengen, confirma que cumple los requisitos aplicables y que el certificado refleja territorio, fechas y coberturas. Para turismo sin visado, sigue siendo importante revisar asistencia médica y repatriación.</p></details>
+
+<div class="sources"><h3 style="margin-top:0">Fuentes oficiales revisadas</h3><ul><li><a href="https://www.iatiseguros.com/seguros-viaje/21593/seguro-viaje-iati-estandar/" rel="noopener" target="_blank">IATI Estándar · página oficial</a></li><li><a href="https://www.iatiseguros.com/seguros-viaje/26829/seguro-viaje-iati-estrella/" rel="noopener" target="_blank">IATI Estrella · página oficial</a></li><li><a href="https://www.intermundial.es/landings/seguro-de-viaje-sudamerica" rel="noopener" target="_blank">Intermundial go | world / go | schengen · landing Sudamérica</a></li><li><a href="https://www.intermundial.es/seguros-de-viaje/seguro-totaltravel" rel="noopener" target="_blank">Intermundial Totaltravel · página oficial</a></li></ul></div>
+
+<h2>También puede interesarte</h2><div class="related"><a href="/seguro-viaje/mejores-seguros-latinoamericanos/">Seguros para latinoamericanos<span>Comparativa más amplia por residencia y destino.</span></a><a href="/seguro-viaje/enfermedades-preexistentes/">Enfermedades preexistentes<span>Qué revisar en urgencias y exclusiones.</span></a><a href="/seguro-viaje/schengen-barato/">Seguro Schengen barato<span>Cómo comparar precio sin perder coberturas esenciales.</span></a></div>
+</main>
+<footer>© ViajeroLatam. Comparador independiente para viajeros latinoamericanos. · <a href="/como-elegimos/">Cómo elegimos</a> · <a href="/privacidad/">Privacidad</a></footer>
+<script>document.addEventListener('click',function(e){var a=e.target.closest('a');if(!a||typeof gtag!=='function')return;var href=a.getAttribute('href')||'';if(a.classList.contains('affiliate-iati')||href.indexOf('iatiseguros.com')!==-1)gtag('event','click_affiliate_iati',{event_category:'affiliate',event_label:href,page_location:location.href,link_text:(a.textContent||'').trim()});if(a.classList.contains('affiliate-intermundial')||href.indexOf('intermundial.es/afiliados')!==-1)gtag('event','click_affiliate_intermundial',{event_category:'affiliate',event_label:href,page_location:location.href,link_text:(a.textContent||'').trim()});});</script>
+</body></html>
