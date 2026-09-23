@@ -180,6 +180,22 @@ footer{background:var(--navy);color:rgba(255,255,255,.72);padding:34px 5%;margin
   .mobile-sticky .btn{width:100%;box-shadow:0 16px 40px rgba(0,196,161,.35)}
 }
 </style>
+
+<style id="mexico-layout-fix">
+main{align-items:start;}
+main > article{grid-column:1;grid-row:1;min-width:0;}
+main > aside{grid-column:2;grid-row:1;min-width:0;align-self:stretch;}
+main > .vl-intent-links{grid-column:1 / -1;width:100%;max-width:none!important;margin:0!important;}
+.updated-date{font-size:13px;margin:0 0 16px;color:var(--muted);}
+main article h2{font-size:clamp(28px,2.5vw,36px);line-height:1.18;}
+.hero-price{font-size:36px;line-height:1.15;}
+.hero-card .mxn{font-size:17px;line-height:1.45;}
+@media(max-width:900px){
+main > article,main > aside{grid-column:auto;grid-row:auto;}
+main > aside{margin-top:22px;}
+main > .vl-intent-links{margin-top:22px!important;}
+}
+</style>
 </head>
 <body>
 <nav>
@@ -221,8 +237,8 @@ footer{background:var(--navy);color:rgba(255,255,255,.72);padding:34px 5%;margin
 </header>
 
 <main>
-<p>Contenido actualizado: 23 de septiembre de 2026.</p>
 <article>
+<p class="updated-date">Contenido actualizado: 23 de septiembre de 2026.</p>
 <section class="answer-box">
 <div class="kicker">Respuesta rápida</div>
 <h2>¿Qué seguro necesito para viajar de México a España?</h2>
