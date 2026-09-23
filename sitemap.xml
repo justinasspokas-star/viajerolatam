@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://viajerolatam.com/</loc><lastmod>2026-09-07</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://viajerolatam.com/blog/</loc><lastmod>2026-09-10</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://viajerolatam.com/blog/</loc><lastmod>2026-09-23</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://viajerolatam.com/visa-schengen/</loc><lastmod>2026-09-09</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://viajerolatam.com/blog/cuanto-cuesta-seguro-viaje-colombia-espana/</loc><lastmod>2026-09-20</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
   <url><loc>https://viajerolatam.com/blog/etias-colombianos/</loc><lastmod>2026-07-29</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
@@ -86,12 +86,12 @@
   <url><loc>https://viajerolatam.com/blog/requisitos-viajar-espana-desde-venezuela/</loc><lastmod>2026-07-26</lastmod><changefreq>weekly</changefreq><priority>0.76</priority></url>
   <url><loc>https://viajerolatam.com/blog/seguro-schengen-venezolanos/</loc><lastmod>2026-07-26</lastmod><changefreq>weekly</changefreq><priority>0.76</priority></url>
   <url><loc>https://viajerolatam.com/blog/cuando-volar-argentina-espana-barato/</loc><lastmod>2026-07-26</lastmod><changefreq>weekly</changefreq><priority>0.76</priority></url>
-  <url><loc>https://viajerolatam.com/seguro-viaje/mexico-a-espana/</loc><lastmod>2026-08-05</lastmod><changefreq>weekly</changefreq><priority>0.82</priority></url>
+  <url><loc>https://viajerolatam.com/seguro-viaje/mexico-a-espana/</loc><lastmod>2026-09-23</lastmod><changefreq>weekly</changefreq><priority>0.82</priority></url>
   <url><loc>https://viajerolatam.com/seguro-viaje/argentina-a-espana/</loc><lastmod>2026-07-28</lastmod><changefreq>weekly</changefreq><priority>0.83</priority></url>
 
   <url>
     <loc>https://viajerolatam.com/blog/cuanto-cuesta-seguro-viaje-mexico-espana/</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-09-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
@@ -147,4 +147,5 @@
   <url><loc>https://viajerolatam.com/blog/seguro-viaje-perdida-equipaje/</loc><lastmod>2026-09-15</lastmod><changefreq>monthly</changefreq><priority>0.80</priority></url>
   <url><loc>https://viajerolatam.com/blog/seguro-viaje-cubre-medicamentos/</loc><lastmod>2026-09-15</lastmod><changefreq>monthly</changefreq><priority>0.80</priority></url>
   <url><loc>https://viajerolatam.com/comparativas/intermundial-o-iati/</loc><lastmod>2026-09-20</lastmod><changefreq>monthly</changefreq><priority>0.88</priority></url>
+<url><loc>https://viajerolatam.com/blog/seguro-viaje-europa-desde-mexico/</loc><lastmod>2026-09-23</lastmod></url>
 </urlset>
