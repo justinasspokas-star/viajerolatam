@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+
+<html lang="es-UY">
+<head>
+<script id="vl-consent-bootstrap">
+window.dataLayer=window.dataLayer||[];
+window.gtag=window.gtag||function(){window.dataLayer.push(arguments);};
+(function(){
+  var analytics='denied';
+  var marketing='denied';
+  try{
+    var raw=localStorage.getItem('vl_cookie_consent_v1');
+    if(raw){
+      var saved=JSON.parse(raw);
+      if(saved&&saved.version===1&&saved.expiresAt>Date.now()){
+        analytics=saved.analytics?'granted':'denied';
+        marketing=saved.marketing?'granted':'denied';
+      }else{
+        localStorage.removeItem('vl_cookie_consent_v1');
+      }
+    }
+  }catch(error){}
+  gtag('consent','default',{
+    analytics_storage:analytics,
+    ad_storage:marketing,
+    ad_user_data:marketing,
+    ad_personalization:marketing,
+    wait_for_update:500
+  });
+})();
+</script>
+<link href="/assets/vl-cookie-consent.css" rel="stylesheet"/>
+<script defer="" src="/assets/vl-cookie-consent.js"></script>
+<link as="image" href="/hero-bg.webp" rel="preload" type="image/webp"/>
+<meta charset="utf-8"/>
+<meta content="fnxi-_Liw22SOQakruhikIUAjmf3u6mdT79inMc9x9A" name="google-site-verification"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<!-- Favicon / browser tab icon -->
+<link href="/favicon.ico" rel="icon" sizes="any">
+<link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png"/>
+<link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/>
+<link href="/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
+<link href="/site.webmanifest" rel="manifest"/>
+<meta content="#0B1F3A" name="theme-color"/>
+<title>Requisitos para viajar a España desde Uruguay 2026 | ETIAS y seguro</title>
+<meta content="Requisitos para viajar de Uruguay a España en 2026: pasaporte, 90/180 días, medios económicos, alojamiento, billete de salida, EES, ETIAS y seguro." name="description"/>
+<meta content="index, follow" name="robots"/>
+<link href="https://viajerolatam.com/blog/requisitos-viajar-espana-desde-uruguay/" rel="canonical"/>
+<meta content="article" property="og:type"/>
+<meta content="Requisitos para viajar a España desde Uruguay 2026 | ETIAS y seguro" property="og:title"/>
+<meta content="Requisitos para viajar de Uruguay a España en 2026: pasaporte, 90/180 días, medios económicos, alojamiento, billete de salida, EES, ETIAS y seguro." property="og:description"/>
+<meta content="https://viajerolatam.com/blog/requisitos-viajar-espana-desde-uruguay/" property="og:url"/>
+<meta content="https://viajerolatam.com/og-mochila-viajerolatam.png?v=2" property="og:image"/>
+<meta content="ViajeroLatam" property="og:site_name"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-P1Q2TSMVNJ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-P1Q2TSMVNJ');</script>
+<script id="vl-ga4-affiliate-normalizer">
+(function(){
+  if (window.vlGa4AffiliateNormalizerInstalled) return;
+  window.vlGa4AffiliateNormalizerInstalled = true;
+
+  function getClickId(){
+    try {
+      var key = 'vl_affiliate_click_id';
+      var id = sessionStorage.getItem(key);
+      if (!id) {
+        id = 'vl_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 10);
+        sessionStorage.setItem(key, id);
+      }
+      return id;
+    } catch(e) {
+      return 'vl_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 10);
+    }
+  }
+
+  function cleanPartner(partner){
+    return String(partner || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9_]+/g, '_')
+      .replace(/^_+|_+$/g, '');
+  }
+
+  function partnerFromEvent(eventName, params){
+    var partner = '';
+    if (eventName.indexOf('click_affiliate_') === 0) {
+      partner = eventName.replace('click_affiliate_', '');
+    }
+    if (!partner && params && params.affiliate_partner) partner = params.affiliate_partner;
+    return cleanPartner(partner || 'unknown');
+  }
+
+  function install(){
+    if (typeof window.gtag !== 'function') {
+      window.setTimeout(install, 50);
+      return;
+    }
+    if (window.gtag.vlAffiliateNormalized) return;
+
+    var originalGtag = window.gtag;
+    function normalizedGtag(){
+      var args = Array.prototype.slice.call(arguments);
+
+      if (args[0] === 'event' && typeof args[1] === 'string') {
+        var originalEventName = args[1];
+        var eventName = originalEventName.toLowerCase();
+
+        if (eventName !== originalEventName) {
+          args[1] = eventName;
+        }
+
+        if (eventName.indexOf('click_affiliate_') === 0) {
+          var params = args[2] && typeof args[2] === 'object' ? args[2] : {};
+          var partner = partnerFromEvent(eventName, params);
+          var clickId = params.affiliate_click_id || getClickId();
+
+          params.event_category = params.event_category || 'affiliate';
+          params.affiliate_partner = partner;
+          params.affiliate_click_id = clickId;
+          params.page_path = window.location.pathname;
+          params.page_location = params.page_location || window.location.href;
+          params.outbound_url = params.outbound_url || params.event_label || params.link_url || '';
+          params.link_text = params.link_text || '';
+
+          args[2] = params;
+
+          originalGtag.apply(window, args);
+
+          originalGtag('event', 'affiliate_outbound_click', {
+            event_category: 'affiliate',
+            affiliate_partner: partner,
+            affiliate_click_id: clickId,
+            source_event: eventName,
+            outbound_url: params.outbound_url,
+            page_path: window.location.pathname,
+            page_location: window.location.href
+          });
+          return;
+        }
+      }
+
+      return originalGtag.apply(window, args);
+    }
+
+    normalizedGtag.vlAffiliateNormalized = true;
+    window.gtag = normalizedGtag;
+  }
+
+  install();
+})();
+</script>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{max-width:100%;overflow-x:hidden}
+:root{--navy:#0B1F3A;--teal:#00C4A1;--mint:#75D8BC;--sand:#F5F0E8;--border:#EAE3D5;--muted:#4A647E;--display:'DM Serif Display',Georgia,serif;--body:'Plus Jakarta Sans',Arial,sans-serif}
+body{font-family:var(--body);color:var(--navy);background:#fff;line-height:1.75}
+nav{position:sticky;top:0;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:10px 5%;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+nav img{height:58px;width:auto;display:block;object-fit:contain}.nav-links{display:flex;gap:22px;align-items:center}.nav-links a{text-decoration:none;color:var(--muted);font-weight:800;font-size:14px}.nav-cta{background:var(--navy);color:#fff!important;padding:10px 18px;border-radius:999px}
+.hero{background:url('/hero-bg.jpg') center center/cover no-repeat;color:#fff;padding:76px 5% 66px;position:relative;overflow:hidden}.hero:before{content:"";position:absolute;inset:0;background:rgba(5,12,40,.68)}.hero-inner{position:relative;max-width:1060px;margin:0 auto}.eyebrow{display:inline-flex;background:rgba(117,216,188,.12);border:1px solid rgba(117,216,188,.28);color:var(--mint);border-radius:999px;padding:7px 15px;font-size:13px;font-weight:900;margin-bottom:18px}h1{font-family:var(--display);font-size:clamp(38px,5.7vw,68px);line-height:1.05;margin-bottom:18px;max-width:900px}h1 em{font-style:italic;color:var(--mint)}.hero p{color:rgba(255,255,255,.78);font-size:18px;max-width:790px;margin-bottom:22px}.btn-row{display:flex;gap:12px;flex-wrap:wrap}.btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 20px;border-radius:999px;text-decoration:none!important;font-weight:900}.btn-primary{background:var(--teal);color:var(--navy)!important}.btn-secondary{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.24);color:#fff!important}.btn-dark{background:var(--navy);color:#fff!important}
+main{padding:58px 5%}.wrap{max-width:1060px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) 310px;gap:34px;align-items:start}article{min-width:0}article h2{font-family:var(--display);font-size:clamp(30px,4vw,46px);line-height:1.15;margin:42px 0 14px;color:var(--navy)}article h3{font-size:23px;line-height:1.25;margin:26px 0 10px;color:var(--navy)}article p{color:var(--muted);margin-bottom:16px}article ul, article ol{color:var(--muted);margin:12px 0 18px;padding-left:22px}article li{margin:8px 0}
+.answer-box,.note,.source-box{background:var(--sand);border:1px solid var(--border);border-radius:24px;padding:24px;margin:28px 0}.note{background:rgba(0,196,161,.08);border-left:4px solid var(--teal)}.source-box a{color:var(--navy);font-weight:800}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:22px 0}.card{background:#fff;border:1px solid var(--border);border-radius:20px;padding:18px}.card strong{display:block;color:var(--navy);margin-bottom:6px}.cta-card{background:linear-gradient(135deg,var(--navy),#17365A);color:#fff;border-radius:26px;padding:26px;margin:34px 0}.cta-card h2,.cta-card h3{color:#fff;margin-top:0}.cta-card p{color:rgba(255,255,255,.74)}.cta-card .btn-secondary{background:rgba(255,255,255,.08)}
+.table{display:grid;grid-template-columns:1.1fr 1.3fr 1.3fr;border:1px solid var(--border);border-radius:22px;overflow:hidden;margin:24px 0}.table div{padding:14px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);color:var(--muted);font-size:14px}.table .th{background:var(--navy);color:#fff;font-weight:900}.table div:nth-child(3n){border-right:0}
+aside{position:sticky;top:92px}.side-card{background:var(--sand);border:1px solid var(--border);border-radius:24px;padding:22px;margin-bottom:18px}.side-card h3{font-size:20px;margin-bottom:10px}.side-card p{color:var(--muted);font-size:14px;margin-bottom:12px}.side-card .btn{width:100%;margin-top:8px}
+.related{margin:30px 0;padding:18px 20px;border-radius:20px;background:var(--sand);border:1px solid var(--border)}.related strong{display:block;color:var(--navy);margin-bottom:8px}.related .links{display:flex;flex-wrap:wrap;gap:10px}.related a{color:var(--navy)!important;font-weight:900;text-decoration:underline}
+.site-footer{background:var(--navy);color:rgba(255,255,255,.72);padding:34px 5% 24px;margin-top:44px}.site-footer .footer-inner{max-width:1060px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap}.site-footer .footer-brand{max-width:520px}.site-footer p{margin:0;color:rgba(255,255,255,.72)}.site-footer .disclosure{margin-top:8px;font-size:12px;color:rgba(255,255,255,.58)}.site-footer .footer-links{display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center}.site-footer .footer-links a,.site-footer a{color:#fff;text-decoration:none;font-weight:700;font-size:14px}
+.mobile-affiliate-bar{position:fixed;left:12px;right:12px;bottom:12px;z-index:999;display:none;gap:8px;padding:9px;border-radius:999px;background:rgba(11,31,58,.94);box-shadow:0 18px 45px rgba(0,0,0,.24);backdrop-filter:blur(12px)}.mobile-affiliate-bar a{flex:1;display:inline-flex;align-items:center;justify-content:center;min-height:42px;border-radius:999px;text-decoration:none!important;font-weight:900;font-size:13px}.ma-primary{background:var(--teal);color:var(--navy)!important}.ma-secondary{background:#fff;color:var(--navy)!important}
+@media(max-width:860px){.nav-links a:not(.nav-cta){display:none}nav{padding:8px 16px;min-height:68px}nav img{height:44px;max-width:205px}.nav-cta{font-size:13px;padding:10px 14px}.hero{padding:56px 16px 42px;text-align:center}.hero p{font-size:15px}.wrap{grid-template-columns:1fr;gap:18px}main{padding:34px 16px}aside{display:none}.grid{grid-template-columns:1fr}.table{grid-template-columns:1fr}.table .th{display:none}.table div{border-right:0}.btn-row{display:grid;grid-template-columns:1fr}.btn{width:100%;padding:12px 16px}.related .links{display:grid;grid-template-columns:1fr}.related a{text-decoration:none!important;padding:10px 12px;border-radius:12px;background:#fff;border:1px solid var(--border);display:flex;width:100%}.site-footer{padding:24px 16px 96px}.site-footer .footer-inner{display:grid;grid-template-columns:1fr;gap:14px}.site-footer .footer-links{display:grid;grid-template-columns:1fr 1fr;gap:10px}.site-footer .footer-links a{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);padding:10px 12px;border-radius:12px;text-align:center}body{padding-bottom:74px}.mobile-affiliate-bar{display:flex}}
+@media(max-width:480px){h1{font-size:33px}.site-footer .footer-links{grid-template-columns:1fr}.mobile-affiliate-bar a{font-size:12px}}
+</style>
+<style id="vl-single-compare-cta-style">
+
+/* Mobile sticky CTA — one clean compare button */
+.mobile-affiliate-bar.single-compare-cta,
+.mobile-affiliate-bar.vl-single-compare-cta{
+  background:rgba(255,255,255,.96)!important;
+  border:1px solid #E4EDF5!important;
+  border-radius:22px!important;
+  padding:10px 12px 9px!important;
+  flex-direction:column!important;
+  gap:6px!important;
+  box-shadow:0 16px 45px rgba(11,31,58,.18)!important;
+}
+.mobile-affiliate-bar.single-compare-cta .ma-big,
+.mobile-affiliate-bar.vl-single-compare-cta .ma-big{
+  width:100%!important;
+  min-height:52px!important;
+  border-radius:999px!important;
+  background:#69C7AD!important;
+  color:#0B1F3A!important;
+  font-size:15px!important;
+  font-weight:900!important;
+  box-shadow:0 10px 22px rgba(0,196,161,.24)!important;
+}
+.mobile-affiliate-bar.single-compare-cta span,
+.mobile-affiliate-bar.vl-single-compare-cta span{
+  display:block;
+  text-align:center;
+  font-size:11px;
+  line-height:1.25;
+  color:#8FA4B8;
+  font-weight:600;
+}
+@media(max-width:480px){
+  .mobile-affiliate-bar.single-compare-cta .ma-big,
+  .mobile-affiliate-bar.vl-single-compare-cta .ma-big{font-size:14px!important}
+  .mobile-affiliate-bar.single-compare-cta span,
+  .mobile-affiliate-bar.vl-single-compare-cta span{font-size:10.5px}
+}
+
+</style>
+</link><meta content="Requisitos para viajar a España desde Uruguay 2026 | ETIAS y seguro" name="twitter:title"/><meta content="Requisitos para viajar de Uruguay a España en 2026: pasaporte, 90/180 días, medios económicos, alojamiento, billete de salida, EES, ETIAS y seguro." name="twitter:description"/><meta content="https://viajerolatam.com/og-mochila-viajerolatam.png?v=2" name="twitter:image"/><meta content="Icono de ViajeroLatam con mochila viajera" property="og:image:alt"/><link href="https://viajerolatam.com/blog/requisitos-viajar-espana-desde-uruguay/" hreflang="es-UY" rel="alternate"/><link href="https://viajerolatam.com/blog/requisitos-viajar-espana-desde-uruguay/" hreflang="x-default" rel="alternate"/><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"Requisitos para viajar a España desde Uruguay","description":"Requisitos para viajar de Uruguay a España en 2026: pasaporte, 90/180 días, medios económicos, alojamiento, billete de salida, EES, ETIAS y seguro.","inLanguage":"es-UY","datePublished":"2026-09-26","dateModified":"2026-09-26","author":{"@type":"Organization","name":"ViajeroLatam","url":"https://viajerolatam.com/sobre-nosotros/"},"publisher":{"@type":"Organization","name":"ViajeroLatam","logo":{"@type":"ImageObject","url":"https://viajerolatam.com/logo-vl-original-20260528.png"}},"mainEntityOfPage":"https://viajerolatam.com/blog/requisitos-viajar-espana-desde-uruguay/","image":"https://viajerolatam.com/og-viajerolatam-seguros.jpg"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://viajerolatam.com/"},{"@type":"ListItem","position":2,"name":"Artículos","item":"https://viajerolatam.com/blog/"},{"@type":"ListItem","position":3,"name":"Requisitos Uruguay a España","item":"https://viajerolatam.com/blog/requisitos-viajar-espana-desde-uruguay/"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Los uruguayos necesitan visa para España?","acceptedAnswer":{"@type":"Answer","text":"Para turismo y otras estancias cortas de hasta 90 días en cualquier período de 180 días, los nacionales uruguayos están exentos de visado Schengen en condiciones generales."}},{"@type":"Question","name":"¿Cuánta vigencia debe tener el pasaporte?","acceptedAnswer":{"@type":"Answer","text":"España exige que el documento de viaje sea válido al menos tres meses después de la salida prevista de Schengen y que haya sido expedido dentro de los diez años anteriores."}},{"@type":"Question","name":"¿Cuánto dinero hay que demostrar para entrar en España en 2026?","acceptedAnswer":{"@type":"Answer","text":"El Ministerio del Interior publica 121,10 euros por persona y día, con un mínimo de 1.098,90 euros por persona, con efectos desde el 1 de enero de 2026. Debe revisarse antes del viaje porque puede cambiar."}},{"@type":"Question","name":"¿El seguro médico es obligatorio para un uruguayo exento de visado?","acceptedAnswer":{"@type":"Answer","text":"No debe confundirse con el seguro obligatorio de una solicitud de visado Schengen. La Delegación de la UE en Uruguay indica que los funcionarios de frontera pueden pedir documentación de apoyo, incluido un seguro médico, por lo que es recomendable llevar cobertura adecuada."}},{"@type":"Question","name":"¿ETIAS ya funciona?","acceptedAnswer":{"@type":"Answer","text":"A 26 de septiembre de 2026, la Comisión Europea situaba el inicio de ETIAS en el último trimestre de 2026 y todavía no había comunicado la fecha exacta."}},{"@type":"Question","name":"¿EES ya está activo?","acceptedAnswer":{"@type":"Answer","text":"Sí. La Comisión Europea informó que EES está plenamente operativo en los países Schengen desde el 10 de abril de 2026."}}]}]}</script></head>
+<body>
+<nav><a class="brand" href="/"><img alt="ViajeroLatam" src="/logo-vl-original-20260528.png"/></a><div class="nav-links"><a href="/">Inicio</a><a href="/seguro-viaje/uruguay-a-espana/">Uruguay a España</a><a href="/visa-schengen/">Visa Schengen</a><a class="nav-cta" href="/resultados/?origen=uruguay&amp;destino=espana-schengen">Comparar ahora</a></div></nav>
+<header class="hero"><div class="hero-inner"><div class="eyebrow">Guía actualizada · 26 de septiembre de 2026</div><h1>Requisitos para viajar a España desde <em>Uruguay</em></h1><p>Pasaporte, duración permitida, alojamiento, billete de salida, medios económicos, EES, ETIAS y seguro de viaje para turistas uruguayos.</p><div class="btn-row"><a class="btn btn-primary" href="/seguro-viaje/uruguay-a-espana/">Seguro Uruguay → España</a><a class="btn btn-secondary" href="/resultados/?origen=uruguay&amp;destino=espana-schengen">Comparar opciones</a></div></div></header>
+<main><div class="wrap"><article><p class="updated-date">Revisado el 26 de septiembre de 2026</p>
+<div class="answer-box"><p><strong>Respuesta rápida:</strong> para un viaje turístico corto con pasaporte uruguayo, prepara un pasaporte válido, billete de regreso o salida, prueba de alojamiento, medios económicos y documentación coherente con el motivo del viaje. Uruguay está exento de visado Schengen para estancias de hasta 90 días en 180. EES ya está operativo y ETIAS será un requisito adicional cuando entre en funcionamiento.</p></div>
+<h2>Requisitos principales para viajar de Uruguay a España</h2><div class="grid"><div class="card"><strong>Pasaporte válido</strong><p>Debe ser válido al menos tres meses después de la salida prevista de Schengen y haber sido expedido dentro de los diez años anteriores.</p></div><div class="card"><strong>Billete de salida</strong><p>España puede exigir un billete nominativo de regreso o continuación del viaje.</p></div><div class="card"><strong>Alojamiento</strong><p>Guarda reservas de hotel o la documentación correspondiente si te alojas con familiares o amigos.</p></div><div class="card"><strong>Medios económicos</strong><p>Debes poder acreditar fondos suficientes para tu estancia si te los solicitan en frontera.</p></div></div>
+<h2>¿Los uruguayos necesitan visa para España?</h2><p>No para turismo y otras estancias cortas en condiciones generales: los ciudadanos uruguayos están exentos del visado Schengen para estancias de hasta <strong>90 días dentro de cualquier período de 180 días</strong>.</p><p>Esta exención no garantiza la entrada automática. Debes cumplir las condiciones de entrada y poder justificar el motivo y duración del viaje.</p>
+<h2>Pasaporte: vigencia que exige España</h2><p>El Ministerio del Interior de España establece que el documento de viaje debe tener una validez mínima de tres meses posteriores a la fecha prevista de salida del territorio Schengen y haber sido expedido dentro de los diez años anteriores a la fecha de entrada.</p>
+<h2>Medios económicos para España en 2026</h2><p>Con efectos desde el 1 de enero de 2026, España publica una cantidad mínima de <strong>121,10 € por persona y día</strong>, con un mínimo de <strong>1.098,90 € por persona</strong>, independientemente de la duración prevista. Si viajan personas a tu cargo, el cálculo se aplica según las reglas oficiales.</p><p class="note">Las cantidades pueden actualizarse. Comprueba el Ministerio del Interior antes de viajar.</p>
+<h2>Alojamiento y billete de regreso</h2><p>Si te lo solicitan, debes poder justificar dónde te alojarás y cómo saldrás de España o del espacio Schengen dentro del plazo permitido. Lleva las reservas o documentos accesibles en el teléfono y, si puedes, una copia offline.</p>
+<h2>EES y ETIAS para viajeros uruguayos</h2><p><strong>EES:</strong> la Comisión Europea informa que el sistema de entradas y salidas está plenamente operativo en los países Schengen desde el 10 de abril de 2026. Registra electrónicamente las entradas y salidas de viajeros de terceros países en estancias cortas.</p><p><strong>ETIAS:</strong> Uruguay figura entre los países exentos de visado cuyos nacionales deberán solicitar esta autorización cuando sea operativa. A 26 de septiembre de 2026, la UE situaba su inicio en el último trimestre de 2026 y todavía no había anunciado la fecha exacta. Revisa la web oficial inmediatamente antes de viajar.</p>
+<h2>Seguro de viaje para uruguayos</h2><p>Para un turista uruguayo exento de visado, el seguro no debe describirse como el mismo requisito obligatorio que se exige a quien solicita un visado Schengen. Sin embargo, la Delegación de la UE en Uruguay indica que los funcionarios de frontera pueden solicitar documentación de apoyo, como un seguro médico.</p><p>Además de la parte migratoria, una póliza puede protegerte frente a urgencias médicas, hospitalización, repatriación, equipaje o demoras, según el producto contratado.</p><div class="cta-card"><h2>Compara antes de contratar</h2><p>Revisa opciones para Uruguay → España y confirma residencia admitida, límite médico, repatriación, franquicia y precio final.</p><div class="btn-row"><a class="btn btn-primary" href="/resultados/?origen=uruguay&amp;destino=espana-schengen">Comparar Uruguay → España</a><a class="btn btn-secondary" href="/seguro-viaje/uruguay-a-espana/">Ver guía completa</a></div></div>
+<h2>Checklist antes de salir de Uruguay</h2><ol><li>Comprueba vigencia y fecha de expedición del pasaporte.</li><li>Calcula tus días dentro de Schengen: máximo 90 en cualquier período de 180.</li><li>Guarda billete de regreso o continuación.</li><li>Prepara reserva de alojamiento o documentación equivalente.</li><li>Comprueba los medios económicos vigentes exigidos por España.</li><li>Revisa si ETIAS ya está operativo en la fecha de tu viaje.</li><li>Guarda tu póliza de viaje y teléfonos de asistencia si contratas seguro.</li></ol>
+<h2>Preguntas frecuentes</h2><h3>¿Los uruguayos necesitan visa para España?</h3><p>Para turismo y otras estancias cortas de hasta 90 días en cualquier período de 180 días, los nacionales uruguayos están exentos de visado Schengen en condiciones generales.</p><h3>¿Cuánta vigencia debe tener el pasaporte?</h3><p>España exige que el documento de viaje sea válido al menos tres meses después de la salida prevista de Schengen y que haya sido expedido dentro de los diez años anteriores.</p><h3>¿Cuánto dinero hay que demostrar para entrar en España en 2026?</h3><p>El Ministerio del Interior publica 121,10 euros por persona y día, con un mínimo de 1.098,90 euros por persona, con efectos desde el 1 de enero de 2026. Debe revisarse antes del viaje porque puede cambiar.</p><h3>¿El seguro médico es obligatorio para un uruguayo exento de visado?</h3><p>No debe confundirse con el seguro obligatorio de una solicitud de visado Schengen. La Delegación de la UE en Uruguay indica que los funcionarios de frontera pueden pedir documentación de apoyo, incluido un seguro médico, por lo que es recomendable llevar cobertura adecuada.</p><h3>¿ETIAS ya funciona?</h3><p>A 26 de septiembre de 2026, la Comisión Europea situaba el inicio de ETIAS en el último trimestre de 2026 y todavía no había comunicado la fecha exacta.</p><h3>¿EES ya está activo?</h3><p>Sí. La Comisión Europea informó que EES está plenamente operativo en los países Schengen desde el 10 de abril de 2026.</p>
+<div class="related"><strong>Guías relacionadas:</strong><div class="links"><a href="/seguro-viaje/uruguay-a-espana/">Seguro de viaje Uruguay a España</a><a href="/blog/cuanto-cuesta-seguro-viaje-uruguay-espana/">Cuánto cuesta el seguro</a><a href="/visa-schengen/">Visa Schengen y ETIAS</a><a href="/seguro-viaje/schengen-barato/">Comparar seguro Schengen</a></div></div>
+<div class="source-box"><strong>Fuentes oficiales:</strong><ul><li><a href="https://www.eeas.europa.eu/uruguay/viajar-y-estudiar_es" rel="noopener" target="_blank">Delegación de la Unión Europea en Uruguay</a></li><li><a href="https://www.interior.gob.es/opencms/es/servicios-al-ciudadano/tramites-y-gestiones/extranjeria/regimen-general/entrada-requisitos-y-condiciones" rel="noopener" target="_blank">Ministerio del Interior de España: entrada y medios económicos</a></li><li><a href="https://travel-europe.europa.eu/es/etias/about-etias/who-should-apply" rel="noopener" target="_blank">ETIAS: quién deberá solicitarlo</a></li><li><a href="https://home-affairs.ec.europa.eu/news/main-differences-between-ees-and-etias-what-travellers-need-know-2026-04-28_en" rel="noopener" target="_blank">Comisión Europea: diferencias entre EES y ETIAS</a></li></ul></div>
+</article><aside><div class="side-card"><h3>Uruguay → España</h3><p>Guía de seguros y requisitos para tu viaje.</p><a class="btn btn-primary" href="/seguro-viaje/uruguay-a-espana/">Ver guía Uruguay</a></div><div class="side-card"><h3>Comparar seguros</h3><p>Abre resultados con Uruguay como origen.</p><a class="btn btn-primary" href="/resultados/?origen=uruguay&amp;destino=espana-schengen">Ver opciones</a></div></aside></div></main>
+<footer class="site-footer"><div class="footer-inner"><div class="footer-brand"><p><strong>© ViajeroLatam</strong> · Comparador independiente para viajeros latinoamericanos.</p><p class="disclosure">Podemos recibir una comisión si contratas desde nuestros enlaces afiliados, sin coste adicional para ti.</p></div><div class="footer-links"><a href="/">Inicio</a><a href="/seguro-viaje/uruguay-a-espana/">Uruguay a España</a><a href="/visa-schengen/">Visa Schengen</a><a href="/blog/">Artículos</a><a href="/contacto/">Contacto</a><a href="/resultados/?origen=uruguay&amp;destino=espana-schengen">Comparar seguros →</a></div></div></footer>
+<div aria-label="Comparar seguros gratis" class="mobile-affiliate-bar vl-single-compare-cta"><a class="ma-primary ma-big" href="/resultados/?origen=uruguay&amp;destino=espana-schengen">🔍 Comparar seguros gratis</a><span>Uruguay → España · Compara opciones</span></div>
+<script>document.addEventListener('click',function(e){var link=e.target.closest('a');if(!link||typeof gtag!=='function')return;var href=link.getAttribute('href')||'';if(href.indexOf('/resultados/')!==-1){gtag('event','click_comparar_uruguay_requisitos',{event_category:'lead',event_label:href,page_location:window.location.href});gtag('event','click_comparar_seguros_gratis',{event_category:'lead',event_label:'uruguay_requisitos_blog',page_location:window.location.href});}});</script>
+</body></html>
