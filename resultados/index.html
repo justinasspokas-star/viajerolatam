@@ -1806,8 +1806,13 @@ const FIXED_ORIENTATIVE_RATES = Object.freeze({
   intermundial: 1.85,
   holins: 1.36,
   axa: 1.48,
-  assist365: 1.60
+  assist365: 2.46
 });
+
+const ASSIST365_LATAM_ORIGINS = Object.freeze([
+  'co','mx','ar','ve','pe','cl','ec','bo','br','uy',
+  'py','cr','pa','gt','sv','hn','ni','cu','ht','do'
+]);
 
 // Referencias comprobadas manualmente para rutas concretas a España/Schengen.
 // Se muestran como importes aproximados "desde" y pueden variar en el cotizador final.
@@ -1861,6 +1866,8 @@ function fixedOrientativeRate(key){
   if(routeOverride!==null) return routeOverride;
   const origin = normalizedOrigin();
   const dest = normalizedDest();
+  // Assist 365: referencia editorial actual para salidas desde LATAM hacia España/Europa.
+  if(key === 'assist365' && ASSIST365_LATAM_ORIGINS.includes(origin) && dest === 'europe') return 2.46;
   // Intermundial: go | schengen para no residentes que viajan a España/Schengen,
   // go | world para otros destinos y Totaltravel para residentes en España.
   // Referencias públicas; no son cotizaciones.
@@ -1986,11 +1993,10 @@ function providerVisible(d){
   // Para LATAM → España (y otros orígenes fuera de España) se oculta por completo
   // hasta disponer de confirmación contractual de una modalidad compatible.
   if(d && d.key==='holins' && normalizedOrigin()!=='es') return false;
-  // Assist 365 Europe Care Base: mostramos solo las residencias que Assist 365
-  // confirmó por escrito el 14/09/2026 para viajes a España/Schengen.
+  // Assist 365 Europe Care Base: mostrar para todos los orígenes LATAM del comparador
+  // cuando el destino es España/Schengen o Europa.
   if(d && d.key==='assist365'){
-    const confirmedOrigins=['co','ve','ec','bo','cu','ht','do'];
-    return confirmedOrigins.includes(normalizedOrigin()) && normalizedDest()==='europe';
+    return ASSIST365_LATAM_ORIGINS.includes(normalizedOrigin()) && normalizedDest()==='europe';
   }
   return true;
 }
@@ -2017,10 +2023,9 @@ function providerProfile(d){
     return {plan:'Holins',eligible:false,eligibility:'No mostramos Holins como opción contratable cuando el origen/residencia de referencia está fuera de España',medica:'No aplicable',repatriacion:'No aplicable',franquicia:'No aplicable',cancelacion:'No aplicable',equipaje:'No aplicable',demora:'No aplicable',tele:false,aventura:false,cancel:false,baggage:false,publicRate:null,coverageRank:0,bestFor:'Residentes en España.',caution:'El cotizador público de Holins está orientado a salida/residencia en España. Hasta confirmar por escrito una modalidad LATAM → España compatible, se excluye de esos resultados.',source:'Holins · web y cotizador público · revisión 08/09/2026'};
   }
   if(d.key==='assist365'){
-    const confirmedOrigins=['co','ve','ec','bo','cu','ht','do'];
-    const eligible=confirmedOrigins.includes(origin) && dest==='europe';
-    if(eligible) return {plan:'Europe Care Base',eligible:true,eligibility:'Disponible para residentes de Colombia, Venezuela, Ecuador, Bolivia, Cuba, Haití y República Dominicana que viajan a España o Schengen',medica:'Hasta 30.000 €',repatriacion:'Incluida según condiciones',franquicia:'Revisar condiciones',cancelacion:'No destacada en el plan base',equipaje:'Hasta 300 €',demora:'Sala VIP hasta 50 € por demora de vuelo',tele:false,aventura:false,cancel:false,baggage:true,publicRate:1.60,coverageRank:70,bestFor:'Viajeros LATAM que buscan una opción económica para España/Schengen con 30.000 € de asistencia médica.',caution:'Precio orientativo ≈ 1,60 €/día. Puede variar según edad, fechas, duración, residencia y promociones. Para usarlo en una solicitud de visado, confirma que el voucher emitido cumple los requisitos del consulado.',source:'Assist 365 Europe Care Base · confirmación de residencias por email + cotizador público · revisión 14/09/2026'};
-    return {plan:'Europe Care Base',eligible:false,eligibility:'Solo mostramos Assist 365 en las residencias LATAM confirmadas por escrito y para viajes a España/Schengen',medica:'Hasta 30.000 €',repatriacion:'Según condiciones',franquicia:'Revisar condiciones',cancelacion:'No destacada en el plan base',equipaje:'Hasta 300 €',demora:'Según condiciones',tele:false,aventura:false,cancel:false,baggage:true,publicRate:1.60,coverageRank:0,bestFor:'Viajes desde residencias confirmadas a España/Schengen.',caution:'Selecciona una residencia y destino compatibles para ver esta opción.',source:'Assist 365 · revisión 14/09/2026'};
+    const eligible=ASSIST365_LATAM_ORIGINS.includes(origin) && dest==='europe';
+    if(eligible) return {plan:'Europe Care Base',eligible:true,eligibility:'Se muestra para viajeros desde los países LATAM disponibles en ViajeroLatam con destino España, Schengen o Europa',medica:'Hasta 30.000 €',repatriacion:'Incluida según condiciones',franquicia:'Revisar condiciones',cancelacion:'No destacada en el plan base',equipaje:'Hasta 300 €',demora:'Sala VIP hasta 50 € por demora de vuelo',tele:false,aventura:false,cancel:false,baggage:true,publicRate:2.46,coverageRank:70,bestFor:'Viajeros desde LATAM hacia España o Europa que buscan una alternativa con cobertura médica para el viaje.',caution:'Precio orientativo desde ≈ 2,46 €/día. Puede variar según edad, fechas, duración, residencia, destino y promociones. Confirma siempre la elegibilidad y el precio final en el cotizador de Assist 365.',source:'Assist 365 Europe Care Base · referencia editorial ViajeroLatam actualizada 28/09/2026; confirmar condiciones y precio en el proveedor'};
+    return {plan:'Europe Care Base',eligible:false,eligibility:'Assist 365 se muestra en este comparador para rutas desde LATAM hacia España/Schengen o Europa',medica:'Hasta 30.000 €',repatriacion:'Según condiciones',franquicia:'Revisar condiciones',cancelacion:'No destacada en el plan base',equipaje:'Hasta 300 €',demora:'Según condiciones',tele:false,aventura:false,cancel:false,baggage:true,publicRate:2.46,coverageRank:0,bestFor:'Viajes desde LATAM hacia España/Europa.',caution:'Selecciona un origen LATAM y un destino España/Schengen o Europa para ver esta opción.',source:'Assist 365 · referencia editorial ViajeroLatam actualizada 28/09/2026'};
   }
   if(d.key==='chapka'){
     if(!spainResident && dest==='europe'){
@@ -2114,7 +2119,7 @@ function renderCard(d){
     }
   }
   if(d.key==='assist365'){
-    price=`<div class="public-price-label">Precio orientativo · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>moneda de destino · total viaje</small></div><div class="trip-origin-price">≈ ${originTotal} <span>moneda de origen</span></div><div class="public-price-sub"><strong>≈ 1,60 €/persona/día*</strong> · 5% de descuento con código <strong>VIAJEROLATAM</strong>. *Estimación orientativa; el precio final puede variar según edad, fechas, duración, residencia y promociones.</div>`;
+    price=`<div class="public-price-label">Precio orientativo · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>moneda de destino · total viaje</small></div><div class="trip-origin-price">≈ ${originTotal} <span>moneda de origen</span></div><div class="public-price-sub"><strong>Desde ≈ ${euroFixed(fixedRate)} €/persona/día*</strong> · 5% de descuento con código <strong>VIAJEROLATAM</strong>. *Estimación orientativa; el precio final puede variar según edad, fechas, duración, residencia, destino y promociones.</div>`;
   }
   const availability=unavailable
     ? `<div class="availability-note no">⚠ ${p.eligibility}</div>`
