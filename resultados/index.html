@@ -1808,6 +1808,33 @@ const FIXED_ORIENTATIVE_RATES = Object.freeze({
   axa: 1.48,
   assist365: 1.60
 });
+
+// Referencias comprobadas manualmente para rutas concretas a España/Schengen.
+// Se muestran como importes aproximados "desde" y pueden variar en el cotizador final.
+const ROUTE_DAILY_RATE_OVERRIDES = Object.freeze({
+  co: Object.freeze({
+    intermundial: 1.76,
+    iati: 2.40,
+    chapka: 1.93
+  }),
+  uy: Object.freeze({
+    intermundial: 1.71,
+    iati: 2.74
+  })
+});
+function isSpainSchengenDestination(){
+  const raw=String(window.currentSearchDest||'').trim().toLowerCase();
+  return raw==='espana-schengen' || raw==='espana' || raw==='españa' || raw==='es' ||
+    raw==='spain' || raw==='schengen' || raw.includes('espana') ||
+    raw.includes('españa') || raw.includes('schengen');
+}
+function routeDailyRateOverride(key){
+  if(!isSpainSchengenDestination()) return null;
+  const rates=ROUTE_DAILY_RATE_OVERRIDES[normalizedOrigin()];
+  if(!rates || !Object.prototype.hasOwnProperty.call(rates,key)) return null;
+  const value=Number(rates[key]);
+  return Number.isFinite(value) && value>0 ? value : null;
+}
 function chapkaPlanType(){
   // Cap Schengen: estancia corta. Cap Europa: larga estancia (3–12 meses).
   return resultTripDays() >= 90 ? 'europa' : 'schengen';
@@ -1830,6 +1857,8 @@ function chapkaReferenceTotalEUR(){
   return chapkaReferenceTotalPerPerson()*resultTripPeople();
 }
 function fixedOrientativeRate(key){
+  const routeOverride=routeDailyRateOverride(key);
+  if(routeOverride!==null) return routeOverride;
   const origin = normalizedOrigin();
   const dest = normalizedDest();
   // Intermundial: go | schengen para no residentes que viajan a España/Schengen,
@@ -1900,6 +1929,8 @@ function resultFormatCurrencyFromEUR(eurAmount,currency){
   }
 }
 function resultTotalEUR(key){
+  const routeOverride=routeDailyRateOverride(key);
+  if(routeOverride!==null) return routeOverride*resultTripDays()*resultTripPeople();
   if(key==='chapka') return chapkaReferenceTotalEUR();
   return fixedOrientativeRate(key)*resultTripDays()*resultTripPeople();
 }
@@ -1976,7 +2007,7 @@ function providerProfile(d){
   }
   if(d.key==='intermundial'){
     if(!spainResident){
-      if(dest==='europe') return {plan:'go | schengen',eligible:true,eligibility:'Disponible para viajeros con residencia fuera de España que viajan al espacio Schengen',medica:'Hasta 30.000 €',repatriacion:'Ilimitada',franquicia:'Revisar condiciones',cancelacion:'Opcional',equipaje:'Hasta 300 €',demora:'Según condiciones',tele:true,aventura:false,cancel:true,baggage:true,publicRate:0.88,coverageRank:72,bestFor:'Viajeros desde LATAM que van a España o al espacio Schengen y buscan una opción específica para esa zona.',caution:'go | schengen está dirigido a viajeros con residencia fuera de España y es válido para el espacio Schengen. El precio final depende de residencia, fechas, edad, duración y coberturas opcionales.',source:'Intermundial go | schengen · web oficial · revisión 31/08/2026'};
+      if(dest==='europe') return {plan:'go | schengen',eligible:true,eligibility:'Disponible para viajeros con residencia fuera de España que viajan al espacio Schengen',medica:'Hasta 30.000 €',repatriacion:'Ilimitada',franquicia:'Revisar condiciones',cancelacion:'Opcional',equipaje:'Hasta 300 €',demora:'Según condiciones',tele:true,aventura:false,cancel:true,baggage:true,publicRate:fixedOrientativeRate('intermundial'),coverageRank:72,bestFor:'Viajeros desde LATAM que van a España o al espacio Schengen y buscan una opción específica para esa zona.',caution:'go | schengen está dirigido a viajeros con residencia fuera de España y es válido para el espacio Schengen. El precio final depende de residencia, fechas, edad, duración y coberturas opcionales.',source:'Intermundial go | schengen · web oficial · revisión 31/08/2026'};
       return {plan:'go | world',eligible:true,eligibility:'Disponible para residentes fuera de España',medica:'Hasta 500.000 €',repatriacion:'Incluida según condiciones',franquicia:'Sin franquicia médica',cancelacion:'Hasta 5.000 €',equipaje:'Hasta 2.500 €',demora:'Según condiciones',tele:true,aventura:false,cancel:true,baggage:true,publicRate:5.10,coverageRank:82,bestFor:'Viajeros desde LATAM que necesitan cobertura amplia en destinos internacionales fuera del espacio Schengen.',caution:'Para destinos fuera del espacio Schengen usamos go | world como referencia. El precio final depende de residencia, fechas, edad y destino.',source:'Intermundial go | world · web oficial · revisión 31/08/2026'};
     }
     return {plan:'Totaltravel',eligible:true,eligibility:'Disponible para residentes en España',medica:'Hasta 5.000.000 €',repatriacion:'Ilimitada',franquicia:'Sin franquicia médica',cancelacion:'Hasta 5.000 € · opcional',equipaje:'Hasta 2.500 €',demora:'Según condiciones',tele:true,aventura:false,cancel:true,baggage:true,publicRate:1.85,coverageRank:92,bestFor:'Residentes en España que buscan cobertura médica alta, equipaje, asistencia digital y cancelación disponible.',caution:'Para residentes en España mantenemos Totaltravel. El precio y las garantías exactas dependen de la modalidad elegida.',source:'Intermundial Totaltravel · web oficial · revisión 31/08/2026'};
@@ -2075,7 +2106,7 @@ function renderCard(d){
   const originTotal=resultFormatCurrencyFromEUR(totalEUR,originCur);
   const destDaily=resultFormatCurrencyFromEUR(fixedRate,destCur);
   let price=`<div class="public-price-label">Total orientativo · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>moneda de destino · total viaje</small></div><div class="trip-origin-price">≈ ${originTotal} <span>moneda de origen</span></div><div class="public-price-sub">${destDaily}/persona/día × ${resultTripDays()} día${resultTripDays()===1?'':'s'} × ${resultTripPeople()} viajero${resultTripPeople()===1?'':'s'}. Estimación ViajeroLatam; confirma el precio final con el proveedor.</div>`;
-  if(d.key==='chapka'){
+  if(d.key==='chapka' && routeDailyRateOverride('chapka')===null){
     if(chapkaPlanType()==='schengen'){
       price=`<div class="public-price-label">Tarifa pública de referencia · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>moneda de destino · total viaje</small></div><div class="trip-origin-price">≈ ${originTotal} <span>moneda de origen</span></div><div class="public-price-sub">Cap Schengen publica precios por tramos. Referencia Zona 2 (LATAM/resto del mundo), 0–60 años. La web oficial anuncia el producto desde 18 €; confirma edad, residencia y precio final.</div>`;
     }else{
