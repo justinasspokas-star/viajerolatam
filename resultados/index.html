@@ -1807,7 +1807,7 @@ const FIXED_ORIENTATIVE_RATES = Object.freeze({
   intermundial: 1.85,
   holins: 1.36,
   axa: 1.48,
-  assist365: 1.60
+  assist365: 2.46
 });
 function chapkaPlanType(){
   // Cap Schengen: estancia corta. Cap Europa: larga estancia (3–12 meses).
@@ -1833,6 +1833,21 @@ function chapkaReferenceTotalEUR(){
 function fixedOrientativeRate(key){
   const origin = normalizedOrigin();
   const dest = normalizedDest();
+  // Referencias actualizadas el 28/09/2026 a partir de cotizaciones revisadas.
+  // Son precios orientativos diarios; el proveedor confirma siempre el precio final.
+  if(key === 'iati' && dest === 'europe'){
+    if(origin === 'uy') return 2.80;
+    if(origin === 'co') return 2.40;
+  }
+  // Intermundial: referencias revisadas para Colombia y Uruguay → España/Schengen.
+  if(key === 'intermundial' && dest === 'europe'){
+    if(origin === 'uy') return 1.71;
+    if(origin === 'co') return 1.76;
+  }
+  // Assist 365: referencia revisada para LATAM → España/Europa.
+  if(key === 'assist365' && dest === 'europe' && origin !== 'es') return 2.46;
+  // Chapka: referencia orientativa revisada para Colombia → España/Europa.
+  if(key === 'chapka' && dest === 'europe' && origin === 'co') return 1.93;
   // Intermundial: go | schengen para no residentes que viajan a España/Schengen,
   // go | world para otros destinos y Totaltravel para residentes en España.
   // Referencias públicas; no son cotizaciones.
@@ -1901,7 +1916,10 @@ function resultFormatCurrencyFromEUR(eurAmount,currency){
   }
 }
 function resultTotalEUR(key){
-  if(key==='chapka') return chapkaReferenceTotalEUR();
+  if(key==='chapka'){
+    if(normalizedOrigin()==='co' && normalizedDest()==='europe') return 1.93*resultTripDays()*resultTripPeople();
+    return chapkaReferenceTotalEUR();
+  }
   return fixedOrientativeRate(key)*resultTripDays()*resultTripPeople();
 }
 function resultTripLabel(){
@@ -1929,7 +1947,7 @@ function updateCOPNote(){
   if(!el) return;
   if(shouldShowCOP()){
     el.classList.add('is-visible');
-    el.innerHTML = 'También mostramos referencia aproximada en pesos colombianos: <strong>1 € ≈ $3.720 COP</strong>. Los importes son orientativos; el proveedor calcula el precio final.';
+    el.innerHTML = 'También mostramos referencia aproximada en pesos colombianos: <strong>1 € ≈ $4.300 COP</strong>. Los importes son orientativos; el proveedor calcula el precio final.';
   } else {
     el.classList.remove('is-visible');
   }
@@ -1959,8 +1977,8 @@ function providerVisible(d){
   // Assist 365 Europe Care Base: mostramos solo las residencias que Assist 365
   // confirmó por escrito el 14/09/2026 para viajes a España/Schengen.
   if(d && d.key==='assist365'){
-    const confirmedOrigins=['co','ve','ec','bo','cu','ht','do'];
-    return confirmedOrigins.includes(normalizedOrigin()) && normalizedDest()==='europe';
+    const latamOrigins=['co','mx','ar','ve','pe','cl','ec','bo','br','uy','py','cr','pa','gt','sv','hn','ni','cu','ht','do'];
+    return latamOrigins.includes(normalizedOrigin()) && normalizedDest()==='europe';
   }
   return true;
 }
@@ -1987,10 +2005,10 @@ function providerProfile(d){
     return {plan:'Holins',eligible:false,eligibility:'No mostramos Holins como opción contratable cuando el origen/residencia de referencia está fuera de España',medica:'No aplicable',repatriacion:'No aplicable',franquicia:'No aplicable',cancelacion:'No aplicable',equipaje:'No aplicable',demora:'No aplicable',tele:false,aventura:false,cancel:false,baggage:false,publicRate:null,coverageRank:0,bestFor:'Residentes en España.',caution:'El cotizador público de Holins está orientado a salida/residencia en España. Hasta confirmar por escrito una modalidad LATAM → España compatible, se excluye de esos resultados.',source:'Holins · web y cotizador público · revisión 08/09/2026'};
   }
   if(d.key==='assist365'){
-    const confirmedOrigins=['co','ve','ec','bo','cu','ht','do'];
-    const eligible=confirmedOrigins.includes(origin) && dest==='europe';
-    if(eligible) return {plan:'Europe Care Base',eligible:true,eligibility:'Disponible para residentes de Colombia, Venezuela, Ecuador, Bolivia, Cuba, Haití y República Dominicana que viajan a España o Schengen',medica:'Hasta 30.000 €',repatriacion:'Incluida según condiciones',franquicia:'Revisar condiciones',cancelacion:'No destacada en el plan base',equipaje:'Hasta 300 €',demora:'Sala VIP hasta 50 € por demora de vuelo',tele:false,aventura:false,cancel:false,baggage:true,publicRate:1.60,coverageRank:70,bestFor:'Viajeros LATAM que buscan una opción económica para España/Schengen con 30.000 € de asistencia médica.',caution:'Precio orientativo ≈ 1,60 €/día. Puede variar según edad, fechas, duración, residencia y promociones. Para usarlo en una solicitud de visado, confirma que el voucher emitido cumple los requisitos del consulado.',source:'Assist 365 Europe Care Base · confirmación de residencias por email + cotizador público · revisión 14/09/2026'};
-    return {plan:'Europe Care Base',eligible:false,eligibility:'Solo mostramos Assist 365 en las residencias LATAM confirmadas por escrito y para viajes a España/Schengen',medica:'Hasta 30.000 €',repatriacion:'Según condiciones',franquicia:'Revisar condiciones',cancelacion:'No destacada en el plan base',equipaje:'Hasta 300 €',demora:'Según condiciones',tele:false,aventura:false,cancel:false,baggage:true,publicRate:1.60,coverageRank:0,bestFor:'Viajes desde residencias confirmadas a España/Schengen.',caution:'Selecciona una residencia y destino compatibles para ver esta opción.',source:'Assist 365 · revisión 14/09/2026'};
+    const latamOrigins=['co','mx','ar','ve','pe','cl','ec','bo','br','uy','py','cr','pa','gt','sv','hn','ni','cu','ht','do'];
+    const eligible=latamOrigins.includes(origin) && dest==='europe';
+    if(eligible) return {plan:'Europe Care Base',eligible:true,eligibility:'Opción mostrada para viajeros desde países LATAM con destino España/Europa',medica:'Hasta 30.000 €',repatriacion:'Incluida según condiciones',franquicia:'Revisar condiciones',cancelacion:'No destacada en el plan base',equipaje:'Hasta 300 €',demora:'Sala VIP hasta 50 € por demora de vuelo',tele:false,aventura:false,cancel:false,baggage:true,publicRate:2.46,coverageRank:70,bestFor:'Viajeros LATAM que buscan asistencia para España/Europa con 30.000 € de cobertura médica.',caution:'Precio orientativo ≈ 2,46 €/día según la referencia revisada. Puede variar según edad, fechas, duración, residencia y promociones. Confirma siempre el precio y las condiciones finales con Assist 365.',source:'Assist 365 Europe Care Base · referencia revisada 28/09/2026'};
+    return {plan:'Europe Care Base',eligible:false,eligibility:'Se muestra para viajes desde países LATAM a España/Europa',medica:'Hasta 30.000 €',repatriacion:'Según condiciones',franquicia:'Revisar condiciones',cancelacion:'No destacada en el plan base',equipaje:'Hasta 300 €',demora:'Según condiciones',tele:false,aventura:false,cancel:false,baggage:true,publicRate:2.46,coverageRank:0,bestFor:'Viajes desde LATAM a España/Europa.',caution:'Selecciona un origen LATAM y España/Europa como destino para ver esta opción.',source:'Assist 365 · referencia revisada 28/09/2026'};
   }
   if(d.key==='chapka'){
     if(!spainResident && dest==='europe'){
