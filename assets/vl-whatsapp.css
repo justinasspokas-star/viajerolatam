@@ -1,0 +1,58 @@
+/* ViajeroLatam floating WhatsApp contact button */
+.vl-whatsapp-float{
+  position:fixed;
+  right:max(18px, env(safe-area-inset-right));
+  bottom:max(20px, env(safe-area-inset-bottom));
+  width:58px;
+  height:58px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  background:#25D366;
+  color:#fff;
+  box-shadow:0 8px 24px rgba(15,23,42,.22),0 2px 8px rgba(15,23,42,.14);
+  z-index:2147482000;
+  text-decoration:none;
+  border:2px solid rgba(255,255,255,.92);
+  transition:transform .18s ease,box-shadow .18s ease,filter .18s ease;
+  -webkit-tap-highlight-color:transparent;
+}
+.vl-whatsapp-float:hover{
+  transform:translateY(-2px) scale(1.03);
+  box-shadow:0 12px 30px rgba(15,23,42,.26),0 3px 10px rgba(15,23,42,.16);
+  filter:brightness(.98);
+}
+.vl-whatsapp-float:active{transform:scale(.97)}
+.vl-whatsapp-float:focus-visible{outline:3px solid #0b1f3a;outline-offset:3px}
+.vl-whatsapp-float svg{width:31px;height:31px;display:block;fill:currentColor}
+.vl-whatsapp-float::after{
+  content:'¿Dudas? Escríbenos';
+  position:absolute;
+  right:68px;
+  top:50%;
+  transform:translateY(-50%) translateX(6px);
+  white-space:nowrap;
+  padding:8px 11px;
+  border-radius:9px;
+  background:#0b1f3a;
+  color:#fff;
+  font:700 12px/1.2 system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  box-shadow:0 5px 16px rgba(15,23,42,.18);
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transition:opacity .16s ease,transform .16s ease,visibility .16s ease;
+}
+.vl-whatsapp-float:hover::after,.vl-whatsapp-float:focus-visible::after{
+  opacity:1;
+  visibility:visible;
+  transform:translateY(-50%) translateX(0);
+}
+@media (max-width:768px){
+  .vl-whatsapp-float{width:54px;height:54px;right:14px;bottom:18px}
+  .vl-whatsapp-float svg{width:29px;height:29px}
+  html.vl-whatsapp-has-sticky .vl-whatsapp-float{bottom:calc(86px + env(safe-area-inset-bottom))}
+  .vl-whatsapp-float::after{display:none}
+}
+@media (prefers-reduced-motion:reduce){.vl-whatsapp-float{transition:none}}
