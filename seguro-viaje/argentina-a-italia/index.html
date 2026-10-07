@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+
+<html lang="es-AR">
+<head>
+<script id="vl-consent-bootstrap">
+window.dataLayer=window.dataLayer||[];
+window.gtag=window.gtag||function(){window.dataLayer.push(arguments);};
+(function(){
+  var analytics='denied';
+  var marketing='denied';
+  try{
+    var raw=localStorage.getItem('vl_cookie_consent_v1');
+    if(raw){
+      var saved=JSON.parse(raw);
+      if(saved&&saved.version===1&&saved.expiresAt>Date.now()){
+        analytics=saved.analytics?'granted':'denied';
+        marketing=saved.marketing?'granted':'denied';
+      }else{
+        localStorage.removeItem('vl_cookie_consent_v1');
+      }
+    }
+  }catch(error){}
+  gtag('consent','default',{
+    analytics_storage:analytics,
+    ad_storage:marketing,
+    ad_user_data:marketing,
+    ad_personalization:marketing,
+    wait_for_update:500
+  });
+})();
+</script>
+<link href="/assets/vl-cookie-consent.css" rel="stylesheet"/>
+<script defer="" src="/assets/vl-cookie-consent.js"></script>
+<link as="image" href="/hero-bg.webp" rel="preload" type="image/webp">
+<meta charset="utf-8"/>
+<meta content="fnxi-_Liw22SOQakruhikIUAjmf3u6mdT79inMc9x9A" name="google-site-verification"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<!-- Favicon / browser tab icon -->
+<link href="/favicon.ico" rel="icon" sizes="any"/>
+<link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png"/>
+<link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/>
+<link href="/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
+<link href="/site.webmanifest" rel="manifest"/>
+<meta content="#0B1F3A" name="theme-color"/>
+<title>Seguro de viaje Argentina a Italia | Compara coberturas</title>
+<meta content="Compara seguros de viaje para Italia desde Argentina. Revisa cobertura médica, repatriación, equipaje, cancelación y asistencia antes de contratar." name="description"/>
+<meta content="index, follow" name="robots"/>
+<link href="https://viajerolatam.com/seguro-viaje/argentina-a-italia/" rel="canonical"/>
+<link href="https://viajerolatam.com/seguro-viaje/argentina-a-italia/" hreflang="es-AR" rel="alternate"/>
+<link href="https://viajerolatam.com/seguro-viaje/argentina-a-italia/" hreflang="x-default" rel="alternate"/>
+<meta content="website" property="og:type"/>
+<meta content="Seguro de viaje Argentina a Italia | Compara coberturas" property="og:title"/>
+<meta content="Compara seguros de viaje para Italia desde Argentina: cobertura médica, repatriación, equipaje y asistencia para tu viaje." property="og:description"/>
+<meta content="https://viajerolatam.com/seguro-viaje/argentina-a-italia/" property="og:url"/>
+<meta content="https://viajerolatam.com/og-mochila-viajerolatam.png?v=2" property="og:image"/>
+<meta content="ViajeroLatam" property="og:site_name"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-P1Q2TSMVNJ"></script>
+<script>
+window.dataLayer=window.dataLayer||[];
+function gtag(){dataLayer.push(arguments);} 
+gtag('js',new Date());
+gtag('config','G-P1Q2TSMVNJ');</script>
+<script id="vl-ga4-affiliate-normalizer">
+(function(){
+  if (window.vlGa4AffiliateNormalizerInstalled) return;
+  window.vlGa4AffiliateNormalizerInstalled = true;
+
+  function getClickId(){
+    try {
+      var key = 'vl_affiliate_click_id';
+      var id = sessionStorage.getItem(key);
+      if (!id) {
+        id = 'vl_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 10);
+        sessionStorage.setItem(key, id);
+      }
+      return id;
+    } catch(e) {
+      return 'vl_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 10);
+    }
+  }
+
+  function cleanPartner(partner){
+    return String(partner || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9_]+/g, '_')
+      .replace(/^_+|_+$/g, '');
+  }
+
+  function partnerFromEvent(eventName, params){
+    var partner = '';
+    if (eventName.indexOf('click_affiliate_') === 0) {
+      partner = eventName.replace('click_affiliate_', '');
+    }
+    if (!partner && params && params.affiliate_partner) partner = params.affiliate_partner;
+    return cleanPartner(partner || 'unknown');
+  }
+
+  function install(){
+    if (typeof window.gtag !== 'function') {
+      window.setTimeout(install, 50);
+      return;
+    }
+    if (window.gtag.vlAffiliateNormalized) return;
+
+    var originalGtag = window.gtag;
+    function normalizedGtag(){
+      var args = Array.prototype.slice.call(arguments);
+
+      if (args[0] === 'event' && typeof args[1] === 'string') {
+        var originalEventName = args[1];
+        var eventName = originalEventName.toLowerCase();
+
+        if (eventName !== originalEventName) {
+          args[1] = eventName;
+        }
+
+        if (eventName.indexOf('click_affiliate_') === 0) {
+          var params = args[2] && typeof args[2] === 'object' ? args[2] : {};
+          var partner = partnerFromEvent(eventName, params);
+          var clickId = params.affiliate_click_id || getClickId();
+
+          params.event_category = params.event_category || 'affiliate';
+          params.affiliate_partner = partner;
+          params.affiliate_click_id = clickId;
+          params.page_path = window.location.pathname;
+          params.page_location = params.page_location || window.location.href;
+          params.outbound_url = params.outbound_url || params.event_label || params.link_url || '';
+          params.link_text = params.link_text || '';
+
+          args[2] = params;
+
+          originalGtag.apply(window, args);
+
+          originalGtag('event', 'affiliate_outbound_click', {
+            event_category: 'affiliate',
+            affiliate_partner: partner,
+            affiliate_click_id: clickId,
+            source_event: eventName,
+            outbound_url: params.outbound_url,
+            page_path: window.location.pathname,
+            page_location: window.location.href
+          });
+          return;
+        }
+      }
+
+      return originalGtag.apply(window, args);
+    }
+
+    normalizedGtag.vlAffiliateNormalized = true;
+    window.gtag = normalizedGtag;
+  }
+
+  install();
+})();
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"BreadcrumbList",
+  "itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Inicio","item":"https://viajerolatam.com/"},
+    {"@type":"ListItem","position":2,"name":"Seguro de viaje","item":"https://viajerolatam.com/seguro-viaje/"},
+    {"@type":"ListItem","position":3,"name":"Seguro de viaje Argentina a Italia","item":"https://viajerolatam.com/seguro-viaje/argentina-a-italia/"}
+  ]
+}
+</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "¿Cómo comparar asistencia al viajero para España desde Argentina?", "acceptedAnswer": {"@type": "Answer", "text": "Indica Argentina como residencia si vives allí y utiliza las mismas fechas, edades y destinos en cada cotizador. Compara atención médica sin ingreso, repatriación, equipaje, franquicia y exclusiones."}}, {"@type": "Question", "name": "¿Cuánto cuesta un seguro para 15 días en España?", "acceptedAnswer": {"@type": "Answer", "text": "El ejemplo de presupuesto de esta página es de 26,25–31,50 € para 15 días, calculado con una referencia de 1,75–2,10 € diarios. No es una cotización de un plan concreto. El precio final depende de los datos del viaje y del producto disponible."}}, {"@type": "Question", "name": "¿Los importes en pesos argentinos son el precio final?", "acceptedAnswer": {"@type": "Answer", "text": "No. Son conversiones orientativas. Confirma la moneda de cobro, el cambio aplicado y los posibles cargos de tu medio de pago antes de contratar."}}, {"@type": "Question", "name": "¿Debo comparar solo el límite médico?", "acceptedAnswer": {"@type": "Answer", "text": "No. Revisa también si cubre consultas sin hospitalización, cómo se solicita asistencia, si existe franquicia y qué exclusiones o sublímites se aplican. Lee las condiciones particulares de la oferta."}}]}</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{max-width:100%;overflow-x:hidden}
+:root{--navy:#0B1F3A;--teal:#00C4A1;--mint:#75D8BC;--sand:#F5F0E8;--border:#EAE3D5;--muted:#4A647E;--display:'DM Serif Display',Georgia,serif;--body:'Plus Jakarta Sans',Arial,sans-serif}
+body{font-family:var(--body);color:var(--navy);background:#fff;line-height:1.75}
+nav{position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-content:space-between;padding:10px 5%;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+nav img{height:58px;width:auto;display:block;object-fit:contain}.nav-links{display:flex;gap:22px;align-items:center}.nav-links a{text-decoration:none;color:var(--muted);font-weight:800;font-size:14px}.nav-cta{background:var(--navy);color:#fff!important;padding:10px 18px;border-radius:999px}
+.hero{background:url('/hero-bg.jpg') center center/cover no-repeat;color:#fff;padding:82px 5% 72px;position:relative;overflow:hidden}.hero:before{content:"";position:absolute;inset:0;background:rgba(5,12,40,.70)}.hero-inner{position:relative;max-width:1120px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(280px,.8fr);gap:42px;align-items:center}.eyebrow{display:inline-flex;background:rgba(117,216,188,.12);border:1px solid rgba(117,216,188,.28);color:var(--mint);border-radius:999px;padding:7px 15px;font-size:13px;font-weight:900;margin-bottom:18px}h1{font-family:var(--display);font-size:clamp(38px,5.8vw,70px);line-height:1.05;margin-bottom:18px;max-width:900px}h1 em{font-style:italic;color:var(--mint)}.hero p{color:rgba(255,255,255,.78);font-size:18px;max-width:780px;margin-bottom:24px}.btn-row{display:flex;gap:12px;flex-wrap:wrap}.btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 20px;border-radius:999px;text-decoration:none!important;font-weight:900}.btn-primary{background:var(--teal);color:var(--navy)!important}.btn-secondary{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.24);color:#fff!important}.btn-dark{background:var(--navy);color:#fff!important}.hero-card{background:#fff;color:var(--navy);border-radius:28px;padding:28px;box-shadow:0 28px 70px rgba(0,0,0,.24)}.hero-card .small{color:#6F8299;font-size:14px;margin-bottom:10px}.hero-price{font-size:clamp(36px,4vw,48px);font-weight:900;line-height:1.05;margin-bottom:6px}.hero-card .local{font-weight:900;color:#00A989;margin-bottom:16px}.hero-list{list-style:none!important;padding:0!important;margin:18px 0!important}.hero-list li{color:#4A647E;margin:10px 0!important;padding-left:22px;position:relative}.hero-list li:before{content:"✓";position:absolute;left:0;color:#00A989;font-weight:900}
+main{padding:58px 5%}.wrap{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:34px;align-items:start}article{min-width:0}article h2{font-family:var(--display);font-size:clamp(30px,4vw,46px);line-height:1.15;margin:42px 0 14px;color:var(--navy)}article h3{font-size:23px;line-height:1.25;margin:26px 0 10px;color:var(--navy)}article p{color:var(--muted);margin-bottom:16px}article ul, article ol{color:var(--muted);margin:12px 0 18px;padding-left:22px}article li{margin:8px 0}.answer-box,.note,.source-box,.trust-box{background:var(--sand);border:1px solid var(--border);border-radius:24px;padding:24px;margin:28px 0}.note{background:rgba(0,196,161,.08);border-left:4px solid var(--teal)}.trust-box{background:#fff;border-color:#dbe8ef;box-shadow:0 16px 40px rgba(11,31,58,.06)}.trust-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}.trust-item{padding:13px;border:1px solid var(--border);border-radius:16px;background:#fff}.trust-item strong{display:block}.trust-item span{display:block;color:var(--muted);font-size:13px;line-height:1.45}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:22px 0}.card{background:#fff;border:1px solid var(--border);border-radius:20px;padding:18px}.card strong{display:block;color:var(--navy);margin-bottom:6px}.price-table{display:grid;grid-template-columns:1fr 1fr 1.15fr;border:1px solid var(--border);border-radius:22px;overflow:hidden;margin:24px 0}.price-table div{padding:14px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);color:var(--muted);font-size:14px}.price-table .th{background:var(--navy);color:#fff;font-weight:900}.price-table div:nth-child(3n){border-right:0}.cta-card{background:linear-gradient(135deg,var(--navy),#17365A);color:#fff;border-radius:26px;padding:26px;margin:34px 0}.cta-card h2,.cta-card h3{color:#fff;margin-top:0}.cta-card p{color:rgba(255,255,255,.74)}.cta-card .btn-secondary{background:rgba(255,255,255,.08)}.related{margin:30px 0;padding:18px 20px;border-radius:20px;background:var(--sand);border:1px solid var(--border)}.related strong{display:block;color:var(--navy);margin-bottom:8px}.related .links{display:flex;flex-wrap:wrap;gap:10px}.related a{color:var(--navy)!important;font-weight:900;text-decoration:underline}aside{position:sticky;top:92px}.side-card{background:var(--sand);border:1px solid var(--border);border-radius:24px;padding:22px;margin-bottom:18px}.side-card h3{font-size:20px;margin-bottom:10px}.side-card p{color:var(--muted);font-size:14px;margin-bottom:12px}.side-card .btn{width:100%;margin-top:8px}.mini-list{list-style:none!important;padding-left:0!important}.mini-list li{padding:8px 0;border-bottom:1px solid rgba(11,31,58,.08)}.site-footer{background:var(--navy);color:rgba(255,255,255,.72);padding:34px 5% 24px;margin-top:44px}.site-footer .footer-inner{max-width:1080px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap}.site-footer .footer-brand{max-width:520px}.site-footer p{margin:0;color:rgba(255,255,255,.72)}.site-footer .disclosure{margin-top:8px;font-size:12px;color:rgba(255,255,255,.58)}.site-footer .footer-links{display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center}.site-footer .footer-links a,.site-footer a{color:#fff;text-decoration:none;font-weight:700;font-size:14px}.mobile-affiliate-bar{position:fixed;left:12px;right:12px;bottom:12px;z-index:999;display:none;gap:8px;padding:10px 12px 9px;border-radius:22px;background:rgba(255,255,255,.96);border:1px solid #E4EDF5;box-shadow:0 16px 45px rgba(11,31,58,.18);backdrop-filter:blur(12px);flex-direction:column}.mobile-affiliate-bar a{width:100%;display:inline-flex;align-items:center;justify-content:center;min-height:52px;border-radius:999px;text-decoration:none!important;font-weight:900;font-size:14px;background:#69C7AD;color:#0B1F3A!important;box-shadow:0 10px 22px rgba(0,196,161,.24)}.mobile-affiliate-bar span{text-align:center;font-size:10.5px;line-height:1.25;color:#8FA4B8;font-weight:600}
+@media(max-width:860px){.nav-links a:not(.nav-cta){display:none}nav{padding:8px 16px;min-height:68px}nav img{height:44px;max-width:205px}.nav-cta{font-size:13px;padding:10px 14px}.hero{padding:54px 16px 42px;text-align:center}.hero-inner{grid-template-columns:1fr;gap:22px}.hero p{font-size:15px}.hero-card{text-align:left;border-radius:22px;padding:22px}main{padding:34px 16px}.wrap{grid-template-columns:1fr;gap:18px}aside{display:none}.grid,.trust-grid{grid-template-columns:1fr}.price-table{grid-template-columns:1fr}.price-table .th{display:none}.price-table div{border-right:0}.btn-row{display:grid;grid-template-columns:1fr}.btn{width:100%;padding:12px 16px}.related .links{display:grid;grid-template-columns:1fr}.related a{text-decoration:none!important;padding:10px 12px;border-radius:12px;background:#fff;border:1px solid var(--border);display:flex;width:100%}.site-footer{padding:24px 16px 96px}.site-footer .footer-inner{display:grid;grid-template-columns:1fr;gap:14px}.site-footer .footer-links{display:grid;grid-template-columns:1fr 1fr;gap:10px}.site-footer .footer-links a{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);padding:10px 12px;border-radius:12px;text-align:center}body{padding-bottom:86px}.mobile-affiliate-bar{display:flex}}
+@media(max-width:480px){h1{font-size:33px}.site-footer .footer-links{grid-template-columns:1fr}}
+</style>
+<style id="vl-local-layout-fix">
+.vl-local-block{
+  max-width:1050px;
+  margin:44px auto;
+  padding:30px;
+  background:#fff;
+  border:1px solid #EAE3D5;
+  border-radius:26px;
+  box-shadow:0 14px 40px rgba(11,31,58,.06);
+  color:#0B1F3A;
+}
+.vl-local-kicker{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  padding:6px 12px;
+  border-radius:999px;
+  background:rgba(0,196,161,.10);
+  color:#008E78;
+  font-size:12px;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+  margin-bottom:12px;
+}
+.vl-local-block h2{
+  font-family:var(--display, Georgia, serif);
+  font-size:clamp(28px,3.4vw,42px);
+  line-height:1.12;
+  margin:0 0 12px;
+  color:#0B1F3A;
+}
+.vl-local-block p{
+  color:#4A647E;
+  font-size:15px;
+  line-height:1.75;
+  margin:0 0 16px;
+}
+.vl-local-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+  margin:20px 0;
+}
+.vl-local-mini{
+  background:#F7F4EE;
+  border:1px solid #EAE3D5;
+  border-radius:18px;
+  padding:16px;
+}
+.vl-local-mini strong{
+  display:block;
+  color:#0B1F3A;
+  font-size:14px;
+  margin-bottom:6px;
+}
+.vl-local-mini span{
+  display:block;
+  color:#4A647E;
+  font-size:13px;
+  line-height:1.55;
+}
+.vl-local-block ul{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px 18px;
+  margin:18px 0 0;
+  padding-left:20px;
+  color:#4A647E;
+}
+.vl-local-block li{
+  margin:0;
+  line-height:1.65;
+  font-size:14px;
+}
+@media(max-width:860px){
+  .vl-local-block{
+    margin:30px 16px;
+    padding:22px;
+    border-radius:22px;
+  }
+  .vl-local-grid{
+    grid-template-columns:1fr;
+  }
+  .vl-local-block ul{
+    grid-template-columns:1fr;
+  }
+  .vl-local-block h2{
+    font-size:30px;
+  }
+}
+</style>
+<style>.ar-table-wrap{overflow-x:auto;margin:24px 0}.ar-table{width:100%;border-collapse:collapse;font-size:14px}.ar-table th,.ar-table td{padding:14px;text-align:left;vertical-align:top;border:1px solid #EAE3D5;min-width:135px}.ar-table th{background:#0B1F3A;color:white}.ar-table td{color:#4A647E}.ar-index{display:flex;flex-wrap:wrap;gap:10px 20px;margin:18px 0}.ar-index a{color:#0B1F3A;text-decoration:underline}.ar-updated{font-size:13px;color:#4A647E}</style><style id="ar-responsive-review">
+article [id]{scroll-margin-top:100px}
+.ar-table-wrap{border:1px solid #EAE3D5;border-radius:12px;max-width:100%;overscroll-behavior-x:contain}
+.ar-table caption{padding:12px;text-align:left;color:#4A647E}
+.ar-table td,.ar-table th{overflow-wrap:anywhere}
+.ar-table-hint{font-size:13px;color:#4A647E;margin-bottom:6px}
+.ar-table-wrap:focus-visible{outline:3px solid #00856c;outline-offset:3px}
+@media(max-width:860px){
+ .price-table>div:not(.th)::before{content:attr(data-label);display:block;font-size:12px;font-weight:800;color:#0B1F3A;margin-bottom:5px}
+ .price-table>div:nth-child(3n+4){background:#F5F0E8;border-top:2px solid #EAE3D5;font-weight:800}
+ article .source-box a{overflow-wrap:anywhere}
+ .ar-index a{padding:8px 0}
+}
+@media(max-width:380px){nav{gap:8px}nav img{max-width:170px;height:auto}.nav-cta{font-size:12px;padding:9px 10px}}
+</style></link><meta content="Seguro de viaje Argentina a Italia | Compara coberturas" name="twitter:title"/><meta content="Compara seguros de viaje para Italia desde Argentina y revisa cobertura médica, repatriación, equipaje y asistencia." name="twitter:description"/><meta content="https://viajerolatam.com/og-mochila-viajerolatam.png?v=2" name="twitter:image"/><meta content="Icono de ViajeroLatam con mochila viajera" property="og:image:alt"/>  <link rel="stylesheet" href="/assets/vl-whatsapp.css">
+</head>
+<body>
+<nav>
+<a class="brand-logo" href="/"><img alt="ViajeroLatam" src="/logo-vl-original-20260528.png"/></a>
+<div class="nav-links">
+<a href="/seguro-viaje/colombia-a-espana/">Colombia a España</a>
+<a href="/seguro-viaje/peru-a-espana/">Perú a España</a>
+<a href="/visa-schengen/">Visa Schengen</a>
+<a class="nav-cta" href="/resultados/?origen=argentina&amp;destino=europa">Comparar ahora</a>
+</div>
+</nav>
+<header class="hero">
+<div class="hero-inner">
+<div>
+<div class="eyebrow">🇦🇷 Argentina → 🇮🇹 Italia</div>
+<h1>Seguro de viaje <em>Argentina a Italia</em></h1>
+<p>Compara opciones para viajar a Italia desde Argentina y revisa cobertura médica, repatriación, equipaje, cancelación y asistencia antes de contratar.</p>
+<div class="btn-row">
+<a class="btn btn-primary" href="/resultados/?origen=argentina&amp;destino=europa">Comparar seguros gratis →</a>
+<a class="btn btn-secondary" href="#que-cubre">Qué debería cubrir</a>
+</div>
+</div>
+<div class="hero-card">
+<div class="small">Antes de elegir</div>
+<div class="hero-price" style="font-size:34px">Compara cobertura, no solo precio</div>
+<div class="local">Italia · Europa / Schengen</div>
+<ul class="hero-list">
+<li>Asistencia médica internacional</li>
+<li>Repatriación y urgencias</li>
+<li>Equipaje y cancelación según póliza</li>
+<li>Opciones para recorrer varios países europeos</li>
+</ul>
+<a class="btn btn-primary" href="/resultados/?origen=argentina&amp;destino=europa">Ver opciones para Europa</a>
+</div>
+</div>
+</header>
+<main>
+<div class="wrap">
+<article>
+<p class="ar-updated"><strong>Actualizado:</strong> octubre de 2026 · Información orientativa para viajeros con pasaporte argentino.</p>
+
+<div class="answer-box">
+<strong>Respuesta rápida:</strong>
+<p>Si viajás desde Argentina a Italia por turismo, conviene llevar un seguro de viaje con buena cobertura médica, repatriación y asistencia. Los argentinos pueden realizar estancias cortas en el espacio Schengen sin solicitar visa, pero eso no elimina el riesgo económico de una urgencia médica o de otros imprevistos durante el viaje.</p>
+</div>
+
+<h2>Seguro de viaje de Argentina a Italia: qué conviene comparar</h2>
+<p>Italia es uno de los destinos europeos con mayor vínculo histórico y familiar con Argentina. Muchos viajes combinan Roma, Florencia, Venecia, Milán o Nápoles con otros países de Europa, por lo que elegir una póliza solo por el precio puede ser un error.</p>
+<p>Un buen <strong>seguro de viaje Argentina Italia</strong> debería adaptarse a la duración real del viaje, las edades de los viajeros y el itinerario completo. Antes de contratar, revisá qué ocurre si necesitás atención médica, una hospitalización, regresar antes a Argentina o pedir ayuda desde Italia.</p>
+
+<div class="cta-card">
+<h2>Compara seguros para tu viaje a Italia</h2>
+<p>Indicá Argentina como origen y Europa como destino para revisar las opciones disponibles en el comparador. Italia forma parte del espacio Schengen.</p>
+<a class="btn btn-primary" href="/resultados/?origen=argentina&amp;destino=europa">Comparar seguros gratis →</a>
+</div>
+
+<h2>¿Necesito seguro de viaje para ir de Argentina a Italia?</h2>
+<p>Los ciudadanos argentinos que realizan un viaje turístico de corta duración a Italia están exentos de visa para estancias de hasta <strong>90 días dentro de un período de 180 días</strong> en el espacio Schengen.</p>
+<p>Por ese motivo, para un turista argentino exento de visa el seguro médico no funciona como requisito de una solicitud de visa. Aun así, viajar con cobertura es recomendable: una consulta, una prueba médica, una hospitalización o una repatriación pueden convertirse en un gasto importante si tenés que pagarlos directamente.</p>
+
+<div class="note">
+<strong>Importante:</strong> si viajás para estudiar, trabajar, residir o permanecer más de 90 días, las condiciones migratorias son distintas. Comprobá el trámite que corresponda a tu caso.
+</div>
+
+<h2>Requisitos para viajar a Italia desde Argentina</h2>
+<p>Además de respetar el límite de estancia permitido, tu documentación debe cumplir los requisitos de entrada aplicables. En frontera pueden pedirte que acredites el motivo del viaje, alojamiento, regreso o continuación del itinerario y medios económicos suficientes.</p>
+<p>También conviene comprobar la vigencia exigida del pasaporte antes de volar. Los requisitos pueden cambiar, por lo que la referencia final debe ser siempre la información oficial italiana y de la Unión Europea.</p>
+
+<h3>EES: el nuevo registro de entradas y salidas</h3>
+<p>El <strong>Entry/Exit System (EES)</strong> ya está operativo en las fronteras exteriores del espacio Schengen. El sistema registra electrónicamente las entradas y salidas de viajeros extracomunitarios en estancias cortas y puede utilizar datos biométricos.</p>
+
+<h3>¿Necesito ETIAS para viajar a Italia?</h3>
+<p><strong>A octubre de 2026, ETIAS todavía no está operativo.</strong> Cuando entre en funcionamiento afectará a viajeros de países exentos de visa, incluida Argentina. Comprobá el portal oficial antes de viajar y evitá webs que prometan tramitar una autorización que todavía no pueda solicitarse oficialmente.</p>
+
+<h2 id="que-cubre">¿Qué debería cubrir un seguro médico para viajar a Italia?</h2>
+<p>No todas las pólizas incluyen lo mismo. Estas son las coberturas que merece la pena revisar antes de contratar:</p>
+
+<div class="grid">
+<div class="card"><strong>Gastos médicos</strong><span>Revisá el límite máximo para consultas, pruebas, tratamientos y urgencias durante el viaje.</span></div>
+<div class="card"><strong>Hospitalización</strong><span>Comprobá cómo funciona la asistencia si necesitás ingreso hospitalario o tratamiento prolongado.</span></div>
+<div class="card"><strong>Repatriación</strong><span>Puede ser especialmente importante si por razones médicas necesitás regresar a Argentina.</span></div>
+<div class="card"><strong>Equipaje</strong><span>Compará límites, franquicias, exclusiones y documentación necesaria para reclamar.</span></div>
+<div class="card"><strong>Cancelación</strong><span>Algunas pólizas la incluyen y otras la ofrecen como extra. Revisá siempre los motivos cubiertos.</span></div>
+<div class="card"><strong>Asistencia 24/7</strong><span>Guardá antes de viajar el teléfono, WhatsApp o app de asistencia de la aseguradora.</span></div>
+</div>
+
+<h2>¿Cuánto cuesta un seguro de viaje de Argentina a Italia?</h2>
+<p>No existe un precio único. El coste depende principalmente de la duración, edades, número de viajeros, límite médico y coberturas adicionales.</p>
+<p>Un viaje de 7 días a Roma no tiene el mismo perfil que un mes recorriendo Italia, Francia y España. Por eso, para conocer un precio útil, compará siempre con <strong>tus fechas reales</strong> y con el mismo número de viajeros en todas las opciones.</p>
+<p>Si una póliza parece mucho más barata, revisá antes de decidir: puede tener un límite médico inferior, franquicia, menos cobertura de equipaje o exclusiones diferentes.</p>
+
+<h2>Seguro para 7, 15, 30 días o viajes largos</h2>
+<ul>
+<li><strong>7 días:</strong> útil para una escapada corta a Roma, Milán o una sola región.</li>
+<li><strong>15 días:</strong> frecuente para combinar varias ciudades italianas.</li>
+<li><strong>30 días:</strong> prestá especial atención a límites médicos, repatriación y duración máxima de la póliza.</li>
+<li><strong>Viajes largos:</strong> comprobá tanto las condiciones del seguro como las reglas migratorias de tu estancia.</li>
+</ul>
+
+<h2>¿Vas a Italia y después a otros países de Europa?</h2>
+<p>Es habitual que un viajero argentino combine Italia con Francia, España, Suiza, Austria u otros destinos. En ese caso, comprobá que la cobertura territorial incluya <strong>todo el itinerario</strong>.</p>
+<p>Por ejemplo:</p>
+<div class="note">
+<strong>Buenos Aires → Roma → Florencia → Venecia → París → Barcelona → Argentina</strong>
+</div>
+<p>Para un recorrido así, tiene más sentido comparar una cobertura válida para Europa/Schengen que pensar únicamente en los días que vas a pasar en Italia.</p>
+
+<h2>Roma, Milán, Florencia, Venecia y Nápoles</h2>
+<p>La póliza no debería depender de una única ciudad. Si tu seguro cubre Italia dentro de su ámbito territorial, podés utilizarlo durante un itinerario por destinos como <strong>Roma, Milán, Florencia, Venecia, Nápoles, Bolonia, Turín, Verona, Pisa, Bari o Palermo</strong>, siempre según las condiciones contratadas.</p>
+<p>Si además cruzás una frontera hacia otro país, verificá que ese destino también figure dentro de la zona cubierta.</p>
+
+<h2>¿Viajo con chicos? ¿Necesitan seguro?</h2>
+<p>Si viajás en familia, introducí en la comparación el número real de personas y sus edades. No des por hecho que contratar la cobertura de un adulto incluye automáticamente a los menores. Cada proveedor puede aplicar reglas distintas.</p>
+
+<h2>Enfermedades preexistentes, deportes y situaciones especiales</h2>
+<p>Si tenés una enfermedad preexistente, practicás deportes, viajás embarazada, sos una persona mayor o necesitás una cobertura concreta, no te quedes solo con el resumen comercial de la póliza.</p>
+<p>Revisá las condiciones particulares y las exclusiones. Que una póliza anuncie “asistencia médica” no significa necesariamente que cubra cualquier situación médica.</p>
+
+<h2>Qué hacer si necesitás atención médica en Italia</h2>
+<p>Ante una emergencia grave podés llamar al <strong>112</strong>, el número europeo de emergencias. Si la situación lo permite, contactá también con la central de asistencia de tu aseguradora lo antes posible.</p>
+<p>Guardá facturas, informes médicos, denuncias o justificantes que puedan ser necesarios para una reclamación. El procedimiento exacto depende de cada compañía.</p>
+
+<h2>Checklist antes de salir de Argentina</h2>
+<ul>
+<li>Pasaporte y vigencia requerida.</li>
+<li>Vuelos y alojamiento.</li>
+<li>Documentación del itinerario y regreso.</li>
+<li>Días disponibles dentro de la regla 90/180 de Schengen.</li>
+<li>Seguro válido durante todo el viaje.</li>
+<li>Límite de gastos médicos.</li>
+<li>Repatriación.</li>
+<li>Países incluidos en la cobertura.</li>
+<li>Teléfono o app de asistencia.</li>
+<li>Condiciones de equipaje y cancelación.</li>
+</ul>
+
+<div class="trust-box">
+<strong>Cómo comparar mejor</strong>
+<div class="trust-grid">
+<div class="trust-item"><strong>1. Mismas fechas</strong><span>Usá exactamente la misma duración para comparar precios de forma justa.</span></div>
+<div class="trust-item"><strong>2. Mirá los límites</strong><span>No compares solo el precio: revisá cobertura médica, franquicia y repatriación.</span></div>
+<div class="trust-item"><strong>3. Leé exclusiones</strong><span>Especialmente si hay condiciones médicas previas, deportes o actividades especiales.</span></div>
+</div>
+</div>
+
+<h2>Compara seguros de viaje para Italia desde Argentina</h2>
+<p>ViajeroLatam reúne opciones para que puedas revisar distintas coberturas antes de contratar. Para este viaje, seleccioná <strong>Argentina</strong> como origen y <strong>Europa</strong> como destino.</p>
+
+<div class="cta-card">
+<h3>Argentina → Italia</h3>
+<p>Compara opciones para tu viaje y revisa precio, cobertura médica y condiciones directamente antes de contratar.</p>
+<a class="btn btn-primary" href="/resultados/?origen=argentina&amp;destino=europa">Comparar seguros →</a>
+</div>
+
+<div class="related"><strong>También te puede interesar:</strong><div class="links">
+<a href="/seguro-viaje/argentina-a-espana/">Seguro Argentina a España</a>
+<a href="/blog/cuando-volar-argentina-espana-barato/">Cuándo volar barato Argentina a España</a>
+<a href="/seguro-viaje/mejores-seguros-latinoamericanos/">Mejores seguros para viajeros latinoamericanos</a>
+<a href="/seguro-viaje/schengen-barato/">Seguro Schengen barato</a>
+<a href="/visa-schengen/">Guía del espacio Schengen</a>
+</div></div>
+
+<div class="source-box">
+<strong>Fuentes oficiales y comprobación antes de viajar:</strong>
+<p>Los requisitos pueden cambiar. Revisá siempre la información oficial antes de tu salida.</p>
+<ul>
+<li><a href="https://www.esteri.it/en/servizi-opportunita/ingressosoggiornoinitalia/visto_ingresso/paesi_esenti_visto/" rel="noopener" target="_blank">Ministerio de Asuntos Exteriores de Italia: países exentos de visa</a></li>
+<li><a href="https://home-affairs.ec.europa.eu/policies/schengen/smart-borders/entry-exit-system_en" rel="noopener" target="_blank">Comisión Europea: Entry/Exit System (EES)</a></li>
+<li><a href="https://travel-europe.europa.eu/etias_en" rel="noopener" target="_blank">Unión Europea: información oficial sobre ETIAS</a></li>
+</ul>
+</div>
+
+<section id="preguntas-argentina-italia">
+<h2>Preguntas frecuentes</h2>
+
+<h3>¿Los argentinos necesitan visa para viajar a Italia?</h3>
+<p>Para viajes turísticos de corta duración, los ciudadanos argentinos están exentos de visa para estancias de hasta 90 días dentro de un período de 180 días en el espacio Schengen.</p>
+
+<h3>¿Es obligatorio el seguro de viaje para ir a Italia desde Argentina?</h3>
+<p>Para un turista argentino exento de visa, el seguro no es un requisito de una solicitud de visa. Aun así, es recomendable contar con cobertura médica y asistencia para imprevistos durante el viaje.</p>
+
+<h3>¿Sirve un seguro Schengen para Italia?</h3>
+<p>Sí, siempre que la póliza tenga cobertura territorial adecuada para Italia y para el resto de países incluidos en tu itinerario.</p>
+
+<h3>¿Puedo usar el mismo seguro para Italia, España y Francia?</h3>
+<p>Puede ser posible si la póliza cubre esos destinos durante toda la duración del viaje. Verificá el ámbito territorial y las condiciones antes de contratar.</p>
+
+<h3>¿Cuánto cuesta un seguro médico para Italia desde Argentina?</h3>
+<p>Depende de la duración, edades, número de viajeros y coberturas elegidas. Para obtener una comparación útil, utilizá las fechas reales del viaje.</p>
+
+<h3>¿Necesito ETIAS?</h3>
+<p>A octubre de 2026, ETIAS todavía no está operativo. Comprobá el estado oficial antes de viajar porque este requisito cambiará cuando el sistema entre en funcionamiento.</p>
+</section>
+</article>
+<aside>
+<div class="side-card">
+<h3>Argentina → Italia</h3>
+<p>Compara opciones para Europa con asistencia médica, repatriación, equipaje y otras coberturas según póliza.</p>
+<a class="btn btn-primary" href="/resultados/?origen=argentina&amp;destino=europa">Comparar gratis</a>
+</div>
+<div class="side-card">
+<h3>Para elegir rápido</h3>
+<ul class="mini-list">
+<li>Revisá el límite de gastos médicos.</li>
+<li>Confirmá repatriación y asistencia.</li>
+<li>Comprobá si hay franquicia.</li>
+<li>Incluí todos los países del itinerario.</li>
+</ul>
+</div>
+<div class="side-card">
+<h3>Viaje por Europa</h3>
+<p>Si además de Italia visitás Francia, España u otros países, revisá que la póliza cubra todo el recorrido.</p>
+</div>
+</aside>
+</div>
+</main>
+<footer class="site-footer">
+<div class="footer-inner">
+<div class="footer-brand">
+<p><strong>© ViajeroLatam</strong> · Comparador independiente para viajeros latinoamericanos.</p>
+<p class="disclosure">Podemos recibir una comisión si contratas desde nuestros enlaces afiliados, sin coste adicional para ti.</p>
+</div>
+<div class="footer-links">
+<a href="/">Inicio</a>
+<a href="/resultados/?origen=argentina&amp;destino=europa">Comparar Argentina → Italia</a>
+<a href="/visa-schengen/">Visa Schengen</a>
+<a href="/blog/">Artículos</a>
+<a href="/sobre-nosotros/">Sobre nosotros</a>
+<a href="/contacto/">Contacto</a>
+</div>
+</div>
+</footer>
+<div aria-label="Comparar seguros gratis" class="mobile-affiliate-bar">
+<a href="/resultados/?origen=argentina&amp;destino=europa">🔍 Comparar seguros gratis</a>
+<span>Sin coste · Póliza en 2 minutos · 4 aseguradoras</span>
+</div>
+<script>
+document.addEventListener('click', function(e){
+  var link=e.target.closest('a');
+  if(!link || typeof gtag!=='function') return;
+  var href=link.getAttribute('href')||'';
+  if(href.indexOf('/resultados/')!==-1){
+    gtag('event','click_comparar_argentina_italia',{event_category:'lead',event_label:href,page_location:window.location.href});
+  }
+});
+</script>
+  <script defer src="/assets/vl-whatsapp.js"></script>
+</body>
+</html>
