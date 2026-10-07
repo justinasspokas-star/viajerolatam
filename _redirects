@@ -68,9 +68,9 @@ https://www.viajerolatam.com/*       https://viajerolatam.com/:splat            
 # Alias SEO Colombia Estados Unidos
 /seguro-viaje/colombia-a-estados-unidos/ /seguro-viaje/colombia-a-eeuu/ 301!
 /seguro-viaje/colombia-a-estados-unidos /seguro-viaje/colombia-a-eeuu/ 301!
-# Fix parent /seguro-viaje/ referenced by BreadcrumbList
-/seguro-viaje/ /resultados/ 301!
-/seguro-viaje /resultados/ 301!
+# Retired generic /seguro-viaje/ hub
+/seguro-viaje/ / 301!
+/seguro-viaje / 301!
 
 /seguro-viaje/colombia-a-estados-unidos/index.html /seguro-viaje/colombia-a-eeuu/ 301!
 /seguro-viaje/seguro-viaje/colombia-a-eeuu/ /seguro-viaje/colombia-a-eeuu/ 301!
