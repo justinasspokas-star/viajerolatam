@@ -2067,21 +2067,29 @@ nav .logo img{
 <style id="vl-home-sticker-bg-final">
 /* Home hero background only — desktop + mobile */
 .hero,section.hero{
-  background:
-    linear-gradient(rgba(5,12,40,.54),rgba(5,12,40,.54)),
-    url('/assets/home-sticker-travel-bg.webp') center top/cover no-repeat !important;
+  background-color:#06122e !important;
+  background-image:
+    linear-gradient(rgba(5,12,40,.38),rgba(5,12,40,.38)),
+    url('/assets/home-sticker-travel-bg.webp') !important;
+  background-position:center center,center center !important;
+  background-size:cover,cover !important;
+  background-repeat:no-repeat,no-repeat !important;
 }
 .hero::before{
-  background:rgba(5,12,40,.16) !important;
+  background:rgba(5,12,40,.10) !important;
 }
 @media screen and (max-width:768px){
   .hero,section.hero{
-    background:
-      linear-gradient(rgba(5,12,40,.62),rgba(5,12,40,.62)),
-      url('/assets/home-sticker-travel-bg.webp') center 18%/cover no-repeat !important;
+    background-color:#06122e !important;
+    background-image:
+      linear-gradient(rgba(5,12,40,.42),rgba(5,12,40,.42)),
+      url('/assets/home-sticker-travel-bg.webp') !important;
+    background-position:center top,center top !important;
+    background-size:100% auto,100% auto !important;
+    background-repeat:no-repeat,no-repeat !important;
   }
   .hero::before{
-    background:rgba(5,12,40,.12) !important;
+    background:rgba(5,12,40,.08) !important;
   }
 }
 </style>
