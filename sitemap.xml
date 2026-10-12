@@ -193,4 +193,10 @@
     <changefreq>monthly</changefreq>
     <priority>0.86</priority>
   </url>
+  <url>
+    <loc>https://viajerolatam.com/seguro-viaje/ninos-bebes/</loc>
+    <lastmod>2026-10-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.86</priority>
+  </url>
 </urlset>
