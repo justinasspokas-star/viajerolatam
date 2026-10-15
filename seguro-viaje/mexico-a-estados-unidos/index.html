@@ -180,7 +180,7 @@ main > .vl-intent-links{margin-top:22px!important;}
 @media(max-width:700px){.compare-table{font-size:12px}.compare-table th,.compare-table td{padding:9px}}
 </style>
 <style id="mx-usa-seo-responsive">
-html{scroll-padding-top:85px}.mx-providers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:18px 0}.mx-provider{border:1px solid #DDE8F1;border-radius:18px;background:#fff;padding:18px;min-width:0;display:flex;flex-direction:column}.mx-provider h3{font-size:19px;line-height:1.3;margin:12px 0 8px}.mx-provider p{font-size:13px;line-height:1.6}.mx-label{font-size:12px;font-weight:900;color:#007E6A}.mx-provider-price{margin-top:auto;padding-top:12px;border-top:1px solid #E4EDF5}.mx-provider-price strong,.mx-provider-price small{display:block}.mx-provider-price small{font-size:11px;color:#536B86}.mx-provider>a{display:flex;align-items:center;justify-content:center;background:#0B1F3A;color:#fff;min-height:46px;border-radius:12px;padding:10px;text-align:center;font-weight:800;text-decoration:none;margin-top:10px;font-size:13px}.mx-disclosure{font-size:12px;line-height:1.7;background:#F5F9FC;border-radius:12px;padding:14px;color:#536B86}.mx-disclosure a{font-weight:800;color:#006F64}.mx-quote-section{background:#EAF8F4}.mx-quote-form{display:grid;grid-template-columns:1fr 1fr auto;gap:10px;align-items:end;margin:16px 0}.mx-quote-form label{display:grid;gap:7px;color:#0B1F3A;font-size:13px;font-weight:800}.mx-quote-form select{width:100%;min-height:45px;background:#fff;border:1px solid #B6CBC7;border-radius:12px;padding:10px;color:#0B1F3A;font:inherit}.mx-quote-form button{min-height:45px;border:none;border-radius:12px;padding:10px 15px;background:#00C4A1;color:#0B1F3A;font-weight:900;font-size:13px;cursor:pointer}.mx-nav-mobile{display:none}
+html{scroll-padding-top:85px}.mx-providers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:18px 0}.mx-provider{border:1px solid #DDE8F1;border-radius:18px;background:#fff;padding:18px;min-width:0;display:flex;flex-direction:column}.mx-provider h3{font-size:19px;line-height:1.3;margin:12px 0 8px}.mx-provider p{font-size:13px;line-height:1.6}.mx-label{font-size:12px;font-weight:900;color:#007E6A}.mx-provider-price{margin-top:auto;padding-top:12px;border-top:1px solid #E4EDF5}.mx-provider-price strong,.mx-provider-price small{display:block}.mx-provider-price small{font-size:11px;color:#536B86}.mx-provider>a{display:flex;align-items:center;justify-content:center;background:#0B1F3A;color:#fff;min-height:46px;border-radius:12px;padding:10px;text-align:center;font-weight:800;text-decoration:none;margin-top:10px;font-size:13px}.mx-disclosure{font-size:12px;line-height:1.7;background:#F5F9FC;border-radius:12px;padding:14px;color:#536B86}.mx-disclosure a{font-weight:800;color:#006F64}.mx-quote-section{background:#EAF8F4}.mx-quote-form{display:grid;grid-template-columns:1fr 1fr auto;gap:10px;align-items:end;margin:16px 0}.mx-quote-form label{display:grid;gap:7px;color:#0B1F3A;font-size:13px;font-weight:800}.mx-quote-form select{width:100%;min-height:45px;background:#fff;border:1px solid #B6CBC7;border-radius:12px;padding:10px;color:#0B1F3A;font:inherit}.mx-quote-form button{min-height:45px;border:none;border-radius:12px;padding:10px 15px;background:#00C4A1;color:#0B1F3A;font-weight:900;font-size:13px;cursor:pointer}.mx-nav-mobile{display:none}.mx-table-scroll{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}.mx-table-scroll .compare-table{min-width:540px}.mx-table-scroll:focus-visible{outline:2px solid #007E6A;outline-offset:2px}
 @media(max-width:1040px){.mx-providers{grid-template-columns:1fr}.mx-provider{padding:16px}}
 @media(max-width:900px){.mx-nav-mobile{display:inline-flex;align-items:center;background:#0B1F3A;color:#fff;text-decoration:none;padding:10px 16px;min-height:43px;border-radius:999px;font-size:13px;font-weight:900}nav{gap:10px}.brand-logo img{max-width:60vw}.hero h1{font-size:clamp(32px,8vw,48px);line-height:1.13}.hero p{font-size:15px;line-height:1.65}.btn-row .btn{min-height:45px}.mx-quote-form{grid-template-columns:1fr 1fr}.mx-quote-form button{grid-column:1/-1}.mobile-sticky{bottom:calc(12px + env(safe-area-inset-bottom))}.mobile-sticky .btn{min-height:52px}html.vl-whatsapp-has-sticky .vl-whatsapp-float{bottom:calc(89px + env(safe-area-inset-bottom))}}
 @media(max-width:480px){main{padding:20px 12px 94px}.hero{padding:30px 14px}.hero h1{font-size:clamp(30px,9vw,41px)}.mx-quote-form{grid-template-columns:1fr}.mx-quote-form button{grid-column:1}section,.box{padding:17px;border-radius:18px}article h2{font-size:clamp(25px,7vw,32px)}}
@@ -302,7 +302,7 @@ html{scroll-padding-top:85px}.mx-providers{display:grid;grid-template-columns:re
 <section>
 <div class="kicker">Situaciones reales</div>
 <h2>Qué cambia según el tipo de viaje</h2>
-<table class="compare-table">
+<div class="mx-table-scroll" role="region" aria-label="Tabla de recomendaciones según tipo de viaje" tabindex="0"><table class="compare-table">
 <thead><tr><th>Viaje</th><th>Qué revisar primero</th><th>Error frecuente</th></tr></thead>
 <tbody>
 <tr><td>Escapada de 5–7 días</td><td>Gastos médicos, deducible y asistencia</td><td>Elegir únicamente por prima baja</td></tr>
@@ -310,7 +310,7 @@ html{scroll-padding-top:85px}.mx-providers{display:grid;grid-template-columns:re
 <tr><td>Visita familiar de varias semanas</td><td>Duración máxima, medicación, preexistencias y extensión</td><td>Comprar menos días que el viaje real</td></tr>
 <tr><td>Viaje de negocios</td><td>Asistencia médica, equipaje de trabajo y cambios de viaje</td><td>Suponer que el seguro corporativo cubre todo</td></tr>
 </tbody>
-</table>
+</table></div>
 </section>
 
 <section>
@@ -413,6 +413,11 @@ html{scroll-padding-top:85px}.mx-providers{display:grid;grid-template-columns:re
 document.addEventListener('click',function(e){
   var link=e.target.closest('a');
   if(!link||typeof gtag!=='function')return;
+  if(link.closest('.mx-provider')){
+    var providerLink=link.getAttribute('href')||'';
+    var company=providerLink.includes('intermundial')?'intermundial':providerLink.includes('iatiglobal')?'iati':providerLink.includes('assistcard')?'assist_card':'other';
+    gtag('event','click_proveedor_mexico_eeuu',{event_category:'lead',event_label:company,outbound_url:link.href,page_location:window.location.href});
+  }
   var href=link.getAttribute('href')||'';
   if(link.classList.contains('vl-compare-link')||href.indexOf('/resultados/')===0){
     gtag('event','click_comparar_mexico_eeuu',{event_category:'lead',event_label:href,page_location:window.location.href});
