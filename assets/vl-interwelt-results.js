@@ -116,7 +116,7 @@
   }
   // Use the same classes/three-column structure as ViajeroLatam's IATI/AXA cards.
   // Never claim coverage, eligibility, currency or purchasability not verified by INTERWELT.
-  function card(item, kind) {
+  function card(item, kind, availablePlans = [item]) {
     const historical = kind === 'historical';
     const article = document.createElement('article');
     article.className = 'card vl-interwelt-plan';
@@ -156,6 +156,27 @@
       pills.append(pill);
     }
     coverage.append(pills);
+    // ONE provider card; choosing a plan updates this card instead of creating five cards.
+    let selector = null;
+    if (availablePlans.length > 1) {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'vl-iw-plan-picker';
+      const label = document.createElement('label');
+      label.htmlFor = 'vl-iw-plan-choice-' + String(item.id);
+      label.textContent = 'Selecciona un plan de INTERWELT';
+      selector = document.createElement('select');
+      selector.id = label.htmlFor;
+      selector.className = 'vl-iw-plan-select';
+      for (const available of availablePlans) {
+        const option = document.createElement('option');
+        option.value = String(available.id);
+        option.textContent = available.name;
+        selector.append(option);
+      }
+      selector.value = String(item.id);
+      wrapper.append(label, selector);
+      coverage.append(wrapper);
+    }
     for (const [label, value] of [
       ['Gastos médicos:', 'Por confirmar'],
       ['Repatriación:', 'Por confirmar'],
@@ -248,6 +269,18 @@
     }
     details.append(grid);
     article.append(body, details);
+    if (selector) {
+      selector.addEventListener('change', () => {
+        const selected = availablePlans.find(p => String(p.id) === selector.value);
+        if (!selected) return;
+        plan.textContent = selected.name;
+        price.textContent = new Intl.NumberFormat('es-ES', {
+          minimumFractionDigits: 2, maximumFractionDigits: 2
+        }).format(selected.total);
+        const detailPlan = grid.querySelector('.detail-val');
+        if (detailPlan) detailPlan.textContent = selected.name;
+      });
+    }
     return article;
   }
 
@@ -273,8 +306,8 @@
       results.append(demo);
       return;
     }
-    for (const item of SAMPLE.prices) results.append(card(item, 'historical'));
-    applyMessage('Ejemplo histórico mostrado: Colombia → Europa, 1 viajero de 30 años, 1–15 noviembre 2026. No se ha llamado a la API.');
+    results.append(card(SAMPLE.prices[0], 'historical', SAMPLE.prices));
+    applyMessage('Ejemplo histórico de cinco planes agrupados en una sola tarjeta: selecciona el plan para ver su importe. Colombia → Europa, 1 viajero de 30 años, 1–15 noviembre 2026. No se ha llamado a la API.');
   }
   async function validateOnServer(q, ages) {
     const raw = new URLSearchParams(location.search);
@@ -320,7 +353,8 @@
       typeof p.total === 'number' && Number.isFinite(p.total) && p.total > 0);
     if (cleaned.length === 0) return false;
     results.replaceChildren();
-    cleaned.forEach(item => results.append(card(item, 'live')));
+    const ordered = cleaned.slice().sort((a, b) => a.total - b.total);
+    results.append(card(ordered[0], 'live', ordered));
     applyMessage('Cotización real recibida del servidor. La contratación permanece desactivada.');
     return true;
   }
