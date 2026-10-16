@@ -1427,6 +1427,7 @@ nav .brand-logo img{height:36px!important;max-width:164px!important;width:auto!i
 }
 </style>
 </link><meta content="Icono de ViajeroLatam con mochila viajera" property="og:image:alt"/>  <link rel="stylesheet" href="/assets/vl-whatsapp.css">
+<link rel="stylesheet" href="/assets/vl-traveller-ages.css">
 </head>
 <body>
 <!-- H1 principal movido al bloque de resultados para evitar espacio superior -->
@@ -1698,7 +1699,11 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
 <option value="1">1 persona</option>
 <option value="2">2 personas</option>
 <option value="3">3 personas</option>
-<option value="4">4+ personas</option>
+<option value="4">4 personas</option>
+<option value="5">5 personas</option>
+<option value="6">6 personas</option>
+<option value="7">7 personas</option>
+<option value="8">8 personas</option>
 </select>
 </div>
 </div>
@@ -2767,7 +2772,7 @@ function applyEditSearch(){
     if(vueltaEl) vueltaEl.value=vuelta;
     if(daysEl) daysEl.value=daysBetween(ida,vuelta);
     if(travelers){
-      var value=travelerValue>=4?'4':String(travelerValue);
+      var value=String(Math.max(1,Math.min(8,travelerValue)));
       if(Array.from(travelers.options).some(function(o){return o.value===value;})) travelers.value=value;
     }
 
@@ -2856,5 +2861,6 @@ document.addEventListener('keydown', function(e){
 </script>
 <!-- ViajeroLatam STEP2 comparator verified 2026-08-24 -->
   <script defer src="/assets/vl-whatsapp.js"></script>
+<script defer src="/assets/vl-traveller-ages.js"></script>
 </body>
 </html>
