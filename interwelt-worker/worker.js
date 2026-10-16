@@ -39,7 +39,7 @@ function validate(input) {
   const departure = validDate(input.departure);
   const arrival = validDate(input.return);
   if (!departure || !arrival) return null;
-  const days = Math.round((arrival - departure) / 86400000);
+  const days = Math.round((arrival - departure) / 86400000) + 1;
   if (days < 1 || days > 120) return null;
   if (departure < new Date(new Date().toISOString().slice(0, 10) + "T00:00:00Z")) return null;
   return { origin, region, ages: input.ages, departure: input.departure, arrival: input.return };
@@ -76,6 +76,27 @@ export default {
     const pathname = new URL(request.url).pathname;
     if (pathname === "/health" && request.method === "GET") {
       return reply({ status: "ok", mode: "readonly", vouchers_enabled: false });
+    }
+    if (pathname === "/api/check" && request.method === "GET") {
+      // Status can only be queried using the operator's token.
+      // No variable values or credentials are returned to the caller.
+      if (!env.INTERWELT_PILOT_TOKEN ||
+          request.headers.get("x-pilot-token") !== env.INTERWELT_PILOT_TOKEN) {
+        return reply({ error: "forbidden" }, 403);
+      }
+      const required = [
+        "INTERWELT_EMAIL", "INTERWELT_PASSWORD",
+        "INTERWELT_CONTACT_EMAIL", "INTERWELT_CONTACT_PHONE"
+      ];
+      return reply({
+        mode: "operator_readonly",
+        live_quotes_enabled: env.INTERWELT_PILOT_ENABLED === "true",
+        credentials_configured: required.every(key => Boolean(env[key])),
+        required_variable_names: required,
+        currency_confirmed: env.INTERWELT_CONFIRMED_CURRENCY === "USD",
+        vouchers_enabled: false,
+        payments_enabled: false
+      });
     }
     if (pathname !== "/api/quote" || request.method !== "POST") {
       return reply({ error: "not_found" }, 404);
@@ -149,10 +170,25 @@ export default {
       // The provider JSON lacks an explicit currency field: do not assume a
       // customer-facing currency until INTERWELT confirms the production API unit.
       return reply({
+        mode: "operator_quote",
+        source: "INTERWELT",
+        live: true,
         quote_id: response?.id || null,
+        search: {
+          origin_country_id: quote.origin,
+          destination_region_id: quote.region,
+          departure: quote.departure,
+          return: quote.arrival,
+          ages: quote.ages,
+          days: Math.round((Date.parse(quote.arrival + "T00:00:00Z") -
+            Date.parse(quote.departure + "T00:00:00Z")) / 86400000) + 1
+        },
         prices: pricesFromApi(response),
         currency: env.INTERWELT_CONFIRMED_CURRENCY === "USD" ? "USD" : null,
         currency_confirmed: env.INTERWELT_CONFIRMED_CURRENCY === "USD",
+        mapping_verified: false,
+        eligible: null,
+        payments_enabled: false,
         vouchers_enabled: false
       });
     } catch {
