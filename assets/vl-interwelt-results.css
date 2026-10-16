@@ -17,27 +17,6 @@
 #vl-interwelt-slot .vl-iw-sub{
   font-size:12px;line-height:1.5;color:#526980;margin:7px 0;
 }
-#vl-interwelt-slot .vl-iw-ages{
-  display:flex;flex-wrap:wrap;gap:10px;margin:9px 0 10px;
-}
-#vl-interwelt-slot .vl-iw-age{
-  display:flex;flex-direction:column;gap:5px;color:#4a6075;
-  font-size:11px;font-weight:650;flex:0 1 118px;
-}
-#vl-interwelt-slot .vl-iw-age input{
-  width:100%;border:1px solid #cddde7;border-radius:9px;
-  padding:9px 10px;color:#0b1f3a;font-size:14px;background:#fff;
-}
-#vl-interwelt-slot .vl-iw-btn{
-  background:#087c87;color:white;border:0;border-radius:30px;
-  padding:10px 18px;font-size:12px;font-weight:800;cursor:pointer;
-}
-#vl-interwelt-slot .vl-iw-btn:disabled{background:#b4c2cf;cursor:not-allowed}
-#vl-interwelt-slot .vl-iw-btn:focus-visible,
-#vl-interwelt-slot input:focus-visible,
-#vl-interwelt-slot .vl-iw-details-toggle:focus-visible{
-  outline:3px solid #6dc5d0;outline-offset:3px;
-}
 #vl-interwelt-slot .vl-iw-status{
   margin:9px 0 14px;font-size:11.5px;color:#516b81;line-height:1.5;
 }
@@ -92,8 +71,6 @@
 #vl-interwelt-slot .vl-iw-example-link:hover{background:#e0f4f7}
 @media(max-width:600px){
   #vl-interwelt-slot .vl-iw-head h2{font-size:16px}
-  #vl-interwelt-slot .vl-iw-age{flex:1 1 42%}
-  #vl-interwelt-slot .vl-iw-btn{width:100%;min-height:43px}
   #vl-interwelt-slot .vl-iw-example-link{width:100%;text-align:center}
   #vl-interwelt-slot .vl-interwelt-plan .card-price-block{align-items:stretch!important}
   #vl-interwelt-slot .vl-interwelt-plan .availability-note{text-align:left}
