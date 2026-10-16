@@ -1427,6 +1427,7 @@ nav .brand-logo img{height:36px!important;max-width:164px!important;width:auto!i
 }
 </style>
 </link><meta content="Icono de ViajeroLatam con mochila viajera" property="og:image:alt"/>  <link rel="stylesheet" href="/assets/vl-whatsapp.css">
+<link rel="stylesheet" href="/assets/vl-interwelt-results.css">
 </head>
 <body>
 <!-- H1 principal movido al bloque de resultados para evitar espacio superior -->
@@ -1785,6 +1786,19 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
 </div>
 </section>
 <div id="cards-container"></div>
+<!-- INTERWELT staging bridge: hidden in normal results; internal preview via ?vl_interwelt_preview=1 -->
+<section id="vl-interwelt-slot" hidden aria-labelledby="vl-interwelt-heading">
+  <div class="vl-iw-head">
+    <h2 id="vl-interwelt-heading">INTERWELT · Asistencia en viaje</h2>
+    <span class="vl-iw-tag">VISTA PREVIA · SIN VENTAS</span>
+  </div>
+  <p class="vl-iw-sub" data-vl-iw-route></p>
+  <p class="vl-iw-sub">INTERWELT exige la edad de cada viajero para generar una cotización. Este entorno no solicita datos personales ni contacta con INTERWELT.</p>
+  <div class="vl-iw-ages" data-vl-iw-ages></div>
+  <button type="button" class="vl-iw-btn" data-vl-iw-compare>Preparar cotización de prueba</button>
+  <p class="vl-iw-status" data-vl-iw-message role="status" aria-live="polite">Esperando búsqueda…</p>
+  <div class="vl-iw-cards" data-vl-iw-results></div>
+</section>
 <div class="no-results" id="no-results" style="display:none">
 <h3>Sin resultados</h3>
 <p>Prueba a ajustar los filtros para ver más opciones.</p>
@@ -2856,5 +2870,6 @@ document.addEventListener('keydown', function(e){
 </script>
 <!-- ViajeroLatam STEP2 comparator verified 2026-08-24 -->
   <script defer src="/assets/vl-whatsapp.js"></script>
+<script defer src="/assets/vl-interwelt-results.js"></script>
 </body>
 </html>
