@@ -41,6 +41,16 @@ test("demo endpoint serves only static data without calling external services", 
     assert.equal(data.vouchers_enabled, false);
     assert.equal(data.payments_enabled, false);
     assert.equal(data.prices.length, 5);
+    assert.deepEqual(data.sample_trip, {
+      origin: "colombia",
+      destination: "espana",
+      departure: "2026-11-01",
+      return: "2026-11-15",
+      travellers: 1,
+      ages: [30],
+      days: 15,
+      region: "Europa y Mediterráneo"
+    });
     assert.ok(!JSON.stringify(data).includes("access_token"));
     assert.ok(!JSON.stringify(data).includes("INTERWELT_PASSWORD"));
   } finally {
