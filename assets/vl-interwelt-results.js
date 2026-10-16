@@ -114,28 +114,155 @@
       q.departure === SAMPLE.departure && q.returnDate === SAMPLE.returnDate &&
       q.travellers === 1 && ages.length === 1 && ages[0] === 30;
   }
+  // Use the same classes/three-column structure as ViajeroLatam's IATI/AXA cards.
+  // Never claim coverage, eligibility, currency or purchasability not verified by INTERWELT.
   function card(item, kind) {
+    const historical = kind === 'historical';
     const article = document.createElement('article');
-    article.className = 'vl-iw-card';
-    const name = document.createElement('h3');
-    name.textContent = 'INTERWELT · ' + item.name;
-    const sub = document.createElement('p');
-    sub.className = 'vl-iw-card-small';
-    sub.textContent = 'Plan #' + item.id + (kind === 'historical' ? ' · ejemplo histórico' : ' · cotización verificada');
-    const price = document.createElement('strong');
-    price.className = 'vl-iw-value';
-    price.textContent = new Intl.NumberFormat('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(item.total);
-    const note = document.createElement('p');
-    note.className = 'vl-iw-card-small';
-    note.textContent = kind === 'historical'
-      ? 'Importe histórico. Moneda por confirmar. No es una tarifa actual.'
-      : 'Precio cotizado por INTERWELT. Contratación no activada.';
-    const disabled = document.createElement('span');
-    disabled.className = 'vl-iw-disabled';
-    disabled.textContent = 'Contratación desactivada';
-    article.append(name, sub, price, note, disabled);
+    article.className = 'card vl-interwelt-plan';
+    article.id = 'vl-iw-card-' + String(item.id);
+
+    const body = document.createElement('div');
+    body.className = 'card-body';
+
+    const logo = document.createElement('div');
+    logo.className = 'card-logo-block';
+    const initials = document.createElement('div');
+    initials.className = 'card-logo vl-iw-monogram';
+    initials.textContent = 'IW'; // Typographic placeholder, not an official insurer logo.
+    initials.setAttribute('aria-label', 'INTERWELT');
+    const meta = document.createElement('div');
+    meta.className = 'card-logo-meta';
+    const brand = document.createElement('div');
+    brand.className = 'card-name';
+    brand.textContent = 'INTERWELT';
+    const plan = document.createElement('div');
+    plan.className = 'card-plan-under-logo';
+    plan.textContent = item.name;
+    const unverified = document.createElement('div');
+    unverified.className = 'card-verified';
+    unverified.textContent = 'Datos sin verificar';
+    meta.append(brand, plan, unverified);
+    logo.append(initials, meta);
+
+    const coverage = document.createElement('div');
+    coverage.className = 'card-coverage';
+    const pills = document.createElement('div');
+    pills.className = 'coverage-pills';
+    for (const name of ['Demostración', 'Cobertura pendiente']) {
+      const pill = document.createElement('span');
+      pill.className = 'cpill ' + (name === 'Demostración' ? 'cpill-amber' : 'cpill-navy');
+      pill.textContent = name;
+      pills.append(pill);
+    }
+    coverage.append(pills);
+    for (const [label, value] of [
+      ['Gastos médicos:', 'Por confirmar'],
+      ['Repatriación:', 'Por confirmar'],
+      ['Equipaje:', 'Por confirmar']
+    ]) {
+      const line = document.createElement('div');
+      line.className = 'coverage-row';
+      const icon = document.createElement('span');
+      icon.className = 'vl-iw-cov-symbol';
+      icon.setAttribute('aria-hidden', 'true');
+      icon.textContent = '◇';
+      const labelText = document.createElement('span');
+      labelText.textContent = label;
+      const val = document.createElement('span');
+      val.className = 'cov-val';
+      val.textContent = value;
+      line.append(icon, labelText, val);
+      coverage.append(line);
+    }
+    const fit = document.createElement('div');
+    fit.className = 'card-fit';
+    const fitTitle = document.createElement('strong');
+    fitTitle.textContent = 'A quién va dirigido: ';
+    fit.append(fitTitle, document.createTextNode('Elegibilidad y condiciones pendientes de confirmar con INTERWELT.'));
+    const caution = document.createElement('div');
+    caution.className = 'card-caution';
+    const cautionTitle = document.createElement('strong');
+    cautionTitle.textContent = 'A tener en cuenta: ';
+    caution.append(cautionTitle, document.createTextNode(
+      historical
+        ? 'Importe de una cotización histórica, no una oferta actual. Falta verificar moneda, cobertura y disponibilidad.'
+        : 'Validar moneda, edad, territorio y cobertura antes de mostrar una cotización.'
+    ));
+    coverage.append(fit, caution);
+
+    const priceCol = document.createElement('div');
+    priceCol.className = 'card-price-block';
+    const availability = document.createElement('div');
+    availability.className = 'availability-note vl-iw-warning';
+    availability.textContent = 'No disponible para contratar · solo vista previa';
+    const priceLabel = document.createElement('div');
+    priceLabel.className = 'public-price-label';
+    priceLabel.textContent = historical ? 'Importe histórico de prueba' : 'Precio del proveedor';
+    const price = document.createElement('div');
+    price.className = 'public-price';
+    price.textContent = new Intl.NumberFormat('es-ES', {
+      minimumFractionDigits: 2, maximumFractionDigits: 2
+    }).format(item.total);
+    const note = document.createElement('div');
+    note.className = 'public-price-sub';
+    note.textContent = historical
+      ? 'Moneda por confirmar · 1 viajero de 30 años · 15 días · NO es una cotización en directo.'
+      : 'Importe verificado para la búsqueda. Compra aún desactivada.';
+    const cta = document.createElement('button');
+    cta.type = 'button';
+    cta.className = 'btn-contract vl-iw-disabled-cta';
+    cta.disabled = true;
+    cta.textContent = 'Contratación desactivada';
+    const more = document.createElement('button');
+    more.type = 'button';
+    more.className = 'btn-details vl-iw-details-toggle';
+    more.textContent = 'Ver detalles del plan';
+    more.setAttribute('aria-expanded', 'false');
+    const detailsId = 'vl-iw-det-' + String(item.id);
+    more.setAttribute('aria-controls', detailsId);
+    priceCol.append(availability, priceLabel, price, note, cta, more);
+    body.append(logo, coverage, priceCol);
+
+    const details = document.createElement('div');
+    details.className = 'card-details vl-iw-details';
+    details.id = detailsId;
+    details.hidden = true;
+    const grid = document.createElement('div');
+    grid.className = 'details-grid';
+    for (const [label, val] of [
+      ['Plan', item.name],
+      ['Coberturas', 'Pendientes de documentación oficial'],
+      ['Moneda y elegibilidad', 'Pendientes de confirmación']
+    ]) {
+      const el = document.createElement('div');
+      el.className = 'detail-item';
+      const heading = document.createElement('div');
+      heading.className = 'detail-label';
+      heading.textContent = label;
+      const value = document.createElement('div');
+      value.className = 'detail-val';
+      value.textContent = val;
+      el.append(heading, value);
+      grid.append(el);
+    }
+    details.append(grid);
+    article.append(body, details);
     return article;
   }
+
+  results.addEventListener('click', event => {
+    const button = event.target.closest('.vl-iw-details-toggle');
+    if (!button || !results.contains(button)) return;
+    const detail = document.getElementById(button.getAttribute('aria-controls'));
+    if (!detail) return;
+    const expanded = button.getAttribute('aria-expanded') === 'true';
+    button.setAttribute('aria-expanded', String(!expanded));
+    detail.hidden = expanded;
+    detail.classList.toggle('open', !expanded);
+    button.textContent = expanded ? 'Ver detalles del plan' : 'Ocultar detalles';
+  });
+
   function renderHistorical(q, ages) {
     if (!isHistoricalSample(q, ages)) {
       applyMessage('Prueba completada: no existen tarifas para los datos introducidos (edad: ' + ages.join(', ') + '). Solo tenemos una muestra de 30 años, del 1 al 15 de noviembre de 2026, Colombia → Europa. No es un error del botón: aún no conectamos la API real.');
