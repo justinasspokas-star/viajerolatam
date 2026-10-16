@@ -5,7 +5,7 @@
 .vl-ages-head small{font-size:11px;color:#637b8d}
 .vl-ages-inputs{display:flex;flex-wrap:wrap;gap:8px}
 .vl-age-item{display:flex;flex:0 1 110px;flex-direction:column;gap:4px;font-size:11px;color:#526b80;font-weight:700;min-width:0}
-.vl-age-item input{box-sizing:border-box;width:100%;height:38px;min-height:38px;border:1px solid #cbdde8;border-radius:8px;background:#fff;color:#0b1f3a;padding:8px 9px;font:500 13px/1.2 inherit}
+.vl-age-item input{box-sizing:border-box;width:100%;height:38px;min-height:38px;border:1px solid #cbdde8;border-radius:8px;background:#fff;color:#0b1f3a;padding:8px 9px;font-size:13px;font-family:inherit;font-weight:500;line-height:1.2}
 .vl-age-item input:focus-visible{outline:2px solid #00a89b;outline-offset:1px}
 .vl-ages-error{font-size:12px;margin:7px 0 0;color:#b12c35;line-height:1.45}
 .vl-ages-error[hidden]{display:none!important}
