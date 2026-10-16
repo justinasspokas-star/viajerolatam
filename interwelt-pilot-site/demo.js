@@ -20,6 +20,7 @@
   const cards = document.getElementById('plans');
   const emptyState = document.getElementById('empty-state');
   const summary = document.getElementById('search-summary');
+  const notice = document.getElementById('results-notice');
   let sequence = 0;
 
   function renderAges() {
@@ -84,6 +85,15 @@
       query.ages[0] === SAMPLE.ages[0];
   }
 
+  function updateNotice(isHistoricalExample) {
+    const label = document.createElement('strong');
+    label.textContent = isHistoricalExample ? 'Precios de una cotización histórica: ' : 'Modo de prueba: ';
+    const message = isHistoricalExample
+      ? 'Son cifras de un ejemplo pasado, no ofertas actuales ni contratables. La moneda de la respuesta JSON requiere confirmación. España se agrupa en Europa/Mediterráneo y no implica validez para visados Schengen.'
+      : 'Esta búsqueda todavía no consulta la API de INTERWELT y no tiene precios disponibles. No se admiten pagos ni emisión de vouchers.';
+    notice.replaceChildren(label, document.createTextNode(message));
+  }
+
   function clearResults() {
     cards.replaceChildren();
     emptyState.hidden = true;
@@ -93,6 +103,7 @@
     sequence += 1;
     error.hidden = true;
     clearResults();
+    updateNotice(false);
     status.textContent = 'Búsqueda modificada. Pulsa «Comparar prueba» para actualizar los resultados.';
     summary.textContent = 'Hay cambios pendientes de aplicar.';
   }
@@ -131,6 +142,7 @@
     const requestId = ++sequence;
     error.hidden = true;
     clearResults();
+    updateNotice(false);
     let query;
     try {
       query = collect();
@@ -140,11 +152,12 @@
       status.textContent = 'Corrige los campos para continuar.';
       return;
     }
-    const originName = origin.options[origin.selectedIndex].textContent.trim().replace(/^\S+\s/, '');
+    const originName = origin.options[origin.selectedIndex].textContent.trim();
     const destName = destination.value === 'espana' ? 'España (región Europa/Mediterráneo)' : 'Estados Unidos';
     summary.textContent = originName + ' → ' + destName + ' · ' + query.days + (query.days === 1 ? ' día' : ' días') +
       ' (inclusivos) · ' + query.travellers + (query.travellers === 1 ? ' viajero' : ' viajeros');
 
+    updateNotice(matchesSample(query));
     if (!matchesSample(query)) {
       status.textContent = 'Búsqueda validada. Cotizaciones dinámicas pendientes de conexión a INTERWELT.';
       emptyState.hidden = false;
