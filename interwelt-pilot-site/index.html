@@ -30,19 +30,19 @@
         <div class="fields">
           <div class="field"><label for="origin">Viajo desde</label>
             <select id="origin" name="origin" required>
-              <option value="colombia">🇨🇴 Colombia</option><option value="peru">🇵🇪 Perú</option><option value="mexico">🇲🇽 México</option>
-              <option value="argentina">🇦🇷 Argentina</option><option value="bolivia">🇧🇴 Bolivia</option><option value="brasil">🇧🇷 Brasil</option>
-              <option value="chile">🇨🇱 Chile</option><option value="costa-rica">🇨🇷 Costa Rica</option><option value="cuba">🇨🇺 Cuba</option>
-              <option value="ecuador">🇪🇨 Ecuador</option><option value="el-salvador">🇸🇻 El Salvador</option><option value="guatemala">🇬🇹 Guatemala</option>
-              <option value="haiti">🇭🇹 Haití</option><option value="honduras">🇭🇳 Honduras</option><option value="nicaragua">🇳🇮 Nicaragua</option>
-              <option value="panama">🇵🇦 Panamá</option><option value="paraguay">🇵🇾 Paraguay</option><option value="republica-dominicana">🇩🇴 República Dominicana</option>
-              <option value="uruguay">🇺🇾 Uruguay</option><option value="venezuela">🇻🇪 Venezuela</option>
+              <option value="colombia">Colombia</option><option value="peru">Perú</option><option value="mexico">México</option>
+              <option value="argentina">Argentina</option><option value="bolivia">Bolivia</option><option value="brasil">Brasil</option>
+              <option value="chile">Chile</option><option value="costa-rica">Costa Rica</option><option value="cuba">Cuba</option>
+              <option value="ecuador">Ecuador</option><option value="el-salvador">El Salvador</option><option value="guatemala">Guatemala</option>
+              <option value="haiti">Haití</option><option value="honduras">Honduras</option><option value="nicaragua">Nicaragua</option>
+              <option value="panama">Panamá</option><option value="paraguay">Paraguay</option><option value="republica-dominicana">República Dominicana</option>
+              <option value="uruguay">Uruguay</option><option value="venezuela">Venezuela</option>
             </select>
           </div>
           <div class="field"><label for="destination">Destino</label>
             <select id="destination" name="destination" required>
-              <option value="espana">🇪🇸 España · zona Europa/Mediterráneo</option>
-              <option value="eeuu">🇺🇸 Estados Unidos</option>
+              <option value="espana">España · zona Europa/Mediterráneo</option>
+              <option value="eeuu">Estados Unidos</option>
             </select>
           </div>
           <div class="field"><label for="departure">Fecha de salida</label><input type="date" id="departure" name="departure" value="2026-11-01" required></div>
@@ -66,7 +66,7 @@
 
     <section class="results" id="results" aria-labelledby="results-heading">
       <div class="section-head results-head"><div><div class="eyebrow">PASO 02 · RESULTADOS</div><h2 id="results-heading">Planes de asistencia</h2><p id="search-summary">Colombia → zona Europa/Mediterráneo · 15 días · 1 adulto</p></div><span class="small-pill">Solo demostración</span></div>
-      <div class="notice" role="note"><strong>Precios de una cotización histórica:</strong> no son ofertas actuales, no son contratables y la unidad monetaria del JSON original sigue por confirmar. La selección de España utiliza la zona Europa/Mediterráneo; no acredita elegibilidad Schengen.</div>
+      <div class="notice" id="results-notice" role="note"><strong>Ejemplo histórico:</strong> precios solo para los datos exactos de referencia, no son ofertas actuales ni permiten contratar. La moneda del JSON sigue por confirmar.</div>
       <div id="status" class="status" role="status" aria-live="polite">Consultando datos de demostración de Netlify…</div>
       <div id="plans" class="cards" aria-label="Resultados históricos de prueba"></div>
       <div id="empty-state" class="empty-state" hidden>
