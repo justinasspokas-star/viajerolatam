@@ -57,3 +57,32 @@ test("demo endpoint serves only static data without calling external services", 
     globalThis.fetch = oldFetch;
   }
 });
+
+test("PREPARE validates browser itinerary using the Netlify adapter without provider network calls", async () => {
+  const addDays = count => {
+    const date = new Date();
+    date.setUTCDate(date.getUTCDate() + count);
+    return date.toISOString().slice(0, 10);
+  };
+  const oldFetch=globalThis.fetch;
+  globalThis.fetch=async () => {throw new Error("No upstream requests permitted");};
+  try {
+    const res=await adapter(new Request("https://example.netlify.app/.netlify/functions/interwelt-quote?prepare=1", {
+      method:"POST",
+      headers:{"content-type":"application/json"},
+      body:JSON.stringify({
+        origin:"co",destination:"espana-schengen",
+        departure:addDays(7),return:addDays(21),ages:[30,40]
+      })
+    }));
+    assert.equal(res.status,200);
+    const data=await res.json();
+    assert.equal(data.mode,"validation");
+    assert.equal(data.live,false);
+    assert.equal(data.search.people,2);
+    assert.equal(data.search.days,15);
+    assert.equal(data.mapping_verified,false);
+    assert.equal(data.vouchers_enabled,false);
+    assert.deepEqual(data.prices,[]);
+  } finally {globalThis.fetch=oldFetch;}
+});
