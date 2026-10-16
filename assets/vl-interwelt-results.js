@@ -149,6 +149,34 @@
     for (const item of SAMPLE.prices) results.append(card(item, 'historical'));
     applyMessage('Ejemplo histórico mostrado: Colombia → Europa, 1 viajero de 30 años, 1–15 noviembre 2026. No se ha llamado a la API.');
   }
+  async function validateOnServer(q, ages) {
+    const raw = new URLSearchParams(location.search);
+    const destination = raw.get('destino') || (q.dest === 'europe' ? 'espana-schengen' :
+      q.dest === 'north-america' ? 'eeuu-canada' : '');
+    const input = {
+      origin:q.origin, destination,
+      departure:q.departure, return:q.returnDate, ages
+    };
+    const response = await fetch('/.netlify/functions/interwelt-quote?prepare=1', {
+      method:'POST',
+      headers:{'content-type':'application/json'},
+      credentials:'omit',
+      cache:'no-store',
+      body:JSON.stringify(input)
+    });
+    if (!response.ok) throw new Error('validation_failed');
+    const data = await response.json();
+    if (data.mode !== 'validation' || data.live !== false ||
+        data.mapping_verified !== false || data.rates_available !== false ||
+        data.payments_enabled !== false || data.vouchers_enabled !== false ||
+        !data.search || data.search.origin !== q.origin ||
+        data.search.departure !== q.departure || data.search.return !== q.returnDate ||
+        JSON.stringify(data.search.ages) !== JSON.stringify(ages)) {
+      throw new Error('unexpected_validation_result');
+    }
+    return data;
+  }
+
   // Future integration contract: this method is intentionally blocked until
   // real server-side prices and eligibility checks are in place.
   function renderLive(q, ages, response) {
@@ -179,7 +207,7 @@
   }
   root.hidden = false;
   btn.textContent = 'Comprobar datos de demostración';
-  btn.addEventListener('click', () => {
+  btn.addEventListener('click', async () => {
     const q = currentSearch();
     results.replaceChildren();
     const ages = getAges();
@@ -192,8 +220,22 @@
       applyMessage('Revisa las fechas de salida y regreso antes de cotizar.');
       return;
     }
-    // Preview-only: no fetch, JWT, contact details, provider API calls or purchases.
-    if (preview) renderHistorical(q, ages);
+    btn.disabled = true;
+    applyMessage('Verificando fechas, destino y edades en Netlify (sin solicitar tarifas ni enviar datos personales)…');
+    try {
+      const checked = await validateOnServer(q, ages);
+      if (preview) {
+        renderHistorical(q, ages);
+        applyMessage('Datos validados en Netlify (' + checked.search.days +
+          ' días, contando ida y vuelta). ' + message.textContent);
+      } else {
+        applyMessage('Datos validados correctamente. Cotizaciones reales todavía desactivadas.');
+      }
+    } catch {
+      applyMessage('No se pudieron comprobar los datos en Netlify. Recarga la página o revisa el despliegue. No se ha llamado a INTERWELT.');
+    } finally {
+      btn.disabled = false;
+    }
   });
   // "Editar búsqueda" updates the URL synchronously.
   document.querySelectorAll('button[onclick="applyEditSearch()"]').forEach(button => {
