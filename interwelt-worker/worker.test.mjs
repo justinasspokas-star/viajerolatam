@@ -92,9 +92,36 @@ test("authenticates, quotes and never calls a voucher endpoint", async () => {
     assert.equal(body.quote_id, 42);
     assert.equal(body.prices[0].total, 48);
     assert.equal(body.currency, null);
+    assert.equal(body.mode, "operator_quote");
+    assert.equal(body.live, true);
+    assert.equal(body.mapping_verified, false);
+    assert.equal(body.eligible, null);
+    assert.equal(body.payments_enabled, false);
+    assert.equal(body.search.days, 16);
     assert.equal(body.vouchers_enabled, false);
     assert.ok(!JSON.stringify(body).includes("fake-test-jwt"));
   } finally {
     globalThis.fetch = originalFetch;
   }
+});
+
+test("operator readiness endpoint requires token and never reveals credentials", async () => {
+  const config=env();
+  let res=await worker.fetch(new Request("https://test.local/api/check"), config);
+  assert.equal(res.status,403);
+  res=await worker.fetch(new Request("https://test.local/api/check",{
+    headers:{"x-pilot-token":"bad"}
+  }),config);
+  assert.equal(res.status,403);
+  res=await worker.fetch(new Request("https://test.local/api/check",{
+    headers:{"x-pilot-token":"test-only-secret"}
+  }),config);
+  assert.equal(res.status,200);
+  const body=await res.json();
+  assert.equal(body.credentials_configured,true);
+  assert.equal(body.live_quotes_enabled,true);
+  assert.equal(body.payments_enabled,false);
+  assert.equal(body.vouchers_enabled,false);
+  assert.ok(!JSON.stringify(body).includes("not-a-real-password"));
+  assert.ok(!JSON.stringify(body).includes("operator@example.org"));
 });
