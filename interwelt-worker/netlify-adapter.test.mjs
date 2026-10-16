@@ -27,3 +27,23 @@ test("cannot call PATCH/PUT on this endpoint", async () => {
   const res = await adapter(new Request("https://example.netlify.app/.netlify/functions/interwelt-quote", { method: "PUT" }));
   assert.equal(res.status, 405);
 });
+
+test("demo endpoint serves only static data without calling external services", async () => {
+  const oldFetch = globalThis.fetch;
+  globalThis.fetch = async () => { throw new Error("Unexpected network request in demo"); };
+  try {
+    const res = await adapter(new Request("https://example.netlify.app/.netlify/functions/interwelt-quote?demo=1"));
+    assert.equal(res.status, 200);
+    const data = await res.json();
+    assert.equal(data.mode, "demo");
+    assert.equal(data.live, false);
+    assert.equal(data.currency_confirmed, false);
+    assert.equal(data.vouchers_enabled, false);
+    assert.equal(data.payments_enabled, false);
+    assert.equal(data.prices.length, 5);
+    assert.ok(!JSON.stringify(data).includes("access_token"));
+    assert.ok(!JSON.stringify(data).includes("INTERWELT_PASSWORD"));
+  } finally {
+    globalThis.fetch = oldFetch;
+  }
+});
