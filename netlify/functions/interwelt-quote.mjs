@@ -42,6 +42,10 @@ export default async function interweltQuote(request) {
   if (request.method !== "POST" && request.method !== "GET") {
     return Response.json({ error: "method_not_allowed" }, { status: 405 });
   }
-  url.pathname = request.method === "GET" ? "/health" : "/api/quote";
+  if (request.method === "GET" && url.searchParams.get("check") === "1") {
+    url.pathname = "/api/check";
+  } else {
+    url.pathname = request.method === "GET" ? "/health" : "/api/quote";
+  }
   return worker.fetch(new Request(url, request), process.env);
 }
