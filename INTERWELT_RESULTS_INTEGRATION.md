@@ -22,6 +22,39 @@ El módulo pedirá la edad. Solo introduciendo `30` mostrará **los cinco import
 
 La build aislada utiliza `interwelt-worker/build-results-preview.mjs`, copia solo la página de resultados y sus recursos al directorio del laboratorio y elimina la carga de Google Analytics. La vista incluye una banda de advertencia y bloquea clics a enlaces externos de venta. La demo original de laboratorio sigue disponible en la raíz de Netlify. **Esto NO publica ningún cambio en viajerolatam.com ni modifica la rama principal.**
 
+
+## Validación en servidor (Netlify Free) — nueva fase
+
+La URL aislada de resultados envía una solicitud **solo de validación**:
+
+`POST /.netlify/functions/interwelt-quote?prepare=1`
+
+Cuerpo de ejemplo:
+
+```json
+{
+  "origin":"co",
+  "destination":"espana-schengen",
+  "departure":"2026-11-01",
+  "return":"2026-11-15",
+  "ages":[30]
+}
+```
+
+La respuesta confirma el itinerario, valida cada edad y calcula **15 días inclusivos**, pero devuelve `live:false`, `prices:[]`, `mapping_verified:false` y `payments_enabled:false`. No requiere ni lee la contraseña, no se autentica con INTERWELT, no cotiza y no guarda PII. El acceso es same-origin y el cuerpo tiene un límite pequeño.
+
+Solo el ejemplo histórico exacto habilita las cinco tarjetas ficticias, siempre señaladas como históricas y con la moneda sin confirmar. Cualquier búsqueda distinta obtiene un mensaje honesto en vez de importes inventados.
+
+### Bloqueo antes de precios reales
+
+- El plan Free no proporciona los permisos restringidos de secretos que el usuario intentó configurar. **No introducir la contraseña de producción como variable no secreta para evitar el error del plan.**
+- Los IDs numéricos del catálogo de países y regiones deben corroborarse en producción: no transformar `co` o `espana-schengen` a IDs sin comprobación.
+- La moneda y la elegibilidad de cada producto requieren confirmación escrita de INTERWELT.
+- `INTERWELT_PILOT_ENABLED=false` hasta que exista custodia adecuada, un control de cuotas y pruebas de seguridad del endpoint de cotizaciones reales.
+- Las respuestas reales deberán protegerse contra abuso; jamás enviar credenciales ni JWT al frontend.
+- Ejecutar las pruebas `worker.test.mjs`, `netlify-adapter.test.mjs` y `prepare-quote.test.mjs` en la compilación.
+
+
 ## Antes de poner INTERWELT en los resultados de todos los usuarios
 
 1. Netlify Function con usuario y contraseña de producción guardados sin revelar, y protección frente a abuso. No almacenar contraseñas o tokens en `assets/*.js`, HTML ni en `netlify.toml`.
