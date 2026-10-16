@@ -84,6 +84,12 @@
       return;
     }
     btn.disabled = false;
+    // GET parameter "edades" is supplied by the main ViajeroLatam search.
+    // Only prefill when the number and range match the selected travellers.
+    const saved = new URLSearchParams(location.search).get('edades') || '';
+    const parsed = /^\\d{1,3}(,\\d{1,3})*$/.test(saved) ? saved.split(',').map(Number) : [];
+    const selectedAges = parsed.length === q.travellers && parsed.every(n => Number.isInteger(n) && n >= 0 && n <= 100)
+      ? parsed : [];
     for (let i = 0; i < q.travellers; i++) {
       const label = document.createElement('label');
       label.className = 'vl-iw-age';
@@ -96,11 +102,12 @@
       input.step = '1';
       input.required = true;
       input.placeholder = 'Edad';
+      input.value = selectedAges[i] === undefined ? '' : String(selectedAges[i]);
       input.setAttribute('aria-label', 'Edad del viajero ' + (i + 1));
       label.append(input);
       agesPanel.append(label);
     }
-    applyMessage('Introduce las edades para preparar la búsqueda de INTERWELT. Todavía no se consultan tarifas reales.');
+    applyMessage('Introduce las edades y comprueba el ejemplo. Únicamente tenemos una muestra para Colombia → Europa, 1–15 nov. 2026, 1 viajero de 30 años.');
   }
   function isHistoricalSample(q, ages) {
     return q.origin === SAMPLE.origin && q.dest === SAMPLE.dest &&
@@ -131,7 +138,12 @@
   }
   function renderHistorical(q, ages) {
     if (!isHistoricalSample(q, ages)) {
-      applyMessage('El formulario está listo, pero no hay una cotización real ni histórica para esta combinación. No mostraremos precios inventados.');
+      applyMessage('Prueba completada: no existen tarifas para los datos introducidos (edad: ' + ages.join(', ') + '). Solo tenemos una muestra de 30 años, del 1 al 15 de noviembre de 2026, Colombia → Europa. No es un error del botón: aún no conectamos la API real.');
+      const demo = document.createElement('a');
+      demo.className = 'vl-iw-example-link';
+      demo.href = '/resultados/?origen=co&destino=espana-schengen&ida=2026-11-01&vuelta=2026-11-15&personas=1&edades=30&vl_interwelt_preview=1';
+      demo.textContent = 'Abrir el único ejemplo disponible (30 años) →';
+      results.append(demo);
       return;
     }
     for (const item of SAMPLE.prices) results.append(card(item, 'historical'));
@@ -161,8 +173,12 @@
     const q = currentSearch();
     routeLabel.textContent = labelFor(q);
     createAgeInputs(q);
+    const ages = getAges();
+    // Permits direct deep links from the search age parameter without a second click.
+    if (preview && ages && isHistoricalSample(q, ages)) renderHistorical(q, ages);
   }
   root.hidden = false;
+  btn.textContent = 'Comprobar datos de demostración';
   btn.addEventListener('click', () => {
     const q = currentSearch();
     results.replaceChildren();
