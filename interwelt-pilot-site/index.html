@@ -2,71 +2,82 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>INTERWELT API · Pruebas gratuitas | ViajeroLatam</title>
-  <style>
-    :root{color-scheme:light;--ink:#15304c;--muted:#597087;--line:#dae6ef;--accent:#126e79;--bg:#f3f7fa;}
-    *{box-sizing:border-box}
-    body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;line-height:1.5}
-    main{max-width:980px;margin:0 auto;padding:clamp(20px,4vw,45px) 16px 70px}
-    header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:40px}
-    .brand{font-size:17px;font-weight:800;letter-spacing:-.4px}
-    .badge{display:inline-block;border-radius:99px;padding:6px 11px;background:#faefd6;color:#76500c;font-size:12px;font-weight:800}
-    h1{font-size:clamp(29px,5vw,48px);letter-spacing:-1.2px;line-height:1.13;margin:0 0 14px}
-    p{max-width:720px;margin:0 0 20px;color:var(--muted)}
-    .notice{padding:16px 18px;border:1px solid #f0d8a1;border-radius:12px;background:#fff9eb;color:#725219;margin:22px 0 28px;font-size:14px}
-    .stats{display:flex;gap:12px;flex-wrap:wrap;margin:0 0 26px}
-    .stat{border:1px solid var(--line);background:white;border-radius:12px;padding:12px 18px}
-    .stat b{display:block;font-size:14px}
-    .stat small{color:var(--muted)}
-    .list{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
-    .plan{background:white;border:1px solid var(--line);border-radius:15px;padding:20px;box-shadow:0 3px 8px rgba(20,50,75,.03)}
-    .plan h2{margin:0 0 20px;font-size:17px}
-    .plan .amount{font-size:28px;font-weight:800;letter-spacing:-.5px}
-    .plan small{color:var(--muted);font-size:12px}
-    .inactive{display:block;text-align:center;margin-top:18px;width:100%;border-radius:9px;background:#e6edf2;padding:11px 8px;font-weight:700;font-size:13px;color:#61778a}
-    footer{font-size:12px;color:var(--muted);margin-top:30px}
-    footer a{color:var(--accent)}
-    #status{margin:10px 0 18px;color:var(--muted)}
-  </style>
+  <meta name="theme-color" content="#0b2442">
+  <meta name="description" content="Laboratorio privado de pruebas de cotización INTERWELT de ViajeroLatam, sin contrataciones.">
+  <title>Laboratorio INTERWELT · ViajeroLatam</title>
+  <link rel="stylesheet" href="/demo.css">
+  <script src="/demo.js" defer></script>
 </head>
 <body>
-<main>
-  <header><div class="brand">ViajeroLatam <span style="color:var(--accent)">/ laboratorio técnico</span></div><span class="badge">DEMO · SIN VENTAS</span></header>
-  <h1>INTERWELT: prueba del comparador</h1>
-  <p>Visualización técnica de cómo aparecerían los planes de asistencia en viaje. Esta página pertenece exclusivamente al proyecto de pruebas gratuito de Netlify.</p>
-  <div class="notice"><strong>Atención:</strong> importes de una cotización histórica de prueba. No son precios actuales, no se consultan en tiempo real y <strong>no permiten contratar</strong>. La unidad monetaria de la respuesta original de la API todavía requiere confirmación.</div>
-  <div class="stats">
-    <div class="stat"><b>1 adulto · 30 años</b><small>Ejemplo histórico</small></div>
-    <div class="stat"><b>15 días</b><small>Duración de referencia</small></div>
-    <div class="stat"><b>Europa y Mediterráneo</b><small>Zona de referencia</small></div>
-  </div>
-  <div id="status" role="status" aria-live="polite">Cargando datos de demostración desde Netlify Functions…</div>
-  <section class="list" id="plans" aria-label="Planes de demostración"></section>
-  <footer>La función utiliza datos de ejemplo sin contraseñas, tokens, pagos ni emisiones. No afecta a <a href="https://viajerolatam.com/" rel="noopener noreferrer">ViajeroLatam.com</a>.</footer>
-</main>
-<script>
-(async function(){
-  const status=document.getElementById('status');
-  const container=document.getElementById('plans');
-  try {
-    const response=await fetch('/.netlify/functions/interwelt-quote?demo=1',{cache:'no-store'});
-    if(!response.ok) throw new Error('HTTP '+response.status);
-    const data=await response.json();
-    if(data.mode!=='demo' || data.live!==false || data.payments_enabled!==false || data.vouchers_enabled!==false || !Array.isArray(data.prices)) throw new Error('Datos de demostración inválidos');
-    data.prices.forEach(function(plan){
-      if(typeof plan.name!=='string' || typeof plan.total!=='number') return;
-      const card=document.createElement('article');card.className='plan';
-      const title=document.createElement('h2');title.textContent=plan.name;
-      const amount=document.createElement('div');amount.className='amount';amount.textContent=new Intl.NumberFormat('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2}).format(plan.total);
-      const unit=document.createElement('small');unit.textContent='Valor de ejemplo · unidad por confirmar';
-      const action=document.createElement('span');action.className='inactive';action.textContent='Contratación desactivada';
-      card.append(title,amount,unit,action);container.append(card);
-    });
-    status.textContent='Función Netlify conectada · '+container.children.length+' planes de demostración · no hay llamadas a INTERWELT';
-  }catch(err){status.textContent='No se pudieron cargar los datos de demostración. Revisa el despliegue de Netlify Functions.';}
-})();
-</script>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="https://viajerolatam.com/" aria-label="ViajeroLatam, abrir sitio principal">Viajero<span>Latam</span><small>Laboratorio técnico</small></a>
+      <div class="topbar-right"><span class="pill"><span class="dot"></span> DEMO · SIN VENTAS</span><span class="top-note">Proyecto Netlify independiente</span></div>
+    </div>
+  </header>
+  <main class="container">
+    <section class="intro">
+      <div class="eyebrow">INTERWELT / COTIZADOR EXPERIMENTAL</div>
+      <h1>Prueba nuestro <span>comparador</span></h1>
+      <p>Selecciona tu viaje para probar el buscador. Solo disponemos de una cotización histórica de muestra: otras búsquedas todavía no tienen tarifas y <strong>no se consultan en tiempo real</strong>.</p>
+    </section>
+
+    <section class="panel search-panel" aria-labelledby="search-heading">
+      <div class="section-head"><div><h2 id="search-heading">Configura tu viaje</h2><p>Datos de prueba, sin nombre, correo ni información personal.</p></div><span class="step">PASO 01 · BÚSQUEDA</span></div>
+      <form id="search-form" novalidate>
+        <div class="fields">
+          <div class="field"><label for="origin">Viajo desde</label>
+            <select id="origin" name="origin" required>
+              <option value="colombia">🇨🇴 Colombia</option><option value="peru">🇵🇪 Perú</option><option value="mexico">🇲🇽 México</option>
+              <option value="argentina">🇦🇷 Argentina</option><option value="bolivia">🇧🇴 Bolivia</option><option value="brasil">🇧🇷 Brasil</option>
+              <option value="chile">🇨🇱 Chile</option><option value="costa-rica">🇨🇷 Costa Rica</option><option value="cuba">🇨🇺 Cuba</option>
+              <option value="ecuador">🇪🇨 Ecuador</option><option value="el-salvador">🇸🇻 El Salvador</option><option value="guatemala">🇬🇹 Guatemala</option>
+              <option value="haiti">🇭🇹 Haití</option><option value="honduras">🇭🇳 Honduras</option><option value="nicaragua">🇳🇮 Nicaragua</option>
+              <option value="panama">🇵🇦 Panamá</option><option value="paraguay">🇵🇾 Paraguay</option><option value="republica-dominicana">🇩🇴 República Dominicana</option>
+              <option value="uruguay">🇺🇾 Uruguay</option><option value="venezuela">🇻🇪 Venezuela</option>
+            </select>
+          </div>
+          <div class="field"><label for="destination">Destino</label>
+            <select id="destination" name="destination" required>
+              <option value="espana">🇪🇸 España · zona Europa/Mediterráneo</option>
+              <option value="eeuu">🇺🇸 Estados Unidos</option>
+            </select>
+          </div>
+          <div class="field"><label for="departure">Fecha de salida</label><input type="date" id="departure" name="departure" value="2026-11-01" required></div>
+          <div class="field"><label for="return">Fecha de regreso</label><input type="date" id="return" name="return" value="2026-11-15" required></div>
+        </div>
+        <div class="traveller-bar">
+          <div class="field count"><label for="travellers">Viajeros</label><select id="travellers" name="travellers">
+            <option value="1">1 viajero</option><option value="2">2 viajeros</option><option value="3">3 viajeros</option>
+            <option value="4">4 viajeros</option><option value="5">5 viajeros</option><option value="6">6 viajeros</option>
+            <option value="7">7 viajeros</option><option value="8">8 viajeros</option>
+          </select></div>
+          <fieldset class="age-group"><legend>Edad de cada viajero</legend><div class="age-inputs" id="age-inputs"></div></fieldset>
+        </div>
+        <div id="form-error" class="error-message" role="alert" hidden></div>
+        <div class="action-bar">
+          <button type="submit" class="primary-btn">Comparar prueba <span aria-hidden="true">→</span></button>
+          <button type="button" id="reset-example" class="secondary-btn">Restaurar ejemplo histórico</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="results" id="results" aria-labelledby="results-heading">
+      <div class="section-head results-head"><div><div class="eyebrow">PASO 02 · RESULTADOS</div><h2 id="results-heading">Planes de asistencia</h2><p id="search-summary">Colombia → zona Europa/Mediterráneo · 15 días · 1 adulto</p></div><span class="small-pill">Solo demostración</span></div>
+      <div class="notice" role="note"><strong>Precios de una cotización histórica:</strong> no son ofertas actuales, no son contratables y la unidad monetaria del JSON original sigue por confirmar. La selección de España utiliza la zona Europa/Mediterráneo; no acredita elegibilidad Schengen.</div>
+      <div id="status" class="status" role="status" aria-live="polite">Consultando datos de demostración de Netlify…</div>
+      <div id="plans" class="cards" aria-label="Resultados históricos de prueba"></div>
+      <div id="empty-state" class="empty-state" hidden>
+        <span class="empty-mark" aria-hidden="true">◎</span>
+        <h3>No tenemos tarifas históricas para esta búsqueda</h3>
+        <p>El buscador procesa los datos que has elegido, pero todavía no consulta precios reales a INTERWELT. No mostraremos precios de otro viaje como si fueran tuyos.</p>
+        <button type="button" id="empty-example" class="secondary-btn">Ver único ejemplo disponible</button>
+      </div>
+    </section>
+    <section class="next panel"><div><div class="eyebrow">ESTADO DE INTEGRACIÓN</div><h2>Preparado para conectar la API</h2><p>El formulario y la vista de planes funcionan con datos históricos. La conexión de cotizaciones reales, los pagos y la emisión de vouchers permanecen desactivados.</p></div><div class="checklist"><span>✓ Netlify Functions</span><span>✓ Formulario y validación</span><span>○ Cotización dinámica pendiente</span><span>○ Compras desactivadas</span></div></section>
+  </main>
+  <footer class="footer"><div class="container">ViajeroLatam · Entorno de pruebas aislado, no indexable · <a href="https://viajerolatam.com/" rel="noopener noreferrer">Ir a la web pública</a></div></footer>
 </body>
 </html>
