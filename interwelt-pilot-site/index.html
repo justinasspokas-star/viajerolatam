@@ -4,9 +4,69 @@
   <meta charset="utf-8">
   <meta name="robots" content="noindex,nofollow">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Servicio técnico de ViajeroLatam</title>
+  <title>INTERWELT API · Pruebas gratuitas | ViajeroLatam</title>
+  <style>
+    :root{color-scheme:light;--ink:#15304c;--muted:#597087;--line:#dae6ef;--accent:#126e79;--bg:#f3f7fa;}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;line-height:1.5}
+    main{max-width:980px;margin:0 auto;padding:clamp(20px,4vw,45px) 16px 70px}
+    header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:40px}
+    .brand{font-size:17px;font-weight:800;letter-spacing:-.4px}
+    .badge{display:inline-block;border-radius:99px;padding:6px 11px;background:#faefd6;color:#76500c;font-size:12px;font-weight:800}
+    h1{font-size:clamp(29px,5vw,48px);letter-spacing:-1.2px;line-height:1.13;margin:0 0 14px}
+    p{max-width:720px;margin:0 0 20px;color:var(--muted)}
+    .notice{padding:16px 18px;border:1px solid #f0d8a1;border-radius:12px;background:#fff9eb;color:#725219;margin:22px 0 28px;font-size:14px}
+    .stats{display:flex;gap:12px;flex-wrap:wrap;margin:0 0 26px}
+    .stat{border:1px solid var(--line);background:white;border-radius:12px;padding:12px 18px}
+    .stat b{display:block;font-size:14px}
+    .stat small{color:var(--muted)}
+    .list{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+    .plan{background:white;border:1px solid var(--line);border-radius:15px;padding:20px;box-shadow:0 3px 8px rgba(20,50,75,.03)}
+    .plan h2{margin:0 0 20px;font-size:17px}
+    .plan .amount{font-size:28px;font-weight:800;letter-spacing:-.5px}
+    .plan small{color:var(--muted);font-size:12px}
+    .inactive{display:block;text-align:center;margin-top:18px;width:100%;border-radius:9px;background:#e6edf2;padding:11px 8px;font-weight:700;font-size:13px;color:#61778a}
+    footer{font-size:12px;color:var(--muted);margin-top:30px}
+    footer a{color:var(--accent)}
+    #status{margin:10px 0 18px;color:var(--muted)}
+  </style>
 </head>
 <body>
-  <p>Servicio técnico privado en preparación. Aquí no se realizan ventas ni contrataciones.</p>
+<main>
+  <header><div class="brand">ViajeroLatam <span style="color:var(--accent)">/ laboratorio técnico</span></div><span class="badge">DEMO · SIN VENTAS</span></header>
+  <h1>INTERWELT: prueba del comparador</h1>
+  <p>Visualización técnica de cómo aparecerían los planes de asistencia en viaje. Esta página pertenece exclusivamente al proyecto de pruebas gratuito de Netlify.</p>
+  <div class="notice"><strong>Atención:</strong> importes de una cotización histórica de prueba. No son precios actuales, no se consultan en tiempo real y <strong>no permiten contratar</strong>. La unidad monetaria de la respuesta original de la API todavía requiere confirmación.</div>
+  <div class="stats">
+    <div class="stat"><b>1 adulto · 30 años</b><small>Ejemplo histórico</small></div>
+    <div class="stat"><b>15 días</b><small>Duración de referencia</small></div>
+    <div class="stat"><b>Europa y Mediterráneo</b><small>Zona de referencia</small></div>
+  </div>
+  <div id="status" role="status" aria-live="polite">Cargando datos de demostración desde Netlify Functions…</div>
+  <section class="list" id="plans" aria-label="Planes de demostración"></section>
+  <footer>La función utiliza datos de ejemplo sin contraseñas, tokens, pagos ni emisiones. No afecta a <a href="https://viajerolatam.com/" rel="noopener noreferrer">ViajeroLatam.com</a>.</footer>
+</main>
+<script>
+(async function(){
+  const status=document.getElementById('status');
+  const container=document.getElementById('plans');
+  try {
+    const response=await fetch('/.netlify/functions/interwelt-quote?demo=1',{cache:'no-store'});
+    if(!response.ok) throw new Error('HTTP '+response.status);
+    const data=await response.json();
+    if(data.mode!=='demo' || data.live!==false || data.payments_enabled!==false || data.vouchers_enabled!==false || !Array.isArray(data.prices)) throw new Error('Datos de demostración inválidos');
+    data.prices.forEach(function(plan){
+      if(typeof plan.name!=='string' || typeof plan.total!=='number') return;
+      const card=document.createElement('article');card.className='plan';
+      const title=document.createElement('h2');title.textContent=plan.name;
+      const amount=document.createElement('div');amount.className='amount';amount.textContent=new Intl.NumberFormat('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2}).format(plan.total);
+      const unit=document.createElement('small');unit.textContent='Valor de ejemplo · unidad por confirmar';
+      const action=document.createElement('span');action.className='inactive';action.textContent='Contratación desactivada';
+      card.append(title,amount,unit,action);container.append(card);
+    });
+    status.textContent='Función Netlify conectada · '+container.children.length+' planes de demostración · no hay llamadas a INTERWELT';
+  }catch(err){status.textContent='No se pudieron cargar los datos de demostración. Revisa el despliegue de Netlify Functions.';}
+})();
+</script>
 </body>
 </html>
