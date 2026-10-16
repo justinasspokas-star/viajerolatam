@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#0b2442">
+  <meta name="description" content="Laboratorio privado de pruebas de cotización INTERWELT de ViajeroLatam, sin contrataciones.">
+  <title>Laboratorio INTERWELT · ViajeroLatam</title>
+  <link rel="stylesheet" href="/demo.css">
+  <script src="/demo.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="https://viajerolatam.com/" aria-label="ViajeroLatam, abrir sitio principal">Viajero<span>Latam</span><small>Laboratorio técnico</small></a>
+      <div class="topbar-right"><span class="pill"><span class="dot"></span> DEMO · SIN VENTAS</span><span class="top-note">Proyecto Netlify independiente</span></div>
+    </div>
+  </header>
+  <main class="container">
+    <section class="intro">
+      <div class="eyebrow">INTERWELT / COTIZADOR EXPERIMENTAL</div>
+      <h1>Prueba nuestro <span>comparador</span></h1>
+      <p>Selecciona tu viaje para probar el buscador. Solo disponemos de una cotización histórica de muestra: otras búsquedas todavía no tienen tarifas y <strong>no se consultan en tiempo real</strong>.</p>
+    </section>
+
+    <section class="panel search-panel" aria-labelledby="search-heading">
+      <div class="section-head"><div><h2 id="search-heading">Configura tu viaje</h2><p>Datos de prueba, sin nombre, correo ni información personal.</p></div><span class="step">PASO 01 · BÚSQUEDA</span></div>
+      <form id="search-form" novalidate>
+        <div class="fields">
+          <div class="field"><label for="origin">Viajo desde</label>
+            <select id="origin" name="origin" required>
+              <option value="colombia">Colombia</option><option value="peru">Perú</option><option value="mexico">México</option>
+              <option value="argentina">Argentina</option><option value="bolivia">Bolivia</option><option value="brasil">Brasil</option>
+              <option value="chile">Chile</option><option value="costa-rica">Costa Rica</option><option value="cuba">Cuba</option>
+              <option value="ecuador">Ecuador</option><option value="el-salvador">El Salvador</option><option value="guatemala">Guatemala</option>
+              <option value="haiti">Haití</option><option value="honduras">Honduras</option><option value="nicaragua">Nicaragua</option>
+              <option value="panama">Panamá</option><option value="paraguay">Paraguay</option><option value="republica-dominicana">República Dominicana</option>
+              <option value="uruguay">Uruguay</option><option value="venezuela">Venezuela</option>
+            </select>
+          </div>
+          <div class="field"><label for="destination">Destino</label>
+            <select id="destination" name="destination" required>
+              <option value="espana">España · zona Europa/Mediterráneo</option>
+              <option value="eeuu">Estados Unidos</option>
+            </select>
+          </div>
+          <div class="field"><label for="departure">Fecha de salida</label><input type="date" id="departure" name="departure" value="2026-11-01" required></div>
+          <div class="field"><label for="return">Fecha de regreso</label><input type="date" id="return" name="return" value="2026-11-15" required></div>
+        </div>
+        <div class="traveller-bar">
+          <div class="field count"><label for="travellers">Viajeros</label><select id="travellers" name="travellers">
+            <option value="1">1 viajero</option><option value="2">2 viajeros</option><option value="3">3 viajeros</option>
+            <option value="4">4 viajeros</option><option value="5">5 viajeros</option><option value="6">6 viajeros</option>
+            <option value="7">7 viajeros</option><option value="8">8 viajeros</option>
+          </select></div>
+          <fieldset class="age-group"><legend>Edad de cada viajero</legend><div class="age-inputs" id="age-inputs"></div></fieldset>
+        </div>
+        <div id="form-error" class="error-message" role="alert" hidden></div>
+        <div class="action-bar">
+          <button type="submit" class="primary-btn">Comparar prueba <span aria-hidden="true">→</span></button>
+          <button type="button" id="reset-example" class="secondary-btn">Restaurar ejemplo histórico</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="results" id="results" aria-labelledby="results-heading">
+      <div class="section-head results-head"><div><div class="eyebrow">PASO 02 · RESULTADOS</div><h2 id="results-heading">Planes de asistencia</h2><p id="search-summary">Colombia → zona Europa/Mediterráneo · 15 días · 1 adulto</p></div><span class="small-pill">Solo demostración</span></div>
+      <div class="notice" id="results-notice" role="note"><strong>Ejemplo histórico:</strong> precios solo para los datos exactos de referencia, no son ofertas actuales ni permiten contratar. La moneda del JSON sigue por confirmar.</div>
+      <div id="status" class="status" role="status" aria-live="polite">Consultando datos de demostración de Netlify…</div>
+      <div id="plans" class="cards" aria-label="Resultados históricos de prueba"></div>
+      <div id="empty-state" class="empty-state" hidden>
+        <span class="empty-mark" aria-hidden="true">◎</span>
+        <h3>No tenemos tarifas históricas para esta búsqueda</h3>
+        <p>El buscador procesa los datos que has elegido, pero todavía no consulta precios reales a INTERWELT. No mostraremos precios de otro viaje como si fueran tuyos.</p>
+        <button type="button" id="empty-example" class="secondary-btn">Ver único ejemplo disponible</button>
+      </div>
+    </section>
+    <section class="next panel"><div><div class="eyebrow">ESTADO DE INTEGRACIÓN</div><h2>Preparado para conectar la API</h2><p>El formulario y la vista de planes funcionan con datos históricos. La conexión de cotizaciones reales, los pagos y la emisión de vouchers permanecen desactivados.</p></div><div class="checklist"><span>✓ Netlify Functions</span><span>✓ Formulario y validación</span><span>○ Cotización dinámica pendiente</span><span>○ Compras desactivadas</span></div></section>
+  </main>
+  <footer class="footer"><div class="container">ViajeroLatam · Entorno de pruebas aislado, no indexable · <a href="https://viajerolatam.com/" rel="noopener noreferrer">Ir a la web pública</a></div></footer>
+</body>
+</html>

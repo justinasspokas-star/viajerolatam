@@ -1,0 +1,11 @@
+# Isolated INTERWELT Netlify pilot (only on feature branch).
+# Contact email is intentionally published on ViajeroLatam's contact/about pages.
+# Netlify's environment-value scanner flags it as a false positive.
+# Omit ONLY these two known-public email keys; password and JWT/token checks stay on.
+[build]
+  command = "node interwelt-worker/build-results-preview.mjs"
+  publish = "interwelt-pilot-site"
+  functions = "netlify/functions"
+
+[build.environment]
+  SECRETS_SCAN_OMIT_KEYS = "INTERWELT_EMAIL,INTERWELT_CONTACT_EMAIL"
