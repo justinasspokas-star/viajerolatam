@@ -10,7 +10,7 @@ Se han añadido:
 - `assets/vl-interwelt-results.css`: tarjetas adaptadas a móvil.
 - Función previa Netlify `interwelt-quote` sin credenciales reales y con piloto desactivado.
 
-## Cómo ver la posición en un servidor de pruebas que sirva la raíz del repositorio
+## Cómo abrir la vista previa real de resultados en Netlify
 
 ```text
 /resultados/?origen=co&destino=espana-schengen&ida=2026-11-01&vuelta=2026-11-15&personas=1&vl_interwelt_preview=1
@@ -18,7 +18,9 @@ Se han añadido:
 
 El módulo pedirá la edad. Solo introduciendo `30` mostrará **los cinco importes históricos** del ejemplo correspondiente. Otra edad, origen, destino o fechas mostrarán «no hay una cotización real ni histórica» sin inventar precios. Esta vista interna no hace solicitudes de red a INTERWELT ni permite compras.
 
-> Atención: El despliegue actual `interwelt-api-test` en Netlify publica `interwelt-pilot-site`, no la raíz del repositorio. Por eso este nuevo slot de `/resultados/` todavía **no se puede ver** en la URL de la preview actual. Se ha añadido al código del comparador para una futura validación de rama en un hosting de pruebas. No cambiar el `publish directory` del Netlify actual sin una revisión específica.
+**Ruta ya publicada en el despliegue de prueba:** https://deploy-preview-1--interwelt-api-test.netlify.app/resultados/?origen=co&destino=espana-schengen&ida=2026-11-01&vuelta=2026-11-15&personas=1&vl_interwelt_preview=1
+
+La build aislada utiliza `interwelt-worker/build-results-preview.mjs`, copia solo la página de resultados y sus recursos al directorio del laboratorio y elimina la carga de Google Analytics. La vista incluye una banda de advertencia y bloquea clics a enlaces externos de venta. La demo original de laboratorio sigue disponible en la raíz de Netlify. **Esto NO publica ningún cambio en viajerolatam.com ni modifica la rama principal.**
 
 ## Antes de poner INTERWELT en los resultados de todos los usuarios
 
@@ -60,4 +62,4 @@ El navegador **solo** podrá pintar la tarifa si coinciden exactamente los datos
 - HTML contiene slot oculto y referencias al JS/CSS.
 - Afiliados existentes conservados.
 - Cero llamadas de red en el módulo, `LIVE_ENABLED=false`.
-- Netlify Deploy Preview de la rama: **Success**. Este resultado valida el despliegue del laboratorio, no la publicación del `/resultados/` de esta rama.
+- Netlify Deploy Preview de la rama: **Success**. La compilación ahora también publica la copia aislada de `/resultados/` en el sitio de laboratorio. Se requiere revisión visual manual de los resultados.
