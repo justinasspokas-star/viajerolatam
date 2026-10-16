@@ -1,0 +1,20 @@
+/* Compact optional row of per-traveler ages below existing dates; does not touch search layout */
+.vl-ages-search{margin:10px 0 12px;padding:11px 12px;border-radius:11px;border:1px solid #e0e9ef;background:#f8fbfd}
+.vl-ages-head{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:3px 14px;margin-bottom:8px}
+.vl-ages-head strong{color:#0b1f3a;font-size:12px;font-weight:800}
+.vl-ages-head small{font-size:11px;color:#637b8d}
+.vl-ages-inputs{display:flex;flex-wrap:wrap;gap:8px}
+.vl-age-item{display:flex;flex:0 1 110px;flex-direction:column;gap:4px;font-size:11px;color:#526b80;font-weight:700;min-width:0}
+.vl-age-item input{box-sizing:border-box;width:100%;height:38px;min-height:38px;border:1px solid #cbdde8;border-radius:8px;background:#fff;color:#0b1f3a;padding:8px 9px;font-size:13px;font-family:inherit;font-weight:500;line-height:1.2}
+.vl-age-item input:focus-visible{outline:2px solid #00a89b;outline-offset:1px}
+.vl-ages-error{font-size:12px;margin:7px 0 0;color:#b12c35;line-height:1.45}
+.vl-ages-error[hidden]{display:none!important}
+.vl-ages-edit{padding:10px 0 8px;margin:4px 0 0}
+.vl-ages-edit strong{color:#0b1f3a;font-size:12px;margin-right:8px}
+.vl-ages-edit>span{font-size:11px;color:#627a8d}
+.vl-ages-edit .vl-ages-inputs{margin-top:9px}
+@media(max-width:560px){
+ .vl-ages-search{margin:9px 0 11px;padding:10px}
+ .vl-age-item{flex:1 1 calc(50% - 6px);max-width:calc(50% - 4px)}
+ .vl-ages-head small{font-size:10px}
+}
