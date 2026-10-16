@@ -87,7 +87,7 @@
     // GET parameter "edades" is supplied by the main ViajeroLatam search.
     // Only prefill when the number and range match the selected travellers.
     const saved = new URLSearchParams(location.search).get('edades') || '';
-    const parsed = /^\\d{1,3}(,\\d{1,3})*$/.test(saved) ? saved.split(',').map(Number) : [];
+    const parsed = /^[0-9]{1,3}(,[0-9]{1,3})*$/.test(saved) ? saved.split(',').map(Number) : [];
     const selectedAges = parsed.length === q.travellers && parsed.every(n => Number.isInteger(n) && n >= 0 && n <= 100)
       ? parsed : [];
     for (let i = 0; i < q.travellers; i++) {
