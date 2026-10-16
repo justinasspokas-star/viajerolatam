@@ -23,7 +23,7 @@ function reply(data, status = 200) {
 }
 
 function validDate(s) {
-  if (typeof s !== "string" || !/^\\d{4}-\\d{2}-\\d{2}$/.test(s)) return null;
+  if (typeof s !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(s)) return null;
   const d = new Date(s + "T00:00:00Z");
   return Number.isFinite(d.getTime()) && d.toISOString().slice(0, 10) === s ? d : null;
 }
@@ -111,7 +111,8 @@ export default {
     const quote = validate(input);
     if (!quote) return reply({ error: "invalid_quote_fields" }, 400);
 
-    const providerOrigin = String(env.INTERWELT_API_URL || PROD_ORIGIN).replace(/\\/$/, "");
+    const rawProviderOrigin = String(env.INTERWELT_API_URL || PROD_ORIGIN);
+    const providerOrigin = rawProviderOrigin.endsWith("/") ? rawProviderOrigin.slice(0, -1) : rawProviderOrigin;
     if (!ALLOWED_API_ORIGINS.has(providerOrigin)) {
       return reply({ error: "invalid_provider_configuration" }, 503);
     }
