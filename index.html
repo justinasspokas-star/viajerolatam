@@ -2091,6 +2091,7 @@ nav .logo img{
   }
 }
 </style>
+<link rel="stylesheet" href="/assets/vl-traveller-ages.css">
 </head>
 <body>
 <!-- HOME COMPARADOR PRINCIPAL · 2026-09-07 -->
@@ -2316,9 +2317,16 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
 <div class="vl-field"><label class="sb-label" for="sb-ida">Fecha de ida</label><input class="vl-control" id="sb-ida" name="ida" required="" type="date"/></div>
 <div class="vl-field"><label class="sb-label" for="sb-vuelta">Fecha de vuelta</label><input class="vl-control" id="sb-vuelta" name="vuelta" required="" type="date"/></div>
 <div class="vl-field"><label class="sb-label" for="sb-personas">Viajeros</label>
-<select class="vl-control" id="sb-personas" name="personas"><option value="1">1 persona</option><option value="2">2 personas</option><option value="3">3 personas</option><option value="4">4 personas</option><option value="5">5+</option></select>
+<select class="vl-control" id="sb-personas" name="personas"><option value="1">1 persona</option><option value="2">2 personas</option><option value="3">3 personas</option><option value="4">4 personas</option><option value="5">5 personas</option><option value="6">6 personas</option><option value="7">7 personas</option><option value="8">8 personas</option></select>
 </div>
 </div>
+<!-- Age row is separate from search-top-row and search-dates-row to preserve layout. -->
+<div class="vl-ages-search" id="vl-search-ages">
+ <div class="vl-ages-head"><strong>Edad de cada viajero</strong><small>Para encontrar seguros según tu edad</small></div>
+ <div id="vl-ages-inputs" class="vl-ages-inputs"></div>
+ <p class="vl-ages-error" id="vl-ages-error" role="alert" hidden></p>
+</div>
+<input type="hidden" id="vl-ages-param" name="edades" value="">
 <input id="sb-dias" name="dias" type="hidden" value="15"/>
 <div id="sb-duracion-display">
 <div id="sb-duracion-main">📅 <span id="sb-duracion-text">15 días · Calculando precio...</span></div>
@@ -2805,5 +2813,6 @@ document.addEventListener('click', function(e){
 })();
 </script>
   <script defer src="/assets/vl-whatsapp.js"></script>
+<script defer src="/assets/vl-traveller-ages.js"></script>
 </body>
 </html>
