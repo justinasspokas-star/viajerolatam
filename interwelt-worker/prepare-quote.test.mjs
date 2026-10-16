@@ -57,7 +57,7 @@ test("normalizes North America but does not guess provider numeric IDs", () => {
 
 test("rejects cross-origin POST and invalid types", async () => {
   assert.equal((await prepareQuoteRequest(req(sample(),{headers:{origin:"https://malicious.example"}}))).status,403);
-  const bad=await prepareQuoteRequest(req(sample(),{raw:"{"origin":"}));
+  const bad=await prepareQuoteRequest(req(sample(),{raw:'{"origin":'}));
   assert.equal(bad.status,400);
   assert.equal((await prepareQuoteRequest(new Request("https://example.netlify.app/.netlify/functions/interwelt-quote?prepare=1"))).status,405);
 });
