@@ -2785,7 +2785,7 @@ function applyEditSearch(){
     if(vueltaEl) vueltaEl.value=vuelta;
     if(daysEl) daysEl.value=daysBetween(ida,vuelta);
     if(travelers){
-      var value=travelerValue>=4?'4':String(travelerValue);
+      var value=String(Math.max(1,Math.min(8,travelerValue)));
       if(Array.from(travelers.options).some(function(o){return o.value===value;})) travelers.value=value;
     }
 
