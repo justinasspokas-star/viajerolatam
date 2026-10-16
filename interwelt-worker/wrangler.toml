@@ -1,0 +1,9 @@
+name = "viajerolatam-interwelt-pilot"
+main = "worker.js"
+compatibility_date = "2026-10-16"
+workers_dev = true
+
+[vars]
+# Must remain false until secrets have been rotated and pilot checks passed.
+INTERWELT_PILOT_ENABLED = "false"
+# USD is intentionally NOT assigned: provider API JSON has no currency attribute.
