@@ -86,3 +86,23 @@ test("PREPARE validates browser itinerary using the Netlify adapter without prov
     assert.deepEqual(data.prices,[]);
   } finally {globalThis.fetch=oldFetch;}
 });
+
+test("private readiness path stays protected by operator token",async()=>{
+  const prior=process.env.INTERWELT_PILOT_TOKEN;
+  process.env.INTERWELT_PILOT_TOKEN="test-adapter-only-token";
+  try {
+    const anonymous=await adapter(new Request("https://test.netlify.app/.netlify/functions/interwelt-quote?check=1"));
+    assert.equal(anonymous.status,403);
+    const authorized=await adapter(new Request("https://test.netlify.app/.netlify/functions/interwelt-quote?check=1",{
+      headers:{"x-pilot-token":"test-adapter-only-token"}
+    }));
+    assert.equal(authorized.status,200);
+    const json=await authorized.json();
+    assert.equal(json.mode,"operator_readonly");
+    assert.equal(json.payments_enabled,false);
+    assert.equal(json.vouchers_enabled,false);
+  }finally{
+    if(prior===undefined)delete process.env.INTERWELT_PILOT_TOKEN;
+    else process.env.INTERWELT_PILOT_TOKEN=prior;
+  }
+});
