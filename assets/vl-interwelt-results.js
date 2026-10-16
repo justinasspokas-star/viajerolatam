@@ -27,11 +27,9 @@
   const url = new URLSearchParams(location.search);
   const preview = url.get(PREVIEW_FLAG) === '1';
   if (!preview && !LIVE_ENABLED) return;
-  const agesPanel = root.querySelector('[data-vl-iw-ages]');
   const message = root.querySelector('[data-vl-iw-message]');
   const results = root.querySelector('[data-vl-iw-results]');
   const routeLabel = root.querySelector('[data-vl-iw-route]');
-  const btn = root.querySelector('[data-vl-iw-compare]');
 
   const ORIGINS = { co: 'co', colombia: 'co' };
   function normalizeOrigin(s) { return ORIGINS[String(s || '').toLowerCase()] || String(s || '').toLowerCase(); }
@@ -58,11 +56,14 @@
       departure, returnDate, travellers
     };
   }
-  function getAges() {
-    const inputs = [...agesPanel.querySelectorAll('input')];
-    if (inputs.some(el => el.value.trim() === '')) return null;
-    const ages = inputs.map(el => Number(el.value));
-    return ages.every(age => Number.isInteger(age) && age >= 0 && age <= 100) ? ages : null;
+  // Ages are supplied by the main ViajeroLatam search as GET "edades=30,15".
+  // Never invent a default age or display historical prices when ages are missing.
+  function getAges(q) {
+    const encoded = new URLSearchParams(location.search).get('edades') || '';
+    if (!/^[0-9]{1,3}(,[0-9]{1,3})*$/.test(encoded)) return null;
+    const ages = encoded.split(',').map(Number);
+    return ages.length === q.travellers &&
+      ages.every(age => Number.isInteger(age) && age >= 0 && age <= 100) ? ages : null;
   }
   function applyMessage(text) { message.textContent = text; }
   function labelFor(q) {
@@ -70,44 +71,6 @@
     return (q.origin === 'co' ? 'Colombia' : 'Origen por verificar') + ' → ' + dest + ' · ' +
       (dateIsISO(q.departure) ? q.departure : 'sin fecha') + ' a ' +
       (dateIsISO(q.returnDate) ? q.returnDate : 'sin fecha');
-  }
-  function createAgeInputs(q) {
-    const old = agesPanel.dataset.itinerary;
-    const signature = [q.origin, q.dest, q.departure, q.returnDate, q.travellers].join('|');
-    if (old === signature) return;
-    agesPanel.dataset.itinerary = signature;
-    agesPanel.replaceChildren();
-    results.replaceChildren();
-    if (!Number.isInteger(q.travellers) || q.travellers < 1 || q.travellers > 8) {
-      applyMessage('Confirma un número de viajeros entre 1 y 8 para preparar la cotización.');
-      btn.disabled = true;
-      return;
-    }
-    btn.disabled = false;
-    // GET parameter "edades" is supplied by the main ViajeroLatam search.
-    // Only prefill when the number and range match the selected travellers.
-    const saved = new URLSearchParams(location.search).get('edades') || '';
-    const parsed = /^[0-9]{1,3}(,[0-9]{1,3})*$/.test(saved) ? saved.split(',').map(Number) : [];
-    const selectedAges = parsed.length === q.travellers && parsed.every(n => Number.isInteger(n) && n >= 0 && n <= 100)
-      ? parsed : [];
-    for (let i = 0; i < q.travellers; i++) {
-      const label = document.createElement('label');
-      label.className = 'vl-iw-age';
-      label.textContent = 'Edad viajero ' + (i + 1);
-      const input = document.createElement('input');
-      input.type = 'number';
-      input.inputMode = 'numeric';
-      input.min = '0';
-      input.max = '100';
-      input.step = '1';
-      input.required = true;
-      input.placeholder = 'Edad';
-      input.value = selectedAges[i] === undefined ? '' : String(selectedAges[i]);
-      input.setAttribute('aria-label', 'Edad del viajero ' + (i + 1));
-      label.append(input);
-      agesPanel.append(label);
-    }
-    applyMessage('Introduce las edades y comprueba el ejemplo. Únicamente tenemos una muestra para Colombia → Europa, 1–15 nov. 2026, 1 viajero de 30 años.');
   }
   function isHistoricalSample(q, ages) {
     return q.origin === SAMPLE.origin && q.dest === SAMPLE.dest &&
@@ -358,46 +321,40 @@
     applyMessage('Cotización real recibida del servidor. La contratación permanece desactivada.');
     return true;
   }
-  function refresh() {
+  let searchVersion = 0;
+  async function refresh() {
+    const version = ++searchVersion;
     const q = currentSearch();
-    routeLabel.textContent = labelFor(q);
-    createAgeInputs(q);
-    const ages = getAges();
-    // Permits direct deep links from the search age parameter without a second click.
-    if (preview && ages && isHistoricalSample(q, ages)) renderHistorical(q, ages);
-  }
-  root.hidden = false;
-  btn.textContent = 'Comprobar datos de demostración';
-  btn.addEventListener('click', async () => {
-    const q = currentSearch();
+    const ages = getAges(q);
+    routeLabel.textContent = labelFor(q) + (ages ? ' · Edades: ' + ages.join(', ') : '');
     results.replaceChildren();
-    const ages = getAges();
-    if (!ages || ages.length !== q.travellers) {
-      applyMessage('Introduce una edad válida de 0 a 100 años para cada viajero.');
+
+    if (!ages) {
+      applyMessage('No se han recibido las edades del buscador. Añádelas desde «Editar búsqueda» para preparar INTERWELT. Los otros seguros siguen disponibles.');
       return;
     }
-    if (!dateIsISO(q.departure) || !dateIsISO(q.returnDate) ||
-        q.returnDate < q.departure) {
-      applyMessage('Revisa las fechas de salida y regreso antes de cotizar.');
+    if (!dateIsISO(q.departure) || !dateIsISO(q.returnDate) || q.returnDate < q.departure) {
+      applyMessage('Revisa las fechas del viaje desde «Editar búsqueda».');
       return;
     }
-    btn.disabled = true;
-    applyMessage('Verificando fechas, destino y edades en Netlify (sin solicitar tarifas ni enviar datos personales)…');
+
+    applyMessage('Comprobando automáticamente los datos del buscador en Netlify (sin cotizar ni enviar datos personales)…');
     try {
       const checked = await validateOnServer(q, ages);
+      if (version !== searchVersion) return;
       if (preview) {
         renderHistorical(q, ages);
         applyMessage('Datos validados en Netlify (' + checked.search.days +
-          ' días, contando ida y vuelta). ' + message.textContent);
+          ' días, contando salida y regreso). ' + message.textContent);
       } else {
-        applyMessage('Datos validados correctamente. Cotizaciones reales todavía desactivadas.');
+        applyMessage('Búsqueda validada. Cotizaciones reales todavía desactivadas.');
       }
     } catch {
-      applyMessage('No se pudieron comprobar los datos en Netlify. Recarga la página o revisa el despliegue. No se ha llamado a INTERWELT.');
-    } finally {
-      btn.disabled = false;
+      if (version !== searchVersion) return;
+      applyMessage('No se pudieron verificar los datos de esta búsqueda en Netlify. No se ha consultado la API real.');
     }
-  });
+  }
+  root.hidden = false;
   // "Editar búsqueda" updates the URL synchronously.
   document.querySelectorAll('button[onclick="applyEditSearch()"]').forEach(button => {
     button.addEventListener('click', () => setTimeout(refresh, 0));
