@@ -1107,7 +1107,7 @@ nav .logo img.logo-img-header{height:58px;width:auto}
   /* HOME v2 — clarity + trust immediately after comparator */
   .hero .hero-sub{max-width:680px;margin:0 auto 28px;color:rgba(255,255,255,.82);font-size:clamp(15px,1.8vw,18px);line-height:1.6}
   .home-proof-strip{background:#fff;border-bottom:1px solid var(--sand-dark);box-shadow:0 10px 30px rgba(11,31,58,.04);padding:18px 5%}
-  .home-proof-inner{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;align-items:stretch}
+  .home-proof-inner{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;align-items:stretch}
   .home-proof-item{display:flex;align-items:flex-start;gap:10px;padding:12px 14px;border-radius:14px;background:#F9FBFC;border:1px solid #E7EDF2}
   .home-proof-check{width:24px;height:24px;flex:0 0 24px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(0,196,161,.12);color:var(--teal-dark);font-weight:800;font-size:13px}
   .home-proof-item strong{display:block;color:var(--navy);font-size:13px;line-height:1.35;margin-bottom:3px}
@@ -1118,12 +1118,14 @@ nav .logo img.logo-img-header{height:58px;width:auto}
   @media(max-width:800px){
     .hero-trust{gap:10px 16px!important;margin-top:22px!important;justify-content:center!important}
     .trust-item{font-size:11.5px!important}
-    .home-proof-inner{grid-template-columns:1fr 1fr}
+    .home-proof-inner{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .home-proof-inner>.home-proof-item:last-child{grid-column:1/-1;justify-self:center;width:100%;max-width:380px}
   }
   @media(max-width:520px){
     .hero .hero-sub{margin-bottom:20px!important;font-size:14px!important}
     .home-proof-strip{padding:14px 14px 16px}
     .home-proof-inner{grid-template-columns:1fr;gap:8px}
+    .home-proof-inner>.home-proof-item:last-child{grid-column:auto;justify-self:stretch;max-width:none}
     .home-proof-item{padding:10px 12px}
     .home-proof-links{text-align:left;padding:0 2px}
   }
@@ -2421,7 +2423,6 @@ Comparar gratis
 <div aria-label="Por qué usar ViajeroLatam" class="home-proof-strip">
 <div class="home-proof-inner">
 <div class="home-proof-item"><div class="home-proof-check">✓</div><div><strong>Comparador independiente</strong><span>No emitimos pólizas ni somos una aseguradora.</span></div></div>
-<div class="home-proof-item"><div class="home-proof-check">✓</div><div><strong>IATI · Intermundial · AXA · Holins</strong><span>Selección de partners y alternativas para comparar.</span></div></div>
 <div class="home-proof-item"><div class="home-proof-check">✓</div><div><strong>Precio final en la web oficial</strong><span>Comprueba siempre cobertura, exclusiones y condiciones.</span></div></div>
 <div class="home-proof-item"><div class="home-proof-check">✓</div><div><strong>Metodología transparente</strong><span>Explicamos cómo elegimos y cómo podemos ganar dinero.</span></div></div>
 </div>
