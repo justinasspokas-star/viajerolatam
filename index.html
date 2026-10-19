@@ -2383,6 +2383,24 @@ section.how::before{
   .home-proof-strip .home-proof-item:hover,.how .step-card:hover{transform:none}
 }
 </style>
+<style id="vl-insurer-mobile-scroll-motion-v1">
+/* Only the six collaborator tiles, only on mobile; progressive enhancement. */
+@media (max-width:620px) and (prefers-reduced-motion:no-preference){
+  #aseguradoras .vl-logo-grid.vl-motion-ready .vl-logo-tile {
+    opacity:0;
+    transform:translate3d(0,22px,0);
+    transition:opacity .58s ease,transform .67s cubic-bezier(.22,1,.36,1);
+    transition-delay:var(--vl-insurer-delay,0ms);
+  }
+  #aseguradoras .vl-logo-grid.vl-motion-ready .vl-logo-tile.vl-in-view {
+    opacity:1;
+    transform:translate3d(0,0,0);
+  }
+  #aseguradoras .vl-logo-grid.vl-motion-ready .vl-logo-tile.vl-in-view:hover {
+    transform:translate3d(0,-3px,0);
+  }
+}
+</style>
 </head>
 <body>
 <!-- HOME COMPARADOR PRINCIPAL · 2026-09-07 -->
@@ -3058,5 +3076,43 @@ document.addEventListener('click', function(e){
 </script>
   <script defer src="/assets/vl-whatsapp.js"></script>
 <script defer src="/assets/vl-traveller-ages.js"></script>
+<script id="vl-insurer-mobile-scroll-observer-v1">
+(function(){
+  'use strict';
+  var grid=document.querySelector('#aseguradoras .vl-logo-grid');
+  if(!grid||!('IntersectionObserver' in window)||!window.matchMedia)return;
+  var mobile=window.matchMedia('(max-width: 620px)');
+  var reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
+  if(!mobile.matches||reducedMotion.matches)return;
+
+  var cards=Array.prototype.slice.call(grid.querySelectorAll('.vl-logo-tile'));
+  if(!cards.length)return;
+  var observer=new IntersectionObserver(function(entries){
+    // Reveal only cards entering the viewport; stagger simultaneous arrivals.
+    var incoming=entries.filter(function(entry){
+      return entry.isIntersecting;
+    }).sort(function(a,b){
+      return cards.indexOf(a.target)-cards.indexOf(b.target);
+    });
+    incoming.forEach(function(entry,i){
+      var card=entry.target;
+      card.style.setProperty('--vl-insurer-delay',String(Math.min(i*155,465))+'ms');
+      card.classList.add('vl-in-view');
+      observer.unobserve(card);
+    });
+  },{root:null,rootMargin:'0px 0px -7% 0px',threshold:0.08});
+
+  grid.classList.add('vl-motion-ready');
+  cards.forEach(function(card){observer.observe(card);});
+  // Never leave invisible tiles when the viewport or motion preference changes.
+  function restore(){
+    if(mobile.matches&&!reducedMotion.matches)return;
+    grid.classList.remove('vl-motion-ready');
+    observer.disconnect();
+  }
+  if(mobile.addEventListener) mobile.addEventListener('change',restore);
+  if(reducedMotion.addEventListener) reducedMotion.addEventListener('change',restore);
+})();
+</script>
 </body>
 </html>
