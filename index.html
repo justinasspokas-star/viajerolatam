@@ -429,7 +429,7 @@ img, video, iframe, svg {
 }
 .vl-logo-grid{
   display:grid;
-  grid-template-columns:repeat(4,minmax(0,1fr));
+  grid-template-columns:repeat(3,minmax(0,1fr));
   gap:16px;
 }
 .vl-logo-tile{
@@ -499,6 +499,14 @@ img, video, iframe, svg {
   width:83px;
   height:83px;
 }
+.vl-logo-media--chapka img,
+.vl-logo-media--assist365 img{
+  width:92px;
+  height:92px;
+  max-width:92%;
+  max-height:92%;
+  object-fit:contain;
+}
 .vl-logo-caption{
   margin-top:5px;
   text-align:center;
@@ -532,6 +540,7 @@ img, video, iframe, svg {
   .vl-logo-media--iati img{width:147px;height:147px}
   .vl-logo-media--holins img{width:500px}
   .vl-logo-media--axa img{width:67px;height:67px}
+  .vl-logo-media--chapka img,.vl-logo-media--assist365 img{width:72px;height:72px}
   .vl-logo-caption{font-size:14px}
   .vl-logo-action{font-size:12px;margin-top:5px}
   .vl-logo-footnote{font-size:11px}
@@ -2675,7 +2684,7 @@ Comparar gratis
 <div class="inner" id="aseguradoras-detalle">
 <span class="section-kicker">Aseguradoras</span>
 <h2>Nuestros seguros colaboradores</h2>
-<p class="lead">Explora IATI, Intermundial, Holins y AXA. Consulta sus seguros de viaje y compara coberturas y condiciones antes de elegir.</p>
+<p class="lead">Explora IATI, Intermundial, Holins, AXA, Chapka y Assist 365. Consulta sus seguros de viaje y compara coberturas y condiciones antes de elegir.</p>
 <div class="vl-logo-grid" role="list" aria-label="Aseguradoras colaboradoras">
 <a class="vl-logo-tile" href="/seguros/iati/" role="listitem" aria-label="Ver guía de seguros de viaje IATI">
 <span class="vl-logo-media vl-logo-media--iati"><img src="https://d3wo5wojvuv7l.cloudfront.net/t_square_limited_720/images.spreaker.com/original/e46069a09e2f1e9d093c5eef9254cb83.jpg" alt="Logo de IATI Seguros" loading="lazy" decoding="async" width="177" height="177"/></span>
@@ -2696,6 +2705,16 @@ Comparar gratis
 <span class="vl-logo-media vl-logo-media--axa"><img src="https://upload.wikimedia.org/wikipedia/commons/9/94/AXA_Logo.svg" alt="Logo de AXA" loading="lazy" decoding="async" width="100" height="100"/></span>
 <span class="vl-logo-caption">AXA</span>
 <span class="vl-logo-action">Ver guía &rarr;</span>
+</a>
+<a class="vl-logo-tile" href="https://www.chapkadirect.es/" role="listitem" aria-label="Visitar sitio oficial de Chapka Seguros" target="_blank" rel="noopener noreferrer">
+<span class="vl-logo-media vl-logo-media--chapka"><img src="https://images.guide-goyav.com/2022/12/logo-chapka-1.png" alt="Logo de Chapka Seguros" loading="lazy" decoding="async" width="500" height="500"/></span>
+<span class="vl-logo-caption">Chapka</span>
+<span class="vl-logo-action">Ver web &rarr;</span>
+</a>
+<a class="vl-logo-tile" href="https://assist-365.com/es" role="listitem" aria-label="Visitar sitio oficial de Assist 365" target="_blank" rel="noopener noreferrer">
+<span class="vl-logo-media vl-logo-media--assist365"><img src="https://assistcdn.s3.us-west-1.amazonaws.com/assets/img/assist-icon.png" alt="Logo de Assist 365" loading="lazy" decoding="async" width="1000" height="1000"/></span>
+<span class="vl-logo-caption">Assist 365</span>
+<span class="vl-logo-action">Ver web &rarr;</span>
 </a>
 </div>
 <p class="vl-logo-footnote">Las coberturas, precios y disponibilidad varían según tu residencia y destino. Confirma siempre las condiciones en la web de cada proveedor.</p>
