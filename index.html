@@ -2383,9 +2383,9 @@ section.how::before{
   .home-proof-strip .home-proof-item:hover,.how .step-card:hover{transform:none}
 }
 </style>
-<style id="vl-insurer-mobile-scroll-motion-v1">
-/* Only the six collaborator tiles, only on mobile; progressive enhancement. */
-@media (max-width:620px) and (prefers-reduced-motion:no-preference){
+<style id="vl-insurer-scroll-motion-all-devices-v1">
+/* Six collaborator tiles: progressive scroll reveal on mobile, tablet and desktop. */
+@media (prefers-reduced-motion:no-preference){
   #aseguradoras .vl-logo-grid.vl-motion-ready .vl-logo-tile {
     opacity:0;
     transform:translate3d(0,22px,0);
@@ -3076,14 +3076,13 @@ document.addEventListener('click', function(e){
 </script>
   <script defer src="/assets/vl-whatsapp.js"></script>
 <script defer src="/assets/vl-traveller-ages.js"></script>
-<script id="vl-insurer-mobile-scroll-observer-v1">
+<script id="vl-insurer-scroll-observer-all-devices-v1">
 (function(){
   'use strict';
   var grid=document.querySelector('#aseguradoras .vl-logo-grid');
   if(!grid||!('IntersectionObserver' in window)||!window.matchMedia)return;
-  var mobile=window.matchMedia('(max-width: 620px)');
   var reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
-  if(!mobile.matches||reducedMotion.matches)return;
+  if(reducedMotion.matches)return;
 
   var cards=Array.prototype.slice.call(grid.querySelectorAll('.vl-logo-tile'));
   if(!cards.length)return;
@@ -3096,7 +3095,7 @@ document.addEventListener('click', function(e){
     });
     incoming.forEach(function(entry,i){
       var card=entry.target;
-      card.style.setProperty('--vl-insurer-delay',String(Math.min(i*155,465))+'ms');
+      card.style.setProperty('--vl-insurer-delay',String(Math.min(i*135,675))+'ms');
       card.classList.add('vl-in-view');
       observer.unobserve(card);
     });
@@ -3106,11 +3105,10 @@ document.addEventListener('click', function(e){
   cards.forEach(function(card){observer.observe(card);});
   // Never leave invisible tiles when the viewport or motion preference changes.
   function restore(){
-    if(mobile.matches&&!reducedMotion.matches)return;
+    if(!reducedMotion.matches)return;
     grid.classList.remove('vl-motion-ready');
     observer.disconnect();
   }
-  if(mobile.addEventListener) mobile.addEventListener('change',restore);
   if(reducedMotion.addEventListener) reducedMotion.addEventListener('change',restore);
 })();
 </script>
