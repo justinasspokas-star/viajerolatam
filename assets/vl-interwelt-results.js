@@ -5,7 +5,7 @@
  */
 (function () {
   'use strict';
-  const LIVE_ENABLED = false; // Never enable until secure backend and eligibility checks exist.
+  const LIVE_ENABLED = false; // Never enable until durable server-side abuse limits, price cache and eligibility checks exist.
   const PREVIEW_FLAG = 'vl_interwelt_preview';
   const SAMPLE = Object.freeze({
     origin: 'co',
@@ -31,7 +31,7 @@
   const results = root.querySelector('[data-vl-iw-results]');
   const routeLabel = root.querySelector('[data-vl-iw-route]');
 
-  const ORIGINS = { co: 'co', colombia: 'co' };
+  const ORIGINS = { co: 'co', colombia: 'co', pe: 'pe', peru: 'pe', mx: 'mx', mexico: 'mx' };
   function normalizeOrigin(s) { return ORIGINS[String(s || '').toLowerCase()] || String(s || '').toLowerCase(); }
   function normalizeDestination(s) {
     const x = String(s || '').toLowerCase();
@@ -68,7 +68,7 @@
   function applyMessage(text) { message.textContent = text; }
   function labelFor(q) {
     const dest = q.dest === 'europe' ? 'Europa / Schengen' : q.dest === 'north-america' ? 'Estados Unidos / Canadá' : 'otro destino';
-    return (q.origin === 'co' ? 'Colombia' : 'Origen por verificar') + ' → ' + dest + ' · ' +
+    return ({ co: 'Colombia', pe: 'Perú', mx: 'México' }[q.origin] || 'Origen pendiente de confirmar') + ' → ' + dest + ' · ' +
       (dateIsISO(q.departure) ? q.departure : 'sin fecha') + ' a ' +
       (dateIsISO(q.returnDate) ? q.returnDate : 'sin fecha');
   }
@@ -170,8 +170,8 @@
     cautionTitle.textContent = 'A tener en cuenta: ';
     caution.append(cautionTitle, document.createTextNode(
       historical
-        ? 'Importe de una cotización histórica, no una oferta actual. Falta verificar moneda, cobertura y disponibilidad.'
-        : 'Validar moneda, edad, territorio y cobertura antes de mostrar una cotización.'
+        ? 'Importe histórico de una prueba en USD, no una oferta actual. Faltan cobertura y disponibilidad vigentes.'
+        : 'Confirmar edad, territorio, elegibilidad y cobertura antes de habilitar una oferta.'
     ));
     coverage.append(fit, caution);
 
@@ -191,7 +191,7 @@
     const note = document.createElement('div');
     note.className = 'public-price-sub';
     note.textContent = historical
-      ? 'Moneda por confirmar · 1 viajero de 30 años · 15 días · NO es una cotización en directo.'
+      ? 'USD · 1 viajero de 30 años · 15 días · NO es una cotización en directo.'
       : 'Importe verificado para la búsqueda. Compra aún desactivada.';
     const cta = document.createElement('button');
     cta.type = 'button';
@@ -217,7 +217,7 @@
     for (const [label, val] of [
       ['Plan', item.name],
       ['Coberturas', 'Pendientes de documentación oficial'],
-      ['Moneda y elegibilidad', 'Pendientes de confirmación']
+      ['Moneda y elegibilidad', 'USD confirmado · elegibilidad pendiente']
     ]) {
       const el = document.createElement('div');
       el.className = 'detail-item';
@@ -261,7 +261,7 @@
 
   function renderHistorical(q, ages) {
     if (!isHistoricalSample(q, ages)) {
-      applyMessage('Prueba completada: no existen tarifas para los datos introducidos (edad: ' + ages.join(', ') + '). Solo tenemos una muestra de 30 años, del 1 al 15 de noviembre de 2026, Colombia → Europa. No es un error del botón: aún no conectamos la API real.');
+      applyMessage('No tenemos precios de demostración para esta búsqueda (edad: ' + ages.join(', ') + '). Solo se muestra una muestra histórica de 30 años, del 1 al 15 de noviembre de 2026, Colombia → Europa. No se han consultado tarifas actuales.');
       const demo = document.createElement('a');
       demo.className = 'vl-iw-example-link';
       demo.href = '/resultados/?origen=co&destino=espana-schengen&ida=2026-11-01&vuelta=2026-11-15&personas=1&edades=30&vl_interwelt_preview=1';
@@ -280,7 +280,7 @@
       origin:q.origin, destination,
       departure:q.departure, return:q.returnDate, ages
     };
-    const response = await fetch('/.netlify/functions/interwelt-quote?prepare=1', {
+    const response = await fetch('/.netlify/functions/interwelt-quote?route_check=1', {
       method:'POST',
       headers:{'content-type':'application/json'},
       credentials:'omit',
@@ -289,8 +289,8 @@
     });
     if (!response.ok) throw new Error('validation_failed');
     const data = await response.json();
-    if (data.mode !== 'validation' || data.live !== false ||
-        data.mapping_verified !== false || data.rates_available !== false ||
+    if (data.mode !== 'route_mapping_preview' || data.live !== false ||
+        data.rates_available !== false ||
         data.payments_enabled !== false || data.vouchers_enabled !== false ||
         !data.search || data.search.origin !== q.origin ||
         data.search.departure !== q.departure || data.search.return !== q.returnDate ||
@@ -344,8 +344,10 @@
       if (version !== searchVersion) return;
       if (preview) {
         renderHistorical(q, ages);
-        applyMessage('Datos validados en Netlify (' + checked.search.days +
-          ' días, contando salida y regreso). ' + message.textContent);
+        const routeStatus = checked.route_supported && checked.mapping_verified
+          ? 'Ruta verificada con INTERWELT (' + checked.provider_route.origin_country_id + ' → ' + checked.provider_route.destination_region_id + ', USD). '
+          : 'Esta ruta aún no está confirmada para INTERWELT. ';
+        applyMessage('Datos validados (' + checked.search.days + ' días). ' + routeStatus + message.textContent);
       } else {
         applyMessage('Búsqueda validada. Cotizaciones reales todavía desactivadas.');
       }
