@@ -148,3 +148,38 @@ test("POST auth_check routes through the operator-only login probe without quote
     }
   }
 });
+
+
+test("Netlify route_check accepts confirmed routes but never fetches provider quotes", async () => {
+  const originalFetch=globalThis.fetch;
+  const original=process.env.INTERWELT_PILOT_ENABLED;
+  let networkCalls=0;
+  process.env.INTERWELT_PILOT_ENABLED="false";
+  globalThis.fetch=async ()=>{networkCalls++;throw Error("Provider must not be contacted");};
+  const today=new Date();
+  today.setUTCDate(today.getUTCDate()+10);
+  const departure=today.toISOString().slice(0,10);
+  today.setUTCDate(today.getUTCDate()+14);
+  const arrival=today.toISOString().slice(0,10);
+  try {
+    const response=await adapter(new Request("https://interwelt-api-test.netlify.app/.netlify/functions/interwelt-quote?route_check=1",{
+      method:"POST",
+      headers:{"content-type":"application/json","origin":"https://interwelt-api-test.netlify.app"},
+      body:JSON.stringify({origin:"pe",destination:"espana-schengen",departure,return:arrival,ages:[30,15]})
+    }));
+    assert.equal(response.status,200);
+    const data=await response.json();
+    assert.equal(data.mode,"route_mapping_preview");
+    assert.deepEqual(data.provider_route,{origin_country_id:173,destination_region_id:2,currency:"USD"});
+    assert.equal(data.live,false);
+    assert.equal(data.rates_available,false);
+    assert.equal(data.payments_enabled,false);
+    assert.equal(data.vouchers_enabled,false);
+    assert.deepEqual(data.prices,[]);
+    assert.equal(networkCalls,0);
+  }finally{
+    globalThis.fetch=originalFetch;
+    if(original===undefined)delete process.env.INTERWELT_PILOT_ENABLED;
+    else process.env.INTERWELT_PILOT_ENABLED=original;
+  }
+});
