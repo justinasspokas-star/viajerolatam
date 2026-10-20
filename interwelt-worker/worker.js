@@ -114,6 +114,19 @@ async function getProviderToken(origin, env) {
   }
 }
 
+// Diagnostic categories deliberately exclude provider body, token, credentials,
+// exception strings, request URLs and internal stack traces.
+function authFailureCode(error) {
+  if (error?.message === "missing_token") return "login_token_not_recognized";
+  if (error?.status === 404) return "login_path_not_found";
+  if (error?.status === 400 || error?.status === 422) return "login_payload_rejected";
+  if (error?.status === 401 || error?.status === 403) return "login_not_authorized";
+  if (error?.status === 429) return "login_rate_limited";
+  if (Number.isInteger(error?.status)) return "login_provider_http_error";
+  if (error?.name === "TimeoutError" || error?.name === "AbortError") return "login_timeout";
+  return "login_network_or_format_error";
+}
+
 function invalidateProviderToken(origin, env, token) {
   if (cachedAuth?.key === authCacheKey(origin, env) && cachedAuth.token === token) {
     cachedAuth = null;
@@ -171,15 +184,18 @@ export default {
           payments_enabled: false,
           vouchers_enabled: false
         });
-      } catch {
-        // Never expose response bodies, JWT or credential values.
+      } catch (error) {
+        // Deliberately return 200 for a successfully executed *diagnostic*
+        // request so Windows PowerShell displays the safe category as text.
+        // authenticated:false is explicit; no quote, voucher or payment happens.
         return reply({
           mode: "operator_auth_check",
           authenticated: false,
+          failure_code: authFailureCode(error),
           quotes_submitted: false,
           payments_enabled: false,
           vouchers_enabled: false
-        }, 502);
+        });
       }
     }
 
