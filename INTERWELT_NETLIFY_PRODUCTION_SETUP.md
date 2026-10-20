@@ -11,7 +11,7 @@ Entorno aislado: **interwelt-api-test**. No fusionar la rama piloto con `main` h
 - Fecha de salida y regreso se cuentan **ambas** para el número de días.
 - `correo` y `telefono` son obligatorios para cotización; INTERWELT autoriza usar los datos corporativos configurados.
 - JWT de login: duración **60 minutos**. El backend lo reutiliza durante **50 minutos por instancia caliente** y renueva ante HTTP 401. No es una caché compartida entre instancias.
-- **Pendiente de verificar en Swagger**: el correo describe `POST /auth/login`, mientras que el backend utiliza `POST /api/auth/login` (con prefijo). No asumir que ambos equivalen hasta realizar la prueba privada de autenticación o consultar el contrato de la API.
+- **Confirmado en Swagger de producción el 20-10-2026**: login `POST /api/auth/login`, cuerpo `{"username":"<usuario>","password":"<contraseña>"}`, con respuesta JSON que contiene `token`. La variable `INTERWELT_EMAIL` del servidor se envía como `username` al autenticar. No confundirlo con `correo`, que sí corresponde al endpoint de cotización. La prueba manual en Swagger dio HTTP 200; verificar por separado el backend con su variable secreta rotada.
 
 ## Variables de Netlify
 
