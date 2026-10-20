@@ -336,11 +336,70 @@ test("auth check hides upstream authentication failures", async () => {
       method: "POST",
       headers: { "x-pilot-token": "test-only-secret" }
     }), config);
-    assert.equal(response.status, 502);
+    assert.equal(response.status, 200);
     const body = await response.json();
     assert.equal(body.authenticated, false);
+    assert.equal(body.failure_code, "login_not_authorized");
     assert.equal(body.quotes_submitted, false);
     assert.ok(!JSON.stringify(body).includes("secret_detail"));
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
+
+test("auth-only diagnostics distinguish missing login path from rejected login", async () => {
+  const originalFetch = globalThis.fetch;
+  const config = {
+    ...env(),
+    INTERWELT_PILOT_ENABLED: "false",
+    INTERWELT_EMAIL: "missing-path-isolation@example.org"
+  };
+  let loginCalls = 0;
+  globalThis.fetch = async url => {
+    assert.equal(new URL(url).pathname, "/api/auth/login");
+    loginCalls++;
+    return Response.json({ internal: "never-send-to-operator" }, { status: 404 });
+  };
+  try {
+    const response = await worker.fetch(new Request("https://test.local/api/auth-check", {
+      method: "POST",
+      headers: { "x-pilot-token": "test-only-secret" }
+    }), config);
+    assert.equal(response.status, 200);
+    const body = await response.json();
+    assert.equal(body.authenticated, false);
+    assert.equal(body.failure_code, "login_path_not_found");
+    assert.equal(body.quotes_submitted, false);
+    assert.equal(loginCalls, 1);
+    assert.ok(!JSON.stringify(body).includes("never-send-to-operator"));
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
+test("auth-only diagnostics hide unrecognized upstream response data", async () => {
+  const originalFetch = globalThis.fetch;
+  const config = {
+    ...env(),
+    INTERWELT_PILOT_ENABLED: "false",
+    INTERWELT_EMAIL: "unexpected-shape-isolation@example.org"
+  };
+  globalThis.fetch = async url => {
+    assert.equal(new URL(url).pathname, "/api/auth/login");
+    return Response.json({ data: { unexpected: "provider-internal-secret" } });
+  };
+  try {
+    const response = await worker.fetch(new Request("https://test.local/api/auth-check", {
+      method: "POST",
+      headers: { "x-pilot-token": "test-only-secret" }
+    }), config);
+    assert.equal(response.status, 200);
+    const body = await response.json();
+    assert.equal(body.authenticated, false);
+    assert.equal(body.failure_code, "login_token_not_recognized");
+    assert.equal(body.quotes_submitted, false);
+    assert.ok(!JSON.stringify(body).includes("provider-internal-secret"));
   } finally {
     globalThis.fetch = originalFetch;
   }
