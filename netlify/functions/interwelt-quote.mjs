@@ -54,3 +54,15 @@ export default async function interweltQuote(request) {
   }
   return worker.fetch(new Request(url, request), process.env);
 }
+
+// Netlify edge-enforced per-IP rate limit for the isolated test endpoint.
+// Not a global quota across visitors; enforcement may lag briefly.
+// Deploy log "Post-processing" must confirm the rule was accepted.
+export const config = {
+  path: "/.netlify/functions/interwelt-quote",
+  rateLimit: {
+    windowLimit: 10,
+    windowSize: 60,
+    aggregateBy: ["ip", "domain"]
+  }
+};
