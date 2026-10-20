@@ -127,3 +127,158 @@ test("operator readiness endpoint requires token and never reveals credentials",
   assert.ok(!JSON.stringify(body).includes("not-a-real-password"));
   assert.ok(!JSON.stringify(body).includes("operator@example.org"));
 });
+
+
+test("reuses the provider JWT for multiple quotes in a warm instance", async () => {
+  const originalFetch = globalThis.fetch;
+  const config = { ...env(), INTERWELT_EMAIL: "cache-isolation@example.org" };
+  let logins = 0;
+  let quotes = 0;
+  globalThis.fetch = async (url, init) => {
+    if (String(url).endsWith("/api/auth/login")) {
+      logins++;
+      return Response.json({ token: "cached-test-jwt" });
+    }
+    if (String(url).endsWith("/api/quotes")) {
+      quotes++;
+      assert.equal(init.headers.authorization, "Bearer cached-test-jwt");
+      return Response.json({ id: quotes, plans: [] });
+    }
+    throw new Error("Unexpected network request");
+  };
+  try {
+    for (let i = 0; i < 2; i++) {
+      const res = await worker.fetch(pilotRequest(sample()), config);
+      assert.equal(res.status, 200);
+    }
+    assert.equal(logins, 1);
+    assert.equal(quotes, 2);
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
+test("re-authenticates once and retries the quote once on provider 401", async () => {
+  const originalFetch = globalThis.fetch;
+  const config = { ...env(), INTERWELT_EMAIL: "expired-isolation@example.org" };
+  let logins = 0;
+  let quotes = 0;
+  globalThis.fetch = async (url, init) => {
+    if (String(url).endsWith("/api/auth/login")) {
+      logins++;
+      return Response.json({ token: "relogin-jwt-" + logins });
+    }
+    if (String(url).endsWith("/api/quotes")) {
+      quotes++;
+      if (quotes === 1) {
+        assert.equal(init.headers.authorization, "Bearer relogin-jwt-1");
+        return Response.json({ error: "expired" }, { status: 401 });
+      }
+      assert.equal(init.headers.authorization, "Bearer relogin-jwt-2");
+      return Response.json({ id: 5, plans: [] });
+    }
+    throw new Error("Unexpected network request");
+  };
+  try {
+    const res = await worker.fetch(pilotRequest(sample()), config);
+    assert.equal(res.status, 200);
+    const body = await res.json();
+    assert.equal(body.quote_id, 5);
+    assert.equal(logins, 2);
+    assert.equal(quotes, 2);
+    assert.ok(!JSON.stringify(body).includes("relogin-jwt"));
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
+test("does not retry non-401 quote failures that could have been registered upstream", async () => {
+  const originalFetch = globalThis.fetch;
+  const config = { ...env(), INTERWELT_EMAIL: "error-isolation@example.org" };
+  let logins = 0;
+  let quotes = 0;
+  globalThis.fetch = async url => {
+    if (String(url).endsWith("/api/auth/login")) {
+      logins++;
+      return Response.json({ token: "non-retry-jwt" });
+    }
+    if (String(url).endsWith("/api/quotes")) {
+      quotes++;
+      return Response.json({ error: "provider failure" }, { status: 500 });
+    }
+    throw new Error("Unexpected network request");
+  };
+  try {
+    const res = await worker.fetch(pilotRequest(sample()), config);
+    assert.equal(res.status, 502);
+    assert.deepEqual(await res.json(), { error: "provider_unavailable_or_login_failed" });
+    assert.equal(logins, 1);
+    assert.equal(quotes, 1);
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
+test("refreshes the cached JWT before the provider's 60-minute expiration", async () => {
+  const originalFetch = globalThis.fetch;
+  const originalNow = Date.now;
+  const config = { ...env(), INTERWELT_EMAIL: "age-isolation@example.org" };
+  let now = originalNow();
+  let logins = 0;
+  let quotes = 0;
+  Date.now = () => now;
+  globalThis.fetch = async url => {
+    if (String(url).endsWith("/api/auth/login")) {
+      logins++;
+      return Response.json({ token: "age-jwt-" + logins });
+    }
+    if (String(url).endsWith("/api/quotes")) {
+      quotes++;
+      return Response.json({ id: quotes, plans: [] });
+    }
+    throw new Error("Unexpected network request");
+  };
+  try {
+    assert.equal((await worker.fetch(pilotRequest(sample()), config)).status, 200);
+    now += 50 * 60 * 1000 + 1;
+    assert.equal((await worker.fetch(pilotRequest(sample()), config)).status, 200);
+    assert.equal(logins, 2);
+    assert.equal(quotes, 2);
+  } finally {
+    globalThis.fetch = originalFetch;
+    Date.now = originalNow;
+  }
+});
+
+test("coalesces simultaneous logins without sharing the JWT with the browser", async () => {
+  const originalFetch = globalThis.fetch;
+  const config = { ...env(), INTERWELT_EMAIL: "parallel-isolation@example.org" };
+  let logins = 0;
+  let quotes = 0;
+  globalThis.fetch = async (url, init) => {
+    if (String(url).endsWith("/api/auth/login")) {
+      logins++;
+      await Promise.resolve();
+      return Response.json({ token: "parallel-jwt" });
+    }
+    if (String(url).endsWith("/api/quotes")) {
+      quotes++;
+      assert.equal(init.headers.authorization, "Bearer parallel-jwt");
+      return Response.json({ id: quotes, plans: [] });
+    }
+    throw new Error("Unexpected network request");
+  };
+  try {
+    const [a, b] = await Promise.all([
+      worker.fetch(pilotRequest(sample()), config),
+      worker.fetch(pilotRequest(sample()), config)
+    ]);
+    assert.equal(a.status, 200);
+    assert.equal(b.status, 200);
+    assert.equal(logins, 1);
+    assert.equal(quotes, 2);
+    assert.ok(!JSON.stringify(await a.json()).includes("parallel-jwt"));
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
