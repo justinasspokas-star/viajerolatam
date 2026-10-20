@@ -44,6 +44,8 @@ export default async function interweltQuote(request) {
   }
   if (request.method === "GET" && url.searchParams.get("check") === "1") {
     url.pathname = "/api/check";
+  } else if (request.method === "POST" && url.searchParams.get("auth_check") === "1") {
+    url.pathname = "/api/auth-check";
   } else {
     url.pathname = request.method === "GET" ? "/health" : "/api/quote";
   }
