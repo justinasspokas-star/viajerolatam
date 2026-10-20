@@ -108,3 +108,43 @@ test("private readiness path stays protected by operator token",async()=>{
     else process.env.INTERWELT_PILOT_TOKEN=prior;
   }
 });
+
+
+test("POST auth_check routes through the operator-only login probe without quotes", async () => {
+  const keys = ["INTERWELT_PILOT_TOKEN", "INTERWELT_EMAIL", "INTERWELT_PASSWORD", "INTERWELT_PILOT_ENABLED"];
+  const prior = Object.fromEntries(keys.map(key => [key, process.env[key]]));
+  const originalFetch = globalThis.fetch;
+  process.env.INTERWELT_PILOT_TOKEN = "private-test-probe";
+  process.env.INTERWELT_EMAIL = "adapter-probe@example.org";
+  process.env.INTERWELT_PASSWORD = "test-password-not-real";
+  process.env.INTERWELT_PILOT_ENABLED = "false";
+  let authCalls = 0;
+  globalThis.fetch = async url => {
+    assert.equal(new URL(url).pathname, "/api/auth/login");
+    authCalls++;
+    return Response.json({ token: "probe-only-jwt" });
+  };
+  try {
+    const url = "https://test.netlify.app/.netlify/functions/interwelt-quote?auth_check=1";
+    const unauthorized = await adapter(new Request(url, { method: "POST" }));
+    assert.equal(unauthorized.status, 403);
+    const authorized = await adapter(new Request(url, {
+      method: "POST", headers: { "x-pilot-token": "private-test-probe" }
+    }));
+    assert.equal(authorized.status, 200);
+    const body = await authorized.json();
+    assert.equal(body.mode, "operator_auth_check");
+    assert.equal(body.authenticated, true);
+    assert.equal(body.quotes_submitted, false);
+    assert.equal(body.vouchers_enabled, false);
+    assert.equal(body.payments_enabled, false);
+    assert.equal(authCalls, 1);
+    assert.ok(!JSON.stringify(body).includes("probe-only-jwt"));
+  } finally {
+    globalThis.fetch = originalFetch;
+    for (const key of keys) {
+      if (prior[key] === undefined) delete process.env[key];
+      else process.env[key] = prior[key];
+    }
+  }
+});
