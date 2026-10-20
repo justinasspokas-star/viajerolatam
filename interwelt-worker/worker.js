@@ -133,6 +133,75 @@ function invalidateProviderToken(origin, env, token) {
   }
 }
 
+// Internal server-only implementation shared by the private operator route
+// and the separately gated public-rate scaffold. NEVER export to frontend.
+export async function quoteWithProvider(input, env) {
+  const quote = validate(input);
+  if (!quote) throw new Error("invalid_quote_fields");
+  if (!env.INTERWELT_EMAIL || !env.INTERWELT_PASSWORD ||
+      !env.INTERWELT_CONTACT_EMAIL || !env.INTERWELT_CONTACT_PHONE) {
+    throw new Error("provider_not_configured");
+  }
+  const rawOrigin = String(env.INTERWELT_API_URL || PROD_ORIGIN);
+  const providerOrigin = rawOrigin.endsWith("/") ? rawOrigin.slice(0, -1) : rawOrigin;
+  if (!ALLOWED_API_ORIGINS.has(providerOrigin)) throw new Error("invalid_provider_configuration");
+  const quotePayload = {
+    id_paisOrigen: quote.origin,
+    id_destino: quote.region,
+    cantPax: quote.ages.length,
+    edadesPax: quote.ages,
+    telefono: env.INTERWELT_CONTACT_PHONE,
+    correo: env.INTERWELT_CONTACT_EMAIL,
+    student: false,
+    multTravel: false,
+    fechaSalida: quote.departure,
+    fechaRetorno: quote.arrival,
+    enviaje: false
+  };
+  const submitQuote = token => fetchJson(providerOrigin + "/api/quotes", {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+      "authorization": "Bearer " + token
+    },
+    body: JSON.stringify(quotePayload)
+  });
+  let token = await getProviderToken(providerOrigin, env);
+  let response;
+  try {
+    response = await submitQuote(token);
+  } catch (error) {
+    if (error.status !== 401) throw error;
+    // Expired authorization can be retried only once; never retry other
+    // provider failures because the request might have been recorded.
+    invalidateProviderToken(providerOrigin, env, token);
+    token = await getProviderToken(providerOrigin, env);
+    response = await submitQuote(token);
+  }
+  return {
+    mode: "operator_quote",
+    source: "INTERWELT",
+    live: true,
+    quote_id: response?.id || null,
+    search: {
+      origin_country_id: quote.origin,
+      destination_region_id: quote.region,
+      departure: quote.departure,
+      return: quote.arrival,
+      ages: quote.ages,
+      days: Math.round((Date.parse(quote.arrival + "T00:00:00Z") -
+        Date.parse(quote.departure + "T00:00:00Z")) / 86400000) + 1
+    },
+    prices: pricesFromApi(response),
+    currency: "USD",
+    currency_confirmed: true,
+    mapping_verified: false,
+    eligible: null,
+    payments_enabled: false,
+    vouchers_enabled: false
+  };
+}
+
 export default {
   async fetch(request, env) {
     const pathname = new URL(request.url).pathname;
@@ -233,72 +302,10 @@ export default {
     const quote = validate(input);
     if (!quote) return reply({ error: "invalid_quote_fields" }, 400);
 
-    const rawProviderOrigin = String(env.INTERWELT_API_URL || PROD_ORIGIN);
-    const providerOrigin = rawProviderOrigin.endsWith("/") ? rawProviderOrigin.slice(0, -1) : rawProviderOrigin;
-    if (!ALLOWED_API_ORIGINS.has(providerOrigin)) {
-      return reply({ error: "invalid_provider_configuration" }, 503);
-    }
     try {
-      const quotePayload = {
-        id_paisOrigen: quote.origin,
-        id_destino: quote.region,
-        cantPax: quote.ages.length,
-        edadesPax: quote.ages,
-        telefono: env.INTERWELT_CONTACT_PHONE,
-        correo: env.INTERWELT_CONTACT_EMAIL,
-        student: false,
-        multTravel: false,
-        fechaSalida: quote.departure,
-        fechaRetorno: quote.arrival,
-        enviaje: false
-      };
-      const submitQuote = token => fetchJson(providerOrigin + "/api/quotes", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-          "authorization": "Bearer " + token
-        },
-        body: JSON.stringify(quotePayload)
-      });
-
-      let token = await getProviderToken(providerOrigin, env);
-      let response;
-      try {
-        response = await submitQuote(token);
-      } catch (error) {
-        if (error.status !== 401) throw error;
-        // The cached token can expire early or be revoked. Retry authentication
-        // only once. Do not retry other errors (quote submission may persist).
-        invalidateProviderToken(providerOrigin, env, token);
-        token = await getProviderToken(providerOrigin, env);
-        response = await submitQuote(token);
-      }
-
-      // INTERWELT confirmed that the API returns final sale amounts in USD.
-      return reply({
-        mode: "operator_quote",
-        source: "INTERWELT",
-        live: true,
-        quote_id: response?.id || null,
-        search: {
-          origin_country_id: quote.origin,
-          destination_region_id: quote.region,
-          departure: quote.departure,
-          return: quote.arrival,
-          ages: quote.ages,
-          days: Math.round((Date.parse(quote.arrival + "T00:00:00Z") -
-            Date.parse(quote.departure + "T00:00:00Z")) / 86400000) + 1
-        },
-        prices: pricesFromApi(response),
-        currency: "USD",
-        currency_confirmed: true,
-        mapping_verified: false,
-        eligible: null,
-        payments_enabled: false,
-        vouchers_enabled: false
-      });
+      return reply(await quoteWithProvider(input, env));
     } catch {
-      // Never return the provider's raw error, JWT, contact details or credentials.
+      // Never return provider error bodies, JWTs, or personal contact details.
       return reply({ error: "provider_unavailable_or_login_failed" }, 502);
     }
   }
