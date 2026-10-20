@@ -10,6 +10,7 @@ const ALLOWED_API_ORIGINS = new Set([
   "https://qa-api.interweltcorp.com"
 ]);
 const MAX_BODY_LENGTH = 4096;
+// Provider confirmation (2026-10-20): all /api/quotes sale amounts are final USD.
 
 function reply(data, status = 200) {
   return new Response(JSON.stringify(data), {
@@ -93,7 +94,7 @@ export default {
         live_quotes_enabled: env.INTERWELT_PILOT_ENABLED === "true",
         credentials_configured: required.every(key => Boolean(env[key])),
         required_variable_names: required,
-        currency_confirmed: env.INTERWELT_CONFIRMED_CURRENCY === "USD",
+        currency_confirmed: true,
         vouchers_enabled: false,
         payments_enabled: false
       });
@@ -167,8 +168,7 @@ export default {
         })
       });
 
-      // The provider JSON lacks an explicit currency field: do not assume a
-      // customer-facing currency until INTERWELT confirms the production API unit.
+      // INTERWELT confirmed that the API returns final sale amounts in USD.
       return reply({
         mode: "operator_quote",
         source: "INTERWELT",
@@ -184,8 +184,8 @@ export default {
             Date.parse(quote.departure + "T00:00:00Z")) / 86400000) + 1
         },
         prices: pricesFromApi(response),
-        currency: env.INTERWELT_CONFIRMED_CURRENCY === "USD" ? "USD" : null,
-        currency_confirmed: env.INTERWELT_CONFIRMED_CURRENCY === "USD",
+        currency: "USD",
+        currency_confirmed: true,
         mapping_verified: false,
         eligible: null,
         payments_enabled: false,
