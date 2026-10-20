@@ -92,3 +92,50 @@ export async function prepareQuoteRequest(request) {
     next_step:"Confirmar identificadores de país y zona, elegibilidad y moneda; conectar la API bajo secreto de servidor."
   });
 }
+
+
+// Verified in INTERWELT production correspondence, 2026-10-20.
+// These are public catalog IDs, never secrets. Other routes remain unsupported
+// until the provider confirms them. All totals are final USD.
+const CONFIRMED_ORIGIN_IDS = Object.freeze({ co: 48, pe: 173, mx: 142 });
+const CONFIRMED_DESTINATION_IDS = Object.freeze({ europe: 2, "north-america": 6 });
+
+export function confirmedProviderRoute(search) {
+  if (!search || typeof search !== "object" || !Object.hasOwn(CONFIRMED_ORIGIN_IDS, search.origin) ||
+      !Object.hasOwn(CONFIRMED_DESTINATION_IDS, search.region)) return null;
+  return {
+    origin_country_id: CONFIRMED_ORIGIN_IDS[search.origin],
+    destination_region_id: CONFIRMED_DESTINATION_IDS[search.region],
+    currency: "USD"
+  };
+}
+
+// Public, no-secrets preflight only. It never calls /api/auth/login or /api/quotes.
+// The route check is NOT a confirmation that a given plan is eligible: only the
+// provider's actual plans array can confirm that after a protected live lookup.
+export async function inspectRouteRequest(request) {
+  const prepared = await prepareQuoteRequest(request);
+  if (!prepared.ok) return prepared;
+  const input = await prepared.json();
+  const mapping = confirmedProviderRoute(input.search);
+  return json({
+    mode: "route_mapping_preview",
+    source: "INTERWELT-preview",
+    validated: true,
+    route_supported: Boolean(mapping),
+    mapping_verified: Boolean(mapping),
+    provider_route: mapping,
+    live: false,
+    rates_available: false,
+    prices: [],
+    currency: mapping ? "USD" : null,
+    currency_confirmed: Boolean(mapping),
+    eligible: null,
+    payments_enabled: false,
+    vouchers_enabled: false,
+    search: input.search,
+    next_step: mapping
+      ? "Ruta y moneda verificadas. Elegibilidad y tarifas solo mediante el endpoint protegido aún no habilitado al público."
+      : "Origen o destino pendiente de confirmación con INTERWELT. No solicitar cotización."
+  });
+}
