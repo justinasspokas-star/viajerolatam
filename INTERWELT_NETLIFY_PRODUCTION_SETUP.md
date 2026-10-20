@@ -83,3 +83,21 @@ Ejemplo autorizado de IDs y fechas futuras de muestra:
 - Contratación y vouchers no están implementados ni habilitados. No fusionar el PR con `main` hasta completar estas medidas.
 
 Documentación Netlify: https://docs.netlify.com/build/functions/environment-variables/
+
+
+## Fase de integración del comparador: preflight de ruta (sin cotizar)
+
+La rama de pruebas implementa `POST /.netlify/functions/interwelt-quote?route_check=1` exclusivamente para el entorno aislado `interwelt-api-test`. El navegador envía únicamente origen ISO abreviado, destino, fechas y edades; no envía correo, teléfono, contraseña ni token. La misma validación de tamaño, tipo JSON y origen que `?prepare=1` sigue aplicándose.
+
+Rutas numéricas confirmadas por INTERWELT:
+- Colombia `co` → `48`; Perú `pe` → `173`; México `mx` → `142`.
+- España/Europa `espana-schengen`, `espana`, `europa` → región `2`.
+- Estados Unidos/Norteamérica `eeuu`, `eeuu-canada` → región `6`.
+
+Las demás rutas se aceptan como búsqueda general pero devuelven `route_supported: false`, `mapping_verified: false` y `provider_route: null`, evitando adivinar los IDs.
+
+La respuesta `mode: "route_mapping_preview"` presenta `currency: "USD"` solo para rutas confirmadas y **siempre** devuelve `live: false`, `rates_available: false`, `prices: []`, `eligible: null`, `payments_enabled: false` y `vouchers_enabled: false`. Un mapa de ruta válido **no equivale** a un plan elegible o un precio cotizado.
+
+La vista previa de `/resultados/` consume este endpoint, muestra un único bloque INTERWELT con sus datos de demostración histórica si coincide exactamente con el ejemplo fijo, y no revela credenciales ni dispara cotizaciones de producción. La rama `main` sigue sin cambios.
+
+**Pendiente antes de conectar la API a visitantes:** aplicar protección contra abuso distribuida entre instancias (no confiar solo en `Map` en memoria de Netlify), caché de precios con TTL e invalidación, límites de coste, verificación del esquema real de `plans` por origen/edad, rotación de contraseña expuesta, políticas de datos/contacto y consentimiento del proveedor para generar registros con tráfico público. No establecer `INTERWELT_PILOT_ENABLED=true` para servir cotizaciones al público: ese flag pertenece solo a pruebas privadas del operador.
