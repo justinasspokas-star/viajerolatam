@@ -66,7 +66,7 @@ test("authenticates, quotes and never calls a voucher endpoint", async () => {
     paths.push(new URL(url).pathname);
     if (String(url).endsWith("/api/auth/login")) {
       assert.deepEqual(JSON.parse(init.body), {
-        correo: "operator@example.org",
+        username: "operator@example.org",
         password: "not-a-real-password"
       });
       return Response.json({ token: "fake-test-jwt" });
