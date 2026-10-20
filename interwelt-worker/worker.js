@@ -11,6 +11,11 @@ const ALLOWED_API_ORIGINS = new Set([
 ]);
 const MAX_BODY_LENGTH = 4096;
 // Provider confirmation (2026-10-20): all /api/quotes sale amounts are final USD.
+// INTERWELT says JWTs last 60 minutes; refresh at 50 minutes or on an upstream 401.
+// Memory is only shared by requests on a warm function instance, not across instances.
+const JWT_REFRESH_MS = 50 * 60 * 1000;
+let cachedAuth = null;
+let pendingAuth = null;
 
 function reply(data, status = 200) {
   return new Response(JSON.stringify(data), {
@@ -68,8 +73,51 @@ function pricesFromApi(payload) {
 
 async function fetchJson(url, options) {
   const res = await fetch(url, { ...options, signal: AbortSignal.timeout(12000) });
-  if (!res.ok) throw new Error("upstream_http_error");
+  if (!res.ok) {
+    // Preserve only the HTTP status for retry logic. Never expose provider response bodies.
+    const error = new Error("upstream_http_error");
+    error.status = res.status;
+    throw error;
+  }
   return res.json();
+}
+
+function authCacheKey(origin, env) {
+  // Never export or log this internal key: it includes the credential needed to
+  // invalidate a warm-instance cache when the operator rotates the password.
+  return [origin, env.INTERWELT_EMAIL, env.INTERWELT_PASSWORD].join("\\u0000");
+}
+
+async function getProviderToken(origin, env) {
+  const key = authCacheKey(origin, env);
+  if (cachedAuth?.key === key && Date.now() < cachedAuth.expiresAt) {
+    return cachedAuth.token;
+  }
+  if (pendingAuth?.key === key) return pendingAuth.promise;
+
+  const promise = (async () => {
+    const auth = await fetchJson(origin + "/api/auth/login", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ correo: env.INTERWELT_EMAIL, password: env.INTERWELT_PASSWORD })
+    });
+    const token = getAccessToken(auth);
+    if (typeof token !== "string" || !token) throw new Error("missing_token");
+    cachedAuth = { key, token, expiresAt: Date.now() + JWT_REFRESH_MS };
+    return token;
+  })();
+  pendingAuth = { key, promise };
+  try {
+    return await promise;
+  } finally {
+    if (pendingAuth?.promise === promise) pendingAuth = null;
+  }
+}
+
+function invalidateProviderToken(origin, env, token) {
+  if (cachedAuth?.key === authCacheKey(origin, env) && cachedAuth.token === token) {
+    cachedAuth = null;
+  }
 }
 
 export default {
@@ -139,34 +187,40 @@ export default {
       return reply({ error: "invalid_provider_configuration" }, 503);
     }
     try {
-      const auth = await fetchJson(providerOrigin + "/api/auth/login", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ correo: env.INTERWELT_EMAIL, password: env.INTERWELT_PASSWORD })
-      });
-      const token = getAccessToken(auth);
-      if (typeof token !== "string" || !token) throw new Error("missing_token");
-
-      const response = await fetchJson(providerOrigin + "/api/quotes", {
+      const quotePayload = {
+        id_paisOrigen: quote.origin,
+        id_destino: quote.region,
+        cantPax: quote.ages.length,
+        edadesPax: quote.ages,
+        telefono: env.INTERWELT_CONTACT_PHONE,
+        correo: env.INTERWELT_CONTACT_EMAIL,
+        student: false,
+        multTravel: false,
+        fechaSalida: quote.departure,
+        fechaRetorno: quote.arrival,
+        enviaje: false
+      };
+      const submitQuote = token => fetchJson(providerOrigin + "/api/quotes", {
         method: "POST",
         headers: {
           "content-type": "application/json",
           "authorization": "Bearer " + token
         },
-        body: JSON.stringify({
-          id_paisOrigen: quote.origin,
-          id_destino: quote.region,
-          cantPax: quote.ages.length,
-          edadesPax: quote.ages,
-          telefono: env.INTERWELT_CONTACT_PHONE,
-          correo: env.INTERWELT_CONTACT_EMAIL,
-          student: false,
-          multTravel: false,
-          fechaSalida: quote.departure,
-          fechaRetorno: quote.arrival,
-          enviaje: false
-        })
+        body: JSON.stringify(quotePayload)
       });
+
+      let token = await getProviderToken(providerOrigin, env);
+      let response;
+      try {
+        response = await submitQuote(token);
+      } catch (error) {
+        if (error.status !== 401) throw error;
+        // The cached token can expire early or be revoked. Retry authentication
+        // only once. Do not retry other errors (quote submission may persist).
+        invalidateProviderToken(providerOrigin, env, token);
+        token = await getProviderToken(providerOrigin, env);
+        response = await submitQuote(token);
+      }
 
       // INTERWELT confirmed that the API returns final sale amounts in USD.
       return reply({
