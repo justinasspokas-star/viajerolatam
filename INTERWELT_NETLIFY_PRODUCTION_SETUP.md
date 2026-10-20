@@ -103,3 +103,31 @@ La vista previa de `/resultados/` consume este endpoint, muestra un único bloqu
 El adaptador de Netlify incluye una **regla propuesta** de límite de 10 solicitudes por IP/dominio cada 60 segundos para el endpoint del piloto. Verificar su aceptación en el registro de despliegue → **Post-processing**: Netlify puede completar el despliegue aunque descarte una regla inválida. Según Netlify, su aplicación puede tardar hasta 10 segundos. Esto **no es** una cuota global ni limita el número de IP diferentes.
 
 **Pendiente antes de conectar la API a visitantes:** protección distribuida y **límite global de gasto/uso** (además del control por IP), caché de precios con TTL e invalidación, prevención de duplicados entre instancias, verificación del esquema de `plans` y elegibilidad por origen/edad, rotación de contraseña expuesta, políticas de datos/contacto y consentimiento del proveedor para generar registros con tráfico público. No establecer `INTERWELT_PILOT_ENABLED=true` para servir cotizaciones al público: ese flag pertenece solo a pruebas privadas del operador.
+
+
+## Backend compartido de cotizaciones (implementado, apagado)
+
+Se añadió `interwelt-worker/public-rates.mjs` y un gateway independiente:
+`POST /.netlify/functions/interwelt-quote?public_rates=1`.
+
+**IMPORTANTE: el gateway público NO está habilitado ni debe habilitarse aún.** No depende de `INTERWELT_PILOT_ENABLED`, sino de la variable separada `INTERWELT_PUBLIC_RATES_ENABLED`, que por defecto no existe y equivale a `false`. Incluso si el piloto privado del operador estuviera en `true`, esto no activa el gateway público. No habilitar ninguna opción en Netlify ahora.
+
+El nuevo flujo está preparado para trabajar con **Upstash Redis REST**, como almacén compartido entre funciones serverless, pero todavía no hay conexión Redis real verificada. Para utilizarlo posteriormente se requerirían estos secretos server-side:
+- `UPSTASH_REDIS_REST_URL`: dirección HTTPS de la base de datos Upstash Redis.
+- `UPSTASH_REDIS_REST_TOKEN`: token REST de Redis; marcar secreto y permitir **Functions/Production** exclusivamente.
+- `INTERWELT_PUBLIC_RATES_ENABLED`: **mantener en `false`** hasta las validaciones finales y nueva autorización explícita.
+
+Implementación: preflight con origen, fechas, edades y ruta confirmada; lectura de caché de 600 s; bloqueo distribuido `SET NX EX` de 90 s para evitar dos registros simultáneos idénticos; incremento atómico `EVAL` de un cupo global conservador de **20 nuevas cotizaciones al día**, compartido por todas las IP; almacenamiento de precios en USD sin ID de cotización y sin datos de contacto. Se mantiene el bloqueo de 90 s ante fallos ambiguos para prevenir reintentos automáticos que puedan duplicar registros.
+
+Si faltan los secretos de Redis, hay un problema de conexión o la ruta no ha sido confirmada, el gateway responde sin consultar a INTERWELT. El frontend continúa con `LIVE_ENABLED=false` y no consume ese endpoint; las demás tarjetas de afiliados permanecen intactas.
+
+Las pruebas automáticas usan una simulación de Redis y un proveedor falso. **No demuestran que Upstash real acepte aún las operaciones `EVAL` ni que haya una base de datos conectada**. La regla Netlify de 10 peticiones por IP y minuto es complementaria, no una cuota global.
+
+### Pendientes antes de lanzar
+
+1. Rotar la contraseña de producción mostrada en una captura anterior, y revocar el JWT expuesto.
+2. Configurar Upstash REST solo en Netlify Functions/Production y verificar operaciones de Redis con una prueba sin conexión al proveedor.
+3. Revisar retención de fechas y edades y la política de privacidad.
+4. Validar la cobertura, elegibilidad y el texto legal de cada plan, sin inferir beneficios de los IDs.
+5. Obtener aprobación expresa de INTERWELT para cotizaciones con tráfico público y definir el presupuesto de llamadas.
+6. Activar inicialmente en un entorno aislado después de confirmar caché/cupo; **no** fusionar el PR a `main` ni establecer `INTERWELT_PUBLIC_RATES_ENABLED=true` antes de todo lo anterior.
