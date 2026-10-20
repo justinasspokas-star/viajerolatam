@@ -18,7 +18,7 @@ En **Project configuration → Environment variables** usar **Add a variable** o
 | `INTERWELT_PILOT_TOKEN` | Valor largo y aleatorio exclusivo para autorizar las pruebas privadas, distinto de la contraseña del proveedor; **mínimo 32 bytes aleatorios** |
 | `INTERWELT_PILOT_ENABLED` | Primero `false`; poner `true` únicamente durante una prueba consciente del operador |
 | `INTERWELT_API_URL` | `https://apisea.interwelt-intl.com` (sin `/api` final) |
-| `INTERWELT_CONFIRMED_CURRENCY` | **NO CONFIGURAR** hasta que INTERWELT confirme por escrito la moneda de los importes |
+| Moneda de cotización | INTERWELT confirmó oficialmente USD el 20-10-2026. Está configurada directamente en el código del piloto; no es necesario crear `INTERWELT_CONFIRMED_CURRENCY` en Netlify. |
 
 En Free, los roles con acceso a las variables de entorno podrían leerlas: restringir el acceso del equipo. Si la opción `Contains secret values` está disponible, activarla; si la UI requiere pago, no usar códigos en el cliente como alternativa. Una variable de entorno de Netlify **no equivale** a un gestor de secretos con acceso restringido.
 
@@ -62,9 +62,9 @@ Cuerpo **ILUSTRATIVO, NO EJECUTAR sin validar los IDs**:
 }
 ```
 
-Los números `48` y `2` proceden de ejemplos del entorno anterior y **no están aún verificados contra producción**. Corroborar sus equivalencias en `GET /api/countries?status=1` y `GET /api/destinations?status=1` (con paginación) usando la documentación autorizada del proveedor.
+Los números `48` (Colombia) y `2` (Europa y Mediterráneo) están confirmados por escrito por INTERWELT el 20-10-2026. Antes de cotizar, confirmar que el operador acepta el registro de una cotización en el sistema de INTERWELT.
 
-El operador recibirá `mode:"operator_quote"`, `live:true`, `prices`, `currency:null` mientras no esté confirmada, `mapping_verified:false` y `payments_enabled:false`, `vouchers_enabled:false`. Los precios **no aparecerán en el comparador público**.
+El operador recibirá `mode:"operator_quote"`, `live:true`, `prices`, `currency:"USD"`, `currency_confirmed:true`, `mapping_verified:false`, `payments_enabled:false` y `vouchers_enabled:false`. Los precios **no aparecerán en el comparador público**.
 
 3. Tras terminar, volver a dejar `INTERWELT_PILOT_ENABLED=false` y volver a desplegar.
 
