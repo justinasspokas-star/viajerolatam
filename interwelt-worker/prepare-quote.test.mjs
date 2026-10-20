@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { normalizeSearch, prepareQuoteRequest } from "./prepare-quote.mjs";
+import { normalizeSearch, prepareQuoteRequest, confirmedProviderRoute, inspectRouteRequest } from "./prepare-quote.mjs";
 
 const future = days => {
   const d = new Date();
@@ -69,4 +69,55 @@ test("rejects unsolicited profile and non-JSON request", async () => {
   assert.equal((await prepareQuoteRequest(bad)).status,415);
   const big=req(sample(),{raw:JSON.stringify({...sample(), junk:"x".repeat(1900)})});
   assert.equal((await prepareQuoteRequest(big)).status,413);
+});
+
+
+test("only provider-confirmed country and region IDs are exposed in dry-run preflight", async () => {
+  const originalFetch=globalThis.fetch;
+  let upstream=0;
+  globalThis.fetch=async ()=>{upstream++;throw Error("Never contact INTERWELT in route check");};
+  try {
+    for (const [origin,originId] of [["co",48],["pe",173],["mx",142]]) {
+      for (const [destination,regionId] of [["espana-schengen",2],["eeuu",6]]) {
+        const response=await inspectRouteRequest(req({...sample(),origin,destination}));
+        assert.equal(response.status,200);
+        const body=await response.json();
+        assert.equal(body.mode,"route_mapping_preview");
+        assert.equal(body.route_supported,true);
+        assert.equal(body.mapping_verified,true);
+        assert.equal(body.currency,"USD");
+        assert.deepEqual(body.provider_route,{origin_country_id:originId,destination_region_id:regionId,currency:"USD"});
+        assert.equal(body.live,false);
+        assert.equal(body.rates_available,false);
+        assert.deepEqual(body.prices,[]);
+        assert.equal(body.eligible,null);
+        assert.equal(body.payments_enabled,false);
+        assert.equal(body.vouchers_enabled,false);
+      }
+    }
+    assert.equal(upstream,0);
+  } finally {globalThis.fetch=originalFetch;}
+});
+
+test("a valid unconfirmed origin is never mapped to provider IDs", async () => {
+  const response=await inspectRouteRequest(req({...sample(),origin:"ar"}));
+  assert.equal(response.status,200);
+  const body=await response.json();
+  assert.equal(body.validated,true);
+  assert.equal(body.route_supported,false);
+  assert.equal(body.mapping_verified,false);
+  assert.equal(body.provider_route,null);
+  assert.equal(body.currency,null);
+  assert.deepEqual(body.prices,[]);
+  assert.equal(confirmedProviderRoute(body.search),null);
+});
+
+test("route inspection retains same-origin and input-length protections", async () => {
+  const external=await inspectRouteRequest(req(sample(),{headers:{origin:"https://not-this-site.example"}}));
+  assert.equal(external.status,403);
+  const invalid=await inspectRouteRequest(req({...sample(), ages:[-1]}));
+  assert.equal(invalid.status,400);
+  const malformed=await inspectRouteRequest(req(sample(),{raw:"not-json"}));
+  assert.equal(malformed.status,400);
+  assert.equal((await inspectRouteRequest(new Request("https://test.local/.netlify/functions/interwelt-quote"))).status,405);
 });
