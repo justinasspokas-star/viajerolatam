@@ -37,7 +37,8 @@ test("demo endpoint serves only static data without calling external services", 
     const data = await res.json();
     assert.equal(data.mode, "demo");
     assert.equal(data.live, false);
-    assert.equal(data.currency_confirmed, false);
+    assert.equal(data.currency, "USD");
+    assert.equal(data.currency_confirmed, true);
     assert.equal(data.vouchers_enabled, false);
     assert.equal(data.payments_enabled, false);
     assert.equal(data.prices.length, 5);
@@ -99,6 +100,7 @@ test("private readiness path stays protected by operator token",async()=>{
     assert.equal(authorized.status,200);
     const json=await authorized.json();
     assert.equal(json.mode,"operator_readonly");
+    assert.equal(json.currency_confirmed,true);
     assert.equal(json.payments_enabled,false);
     assert.equal(json.vouchers_enabled,false);
   }finally{
