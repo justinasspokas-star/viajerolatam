@@ -91,7 +91,8 @@ test("authenticates, quotes and never calls a voucher endpoint", async () => {
     const body = await res.json();
     assert.equal(body.quote_id, 42);
     assert.equal(body.prices[0].total, 48);
-    assert.equal(body.currency, null);
+    assert.equal(body.currency, "USD");
+    assert.equal(body.currency_confirmed, true);
     assert.equal(body.mode, "operator_quote");
     assert.equal(body.live, true);
     assert.equal(body.mapping_verified, false);
@@ -119,6 +120,7 @@ test("operator readiness endpoint requires token and never reveals credentials",
   assert.equal(res.status,200);
   const body=await res.json();
   assert.equal(body.credentials_configured,true);
+  assert.equal(body.currency_confirmed,true);
   assert.equal(body.live_quotes_enabled,true);
   assert.equal(body.payments_enabled,false);
   assert.equal(body.vouchers_enabled,false);
