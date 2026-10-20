@@ -49,7 +49,7 @@ Invoke-RestMethod -Method Post -Uri "https://interwelt-api-test.netlify.app/.net
 
 Respuesta de éxito: `mode: operator_auth_check`, `authenticated: True`, `quotes_submitted: False`, `payments_enabled: False`, `vouchers_enabled: False`.
 
-Si responde 502, **no significa necesariamente contraseña incorrecta**; podría ser ruta de login incorrecta, formato de credenciales, corte de red o fallo del proveedor. No devuelve detalles internos ni contraseñas. Contrastar el contrato Swagger antes de habilitar cotizaciones.
+Si `authenticated: false`, la respuesta incluye un `failure_code` genérico, exclusivamente para el operador: `login_path_not_found` (404), `login_payload_rejected` (400/422), `login_not_authorized` (401/403), `login_token_not_recognized` (respuesta sin JWT reconocido), `login_rate_limited` (429), `login_timeout`, `login_provider_http_error` o `login_network_or_format_error`. La prueba de diagnóstico devuelve HTTP 200 para que PowerShell muestre el resultado incluso cuando la autenticación falla. **Esto no implica éxito**; hay que leer `authenticated`. Nunca revela el cuerpo de respuesta del proveedor, contraseñas, tokens ni los detalles de las excepciones. No cambiar la contraseña ni asumir la ruta de login correcta sin revisar la documentación Swagger.
 
 ## Prueba 3: una única cotización de operador, solo después de validar login
 
