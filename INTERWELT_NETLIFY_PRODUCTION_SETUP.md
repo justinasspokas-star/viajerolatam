@@ -1,56 +1,67 @@
-# INTERWELT — conectar contraseña nueva en Netlify Free (solo operador)
+# INTERWELT — piloto privado de cotizaciones (Netlify Pro)
 
-El sitio **interwelt-api-test** es un proyecto aislado de ViajeroLatam.com. Se puede probar la cotización privada **sin activar compras ni vouchers** y sin cambiar la rama `main`.
+Entorno aislado: **interwelt-api-test**. No fusionar la rama piloto con `main` hasta completar validación de seguridad y cotizaciones. Las tarjetas públicas existentes en ViajeroLatam.com no se modifican.
 
-## 1. Crear o actualizar las variables desde Netlify
+## Datos de la API confirmados por INTERWELT (20-10-2026)
 
-Abrir:
-https://app.netlify.com/projects/interwelt-api-test/configuration/env
+- `POST /api/quotes`: `montoVenta` y `tarifa_detalle` son importes **finales en USD**, sin campo de moneda ni desglose impositivo.
+- Orígenes `id_paisOrigen`: Colombia `48`, Perú `173`, México `142`, España `207`, Estados Unidos `233`.
+- Destinos `id_destino`: Europa/Mediterráneo `2` (incluye España/Schengen), Norteamérica `6`, Latinoamérica/Caribe `3`.
+- Mostrar **únicamente** productos devueltos en `plans`; el proveedor filtra la elegibilidad por origen, destino, edades, duración y canal.
+- Fecha de salida y regreso se cuentan **ambas** para el número de días.
+- `correo` y `telefono` son obligatorios para cotización; INTERWELT autoriza usar los datos corporativos configurados.
+- JWT de login: duración **60 minutos**. El backend lo reutiliza durante **50 minutos por instancia caliente** y renueva ante HTTP 401. No es una caché compartida entre instancias.
+- **Pendiente de verificar en Swagger**: el correo describe `POST /auth/login`, mientras que el backend utiliza `POST /api/auth/login` (con prefijo). No asumir que ambos equivalen hasta realizar la prueba privada de autenticación o consultar el contrato de la API.
 
-En **Project configuration → Environment variables** usar **Add a variable** o editar la existente. En Netlify Free, las variables del proyecto se almacenan fuera del repositorio, cifradas por Netlify y están disponibles para Functions, aunque no se puedan limitar los *scopes* específicos como en Pro. **No escribir contraseñas en archivos HTML/JS, GitHub, chats, código, capturas ni logs.**
+## Variables de Netlify
 
-| Key | Valor / regla |
+Abrir https://app.netlify.com/projects/interwelt-api-test/configuration/env
+
+| Variable | Configuración |
 |---|---|
-| `INTERWELT_EMAIL` | El correo autorizado por INTERWELT |
-| `INTERWELT_PASSWORD` | La contraseña **nueva** facilitada por el proveedor; no utilizar la anterior |
-| `INTERWELT_CONTACT_EMAIL` | Correo de contacto técnico autorizado que se envía en el JSON de cotización |
-| `INTERWELT_CONTACT_PHONE` | Teléfono de contacto técnico autorizado |
-| `INTERWELT_PILOT_TOKEN` | Valor largo y aleatorio exclusivo para autorizar las pruebas privadas, distinto de la contraseña del proveedor; **mínimo 32 bytes aleatorios** |
-| `INTERWELT_PILOT_ENABLED` | Primero `false`; poner `true` únicamente durante una prueba consciente del operador |
-| `INTERWELT_API_URL` | `https://apisea.interwelt-intl.com` (sin `/api` final) |
-| Moneda de cotización | INTERWELT confirmó oficialmente USD el 20-10-2026. Está configurada directamente en el código del piloto; no es necesario crear `INTERWELT_CONFIRMED_CURRENCY` en Netlify. |
+| `INTERWELT_EMAIL` | Correo de acceso privado autorizado por el proveedor |
+| `INTERWELT_PASSWORD` | Contraseña de producción actual, secreta |
+| `INTERWELT_CONTACT_EMAIL` | Correo corporativo para cotizaciones |
+| `INTERWELT_CONTACT_PHONE` | Teléfono corporativo para cotizaciones |
+| `INTERWELT_PILOT_TOKEN` | Token de operador aleatorio, secreto |
+| `INTERWELT_PILOT_ENABLED` | Mantener en `false` hasta autorizar explícitamente una cotización real |
+| `INTERWELT_API_URL` | Opcional; por defecto `https://apisea.interwelt-intl.com` |
 
-En Free, los roles con acceso a las variables de entorno podrían leerlas: restringir el acceso del equipo. Si la opción `Contains secret values` está disponible, activarla; si la UI requiere pago, no usar códigos en el cliente como alternativa. Una variable de entorno de Netlify **no equivale** a un gestor de secretos con acceso restringido.
+En Netlify Pro restringir **contraseña** y **token** a `Contains secret values`, `Functions` y contexto `Production`. **No copiar secretos a GitHub, JavaScript del navegador, capturas, URLs, logs ni chats**. La moneda `USD` ya está confirmada en el código, sin requerir una variable de entorno adicional.
 
-Para `INTERWELT_PILOT_TOKEN`, generar un valor criptográficamente aleatorio en un administrador de contraseñas, guardarlo de forma segura y copiarlo únicamente en la variable de Netlify y en el cliente privado de prueba. Evitar incluirlo en URL, código o capturas.
+## Prueba 1: configuración (no contacta a INTERWELT)
 
-Al guardar las variables, ir a **Deploys → Trigger deploy → Deploy project** para que Netlify actualice las funciones.
+Con el token original disponible en la variable local PowerShell `$token`:
 
-## 2. Verificar conexión del piloto SIN contactar a INTERWELT
-
-Solicitar desde Postman, Insomnia o una herramienta HTTP local:
-
-```http
-GET https://deploy-preview-1--interwelt-api-test.netlify.app/.netlify/functions/interwelt-quote?check=1
-x-pilot-token: [token privado, introducir solo en cliente local]
+```powershell
+Invoke-RestMethod -Method Get -Uri "https://interwelt-api-test.netlify.app/.netlify/functions/interwelt-quote?check=1" -Headers @{"x-pilot-token"=$token}
 ```
 
-Devuelve únicamente indicadores booleanos: `credentials_configured`, `live_quotes_enabled`, `currency_confirmed`, `payments_enabled:false` y `vouchers_enabled:false`. **No devuelve credenciales ni precios.** Sin el token responde 403.
+Se espera `credentials_configured: True`, `currency_confirmed: True`, `live_quotes_enabled: False`, `payments_enabled: False` y `vouchers_enabled: False`. La comprobación **no verifica la aceptación real de credenciales**.
 
-## 3. Primera cotización real de solo lectura
+## Prueba 2: autenticación real, sin crear cotización
 
-Solo después de verificar que los IDs numéricos de Colombia y la región Europa/Mediterráneo son correctos en el **catálogo de PRODUCCIÓN**, y de acordar que está permitida una prueba real:
+Endpoint privado añadido para comprobar únicamente el login; **no llama `/api/quotes` ni emite vouchers**. No requiere activar `INTERWELT_PILOT_ENABLED`.
 
-1. Cambiar `INTERWELT_PILOT_ENABLED` a `true` en Netlify y redeploy.
-2. Desde Postman realizar:
+```powershell
+Invoke-RestMethod -Method Post -Uri "https://interwelt-api-test.netlify.app/.netlify/functions/interwelt-quote?auth_check=1" -Headers @{"x-pilot-token"=$token}
+```
+
+Respuesta de éxito: `mode: operator_auth_check`, `authenticated: True`, `quotes_submitted: False`, `payments_enabled: False`, `vouchers_enabled: False`.
+
+Si responde 502, **no significa necesariamente contraseña incorrecta**; podría ser ruta de login incorrecta, formato de credenciales, corte de red o fallo del proveedor. No devuelve detalles internos ni contraseñas. Contrastar el contrato Swagger antes de habilitar cotizaciones.
+
+## Prueba 3: una única cotización de operador, solo después de validar login
+
+`INTERWELT_PILOT_ENABLED` debe mantenerse en `false` hasta que el operador confirme que está de acuerdo con registrar una cotización en INTERWELT. Cuando se autorice la prueba, cambiar temporalmente a `true` solo en Production y redeploy.
 
 ```http
-POST https://deploy-preview-1--interwelt-api-test.netlify.app/.netlify/functions/interwelt-quote
+POST https://interwelt-api-test.netlify.app/.netlify/functions/interwelt-quote
 content-type: application/json
-x-pilot-token: [token privado del operador]
+x-pilot-token: [introducir localmente, nunca publicar]
 ```
 
-Cuerpo **ILUSTRATIVO, NO EJECUTAR sin validar los IDs**:
+Ejemplo autorizado de IDs y fechas futuras de muestra:
 
 ```json
 {
@@ -62,23 +73,13 @@ Cuerpo **ILUSTRATIVO, NO EJECUTAR sin validar los IDs**:
 }
 ```
 
-Los números `48` (Colombia) y `2` (Europa y Mediterráneo) están confirmados por escrito por INTERWELT el 20-10-2026. Antes de cotizar, confirmar que el operador acepta el registro de una cotización en el sistema de INTERWELT.
+`/api/quotes` puede registrar un identificador de cotización aunque **no cobre ni emita un voucher**. Dejar la funcionalidad deshabilitada de nuevo al terminar.
 
-El operador recibirá `mode:"operator_quote"`, `live:true`, `prices`, `currency:"USD"`, `currency_confirmed:true`, `mapping_verified:false`, `payments_enabled:false` y `vouchers_enabled:false`. Los precios **no aparecerán en el comparador público**.
+## Antes de mostrar precios a visitantes
 
-3. Tras terminar, volver a dejar `INTERWELT_PILOT_ENABLED=false` y volver a desplegar.
+- Crear un endpoint **público** independiente con limitación de solicitudes, controles antiabuso, validación y caché adecuada. No enviar JWT ni token de operador al navegador.
+- Mostrar únicamente `plans` devueltos por INTERWELT en cada consulta, con total **USD** y coberturas verificadas en la ficha real de producto.
+- Revisar condiciones, exclusiones y denominación comercial autorizada: **Asistencia en Viaje**.
+- Contratación y vouchers no están implementados ni habilitados. No fusionar el PR con `main` hasta completar estas medidas.
 
-## 4. Antes de tarifas para visitantes
-
-- Confirmar moneda, divisa de venta y posibles tasas.
-- Confirmar equivalencias oficiales de país/región para cada ruta, alcance, límites de edad y exclusiones.
-- Implementar un endpoint público con cuotas/caché/antibots; jamás enviar `x-pilot-token`, credenciales o JWT al navegador.
-- Confirmar si el JSON de cotización crea algún registro comercial persistente, aunque no emita vouchers.
-- Comprobar el coste en la cuota de funciones gratuitas y añadir controles contra abuso.
-- La denominación aprobada por INTERWELT es **Asistencia en Viaje**, no seguro.
-- No habilitar pagos y emisión hasta confirmar verificación del pago en servidor y prevención de duplicados.
-
-## Documentación Netlify
-
-- https://docs.netlify.com/build/functions/environment-variables/
-- https://docs.netlify.com/build/environment-variables/overview/
+Documentación Netlify: https://docs.netlify.com/build/functions/environment-variables/
