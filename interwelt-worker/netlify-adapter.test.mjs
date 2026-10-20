@@ -183,3 +183,38 @@ test("Netlify route_check accepts confirmed routes but never fetches provider qu
     else process.env.INTERWELT_PILOT_ENABLED=original;
   }
 });
+
+
+test("public_rates requires its own kill-switch; pilot activation alone cannot expose live quotes", async () => {
+  const keys = ["INTERWELT_PUBLIC_RATES_ENABLED","INTERWELT_PILOT_ENABLED","UPSTASH_REDIS_REST_URL","UPSTASH_REDIS_REST_TOKEN"];
+  const previous=Object.fromEntries(keys.map(key=>[key,process.env[key]]));
+  const oldFetch=globalThis.fetch;
+  let upstreamCalls=0;
+  globalThis.fetch=async()=>{upstreamCalls++;throw Error("public quote must not reach provider");};
+  process.env.INTERWELT_PUBLIC_RATES_ENABLED="false";
+  process.env.INTERWELT_PILOT_ENABLED="true";
+  process.env.UPSTASH_REDIS_REST_URL="https://unit-test.upstash.io";
+  process.env.UPSTASH_REDIS_REST_TOKEN="fake-unit-token";
+  const date=new Date();
+  date.setUTCDate(date.getUTCDate()+10);
+  const departure=date.toISOString().slice(0,10);
+  date.setUTCDate(date.getUTCDate()+14);
+  const returning=date.toISOString().slice(0,10);
+  try {
+    const r=await adapter(new Request("https://test.netlify.app/.netlify/functions/interwelt-quote?public_rates=1", {
+      method:"POST",
+      headers:{"content-type":"application/json","origin":"https://test.netlify.app"},
+      body:JSON.stringify({origin:"co",destination:"espana-schengen",
+        departure,return:returning,ages:[30]})
+    }));
+    assert.equal(r.status,503);
+    assert.deepEqual(await r.json(),{error:"public_rates_disabled"});
+    assert.equal(upstreamCalls,0);
+  }finally{
+    globalThis.fetch=oldFetch;
+    for(const key of keys){
+      if(previous[key]===undefined)delete process.env[key];
+      else process.env[key]=previous[key];
+    }
+  }
+});
