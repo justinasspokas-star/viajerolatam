@@ -147,6 +147,42 @@ export default {
         payments_enabled: false
       });
     }
+    if (pathname === "/api/auth-check" && request.method === "POST") {
+      // Manual operator-only authentication check. Never requests /api/quotes;
+      // no quote records, traveler data, payment or voucher operations.
+      if (!env.INTERWELT_PILOT_TOKEN ||
+          request.headers.get("x-pilot-token") !== env.INTERWELT_PILOT_TOKEN) {
+        return reply({ error: "forbidden" }, 403);
+      }
+      if (!env.INTERWELT_EMAIL || !env.INTERWELT_PASSWORD) {
+        return reply({ error: "credentials_not_configured" }, 503);
+      }
+      const rawOrigin = String(env.INTERWELT_API_URL || PROD_ORIGIN);
+      const origin = rawOrigin.endsWith("/") ? rawOrigin.slice(0, -1) : rawOrigin;
+      if (!ALLOWED_API_ORIGINS.has(origin)) {
+        return reply({ error: "invalid_provider_configuration" }, 503);
+      }
+      try {
+        await getProviderToken(origin, env);
+        return reply({
+          mode: "operator_auth_check",
+          authenticated: true,
+          quotes_submitted: false,
+          payments_enabled: false,
+          vouchers_enabled: false
+        });
+      } catch {
+        // Never expose response bodies, JWT or credential values.
+        return reply({
+          mode: "operator_auth_check",
+          authenticated: false,
+          quotes_submitted: false,
+          payments_enabled: false,
+          vouchers_enabled: false
+        }, 502);
+      }
+    }
+
     if (pathname !== "/api/quote" || request.method !== "POST") {
       return reply({ error: "not_found" }, 404);
     }
