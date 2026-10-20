@@ -99,7 +99,7 @@ async function getProviderToken(origin, env) {
     const auth = await fetchJson(origin + "/api/auth/login", {
       method: "POST",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify({ correo: env.INTERWELT_EMAIL, password: env.INTERWELT_PASSWORD })
+      body: JSON.stringify({ username: env.INTERWELT_EMAIL, password: env.INTERWELT_PASSWORD })
     });
     const token = getAccessToken(auth);
     if (typeof token !== "string" || !token) throw new Error("missing_token");
