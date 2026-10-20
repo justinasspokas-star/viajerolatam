@@ -282,3 +282,66 @@ test("coalesces simultaneous logins without sharing the JWT with the browser", a
     globalThis.fetch = originalFetch;
   }
 });
+
+
+test("operator-only auth check authenticates without creating a quote, even when quotes are disabled", async () => {
+  const originalFetch = globalThis.fetch;
+  const config = {
+    ...env(),
+    INTERWELT_PILOT_ENABLED: "false",
+    INTERWELT_EMAIL: "auth-check-isolation@example.org"
+  };
+  let loginCalls = 0;
+  globalThis.fetch = async (url, init) => {
+    assert.equal(new URL(url).pathname, "/api/auth/login");
+    assert.equal(init.method, "POST");
+    loginCalls++;
+    return Response.json({ token: "auth-check-test-jwt" });
+  };
+  try {
+    const endpoint = "https://test.local/api/auth-check";
+    const unauthorized = await worker.fetch(new Request(endpoint, { method: "POST" }), config);
+    assert.equal(unauthorized.status, 403);
+    const authorized = await worker.fetch(new Request(endpoint, {
+      method: "POST",
+      headers: { "x-pilot-token": "test-only-secret" }
+    }), config);
+    assert.equal(authorized.status, 200);
+    assert.deepEqual(await authorized.json(), {
+      mode: "operator_auth_check",
+      authenticated: true,
+      quotes_submitted: false,
+      payments_enabled: false,
+      vouchers_enabled: false
+    });
+    assert.equal(loginCalls, 1);
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
+test("auth check hides upstream authentication failures", async () => {
+  const originalFetch = globalThis.fetch;
+  const config = {
+    ...env(),
+    INTERWELT_PILOT_ENABLED: "false",
+    INTERWELT_EMAIL: "auth-failure-isolation@example.org"
+  };
+  globalThis.fetch = async url => {
+    assert.equal(new URL(url).pathname, "/api/auth/login");
+    return Response.json({ secret_detail: "not-for-client" }, { status: 401 });
+  };
+  try {
+    const response = await worker.fetch(new Request("https://test.local/api/auth-check", {
+      method: "POST",
+      headers: { "x-pilot-token": "test-only-secret" }
+    }), config);
+    assert.equal(response.status, 502);
+    const body = await response.json();
+    assert.equal(body.authenticated, false);
+    assert.equal(body.quotes_submitted, false);
+    assert.ok(!JSON.stringify(body).includes("secret_detail"));
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
