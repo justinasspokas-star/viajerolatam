@@ -7,7 +7,7 @@
  * Never publish INTERWELT_PASSWORD or the pilot token in any frontend script.
  */
 import worker from "../../interwelt-worker/worker.js";
-import {prepareQuoteRequest} from "../../interwelt-worker/prepare-quote.mjs";
+import {prepareQuoteRequest, inspectRouteRequest} from "../../interwelt-worker/prepare-quote.mjs";
 
 // Historical example values from a test quote, never offered as live prices.
 // Keep non-PII only: exclude traveller info, contact details and quote IDs.
@@ -22,6 +22,9 @@ const DEMO_PLANS = Object.freeze([
 export default async function interweltQuote(request) {
   const url = new URL(request.url);
   // Same-origin validation: zero external requests, no secrets, no vouchers.
+  if (url.searchParams.get("route_check") === "1") {
+    return inspectRouteRequest(request);
+  }
   if (url.searchParams.get("prepare") === "1") {
     return prepareQuoteRequest(request);
   }
