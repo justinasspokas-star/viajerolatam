@@ -32,8 +32,8 @@ export default async function interweltQuote(request) {
       source: "historical_test_fixture",
       warning: "DATOS DE DEMOSTRACIÓN: precios históricos de una prueba, no oferta vigente ni cotización en directo.",
       sample_trip: { origin: "colombia", destination: "espana", departure: "2026-11-01", return: "2026-11-15", travellers: 1, ages: [30], days: 15, region: "Europa y Mediterráneo" },
-      currency: null, // No se ha verificado la moneda en el JSON de cotizaciones.
-      currency_confirmed: false,
+      currency: "USD", // Provider confirmed final sale prices in USD on 2026-10-20.
+      currency_confirmed: true,
       prices: DEMO_PLANS,
       payments_enabled: false,
       vouchers_enabled: false
