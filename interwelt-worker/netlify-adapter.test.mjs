@@ -218,3 +218,62 @@ test("public_rates requires its own kill-switch; pilot activation alone cannot e
     }
   }
 });
+
+
+test("Netlify Redis-only self-check is private, leaves quotes OFF, and does not call INTERWELT",async()=>{
+  const keys=[
+    "INTERWELT_PILOT_TOKEN","INTERWELT_PILOT_ENABLED","INTERWELT_PUBLIC_RATES_ENABLED",
+    "UPSTASH_REDIS_REST_URL","UPSTASH_REDIS_REST_TOKEN"
+  ];
+  const prev=Object.fromEntries(keys.map(key=>[key,process.env[key]]));
+  const originalFetch=globalThis.fetch;
+  process.env.INTERWELT_PILOT_TOKEN="redis-test-operator";
+  process.env.INTERWELT_PILOT_ENABLED="false";
+  process.env.INTERWELT_PUBLIC_RATES_ENABLED="false";
+  process.env.UPSTASH_REDIS_REST_URL="https://adapter-test.upstash.io";
+  process.env.UPSTASH_REDIS_REST_TOKEN="fake-adapter-rest-token";
+  let redisCalls=0;
+  const state = new Map();
+  globalThis.fetch=async(url,options)=>{
+    assert.equal(new URL(url).hostname,"adapter-test.upstash.io");
+    assert.equal(options.headers.authorization,"Bearer fake-adapter-rest-token");
+    const cmd=JSON.parse(options.body);
+    redisCalls++;
+    switch(cmd[0]){
+      case "SET":state.set(cmd[1],cmd[2]);return Response.json({result:"OK"});
+      case "GET":return Response.json({result:state.get(cmd[1]) ?? null});
+      case "EVAL":state.set(cmd[3],"1");return Response.json({result:1});
+      case "DEL":{
+        let removed=0;
+        for(const key of cmd.slice(1))if(state.delete(key))removed++;
+        return Response.json({result:removed});
+      }
+      default:throw Error("Unexpected Redis command");
+    }
+  };
+  try{
+    const path="https://test.netlify.app/.netlify/functions/interwelt-quote?redis_check=1";
+    let response=await adapter(new Request(path,{method:"POST"}));
+    assert.equal(response.status,403);
+    response=await adapter(new Request(path,{
+      method:"POST",headers:{"x-pilot-token":"redis-test-operator"}
+    }));
+    assert.equal(response.status,200);
+    const body=await response.json();
+    assert.equal(body.mode,"operator_redis_check");
+    assert.equal(body.redis_connected,true);
+    assert.equal(body.atomic_quota_ok,true);
+    assert.equal(body.quotes_submitted,false);
+    assert.equal(body.provider_contacted,false);
+    assert.equal(body.payments_enabled,false);
+    assert.equal(body.vouchers_enabled,false);
+    assert.equal(redisCalls,4);
+    assert.equal(state.size,0);
+  }finally{
+    globalThis.fetch=originalFetch;
+    for(const key of keys){
+      if(prev[key]===undefined)delete process.env[key];
+      else process.env[key]=prev[key];
+    }
+  }
+});
