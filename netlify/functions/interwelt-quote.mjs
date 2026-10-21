@@ -7,7 +7,7 @@
  * Never publish INTERWELT_PASSWORD or the pilot token in any frontend script.
  */
 import worker, { quoteWithProvider } from "../../interwelt-worker/worker.js";
-import { publicRatesRequest } from "../../interwelt-worker/public-rates.mjs";
+import { publicRatesRequest, redisReadinessRequest } from "../../interwelt-worker/public-rates.mjs";
 import {prepareQuoteRequest, inspectRouteRequest} from "../../interwelt-worker/prepare-quote.mjs";
 
 // Historical example values from a test quote, never offered as live prices.
@@ -22,6 +22,10 @@ const DEMO_PLANS = Object.freeze([
 
 export default async function interweltQuote(request) {
   const url = new URL(request.url);
+  if (url.searchParams.get("redis_check") === "1") {
+    // Operator-only Redis connectivity test; never contacts INTERWELT.
+    return redisReadinessRequest(request, process.env);
+  }
   if (url.searchParams.get("public_rates") === "1") {
     // Requires independent public flag, shared Redis lock/cache, global quota
     // and validated provider route. OFF by default, no browser credentials.
