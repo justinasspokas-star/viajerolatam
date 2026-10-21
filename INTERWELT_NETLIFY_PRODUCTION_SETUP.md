@@ -131,3 +131,27 @@ Las pruebas automáticas usan una simulación de Redis y un proveedor falso. **N
 4. Validar la cobertura, elegibilidad y el texto legal de cada plan, sin inferir beneficios de los IDs.
 5. Obtener aprobación expresa de INTERWELT para cotizaciones con tráfico público y definir el presupuesto de llamadas.
 6. Activar inicialmente en un entorno aislado después de confirmar caché/cupo; **no** fusionar el PR a `main` ni establecer `INTERWELT_PUBLIC_RATES_ENABLED=true` antes de todo lo anterior.
+
+
+## Upstash ya configurado: prueba privada de Redis sin cotizaciones
+
+Después de guardar `UPSTASH_REDIS_REST_URL` y `UPSTASH_REDIS_REST_TOKEN` como variables `Functions` en `Production`, es necesario desplegar de nuevo el sitio aislado `interwelt-api-test`.
+
+El nuevo endpoint `POST /.netlify/functions/interwelt-quote?redis_check=1` exige el mismo token de operador `x-pilot-token` que la comprobación privada de INTERWELT. **Funciona solo cuando `INTERWELT_PILOT_ENABLED` y `INTERWELT_PUBLIC_RATES_ENABLED` están desactivados**. No llama al proveedor y no requiere activar ninguno de los dos flags.
+
+Con el token de operador ya disponible en la variable local de PowerShell `$token`:
+
+```powershell
+Invoke-RestMethod -Method Post -Uri "https://interwelt-api-test.netlify.app/.netlify/functions/interwelt-quote?redis_check=1" -Headers @{"x-pilot-token"=$token}
+```
+
+La comprobación utiliza dos claves efímeras aleatorias y confirma:
+- `SET NX EX` y `GET` de caché;
+- `EVAL` con el mismo script Lua del cupo global;
+- `DEL` de ambas claves. Cada clave tiene un TTL máximo de 60 segundos por seguridad.
+
+Respuesta esperada: `redis_connected: True`, `read_write_ok: True`, `atomic_quota_ok: True`, `temporary_keys_cleaned: True`, `provider_contacted: False`, `quotes_submitted: False`, `payments_enabled: False`, `vouchers_enabled: False`. Esta prueba no modifica el límite real diario ni registra cotizaciones. Un error devuelve una respuesta genérica sin secretos ni claves.
+
+**No divulgar el token de operador ni el token REST en capturas o chats.** El token REST normal de Upstash necesita permisos de escritura. El de solo lectura no sirve para el control de cuota.
+
+La prueba de Redis **no implica autorización para mostrar cotizaciones públicas**. El gateway público permanece desactivado y separado del piloto privado.
