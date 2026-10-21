@@ -9,7 +9,7 @@
  * No vouchers, payments, PII, provider JWT or operator token go to the browser.
  * Do not enable publicly before secret rotation and provider approval.
  */
-import { createHash } from "node:crypto";
+import { createHash, randomUUID } from "node:crypto";
 import { prepareQuoteRequest, confirmedProviderRoute } from "./prepare-quote.mjs";
 
 const MAX_DAILY_NEW_QUOTES = 20;
@@ -205,5 +205,70 @@ export async function publicRatesRequest(request, env, quoteProvider) {
   } catch {
     // Never expose Redis credentials, provider response, JWT, quote_id or errors.
     return json({ error: "quote_unavailable_no_auto_retry" }, 503);
+  }
+}
+
+
+/**
+ * Explicit operator-only Upstash connectivity self-check.
+ *
+ * Separate from live quotes: it touches ONLY two ephemeral Redis keys,
+ * with 60s TTLs and cleanup. It cannot call INTERWELT or mint JWTs.
+ * A POST and the existing x-pilot-token are required. Both quote
+ * switches must remain disabled to run this test.
+ */
+export async function redisReadinessRequest(request, env) {
+  if (request.method !== "POST") return json({ error: "method_not_allowed" }, 405);
+  if (!env.INTERWELT_PILOT_TOKEN ||
+      request.headers.get("x-pilot-token") !== env.INTERWELT_PILOT_TOKEN) {
+    return json({ error: "forbidden" }, 403);
+  }
+  if (env.INTERWELT_PILOT_ENABLED === "true" ||
+      env.INTERWELT_PUBLIC_RATES_ENABLED === "true") {
+    return json({ error: "disable_quotes_before_check" }, 409);
+  }
+  const config = upstashConfig(env);
+  if (!config) return json({ error: "redis_not_configured" }, 503);
+  const checkId = randomUUID();
+  const cacheKey = "iw:diagnostic:" + checkId;
+  const counterKey = "iw:diagnostic:quota:" + checkId;
+  try {
+    // 60-second expiry prevents leftovers if a request fails midway.
+    const written = await redisCommand(config, [
+      "SET", cacheKey, "check", "EX", "60", "NX"
+    ]);
+    if (written !== "OK") throw new Error("redis_write_check_failed");
+    const readBack = await redisCommand(config, ["GET", cacheKey]);
+    if (readBack !== "check") throw new Error("redis_read_check_failed");
+    // Run exactly the quota Lua script used by the public gateway, but
+    // against a randomly named diagnostic key (never the real daily quota).
+    const atomic = await redisCommand(config, [
+      "EVAL", QUOTA_SCRIPT, "1", counterKey, "60"
+    ]);
+    if (Number(atomic) !== 1) throw new Error("redis_quota_check_failed");
+    const deleted = await redisCommand(config, ["DEL", cacheKey, counterKey]);
+    if (Number(deleted) !== 2) throw new Error("redis_cleanup_failed");
+    return json({
+      mode: "operator_redis_check",
+      redis_connected: true,
+      read_write_ok: true,
+      atomic_quota_ok: true,
+      temporary_keys_cleaned: true,
+      provider_contacted: false,
+      quotes_submitted: false,
+      payments_enabled: false,
+      vouchers_enabled: false
+    });
+  } catch {
+    // No Redis response body, internal error text, keys, JWT or credentials.
+    // Any diagnostic keys remaining after failure expire automatically.
+    return json({
+      mode: "operator_redis_check",
+      redis_connected: false,
+      provider_contacted: false,
+      quotes_submitted: false,
+      payments_enabled: false,
+      vouchers_enabled: false
+    }, 503);
   }
 }
