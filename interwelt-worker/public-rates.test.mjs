@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { publicRatesRequest } from "./public-rates.mjs";
+import { publicRatesRequest, redisReadinessRequest } from "./public-rates.mjs";
 
 const future = n => {
   const date = new Date();
@@ -56,6 +56,11 @@ function fakeRedis() {
         else {
           map.set(command[1], command[2]);
           result = "OK";
+        }
+      } else if (name === "DEL") {
+        result = 0;
+        for (const key of command.slice(1)) {
+          if (map.delete(key)) result++;
         }
       } else if (name === "EVAL") {
         const key = command[3];
@@ -195,4 +200,88 @@ test("unverifiable provider responses are never cached as customer prices", asyn
     assert.equal((await result.json()).error,"quote_unavailable_no_auto_retry");
     assert.equal([...redis.map.keys()].filter(x=>x.endsWith(":cache")).length,0);
   } finally {globalThis.fetch=orig;}
+});
+
+
+const redisDiagnosticRequest = (token = "redis-test-only-operator") => new Request(
+  "https://test.netlify.app/.netlify/functions/interwelt-quote?redis_check=1", {
+    method: "POST",
+    headers: { "x-pilot-token": token }
+  }
+);
+
+test("operator Redis probe requires private header and both quote switches off", async () => {
+  const oldFetch = globalThis.fetch;
+  let calls = 0;
+  globalThis.fetch = async () => {calls++;throw Error("Unexpected network call");};
+  try {
+    const config = { ...env(), INTERWELT_PILOT_TOKEN: "redis-test-only-operator",
+      INTERWELT_PUBLIC_RATES_ENABLED: "false", INTERWELT_PILOT_ENABLED: "false" };
+    let response = await redisReadinessRequest(redisDiagnosticRequest("bad"), config);
+    assert.equal(response.status, 403);
+    response = await redisReadinessRequest(redisDiagnosticRequest(), {...config,INTERWELT_PILOT_ENABLED:"true"});
+    assert.equal(response.status,409);
+    response = await redisReadinessRequest(redisDiagnosticRequest(), {...config,INTERWELT_PUBLIC_RATES_ENABLED:"true"});
+    assert.equal(response.status,409);
+    response = await redisReadinessRequest(redisDiagnosticRequest(), {...config,UPSTASH_REDIS_REST_TOKEN:""});
+    assert.equal(response.status,503);
+    assert.equal(calls,0);
+  } finally { globalThis.fetch = oldFetch; }
+});
+
+test("operator Redis probe validates SET NX EX, GET, quota EVAL, cleanup; never calls provider", async () => {
+  const originalFetch = globalThis.fetch, redis = fakeRedis();
+  const names = [];
+  globalThis.fetch = async (url, init) => {
+    assert.equal(new URL(url).hostname, "unit-test.upstash.io");
+    const command = JSON.parse(init.body);
+    names.push(command[0]);
+    if (command[0] === "EVAL") {
+      assert.equal(command[2], "1");
+      assert.ok(String(command[3]).startsWith("iw:diagnostic:quota:"));
+    }
+    return redis.fetch(url, init);
+  };
+  try {
+    const response = await redisReadinessRequest(redisDiagnosticRequest(), {
+      ...env(),
+      INTERWELT_PILOT_TOKEN: "redis-test-only-operator",
+      INTERWELT_PUBLIC_RATES_ENABLED: "false",
+      INTERWELT_PILOT_ENABLED: "false"
+    });
+    assert.equal(response.status,200);
+    assert.deepEqual(await response.json(),{
+      mode:"operator_redis_check",
+      redis_connected:true,
+      read_write_ok:true,
+      atomic_quota_ok:true,
+      temporary_keys_cleaned:true,
+      provider_contacted:false,
+      quotes_submitted:false,
+      payments_enabled:false,
+      vouchers_enabled:false
+    });
+    assert.deepEqual(names,["SET","GET","EVAL","DEL"]);
+    assert.equal(redis.map.size,0);
+  } finally {globalThis.fetch=originalFetch;}
+});
+
+test("operator Redis probe hides backend errors and never creates quotes on outages",async()=>{
+  const oldFetch = globalThis.fetch;
+  globalThis.fetch = async () => {
+    throw Error("fake Redis secret data must not be returned to the browser");
+  };
+  try {
+    const response = await redisReadinessRequest(redisDiagnosticRequest(),{
+      ...env(), INTERWELT_PILOT_TOKEN:"redis-test-only-operator",
+      INTERWELT_PUBLIC_RATES_ENABLED:"false",
+      INTERWELT_PILOT_ENABLED:"false"
+    });
+    assert.equal(response.status,503);
+    const body=await response.json();
+    assert.equal(body.redis_connected,false);
+    assert.equal(body.provider_contacted,false);
+    assert.equal(body.quotes_submitted,false);
+    assert.ok(!JSON.stringify(body).includes("secret data"));
+  } finally {globalThis.fetch=oldFetch;}
 });
