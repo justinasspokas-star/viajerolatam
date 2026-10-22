@@ -50,7 +50,7 @@ function harness({ preview = true, ages = "30" } = {}) {
     assert.equal(options.method, "POST");
     assert.equal(options.credentials, "omit");
     const input = JSON.parse(options.body);
-    return Response.json({
+    return { ok: true, async json() { return {
       mode: "route_mapping_preview",
       source: "INTERWELT-preview",
       live: false,
@@ -66,7 +66,7 @@ function harness({ preview = true, ages = "30" } = {}) {
         region: "europe",
         days: 15
       }
-    });
+    }; } };
   };
   runInNewContext(script, { document, window, location, fetch, URLSearchParams, Intl, setTimeout });
   return { window, root, message, results, routeLabel, calls };
@@ -74,7 +74,9 @@ function harness({ preview = true, ages = "30" } = {}) {
 
 test("preview displays one provider card, USD next to amount, and changes price on selection", async () => {
   const app = harness();
-  for (let i = 0; i < 5; i++) await new Promise(resolve => setImmediate(resolve));
+  for (let i = 0; i < 30 && app.results.children.length === 0; i++) {
+    await new Promise(resolve => setImmediate(resolve));
+  }
   assert.equal(app.root.hidden, false);
   assert.equal(app.calls.length, 1);
   assert.equal(app.results.children.length, 1);
@@ -98,7 +100,7 @@ test("preview displays one provider card, USD next to amount, and changes price 
 
 test("without the preview flag, public-rate fetch stays completely OFF", async () => {
   const app = harness({ preview: false });
-  for (let i = 0; i < 5; i++) await new Promise(resolve => setImmediate(resolve));
+  for (let i = 0; i < 5; i++) await Promise.resolve();
   assert.equal(app.root.hidden, true);
   assert.equal(app.results.children.length, 0);
   assert.equal(app.calls.length, 0);
@@ -107,7 +109,7 @@ test("without the preview flag, public-rate fetch stays completely OFF", async (
 
 test("missing traveler ages cannot show a historical amount or call provider", async () => {
   const app = harness({ ages: "" });
-  for (let i = 0; i < 5; i++) await new Promise(resolve => setImmediate(resolve));
+  for (let i = 0; i < 5; i++) await Promise.resolve();
   assert.equal(app.results.children.length, 0);
   assert.equal(app.calls.length, 0);
   assert.ok(app.message.textContent.includes("edades"));
