@@ -28,6 +28,17 @@
   border:1px solid rgba(10,116,132,.3);font-family:inherit!important;
   font-weight:900!important;letter-spacing:-1px;
 }
+/* Keep the unit next to the amount even when the provider price changes. */
+#vl-interwelt-slot .public-price{
+  display:flex;flex-wrap:wrap;gap:5px;align-items:baseline;
+}
+#vl-interwelt-slot .vl-iw-price-value{font:inherit;color:inherit}
+#vl-interwelt-slot .vl-iw-price-unit{
+  font-size:12px;line-height:1.2;font-weight:800;letter-spacing:.01em;color:#49657a;
+}
+#vl-interwelt-slot .card-logo-block{align-content:center}
+#vl-interwelt-slot .card-logo-meta{min-width:0}
+#vl-interwelt-slot .card-logo-meta .card-plan-under-logo{overflow-wrap:anywhere}
 #vl-interwelt-slot .vl-iw-plan-picker{
   margin:6px 0 9px;display:flex;flex-direction:column;gap:5px;
   max-width:330px;
