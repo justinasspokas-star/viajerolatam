@@ -285,3 +285,46 @@ test("operator Redis probe hides backend errors and never creates quotes on outa
     assert.ok(!JSON.stringify(body).includes("secret data"));
   } finally {globalThis.fetch=oldFetch;}
 });
+
+
+test("different traveler ages or travel dates do not reuse another customer's cached price", async () => {
+  const originalFetch = globalThis.fetch, redis = fakeRedis();
+  globalThis.fetch = (...args) => redis.fetch(...args);
+  let quotes = 0;
+  try {
+    const quoteProvider = async () => {
+      quotes++;
+      return {
+        source: "INTERWELT", live: true, currency: "USD",
+        quote_id: 99999,
+        prices: [{ id: 206, name: "SOMOS EUROPA*", total: 40 + quotes }]
+      };
+    };
+    const first = await publicRatesRequest(request(sample()), env(), quoteProvider);
+    assert.equal(first.status, 200);
+    assert.equal((await first.json()).prices[0].total, 41);
+    const second = await publicRatesRequest(
+      request({ ...sample(), ages: [31] }), env(), quoteProvider
+    );
+    assert.equal(second.status, 200);
+    assert.equal((await second.json()).prices[0].total, 42);
+    const third = await publicRatesRequest(
+      request({ ...sample(), departure: future(11) }), env(), quoteProvider
+    );
+    assert.equal(third.status, 200);
+    assert.equal((await third.json()).prices[0].total, 43);
+    const repeat = await publicRatesRequest(request(sample()), env(), quoteProvider);
+    const repeated = await repeat.json();
+    assert.equal(repeat.status, 200);
+    assert.equal(repeated.cache_status, "hit");
+    assert.equal(repeated.prices[0].total, 41);
+    assert.equal(quotes, 3);
+    assert.equal("quote_id" in repeated, false);
+    for (const key of redis.map.keys()) {
+      assert.ok(!key.includes(sample().departure));
+      assert.ok(!key.includes("mock-operator@example.org"));
+    }
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
