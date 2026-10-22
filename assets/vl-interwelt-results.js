@@ -5,7 +5,7 @@
  */
 (function () {
   'use strict';
-  const LIVE_ENABLED = false; // Never enable until durable server-side abuse limits, price cache and eligibility checks exist.
+  const LIVE_ENABLED = false; // Never enable until secret rotation, provider permission, live quota/caching and coverages are verified.
   const PREVIEW_FLAG = 'vl_interwelt_preview';
   const SAMPLE = Object.freeze({
     origin: 'co',
@@ -112,9 +112,9 @@
     coverage.className = 'card-coverage';
     const pills = document.createElement('div');
     pills.className = 'coverage-pills';
-    for (const name of ['Demostración', 'Cobertura pendiente']) {
+    for (const name of (historical ? ['Demostración', 'Cobertura pendiente'] : ['Precio consultado', 'Cobertura pendiente'])) {
       const pill = document.createElement('span');
-      pill.className = 'cpill ' + (name === 'Demostración' ? 'cpill-amber' : 'cpill-navy');
+      pill.className = 'cpill ' + (historical && name === 'Demostración' ? 'cpill-amber' : 'cpill-navy');
       pill.textContent = name;
       pills.append(pill);
     }
@@ -163,7 +163,9 @@
     fit.className = 'card-fit';
     const fitTitle = document.createElement('strong');
     fitTitle.textContent = 'A quién va dirigido: ';
-    fit.append(fitTitle, document.createTextNode('Elegibilidad y condiciones pendientes de confirmar con INTERWELT.'));
+    fit.append(fitTitle, document.createTextNode(historical
+      ? 'Elegibilidad y condiciones pendientes de confirmar con INTERWELT.'
+      : 'Plan devuelto por INTERWELT para esta búsqueda; consulta las condiciones oficiales.'));
     const caution = document.createElement('div');
     caution.className = 'card-caution';
     const cautionTitle = document.createElement('strong');
@@ -171,7 +173,7 @@
     caution.append(cautionTitle, document.createTextNode(
       historical
         ? 'Importe histórico de una prueba en USD, no una oferta actual. Faltan cobertura y disponibilidad vigentes.'
-        : 'Confirmar edad, territorio, elegibilidad y cobertura antes de habilitar una oferta.'
+        : 'Precio calculado por INTERWELT. Coberturas por confirmar; contratación desactivada.'
     ));
     coverage.append(fit, caution);
 
@@ -179,7 +181,9 @@
     priceCol.className = 'card-price-block';
     const availability = document.createElement('div');
     availability.className = 'availability-note vl-iw-warning';
-    availability.textContent = 'No disponible para contratar · solo vista previa';
+    availability.textContent = historical
+      ? 'No disponible para contratar · solo vista previa'
+      : 'Contratación todavía desactivada';
     const priceLabel = document.createElement('div');
     priceLabel.className = 'public-price-label';
     priceLabel.textContent = historical ? 'Importe histórico de prueba' : 'Precio del proveedor';
@@ -226,7 +230,7 @@
     for (const [label, val] of [
       ['Plan', item.name],
       ['Coberturas', 'Pendientes de documentación oficial'],
-      ['Divisa y elegibilidad', 'USD · Elegibilidad pendiente']
+      ['Divisa y elegibilidad', historical ? 'USD · Elegibilidad pendiente' : 'USD · Plan devuelto por INTERWELT']
     ]) {
       const el = document.createElement('div');
       el.className = 'detail-item';
@@ -307,27 +311,66 @@
     return data;
   }
 
-  // Future integration contract: this method is intentionally blocked until
-  // real server-side prices and eligibility checks are in place.
-  function renderLive(q, ages, response) {
-    if (!LIVE_ENABLED) return false;
-    if (!response || response.mode !== 'live' || response.source !== 'INTERWELT' ||
+  // Must match the exact server payload from interwelt-worker/public-rates.mjs.
+  // No provider authentication, pricing inputs or secret token are read here.
+  // Off by default: the API has a separate disabled server-side flag as well.
+  function verifiedRateResponse(q, ages, response) {
+    if (!response || response.mode !== 'public_rates' ||
+        response.source !== 'INTERWELT' || response.live !== true ||
         response.currency_confirmed !== true || response.currency !== 'USD' ||
-        response.eligible !== true || response.payments_enabled !== false ||
-        response.vouchers_enabled !== false || !Array.isArray(response.prices) ||
-        !response.search || response.search.origin !== q.origin || response.search.destination !== q.dest ||
-        response.search.departure !== q.departure || response.search.return !== q.returnDate ||
-        JSON.stringify(response.search.ages) !== JSON.stringify(ages)) return false;
+        response.rates_available !== true || response.plans_selected_by_provider !== true ||
+        response.payments_enabled !== false || response.vouchers_enabled !== false ||
+        !Array.isArray(response.prices) || !response.search ||
+        response.search.origin !== q.origin ||
+        normalizeDestination(response.search.destination) !== q.dest ||
+        response.search.departure !== q.departure ||
+        response.search.return !== q.returnDate ||
+        JSON.stringify(response.search.ages) !== JSON.stringify(ages)) return null;
     const cleaned = response.prices.filter(p =>
-      Number.isSafeInteger(p.id) && p.id > 0 && typeof p.name === 'string' && p.name.length <= 80 &&
+      Number.isSafeInteger(p.id) && p.id > 0 &&
+      typeof p.name === 'string' && p.name.trim().length > 0 && p.name.length <= 90 &&
       typeof p.total === 'number' && Number.isFinite(p.total) && p.total > 0);
-    if (cleaned.length === 0) return false;
+    return cleaned.length > 0 ? cleaned : null;
+  }
+
+  function renderLive(q, ages, response) {
+    if (!LIVE_ENABLED || preview) return false;
+    const clean = verifiedRateResponse(q, ages, response);
+    if (!clean) return false;
     results.replaceChildren();
-    const ordered = cleaned.slice().sort((a, b) => a.total - b.total);
+    const ordered = clean.slice().sort((a, b) => a.total - b.total);
     results.append(card(ordered[0], 'live', ordered));
-    applyMessage('Cotización real recibida del servidor. La contratación permanece desactivada.');
+    applyMessage('Tarifas de INTERWELT en USD para esta búsqueda. Contratación todavía desactivada.');
     return true;
   }
+
+  async function loadPublicRates(q, ages, version) {
+    // The public gateway remains OFF on Netlify. Do not enable frontend
+    // automatically just because a database has been connected.
+    if (!LIVE_ENABLED || preview) return;
+    const input = {
+      origin: q.origin,
+      destination: q.dest === 'europe' ? 'espana-schengen' : 'eeuu',
+      departure: q.departure,
+      return: q.returnDate,
+      ages
+    };
+    const response = await fetch('/.netlify/functions/interwelt-quote?public_rates=1', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      credentials: 'omit',
+      cache: 'no-store',
+      body: JSON.stringify(input)
+    });
+    // 202 means another identical quote is in progress. Do not automatically
+    // retry and accidentally create a second provider quote.
+    if (response.status === 202) throw new Error('quote_in_progress');
+    if (!response.ok) throw new Error('rates_unavailable');
+    const payload = await response.json();
+    if (version !== searchVersion) return;
+    if (!renderLive(q, ages, payload)) throw new Error('unexpected_rates');
+  }
+
   let searchVersion = 0;
   async function refresh() {
     const version = ++searchVersion;
@@ -355,12 +398,17 @@
           ? 'Ruta verificada · ' + checked.search.days + ' días. '
           : 'Ruta pendiente de confirmar con INTERWELT. ';
         applyMessage(routeStatus + message.textContent);
+      } else if (LIVE_ENABLED && checked.route_supported && checked.mapping_verified) {
+        applyMessage('Consultando las tarifas actuales de INTERWELT…');
+        await loadPublicRates(q, ages, version);
       } else {
         applyMessage('Búsqueda validada. Cotizaciones reales todavía desactivadas.');
       }
     } catch {
       if (version !== searchVersion) return;
-      applyMessage('No se pudieron verificar los datos de esta búsqueda en Netlify. No se ha consultado la API real.');
+      applyMessage(LIVE_ENABLED && !preview
+        ? 'No hay tarifas verificadas disponibles de INTERWELT para esta búsqueda. Puedes consultar los demás proveedores.'
+        : 'No se pudieron verificar los datos de esta búsqueda en Netlify. No se ha consultado la API real.');
     }
   }
   root.hidden = false;
@@ -370,5 +418,5 @@
   });
   window.addEventListener('popstate', refresh);
   refresh();
-  window.VLInterweltBridge = Object.freeze({refresh, renderLive});
+  window.VLInterweltBridge = Object.freeze({refresh});
 })();
