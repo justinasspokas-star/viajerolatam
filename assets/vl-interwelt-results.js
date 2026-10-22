@@ -104,7 +104,7 @@
     plan.textContent = item.name;
     const unverified = document.createElement('div');
     unverified.className = 'card-verified';
-    unverified.textContent = 'Datos sin verificar';
+    unverified.textContent = 'Coberturas por confirmar';
     meta.append(brand, plan, unverified);
     logo.append(initials, meta);
 
@@ -185,13 +185,22 @@
     priceLabel.textContent = historical ? 'Importe histórico de prueba' : 'Precio del proveedor';
     const price = document.createElement('div');
     price.className = 'public-price';
-    price.textContent = new Intl.NumberFormat('es-ES', {
-      minimumFractionDigits: 2, maximumFractionDigits: 2
-    }).format(item.total);
+    const priceValue = document.createElement('span');
+    priceValue.className = 'vl-iw-price-value';
+    const currency = document.createElement('span');
+    currency.className = 'vl-iw-price-unit';
+    currency.textContent = 'USD';
+    function showPrice(total) {
+      priceValue.textContent = new Intl.NumberFormat('es-ES', {
+        minimumFractionDigits: 2, maximumFractionDigits: 2
+      }).format(total);
+    }
+    showPrice(item.total);
+    price.append(priceValue, currency);
     const note = document.createElement('div');
     note.className = 'public-price-sub';
     note.textContent = historical
-      ? 'USD · 1 viajero de 30 años · 15 días · NO es una cotización en directo.'
+      ? '1 viajero de 30 años · 15 días · Precio histórico, no cotización actual.'
       : 'Importe verificado para la búsqueda. Compra aún desactivada.';
     const cta = document.createElement('button');
     cta.type = 'button';
@@ -217,7 +226,7 @@
     for (const [label, val] of [
       ['Plan', item.name],
       ['Coberturas', 'Pendientes de documentación oficial'],
-      ['Moneda y elegibilidad', 'USD confirmado · elegibilidad pendiente']
+      ['Divisa y elegibilidad', 'USD · Elegibilidad pendiente']
     ]) {
       const el = document.createElement('div');
       el.className = 'detail-item';
@@ -237,9 +246,7 @@
         const selected = availablePlans.find(p => String(p.id) === selector.value);
         if (!selected) return;
         plan.textContent = selected.name;
-        price.textContent = new Intl.NumberFormat('es-ES', {
-          minimumFractionDigits: 2, maximumFractionDigits: 2
-        }).format(selected.total);
+        showPrice(selected.total);
         const detailPlan = grid.querySelector('.detail-val');
         if (detailPlan) detailPlan.textContent = selected.name;
       });
@@ -270,7 +277,7 @@
       return;
     }
     results.append(card(SAMPLE.prices[0], 'historical', SAMPLE.prices));
-    applyMessage('Ejemplo histórico de cinco planes agrupados en una sola tarjeta: selecciona el plan para ver su importe. Colombia → Europa, 1 viajero de 30 años, 1–15 noviembre 2026. No se ha llamado a la API.');
+    applyMessage('Elige un plan para ver su precio histórico en USD. No se ha consultado la API de cotizaciones.');
   }
   async function validateOnServer(q, ages) {
     const raw = new URLSearchParams(location.search);
@@ -345,9 +352,9 @@
       if (preview) {
         renderHistorical(q, ages);
         const routeStatus = checked.route_supported && checked.mapping_verified
-          ? 'Ruta verificada con INTERWELT (' + checked.provider_route.origin_country_id + ' → ' + checked.provider_route.destination_region_id + ', USD). '
-          : 'Esta ruta aún no está confirmada para INTERWELT. ';
-        applyMessage('Datos validados (' + checked.search.days + ' días). ' + routeStatus + message.textContent);
+          ? 'Ruta verificada · ' + checked.search.days + ' días. '
+          : 'Ruta pendiente de confirmar con INTERWELT. ';
+        applyMessage(routeStatus + message.textContent);
       } else {
         applyMessage('Búsqueda validada. Cotizaciones reales todavía desactivadas.');
       }
