@@ -16,7 +16,18 @@ function element(tag = "div") {
     replaceChildren(...items) { this.children = [...items]; },
     addEventListener(event, handler) { this.listeners[event] = handler; },
     setAttribute(name, value) { this.attributes[name] = value; },
-    getAttribute(name) { return this.attributes[name]; }
+    getAttribute(name) { return this.attributes[name]; },
+    querySelector(selector) {
+      const seek = node => {
+        for (const child of node.children || []) {
+          if (selector.startsWith(".") && String(child.className || "").split(/\s+/).includes(selector.slice(1))) return child;
+          const nested = seek(child);
+          if (nested) return nested;
+        }
+        return null;
+      };
+      return seek(this);
+    }
   };
 }
 
