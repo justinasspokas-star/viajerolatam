@@ -43,7 +43,10 @@ test("dates and each traveller age are validated",() => {
   assert.equal(normalizeSearch({...sample(), ages:[]}),null);
   assert.equal(normalizeSearch({...sample(), ages:Array(9).fill(30)}),null);
   assert.equal(normalizeSearch({...sample(), departure:"2026-02-30"}),null);
-  assert.equal(normalizeSearch({...sample(), return:future(150)}),null);
+  assert.equal(normalizeSearch({...sample(), return:future(150)}).days, 141);
+  // Inclusive counting: day 10 to day 374 is 365 days; day 375 is 366.
+  assert.equal(normalizeSearch({...sample(), return:future(374)}).days, 365);
+  assert.equal(normalizeSearch({...sample(), return:future(375)}), null);
   assert.equal(normalizeSearch({...sample(), origin:"XX"}),null);
   assert.equal(normalizeSearch({...sample(), destination:"no-such-zone"}),null);
 });
