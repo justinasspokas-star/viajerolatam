@@ -185,3 +185,20 @@ El proveedor confirmó además:
 - La API debe seguir determinando qué planes están realmente disponibles para cada combinación. El listado de catálogo no es una lista de productos ofertables.
 
 **Pendiente:** falta anexar/revisar la versión vigente de **Condiciones Generales** remitida por INTERWELT en la respuesta más reciente (el texto pegado no incluye el PDF); no inventar ni enlazar un condicionado genérico de QA como si fuera el vigente de todos los productos. En el preview el botón "Ver detalles del plan" presenta el resumen y advierte que hay que revisar las condiciones; no activa compras ni cotizaciones públicas. La contraseña de producción previamente mostrada continúa pendiente de rotación antes del lanzamiento.
+
+
+## 23-10-2026 — endurecimiento de caché y doble autorización de lanzamiento (sin PDF)
+
+La rama de pruebas añade una protección adicional al endpoint `?public_rates=1`:
+
+- `INTERWELT_PUBLIC_RATES_ENABLED` permanece **desactivado**.
+- Aunque alguien activara por error ese primer flag, el servidor exige también `INTERWELT_PUBLIC_LAUNCH_APPROVED=true`. Esta **segunda variable NO debe crearse ni activarse** todavía; solo puede habilitarse con autorización expresa tras la revisión de seguridad, las credenciales rotadas y las condiciones para usuarios.
+- Si `INTERWELT_PILOT_ENABLED=true` (piloto privado), el endpoint público se niega a operar.
+- Antes de reutilizar un importe de Redis, el backend verifica que la búsqueda guardada coincida exactamente con el país, destino, fechas, **todas las edades y duración** de la búsqueda nueva.
+- También comprueba los precios, la divisa USD, que no haya identificadores privados de cotización y que **todos** los productos cumplan el catálogo de siete planes aprobados para mostrar. Los registros que no cumplan se descartan.
+- La salida de la caché utiliza únicamente campos públicos permitidos. Propiedades adicionales no se devuelven a los visitantes.
+- La caché sigue teniendo caducidad Redis de 10 minutos y bloqueo por búsqueda; datos inválidos nunca se sirven, aunque el bloqueo existente puede responder temporalmente con `quote_in_progress` hasta su expiración.
+
+**Importante:** la documentación de Condiciones Generales se mantiene como referencia interna. Por decisión expresa del propietario, **NO subir ni publicar el PDF en GitHub, Netlify o la web**. Publicar resúmenes de producto no equivale a mostrar íntegramente el condicionado. Antes de activar compras reales, revisar con INTERWELT cómo ofrecer al viajero acceso contractual adecuado sin infringir esta instrucción.
+
+Estado: Redis real superó la autocomprobación del operador en Netlify; las cotizaciones públicas y vouchers continúan inactivos. No cambiar `main` ni desplegar compras.
