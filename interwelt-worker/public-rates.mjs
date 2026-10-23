@@ -75,15 +75,56 @@ async function redisCommand(config, args) {
   return body.result;
 }
 
-function readCached(value) {
-  if (typeof value !== "string") return null;
+function readCached(value, expectedSearch) {
+  if (typeof value !== "string" || value.length > 30000) return null;
   try {
     const parsed = JSON.parse(value);
-    if (parsed?.mode !== "public_rates" || parsed?.currency !== "USD" ||
+    const trip = parsed?.search;
+    if (parsed?.mode !== "public_rates" ||
+        parsed?.source !== "INTERWELT" || parsed?.currency !== "USD" ||
+        parsed?.currency_confirmed !== true ||
+        parsed?.rates_available !== true ||
+        parsed?.plans_selected_by_provider !== true ||
+        parsed?.live !== true || parsed?.payments_enabled !== false ||
+        parsed?.vouchers_enabled !== false ||
         !Array.isArray(parsed?.prices) || parsed.prices.length === 0 ||
-        parsed.live !== true || parsed.payments_enabled !== false ||
-        parsed.vouchers_enabled !== false) return null;
-    return parsed;
+        parsed.prices.length > 50 ||
+        !trip || trip.origin !== expectedSearch.origin ||
+        trip.destination !== expectedSearch.destination ||
+        trip.departure !== expectedSearch.departure ||
+        trip.return !== expectedSearch.return ||
+        trip.days !== expectedSearch.days ||
+        JSON.stringify(trip.ages) !== JSON.stringify(expectedSearch.ages) ||
+        !parsed.prices.every(p =>
+          Number.isSafeInteger(p?.id) && p.id > 0 &&
+          typeof p.name === "string" && p.name.length > 0 &&
+          p.name.length <= 90 &&
+          typeof p.total === "number" && Number.isFinite(p.total) &&
+          p.total > 0 && approvedForDisplay(p, expectedSearch)) ||
+        Object.hasOwn(parsed, "quote_id") ||
+        Object.hasOwn(parsed, "contact_email") ||
+        Object.hasOwn(parsed, "contact_phone")) return null;
+    // Whitelist public fields: never forward unexpected Redis properties.
+    return {
+      mode: "public_rates",
+      source: "INTERWELT",
+      live: true,
+      currency: "USD",
+      currency_confirmed: true,
+      rates_available: true,
+      plans_selected_by_provider: true,
+      search: {
+        origin: trip.origin,
+        destination: trip.destination,
+        departure: trip.departure,
+        return: trip.return,
+        ages: [...trip.ages],
+        days: trip.days
+      },
+      prices: parsed.prices.map(p => ({ id: p.id, name: p.name, total: p.total })),
+      payments_enabled: false,
+      vouchers_enabled: false
+    };
   } catch {
     return null;
   }
@@ -134,6 +175,14 @@ export async function publicRatesRequest(request, env, quoteProvider) {
   if (env.INTERWELT_PUBLIC_RATES_ENABLED !== "true") {
     return json({ error: "public_rates_disabled" }, 503);
   }
+  // Independent, deliberately absent in Netlify: turning on just the rates
+  // switch must NEVER be enough to open registration of provider quotes.
+  // Requires an explicit later launch decision, secret rotation, provider
+  // permission, privacy/legal review and tested visitor-facing conditions.
+  if (env.INTERWELT_PUBLIC_LAUNCH_APPROVED !== "true" ||
+      env.INTERWELT_PILOT_ENABLED === "true") {
+    return json({ error: "public_launch_not_approved" }, 503);
+  }
   if (!env.INTERWELT_EMAIL || !env.INTERWELT_PASSWORD ||
       !env.INTERWELT_CONTACT_EMAIL || !env.INTERWELT_CONTACT_PHONE) {
     return json({ error: "provider_not_configured" }, 503);
@@ -162,14 +211,14 @@ export async function publicRatesRequest(request, env, quoteProvider) {
   const lockKey = key + ":lock";
 
   try {
-    const cached = readCached(await redisCommand(redis, ["GET", cachedKey]));
+    const cached = readCached(await redisCommand(redis, ["GET", cachedKey]), search);
     if (cached) return json({ ...cached, cache_status: "hit" });
 
     // Redis SET NX is a distributed, atomic claim: concurrent Netlify
     // instances cannot simultaneously create a quote for the same trip.
     const locked = await redisCommand(redis, ["SET", lockKey, "processing", "EX", LOCK_SECONDS, "NX"]);
     if (locked !== "OK") {
-      const afterRace = readCached(await redisCommand(redis, ["GET", cachedKey]));
+      const afterRace = readCached(await redisCommand(redis, ["GET", cachedKey]), search);
       if (afterRace) return json({ ...afterRace, cache_status: "hit" });
       return json({ error: "quote_in_progress", retry_after_seconds: 5 }, 202, { "retry-after": "5" });
     }
