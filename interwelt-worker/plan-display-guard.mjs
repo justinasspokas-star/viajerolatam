@@ -21,7 +21,7 @@ function comparableName(name) {
   return String(name || "")
     .normalize("NFKC")
     .replace(/[*]/g, "")
-    .replace(/\\s+/g, " ")
+    .replace(/\s+/g, " ")
     .trim()
     .toUpperCase();
 }
