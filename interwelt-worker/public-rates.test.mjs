@@ -431,10 +431,61 @@ test("tampered cached results cannot leak another trip, ineligible plan or extra
         assert.equal(body.cache_status,"hit");
         assert.equal(Object.hasOwn(body,"extra_private_note"),false);
       }else{
-        assert.equal(response.status,202);
-        assert.equal((await response.json()).error,"quote_in_progress");
+        assert.equal(response.status,503);
+        assert.equal((await response.json()).error,"cached_quote_unavailable");
       }
       assert.equal(count,1);
     }
   }finally{globalThis.fetch=original;}
+});
+
+
+test("after an expired lock, a corrupt cached result still cannot cause a duplicate upstream quote",async()=>{
+  const oldFetch=globalThis.fetch,redis=fakeRedis();
+  globalThis.fetch=(...args)=>redis.fetch(...args);
+  let upstream=0;
+  try{
+    const quote=async()=>{
+      upstream++;
+      return provider();
+    };
+    const first=await publicRatesRequest(request(),env(),quote);
+    assert.equal(first.status,200);
+    const cacheKey=[...redis.map.keys()].find(key=>key.endsWith(":cache"));
+    const lockKey=[...redis.map.keys()].find(key=>key.endsWith(":lock"));
+    assert.ok(cacheKey);
+    assert.ok(lockKey);
+    redis.map.delete(lockKey); // simulate 90-second lock expiry
+    const payload=JSON.parse(redis.map.get(cacheKey));
+    payload.search.ages=[99]; // unexpected data in Redis
+    redis.map.set(cacheKey,JSON.stringify(payload));
+    const res=await publicRatesRequest(request(),env(),quote);
+    assert.equal(res.status,503);
+    assert.equal((await res.json()).error,"cached_quote_unavailable");
+    assert.equal(upstream,1);
+    assert.equal([...redis.map.keys()].filter(key=>key.endsWith(":lock")).length,0,
+      "The corrupt cache should not even acquire a new lock");
+  }finally{globalThis.fetch=oldFetch;}
+});
+
+test("a cache miss after expiry can start a new quote, with normal budget protection",async()=>{
+  const oldFetch=globalThis.fetch,redis=fakeRedis();
+  globalThis.fetch=(...args)=>redis.fetch(...args);
+  let upstream=0;
+  try{
+    const quote=async()=>{
+      upstream++;
+      return provider();
+    };
+    const first=await publicRatesRequest(request(),env(),quote);
+    assert.equal(first.status,200);
+    const cacheKey=[...redis.map.keys()].find(key=>key.endsWith(":cache"));
+    const lockKey=[...redis.map.keys()].find(key=>key.endsWith(":lock"));
+    redis.map.delete(cacheKey); // simulate TTL expiry
+    redis.map.delete(lockKey);
+    const second=await publicRatesRequest(request(),env(),quote);
+    assert.equal(second.status,200);
+    assert.equal((await second.json()).cache_status,"fresh");
+    assert.equal(upstream,2);
+  }finally{globalThis.fetch=oldFetch;}
 });
