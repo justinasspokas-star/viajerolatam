@@ -211,15 +211,26 @@ export async function publicRatesRequest(request, env, quoteProvider) {
   const lockKey = key + ":lock";
 
   try {
-    const cached = readCached(await redisCommand(redis, ["GET", cachedKey]), search);
+    const cachedValue = await redisCommand(redis, ["GET", cachedKey]);
+    const cached = readCached(cachedValue, search);
     if (cached) return json({ ...cached, cache_status: "hit" });
+    // A stored but invalid quote is a safety signal. Never create another
+    // provider quote in response, even if the per-trip lock has expired.
+    // Only a clean cache miss (null) may continue to a new quote.
+    if (cachedValue !== null && cachedValue !== undefined) {
+      return json({ error: "cached_quote_unavailable" }, 503);
+    }
 
     // Redis SET NX is a distributed, atomic claim: concurrent Netlify
     // instances cannot simultaneously create a quote for the same trip.
     const locked = await redisCommand(redis, ["SET", lockKey, "processing", "EX", LOCK_SECONDS, "NX"]);
     if (locked !== "OK") {
-      const afterRace = readCached(await redisCommand(redis, ["GET", cachedKey]), search);
+      const raceValue = await redisCommand(redis, ["GET", cachedKey]);
+      const afterRace = readCached(raceValue, search);
       if (afterRace) return json({ ...afterRace, cache_status: "hit" });
+      if (raceValue !== null && raceValue !== undefined) {
+        return json({ error: "cached_quote_unavailable" }, 503);
+      }
       return json({ error: "quote_in_progress", retry_after_seconds: 5 }, 202, { "retry-after": "5" });
     }
 
