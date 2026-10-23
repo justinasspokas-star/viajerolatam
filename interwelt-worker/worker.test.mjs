@@ -52,6 +52,13 @@ test("invalid dates and mismatched ages are rejected", async () => {
   assert.equal(res.status, 400);
 });
 
+test("long-stay plans can be requested for up to 365 days but never longer", () => {
+  const valid = { ...sample(), return: datePlus(374) };
+  const invalid = { ...sample(), return: datePlus(375) };
+  assert.notEqual(validate(valid), null);
+  assert.equal(validate(invalid), null);
+});
+
 test("parses nested provider plans without guessing currency", () => {
   assert.deepEqual(pricesFromApi({
     plans: [{ plans: { IdPlan: 206, NombrePlan: "SOMOS EUROPA*", montoVenta_detalle: [{ tipo: "Venta", valor: 33.97 }] } }]
