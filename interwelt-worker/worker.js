@@ -46,7 +46,9 @@ function validate(input) {
   const arrival = validDate(input.return);
   if (!departure || !arrival) return null;
   const days = Math.round((arrival - departure) / 86400000) + 1;
-  // Up to 365 days for provider long-stay plans. Product eligibility is\n  // decided by INTERWELT itself, not by our generic trip validator.\n  if (days < 1 || days > 365) return null;
+  // Up to 365 days for provider long-stay plans. Product eligibility is
+  // decided by INTERWELT itself, not by our generic trip validator.
+  if (days < 1 || days > 365) return null;
   if (departure < new Date(new Date().toISOString().slice(0, 10) + "T00:00:00Z")) return null;
   return { origin, region, ages: input.ages, departure: input.departure, arrival: input.return };
 }
