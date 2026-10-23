@@ -44,7 +44,9 @@ export function normalizeSearch(payload) {
   const departure=parseDate(payload.departure), returning=parseDate(payload.return);
   if (!departure || !returning) return null;
   const tripDays=Math.round((returning-departure)/86400000)+1;
-  // General search ceiling, not plan eligibility: INTERWELT offers some\n  // products for up to 365 days. /api/quotes alone decides which plans apply.\n  if (tripDays < 1 || tripDays > 365) return null;
+  // General search ceiling, not plan eligibility: INTERWELT offers some
+  // products for up to 365 days. /api/quotes alone decides which plans apply.
+  if (tripDays < 1 || tripDays > 365) return null;
   const today=new Date(new Date().toISOString().slice(0,10)+"T00:00:00Z");
   if (departure < today) return null;
   return {
