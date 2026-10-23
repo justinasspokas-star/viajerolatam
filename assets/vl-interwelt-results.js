@@ -22,6 +22,38 @@
     ]
   });
 
+  // INTERWELT commercial portfolio and provider clarification (Oct 2026).
+  // Display informational limits ONLY for exact plan ID + matching name.
+  // This is NOT a quotation, certification or automatic eligibility decision.
+  // Europe's coverage currency may be EUR or USD depending on the issued plan;
+  // REST quotes' *sale price* currency is ALWAYS USD.
+  const PLAN_FACTS = Object.freeze({
+    205: {name:'ESTELAR',medical:'30.000',repatriation:'30.000',baggage:'1.000',maxAge:99,maxDays:90},
+    206: {name:'SOMOS EUROPA*',medical:'30.000',repatriation:'30.000',baggage:'800',maxAge:99,maxDays:365},
+    207: {name:'INTERWELT 40',medical:'40.000',repatriation:'40.000',baggage:'1.800',maxAge:85,maxDays:120},
+    208: {name:'INTERWELT 60',medical:'60.000',repatriation:'60.000',baggage:'1.800',maxAge:74,maxDays:120},
+    209: {name:'INTERWELT 100',medical:'100.000',repatriation:'100.000',baggage:'2.000',maxAge:74,maxDays:120},
+    // The Long Trip Basic catalog expressly gives a different Europe/world ceiling.
+    221: {name:'LONG TRIP BASIC',medical:'15.000 USD / 30.000 EUR',repatriation:'15.000 USD / 30.000 EUR',baggage:'600',maxAge:74,maxDays:365,minDays:30},
+    225: {name:'ENTRE MUNDOS',medical:'65.000',repatriation:'45.000',baggage:'500',maxAge:50,maxDays:365,minDays:30,usdOnly:true}
+  });
+  function factsFor(item) {
+    const details = PLAN_FACTS[item.id];
+    if (!details) return null;
+    const normalize = text => String(text || '').replace(/[*]/g,'').trim().replace(/\\s+/g,' ').toUpperCase();
+    return normalize(item.name) === normalize(details.name) ? details : null;
+  }
+  function coverageCurrencyText(q, facts) {
+    if (!facts) return 'Por verificar en el condicionado';
+    if (facts.usdOnly || q.dest !== 'europe') return 'USD';
+    return 'EUR o USD según certificado';
+  }
+  function coverageAmount(amount, facts, q) {
+    if (!facts) return 'Por confirmar';
+    if (amount.includes('USD /')) return amount + ' (según destino)';
+    return amount + ' ' + (facts.usdOnly || q.dest !== 'europe' ? 'USD' : '(EUR o USD)');
+  }
+
   const root = document.getElementById('vl-interwelt-slot');
   if (!root) return;
   const url = new URLSearchParams(location.search);
@@ -79,8 +111,10 @@
   }
   // Use the same classes/three-column structure as ViajeroLatam's IATI/AXA cards.
   // Never claim coverage, eligibility, currency or purchasability not verified by INTERWELT.
-  function card(item, kind, availablePlans = [item]) {
+  function card(item, kind, availablePlans = [item], route) {
     const historical = kind === 'historical';
+    const routeContext = route || {dest:'europe'};
+    const startingFacts = factsFor(item);
     const article = document.createElement('article');
     article.className = 'card vl-interwelt-plan';
     article.id = 'vl-iw-card-' + String(item.id);
@@ -104,7 +138,7 @@
     plan.textContent = item.name;
     const unverified = document.createElement('div');
     unverified.className = 'card-verified';
-    unverified.textContent = 'Coberturas por confirmar';
+    unverified.textContent = startingFacts ? 'Coberturas de catálogo · verificar condicionado' : 'Coberturas por confirmar';
     meta.append(brand, plan, unverified);
     logo.append(initials, meta);
 
@@ -112,7 +146,7 @@
     coverage.className = 'card-coverage';
     const pills = document.createElement('div');
     pills.className = 'coverage-pills';
-    for (const name of (historical ? ['Demostración', 'Cobertura pendiente'] : ['Precio consultado', 'Cobertura pendiente'])) {
+    for (const name of (historical ? ['Demostración', 'Coberturas de catálogo'] : ['Precio consultado', 'Coberturas de catálogo'])) {
       const pill = document.createElement('span');
       pill.className = 'cpill ' + (historical && name === 'Demostración' ? 'cpill-amber' : 'cpill-navy');
       pill.textContent = name;
@@ -140,11 +174,13 @@
       wrapper.append(label, selector);
       coverage.append(wrapper);
     }
-    for (const [label, value] of [
-      ['Gastos médicos:', 'Por confirmar'],
-      ['Repatriación:', 'Por confirmar'],
-      ['Equipaje:', 'Por confirmar']
-    ]) {
+    const limits = [
+      ['Asistencia médica:', 'medical'],
+      ['Repatriación:', 'repatriation'],
+      ['Equipaje:', 'baggage']
+    ];
+    const limitValues = [];
+    for (const [label, field] of limits) {
       const line = document.createElement('div');
       line.className = 'coverage-row';
       const icon = document.createElement('span');
@@ -155,7 +191,8 @@
       labelText.textContent = label;
       const val = document.createElement('span');
       val.className = 'cov-val';
-      val.textContent = value;
+      val.textContent = coverageAmount(startingFacts?.[field] || '', startingFacts, routeContext);
+      limitValues.push([field,val]);
       line.append(icon, labelText, val);
       coverage.append(line);
     }
@@ -163,17 +200,18 @@
     fit.className = 'card-fit';
     const fitTitle = document.createElement('strong');
     fitTitle.textContent = 'A quién va dirigido: ';
-    fit.append(fitTitle, document.createTextNode(historical
-      ? 'Elegibilidad y condiciones pendientes de confirmar con INTERWELT.'
-      : 'Plan devuelto por INTERWELT para esta búsqueda; consulta las condiciones oficiales.'));
+    const fitBody = document.createTextNode(historical
+      ? 'Información orientativa del catálogo; solo la API determina los planes elegibles.'
+      : 'Plan devuelto por INTERWELT; revisar condiciones, exclusiones y carencias.');
+    fit.append(fitTitle, fitBody);
     const caution = document.createElement('div');
     caution.className = 'card-caution';
     const cautionTitle = document.createElement('strong');
     cautionTitle.textContent = 'A tener en cuenta: ';
     caution.append(cautionTitle, document.createTextNode(
       historical
-        ? 'Importe histórico de una prueba en USD, no una oferta actual. Faltan cobertura y disponibilidad vigentes.'
-        : 'Precio calculado por INTERWELT. Coberturas por confirmar; contratación desactivada.'
+        ? 'Precio histórico en USD, no oferta actual. Límites orientativos del portafolio; la divisa de cobertura y las condiciones deben verificarse.'
+        : 'Precio real en USD; los límites del portafolio no sustituyen al certificado ni al condicionado. Contratación desactivada.'
     ));
     coverage.append(fit, caution);
 
@@ -227,11 +265,20 @@
     details.hidden = true;
     const grid = document.createElement('div');
     grid.className = 'details-grid';
-    for (const [label, val] of [
+    const planFacts = startingFacts;
+    const detailsFields = [
       ['Plan', item.name],
-      ['Coberturas', 'Pendientes de documentación oficial'],
-      ['Divisa y elegibilidad', historical ? 'USD · Elegibilidad pendiente' : 'USD · Plan devuelto por INTERWELT']
-    ]) {
+      ['Edad máxima del plan', planFacts ? planFacts.maxAge + ' años' : 'No confirmada'],
+      ['Duración permitida', planFacts ? (planFacts.minDays ? 'Desde ' + planFacts.minDays + ' hasta ' : 'Hasta ') + planFacts.maxDays + ' días' : 'No confirmada'],
+      ['Precio de venta', 'USD (cotización total)'],
+      ['Moneda de las coberturas', coverageCurrencyText(routeContext, planFacts)],
+      ['Carencias', 'Compra en destino o ampliación fuera de plazo: 5 días; extensiones anticipadas al menos 3 días y sujetas a aprobación'],
+      ['Preexistencias y exclusiones', 'Consultar condiciones generales vigentes; los límites varían según plan'],
+      ['Validez Schengen', 'INTERWELT indica conformidad; comprobar los requisitos del viaje y el documento del plan'],
+      ['Elegibilidad', historical ? 'No confirmada para esta demostración' : 'Plan devuelto por INTERWELT para esta búsqueda']
+    ];
+    const detailValues = [];
+    for (const [label, val] of detailsFields) {
       const el = document.createElement('div');
       el.className = 'detail-item';
       const heading = document.createElement('div');
@@ -240,6 +287,7 @@
       const value = document.createElement('div');
       value.className = 'detail-val';
       value.textContent = val;
+      detailValues.push(value);
       el.append(heading, value);
       grid.append(el);
     }
@@ -251,8 +299,17 @@
         if (!selected) return;
         plan.textContent = selected.name;
         showPrice(selected.total);
-        const detailPlan = grid.querySelector('.detail-val');
-        if (detailPlan) detailPlan.textContent = selected.name;
+        const selectedFacts = factsFor(selected);
+        unverified.textContent = selectedFacts ? 'Coberturas de catálogo · verificar condicionado' : 'Coberturas por confirmar';
+        for (const [field, element] of limitValues) {
+          element.textContent = coverageAmount(selectedFacts?.[field] || '', selectedFacts, routeContext);
+        }
+        detailValues[0].textContent = selected.name;
+        detailValues[1].textContent = selectedFacts ? selectedFacts.maxAge + ' años' : 'No confirmada';
+        detailValues[2].textContent = selectedFacts
+          ? (selectedFacts.minDays ? 'Desde ' + selectedFacts.minDays + ' hasta ' : 'Hasta ') + selectedFacts.maxDays + ' días'
+          : 'No confirmada';
+        detailValues[4].textContent = coverageCurrencyText(routeContext, selectedFacts);
       });
     }
     return article;
@@ -280,7 +337,7 @@
       results.append(demo);
       return;
     }
-    results.append(card(SAMPLE.prices[0], 'historical', SAMPLE.prices));
+    results.append(card(SAMPLE.prices[0], 'historical', SAMPLE.prices, q));
     applyMessage('Elige un plan para ver su precio histórico en USD. No se ha consultado la API de cotizaciones.');
   }
   async function validateOnServer(q, ages) {
@@ -339,7 +396,7 @@
     if (!clean) return false;
     results.replaceChildren();
     const ordered = clean.slice().sort((a, b) => a.total - b.total);
-    results.append(card(ordered[0], 'live', ordered));
+    results.append(card(ordered[0], 'live', ordered, q));
     applyMessage('Tarifas de INTERWELT en USD para esta búsqueda. Contratación todavía desactivada.');
     return true;
   }
