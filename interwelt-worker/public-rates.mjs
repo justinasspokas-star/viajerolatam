@@ -11,6 +11,7 @@
  */
 import { createHash, randomUUID } from "node:crypto";
 import { prepareQuoteRequest, confirmedProviderRoute } from "./prepare-quote.mjs";
+import { approvedForDisplay } from "./plan-display-guard.mjs";
 
 const MAX_DAILY_NEW_QUOTES = 20;
 const CACHE_SECONDS = 600;
@@ -94,7 +95,8 @@ function publicPayload(provider, search) {
   const clean = prices.filter(p =>
     Number.isSafeInteger(p?.id) && p.id > 0 &&
     typeof p.name === "string" && p.name.trim().length > 0 &&
-    p.name.length <= 90 && Number.isFinite(p.total) && p.total > 0)
+    p.name.length <= 90 && Number.isFinite(p.total) && p.total > 0 &&
+    approvedForDisplay(p, search))
     .map(p => ({ id: p.id, name: p.name, total: Math.round(p.total * 100) / 100 }));
   if (provider?.live !== true || provider?.source !== "INTERWELT" ||
       provider?.currency !== "USD" || clean.length === 0) {
