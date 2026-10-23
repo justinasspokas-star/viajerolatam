@@ -101,10 +101,34 @@ test("preview displays one provider card, USD next to amount, and changes price 
   assert.equal(amount?.textContent, "33,97");
   assert.equal(currency?.textContent, "USD");
   assert.equal(cta?.disabled, true);
+  const limits = nodes.filter(node => node.className === "cov-val");
+  const detailValues = nodes.filter(node => node.className === "detail-val");
+  assert.equal(limits[0]?.textContent, "30.000 (EUR o USD)");
+  assert.equal(limits[1]?.textContent, "30.000 (EUR o USD)");
+  assert.equal(limits[2]?.textContent, "800 (EUR o USD)");
+  assert.equal(detailValues[1]?.textContent, "99 años");
+  assert.equal(detailValues[2]?.textContent, "Hasta 365 días");
+  assert.equal(detailValues[4]?.textContent, "EUR o USD según certificado");
   select.value = "205"; // ESTELAR, historical-only fixture
   select.listeners.change();
   assert.equal(amount.textContent, "48,00");
   assert.equal(currency.textContent, "USD");
+  assert.equal(limits[0].textContent, "30.000 (EUR o USD)");
+  assert.equal(limits[2].textContent, "1.000 (EUR o USD)");
+  assert.equal(detailValues[0].textContent, "ESTELAR");
+  assert.equal(detailValues[2].textContent, "Hasta 90 días");
+  select.value = "207"; // INTERWELT 40
+  select.listeners.change();
+  assert.equal(amount.textContent, "70,13");
+  assert.equal(limits[0].textContent, "40.000 (EUR o USD)");
+  assert.equal(limits[1].textContent, "40.000 (EUR o USD)");
+  assert.equal(limits[2].textContent, "1.800 (EUR o USD)");
+  assert.equal(detailValues[1].textContent, "85 años");
+  assert.equal(detailValues[2].textContent, "Hasta 120 días");
+  select.value = "209"; // INTERWELT 100
+  select.listeners.change();
+  assert.equal(amount.textContent, "115,24");
+  assert.equal(detailValues[1].textContent, "74 años");
   assert.equal(app.calls.length, 1, "Selecting a historical plan must not request a quote");
   assert.ok(app.message.textContent.includes("No se ha consultado la API"));
 });
