@@ -13,6 +13,7 @@ const sample = () => ({
 });
 const env = () => ({
   INTERWELT_PUBLIC_RATES_ENABLED: "true",
+  INTERWELT_PUBLIC_LAUNCH_APPROVED: "true",
   INTERWELT_EMAIL: "mock-operator@example.org",
   INTERWELT_PASSWORD: "mock-private-password",
   INTERWELT_CONTACT_EMAIL: "mock-contact@example.org",
@@ -372,4 +373,68 @@ test("when the provider returns only an age-incompatible plan, fail closed and d
     assert.equal((await response.json()).error,"quote_unavailable_no_auto_retry");
     assert.equal([...redis.map.keys()].filter(key=>key.endsWith(":cache")).length,0);
   }finally{globalThis.fetch=oldFetch}
+});
+
+
+test("public flag alone cannot submit provider quotes without a second launch approval",async()=>{
+  const previous=globalThis.fetch;
+  let external=0, providerCalls=0;
+  globalThis.fetch=async()=>{external++;throw Error("No network expected");};
+  const mockedProvider=async()=>{providerCalls++;return provider();};
+  try{
+    let result=await publicRatesRequest(request(),{
+      ...env(), INTERWELT_PUBLIC_LAUNCH_APPROVED:undefined
+    },mockedProvider);
+    assert.equal(result.status,503);
+    assert.equal((await result.json()).error,"public_launch_not_approved");
+    result=await publicRatesRequest(request(),{
+      ...env(), INTERWELT_PUBLIC_LAUNCH_APPROVED:"false"
+    },mockedProvider);
+    assert.equal(result.status,503);
+    result=await publicRatesRequest(request(),{
+      ...env(), INTERWELT_PILOT_ENABLED:"true"
+    },mockedProvider);
+    assert.equal(result.status,503);
+    assert.equal(providerCalls,0);
+    assert.equal(external,0);
+  }finally{globalThis.fetch=previous;}
+});
+
+test("tampered cached results cannot leak another trip, ineligible plan or extra data",async()=>{
+  const original=globalThis.fetch, redis=fakeRedis();
+  globalThis.fetch=(...args)=>redis.fetch(...args);
+  let count=0;
+  try{
+    const mockedProvider=async()=>{count++;return provider();};
+    const first=await publicRatesRequest(request(),env(),mockedProvider);
+    assert.equal(first.status,200);
+    const key=[...redis.map.keys()].find(x=>x.endsWith(":cache"));
+    assert.ok(key);
+    const stored=JSON.parse(redis.map.get(key));
+    const examples=[
+      {...stored,search:{...stored.search,ages:[40]}},
+      {...stored,search:{...stored.search,departure:future(11)}},
+      {...stored,prices:[{id:209,name:"INTERWELT 100",total:12.00}],search:{...stored.search,ages:[75]}},
+      {...stored,prices:[{id:209,name:"SOMOS EUROPA*",total:12.00}]},
+      {...stored,prices:[{id:999,name:"UNKNOWN",total:12.00}]},
+      {...stored,quote_id:"private-upstream-id"},
+      {...stored,extra_private_note:"never disclose"}
+    ];
+    for(const item of examples){
+      redis.map.set(key,JSON.stringify(item));
+      const response=await publicRatesRequest(request(),env(),mockedProvider);
+      // Last case has only extraneous key, which should be stripped by
+      // whitelist rather than reflected to the browser.
+      if(item.extra_private_note){
+        assert.equal(response.status,200);
+        const body=await response.json();
+        assert.equal(body.cache_status,"hit");
+        assert.equal(Object.hasOwn(body,"extra_private_note"),false);
+      }else{
+        assert.equal(response.status,202);
+        assert.equal((await response.json()).error,"quote_in_progress");
+      }
+      assert.equal(count,1);
+    }
+  }finally{globalThis.fetch=original;}
 });
