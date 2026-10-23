@@ -202,3 +202,18 @@ La rama de pruebas añade una protección adicional al endpoint `?public_rates=1
 **Importante:** la documentación de Condiciones Generales se mantiene como referencia interna. Por decisión expresa del propietario, **NO subir ni publicar el PDF en GitHub, Netlify o la web**. Publicar resúmenes de producto no equivale a mostrar íntegramente el condicionado. Antes de activar compras reales, revisar con INTERWELT cómo ofrecer al viajero acceso contractual adecuado sin infringir esta instrucción.
 
 Estado: Redis real superó la autocomprobación del operador en Netlify; las cotizaciones públicas y vouchers continúan inactivos. No cambiar `main` ni desplegar compras.
+
+
+## Puerta de lanzamiento — revisión final pendiente (octubre 2026)
+
+**Estado operativo:** piloto aislado, público apagado. El proveedor dispone de siete planes con límites comerciales confirmados, pero eso no sustituye al documento contractual del viajero ni la elegibilidad de la API.
+
+- **Credenciales:** la contraseña utilizada durante pruebas anteriores apareció en una captura. Rotarla fuera del chat y desplegar los nuevos secretos `Functions/Production` antes de cualquier lanzamiento.
+- **Control de exposición:** `INTERWELT_PUBLIC_RATES_ENABLED` debe continuar `false`; `INTERWELT_PUBLIC_LAUNCH_APPROVED` no debe existir ni tener valor `true`. `INTERWELT_PILOT_ENABLED=false`, salvo una prueba privada autorizada.
+- **Datos personales:** antes del lanzamiento verificar el aviso de privacidad y si el envío de edades/fechas a INTERWELT precisa información adicional al usuario. El backend usa un correo y teléfono corporativos para cotizar y no requiere datos identificativos de pasajeros. Redis retiene el detalle de la búsqueda por hasta 10 minutos; nunca debe guardar nombre, teléfono del viajero, correo del viajero, documento o `quote_id`.
+- **Datos guardados incorrectos:** una entrada Redis presente pero que no coincida con la búsqueda, esté alterada o contenga información privada da `503 cached_quote_unavailable`. **No** permite generar una cotización nueva cuando venza el bloqueo, para evitar duplicados ante datos corruptos. Una entrada caducada/ausente sí puede iniciar la consulta bajo los límites habituales.
+- **Contratación:** el endpoint público solo devolvería tarifas finales en USD y los planes elegibles que pase el doble filtro; no existe un checkout listo para activar y siguen prohibidos los vouchers. Confirmar con INTERWELT modelo de contratación, condiciones de reembolso y responsabilidades antes de implementar compras.
+- **Condiciones Generales:** el usuario ha dado una orden explícita de **NO publicar** el PDF de agosto de 2026. Mantener únicamente las notas y resúmenes informativos en el entorno de pruebas; pedir al proveedor una alternativa para poner a disposición del cliente las condiciones contractuales antes de vender, sin subir este archivo.
+- **Pruebas finales:** comparar búsqueda con un solo adulto y varios viajeros, edades límite (50, 74, 75, 85, 86, 99, 100), estancia larga (30, 90, 120, 365 días), saldo de cuota global, reintentos, fallo del proveedor, error Redis, respuestas sin planes y caché inválida.
+
+**No activar cotizaciones públicas ni fusionar el PR a `main` al completar esta lista automáticamente. El responsable de la web debe aprobar una decisión de lanzamiento separada.**
