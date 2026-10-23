@@ -109,6 +109,19 @@ test("preview displays one provider card, USD next to amount, and changes price 
   assert.equal(detailValues[1]?.textContent, "99 años");
   assert.equal(detailValues[2]?.textContent, "Hasta 365 días");
   assert.equal(detailValues[4]?.textContent, "EUR o USD según certificado");
+  const documentLabels = nodes.filter(node => node.className === "detail-label").map(node => node.textContent);
+  const conditionRow = label => {
+    const index = documentLabels.indexOf(label);
+    assert.ok(index >= 0, "Missing disclosure: " + label);
+    return detailValues[index].textContent;
+  };
+  assert.ok(conditionRow("Carencias").includes("7 días"));
+  assert.ok(conditionRow("Carencias").includes("5 días"));
+  assert.ok(conditionRow("Preexistencias y exclusiones").includes("primera atención urgente"));
+  assert.ok(conditionRow("Solicitar asistencia").includes("24 horas"));
+  assert.ok(conditionRow("Equipaje").includes("PIR"));
+  assert.ok(conditionRow("Documento revisado").includes("agosto de 2026"));
+
   select.value = "205"; // ESTELAR, historical-only fixture
   select.listeners.change();
   assert.equal(amount.textContent, "48,00");
