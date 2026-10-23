@@ -281,7 +281,12 @@
       ['Carencias', 'Compra en destino o ampliación fuera de plazo: 5 días; extensiones anticipadas al menos 3 días y sujetas a aprobación'],
       ['Preexistencias y exclusiones', 'Consultar condiciones generales vigentes; los límites varían según plan'],
       ['Validez Schengen', 'INTERWELT indica conformidad; comprobar los requisitos del viaje y el documento del plan'],
-      ['Elegibilidad', historical ? 'No confirmada para esta demostración' : 'Plan devuelto por INTERWELT para esta búsqueda']
+      ['Elegibilidad', historical ? 'No confirmada para esta demostración' : 'Plan devuelto por INTERWELT para esta búsqueda'],
+      ['Recargo por edad', planFacts && planFacts.maxAge >= 75
+        ? 'INTERWELT indica +50% desde los 75 años; el precio final ya debe incluir el recargo aplicado por la API'
+        : 'No aplica desde los 75 años: este plan limita la edad a 74 o menos'],
+      ['Extensión de asistencia', 'Solicitar al menos 3 días antes del vencimiento para mantener continuidad; sujeta a aprobación'],
+      ['Coberturas complementarias', 'Los upgrades opcionales, como deportes de riesgo, pueden implicar un coste adicional']
     ];
     const detailValues = [];
     for (const [label, val] of detailsFields) {
