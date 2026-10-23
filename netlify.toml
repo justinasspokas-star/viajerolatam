@@ -3,7 +3,7 @@
 # Netlify's environment-value scanner flags it as a false positive.
 # Omit ONLY these two known-public email keys; password and JWT/token checks stay on.
 [build]
-  command = "node --test interwelt-worker/worker.test.mjs interwelt-worker/netlify-adapter.test.mjs interwelt-worker/prepare-quote.test.mjs interwelt-worker/public-rates.test.mjs interwelt-worker/frontend-preview.test.mjs && node --check assets/vl-interwelt-results.js && node interwelt-worker/build-results-preview.mjs"
+  command = "node --test interwelt-worker/worker.test.mjs interwelt-worker/netlify-adapter.test.mjs interwelt-worker/prepare-quote.test.mjs interwelt-worker/public-rates.test.mjs interwelt-worker/plan-display-guard.test.mjs interwelt-worker/frontend-preview.test.mjs && node --check assets/vl-interwelt-results.js && node interwelt-worker/build-results-preview.mjs"
   publish = "interwelt-pilot-site"
   functions = "netlify/functions"
 
