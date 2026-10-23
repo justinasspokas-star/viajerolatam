@@ -40,7 +40,7 @@
   function factsFor(item) {
     const details = PLAN_FACTS[item.id];
     if (!details) return null;
-    const normalize = text => String(text || '').replace(/[*]/g,'').trim().replace(/\\s+/g,' ').toUpperCase();
+    const normalize = text => String(text || '').replace(/[*]/g,'').trim().replace(/\s+/g,' ').toUpperCase();
     return normalize(item.name) === normalize(details.name) ? details : null;
   }
   function coverageCurrencyText(q, facts) {
@@ -50,7 +50,13 @@
   }
   function coverageAmount(amount, facts, q) {
     if (!facts) return 'Por confirmar';
-    if (amount.includes('USD /')) return amount + ' (según destino)';
+    // Long Trip Basic has different limit/currency pairs in the portfolio;
+    // never present its European limit as valid in North America.
+    if (amount.includes('USD /')) {
+      return q.dest === 'europe'
+        ? '30.000 EUR / 15.000 USD (según certificado)'
+        : '15.000 USD';
+    }
     return amount + ' ' + (facts.usdOnly || q.dest !== 'europe' ? 'USD' : '(EUR o USD)');
   }
 
