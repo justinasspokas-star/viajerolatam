@@ -207,8 +207,8 @@
     const fitTitle = document.createElement('strong');
     fitTitle.textContent = 'A quién va dirigido: ';
     const fitBody = document.createTextNode(historical
-      ? 'Información orientativa del catálogo; solo la API determina los planes elegibles.'
-      : 'Plan devuelto por INTERWELT; revisar condiciones, exclusiones y carencias.');
+      ? 'Límites orientativos del portafolio sujetos al voucher y a las Condiciones Generales de agosto de 2026; solo la API determina qué planes se ofrecen.'
+      : 'Plan devuelto por INTERWELT. Los topes no garantizan todas las prestaciones; revisar condiciones, exclusiones y carencias.');
     fit.append(fitTitle, fitBody);
     const caution = document.createElement('div');
     caution.className = 'card-caution';
@@ -216,8 +216,8 @@
     cautionTitle.textContent = 'A tener en cuenta: ';
     caution.append(cautionTitle, document.createTextNode(
       historical
-        ? 'Precio histórico en USD, no oferta actual. Límites orientativos del portafolio; la divisa de cobertura y las condiciones deben verificarse.'
-        : 'Precio real en USD; los límites del portafolio no sustituyen al certificado ni al condicionado. Contratación desactivada.'
+        ? 'Precio histórico en USD, no oferta actual. Los límites de cobertura son máximos sujetos al certificado, exclusiones y autorización de la central.'
+        : 'Precio de la API en USD; topes de catálogo sujetos al certificado y al condicionado. Contratación desactivada.'
     ));
     coverage.append(fit, caution);
 
@@ -278,15 +278,19 @@
       ['Duración permitida', planFacts ? (planFacts.minDays ? 'Desde ' + planFacts.minDays + ' hasta ' : 'Hasta ') + planFacts.maxDays + ' días' : 'No confirmada'],
       ['Precio de venta', 'USD (cotización total)'],
       ['Moneda de las coberturas', coverageCurrencyText(routeContext, planFacts)],
-      ['Carencias', 'Compra en destino o ampliación fuera de plazo: 5 días; extensiones anticipadas al menos 3 días y sujetas a aprobación'],
-      ['Preexistencias y exclusiones', 'Consultar condiciones generales vigentes; los límites varían según plan'],
+      ['Carencias', 'Compra en destino o extensión fuera de vigencia: 5 días; para COVID-19 en venta en destino o extensión aprobada: 7 días específicos (pág. 8 del condicionado)'],
+      ['Preexistencias y exclusiones', 'Las enfermedades crónicas, preexistentes y recurrentes tienen exclusiones importantes. Solo se contempla la primera atención urgente en planes que incluyan expresamente ese beneficio y su tope en el voucher (págs. 21 y 51).'],
       ['Validez Schengen', 'INTERWELT indica conformidad; comprobar los requisitos del viaje y el documento del plan'],
       ['Elegibilidad', historical ? 'No confirmada para esta demostración' : 'Plan devuelto por INTERWELT para esta búsqueda'],
       ['Recargo por edad', planFacts && planFacts.maxAge >= 75
         ? 'INTERWELT indica +50% desde los 75 años; el precio final ya debe incluir el recargo aplicado por la API'
         : 'No aplica desde los 75 años: este plan limita la edad a 74 o menos'],
       ['Extensión de asistencia', 'Solicitar al menos 3 días antes del vencimiento para mantener continuidad; sujeta a aprobación'],
-      ['Coberturas complementarias', 'Los upgrades opcionales, como deportes de riesgo, pueden implicar un coste adicional']
+      ['Coberturas complementarias', 'Los upgrades opcionales, como deportes de riesgo, pueden implicar un coste adicional'],
+      ['Solicitar asistencia', 'Contactar con la Central de Asistencias y solicitar autorización previa. Si no se puede comunicar por una emergencia, notificar cuanto antes y, en general, en un máximo de 24 horas (págs. 8–9).'],
+      ['Equipaje', 'La compensación por pérdida total requiere reclamación PIR y que la aerolínea haya indemnizado antes; no se aplica a equipaje de mano ni a faltantes parciales (págs. 29–30).'],
+      ['Otros límites y exclusiones', 'El condicionado contempla exclusiones de procedimientos electivos, controles rutinarios y determinados riesgos; pueden existir franquicias según plan (págs. 5, 51–56).'],
+      ['Documento revisado', 'Condiciones Generales INTERWELT, agosto de 2026 (56 páginas). La copia pública exacta todavía está pendiente de enlace; el voucher emitido indica los límites aplicables.']
     ];
     const detailValues = [];
     for (const [label, val] of detailsFields) {
