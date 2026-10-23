@@ -155,3 +155,33 @@ Respuesta esperada: `redis_connected: True`, `read_write_ok: True`, `atomic_quot
 **No divulgar el token de operador ni el token REST en capturas o chats.** El token REST normal de Upstash necesita permisos de escritura. El de solo lectura no sirve para el control de cuota.
 
 La prueba de Redis **no implica autorización para mostrar cotizaciones públicas**. El gateway público permanece desactivado y separado del piloto privado.
+
+
+## 23-10-2026 — confirmación comercial: límites y condiciones de cobertura
+
+INTERWELT confirma expresamente el permiso para publicar importes de cobertura, enlaces al condicionado oficial y resumen del plan. **Importante:** los **precios de venta** devueltos por la API están en USD, pero la **moneda de las coberturas** es distinta: Europa puede utilizar EUR o USD según el producto/certificado; fuera de Europa, USD; ENTRE MUNDOS solo USD. Nunca aplicar "USD" a la cobertura solo porque la API cotizó el precio en USD.
+
+Según el portafolio comercial `PORTAFOLIO.xlsx` y la aclaración del proveedor:
+
+| ID API | Plan | Médica (límite numérico del catálogo) | Repatriación | Equipaje | Edad máxima | Duración máxima | Mínimo |
+|---|---|---:|---:|---:|---:|---:|---:|
+| 205 | ESTELAR | 30.000 | 30.000 | 1.000 | 99 | 90 días | Según producto |
+| 206 | SOMOS EUROPA* | 30.000 | 30.000 | 800 | 99 | 365 días | Según producto |
+| 207 | INTERWELT 40 | 40.000 | 40.000 | 1.800 | 85 | 120 días | Según producto |
+| 208 | INTERWELT 60 | 60.000 | 60.000 | 1.800 | 74 | 120 días | Según producto |
+| 209 | INTERWELT 100 | 100.000 | 100.000 | 2.000 | 74 | 120 días | Según producto |
+| 221 | LONG TRIP BASIC | 15.000 USD / 30.000 EUR (según destino) | Ídem | 600 | 74 | 365 días | 30 días |
+| 225 | ENTRE MUNDOS | 65.000 USD | 45.000 USD | 500 USD | 50 | 365 días | 30 días |
+
+Esta tabla refleja un **resumen comercial**, no las exclusiones ni el importe final del certificado. En particular, NO inferir "Europa = EUR" automáticamente: INTERWELT indica que puede ser EUR **o** USD; el usuario debe consultar la documentación final. En el comparador de pruebas los tres límites aparecen como orientativos en la tarjeta, y el selector actualiza simultáneamente precio, cobertura, edad y duración del plan. Se requiere coincidencia entre el `IdPlan` y el nombre devuelto por INTERWELT para que se muestren límites de catálogo.
+
+El proveedor confirmó además:
+- Recargo del 50% desde los 75 años **en productos que admitan esa edad**. Nunca añadir un segundo recargo sobre el precio final de la API.
+- Carencia de 5 días si se compra estando ya en destino o se extiende el voucher una vez vencido.
+- Para mantener continuidad, pedir una extensión con al menos 3 días de antelación; aprobación a discreción de INTERWELT.
+- Los upgrades opcionales de deportes de riesgo u otros pueden incrementar el precio.
+- Los siete planes indicados cumplen los mínimos de Schengen **según declaración del proveedor**, no como certificación independiente. La aptitud para el viajero sigue dependiendo de sus condiciones y documentos.
+- Mostrar como **Asistencia en Viaje**, nunca como producto de seguro de una aseguradora, según la instrucción comercial previa.
+- La API debe seguir determinando qué planes están realmente disponibles para cada combinación. El listado de catálogo no es una lista de productos ofertables.
+
+**Pendiente:** falta anexar/revisar la versión vigente de **Condiciones Generales** remitida por INTERWELT en la respuesta más reciente (el texto pegado no incluye el PDF); no inventar ni enlazar un condicionado genérico de QA como si fuera el vigente de todos los productos. En el preview el botón "Ver detalles del plan" presenta el resumen y advierte que hay que revisar las condiciones; no activa compras ni cotizaciones públicas. La contraseña de producción previamente mostrada continúa pendiente de rotación antes del lanzamiento.
