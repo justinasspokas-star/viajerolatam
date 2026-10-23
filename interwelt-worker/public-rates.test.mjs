@@ -328,3 +328,48 @@ test("different traveler ages or travel dates do not reuse another customer's ca
     globalThis.fetch = originalFetch;
   }
 });
+
+
+test("provider plan catalog is double-checked before anything is shown to travelers",async()=>{
+  const oldFetch=globalThis.fetch,redis=fakeRedis();
+  globalThis.fetch=(...args)=>redis.fetch(...args);
+  try{
+    const quote=async()=>({
+      source:"INTERWELT",live:true,currency:"USD",quote_id:87654,
+      prices:[
+        {id:206,name:"SOMOS EUROPA*",total:101},
+        {id:207,name:"INTERWELT 40",total:202},
+        {id:208,name:"INTERWELT 60",total:303}, // max age 74
+        {id:221,name:"LONG TRIP BASIC",total:404}, // only 30+ days
+        {id:999,name:"UNREVIEWED PLAN",total:505},
+        {id:209,name:"SOMOS EUROPA*",total:606} // wrong ID/name
+      ]
+    });
+    const response=await publicRatesRequest(request({...sample(),ages:[75]}),env(),quote);
+    assert.equal(response.status,200);
+    const body=await response.json();
+    assert.deepEqual(body.prices,[
+      {id:206,name:"SOMOS EUROPA*",total:101},
+      {id:207,name:"INTERWELT 40",total:202}
+    ]);
+    assert.equal("quote_id" in body,false);
+    const again=await publicRatesRequest(request({...sample(),ages:[75]}),env(),quote);
+    assert.equal(again.status,200);
+    assert.equal((await again.json()).cache_status,"hit");
+  }finally{globalThis.fetch=oldFetch}
+});
+
+test("when the provider returns only an age-incompatible plan, fail closed and do not cache",async()=>{
+  const oldFetch=globalThis.fetch,redis=fakeRedis();
+  globalThis.fetch=(...args)=>redis.fetch(...args);
+  try{
+    const quote=async()=>({
+      source:"INTERWELT",live:true,currency:"USD",
+      prices:[{id:209,name:"INTERWELT 100",total:123}]
+    });
+    const response=await publicRatesRequest(request({...sample(),ages:[75]}),env(),quote);
+    assert.equal(response.status,503);
+    assert.equal((await response.json()).error,"quote_unavailable_no_auto_retry");
+    assert.equal([...redis.map.keys()].filter(key=>key.endsWith(":cache")).length,0);
+  }finally{globalThis.fetch=oldFetch}
+});
