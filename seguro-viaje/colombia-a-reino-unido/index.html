@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+
+<html lang="es-CO">
+<head>
+<script id="vl-consent-bootstrap">
+window.dataLayer=window.dataLayer||[];
+window.gtag=window.gtag||function(){window.dataLayer.push(arguments);};
+(function(){
+  var analytics='denied';
+  var marketing='denied';
+  try{
+    var raw=localStorage.getItem('vl_cookie_consent_v1');
+    if(raw){
+      var saved=JSON.parse(raw);
+      if(saved&&saved.version===1&&saved.expiresAt>Date.now()){
+        analytics=saved.analytics?'granted':'denied';
+        marketing=saved.marketing?'granted':'denied';
+      }else{
+        localStorage.removeItem('vl_cookie_consent_v1');
+      }
+    }
+  }catch(error){}
+  gtag('consent','default',{
+    analytics_storage:analytics,
+    ad_storage:marketing,
+    ad_user_data:marketing,
+    ad_personalization:marketing,
+    wait_for_update:500
+  });
+})();
+</script>
+<link href="/assets/vl-cookie-consent.css" rel="stylesheet"/>
+<script defer="" src="/assets/vl-cookie-consent.js"></script>
+<link as="image" href="/hero-bg.webp" rel="preload" type="image/webp">
+<meta charset="utf-8"/>
+<meta content="fnxi-_Liw22SOQakruhikIUAjmf3u6mdT79inMc9x9A" name="google-site-verification"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<!-- Favicon / browser tab icon -->
+<link href="/favicon.ico" rel="icon" sizes="any"/>
+<link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png"/>
+<link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/>
+<link href="/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
+<link href="/site.webmanifest" rel="manifest"/>
+<meta content="#0B1F3A" name="theme-color"/>
+<title>Seguro de viaje a Reino Unido desde Colombia | Guía</title>
+<meta content="Seguro de viaje a Reino Unido desde Colombia: cobertura médica para Londres, NHS, precios orientativos sin inventar tarifas y requisitos de visa británica." name="description"/>
+<meta content="index, follow" name="robots"/>
+<link href="https://viajerolatam.com/seguro-viaje/colombia-a-reino-unido/" rel="canonical"/>
+<meta content="website" property="og:type"/>
+<meta content="Seguro de viaje a Reino Unido desde Colombia | Guía" property="og:title"/>
+<meta content="Seguro de viaje a Reino Unido desde Colombia: cobertura médica para Londres, NHS, precios orientativos sin inventar tarifas y requisitos de visa británica." property="og:description"/>
+<meta content="https://viajerolatam.com/seguro-viaje/colombia-a-reino-unido/" property="og:url"/>
+<meta content="https://viajerolatam.com/og-mochila-viajerolatam.png?v=2" property="og:image"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-P1Q2TSMVNJ"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-P1Q2TSMVNJ');</script>
+<script id="vl-ga4-affiliate-normalizer">
+(function(){
+  if (window.vlGa4AffiliateNormalizerInstalled) return;
+  window.vlGa4AffiliateNormalizerInstalled = true;
+
+  function getClickId(){
+    try {
+      var key = 'vl_affiliate_click_id';
+      var id = sessionStorage.getItem(key);
+      if (!id) {
+        id = 'vl_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 10);
+        sessionStorage.setItem(key, id);
+      }
+      return id;
+    } catch(e) {
+      return 'vl_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 10);
+    }
+  }
+
+  function cleanPartner(partner){
+    return String(partner || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9_]+/g, '_')
+      .replace(/^_+|_+$/g, '');
+  }
+
+  function partnerFromEvent(eventName, params){
+    var partner = '';
+    if (eventName.indexOf('click_affiliate_') === 0) {
+      partner = eventName.replace('click_affiliate_', '');
+    }
+    if (!partner && params && params.affiliate_partner) partner = params.affiliate_partner;
+    return cleanPartner(partner || 'unknown');
+  }
+
+  function install(){
+    if (typeof window.gtag !== 'function') {
+      window.setTimeout(install, 50);
+      return;
+    }
+    if (window.gtag.vlAffiliateNormalized) return;
+
+    var originalGtag = window.gtag;
+    function normalizedGtag(){
+      var args = Array.prototype.slice.call(arguments);
+
+      if (args[0] === 'event' && typeof args[1] === 'string') {
+        var originalEventName = args[1];
+        var eventName = originalEventName.toLowerCase();
+
+        if (eventName !== originalEventName) {
+          args[1] = eventName;
+        }
+
+        if (eventName.indexOf('click_affiliate_') === 0) {
+          var params = args[2] && typeof args[2] === 'object' ? args[2] : {};
+          var partner = partnerFromEvent(eventName, params);
+          var clickId = params.affiliate_click_id || getClickId();
+
+          params.event_category = params.event_category || 'affiliate';
+          params.affiliate_partner = partner;
+          params.affiliate_click_id = clickId;
+          params.page_path = window.location.pathname;
+          params.page_location = params.page_location || window.location.href;
+          params.outbound_url = params.outbound_url || params.event_label || params.link_url || '';
+          params.link_text = params.link_text || '';
+
+          args[2] = params;
+
+          originalGtag.apply(window, args);
+
+          originalGtag('event', 'affiliate_outbound_click', {
+            event_category: 'affiliate',
+            affiliate_partner: partner,
+            affiliate_click_id: clickId,
+            source_event: eventName,
+            outbound_url: params.outbound_url,
+            page_path: window.location.pathname,
+            page_location: window.location.href
+          });
+          return;
+        }
+      }
+
+      return originalGtag.apply(window, args);
+    }
+
+    normalizedGtag.vlAffiliateNormalized = true;
+    window.gtag = normalizedGtag;
+  }
+
+  install();
+})();
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿El seguro de viaje es obligatorio para obtener la visa británica?","acceptedAnswer":{"@type":"Answer","text":"No figura como requisito general de la Standard Visitor visa en la información oficial consultada. Aun así, es recomendable contratar asistencia médica porque algunos servicios hospitalarios del NHS pueden cobrarse a visitantes."}},{"@type":"Question","name":"¿Los colombianos necesitan visa para viajar a Londres?","acceptedAnswer":{"@type":"Answer","text":"Sí, normalmente quienes viajan con pasaporte colombiano deben obtener una visa británica de visitante antes de viajar, salvo excepciones personales. Colombia dejó de ser elegible para ETA el 26 de noviembre de 2024."}},{"@type":"Question","name":"¿Un seguro Schengen cubre Inglaterra?","acceptedAnswer":{"@type":"Answer","text":"No necesariamente: Reino Unido no pertenece al espacio Schengen. Comprueba que el Reino Unido está incluido expresamente en el territorio de cobertura de tu póliza."}},{"@type":"Question","name":"¿Cuánto cuesta un seguro médico para Londres?","acceptedAnswer":{"@type":"Answer","text":"Depende de edad, residencia, fechas, coberturas y número de viajeros. No hay un precio único; verifica la tarifa final en la aseguradora después de cotizar tu viaje."}},{"@type":"Question","name":"¿La atención del NHS es gratis para turistas?","acceptedAnswer":{"@type":"Answer","text":"No toda. En Inglaterra la atención inicial de A&E puede estar exenta de cargos, mientras que una hospitalización y otros tratamientos posteriores pueden facturarse a visitantes no exentos."}}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://viajerolatam.com/seguro-viaje/colombia-a-reino-unido/#webpage","url":"https://viajerolatam.com/seguro-viaje/colombia-a-reino-unido/","name":"Seguro de viaje a Reino Unido desde Colombia | Guía","description":"Seguro de viaje a Reino Unido desde Colombia: cobertura médica para Londres, NHS, precios orientativos sin inventar tarifas y requisitos de visa británica.","inLanguage":"es-CO","dateModified":"2026-10-28","isPartOf":{"@type":"WebSite","name":"ViajeroLatam","url":"https://viajerolatam.com/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://viajerolatam.com/"},{"@type":"ListItem","position":2,"name":"Colombia a Reino Unido","item":"https://viajerolatam.com/seguro-viaje/colombia-a-reino-unido/"}]}]}
+</script>
+<style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    :root{--navy:#0B1F3A;--teal:#00C4A1;--sand:#F5F0E8;--border:#EAE3D5;--muted:#4A647E;--display:'DM Serif Display',Georgia,serif;--body:'Plus Jakarta Sans',sans-serif}
+    body{font-family:var(--body);color:#0B1F3A;background:#fff;line-height:1.75}
+    nav{position:sticky;top:0;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:10px 5%;background:rgba(255,255,255,.96);border-bottom:1px solid var(--border)}
+    nav img{height:58px;width:auto;display:block;object-fit:contain;opacity:1;filter:none;mix-blend-mode:normal}
+    .nav-links{display:flex;gap:22px;align-items:center}
+    .nav-links a{text-decoration:none;color:var(--muted);font-weight:800;font-size:14px}
+    .nav-cta{background:#0B1F3A;color:#fff!important;padding:10px 18px;border-radius:999px}
+    .hero{background:linear-gradient(135deg,#0B1F3A,#17365A);color:#fff;padding:84px 5% 74px;position:relative;overflow:hidden}
+    .hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 20% 20%,rgba(0,196,161,.18),transparent 28%),radial-gradient(circle at 80% 76%,rgba(117,216,188,.14),transparent 25%)}
+    .hero-inner{position:relative;max-width:1080px;margin:0 auto}
+    .eyebrow{display:inline-flex;background:rgba(117,216,188,.12);border:1px solid rgba(117,216,188,.28);color:#75D8BC;border-radius:999px;padding:7px 15px;font-size:13px;font-weight:900;margin-bottom:18px}
+    h1{font-family:var(--display);font-size:clamp(40px,6vw,70px);line-height:1.05;margin-bottom:18px;max-width:900px}
+    .hero p{color:rgba(255,255,255,.74);font-size:18px;max-width:780px;margin-bottom:24px}
+    .btn-row{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 23px;border-radius:999px;text-decoration:none!important;font-weight:900}
+    .btn-primary{background:#00C4A1;color:#0B1F3A!important}
+    .btn-secondary{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.24);color:#fff!important}
+    main{padding:64px 5%}
+    .wrap{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:34px;align-items:start}
+    article h2{font-family:var(--display);font-size:clamp(30px,4vw,46px);line-height:1.15;margin:42px 0 14px;color:#0B1F3A}
+    article h3{font-size:23px;margin:26px 0 10px;color:#0B1F3A}
+    article p, article li{color:#4A647E}
+    article ul{padding-left:22px;margin:12px 0 18px}
+    .box{background:#F5F0E8;border:1px solid #EAE3D5;border-radius:24px;padding:24px;margin:28px 0}
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:24px 0}
+    .item{background:#F5F0E8;border:1px solid #EAE3D5;border-radius:20px;padding:18px}
+    .item strong{display:block;color:#0B1F3A;margin-bottom:6px}
+    .cta{background:linear-gradient(135deg,#0B1F3A,#1A3558);color:#fff;border-radius:26px;padding:26px;margin:34px 0}
+    .cta h2{color:#fff;margin-top:0}
+    .cta p{color:rgba(255,255,255,.72)}
+    .coupon{display:inline-flex;background:#fff;color:#0B1F3A;border:1px dashed #00A989;border-radius:12px;padding:8px 12px;font-weight:900;margin:10px 0 16px}
+    aside{position:sticky;top:92px}
+    .side-card{background:#F5F0E8;border:1px solid #EAE3D5;border-radius:24px;padding:22px;margin-bottom:18px}
+    .side-card h3{font-size:20px;margin-bottom:10px}
+    .side-card p{color:#4A647E;font-size:14px;margin-bottom:12px}
+    .side-card .btn{width:100%;margin-top:8px}
+    footer{background:#0B1F3A;color:rgba(255,255,255,.58);padding:36px 5%;font-size:13px}
+    .mobile-affiliate-bar{position:fixed;left:12px;right:12px;bottom:12px;z-index:999;display:none;gap:8px;padding:9px;border-radius:999px;background:rgba(11,31,58,.94);box-shadow:0 18px 45px rgba(0,0,0,.24)}
+    .mobile-affiliate-bar a{flex:1;display:inline-flex;align-items:center;justify-content:center;min-height:42px;border-radius:999px;text-decoration:none!important;font-weight:900;font-size:13px}
+    .ma-primary{background:#00C4A1;color:#0B1F3A!important}.ma-secondary{background:#fff;color:#0B1F3A!important}
+    @media(max-width:860px){
+      .nav-links a:not(.nav-cta){display:none}
+      nav{padding:8px 16px;min-height:72px}
+      nav img{height:44px;max-width:205px}
+      .nav-cta{font-size:13px;padding:10px 14px}
+      .wrap,.grid{grid-template-columns:1fr}
+      aside{position:static}
+      .btn-row{display:grid;grid-template-columns:1fr}
+      .btn{width:100%}
+      body{padding-bottom:74px}
+      .mobile-affiliate-bar{display:flex}
+    }
+
+/* Saily eSIM upsell */
+.vl-esim-upsell{
+  margin:34px 0;
+  padding:24px;
+  border-radius:26px;
+  background:linear-gradient(135deg,#F5F0E8,#FFFFFF);
+  border:1px solid #EAE3D5;
+  box-shadow:0 12px 34px rgba(11,31,58,.05);
+}
+.vl-esim-upsell .tag{
+  display:inline-flex;
+  background:rgba(0,196,161,.10);
+  border:1px solid rgba(0,196,161,.25);
+  color:#0B1F3A;
+  border-radius:999px;
+  padding:6px 12px;
+  font-size:12px;
+  font-weight:900;
+  margin-bottom:10px;
+}
+.vl-esim-upsell h2,
+.vl-esim-upsell h3{
+  color:#0B1F3A!important;
+  margin:0 0 8px!important;
+}
+.vl-esim-upsell p{
+  color:#4A647E!important;
+  margin-bottom:14px!important;
+}
+.vl-esim-upsell a{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:13px 20px;
+  border-radius:999px;
+  background:#00C4A1;
+  color:#0B1F3A!important;
+  text-decoration:none!important;
+  font-weight:900;
+}
+
+</style>
+<style id="webp-hero">@supports(background-image:url("data:image/webp,")){.hero,section.hero{background-image:url('/hero-bg.webp')!important}}</style>
+<meta content="es_CO" property="og:locale"/>
+<meta content="ViajeroLatam" property="og:site_name"/>
+<style id="vl-single-compare-cta-style">
+
+/* Mobile sticky CTA — one clean compare button */
+.mobile-affiliate-bar.single-compare-cta,
+.mobile-affiliate-bar.vl-single-compare-cta{
+  background:rgba(255,255,255,.96)!important;
+  border:1px solid #E4EDF5!important;
+  border-radius:22px!important;
+  padding:10px 12px 9px!important;
+  flex-direction:column!important;
+  gap:6px!important;
+  box-shadow:0 16px 45px rgba(11,31,58,.18)!important;
+}
+.mobile-affiliate-bar.single-compare-cta .ma-big,
+.mobile-affiliate-bar.vl-single-compare-cta .ma-big{
+  width:100%!important;
+  min-height:52px!important;
+  border-radius:999px!important;
+  background:#69C7AD!important;
+  color:#0B1F3A!important;
+  font-size:15px!important;
+  font-weight:900!important;
+  box-shadow:0 10px 22px rgba(0,196,161,.24)!important;
+}
+.mobile-affiliate-bar.single-compare-cta span,
+.mobile-affiliate-bar.vl-single-compare-cta span{
+  display:block;
+  text-align:center;
+  font-size:11px;
+  line-height:1.25;
+  color:#8FA4B8;
+  font-weight:600;
+}
+@media(max-width:480px){
+  .mobile-affiliate-bar.single-compare-cta .ma-big,
+  .mobile-affiliate-bar.vl-single-compare-cta .ma-big{font-size:14px!important}
+  .mobile-affiliate-bar.single-compare-cta span,
+  .mobile-affiliate-bar.vl-single-compare-cta span{font-size:10.5px}
+}
+
+</style>
+</link><meta content="summary_large_image" name="twitter:card"/><meta content="Seguro de viaje a Reino Unido desde Colombia | Guía" name="twitter:title"/><meta content="Seguro de viaje a Reino Unido desde Colombia: cobertura médica para Londres, NHS, precios orientativos sin inventar tarifas y requisitos de visa británica." name="twitter:description"/><meta content="https://viajerolatam.com/og-mochila-viajerolatam.png?v=2" name="twitter:image"/><meta content="Icono de ViajeroLatam con mochila viajera" property="og:image:alt"/>  <link rel="stylesheet" href="/assets/vl-whatsapp.css">
+<style id="vl-uk-guide-style">
+.vl-uk-lead{background:#EAF8F4;border:1px solid #CAE7DB;border-radius:18px;padding:22px;margin-bottom:26px}
+.vl-uk-lead p{margin:0 0 10px}.vl-uk-lead p:last-child{margin:0}
+.vl-uk-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:18px 0 26px}
+.vl-uk-grid .uk-card{padding:20px;border:1px solid #DFE9EC;border-radius:18px;min-width:0;background:#fff}
+.vl-uk-grid h3{margin:0 0 9px;color:#0B1F3A;font-size:1.08rem;line-height:1.4}
+.vl-uk-grid p{margin:0;line-height:1.65}
+.vl-uk-table-wrap{border:1px solid #DBE7EB;border-radius:17px;overflow:hidden;margin:20px 0}
+.vl-uk-table{border-collapse:collapse;width:100%;table-layout:fixed;font-size:.93rem;line-height:1.6}
+.vl-uk-table th{background:#0B1F3A;color:#fff;text-align:left;font-weight:800;padding:14px}
+.vl-uk-table th:first-child,.vl-uk-table td:first-child{width:26%}
+.vl-uk-table td{padding:14px;vertical-align:top;border-top:1px solid #E5EBEF;overflow-wrap:anywhere;color:#30475D}
+.vl-uk-table td:first-child{font-weight:800}
+.vl-uk-table tr:nth-child(even) td{background:#F7FAFA}
+.vl-uk-note{background:#F6F9FA;border:1px solid #E3EAEB;border-radius:16px;padding:18px 20px;margin:21px 0}
+.vl-uk-note p{margin:0 0 10px}.vl-uk-note p:last-child{margin:0}
+.vl-uk-cta{background:#EAF9F4;border:1px solid #C8E7DB;border-radius:21px;padding:23px;margin:25px 0}
+.vl-uk-cta h2{margin:0 0 8px}.vl-uk-cta p{margin:0 0 15px}
+.vl-uk-cta a{display:inline-block;background:#0B1F3A;color:#fff!important;text-decoration:none;padding:12px 19px;font-weight:900;border-radius:999px}
+.vl-uk-muted{color:#50697D;font-size:.88rem;line-height:1.65}
+.vl-uk-list{padding-left:22px;margin:10px 0 22px}
+.vl-uk-list li{margin:9px 0}
+@media(max-width:720px){
+.vl-uk-grid{grid-template-columns:1fr;gap:12px}.vl-uk-grid .uk-card{padding:16px}
+.vl-uk-lead,.vl-uk-note{padding:16px}
+.vl-uk-table-wrap{border:0;overflow:visible}
+.vl-uk-table,.vl-uk-table tbody,.vl-uk-table tr,.vl-uk-table td{display:block;width:100%}
+.vl-uk-table thead{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
+.vl-uk-table tr{border:1px solid #DBE7EB;border-radius:14px;overflow:hidden;margin:0 0 12px;background:#fff!important}
+.vl-uk-table td{border-top:1px solid #E5EBEF;padding:11px 14px}
+.vl-uk-table td:first-child{width:100%;background:#0B1F3A!important;color:#fff;border:0}
+.vl-uk-table td:not(:first-child)::before{content:attr(data-label);display:block;font-size:.79rem;font-weight:800;color:#06695F}
+.vl-uk-cta{padding:17px}.vl-uk-cta a{display:block;text-align:center}
+}
+</style>
+</head>
+<body>
+<nav aria-label="Navegación principal">
+<a class="brand-logo" href="/"><img alt="ViajeroLatam" src="/logo-vl-original-20260528.png"/></a>
+<div class="nav-links">
+<a href="/seguro-viaje/colombia-a-europa/">Colombia a Europa</a>
+<a href="/seguro-viaje/colombia-a-espana/">Colombia a España</a>
+<a href="/sobre-nosotros/">Sobre nosotros</a>
+<a class="nav-cta" href="/resultados/?origen=colombia&amp;destino=europa">Comparar opciones</a>
+</div>
+</nav>
+<header class="hero">
+<div class="hero-inner">
+<div class="eyebrow">Colombia → Reino Unido · Londres, Inglaterra, Escocia y más</div>
+<h1>Seguro de viaje a Reino Unido desde Colombia</h1>
+<p>Cómo elegir cobertura médica para Londres y otros destinos británicos, qué puede cobrar el NHS y qué visado debe comprobar un viajero con pasaporte colombiano.</p>
+<div class="btn-row">
+<a class="btn btn-primary" href="/resultados/?origen=colombia&amp;destino=europa">Consultar opciones de seguro →</a>
+<a class="btn btn-secondary" href="#visa-para-colombianos">Requisitos de visado</a>
+</div>
+</div>
+</header>
+<main id="contenido"><div class="wrap"><article>
+<div class="vl-uk-lead">
+<p><strong>Respuesta rápida:</strong> si viajas de Colombia a Londres, Manchester, Edimburgo o Belfast, busca un seguro que <strong>admita residentes en Colombia y cubra expresamente Reino Unido</strong>, no solamente Schengen. Verifica hospitalización, asistencia médica, repatriación, exclusiones y todas las fechas.</p>
+<p>Si viajas con pasaporte colombiano, normalmente necesitas una <strong>visa británica de visitante</strong> antes del viaje. El seguro y el visado son trámites diferentes.</p>
+</div>
+<section id="cobertura-para-londres">
+<h2>¿Qué seguro médico necesitas para viajar a Londres desde Colombia?</h2>
+<p>La palabra «Europa» en el nombre comercial de una póliza no garantiza que Reino Unido esté incluido. Comprueba siempre el <strong>ámbito territorial del producto concreto</strong>, la residencia admitida, límites, franquicia y procedimiento para pedir asistencia.</p>
+<div class="vl-uk-grid">
+<div class="uk-card"><h3>Gastos médicos y hospitalización</h3><p>Revisa límites económicos, urgencias, ingreso hospitalario, franquicias y si debes llamar antes a la aseguradora.</p></div>
+<div class="uk-card"><h3>Repatriación médica a Colombia</h3><p>Comprueba el traslado o regreso por motivos médicos y las condiciones que autorizan el servicio.</p></div>
+<div class="uk-card"><h3>Enfermedades preexistentes</h3><p>Las condiciones crónicas, tratamientos o enfermedades anteriores pueden estar excluidos o limitados. Lee el condicionado y declara la información requerida.</p></div>
+<div class="uk-card"><h3>Fechas, equipaje y actividades</h3><p>Cubre salida, regreso y traslados. Compara pérdida de equipaje, cancelación y deportes solo si los necesitas.</p></div>
+</div>
+</section>
+<section id="nhs-y-turistas">
+<h2>¿La atención del NHS es gratuita para turistas colombianos?</h2>
+<p><strong>No toda la atención del NHS es gratuita.</strong> En <strong>Inglaterra</strong>, la atención inicial en urgencias A&amp;E generalmente está exenta de cobro, pero un ingreso hospitalario y otros servicios posteriores pueden ser facturados al visitante que no tenga derecho a una exención. Las reglas concretas pueden variar entre Inglaterra, Escocia, Gales e Irlanda del Norte.</p>
+<div class="vl-uk-note"><p><strong>Ejemplo práctico:</strong> te lesionas en Londres. La primera evaluación en A&amp;E puede estar exenta de cobro, pero si necesitas una operación después de ser ingresado en el hospital, pueden existir cargos importantes. No confundas «urgencias iniciales gratis» con «hospitalización gratis».</p>
+<p>Para emergencias potencialmente mortales llama al <strong>999</strong>. En Inglaterra, para ayuda sanitaria urgente que no es una emergencia vital, puedes utilizar el servicio <strong>NHS 111</strong>.</p></div>
+<p class="vl-uk-muted">Fuente: <a href="https://www.nhs.uk/nhs-services/visiting-or-moving-to-england/how-to-access-nhs-services-in-england-if-you-are-visiting-from-abroad/" target="_blank" rel="noopener noreferrer">NHS: asistencia para visitantes extranjeros en Inglaterra</a> y <a href="https://www.gov.uk/government/publications/nhs-cost-recovery-overseas-visitors/charging-overseas-visitors-in-england-guidance-for-providers-of-nhs-services" target="_blank" rel="noopener noreferrer">GOV.UK: servicios sujetos a cobro</a>.</p>
+</section>
+<section id="precio-seguro-reino-unido">
+<h2>¿Cuánto cuesta un seguro de viaje de Colombia a Reino Unido?</h2>
+<p>Depende de la edad, residencia habitual, fechas, número de viajeros y coberturas elegidas. No hay un precio único y <strong>no publicamos una tarifa «desde» sin cotización verificable</strong>. La siguiente tabla sirve para comparar presupuestos reales de manera equivalente, no para prometer importes de aseguradoras.</p>
+<div class="vl-uk-table-wrap"><table class="vl-uk-table">
+<thead><tr><th scope="col">Duración</th><th scope="col">Datos para pedir precio</th><th scope="col">Qué revisar antes de pagar</th></tr></thead>
+<tbody>
+<tr><td>7 días en Londres</td><td data-label="Datos para cotizar">Residente en Colombia, destino Reino Unido, 7 días y edad real del viajero.</td><td data-label="Comprobaciones">Límite médico, franquicia, repatriación y condiciones de asistencia.</td></tr>
+<tr><td>15 días Inglaterra + Escocia</td><td data-label="Datos para cotizar">Fechas de todos los trayectos y territorio que incluya Inglaterra y Escocia.</td><td data-label="Comprobaciones">Hospitalización, exclusiones, equipaje y atención telefónica.</td></tr>
+<tr><td>30 días o viaje familiar</td><td data-label="Datos para cotizar">Edades de todos los viajeros, fechas completas y número de personas.</td><td data-label="Comprobaciones">Preexistencias, límite de duración, franquicia y prima final.</td></tr>
+</tbody></table></div>
+<div class="vl-uk-cta"><h2>Consulta opciones para Reino Unido</h2>
+<p>El comparador se abre con <strong>origen Colombia y destino Europa</strong>. Antes de contratar, confirma en cada aseguradora que <strong>Reino Unido figura expresamente como territorio cubierto</strong>, que admite tu residencia y que el precio corresponde a tus fechas.</p>
+<a href="/resultados/?origen=colombia&amp;destino=europa">Comparar opciones disponibles →</a></div>
+</section>
+<section id="visa-para-colombianos">
+<h2>¿Los colombianos necesitan visa para viajar a Reino Unido en 2026?</h2>
+<p><strong>Sí, normalmente.</strong> Desde el <strong>26 de noviembre de 2024</strong>, los viajeros con pasaporte colombiano necesitan solicitar con antelación un visado de visitante para Reino Unido, salvo excepciones específicas de su situación personal. Colombia no es elegible para la <strong>ETA</strong>. Para turismo, normalmente se utiliza la <a href="https://www.gov.uk/standard-visitor" rel="noopener noreferrer" target="_blank">Standard Visitor visa</a>.</p>
+<p>GOV.UK indica que la solicitud puede iniciarse como máximo <strong>tres meses antes del viaje</strong>. El viajero debe cumplir los requisitos de visita, tener pasaporte válido para toda la estancia y poder demostrar sus planes de viaje y medios económicos cuando corresponda.</p>
+<div class="vl-uk-note"><p><strong>¿El seguro es obligatorio para conseguir la visa?</strong> No figura como requisito general de la Standard Visitor visa en la información oficial consultada. Sin embargo, es recomendable para afrontar posibles gastos sanitarios. El seguro no sustituye un permiso de entrada ni garantiza la aprobación del visado.</p></div>
+<p class="vl-uk-muted">Comprueba siempre el caso concreto en <a href="https://www.gov.uk/standard-visitor/apply-standard-visitor-visa" target="_blank" rel="noopener noreferrer">solicitud Standard Visitor</a>, <a href="https://www.gov.uk/guidance/check-when-you-can-get-an-electronic-travel-authorisation-eta" target="_blank" rel="noopener noreferrer">elegibilidad ETA</a> y la <a href="https://www.gov.uk/government/publications/uk-visa-requirements-list-for-carriers/uk-visa-requirements-for-international-carriers" target="_blank" rel="noopener noreferrer">lista oficial de nacionalidades que necesitan visado</a>.</p>
+</section>
+<section id="reino-unido-vs-schengen">
+<h2>¿Un seguro Schengen sirve para Inglaterra, Escocia o Gales?</h2>
+<p><strong>No necesariamente.</strong> Reino Unido <strong>no pertenece al espacio Schengen</strong>. Inglaterra, Escocia, Gales e Irlanda del Norte pertenecen al Reino Unido; si tu póliza solamente cubre España o Schengen, no debes asumir que sirve para Londres. Comprueba las condiciones particulares y generales y los países incluidos.</p>
+<p>Si tu viaje incluye varios destinos europeos, consulta nuestra guía <a href="/seguro-viaje/colombia-a-europa/">Colombia → Europa</a>. Si solo viajas a España, utiliza la página <a href="/seguro-viaje/colombia-a-espana/">Colombia → España</a>. Esta ruta es específicamente para <strong>contratar seguro de viaje a Reino Unido desde Colombia</strong>.</p>
+</section>
+<section id="lista-comprobacion-reino-unido">
+<h2>Checklist para viajar de Colombia a Inglaterra</h2>
+<ul class="vl-uk-list">
+<li>Verifica el visado y el pasaporte según tu nacionalidad y situación.</li>
+<li>Comprueba que tu aseguradora admite <strong>residencia habitual en Colombia</strong>.</li>
+<li>Confirma que la póliza incluye expresamente Reino Unido y todos tus destinos.</li>
+<li>Introduce fechas completas, incluyendo traslados, escalas y regreso.</li>
+<li>Revisa hospitalización, urgencias, repatriación, exclusiones, franquicia y asistencia.</li>
+<li>Guarda póliza, certificado y teléfono de emergencia sin conexión a internet.</li>
+<li>Comprueba si cancelación, equipaje o deportes son coberturas necesarias para ti.</li>
+</ul>
+</section>
+<section id="preguntas-frecuentes-reino-unido">
+<h2>Preguntas frecuentes: seguro para Londres desde Colombia</h2>
+<h3>¿El seguro de viaje es obligatorio para obtener la visa británica?</h3><p>No figura como requisito general de la Standard Visitor visa en la información oficial consultada. Aun así, es recomendable contratar asistencia médica porque algunos servicios hospitalarios del NHS pueden cobrarse a visitantes.</p>
+<h3>¿Los colombianos necesitan visa para viajar a Londres?</h3><p>Sí, normalmente quienes viajan con pasaporte colombiano deben obtener una visa británica de visitante antes de viajar, salvo excepciones personales. Colombia dejó de ser elegible para ETA el 26 de noviembre de 2024.</p>
+<h3>¿Un seguro Schengen cubre Inglaterra?</h3><p>No necesariamente: Reino Unido no pertenece al espacio Schengen. Comprueba que el Reino Unido está incluido expresamente en el territorio de cobertura de tu póliza.</p>
+<h3>¿Cuánto cuesta un seguro médico para Londres?</h3><p>Depende de edad, residencia, fechas, coberturas y número de viajeros. No hay un precio único; verifica la tarifa final en la aseguradora después de cotizar tu viaje.</p>
+<h3>¿La atención del NHS es gratis para turistas?</h3><p>No toda. En Inglaterra la atención inicial de A&E puede estar exenta de cargos, mientras que una hospitalización y otros tratamientos posteriores pueden facturarse a visitantes no exentos.</p>
+</section>
+<section id="fuentes-reino-unido">
+<h2>Fuentes oficiales y revisión editorial</h2>
+<p>Revisión editorial: <time datetime="2026-10-28">28 de octubre de 2026</time>. Contrastamos los requisitos de entrada con GOV.UK y las condiciones de asistencia sanitaria con el NHS. <strong>El precio real y la cobertura efectiva dependen exclusivamente de los términos de cada aseguradora</strong>.</p>
+<ul class="vl-uk-list">
+<li><a href="https://www.gov.uk/standard-visitor" target="_blank" rel="noopener noreferrer">GOV.UK · Standard Visitor</a></li>
+<li><a href="https://www.gov.uk/guidance/check-when-you-can-get-an-electronic-travel-authorisation-eta" target="_blank" rel="noopener noreferrer">GOV.UK · ETA</a></li>
+<li><a href="https://www.nhs.uk/nhs-services/visiting-or-moving-to-england/how-to-access-nhs-services-in-england-if-you-are-visiting-from-abroad/" target="_blank" rel="noopener noreferrer">NHS · Asistencia a visitantes</a></li>
+<li><a href="https://www.gov.uk/government/publications/nhs-cost-recovery-overseas-visitors/charging-overseas-visitors-in-england-guidance-for-providers-of-nhs-services" target="_blank" rel="noopener noreferrer">GOV.UK · NHS y cargos</a></li>
+</ul>
+<p class="vl-uk-muted">ViajeroLatam puede recibir una comisión si contratas a través de enlaces afiliados, sin coste adicional para ti. Consulta <a href="/como-elegimos/">cómo elegimos aseguradoras</a> y <a href="/sobre-nosotros/">quiénes somos</a>.</p>
+</section>
+</article><aside>
+<div class="side-card"><h3>Comparar seguros</h3><p>Selecciona Colombia → Europa; confirma que la póliza cubre Reino Unido antes de contratar.</p><a class="btn btn-primary" href="/resultados/?origen=colombia&amp;destino=europa">Ver opciones →</a></div>
+<div class="side-card"><h3>¿Viajas por varios países?</h3><p>Consulta la guía específica para itinerarios europeos y países fuera de Schengen.</p><a class="btn btn-primary" href="/seguro-viaje/colombia-a-europa/">Colombia a Europa →</a></div>
+</aside></div></main>
+<footer>© ViajeroLatam. Comparador independiente para viajeros latinoamericanos. · <a href="/sobre-nosotros/" style="color:#fff;text-decoration:none;font-weight:800">Sobre nosotros</a> · <a href="/contacto/" style="color:#fff;text-decoration:none;font-weight:800">Contacto</a><p><a href="/como-elegimos/">Cómo elegimos las aseguradoras</a></p></footer>
+<div aria-label="Comparar seguros gratis" class="mobile-affiliate-bar vl-single-compare-cta">
+<a class="ma-primary ma-big" href="/resultados/?origen=colombia&amp;destino=europa">🔍 Comparar opciones para Reino Unido</a>
+<span>Consulta sin coste · Comprueba cobertura para Reino Unido</span>
+</div>
+<script>
+document.addEventListener('click', function(e){
+  var link = e.target.closest('a');
+  if(!link || typeof gtag !== 'function') return;
+  var href = link.getAttribute('href') || '';
+  if(href.indexOf('iatiseguros.com') !== -1){
+    gtag('event', 'click_affiliate_iati', {event_category:'affiliate', event_label:href, page_location:window.location.href});
+  }
+  if(href.indexOf('intermundial.es') !== -1){
+    gtag('event', 'click_affiliate_intermundial', {event_category:'affiliate', event_label:href, page_location:window.location.href});
+  }
+});
+</script>
+<script id="vl-compare-click-tracking">
+document.addEventListener('click', function(e){
+  var link = e.target.closest('a');
+  if(!link || typeof gtag !== 'function') return;
+  var href = link.getAttribute('href') || '';
+  if(href.indexOf('/resultados/') !== -1){
+    gtag('event', 'click_comparar_seguros_gratis', {
+      event_category: 'lead',
+      event_label: href,
+      page_location: window.location.href
+    });
+  }
+});
+</script>
+  <script defer src="/assets/vl-whatsapp.js"></script>
+</body>
+</html>
