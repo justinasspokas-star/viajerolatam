@@ -337,6 +337,34 @@ window.gtag=window.gtag||function(){window.dataLayer.push(arguments);};
 .vl-uk-cta{padding:17px}.vl-uk-cta a{display:block;text-align:center}
 }
 </style>
+<style id="vl-uk-hero-background-only">
+/* Colombia -> United Kingdom: decorative hero artwork only. No copy or layout changes. */
+.hero.vl-uk-hero{
+  background-color:#081635!important;
+  background-image:
+    linear-gradient(90deg,rgba(5,13,35,.22) 0%,rgba(5,13,35,.53) 27%,rgba(5,13,35,.56) 58%,rgba(5,13,35,.14) 100%),
+    url('/assets/vl-uk-hero-stickers.svg')!important;
+  background-position:center center!important;
+  background-size:cover!important;
+  background-repeat:no-repeat!important;
+}
+.hero.vl-uk-hero::before{
+  background:radial-gradient(circle at 48% 49%,rgba(4,13,36,.28),transparent 55%)!important;
+  pointer-events:none;
+}
+@media(max-width:767px){
+  .hero.vl-uk-hero{
+    background-image:
+      linear-gradient(180deg,rgba(5,13,35,.66) 0%,rgba(5,13,35,.78) 26%,rgba(5,13,35,.79) 67%,rgba(5,13,35,.30) 100%),
+      url('/assets/vl-uk-hero-stickers-mobile.svg')!important;
+    background-size:cover!important;
+    background-position:center top!important;
+  }
+  .hero.vl-uk-hero::before{
+    background:linear-gradient(180deg,rgba(5,13,35,.10),rgba(5,13,35,.20) 70%,transparent)!important;
+  }
+}
+</style>
 </head>
 <body>
 <nav aria-label="Navegación principal">
@@ -348,7 +376,7 @@ window.gtag=window.gtag||function(){window.dataLayer.push(arguments);};
 <a class="nav-cta" href="/resultados/?origen=colombia&amp;destino=europa">Comparar opciones</a>
 </div>
 </nav>
-<header class="hero">
+<header class="hero vl-uk-hero">
 <div class="hero-inner">
 <div class="eyebrow">Colombia → Reino Unido · Londres, Inglaterra, Escocia y más</div>
 <h1>Seguro de viaje a Reino Unido desde Colombia</h1>
