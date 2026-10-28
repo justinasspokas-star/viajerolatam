@@ -31,7 +31,7 @@ window.gtag=window.gtag||function(){window.dataLayer.push(arguments);};
 </script>
 <link href="/assets/vl-cookie-consent.css" rel="stylesheet"/>
 <script defer="" src="/assets/vl-cookie-consent.js"></script>
-<link as="image" href="/hero-bg.webp" rel="preload" type="image/webp">
+
 <meta charset="utf-8"/>
 <meta content="fnxi-_Liw22SOQakruhikIUAjmf3u6mdT79inMc9x9A" name="google-site-verification"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -257,7 +257,7 @@ window.gtag=window.gtag||function(){window.dataLayer.push(arguments);};
 }
 
 </style>
-<style id="webp-hero">@supports(background-image:url("data:image/webp,")){.hero,section.hero{background-image:url('/hero-bg.webp')!important}}</style>
+
 <meta content="es_CO" property="og:locale"/>
 <meta content="ViajeroLatam" property="og:site_name"/>
 <style id="vl-single-compare-cta-style">
@@ -337,31 +337,59 @@ window.gtag=window.gtag||function(){window.dataLayer.push(arguments);};
 .vl-uk-cta{padding:17px}.vl-uk-cta a{display:block;text-align:center}
 }
 </style>
-<style id="vl-uk-hero-background-only">
-/* Colombia -> United Kingdom: decorative hero artwork only. No copy or layout changes. */
-.hero.vl-uk-hero{
-  background-color:#081635!important;
-  background-image:
-    linear-gradient(90deg,rgba(5,13,35,.22) 0%,rgba(5,13,35,.53) 27%,rgba(5,13,35,.56) 58%,rgba(5,13,35,.14) 100%),
-    url('/assets/vl-uk-hero-stickers.svg')!important;
-  background-position:center center!important;
-  background-size:cover!important;
-  background-repeat:no-repeat!important;
+<style id="vl-uk-hero-embedded-art">
+/* UK-specific hero artwork rendered as actual inline SVG layers.
+   It intentionally replaces the old shared /hero-bg.webp instead of competing with it. */
+.hero.vl-uk-hero {
+  position: relative;
+  isolation: isolate;
+  background: #091834 !important;
+  background-image: none !important;
+  overflow: hidden;
 }
-.hero.vl-uk-hero::before{
-  background:radial-gradient(circle at 48% 49%,rgba(4,13,36,.28),transparent 55%)!important;
+.hero.vl-uk-hero::before { display:none !important; }
+.hero.vl-uk-hero .vl-uk-hero-art {
+  position:absolute;
+  inset:0;
+  display:block;
+  overflow:hidden;
+  z-index:0;
   pointer-events:none;
 }
-@media(max-width:767px){
-  .hero.vl-uk-hero{
-    background-image:
-      linear-gradient(180deg,rgba(5,13,35,.66) 0%,rgba(5,13,35,.78) 26%,rgba(5,13,35,.79) 67%,rgba(5,13,35,.30) 100%),
-      url('/assets/vl-uk-hero-stickers-mobile.svg')!important;
-    background-size:cover!important;
-    background-position:center top!important;
-  }
-  .hero.vl-uk-hero::before{
-    background:linear-gradient(180deg,rgba(5,13,35,.10),rgba(5,13,35,.20) 70%,transparent)!important;
+.hero.vl-uk-hero .vl-uk-hero-art > svg {
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  display:block;
+}
+.hero.vl-uk-hero .vl-uk-art-mobile { display:none !important; }
+.hero.vl-uk-hero .vl-uk-art-desktop { display:block !important; }
+.hero.vl-uk-hero .vl-uk-hero-art::after {
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(90deg,
+    rgba(5,13,34,.24) 0%,
+    rgba(5,13,34,.42) 24%,
+    rgba(5,13,34,.53) 49%,
+    rgba(5,13,34,.26) 65%,
+    rgba(5,13,34,.06) 100%);
+  z-index:1;
+}
+.hero.vl-uk-hero .hero-inner {
+  position:relative;
+  z-index:2;
+}
+@media (max-width:767px) {
+  .hero.vl-uk-hero .vl-uk-art-desktop {display:none !important}
+  .hero.vl-uk-hero .vl-uk-art-mobile {display:block !important}
+  .hero.vl-uk-hero .vl-uk-hero-art::after {
+    background:linear-gradient(180deg,
+      rgba(5,13,34,.67) 0%,
+      rgba(5,13,34,.78) 28%,
+      rgba(5,13,34,.82) 64%,
+      rgba(5,13,34,.44) 100%);
   }
 }
 </style>
@@ -377,6 +405,132 @@ window.gtag=window.gtag||function(){window.dataLayer.push(arguments);};
 </div>
 </nav>
 <header class="hero vl-uk-hero">
+<div class="vl-uk-hero-art" aria-hidden="true">
+<svg class="vl-uk-art-desktop" aria-hidden="true" focusable="false" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" width="1920" height="720" viewBox="0 0 1920 720">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#07112e"/><stop offset=".53" stop-color="#0c2048"/><stop offset="1" stop-color="#081331"/></linearGradient>
+<linearGradient id="red" x1="0" y1="0" x2=".8" y2="1"><stop stop-color="#ed3e58"/><stop offset=".5" stop-color="#cd173e"/><stop offset="1" stop-color="#8d1235"/></linearGradient>
+<linearGradient id="tower" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#f5ce87"/><stop offset=".5" stop-color="#dfad61"/><stop offset="1" stop-color="#9d683b"/></linearGradient>
+<linearGradient id="bus" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fd4355"/><stop offset=".6" stop-color="#d51a3b"/><stop offset="1" stop-color="#9d173a"/></linearGradient>
+<linearGradient id="pane" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#bceaf8"/><stop offset="1" stop-color="#426e9c"/></linearGradient>
+<linearGradient id="flag" x1="0" y1="0" x2="1" y2=".7"><stop stop-color="#18479d"/><stop offset="1" stop-color="#0d286b"/></linearGradient>
+<pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.7" fill="#89b2f6" opacity=".15"/></pattern>
+<filter id="shadow" x="-45%" y="-45%" width="190%" height="190%"><feDropShadow dx="0" dy="12" stdDeviation="8" flood-color="#01091f" flood-opacity=".5"/></filter>
+<filter id="glow"><feGaussianBlur stdDeviation="24"/></filter>
+</defs>
+<clipPath id="flagclip"><rect width="1920" height="720"/></clipPath>
+<rect width="1920" height="720" fill="url(#bg)"/>
+<g opacity=".12" clip-path="url(#flagclip)">
+<rect width="1920" height="720" fill="none"/>
+<path d="M-200-90 425 260 260 420-240 130ZM1580-90 2180 250 2060 450 1450 95ZM-150 700 455 420 570 620 60 880ZM1440 590 2040 280 2170 470 1550 880" fill="#e9efff"/>
+<path d="M-140-58 430 265M1630-90 2130 210M-90 700 440 452M1470 570 2060 280" fill="none" stroke="#e23652" stroke-width="52"/>
+</g>
+<circle cx="1720" cy="290" r="240" fill="#2365aa" opacity=".14" filter="url(#glow)"/>
+<circle cx="65" cy="570" r="200" fill="#5f275c" opacity=".15" filter="url(#glow)"/>
+<rect width="1920" height="720" fill="url(#dots)" opacity=".75"/>
+<path d="M-60 338Q140 273 315 195" fill="none" stroke="#bad4fa" stroke-width="3" stroke-dasharray="9 15" opacity=".62"/>
+<path d="M1790 402Q1890 340 1912 284" fill="none" stroke="#c7e1ff" stroke-width="3" stroke-dasharray="10 15" opacity=".65"/>
+<g fill="none" stroke="#8ab0ff" stroke-width="3.5" stroke-linecap="round" opacity=".72">
+<path d="M74 86v22m-11-11h22M380 67v16m-8-8h16M1430 84v19m-10-10h20M1853 240v20m-10-10h20M260 570v24m-12-12h24M1335 602v14m-7-7h14"/>
+</g><g fill="#a5d9fb" opacity=".75"><circle cx="128" cy="150" r="3"/><circle cx="1220" cy="100" r="3"/><circle cx="1410" cy="490" r="4"/><circle cx="1870" cy="660" r="3"/></g>
+<g transform="translate(100 85) rotate(-13)" filter="url(#shadow)">
+<path d="M6 63 141 32 240 42 257 58 240 71 140 78 63 126 48 122 85 75 17 79Z" fill="#eef8fe" stroke="#e9f5fe" stroke-width="12" stroke-linejoin="round"/>
+<path d="M6 63 141 32 240 42 257 58 240 71 140 78 63 126 48 122 85 75 17 79Z" fill="#d4f0fc" stroke="#244987" stroke-width="4" stroke-linejoin="round"/>
+<path d="M101 40 131 1 145 2 143 35M97 73 138 116 156 116 136 72" fill="#82bddc" stroke="#31558f" stroke-width="4" stroke-linejoin="round"/>
+<path d="M23 65h85" stroke="#ef536a" stroke-width="6" stroke-linecap="round"/>
+<g fill="#3b6698"><rect x="163" y="45" width="9" height="6" rx="3"/><rect x="179" y="47" width="9" height="6" rx="3"/><rect x="195" y="49" width="9" height="6" rx="3"/><rect x="212" y="51" width="9" height="6" rx="3"/></g>
+</g>
+<g transform="translate(85 370) rotate(-9)" filter="url(#shadow)">
+<rect x="-7" y="-9" width="166" height="290" rx="16" fill="none" stroke="#eef7fd" stroke-width="14"/>
+<path d="M7 27Q5 0 33 0H125Q146 0 146 27V265H7Z" fill="url(#red)" stroke="#832239" stroke-width="5"/>
+<rect x="22" y="38" width="110" height="28" rx="7" fill="#153666" stroke="#ffffff" stroke-width="3"/>
+<g stroke="#a5d8f7" stroke-width="4" opacity=".95"><rect x="25" y="82" width="100" height="160" rx="6" fill="#214a71"/><path d="M58 83v159M92 83v159M25 121h100M25 161h100M25 201h100"/></g>
+<rect x="1" y="264" width="151" height="10" rx="4" fill="#e4475c"/>
+</g>
+<g transform="translate(1670 110) rotate(10)" filter="url(#shadow)">
+<rect x="-10" y="-10" width="180" height="116" rx="14" fill="#edf6ff"/>
+<rect x="0" y="0" width="160" height="96" rx="7" fill="#163477"/>
+<clipPath id="unionclip"><rect x="0" y="0" width="160" height="96" rx="7"/></clipPath>
+<g clip-path="url(#unionclip)"><path d="M0 0 160 96M160 0 0 96" stroke="#fff" stroke-width="24"/><path d="M0 0 160 96M160 0 0 96" stroke="#e72d4b" stroke-width="11"/><path d="M80 0v96M0 48h160" stroke="#fff" stroke-width="33"/><path d="M80 0v96M0 48h160" stroke="#dc2849" stroke-width="17"/></g>
+</g>
+<g transform="translate(1450 126)" filter="url(#shadow)">
+<path d="M20 522H250V554H20Z" fill="#385070" stroke="#d3e7ff" stroke-width="9" stroke-linejoin="round"/>
+<path d="M60 110 94 70 95 37 122-11 152 38 153 69 187 110" fill="#dfb575" stroke="#eff7ff" stroke-width="11" stroke-linejoin="round"/>
+<path d="M93 70 121 8 152 70" fill="#2b416b" stroke="#233b62" stroke-width="8"/>
+<path d="M72 120H179V528H72Z" fill="url(#tower)" stroke="#f8e9bf" stroke-width="12"/>
+<path d="M65 114H187V165H65Z" fill="#313f5e" stroke="#e7c58c" stroke-width="9"/>
+<rect x="85" y="176" width="88" height="90" rx="12" fill="#d6a46e" stroke="#8f6a50" stroke-width="6"/>
+<circle cx="129" cy="219" r="39" fill="#fcf1d0" stroke="#364e73" stroke-width="6"/>
+<circle cx="129" cy="219" r="31" fill="none" stroke="#b47d46" stroke-width="2"/>
+<path d="M129 196v24l17 10" stroke="#213959" stroke-width="5" fill="none" stroke-linecap="round"/>
+<g fill="#36445e"><rect x="89" y="303" width="18" height="58" rx="8"/><rect x="120" y="303" width="18" height="58" rx="8"/><rect x="151" y="303" width="15" height="58" rx="7"/><rect x="90" y="389" width="17" height="56" rx="7"/><rect x="120" y="389" width="18" height="56" rx="8"/><rect x="150" y="389" width="16" height="56" rx="7"/></g>
+<path d="M70 285h110M70 376h110M70 468h110" stroke="#f1d2a4" stroke-width="9"/>
+</g>
+<g transform="translate(1635 530) rotate(-8)" filter="url(#shadow)">
+<rect x="-7" y="-7" width="293" height="146" rx="27" fill="#f3fbff"/>
+<rect x="0" y="0" width="279" height="132" rx="19" fill="url(#bus)" stroke="#a60f34" stroke-width="4"/>
+<rect x="16" y="14" width="246" height="47" rx="9" fill="#162b58" stroke="#f7e6e7" stroke-width="4"/>
+<rect x="16" y="70" width="246" height="28" rx="6" fill="#1c4478" stroke="#f5d7dd" stroke-width="3"/>
+<path d="M60 15v47M114 15v47M168 15v47M220 15v47M62 70v28M117 70v28M171 70v28M221 70v28" stroke="#c9ebfb" stroke-width="4"/>
+<path d="M20 108h240" stroke="#f7b0be" stroke-width="5"/>
+<circle cx="67" cy="130" r="19" fill="#121d3a" stroke="#eff9ff" stroke-width="6"/><circle cx="218" cy="130" r="19" fill="#121d3a" stroke="#eff9ff" stroke-width="6"/>
+</g>
+<path d="M1235 644Q1426 551 1695 598T1960 590V745H1235Z" fill="#07112e" opacity=".35"/>
+<g fill="none" stroke="#98d5f8" stroke-width="5" opacity=".52"><path d="M1266 190c-7-37 50-51 64-18 34-7 50 37 19 49h-91c-22-10-16-32 8-31Z"/><path d="M424 517c-9-27 32-46 49-24 24-6 33 23 12 32h-66c-15-8-13-20 5-22Z"/></g>
+</svg>
+<svg class="vl-uk-art-mobile" aria-hidden="true" focusable="false" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" width="480" height="1080" viewBox="0 0 480 1080">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#07112e"/><stop offset=".53" stop-color="#0c2048"/><stop offset="1" stop-color="#081331"/></linearGradient>
+<linearGradient id="red" x1="0" y1="0" x2=".8" y2="1"><stop stop-color="#ed3e58"/><stop offset=".5" stop-color="#cd173e"/><stop offset="1" stop-color="#8d1235"/></linearGradient>
+<linearGradient id="tower" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#f5ce87"/><stop offset=".5" stop-color="#dfad61"/><stop offset="1" stop-color="#9d683b"/></linearGradient>
+<linearGradient id="bus" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fd4355"/><stop offset=".6" stop-color="#d51a3b"/><stop offset="1" stop-color="#9d173a"/></linearGradient>
+<linearGradient id="pane" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#bceaf8"/><stop offset="1" stop-color="#426e9c"/></linearGradient>
+<linearGradient id="flag" x1="0" y1="0" x2="1" y2=".7"><stop stop-color="#18479d"/><stop offset="1" stop-color="#0d286b"/></linearGradient>
+<pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.7" fill="#89b2f6" opacity=".15"/></pattern>
+<filter id="shadow" x="-45%" y="-45%" width="190%" height="190%"><feDropShadow dx="0" dy="12" stdDeviation="8" flood-color="#01091f" flood-opacity=".5"/></filter>
+<filter id="glow"><feGaussianBlur stdDeviation="24"/></filter>
+</defs>
+<rect width="480" height="1080" fill="url(#bg)"/>
+<g opacity=".13"><path d="M380-100 550 60 520 160 320 0M-110 960 250 1180 310 1100-60 860" stroke="#dceaff" stroke-width="78"/><path d="M385-100 550 60M-110 960 250 1180" stroke="#e3264b" stroke-width="27"/></g>
+<rect width="480" height="1080" fill="url(#dots)" opacity=".75"/>
+<path d="M-20 82Q40 35 133 82T260 50" fill="none" stroke="#d1e1ff" opacity=".28" stroke-width="3" stroke-dasharray="9 14"/>
+<g stroke="#98baf7" stroke-width="3" opacity=".45"><path d="M50 130v20m-10-10h20M415 360v22m-11-11h22M42 620v20m-10-10h20"/></g>
+<g transform="translate(365 66) rotate(13) scale(.7)" filter="url(#shadow)">
+<rect x="-10" y="-10" width="140" height="100" rx="14" fill="#edf6ff"/>
+<rect width="120" height="80" fill="#163477" rx="5"/>
+<clipPath id="uclipmobile"><rect width="120" height="80" rx="5"/></clipPath>
+<g clip-path="url(#uclipmobile)"><path d="M0 0 120 80M120 0 0 80" stroke="white" stroke-width="20"/><path d="M0 0 120 80M120 0 0 80" stroke="#de294b" stroke-width="9"/><path d="M60 0v80M0 40h120" stroke="white" stroke-width="27"/><path d="M60 0v80M0 40h120" stroke="#d72547" stroke-width="14"/></g></g>
+<g transform="translate(310 595) scale(.56)" opacity=".7"><g filter="url(#shadow)">
+<path d="M20 522H250V554H20Z" fill="#385070" stroke="#d3e7ff" stroke-width="9" stroke-linejoin="round"/>
+<path d="M60 110 94 70 95 37 122-11 152 38 153 69 187 110" fill="#dfb575" stroke="#eff7ff" stroke-width="11" stroke-linejoin="round"/>
+<path d="M93 70 121 8 152 70" fill="#2b416b" stroke="#233b62" stroke-width="8"/>
+<path d="M72 120H179V528H72Z" fill="url(#tower)" stroke="#f8e9bf" stroke-width="12"/>
+<path d="M65 114H187V165H65Z" fill="#313f5e" stroke="#e7c58c" stroke-width="9"/>
+<rect x="85" y="176" width="88" height="90" rx="12" fill="#d6a46e" stroke="#8f6a50" stroke-width="6"/>
+<circle cx="129" cy="219" r="39" fill="#fcf1d0" stroke="#364e73" stroke-width="6"/>
+<circle cx="129" cy="219" r="31" fill="none" stroke="#b47d46" stroke-width="2"/>
+<path d="M129 196v24l17 10" stroke="#213959" stroke-width="5" fill="none" stroke-linecap="round"/>
+<g fill="#36445e"><rect x="89" y="303" width="18" height="58" rx="8"/><rect x="120" y="303" width="18" height="58" rx="8"/><rect x="151" y="303" width="15" height="58" rx="7"/><rect x="90" y="389" width="17" height="56" rx="7"/><rect x="120" y="389" width="18" height="56" rx="8"/><rect x="150" y="389" width="16" height="56" rx="7"/></g>
+<path d="M70 285h110M70 376h110M70 468h110" stroke="#f1d2a4" stroke-width="9"/>
+</g></g>
+<g transform="translate(45 835) rotate(7) scale(.95)" filter="url(#shadow)">
+<rect x="-7" y="-7" width="293" height="146" rx="27" fill="#f3fbff"/>
+<rect x="0" y="0" width="279" height="132" rx="19" fill="url(#bus)" stroke="#a60f34" stroke-width="4"/>
+<rect x="16" y="14" width="246" height="47" rx="9" fill="#162b58" stroke="#f7e6e7" stroke-width="4"/>
+<rect x="16" y="70" width="246" height="28" rx="6" fill="#1c4478" stroke="#f5d7dd" stroke-width="3"/>
+<path d="M60 15v47M114 15v47M168 15v47M220 15v47M62 70v28M117 70v28M171 70v28M221 70v28" stroke="#c9ebfb" stroke-width="4"/>
+<circle cx="67" cy="130" r="19" fill="#121d3a" stroke="#eff9ff" stroke-width="6"/><circle cx="218" cy="130" r="19" fill="#121d3a" stroke="#eff9ff" stroke-width="6"/>
+</g>
+<g transform="translate(-10 755) scale(.52) rotate(-6)" opacity=".7"><g filter="url(#shadow)">
+<rect x="-7" y="-9" width="166" height="290" rx="16" fill="none" stroke="#eef7fd" stroke-width="14"/>
+<path d="M7 27Q5 0 33 0H125Q146 0 146 27V265H7Z" fill="url(#red)" stroke="#832239" stroke-width="5"/>
+<rect x="22" y="38" width="110" height="28" rx="7" fill="#153666" stroke="#ffffff" stroke-width="3"/>
+<g stroke="#a5d8f7" stroke-width="4" opacity=".95"><rect x="25" y="82" width="100" height="160" rx="6" fill="#214a71"/><path d="M58 83v159M92 83v159M25 121h100M25 161h100M25 201h100"/></g>
+<rect x="1" y="264" width="151" height="10" rx="4" fill="#e4475c"/>
+</g></g>
+<rect x="0" y="185" width="480" height="615" fill="#07112e" opacity=".28"/>
+</svg>
+</div>
 <div class="hero-inner">
 <div class="eyebrow">Colombia → Reino Unido · Londres, Inglaterra, Escocia y más</div>
 <h1>Seguro de viaje a Reino Unido desde Colombia</h1>
