@@ -370,11 +370,12 @@ window.gtag=window.gtag||function(){window.dataLayer.push(arguments);};
   position:absolute;
   inset:0;
   background:linear-gradient(90deg,
-    rgba(5,13,34,.24) 0%,
-    rgba(5,13,34,.42) 24%,
-    rgba(5,13,34,.53) 49%,
-    rgba(5,13,34,.26) 65%,
-    rgba(5,13,34,.06) 100%);
+    rgba(5,13,34,.02) 0%,
+    rgba(5,13,34,.50) 24%,
+    rgba(5,13,34,.63) 47%,
+    rgba(5,13,34,.24) 66%,
+    rgba(5,13,34,0) 85%,
+    rgba(5,13,34,0) 100%);
   z-index:1;
 }
 .hero.vl-uk-hero .hero-inner {
@@ -407,141 +408,250 @@ window.gtag=window.gtag||function(){window.dataLayer.push(arguments);};
 <header class="hero vl-uk-hero">
 <div class="vl-uk-hero-art" aria-hidden="true">
 <svg class="vl-uk-art-desktop" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 720" preserveAspectRatio="xMidYMid slice"><defs>
-<linearGradient id="vlukd-night" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#071736"/><stop offset=".55" stop-color="#102B5B"/><stop offset="1" stop-color="#08204C"/></linearGradient>
-<radialGradient id="vlukd-light" cx=".8" cy=".5" r=".7"><stop stop-color="#336DA7" stop-opacity=".34"/><stop offset="1" stop-color="#152A57" stop-opacity="0"/></radialGradient>
-<linearGradient id="vlukd-gold" x1="0" y1="0" x2="1" y2=".3"><stop stop-color="#fff1c3"/><stop offset=".37" stop-color="#EEC578"/><stop offset=".75" stop-color="#BC8A4D"/><stop offset="1" stop-color="#F5D08C"/></linearGradient>
-<linearGradient id="vlukd-brick" x1="0" y1="0" x2=".9" y2="1"><stop stop-color="#FF6770"/><stop offset=".55" stop-color="#DB294B"/><stop offset="1" stop-color="#A8193B"/></linearGradient>
-<linearGradient id="vlukd-glass" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#B9E3F2"/><stop offset="1" stop-color="#31628A"/></linearGradient>
-<linearGradient id="vlukd-metal" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#FFFFFF"/><stop offset=".45" stop-color="#C0E2F7"/><stop offset="1" stop-color="#7BA9CB"/></linearGradient>
-<filter id="vlukd-shadow" x="-30%" y="-30%" width="160%" height="180%"><feDropShadow dx="0" dy="9" stdDeviation="7" flood-color="#020916" flood-opacity=".44"/></filter>
-<pattern id="vlukd-grain" width="38" height="38" patternUnits="userSpaceOnUse"><circle cx="4" cy="4" r="1.5" fill="#A9C7E8" opacity=".11"/></pattern>
-<g id="vlukd-flag">
-<path d="M-9-10H166Q174-10 174-2V106Q174 114 166 114H-9Q-17 114-17 106V-2Q-17-10-9-10Z" fill="#F5FAFE" opacity=".97"/>
-<rect x="0" y="0" width="160" height="102" rx="6" fill="#214680"/>
-<clipPath id="vlukd-flagClip"><rect width="160" height="102" rx="6"/></clipPath>
-<g clip-path="url(#vlukd-flagClip)"><path d="M-8-7 168 109M168-7-8 109" stroke="#F9FBFF" stroke-width="26"/><path d="M-8-7 168 109M168-7-8 109" stroke="#DA2447" stroke-width="11"/><path d="M80-7V109M-8 51H168" stroke="#F7FBFF" stroke-width="32"/><path d="M80-7V109M-8 51H168" stroke="#D82445" stroke-width="16"/></g>
+<linearGradient id="ukprodesk-night" x2="1" y2=".85"><stop stop-color="#07142E"/><stop offset=".45" stop-color="#0B2555"/><stop offset="1" stop-color="#123A75"/></linearGradient>
+<radialGradient id="ukprodesk-aura"><stop stop-color="#65B5ED" stop-opacity=".25"/><stop offset="1" stop-color="#3774BD" stop-opacity="0"/></radialGradient>
+<linearGradient id="ukprodesk-stone" x2="1" y2=".16"><stop stop-color="#FCE5B1"/><stop offset=".18" stop-color="#E0B06A"/><stop offset=".42" stop-color="#FFD796"/><stop offset=".73" stop-color="#D39A53"/><stop offset="1" stop-color="#88613A"/></linearGradient>
+<linearGradient id="ukprodesk-red" x2=".94" y2=".6"><stop stop-color="#FF6971"/><stop offset=".25" stop-color="#F73D53"/><stop offset=".6" stop-color="#D81A3B"/><stop offset="1" stop-color="#861635"/></linearGradient>
+<linearGradient id="ukprodesk-glass" x2=".34" y2="1"><stop stop-color="#C9F1FF"/><stop offset=".35" stop-color="#6EB2DE"/><stop offset="1" stop-color="#1A456E"/></linearGradient>
+<linearGradient id="ukprodesk-metal" x2=".85" y2="1"><stop stop-color="#FFFFFF"/><stop offset=".35" stop-color="#E1F4FC"/><stop offset=".65" stop-color="#B1D9E9"/><stop offset="1" stop-color="#618DBB"/></linearGradient>
+<linearGradient id="ukprodesk-slate" x2="1" y2=".4"><stop stop-color="#3D6195"/><stop offset=".5" stop-color="#1F426C"/><stop offset="1" stop-color="#12294C"/></linearGradient>
+<radialGradient id="ukprodesk-clockGlow"><stop stop-color="#FFFBE5"/><stop offset=".64" stop-color="#FFE7A9"/><stop offset="1" stop-color="#E9B763"/></radialGradient>
+<filter id="ukprodesk-drop" x="-50%" y="-50%" width="200%" height="210%"><feDropShadow dx="0" dy="11" stdDeviation="9" flood-color="#000818" flood-opacity=".45"/></filter>
+<filter id="ukprodesk-halo" x="-55%" y="-55%" width="210%" height="210%"><feGaussianBlur stdDeviation="13"/></filter>
+<pattern id="ukprodesk-dot" width="37" height="37" patternUnits="userSpaceOnUse"><circle cx="4" cy="5" r="1.2" fill="#A6D8FF" opacity=".13"/></pattern>
+<g id="ukprodesk-flag">
+<rect x="-12" y="-12" width="184" height="126" rx="15" fill="#F5FAFF" stroke="#C7DDEF" stroke-width="2"/>
+<rect width="160" height="102" rx="6" fill="#174489"/>
+<clipPath id="ukprodesk-fclip"><rect width="160" height="102" rx="6"/></clipPath>
+<g clip-path="url(#ukprodesk-fclip)">
+<path d="M-12-8 172 110M172-8-12 110" stroke="#F5FAFE" stroke-width="28"/>
+<path d="M-12-8 172 110M172-8-12 110" stroke="#DB2649" stroke-width="12"/>
+<path d="M80-10V112M-10 51H172" stroke="#F7FAFF" stroke-width="37"/>
+<path d="M80-10V112M-10 51H172" stroke="#E3274C" stroke-width="19"/>
+<path d="M0 7 160 0" stroke="#E1F4FF" opacity=".28" stroke-width="4"/>
 </g>
-<g id="vlukd-booth">
-<rect x="-9" y="-8" width="156" height="290" rx="15" fill="#F4FAFD" opacity=".95"/>
-<path d="M3 26Q3-2 25-2H114Q137-2 137 26V266H3Z" fill="url(#vlukd-brick)" stroke="#98223A" stroke-width="4"/>
-<path d="M7 22Q7 4 27 4H114Q131 4 131 22" fill="none" stroke="#FFB3B7" stroke-width="6"/>
-<rect x="16" y="33" width="109" height="29" rx="5" fill="#173660" stroke="#FFE0DF" stroke-width="3"/>
-<rect x="18" y="74" width="106" height="165" rx="6" fill="url(#vlukd-glass)" stroke="#F3C6C5" stroke-width="5"/>
-<path d="M54 74V239M89 74V239M18 113H124M18 155H124M18 197H124" fill="none" stroke="#F6D4D0" stroke-width="4"/>
-<path d="M11 250H128" stroke="#9A163A" stroke-width="6"/>
-<path d="M-1 269H141" stroke="#FDD8D8" stroke-width="8" stroke-linecap="round"/>
+<path d="M10 7H146" stroke="#FFF" stroke-width="3" opacity=".5" stroke-linecap="round"/>
 </g>
-<g id="vlukd-bus">
-<rect x="-10" y="-9" width="291" height="164" rx="24" fill="#F9FCFF"/>
-<path d="M9 5H239Q267 5 271 32V133H5V27Q5 5 9 5Z" fill="url(#vlukd-brick)" stroke="#9C1C39" stroke-width="5"/>
-<rect x="20" y="19" width="233" height="51" rx="6" fill="#20496E" stroke="#F7CAD2" stroke-width="4"/>
-<rect x="20" y="78" width="234" height="40" rx="6" fill="url(#vlukd-glass)" stroke="#EBC3CC" stroke-width="4"/>
-<path d="M61 20V71M102 20V71M143 20V71M184 20V71M225 20V71M61 79V119M102 79V119M143 79V119M184 79V119M225 79V119" stroke="#CCF0F6" stroke-width="4"/>
-<path d="M11 132H258" stroke="#FF97A6" stroke-width="5"/>
-<rect x="9" y="120" width="30" height="14" rx="5" fill="#FFF7E7"/>
-<circle cx="64" cy="137" r="21" fill="#142341" stroke="#F2FBFD" stroke-width="7"/>
-<circle cx="223" cy="137" r="21" fill="#142341" stroke="#F2FBFD" stroke-width="7"/>
-<circle cx="64" cy="137" r="7" fill="#97A9C1"/><circle cx="223" cy="137" r="7" fill="#97A9C1"/>
+<g id="ukprodesk-plane">
+<path d="M-6 80 110 50 207 42Q249 45 265 62Q259 81 213 83L133 89 69 139 47 132 81 87 18 98Z" fill="#FFFFFF" stroke="#F3FCFF" stroke-width="16" stroke-linejoin="round"/>
+<path d="M-6 80 110 50 207 42Q249 45 265 62Q259 81 213 83L133 89 69 139 47 132 81 87 18 98Z" fill="url(#ukprodesk-metal)" stroke="#396DA9" stroke-width="3.5" stroke-linejoin="round"/>
+<path d="M99 50 133-4 155-4 147 47M111 84 165 133 186 129 146 83" fill="#8CC4E9" stroke="#3D6FA8" stroke-width="4"/>
+<path d="M18 82 111 60" stroke="#EB4560" stroke-width="5" stroke-linecap="round"/>
+<path d="M213 43Q244 45 251 57L231 58 216 47Z" fill="#3C719E"/>
+<path d="M23 75Q60 62 110 56" stroke="#FFF" stroke-width="5" opacity=".8"/>
+<rect x="155" y="53" width="8" height="5" rx="2.5" fill="#34638B"/><rect x="168" y="53.45" width="8" height="5" rx="2.5" fill="#34638B"/><rect x="181" y="53.9" width="8" height="5" rx="2.5" fill="#34638B"/><rect x="194" y="54.35" width="8" height="5" rx="2.5" fill="#34638B"/><rect x="207" y="54.8" width="8" height="5" rx="2.5" fill="#34638B"/><rect x="220" y="55.25" width="8" height="5" rx="2.5" fill="#34638B"/>
+<g stroke="#3B6A99" stroke-width="3"><path d="M45 126 98 87M139 0 131 45"/></g>
+<path d="M116 98q11 0 15 10l-1 12q-13 5-21-5Z" fill="#20436A" stroke="#AED8F0" stroke-width="3"/>
 </g>
-<g id="vlukd-plane">
-<path d="M-5 82 127 39 219 42 255 61 229 79 130 83 69 126 48 122 80 83 13 93Z" fill="#F5FBFE" stroke="#EDF9FF" stroke-width="15" stroke-linejoin="round"/>
-<path d="M-5 82 127 39 219 42 255 61 229 79 130 83 69 126 48 122 80 83 13 93Z" fill="url(#vlukd-metal)" stroke="#4E7BA9" stroke-width="4" stroke-linejoin="round"/>
-<path d="M108 42 133 0 152 0 147 40M111 79 158 118 180 114 143 76" fill="#B5DDEE" stroke="#42719D" stroke-width="4"/>
-<path d="M18 78 116 53" stroke="#E43E5C" stroke-width="5" stroke-linecap="round"/>
-<g fill="#3B688B"><rect x="160" y="51" width="8" height="5" rx="2.5"/><rect x="174" y="51.5" width="8" height="5" rx="2.5"/><rect x="188" y="52" width="8" height="5" rx="2.5"/><rect x="202" y="52.5" width="8" height="5" rx="2.5"/><rect x="216" y="53" width="8" height="5" rx="2.5"/></g>
+<g id="ukprodesk-booth">
+<path d="M0 5Q0-8 17-12H128Q146-9 150 5L154 279H-5Z" fill="#FAFCFF" stroke="#F7FAFE" stroke-width="11" stroke-linejoin="round"/>
+<path d="M6 29Q3 7 27 5H121Q146 7 145 28V267H6Z" fill="url(#ukprodesk-red)" stroke="#7F1732" stroke-width="5"/>
+<path d="M0 27 13-5H139L152 27Z" fill="#EB3C55" stroke="#8A1E39" stroke-width="4" stroke-linejoin="round"/>
+<path d="M20 14Q75 0 132 14" fill="none" stroke="#FFC3C0" stroke-width="4" opacity=".75"/>
+<rect x="18" y="35" width="114" height="31" rx="4" fill="#FFF4E4" stroke="#A71A37" stroke-width="4"/>
+<text x="75" y="56" fill="#142B54" font-size="15" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif" letter-spacing=".7">TELEPHONE</text>
+<rect x="17" y="77" width="115" height="164" rx="5" fill="#253F63" stroke="#FFD7D1" stroke-width="6"/>
+<rect x="21" y="82" width="106" height="154" rx="3" fill="url(#ukprodesk-glass)"/>
+<path d="M56 82V236M92 82V236M20 120H129M20 160H129M20 199H129" stroke="#F7D9D5" stroke-width="4"/>
+<path d="M26 91 48 91 26 121M63 88l23 0-24 33M101 87h15l-15 20" stroke="#D3F0FE" opacity=".65" stroke-width="3" fill="none"/>
+<path d="M9 31V264" stroke="#FF9D9F" opacity=".8" stroke-width="5"/>
+<path d="M140 34V261" stroke="#75152C" opacity=".7" stroke-width="6"/>
+<circle cx="122" cy="178" r="3" fill="#FFDAB2"/>
+<path d="M5 253H145" stroke="#94102E" stroke-width="9"/>
+<path d="M0 267H149" stroke="#FFC6CA" stroke-width="11" stroke-linecap="round"/>
 </g>
-<g id="vlukd-tower">
-<path d="M28 392H196V416H28Z" fill="#213A5D" stroke="#F8E3B4" stroke-width="8"/>
-<path d="M47 108H180V389H47Z" fill="url(#vlukd-gold)" stroke="#FEEDC5" stroke-width="8"/>
-<path d="M33 103H193V128H33Z" fill="#3D5774" stroke="#F8E7C7" stroke-width="7"/>
-<path d="M39 99 77 68H150L187 99Z" fill="#1B3D68" stroke="#F7E9C5" stroke-width="8" stroke-linejoin="round"/>
-<path d="M77 68 102 19 110-14 122 19 151 68Z" fill="#254572" stroke="#F8E6BC" stroke-width="7" stroke-linejoin="round"/>
-<path d="M108-13V-27M94 5H121" stroke="#FCECBF" stroke-width="7"/>
-<path d="M59 139H166V235H59Z" fill="#D8AD76" stroke="#815839" stroke-width="5"/>
-<circle cx="112" cy="187" r="40" fill="#FFF5DA" stroke="#304B6B" stroke-width="7"/>
-<circle cx="112" cy="187" r="32" fill="none" stroke="#D6B98C" stroke-width="2"/>
-<path d="M112 164V188L126 202" fill="none" stroke="#223D5E" stroke-width="5" stroke-linecap="round"/>
-<path d="M112.0 158.0 112.0 154.0" stroke="#5C4C39" stroke-width="2"/><path d="M126.5 161.9 128.5 158.4" stroke="#5C4C39" stroke-width="2"/><path d="M137.1 172.5 140.6 170.5" stroke="#5C4C39" stroke-width="2"/><path d="M141.0 187.0 145.0 187.0" stroke="#5C4C39" stroke-width="2"/><path d="M137.1 201.5 140.6 203.5" stroke="#5C4C39" stroke-width="2"/><path d="M126.5 212.1 128.5 215.6" stroke="#5C4C39" stroke-width="2"/><path d="M112.0 216.0 112.0 220.0" stroke="#5C4C39" stroke-width="2"/><path d="M97.5 212.1 95.5 215.6" stroke="#5C4C39" stroke-width="2"/><path d="M86.9 201.5 83.4 203.5" stroke="#5C4C39" stroke-width="2"/><path d="M83.0 187.0 79.0 187.0" stroke="#5C4C39" stroke-width="2"/><path d="M86.9 172.5 83.4 170.5" stroke="#5C4C39" stroke-width="2"/><path d="M97.5 161.9 95.5 158.4" stroke="#5C4C39" stroke-width="2"/>
-<path d="M47 255H180M47 330H180M47 373H180" stroke="#F8D7A1" stroke-width="9"/>
-<rect x="58" y="266" width="13" height="47" rx="6" fill="#2C4768"/><rect x="84" y="266" width="13" height="47" rx="6" fill="#2C4768"/><rect x="110" y="266" width="13" height="47" rx="6" fill="#2C4768"/><rect x="136" y="266" width="13" height="47" rx="6" fill="#2C4768"/><rect x="162" y="266" width="13" height="47" rx="6" fill="#2C4768"/>
-<rect x="58" y="341" width="13" height="27" rx="6" fill="#2C4768"/><rect x="84" y="341" width="13" height="27" rx="6" fill="#2C4768"/><rect x="110" y="341" width="13" height="27" rx="6" fill="#2C4768"/><rect x="136" y="341" width="13" height="27" rx="6" fill="#2C4768"/><rect x="162" y="341" width="13" height="27" rx="6" fill="#2C4768"/>
-<path d="M48 237H179" stroke="#775632" stroke-width="6"/>
+<g id="ukprodesk-tower">
+<!-- sticker outline tracing the lantern, roof and main clock-tower -->
+<path d="M31 419V105L44 96 77 65 102 22 107-7 115-30 123-6 150 66 184 101 197 113V420Z" fill="#F5FBFF" stroke="#F4FBFF" stroke-width="16" stroke-linejoin="round"/>
+<path d="M47 120H179V392H47Z" fill="url(#ukprodesk-stone)" stroke="#C78E4F" stroke-width="5"/>
+<path d="M152 126H179V390H152Z" fill="#714A30" opacity=".24"/>
+<path d="M53 123V389" stroke="#FFF0CE" stroke-width="4" opacity=".95"/>
+<path d="M75 120V392M152 120V392" stroke="#9B6538" stroke-width="2" opacity=".7"/>
+<path d="M32 106H193V136H32Z" fill="#D3A260" stroke="#F6D9A8" stroke-width="7"/>
+<path d="M40 100 77 65 148 65 184 100Z" fill="url(#ukprodesk-slate)" stroke="#FBE0AE" stroke-width="7" stroke-linejoin="round"/>
+<path d="M79 66 107 17 115-19 124 15 149 66Z" fill="#20436D" stroke="#FFE9B6" stroke-width="7" stroke-linejoin="round"/>
+<path d="M112-18V-39M100 2h25" stroke="#F9E6BA" stroke-width="5" stroke-linecap="round"/>
+<path d="M88 76V92" stroke="#BED5E5" stroke-width="2" opacity=".65"/><path d="M98 76.75V91.8" stroke="#BED5E5" stroke-width="2" opacity=".65"/><path d="M108 77.5V91.6" stroke="#BED5E5" stroke-width="2" opacity=".65"/><path d="M118 78.25V91.4" stroke="#BED5E5" stroke-width="2" opacity=".65"/><path d="M128 79V91.2" stroke="#BED5E5" stroke-width="2" opacity=".65"/><path d="M138 79.75V91" stroke="#BED5E5" stroke-width="2" opacity=".65"/>
+<path d="M63 137H170V255H63Z" fill="#D9AD6F" stroke="#8B613D" stroke-width="5"/>
+<path d="M66 142H167V150H66Z" fill="#FFEAB8" opacity=".72"/>
+<circle cx="115" cy="193" r="48" fill="#D8A05B" stroke="#FFEABE" stroke-width="7"/>
+<circle cx="115" cy="193" r="40" fill="url(#ukprodesk-clockGlow)" stroke="#243B61" stroke-width="6"/>
+<circle cx="115" cy="193" r="33" fill="none" stroke="#8F7354" stroke-width="1.7"/>
+<path d="M115.0 161.0 115.0 157.0" stroke="#2E4760" stroke-width="2.8" stroke-linecap="round"/><path d="M131.0 165.3 133.0 161.8" stroke="#2E4760" stroke-width="1.7" stroke-linecap="round"/><path d="M142.7 177.0 146.2 175.0" stroke="#2E4760" stroke-width="1.7" stroke-linecap="round"/><path d="M147.0 193.0 151.0 193.0" stroke="#2E4760" stroke-width="2.8" stroke-linecap="round"/><path d="M142.7 209.0 146.2 211.0" stroke="#2E4760" stroke-width="1.7" stroke-linecap="round"/><path d="M131.0 220.7 133.0 224.2" stroke="#2E4760" stroke-width="1.7" stroke-linecap="round"/><path d="M115.0 225.0 115.0 229.0" stroke="#2E4760" stroke-width="2.8" stroke-linecap="round"/><path d="M99.0 220.7 97.0 224.2" stroke="#2E4760" stroke-width="1.7" stroke-linecap="round"/><path d="M87.3 209.0 83.8 211.0" stroke="#2E4760" stroke-width="1.7" stroke-linecap="round"/><path d="M83.0 193.0 79.0 193.0" stroke="#2E4760" stroke-width="2.8" stroke-linecap="round"/><path d="M87.3 177.0 83.8 175.0" stroke="#2E4760" stroke-width="1.7" stroke-linecap="round"/><path d="M99.0 165.3 97.0 161.8" stroke="#2E4760" stroke-width="1.7" stroke-linecap="round"/>
+<path d="M115 173V193L131 207" fill="none" stroke="#1B3653" stroke-width="5" stroke-linecap="round"/>
+<circle cx="115" cy="193" r="4" fill="#B97D44" stroke="#1B3653" stroke-width="1"/>
+<path d="M52 265H177M52 337H177M52 382H177" stroke="#FFE1A3" stroke-width="10"/>
+<path d="M47 275H180" stroke="#8F6237" stroke-width="3"/>
+<g><path d="M54 294q0-8 8-8t8 8v37h-16Z" fill="#243D5A" stroke="#F6DCAC" stroke-width="2"/><path d="M57 299v25" stroke="#D8A05B" stroke-width="2" opacity=".85"/></g><g><path d="M80 294q0-8 8-8t8 8v37h-16Z" fill="#243D5A" stroke="#F6DCAC" stroke-width="2"/><path d="M83 299v25" stroke="#D8A05B" stroke-width="2" opacity=".85"/></g><g><path d="M106 294q0-8 8-8t8 8v37h-16Z" fill="#243D5A" stroke="#F6DCAC" stroke-width="2"/><path d="M109 299v25" stroke="#D8A05B" stroke-width="2" opacity=".85"/></g><g><path d="M132 294q0-8 8-8t8 8v37h-16Z" fill="#243D5A" stroke="#F6DCAC" stroke-width="2"/><path d="M135 299v25" stroke="#D8A05B" stroke-width="2" opacity=".85"/></g><g><path d="M158 294q0-8 8-8t8 8v37h-16Z" fill="#243D5A" stroke="#F6DCAC" stroke-width="2"/><path d="M161 299v25" stroke="#D8A05B" stroke-width="2" opacity=".85"/></g>
+<path d="M57 350v27" stroke="#3E4F58" stroke-width="12" stroke-linecap="round"/><path d="M87 350v27" stroke="#3E4F58" stroke-width="12" stroke-linecap="round"/><path d="M117 350v27" stroke="#3E4F58" stroke-width="12" stroke-linecap="round"/><path d="M147 350v27" stroke="#3E4F58" stroke-width="12" stroke-linecap="round"/>
+<path d="M41 388H190V419H41Z" fill="#B7864B" stroke="#F4D9A6" stroke-width="7"/>
+<path d="M50 397H182" stroke="#FFE7B7" stroke-width="4"/>
+<g fill="#FFE9B6"><rect x="60" y="271" width="7" height="8" rx="2"/><rect x="82" y="271" width="7" height="8" rx="2"/><rect x="104" y="271" width="7" height="8" rx="2"/><rect x="126" y="271" width="7" height="8" rx="2"/><rect x="148" y="271" width="7" height="8" rx="2"/></g>
 </g>
-</defs><rect width="1920" height="720" fill="url(#vlukd-night)"/><rect width="1920" height="720" fill="url(#vlukd-light)"/><path d="M-100 0 410 250M1830-100 2140 200M-60 740 325 500" stroke="#DCEAFF" stroke-width="80" fill="none" opacity=".06"/><path d="M-100 0 410 250M1830-100 2140 200M-60 740 325 500" stroke="#EF476B" stroke-width="31" fill="none" opacity=".08"/><rect width="1920" height="720" fill="url(#vlukd-grain)"/><g opacity=".23" fill="#05142F">
-<path d="M1090 607v-82h25v-32h8v-25h17v23h7v37h19v-63h16v-49h12v-29h12v29h11v52h17v40h40v-58h19v-64h25v28h14v53h30v-60h31v-35h19v35h22v55h24v-44h35v44h30v-75h18v-32h13v32h24v75h31v-65h35v65h20v-48h37v48h22v-55h19v55h38v-38h32v38h20v-49h25v49h30v150H1090Z"/>
-<path d="M1100 603H1910V616H1100Z"/></g><g fill="#B9D6F6" opacity=".62"><circle cx="75" cy="170" r="2"/><circle cx="356" cy="139" r="2"/><circle cx="378" cy="500" r="2"/><circle cx="1446" cy="116" r="2"/><circle cx="1800" cy="290" r="2"/><circle cx="1756" cy="610" r="2"/></g>
-<g stroke="#94C3ED" stroke-width="2.5" stroke-linecap="round" opacity=".50"><path d="M63 255v20m-10-10h20M1790 165v16m-8-8h16M1370 575v20m-10-10h20"/></g>
-<path d="M0 355Q102 304 233 266" fill="none" stroke="#BFD9F5" stroke-width="3" stroke-dasharray="9 14" opacity=".54"/>
-<path d="M1705 320Q1800 276 1880 330" fill="none" stroke="#CDE4FF" stroke-width="3" stroke-dasharray="8 15" opacity=".48"/>
-<g filter="url(#vlukd-shadow)">
-<use href="#vlukd-plane" transform="translate(118 140) rotate(-13 125 62) scale(.74)"/>
-<use href="#vlukd-booth" transform="translate(110 345) rotate(-9 70 140) scale(.78)"/>
-<use href="#vlukd-tower" transform="translate(1450 152) scale(.90)"/>
-<use href="#vlukd-flag" transform="translate(1700 167) rotate(10 80 51) scale(.76)"/>
-<use href="#vlukd-bus" transform="translate(1674 462) rotate(-6 130 70) scale(.71)"/>
+<g id="ukprodesk-bus">
+<!-- white vinyl sticker outline -->
+<path d="M-12 27Q-12-11 24-12H236Q276-12 286 33V135Q284 154 266 158H-10Z" fill="#F5FBFF" stroke="#F5FBFF" stroke-width="13" stroke-linejoin="round"/>
+<path d="M9 1H239Q264 1 272 28V137H3V28Q3 1 9 1Z" fill="url(#ukprodesk-red)" stroke="#9C1837" stroke-width="5"/>
+<path d="M13 10H239Q258 10 262 30" stroke="#FF9AA4" stroke-width="5" fill="none" opacity=".7"/>
+<rect x="15" y="21" width="239" height="49" rx="6" fill="#153A66" stroke="#FDE0E1" stroke-width="4"/>
+<rect x="15" y="80" width="239" height="40" rx="5" fill="url(#ukprodesk-glass)" stroke="#FAD7D9" stroke-width="4"/>
+<path d="M55 23V70M55 80v40" stroke="#D7F1FF" stroke-width="3.2"/><path d="M95 23V70M95 80v40" stroke="#D7F1FF" stroke-width="3.2"/><path d="M135 23V70M135 80v40" stroke="#D7F1FF" stroke-width="3.2"/><path d="M175 23V70M175 80v40" stroke="#D7F1FF" stroke-width="3.2"/><path d="M215 23V70M215 80v40" stroke="#D7F1FF" stroke-width="3.2"/>
+<path d="M24 28l17 0-18 20" stroke="#C8EDFF" stroke-width="2.2" opacity=".62" fill="none"/><path d="M64 28l17 0-18 20" stroke="#C8EDFF" stroke-width="2.2" opacity=".62" fill="none"/><path d="M104 28l17 0-18 20" stroke="#C8EDFF" stroke-width="2.2" opacity=".62" fill="none"/><path d="M144 28l17 0-18 20" stroke="#C8EDFF" stroke-width="2.2" opacity=".62" fill="none"/><path d="M184 28l17 0-18 20" stroke="#C8EDFF" stroke-width="2.2" opacity=".62" fill="none"/><path d="M224 28l17 0-18 20" stroke="#C8EDFF" stroke-width="2.2" opacity=".62" fill="none"/>
+<path d="M15 75H259" stroke="#FFCAD0" stroke-width="7"/>
+<path d="M14 126H261" stroke="#F5A3AE" stroke-width="5"/>
+<path d="M244 5q21 9 24 25v92l-14 11V17Z" fill="#8E1330" opacity=".32"/>
+<path d="M247 85V124" stroke="#FFE7EB" stroke-width="4"/>
+<rect x="16" y="134" width="242" height="8" rx="4" fill="#8B1931"/>
+<rect x="19" y="130" width="29" height="12" rx="3" fill="#FFF1C7"/>
+<rect x="241" y="128" width="19" height="13" rx="4" fill="#FFCFB0"/>
+<circle cx="61" cy="142" r="23" fill="#121D39" stroke="#F6FAFE" stroke-width="7"/>
+<circle cx="218" cy="142" r="23" fill="#121D39" stroke="#F6FAFE" stroke-width="7"/>
+<circle cx="61" cy="142" r="10" fill="#90A1B9" stroke="#E1EBF4" stroke-width="3"/>
+<circle cx="218" cy="142" r="10" fill="#90A1B9" stroke="#E1EBF4" stroke-width="3"/>
+<path d="M55 142h12M212 142h12" stroke="#364D67" stroke-width="2"/>
+</g>
+</defs><rect width="1920" height="720" fill="url(#ukprodesk-night)"/>
+<ellipse cx="1650" cy="410" rx="460" ry="350" fill="url(#ukprodesk-aura)"/>
+<g opacity=".08" stroke="#E0F1FE" stroke-width="90" fill="none"><path d="M-140-50 340 260M1770-100 2150 250M-100 770 360 480"/></g>
+<g opacity=".11" stroke="#E94165" stroke-width="35" fill="none"><path d="M-140-50 340 260M1770-100 2150 250M-100 770 360 480"/></g>
+<rect width="1920" height="720" fill="url(#ukprodesk-dot)"/><g opacity=".28" fill="#061631">
+<path d="M1100 600v-70h16v-36h25v36h21v-80h12v-25h19v25h22v79h24v-44h18v-55h32v55h26v-84h14v-33h13v33h16v87h32v-110h22v-57h11v-44h11v44h22v57h23v110h24v-67h16v-45h24v45h18v60h27v-44h18v-56h29v56h18v40h41v-70h20v-30h12v30h20v70h20v-42h34v42h40v-33h29v33h20V660H1100Z"/>
+</g>
+<g fill="#E6A75A" opacity=".42"><rect x="1155" y="535" width="4.5" height="7" rx="1.5"/><rect x="1178" y="549" width="4.5" height="7" rx="1.5"/><rect x="1201" y="563" width="4.5" height="7" rx="1.5"/><rect x="1224" y="577" width="4.5" height="7" rx="1.5"/><rect x="1247" y="535" width="4.5" height="7" rx="1.5"/><rect x="1270" y="549" width="4.5" height="7" rx="1.5"/><rect x="1293" y="563" width="4.5" height="7" rx="1.5"/><rect x="1316" y="577" width="4.5" height="7" rx="1.5"/><rect x="1339" y="535" width="4.5" height="7" rx="1.5"/><rect x="1362" y="549" width="4.5" height="7" rx="1.5"/><rect x="1385" y="563" width="4.5" height="7" rx="1.5"/><rect x="1408" y="577" width="4.5" height="7" rx="1.5"/><rect x="1431" y="535" width="4.5" height="7" rx="1.5"/><rect x="1454" y="549" width="4.5" height="7" rx="1.5"/><rect x="1477" y="563" width="4.5" height="7" rx="1.5"/><rect x="1500" y="577" width="4.5" height="7" rx="1.5"/><rect x="1523" y="535" width="4.5" height="7" rx="1.5"/><rect x="1546" y="549" width="4.5" height="7" rx="1.5"/><rect x="1569" y="563" width="4.5" height="7" rx="1.5"/><rect x="1592" y="577" width="4.5" height="7" rx="1.5"/><rect x="1615" y="535" width="4.5" height="7" rx="1.5"/><rect x="1638" y="549" width="4.5" height="7" rx="1.5"/><rect x="1661" y="563" width="4.5" height="7" rx="1.5"/><rect x="1684" y="577" width="4.5" height="7" rx="1.5"/><rect x="1707" y="535" width="4.5" height="7" rx="1.5"/><rect x="1730" y="549" width="4.5" height="7" rx="1.5"/><rect x="1753" y="563" width="4.5" height="7" rx="1.5"/><rect x="1776" y="577" width="4.5" height="7" rx="1.5"/><rect x="1799" y="535" width="4.5" height="7" rx="1.5"/><rect x="1822" y="549" width="4.5" height="7" rx="1.5"/></g>
+<path d="M1190 634Q1280 597 1390 626T1620 626T1850 629" fill="none" stroke="#B5D6F0" stroke-width="3" opacity=".24"/>
+<path d="M1190 642H1890" stroke="#F2CE8E" opacity=".23" stroke-width="3"/>
+<g fill="none" stroke="#63A7D8" opacity=".21" stroke-width="2"><path d="M1190 652h110m53 7h70m54-8h130m32 7h140m-350 10h110m140 0h80"/></g>
+<g opacity=".58" stroke="#B6DFFD" stroke-width="3" fill="none" stroke-dasharray="8 15"><path d="M0 350Q135 272 279 278"/><path d="M1673 345Q1803 266 1910 344"/></g>
+<g filter="url(#ukprodesk-drop)">
+<use href="#ukprodesk-plane" transform="translate(98 134) scale(.74) rotate(-8 130 66)"/>
+<use href="#ukprodesk-booth" transform="translate(109 345) scale(.79) rotate(-7 75 140)"/>
+<use href="#ukprodesk-tower" transform="translate(1446 145) scale(.90)"/>
+<use href="#ukprodesk-flag" transform="translate(1692 148) scale(.77) rotate(10 80 51)"/>
+<use href="#ukprodesk-bus" transform="translate(1660 457) scale(.75) rotate(-6 140 80)"/>
+</g>
+<g fill="none" stroke="#E1F5FF" stroke-linecap="round" stroke-width="3" opacity=".55">
+<path d="M1230 200q-4-25 24-29 18-23 41 3 22-1 24 26Z"/>
+<path d="M434 504q-5-14 11-17 12-16 24-2 11-1 12 19Z"/>
+</g>
+<g stroke="#AEDBFF" opacity=".45" stroke-width="2.5"><path d="M1357 575v22m-11-11h22M1810 128v17m-9-8h17M69 254v19m-10-10h20"/></g></svg>
+<svg class="vl-uk-art-mobile" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 1030" preserveAspectRatio="xMidYMid slice"><defs>
+<linearGradient id="ukpromob-night" x2="1" y2=".85"><stop stop-color="#07142E"/><stop offset=".45" stop-color="#0B2555"/><stop offset="1" stop-color="#123A75"/></linearGradient>
+<radialGradient id="ukpromob-aura"><stop stop-color="#65B5ED" stop-opacity=".25"/><stop offset="1" stop-color="#3774BD" stop-opacity="0"/></radialGradient>
+<linearGradient id="ukpromob-stone" x2="1" y2=".16"><stop stop-color="#FCE5B1"/><stop offset=".18" stop-color="#E0B06A"/><stop offset=".42" stop-color="#FFD796"/><stop offset=".73" stop-color="#D39A53"/><stop offset="1" stop-color="#88613A"/></linearGradient>
+<linearGradient id="ukpromob-red" x2=".94" y2=".6"><stop stop-color="#FF6971"/><stop offset=".25" stop-color="#F73D53"/><stop offset=".6" stop-color="#D81A3B"/><stop offset="1" stop-color="#861635"/></linearGradient>
+<linearGradient id="ukpromob-glass" x2=".34" y2="1"><stop stop-color="#C9F1FF"/><stop offset=".35" stop-color="#6EB2DE"/><stop offset="1" stop-color="#1A456E"/></linearGradient>
+<linearGradient id="ukpromob-metal" x2=".85" y2="1"><stop stop-color="#FFFFFF"/><stop offset=".35" stop-color="#E1F4FC"/><stop offset=".65" stop-color="#B1D9E9"/><stop offset="1" stop-color="#618DBB"/></linearGradient>
+<linearGradient id="ukpromob-slate" x2="1" y2=".4"><stop stop-color="#3D6195"/><stop offset=".5" stop-color="#1F426C"/><stop offset="1" stop-color="#12294C"/></linearGradient>
+<radialGradient id="ukpromob-clockGlow"><stop stop-color="#FFFBE5"/><stop offset=".64" stop-color="#FFE7A9"/><stop offset="1" stop-color="#E9B763"/></radialGradient>
+<filter id="ukpromob-drop" x="-50%" y="-50%" width="200%" height="210%"><feDropShadow dx="0" dy="11" stdDeviation="9" flood-color="#000818" flood-opacity=".45"/></filter>
+<filter id="ukpromob-halo" x="-55%" y="-55%" width="210%" height="210%"><feGaussianBlur stdDeviation="13"/></filter>
+<pattern id="ukpromob-dot" width="37" height="37" patternUnits="userSpaceOnUse"><circle cx="4" cy="5" r="1.2" fill="#A6D8FF" opacity=".13"/></pattern>
+<g id="ukpromob-flag">
+<rect x="-12" y="-12" width="184" height="126" rx="15" fill="#F5FAFF" stroke="#C7DDEF" stroke-width="2"/>
+<rect width="160" height="102" rx="6" fill="#174489"/>
+<clipPath id="ukpromob-fclip"><rect width="160" height="102" rx="6"/></clipPath>
+<g clip-path="url(#ukpromob-fclip)">
+<path d="M-12-8 172 110M172-8-12 110" stroke="#F5FAFE" stroke-width="28"/>
+<path d="M-12-8 172 110M172-8-12 110" stroke="#DB2649" stroke-width="12"/>
+<path d="M80-10V112M-10 51H172" stroke="#F7FAFF" stroke-width="37"/>
+<path d="M80-10V112M-10 51H172" stroke="#E3274C" stroke-width="19"/>
+<path d="M0 7 160 0" stroke="#E1F4FF" opacity=".28" stroke-width="4"/>
+</g>
+<path d="M10 7H146" stroke="#FFF" stroke-width="3" opacity=".5" stroke-linecap="round"/>
+</g>
+<g id="ukpromob-plane">
+<path d="M-6 80 110 50 207 42Q249 45 265 62Q259 81 213 83L133 89 69 139 47 132 81 87 18 98Z" fill="#FFFFFF" stroke="#F3FCFF" stroke-width="16" stroke-linejoin="round"/>
+<path d="M-6 80 110 50 207 42Q249 45 265 62Q259 81 213 83L133 89 69 139 47 132 81 87 18 98Z" fill="url(#ukpromob-metal)" stroke="#396DA9" stroke-width="3.5" stroke-linejoin="round"/>
+<path d="M99 50 133-4 155-4 147 47M111 84 165 133 186 129 146 83" fill="#8CC4E9" stroke="#3D6FA8" stroke-width="4"/>
+<path d="M18 82 111 60" stroke="#EB4560" stroke-width="5" stroke-linecap="round"/>
+<path d="M213 43Q244 45 251 57L231 58 216 47Z" fill="#3C719E"/>
+<path d="M23 75Q60 62 110 56" stroke="#FFF" stroke-width="5" opacity=".8"/>
+<rect x="155" y="53" width="8" height="5" rx="2.5" fill="#34638B"/><rect x="168" y="53.45" width="8" height="5" rx="2.5" fill="#34638B"/><rect x="181" y="53.9" width="8" height="5" rx="2.5" fill="#34638B"/><rect x="194" y="54.35" width="8" height="5" rx="2.5" fill="#34638B"/><rect x="207" y="54.8" width="8" height="5" rx="2.5" fill="#34638B"/><rect x="220" y="55.25" width="8" height="5" rx="2.5" fill="#34638B"/>
+<g stroke="#3B6A99" stroke-width="3"><path d="M45 126 98 87M139 0 131 45"/></g>
+<path d="M116 98q11 0 15 10l-1 12q-13 5-21-5Z" fill="#20436A" stroke="#AED8F0" stroke-width="3"/>
+</g>
+<g id="ukpromob-booth">
+<path d="M0 5Q0-8 17-12H128Q146-9 150 5L154 279H-5Z" fill="#FAFCFF" stroke="#F7FAFE" stroke-width="11" stroke-linejoin="round"/>
+<path d="M6 29Q3 7 27 5H121Q146 7 145 28V267H6Z" fill="url(#ukpromob-red)" stroke="#7F1732" stroke-width="5"/>
+<path d="M0 27 13-5H139L152 27Z" fill="#EB3C55" stroke="#8A1E39" stroke-width="4" stroke-linejoin="round"/>
+<path d="M20 14Q75 0 132 14" fill="none" stroke="#FFC3C0" stroke-width="4" opacity=".75"/>
+<rect x="18" y="35" width="114" height="31" rx="4" fill="#FFF4E4" stroke="#A71A37" stroke-width="4"/>
+<text x="75" y="56" fill="#142B54" font-size="15" font-weight="800" text-anchor="middle" font-family="Arial, sans-serif" letter-spacing=".7">TELEPHONE</text>
+<rect x="17" y="77" width="115" height="164" rx="5" fill="#253F63" stroke="#FFD7D1" stroke-width="6"/>
+<rect x="21" y="82" width="106" height="154" rx="3" fill="url(#ukpromob-glass)"/>
+<path d="M56 82V236M92 82V236M20 120H129M20 160H129M20 199H129" stroke="#F7D9D5" stroke-width="4"/>
+<path d="M26 91 48 91 26 121M63 88l23 0-24 33M101 87h15l-15 20" stroke="#D3F0FE" opacity=".65" stroke-width="3" fill="none"/>
+<path d="M9 31V264" stroke="#FF9D9F" opacity=".8" stroke-width="5"/>
+<path d="M140 34V261" stroke="#75152C" opacity=".7" stroke-width="6"/>
+<circle cx="122" cy="178" r="3" fill="#FFDAB2"/>
+<path d="M5 253H145" stroke="#94102E" stroke-width="9"/>
+<path d="M0 267H149" stroke="#FFC6CA" stroke-width="11" stroke-linecap="round"/>
+</g>
+<g id="ukpromob-tower">
+<!-- sticker outline tracing the lantern, roof and main clock-tower -->
+<path d="M31 419V105L44 96 77 65 102 22 107-7 115-30 123-6 150 66 184 101 197 113V420Z" fill="#F5FBFF" stroke="#F4FBFF" stroke-width="16" stroke-linejoin="round"/>
+<path d="M47 120H179V392H47Z" fill="url(#ukpromob-stone)" stroke="#C78E4F" stroke-width="5"/>
+<path d="M152 126H179V390H152Z" fill="#714A30" opacity=".24"/>
+<path d="M53 123V389" stroke="#FFF0CE" stroke-width="4" opacity=".95"/>
+<path d="M75 120V392M152 120V392" stroke="#9B6538" stroke-width="2" opacity=".7"/>
+<path d="M32 106H193V136H32Z" fill="#D3A260" stroke="#F6D9A8" stroke-width="7"/>
+<path d="M40 100 77 65 148 65 184 100Z" fill="url(#ukpromob-slate)" stroke="#FBE0AE" stroke-width="7" stroke-linejoin="round"/>
+<path d="M79 66 107 17 115-19 124 15 149 66Z" fill="#20436D" stroke="#FFE9B6" stroke-width="7" stroke-linejoin="round"/>
+<path d="M112-18V-39M100 2h25" stroke="#F9E6BA" stroke-width="5" stroke-linecap="round"/>
+<path d="M88 76V92" stroke="#BED5E5" stroke-width="2" opacity=".65"/><path d="M98 76.75V91.8" stroke="#BED5E5" stroke-width="2" opacity=".65"/><path d="M108 77.5V91.6" stroke="#BED5E5" stroke-width="2" opacity=".65"/><path d="M118 78.25V91.4" stroke="#BED5E5" stroke-width="2" opacity=".65"/><path d="M128 79V91.2" stroke="#BED5E5" stroke-width="2" opacity=".65"/><path d="M138 79.75V91" stroke="#BED5E5" stroke-width="2" opacity=".65"/>
+<path d="M63 137H170V255H63Z" fill="#D9AD6F" stroke="#8B613D" stroke-width="5"/>
+<path d="M66 142H167V150H66Z" fill="#FFEAB8" opacity=".72"/>
+<circle cx="115" cy="193" r="48" fill="#D8A05B" stroke="#FFEABE" stroke-width="7"/>
+<circle cx="115" cy="193" r="40" fill="url(#ukpromob-clockGlow)" stroke="#243B61" stroke-width="6"/>
+<circle cx="115" cy="193" r="33" fill="none" stroke="#8F7354" stroke-width="1.7"/>
+<path d="M115.0 161.0 115.0 157.0" stroke="#2E4760" stroke-width="2.8" stroke-linecap="round"/><path d="M131.0 165.3 133.0 161.8" stroke="#2E4760" stroke-width="1.7" stroke-linecap="round"/><path d="M142.7 177.0 146.2 175.0" stroke="#2E4760" stroke-width="1.7" stroke-linecap="round"/><path d="M147.0 193.0 151.0 193.0" stroke="#2E4760" stroke-width="2.8" stroke-linecap="round"/><path d="M142.7 209.0 146.2 211.0" stroke="#2E4760" stroke-width="1.7" stroke-linecap="round"/><path d="M131.0 220.7 133.0 224.2" stroke="#2E4760" stroke-width="1.7" stroke-linecap="round"/><path d="M115.0 225.0 115.0 229.0" stroke="#2E4760" stroke-width="2.8" stroke-linecap="round"/><path d="M99.0 220.7 97.0 224.2" stroke="#2E4760" stroke-width="1.7" stroke-linecap="round"/><path d="M87.3 209.0 83.8 211.0" stroke="#2E4760" stroke-width="1.7" stroke-linecap="round"/><path d="M83.0 193.0 79.0 193.0" stroke="#2E4760" stroke-width="2.8" stroke-linecap="round"/><path d="M87.3 177.0 83.8 175.0" stroke="#2E4760" stroke-width="1.7" stroke-linecap="round"/><path d="M99.0 165.3 97.0 161.8" stroke="#2E4760" stroke-width="1.7" stroke-linecap="round"/>
+<path d="M115 173V193L131 207" fill="none" stroke="#1B3653" stroke-width="5" stroke-linecap="round"/>
+<circle cx="115" cy="193" r="4" fill="#B97D44" stroke="#1B3653" stroke-width="1"/>
+<path d="M52 265H177M52 337H177M52 382H177" stroke="#FFE1A3" stroke-width="10"/>
+<path d="M47 275H180" stroke="#8F6237" stroke-width="3"/>
+<g><path d="M54 294q0-8 8-8t8 8v37h-16Z" fill="#243D5A" stroke="#F6DCAC" stroke-width="2"/><path d="M57 299v25" stroke="#D8A05B" stroke-width="2" opacity=".85"/></g><g><path d="M80 294q0-8 8-8t8 8v37h-16Z" fill="#243D5A" stroke="#F6DCAC" stroke-width="2"/><path d="M83 299v25" stroke="#D8A05B" stroke-width="2" opacity=".85"/></g><g><path d="M106 294q0-8 8-8t8 8v37h-16Z" fill="#243D5A" stroke="#F6DCAC" stroke-width="2"/><path d="M109 299v25" stroke="#D8A05B" stroke-width="2" opacity=".85"/></g><g><path d="M132 294q0-8 8-8t8 8v37h-16Z" fill="#243D5A" stroke="#F6DCAC" stroke-width="2"/><path d="M135 299v25" stroke="#D8A05B" stroke-width="2" opacity=".85"/></g><g><path d="M158 294q0-8 8-8t8 8v37h-16Z" fill="#243D5A" stroke="#F6DCAC" stroke-width="2"/><path d="M161 299v25" stroke="#D8A05B" stroke-width="2" opacity=".85"/></g>
+<path d="M57 350v27" stroke="#3E4F58" stroke-width="12" stroke-linecap="round"/><path d="M87 350v27" stroke="#3E4F58" stroke-width="12" stroke-linecap="round"/><path d="M117 350v27" stroke="#3E4F58" stroke-width="12" stroke-linecap="round"/><path d="M147 350v27" stroke="#3E4F58" stroke-width="12" stroke-linecap="round"/>
+<path d="M41 388H190V419H41Z" fill="#B7864B" stroke="#F4D9A6" stroke-width="7"/>
+<path d="M50 397H182" stroke="#FFE7B7" stroke-width="4"/>
+<g fill="#FFE9B6"><rect x="60" y="271" width="7" height="8" rx="2"/><rect x="82" y="271" width="7" height="8" rx="2"/><rect x="104" y="271" width="7" height="8" rx="2"/><rect x="126" y="271" width="7" height="8" rx="2"/><rect x="148" y="271" width="7" height="8" rx="2"/></g>
+</g>
+<g id="ukpromob-bus">
+<!-- white vinyl sticker outline -->
+<path d="M-12 27Q-12-11 24-12H236Q276-12 286 33V135Q284 154 266 158H-10Z" fill="#F5FBFF" stroke="#F5FBFF" stroke-width="13" stroke-linejoin="round"/>
+<path d="M9 1H239Q264 1 272 28V137H3V28Q3 1 9 1Z" fill="url(#ukpromob-red)" stroke="#9C1837" stroke-width="5"/>
+<path d="M13 10H239Q258 10 262 30" stroke="#FF9AA4" stroke-width="5" fill="none" opacity=".7"/>
+<rect x="15" y="21" width="239" height="49" rx="6" fill="#153A66" stroke="#FDE0E1" stroke-width="4"/>
+<rect x="15" y="80" width="239" height="40" rx="5" fill="url(#ukpromob-glass)" stroke="#FAD7D9" stroke-width="4"/>
+<path d="M55 23V70M55 80v40" stroke="#D7F1FF" stroke-width="3.2"/><path d="M95 23V70M95 80v40" stroke="#D7F1FF" stroke-width="3.2"/><path d="M135 23V70M135 80v40" stroke="#D7F1FF" stroke-width="3.2"/><path d="M175 23V70M175 80v40" stroke="#D7F1FF" stroke-width="3.2"/><path d="M215 23V70M215 80v40" stroke="#D7F1FF" stroke-width="3.2"/>
+<path d="M24 28l17 0-18 20" stroke="#C8EDFF" stroke-width="2.2" opacity=".62" fill="none"/><path d="M64 28l17 0-18 20" stroke="#C8EDFF" stroke-width="2.2" opacity=".62" fill="none"/><path d="M104 28l17 0-18 20" stroke="#C8EDFF" stroke-width="2.2" opacity=".62" fill="none"/><path d="M144 28l17 0-18 20" stroke="#C8EDFF" stroke-width="2.2" opacity=".62" fill="none"/><path d="M184 28l17 0-18 20" stroke="#C8EDFF" stroke-width="2.2" opacity=".62" fill="none"/><path d="M224 28l17 0-18 20" stroke="#C8EDFF" stroke-width="2.2" opacity=".62" fill="none"/>
+<path d="M15 75H259" stroke="#FFCAD0" stroke-width="7"/>
+<path d="M14 126H261" stroke="#F5A3AE" stroke-width="5"/>
+<path d="M244 5q21 9 24 25v92l-14 11V17Z" fill="#8E1330" opacity=".32"/>
+<path d="M247 85V124" stroke="#FFE7EB" stroke-width="4"/>
+<rect x="16" y="134" width="242" height="8" rx="4" fill="#8B1931"/>
+<rect x="19" y="130" width="29" height="12" rx="3" fill="#FFF1C7"/>
+<rect x="241" y="128" width="19" height="13" rx="4" fill="#FFCFB0"/>
+<circle cx="61" cy="142" r="23" fill="#121D39" stroke="#F6FAFE" stroke-width="7"/>
+<circle cx="218" cy="142" r="23" fill="#121D39" stroke="#F6FAFE" stroke-width="7"/>
+<circle cx="61" cy="142" r="10" fill="#90A1B9" stroke="#E1EBF4" stroke-width="3"/>
+<circle cx="218" cy="142" r="10" fill="#90A1B9" stroke="#E1EBF4" stroke-width="3"/>
+<path d="M55 142h12M212 142h12" stroke="#364D67" stroke-width="2"/>
+</g>
+</defs>
+<rect width="720" height="1030" fill="url(#ukpromob-night)"/>
+<circle cx="570" cy="430" r="380" fill="url(#ukpromob-aura)"/>
+<g opacity=".08" stroke="#F6F9FF" stroke-width="110"><path d="M-130 30 270 250M610-120 870 140M-110 940 240 1110"/></g>
+<g opacity=".12" stroke="#E94A67" stroke-width="45"><path d="M-130 30 270 250M610-120 870 140M-110 940 240 1110"/></g>
+<rect width="720" height="1030" fill="url(#ukpromob-dot)"/>
+
+<g opacity=".4" fill="none" stroke="#A7D7FF" stroke-width="3"><path d="M50 230q55-33 127-3" stroke-dasharray="7 15"/><path d="M525 604q54-38 138-15" stroke-dasharray="7 16"/></g>
+<g filter="url(#ukpromob-drop)">
+<use href="#ukpromob-plane" transform="translate(36 98) scale(.61) rotate(-6 110 80)"/>
+<use href="#ukpromob-flag" transform="translate(544 101) scale(.70) rotate(9 80 51)"/>
+<use href="#ukpromob-tower" transform="translate(531 578) scale(.76)"/>
+<use href="#ukpromob-booth" transform="translate(31 785) scale(.62) rotate(-7 74 140)"/>
+<use href="#ukpromob-bus" transform="translate(397 905) scale(.69) rotate(-5 140 80)"/>
 </g></svg>
-<svg class="vl-uk-art-mobile" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 1050" preserveAspectRatio="xMidYMid slice"><defs>
-<linearGradient id="vlukm-night" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#071736"/><stop offset=".55" stop-color="#102B5B"/><stop offset="1" stop-color="#08204C"/></linearGradient>
-<radialGradient id="vlukm-light" cx=".8" cy=".5" r=".7"><stop stop-color="#336DA7" stop-opacity=".34"/><stop offset="1" stop-color="#152A57" stop-opacity="0"/></radialGradient>
-<linearGradient id="vlukm-gold" x1="0" y1="0" x2="1" y2=".3"><stop stop-color="#fff1c3"/><stop offset=".37" stop-color="#EEC578"/><stop offset=".75" stop-color="#BC8A4D"/><stop offset="1" stop-color="#F5D08C"/></linearGradient>
-<linearGradient id="vlukm-brick" x1="0" y1="0" x2=".9" y2="1"><stop stop-color="#FF6770"/><stop offset=".55" stop-color="#DB294B"/><stop offset="1" stop-color="#A8193B"/></linearGradient>
-<linearGradient id="vlukm-glass" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#B9E3F2"/><stop offset="1" stop-color="#31628A"/></linearGradient>
-<linearGradient id="vlukm-metal" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#FFFFFF"/><stop offset=".45" stop-color="#C0E2F7"/><stop offset="1" stop-color="#7BA9CB"/></linearGradient>
-<filter id="vlukm-shadow" x="-30%" y="-30%" width="160%" height="180%"><feDropShadow dx="0" dy="9" stdDeviation="7" flood-color="#020916" flood-opacity=".44"/></filter>
-<pattern id="vlukm-grain" width="38" height="38" patternUnits="userSpaceOnUse"><circle cx="4" cy="4" r="1.5" fill="#A9C7E8" opacity=".11"/></pattern>
-<g id="vlukm-flag">
-<path d="M-9-10H166Q174-10 174-2V106Q174 114 166 114H-9Q-17 114-17 106V-2Q-17-10-9-10Z" fill="#F5FAFE" opacity=".97"/>
-<rect x="0" y="0" width="160" height="102" rx="6" fill="#214680"/>
-<clipPath id="vlukm-flagClip"><rect width="160" height="102" rx="6"/></clipPath>
-<g clip-path="url(#vlukm-flagClip)"><path d="M-8-7 168 109M168-7-8 109" stroke="#F9FBFF" stroke-width="26"/><path d="M-8-7 168 109M168-7-8 109" stroke="#DA2447" stroke-width="11"/><path d="M80-7V109M-8 51H168" stroke="#F7FBFF" stroke-width="32"/><path d="M80-7V109M-8 51H168" stroke="#D82445" stroke-width="16"/></g>
-</g>
-<g id="vlukm-booth">
-<rect x="-9" y="-8" width="156" height="290" rx="15" fill="#F4FAFD" opacity=".95"/>
-<path d="M3 26Q3-2 25-2H114Q137-2 137 26V266H3Z" fill="url(#vlukm-brick)" stroke="#98223A" stroke-width="4"/>
-<path d="M7 22Q7 4 27 4H114Q131 4 131 22" fill="none" stroke="#FFB3B7" stroke-width="6"/>
-<rect x="16" y="33" width="109" height="29" rx="5" fill="#173660" stroke="#FFE0DF" stroke-width="3"/>
-<rect x="18" y="74" width="106" height="165" rx="6" fill="url(#vlukm-glass)" stroke="#F3C6C5" stroke-width="5"/>
-<path d="M54 74V239M89 74V239M18 113H124M18 155H124M18 197H124" fill="none" stroke="#F6D4D0" stroke-width="4"/>
-<path d="M11 250H128" stroke="#9A163A" stroke-width="6"/>
-<path d="M-1 269H141" stroke="#FDD8D8" stroke-width="8" stroke-linecap="round"/>
-</g>
-<g id="vlukm-bus">
-<rect x="-10" y="-9" width="291" height="164" rx="24" fill="#F9FCFF"/>
-<path d="M9 5H239Q267 5 271 32V133H5V27Q5 5 9 5Z" fill="url(#vlukm-brick)" stroke="#9C1C39" stroke-width="5"/>
-<rect x="20" y="19" width="233" height="51" rx="6" fill="#20496E" stroke="#F7CAD2" stroke-width="4"/>
-<rect x="20" y="78" width="234" height="40" rx="6" fill="url(#vlukm-glass)" stroke="#EBC3CC" stroke-width="4"/>
-<path d="M61 20V71M102 20V71M143 20V71M184 20V71M225 20V71M61 79V119M102 79V119M143 79V119M184 79V119M225 79V119" stroke="#CCF0F6" stroke-width="4"/>
-<path d="M11 132H258" stroke="#FF97A6" stroke-width="5"/>
-<rect x="9" y="120" width="30" height="14" rx="5" fill="#FFF7E7"/>
-<circle cx="64" cy="137" r="21" fill="#142341" stroke="#F2FBFD" stroke-width="7"/>
-<circle cx="223" cy="137" r="21" fill="#142341" stroke="#F2FBFD" stroke-width="7"/>
-<circle cx="64" cy="137" r="7" fill="#97A9C1"/><circle cx="223" cy="137" r="7" fill="#97A9C1"/>
-</g>
-<g id="vlukm-plane">
-<path d="M-5 82 127 39 219 42 255 61 229 79 130 83 69 126 48 122 80 83 13 93Z" fill="#F5FBFE" stroke="#EDF9FF" stroke-width="15" stroke-linejoin="round"/>
-<path d="M-5 82 127 39 219 42 255 61 229 79 130 83 69 126 48 122 80 83 13 93Z" fill="url(#vlukm-metal)" stroke="#4E7BA9" stroke-width="4" stroke-linejoin="round"/>
-<path d="M108 42 133 0 152 0 147 40M111 79 158 118 180 114 143 76" fill="#B5DDEE" stroke="#42719D" stroke-width="4"/>
-<path d="M18 78 116 53" stroke="#E43E5C" stroke-width="5" stroke-linecap="round"/>
-<g fill="#3B688B"><rect x="160" y="51" width="8" height="5" rx="2.5"/><rect x="174" y="51.5" width="8" height="5" rx="2.5"/><rect x="188" y="52" width="8" height="5" rx="2.5"/><rect x="202" y="52.5" width="8" height="5" rx="2.5"/><rect x="216" y="53" width="8" height="5" rx="2.5"/></g>
-</g>
-<g id="vlukm-tower">
-<path d="M28 392H196V416H28Z" fill="#213A5D" stroke="#F8E3B4" stroke-width="8"/>
-<path d="M47 108H180V389H47Z" fill="url(#vlukm-gold)" stroke="#FEEDC5" stroke-width="8"/>
-<path d="M33 103H193V128H33Z" fill="#3D5774" stroke="#F8E7C7" stroke-width="7"/>
-<path d="M39 99 77 68H150L187 99Z" fill="#1B3D68" stroke="#F7E9C5" stroke-width="8" stroke-linejoin="round"/>
-<path d="M77 68 102 19 110-14 122 19 151 68Z" fill="#254572" stroke="#F8E6BC" stroke-width="7" stroke-linejoin="round"/>
-<path d="M108-13V-27M94 5H121" stroke="#FCECBF" stroke-width="7"/>
-<path d="M59 139H166V235H59Z" fill="#D8AD76" stroke="#815839" stroke-width="5"/>
-<circle cx="112" cy="187" r="40" fill="#FFF5DA" stroke="#304B6B" stroke-width="7"/>
-<circle cx="112" cy="187" r="32" fill="none" stroke="#D6B98C" stroke-width="2"/>
-<path d="M112 164V188L126 202" fill="none" stroke="#223D5E" stroke-width="5" stroke-linecap="round"/>
-<path d="M112.0 158.0 112.0 154.0" stroke="#5C4C39" stroke-width="2"/><path d="M126.5 161.9 128.5 158.4" stroke="#5C4C39" stroke-width="2"/><path d="M137.1 172.5 140.6 170.5" stroke="#5C4C39" stroke-width="2"/><path d="M141.0 187.0 145.0 187.0" stroke="#5C4C39" stroke-width="2"/><path d="M137.1 201.5 140.6 203.5" stroke="#5C4C39" stroke-width="2"/><path d="M126.5 212.1 128.5 215.6" stroke="#5C4C39" stroke-width="2"/><path d="M112.0 216.0 112.0 220.0" stroke="#5C4C39" stroke-width="2"/><path d="M97.5 212.1 95.5 215.6" stroke="#5C4C39" stroke-width="2"/><path d="M86.9 201.5 83.4 203.5" stroke="#5C4C39" stroke-width="2"/><path d="M83.0 187.0 79.0 187.0" stroke="#5C4C39" stroke-width="2"/><path d="M86.9 172.5 83.4 170.5" stroke="#5C4C39" stroke-width="2"/><path d="M97.5 161.9 95.5 158.4" stroke="#5C4C39" stroke-width="2"/>
-<path d="M47 255H180M47 330H180M47 373H180" stroke="#F8D7A1" stroke-width="9"/>
-<rect x="58" y="266" width="13" height="47" rx="6" fill="#2C4768"/><rect x="84" y="266" width="13" height="47" rx="6" fill="#2C4768"/><rect x="110" y="266" width="13" height="47" rx="6" fill="#2C4768"/><rect x="136" y="266" width="13" height="47" rx="6" fill="#2C4768"/><rect x="162" y="266" width="13" height="47" rx="6" fill="#2C4768"/>
-<rect x="58" y="341" width="13" height="27" rx="6" fill="#2C4768"/><rect x="84" y="341" width="13" height="27" rx="6" fill="#2C4768"/><rect x="110" y="341" width="13" height="27" rx="6" fill="#2C4768"/><rect x="136" y="341" width="13" height="27" rx="6" fill="#2C4768"/><rect x="162" y="341" width="13" height="27" rx="6" fill="#2C4768"/>
-<path d="M48 237H179" stroke="#775632" stroke-width="6"/>
-</g>
-</defs><rect width="720" height="1050" fill="url(#vlukm-night)"/><rect width="720" height="1050" fill="url(#vlukm-light)"/><path d="M-80 0 240 160M610-60 860 120M-90 1010 170 890" fill="none" stroke="#C6E0FF" stroke-width="75" opacity=".09"/><path d="M-80 0 240 160M610-60 860 120M-90 1010 170 890" fill="none" stroke="#F14F72" stroke-width="32" opacity=".08"/><rect width="720" height="1050" fill="url(#vlukm-grain)"/><g filter="url(#vlukm-shadow)"><use href="#vlukm-plane" transform="translate(24 91) rotate(-10 120 70) scale(.62)"/><use href="#vlukm-flag" transform="translate(554 115) rotate(12 80 51) scale(.67)"/><use href="#vlukm-tower" transform="translate(532 597) scale(.68)"/><use href="#vlukm-booth" transform="translate(32 780) rotate(-8 70 140) scale(.67)"/><use href="#vlukm-bus" transform="translate(375 933) rotate(-6 140 70) scale(.72)"/></g><path d="M40 215Q105 185 211 235" fill="none" stroke="#C5DFFC" stroke-dasharray="7 14" stroke-width="3" opacity=".25"/><path d="M535 560Q610 500 684 550" fill="none" stroke="#BFD3F0" stroke-dasharray="7 14" stroke-width="3" opacity=".3"/></svg>
 </div>
 <div class="hero-inner">
 <div class="eyebrow">Colombia → Reino Unido · Londres, Inglaterra, Escocia y más</div>
