@@ -1313,6 +1313,7 @@ nav .brand-logo img{height:36px!important;max-width:164px!important;width:auto!i
 <style id="vl-fixed-orientative-prices">
 .public-price-label{font-weight:800!important;color:#0B1F3A!important}
 .public-price-sub{max-width:180px}
+.go-schengen-price-note{max-width:260px!important}
 .quick-table th:last-child,.quick-table td:last-child{white-space:nowrap;font-weight:800;color:#0B1F3A}
 .trip-origin-price{margin-top:5px;font-size:14px;font-weight:900;color:#0B1F3A;line-height:1.2}.trip-origin-price span{font-size:9.5px;font-weight:700;color:#71869A}.matrix-origin-price{margin-top:3px;font-size:9px;color:#71869A;font-weight:600}
 @media(max-width:600px){.public-price-sub{max-width:none}.trip-origin-price{font-size:13px}}
@@ -1764,7 +1765,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
 </div>
 </div>
 <div class="currency-note-cop is-visible" id="cop-currency-note">
-    El total orientativo se calcula con los días y viajeros seleccionados. Mostramos moneda de destino y equivalencia aproximada en moneda de origen.
+    El total orientativo depende de la duración y los viajeros; puede proceder de precios por tramo o referencias diarias. Mostramos moneda de destino y equivalencia aproximada en moneda de origen.
   </div>
 <section aria-label="Cómo leer esta comparación" class="comparison-intro">
 <div class="comparison-intro-icon">✓</div>
@@ -1864,8 +1865,8 @@ function goSchengenReferenceTotalPerPerson(days){
 }
 function goSchengenPriceNote(){
   const days=resultTripDays();
-  if(GO_SCHENGEN_TOTAL_TIERS.some(t=>t[0]===days))return 'Referencia comunicada para Colombia a España';
-  return 'Estimación a partir de los tramos de 7, 14, 30, 60 y 90 días';
+  if(GO_SCHENGEN_TOTAL_TIERS.some(t=>t[0]===days))return 'Referencia Colombia → España';
+  return 'Estimación entre tramos de duración, no cotizada';
 }
 function fixedOrientativeRate(key){
   const origin = normalizedOrigin();
@@ -2134,7 +2135,7 @@ function renderCard(d){
   const destDaily=resultFormatCurrencyFromEUR(fixedRate,destCur);
   let price=`<div class="public-price-label">Total orientativo · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>moneda de destino · total viaje</small></div><div class="trip-origin-price">≈ ${originTotal} <span>moneda de origen</span></div><div class="public-price-sub">${destDaily}/persona/día × ${resultTripDays()} día${resultTripDays()===1?'':'s'} × ${resultTripPeople()} viajero${resultTripPeople()===1?'':'s'}. Estimación ViajeroLatam; confirma el precio final con el proveedor.</div>`;
   if(d.key==='intermundial' && isGoSchengenLatamRoute()){
-    price=`<div class="public-price-label">Go Schengen · referencia de precio · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>total del viaje · moneda de destino</small></div><div class="trip-origin-price">≈ ${originTotal} <span>moneda de origen</span></div><div class="public-price-sub"><strong>≈ ${destDaily}/persona/día</strong> (promedio del total). ${goSchengenPriceNote()}; aplicada como referencia a rutas LATAM → Schengen. El precio final puede variar según residencia, edad, fechas y coberturas. Solo válido para destinos Schengen.</div>`;
+    price=`<div class="public-price-label">Go Schengen · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>total del viaje</small></div><div class="trip-origin-price">≈ ${originTotal} <span>moneda de origen</span></div><div class="public-price-sub go-schengen-price-note"><strong>≈ ${destDaily}/persona/día</strong> de media. ${goSchengenPriceNote()}; orientativa para otros orígenes LATAM. Solo Schengen. Confirma el precio final con Intermundial.</div>`;
   }
   if(d.key==='chapka'){
     if(chapkaPlanType()==='schengen'){
@@ -2676,7 +2677,7 @@ function applyEditSearch(){
     var originCode=originCurrency();
     var destinationCode=destinationCurrency();
     el.classList.add('is-visible');
-    el.innerHTML='<strong>Total orientativo calculado.</strong> Multiplicamos la referencia diaria por <strong>'+resultTripDays()+' día'+(resultTripDays()===1?'':'s')+'</strong> y <strong>'+resultTripPeople()+' viajero'+(resultTripPeople()===1?'':'s')+'</strong>. Mostramos la moneda del destino y una equivalencia aproximada en la moneda de origen. El precio final lo confirma el proveedor.';
+    el.innerHTML='<strong>Total orientativo calculado.</strong> Para Intermundial Go Schengen usamos referencias por duración; otras opciones pueden usar precios diarios. Viaje de <strong>'+resultTripDays()+' día'+(resultTripDays()===1?'':'s')+'</strong> y <strong>'+resultTripPeople()+' viajero'+(resultTripPeople()===1?'':'s')+'</strong>. Monedas aproximadas; confirma siempre el precio final con el proveedor.';
   };
 
   updatePillsDisplay=function(origen,dest,ida,vuelta,viajeros){
