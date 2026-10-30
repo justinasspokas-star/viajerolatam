@@ -61,13 +61,15 @@ function attach(select,kind){
  const countryField=kind==='destination'?document.getElementById(isResults?'ep-pais-destino':'vl-pais-destino'):null;
  const box=document.createElement('div');box.className='vl-place-box '+(kind==='destination'?'vl-place-right':'vl-place-left');
  const input=document.createElement('input');input.type='text';input.id=select.id+'-search';input.className='vl-place-input';
- input.autocomplete='off';input.spellcheck=false;input.placeholder=kind==='origin'?'Escribe tu país':'País, ciudad o región';
+ input.autocomplete='off';input.spellcheck=false;input.placeholder=kind==='origin'?'Escribe tu país':'¿A dónde viajas?';
  input.setAttribute('role','combobox');input.setAttribute('aria-autocomplete','list');input.setAttribute('aria-expanded','false');
  const menu=document.createElement('div');menu.className='vl-place-menu';menu.id=select.id+'-choices';menu.setAttribute('role','listbox');
  input.setAttribute('aria-controls',menu.id);
  const error=document.createElement('p');error.className='vl-place-error';error.hidden=true;error.setAttribute('role','status');
  select.parentNode.insertBefore(box,select);box.append(input,menu,error);
  select.classList.add('vl-place-original');select.dataset.placeEnhanced='1';select.tabIndex=-1;
+ // Validate the visible text input; native validation cannot focus the hidden select.
+ select.required=false;input.required=true;
  const label=document.querySelector('label[for="'+select.id+'"]');
  if(label)label.htmlFor=input.id;else input.setAttribute('aria-label',kind==='origin'?'Voy desde':'Destino');
  let chosen=null,found=[],active=-1;
@@ -130,7 +132,7 @@ function attach(select,kind){
    if(kind==='origin')item=countries.find(x=>(x.code==='es'?'espana-schengen':x.code)===val);
    if(!item)item=regions.find(x=>x.code===val)||countries.find(x=>x.code===val);
   }
-  chosen=item||null;input.value=item?item.label:(select.options[select.selectedIndex]?.textContent||'');setError('');close();
+  chosen=item||null;input.value=val?(item?item.label:(select.options[select.selectedIndex]?.textContent||'')):'';setError('');close();
  }
  sync();instances.push({select,input,autoResolve,sync,setError});
 }
