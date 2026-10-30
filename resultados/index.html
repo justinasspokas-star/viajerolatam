@@ -1993,6 +1993,29 @@ function iatiAsiaPriceNote(){
     ? 'Referencia facilitada para 1 viajero y esta duración'
     : 'Estimación matemática basada en las referencias de 15 y 30 días; duración no cotizada';
 }
+/* InterMundial go World LATAM → Asia: referencias facilitadas para 1 viajero.
+   15 dias 86,90 €; 30 dias 156,66 €. Otras duraciones: estimacion no cotizada.
+   Este calculo solo se aplica al selector Asia (20 origenes LATAM). */
+const INTERMUNDIAL_ASIA_TOTAL_TIERS=Object.freeze([[15,86.90],[30,156.66]]);
+function isIntermundialAsiaLatamRoute(){
+  return GO_SCHENGEN_LATAM.has(normalizedOrigin()) &&
+    String(window.currentSearchDest||'').toLowerCase()==='asia';
+}
+function intermundialAsiaReferenceTotalPerPerson(days){
+  const n=Math.max(1,Number(days)||1);
+  const cents=value=>Math.round((value+Number.EPSILON)*100)/100;
+  if(n===15)return 86.90;
+  if(n===30)return 156.66;
+  if(n<15)return cents(86.90*n/15);
+  if(n<30)return cents(86.90+(156.66-86.90)*(n-15)/15);
+  // >30 dias: extrapolacion proporcional desde el tramo de 30 dias.
+  return cents(156.66*n/30);
+}
+function intermundialAsiaPriceNote(){
+  return INTERMUNDIAL_ASIA_TOTAL_TIERS.some(t=>t[0]===resultTripDays())
+    ? 'Referencia de 1 viajero facilitada para esta duración'
+    : 'Estimación matemática basada en las referencias de 15 y 30 días; duración no cotizada';
+}
 function fixedOrientativeRate(key){
   const origin = normalizedOrigin();
   const dest = normalizedDest();
@@ -2009,6 +2032,10 @@ function fixedOrientativeRate(key){
   }
   if(key === 'axa' && isAxaSchengenLatamRoute()){
     return axaMiniSchengenReferenceTotalPerPerson(resultTripDays())/resultTripDays();
+  }
+  // InterMundial Asia: promedio diario calculado a partir de cada total por tramo.
+  if(key === 'intermundial' && isIntermundialAsiaLatamRoute()){
+    return intermundialAsiaReferenceTotalPerPerson(resultTripDays())/resultTripDays();
   }
   // InterMundial Reino Unido: promedio diario del importe por duración.
   if(key === 'intermundial' && isGoWorldUkLatamRoute()){
@@ -2090,6 +2117,9 @@ function resultFormatCurrencyFromEUR(eurAmount,currency){
   }
 }
 function resultTotalEUR(key){
+  if(key==='intermundial' && isIntermundialAsiaLatamRoute()){
+    return intermundialAsiaReferenceTotalPerPerson(resultTripDays())*resultTripPeople();
+  }
   if(key==='iati' && isIatiAsiaLatamRoute()){
     return iatiAsiaReferenceTotalPerPerson(resultTripDays())*resultTripPeople();
   }
@@ -2305,6 +2335,9 @@ function renderCard(d){
   }
   if(d.key==='intermundial' && isGoWorldUkLatamRoute()){
     price=`<div class="public-price-label">Go World · Reino Unido · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>total orientativo del viaje</small></div><div class="trip-origin-price">≈ ${originTotal} <span>moneda de origen</span></div><div class="public-price-sub"><strong>≈ ${destDaily}/persona/día</strong> de media. ${goWorldUkPriceNote()}. 1 mes equivale a 30 días en esta referencia. No es una tarifa universal: confirma precio final, residencia admitida y condiciones con InterMundial.</div>`;
+  }
+  if(d.key==='intermundial' && isIntermundialAsiaLatamRoute()){
+    price=`<div class="public-price-label">Go World · Asia · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>total orientativo del viaje</small></div><div class="trip-origin-price">≈ ${originTotal} <span>moneda de origen</span></div><div class="public-price-sub"><strong>≈ ${destDaily}/persona/día</strong> de media. ${intermundialAsiaPriceNote()}. Referencia orientativa para los distintos países LATAM y destinos asiáticos. Confirma la prima, elegibilidad y cobertura territorial con InterMundial.</div>`;
   }
   if(d.key==='iati' && isIatiSchengenLatamRoute()){
     price=`<div class="public-price-label">IATI · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>total del viaje</small></div><div class="trip-origin-price">≈ ${originTotal} <span>moneda de origen</span></div><div class="public-price-sub go-schengen-price-note"><strong>≈ ${destDaily}/persona/día</strong> de media. ${iatiSchengenPriceNote()}; referencia orientativa para rutas LATAM → Schengen. Comprueba el plan, la elegibilidad y el precio final en IATI.</div>`;
@@ -2860,8 +2893,10 @@ function applyEditSearch(){
     var originCode=originCurrency();
     var destinationCode=destinationCurrency();
     el.classList.add('is-visible');
-    var regionText=isIatiAsiaLatamRoute()
-      ? 'Para IATI con destino Asia usamos referencias facilitadas para 1 viajero: 15 días 52,91 € y 30 días 85,02 €. Para otras duraciones se muestran estimaciones; la prima final depende de residencia, destino y condiciones.'
+    var regionText=isIntermundialAsiaLatamRoute()
+      ? 'Para Asia usamos precios de referencia por viajero: InterMundial 15 días 86,90 € y 30 días 156,66 €; IATI 15 días 52,91 € y 30 días 85,02 €. Para otras duraciones se muestran estimaciones, no cotizaciones; confirma disponibilidad según residencia y destino.'
+      : isIatiAsiaLatamRoute()
+        ? 'Para IATI con destino Asia usamos referencias facilitadas para 1 viajero: 15 días 52,91 € y 30 días 85,02 €. Para otras duraciones se muestran estimaciones; la prima final depende de residencia, destino y condiciones.'
       : isGoWorldUkLatamRoute()
         ? 'Para InterMundial go World con destino Reino Unido usamos referencias facilitadas de 7, 14 y 30 días por persona. IATI muestra una estimación matemática +40 % respecto a esos importes, no una cotización de IATI; otros días también son estimaciones.'
       : isGoSchengenLatamRoute()
