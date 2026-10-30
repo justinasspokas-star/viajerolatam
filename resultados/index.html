@@ -2538,7 +2538,8 @@ function providerCtaUrl(d){
 }
 function renderCard(d){
   const p=providerProfile(d);
-  const unavailable=!p.eligible;
+  const pending=!!p.reviewable;
+  const unavailable=!p.eligible&&!pending;
   const pill=(txt,cls='cpill-navy')=>`<span class="cpill ${cls}">${txt}</span>`;
   const pills=[
     pill(p.medica,'cpill-green'),
@@ -2603,17 +2604,22 @@ function renderCard(d){
   if(d.key==='assist365'){
     price=`<div class="public-price-label">Precio orientativo · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>moneda de referencia · total viaje</small></div><div class="trip-origin-price">≈ ${originTotal} <span>moneda de origen</span></div><div class="public-price-sub"><strong>≈ 1,60 €/persona/día*</strong> · 5% de descuento con código <strong>VIAJEROLATAM</strong>. *Estimación orientativa; el precio final puede variar según edad, fechas, duración, residencia y promociones.</div>`;
   }
-  const availability=unavailable
+  if(pending){
+    price=`<div class="public-price-label">InterMundial · Reino Unido</div><div class="public-price">Consultar precio <small>sin cotización confirmada para este origen</small></div><div class="public-price-sub">No aplicamos el precio orientativo de otros países a esta ruta. Verifica la residencia admitida, la modalidad y la prima final con InterMundial antes de contratar.</div>`;
+  }
+  const availability=pending
     ? `<div class="availability-note no">⚠ ${p.eligibility}</div>`
-    : `<div class="availability-note ok">✓ ${p.eligibility}</div>`;
+    : unavailable
+      ? `<div class="availability-note no">⚠ ${p.eligibility}</div>`
+      : `<div class="availability-note ok">✓ ${p.eligibility}</div>`;
   const cta=unavailable
     ? `<a class="btn-contract disabled" aria-disabled="true">No disponible para este origen</a>`
-    : `<a class="btn-contract" href="${escAttr(providerCtaUrl(d))}" target="_blank" rel="nofollow sponsored noopener" onclick="trackContract('${escJs(d.name)}','${escJs(p.plan)}')">${(isSchengenToSchengenRoute()||((d.key==='intermundial'||d.key==='axa')&&isSchengenToUs()))?'Confirmar precio y elegibilidad en '+d.name+' →':d.key==='assist365'?'Ver precio con 5% descuento →':'Ver precio en '+d.name+' →'}</a>`;
+    : `<a class="btn-contract" href="${escAttr(providerCtaUrl(d))}" target="_blank" rel="nofollow sponsored noopener" onclick="trackContract('${escJs(d.name)}','${escJs(p.plan)}')">${pending?'Consultar si admite tu residencia en '+d.name+' →':(isSchengenToSchengenRoute()||((d.key==='intermundial'||d.key==='axa')&&isSchengenToUs()))?'Confirmar precio y elegibilidad en '+d.name+' →':d.key==='assist365'?'Ver precio con 5% descuento →':'Ver precio en '+d.name+' →'}</a>`;
   return `<div class="card ${unavailable?'unavailable':''}" id="card-${d.id}">
     <div class="card-body">
       <div class="card-logo-block">
         ${insurerLogoMarkup(d,'card')}
-        <div class="card-logo-meta"><div class="card-name">${d.name}</div><div class="card-plan-under-logo">${p.plan}</div><div class="card-verified">✓ datos verificados</div></div>
+        <div class="card-logo-meta"><div class="card-name">${d.name}</div><div class="card-plan-under-logo">${p.plan}</div><div class="card-verified">${pending?'⚠ Elegibilidad por confirmar':'Datos de referencia · verifica la póliza'}</div></div>
       </div>
       <div class="card-coverage">
         <div class="coverage-pills">${pills}</div>
@@ -2667,20 +2673,23 @@ function updateQuickCompare(){
   head.innerHTML=`<tr><th class="feature-head">Comparativa</th>${profiles.map(({d,p})=>`<th><div class="matrix-brand">${insurerLogoMarkup(d,'table')}<div class="matrix-brand-name">${d.name}</div><div class="matrix-plan">${p.plan}</div></div></th>`).join('')}</tr>`;
   const row=(label,fn)=>`<tr><td class="matrix-label">${label}</td>${profiles.map(({d,p})=>`<td>${fn(d,p)}</td>`).join('')}</tr>`;
   body.innerHTML=[
-    row('Disponible',(_,p)=>p.eligible?'<span class="status-ok">✓ Sí</span>':'<span class="status-no">No</span>'),
+    row('Disponible',(_,p)=>p.reviewable?'<span class="status-no">Por confirmar</span>':p.eligible?'<span class="status-ok">Según condiciones</span>':'<span class="status-no">No</span>'),
     row('Diferencial',(d,p)=>`<div class="matrix-diff">${providerDifferentiator(d,p)}</div>`),
     row('Gastos médicos',(_,p)=>p.medica),
     row('<a href="/blog/franquicia-medica-seguro-viaje/" aria-label="Qué es la franquicia médica">Franquicia · ¿qué es?</a>',(_,p)=>p.franquicia),
     row('Cancelación',(_,p)=>p.cancelacion),
     row('Equipaje',(_,p)=>p.equipaje),
     row('Total orientativo · '+resultTripLabel(),(d)=>{
+      if(providerProfile(d).reviewable)return '<strong>Consultar tarifa</strong><div class="matrix-origin-price">Residencia por verificar</div>';
       if((d.key==='intermundial'||d.key==='iati'||d.key==='axa')&&isSchengenToUs())
         return '<strong>≈ '+euroFixed(resultTotalEUR(d.key))+' €</strong><div class="matrix-origin-price">≈ '+resultFormatCurrencyFromEUR(resultTotalEUR(d.key),'USD')+' · USD orientativo</div>';
       return '<strong>≈ '+resultFormatCurrencyFromEUR(resultTotalEUR(d.key),resultDestinationCurrency())+'</strong>'+(isSchengenToSchengenRoute()?'<div class="matrix-origin-price">Referencia en EUR, no cotización</div>':'<div class="matrix-origin-price">≈ '+resultFormatCurrencyFromEUR(resultTotalEUR(d.key),resultOriginCurrency())+' origen</div>');
     }),
-    row('Referencia diaria',(d)=>(d.key==='intermundial'||d.key==='iati'||d.key==='axa')&&isSchengenToUs()
-      ? '<span>≈ '+euroFixed(fixedOrientativeRate(d.key))+' €/persona/día</span>'
-      : '<span>≈ '+resultFormatCurrencyFromEUR(fixedOrientativeRate(d.key),resultDestinationCurrency())+'/persona/día</span>')
+    row('Referencia diaria',(d)=>providerProfile(d).reviewable
+      ? '<span>Por confirmar</span>'
+      : (d.key==='intermundial'||d.key==='iati'||d.key==='axa')&&isSchengenToUs()
+        ? '<span>≈ '+euroFixed(fixedOrientativeRate(d.key))+' €/persona/día</span>'
+        : '<span>≈ '+resultFormatCurrencyFromEUR(fixedOrientativeRate(d.key),resultDestinationCurrency())+'/persona/día</span>')
   ].join('');
 }
 
