@@ -2215,7 +2215,7 @@ function renderCard(d){
       <div class="details-grid">
         <div class="detail-item"><div class="detail-label">Gastos médicos</div><div class="detail-val">${p.medica}</div><div class="detail-sub">Límite publicado para la modalidad mostrada</div></div>
         <div class="detail-item"><div class="detail-label">Repatriación</div><div class="detail-val">${p.repatriacion}</div><div class="detail-sub">Sujeta a condiciones de la póliza</div></div>
-        <div class="detail-item"><div class="detail-label">Franquicia</div><div class="detail-val">${p.franquicia}</div><div class="detail-sub">Revisa exclusiones y supuestos</div></div>
+        <div class="detail-item"><div class="detail-label">Franquicia</div><div class="detail-val">${p.franquicia}</div><div class="detail-sub">Revisa exclusiones y supuestos · <a href="/blog/franquicia-medica-seguro-viaje/" aria-label="Entender qué es la franquicia médica">¿Qué significa?</a></div></div>
         <div class="detail-item"><div class="detail-label">Cancelación</div><div class="detail-val">${p.cancelacion}</div><div class="detail-sub">Puede ser opcional o exigir contratación temprana</div></div>
         <div class="detail-item"><div class="detail-label">Equipaje</div><div class="detail-val">${p.equipaje}</div><div class="detail-sub">Límites y sublímites dependen del plan</div></div>
         <div class="detail-item"><div class="detail-label">Elegibilidad</div><div class="detail-val">${p.eligible?'Compatible con origen seleccionado':'No compatible según oferta enlazada'}</div><div class="detail-sub">Confirma país de residencia real antes de pagar</div></div>
@@ -2249,7 +2249,7 @@ function updateQuickCompare(){
     row('Disponible',(_,p)=>p.eligible?'<span class="status-ok">✓ Sí</span>':'<span class="status-no">No</span>'),
     row('Diferencial',(d,p)=>`<div class="matrix-diff">${providerDifferentiator(d,p)}</div>`),
     row('Gastos médicos',(_,p)=>p.medica),
-    row('Franquicia',(_,p)=>p.franquicia),
+    row('<a href="/blog/franquicia-medica-seguro-viaje/" aria-label="Qué es la franquicia médica">Franquicia · ¿qué es?</a>',(_,p)=>p.franquicia),
     row('Cancelación',(_,p)=>p.cancelacion),
     row('Equipaje',(_,p)=>p.equipaje),
     row('Total orientativo · '+resultTripLabel(),(d)=>'<strong>≈ '+resultFormatCurrencyFromEUR(resultTotalEUR(d.key),resultDestinationCurrency())+'</strong><div class="matrix-origin-price">≈ '+resultFormatCurrencyFromEUR(resultTotalEUR(d.key),resultOriginCurrency())+' origen</div>'),
