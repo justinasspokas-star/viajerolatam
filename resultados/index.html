@@ -3160,7 +3160,11 @@ function applyEditSearch(){
     var originCode=originCurrency();
     var destinationCode=destinationCurrency();
     el.classList.add('is-visible');
-    var regionText=isSchengenToUs()
+    var regionText=(isSchengenToUkRoute() && normalizedOrigin()!=='es')
+      ? (resultTripDays()>120
+        ? 'Viaje Schengen → Reino Unido de más de 120 días: no mostramos Go World como opción aplicable porque una modalidad consultada limita a 120 días los viajes de residentes fuera de España. Confirma otras pólizas y su duración con cada proveedor.'
+        : 'Viaje desde un país Schengen hacia Reino Unido: IATI puede consultarse para esta ruta. InterMundial se muestra solo como opción por verificar: el condicionado de Go World consultado corresponde al canal de agencias, no confirma que el enlace afiliado permita contratar desde todas las residencias. No mostramos una tarifa InterMundial no cotizada.')
+      : isSchengenToUs()
       ? 'Para países Schengen hacia Estados Unidos o Canadá usamos referencias por 1 viajero: AXA 50,75 € (14 días), IATI 62,33 € e InterMundial 67,16 € (15 días). Otras duraciones son estimaciones proporcionales, no cotizaciones; confirma residencia admitida y prima final con cada aseguradora.'
       : isSchengenToSchengenRoute()
       ? 'Viajes entre dos países Schengen distintos: InterMundial 7 días 17,58 €, 14 días 25,80 € y 30 días 44,26 €; IATI 7 días 21,09 €, 14 días 30,43 € y 30 días 50,51 €, para 1 viajero. Referencias iguales para todas las rutas solo a efectos comparativos; confirma productos, elegibilidad y tarifas finales con cada aseguradora.'
@@ -3194,7 +3198,9 @@ function applyEditSearch(){
     var side=document.getElementById('sidebar-route');
     if(title) title.textContent='Comparar seguros de viaje: '+route;
     if(summary) summary.innerHTML='<strong>Comparación según residencia y destino</strong> para '+route+'. Primero comprobamos disponibilidad y después coberturas y condiciones.';
-    if(note) note.textContent=coverageLabel()+' · precios públicos revisados el 31/08/2026; confirma precio y elegibilidad final en la aseguradora.';
+    if(note) note.textContent=(isSchengenToUkRoute() && normalizedOrigin()!=='es')
+      ? 'Reino Unido: compara IATI y consulta InterMundial; la disponibilidad de Go World depende de residencia, contratación y condiciones. Sin tarifa verificada.'
+      : coverageLabel()+' · precios orientativos; confirma precio y elegibilidad final en la aseguradora.';
     if(side) side.textContent=route;
     document.title='Comparar seguros de viaje '+meta(window.currentSearchOrigin).label+' a '+meta(window.currentSearchDest).label+' | ViajeroLatam';
   }
