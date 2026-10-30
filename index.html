@@ -2583,7 +2583,8 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
 <div class="search-top-row">
 <div class="vl-field">
 <label class="sb-label" for="sb-origen">Voy desde</label>
-<select class="vl-control" id="sb-origen" name="origen">
+<select class="vl-control" id="sb-origen" name="origen" required>
+<option value="" selected disabled>Escribe tu país</option>
 <option value="espana-schengen">🇪🇸 España</option>
 <option value="at">🇦🇹 Austria</option>
 <option value="be">🇧🇪 Bélgica</option>
@@ -2645,7 +2646,8 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
 </div>
 <div class="vl-field">
 <label class="sb-label" for="sb-destino">Destino</label>
-<select class="vl-control" id="sb-destino" name="destino">
+<select class="vl-control" id="sb-destino" name="destino" required>
+<option value="" selected disabled>¿A dónde viajas?</option>
 <option value="espana-schengen">🇪🇺 España / Schengen</option>
 <option value="europa-no-schengen">🇬🇧 Europa fuera de Schengen</option>
 <option value="europa">🌍 Europa completa (Schengen + otros)</option>
@@ -2964,6 +2966,13 @@ document.addEventListener('click', function(e){
 
   function fill(select, options, selected){
     while(select.firstChild) select.removeChild(select.firstChild);
+    // Swapping routes must never silently choose the first country or region.
+    var placeholder=document.createElement('option');
+    placeholder.value='';
+    placeholder.textContent=select.id==='sb-origen'?'Escribe tu país':'¿A dónde viajas?';
+    placeholder.disabled=true;
+    placeholder.selected=true;
+    select.appendChild(placeholder);
     options.forEach(function(item){
       var option = document.createElement('option');
       option.value = item[0];
@@ -3135,7 +3144,7 @@ document.addEventListener('click', function(e){
 </script>
   <script defer src="/assets/vl-whatsapp.js"></script>
 <script defer src="/assets/vl-traveller-ages.js"></script>
-<script defer src="/assets/vl-place-autocomplete.js"></script>
+<script defer src="/assets/vl-place-autocomplete.js?v=20261030-empty-fields"></script>
 <script id="vl-insurer-scroll-observer-all-devices-v1">
 (function(){
   'use strict';
