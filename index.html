@@ -3051,6 +3051,15 @@ document.addEventListener('click', function(e){
     var normalizedDestination=normalizeOrigin(destination);
     var originInfo=ORIGIN_INFO[normalizedOrigin] || {label:normalizedOrigin.toUpperCase(),flag:'🌍',currency:CURRENCY_BY_ORIGIN[normalizedOrigin]||'EUR'};
     var destinationInfo=ORIGIN_INFO[normalizedDestination] || {label:normalizedDestination.toUpperCase(),flag:'🌍',currency:CURRENCY_BY_ORIGIN[normalizedDestination]||'EUR'};
+    // Mostrar el país elegido y su bandera, no «Todo el mundo» o «España»
+    // cuando el destino concreto es Colombia, Francia, Japón, etc.
+    var specificDestination=document.getElementById('vl-pais-destino');
+    var code=specificDestination&&specificDestination.value;
+    var country=code&&window.VLPlaceSearch&&window.VLPlaceSearch.countries[code];
+    if(country){
+      var exactCurrency=(ORIGIN_INFO[code]&&ORIGIN_INFO[code].currency)||destinationInfo.currency;
+      destinationInfo={label:country.label,flag:country.flag,currency:exactCurrency};
+    }
     var originCurrency=originInfo.currency || 'EUR';
     var destinationCurrency=destinationInfo.currency || 'EUR';
     var originRate=Number(fxRates[originCurrency]) || 1;
