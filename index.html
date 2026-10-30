@@ -2585,6 +2585,34 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
 <label class="sb-label" for="sb-origen">Voy desde</label>
 <select class="vl-control" id="sb-origen" name="origen">
 <option value="espana-schengen">🇪🇸 España</option>
+<option value="at">🇦🇹 Austria</option>
+<option value="be">🇧🇪 Bélgica</option>
+<option value="bg">🇧🇬 Bulgaria</option>
+<option value="hr">🇭🇷 Croacia</option>
+<option value="cz">🇨🇿 Chequia</option>
+<option value="dk">🇩🇰 Dinamarca</option>
+<option value="ee">🇪🇪 Estonia</option>
+<option value="fi">🇫🇮 Finlandia</option>
+<option value="fr">🇫🇷 Francia</option>
+<option value="de">🇩🇪 Alemania</option>
+<option value="gr">🇬🇷 Grecia</option>
+<option value="hu">🇭🇺 Hungría</option>
+<option value="is">🇮🇸 Islandia</option>
+<option value="it">🇮🇹 Italia</option>
+<option value="lv">🇱🇻 Letonia</option>
+<option value="li">🇱🇮 Liechtenstein</option>
+<option value="lt">🇱🇹 Lituania</option>
+<option value="lu">🇱🇺 Luxemburgo</option>
+<option value="mt">🇲🇹 Malta</option>
+<option value="nl">🇳🇱 Países Bajos</option>
+<option value="no">🇳🇴 Noruega</option>
+<option value="pl">🇵🇱 Polonia</option>
+<option value="pt">🇵🇹 Portugal</option>
+<option value="ro">🇷🇴 Rumanía</option>
+<option value="sk">🇸🇰 Eslovaquia</option>
+<option value="si">🇸🇮 Eslovenia</option>
+<option value="se">🇸🇪 Suecia</option>
+<option value="ch">🇨🇭 Suiza</option>
 <option value="co">🇨🇴 Colombia</option>
 <option value="mx">🇲🇽 México</option>
 <option value="ar">🇦🇷 Argentina</option>
@@ -2922,7 +2950,7 @@ document.addEventListener('click', function(e){
 (function(){
   'use strict';
 
-  var LATAM = [["co", "🇨🇴 Colombia"], ["mx", "🇲🇽 México"], ["ar", "🇦🇷 Argentina"], ["ve", "🇻🇪 Venezuela"], ["pe", "🇵🇪 Perú"], ["cl", "🇨🇱 Chile"], ["ec", "🇪🇨 Ecuador"], ["bo", "🇧🇴 Bolivia"], ["br", "🇧🇷 Brasil"], ["uy", "🇺🇾 Uruguay"], ["py", "🇵🇾 Paraguay"], ["cr", "🇨🇷 Costa Rica"], ["pa", "🇵🇦 Panamá"], ["gt", "🇬🇹 Guatemala"], ["sv", "🇸🇻 El Salvador"], ["hn", "🇭🇳 Honduras"], ["ni", "🇳🇮 Nicaragua"], ["cu", "🇨🇺 Cuba"], ["ht", "🇭🇹 Haití"], ["do", "🇩🇴 República Dominicana"], ["espana-schengen", "🇪🇸 España"]];
+  var LATAM = [["co", "🇨🇴 Colombia"], ["mx", "🇲🇽 México"], ["ar", "🇦🇷 Argentina"], ["ve", "🇻🇪 Venezuela"], ["pe", "🇵🇪 Perú"], ["cl", "🇨🇱 Chile"], ["ec", "🇪🇨 Ecuador"], ["bo", "🇧🇴 Bolivia"], ["br", "🇧🇷 Brasil"], ["uy", "🇺🇾 Uruguay"], ["py", "🇵🇾 Paraguay"], ["cr", "🇨🇷 Costa Rica"], ["pa", "🇵🇦 Panamá"], ["gt", "🇬🇹 Guatemala"], ["sv", "🇸🇻 El Salvador"], ["hn", "🇭🇳 Honduras"], ["ni", "🇳🇮 Nicaragua"], ["cu", "🇨🇺 Cuba"], ["ht", "🇭🇹 Haití"], ["do", "🇩🇴 República Dominicana"], ["espana-schengen", "🇪🇸 España"], ["at", "🇦🇹 Austria"], ["be", "🇧🇪 Bélgica"], ["bg", "🇧🇬 Bulgaria"], ["hr", "🇭🇷 Croacia"], ["cz", "🇨🇿 Chequia"], ["dk", "🇩🇰 Dinamarca"], ["ee", "🇪🇪 Estonia"], ["fi", "🇫🇮 Finlandia"], ["fr", "🇫🇷 Francia"], ["de", "🇩🇪 Alemania"], ["gr", "🇬🇷 Grecia"], ["hu", "🇭🇺 Hungría"], ["is", "🇮🇸 Islandia"], ["it", "🇮🇹 Italia"], ["lv", "🇱🇻 Letonia"], ["li", "🇱🇮 Liechtenstein"], ["lt", "🇱🇹 Lituania"], ["lu", "🇱🇺 Luxemburgo"], ["mt", "🇲🇹 Malta"], ["nl", "🇳🇱 Países Bajos"], ["no", "🇳🇴 Noruega"], ["pl", "🇵🇱 Polonia"], ["pt", "🇵🇹 Portugal"], ["ro", "🇷🇴 Rumanía"], ["sk", "🇸🇰 Eslovaquia"], ["si", "🇸🇮 Eslovenia"], ["se", "🇸🇪 Suecia"], ["ch", "🇨🇭 Suiza"]];
   var DESTINATIONS = [["espana-schengen", "🇪🇺 España / Schengen"], ["europa-no-schengen", "🇬🇧 Europa fuera de Schengen"], ["europa", "🌍 Europa completa (Schengen + otros)"], ["eeuu-canada", "🇺🇸🇨🇦 Estados Unidos + Canadá"], ["asia", "🌏 Asia"], ["mundial", "🌎 Todo el mundo"]];
   var ORIGIN_INFO = {"co": {"label": "Colombia", "flag": "🇨🇴", "currency": "COP"}, "mx": {"label": "México", "flag": "🇲🇽", "currency": "MXN"}, "ar": {"label": "Argentina", "flag": "🇦🇷", "currency": "ARS"}, "ve": {"label": "Venezuela", "flag": "🇻🇪", "currency": "VES"}, "pe": {"label": "Perú", "flag": "🇵🇪", "currency": "PEN"}, "cl": {"label": "Chile", "flag": "🇨🇱", "currency": "CLP"}, "ec": {"label": "Ecuador", "flag": "🇪🇨", "currency": "USD"}, "bo": {"label": "Bolivia", "flag": "🇧🇴", "currency": "BOB"}, "br": {"label": "Brasil", "flag": "🇧🇷", "currency": "BRL"}, "uy": {"label": "Uruguay", "flag": "🇺🇾", "currency": "UYU"}, "py": {"label": "Paraguay", "flag": "🇵🇾", "currency": "PYG"}, "cr": {"label": "Costa Rica", "flag": "🇨🇷", "currency": "CRC"}, "pa": {"label": "Panamá", "flag": "🇵🇦", "currency": "PAB"}, "gt": {"label": "Guatemala", "flag": "🇬🇹", "currency": "GTQ"}, "sv": {"label": "El Salvador", "flag": "🇸🇻", "currency": "USD"}, "hn": {"label": "Honduras", "flag": "🇭🇳", "currency": "HNL"}, "ni": {"label": "Nicaragua", "flag": "🇳🇮", "currency": "NIO"}, "cu": {"label": "Cuba", "flag": "🇨🇺", "currency": "CUP"}, "ht": {"label": "Haití", "flag": "🇭🇹", "currency": "HTG"}, "do": {"label": "República Dominicana", "flag": "🇩🇴", "currency": "DOP"}, "espana-schengen": {"label": "España / Schengen", "flag": "🇪🇺", "currency": "EUR"}, "europa-no-schengen": {"label": "Europa fuera de Schengen", "flag": "🇬🇧", "currency": "EUR"}, "europa": {"label": "Europa completa (Schengen + otros)", "flag": "🌍", "currency": "EUR"}, "eeuu-canada": {"label": "Estados Unidos + Canadá", "flag": "🇺🇸🇨🇦", "currency": "USD"}, "asia": {"label": "Asia", "flag": "🌏", "currency": "EUR"}, "mundial": {"label": "Todo el mundo", "flag": "🌎", "currency": "EUR"}};
   var ORIGIN_ALIASES = {"colombia": "co", "mexico": "mx", "méxico": "mx", "argentina": "ar", "venezuela": "ve", "peru": "pe", "perú": "pe", "chile": "cl", "ecuador": "ec", "bolivia": "bo", "paraguay": "py", "uruguay": "uy", "brasil": "br", "brazil": "br", "costa-rica": "cr", "costa rica": "cr", "panama": "pa", "panamá": "pa", "guatemala": "gt", "el-salvador": "sv", "el salvador": "sv", "honduras": "hn", "nicaragua": "ni", "cuba": "cu", "haiti": "ht", "haití": "ht", "republica-dominicana": "do", "república dominicana": "do", "republica dominicana": "do"};
@@ -3021,6 +3049,17 @@ document.addEventListener('click', function(e){
 
     // Los nuevos ámbitos amplios no deben mostrar precios diarios genéricos como si
     // fueran cotizaciones válidas para todos los países de su región.
+    // Las tarifas Schengen→Schengen dependen de países específicos y la póliza
+    // elegida: evitar el estimador genérico LATAM en el encabezado.
+    var schengenOrigin=new Set('at be bg hr cz dk ee fi fr de gr hu is it lv li lt lu mt nl no pl pt ro sk si es se ch'.split(' '));
+    if(schengenOrigin.has(origin==='espana-schengen'?'es':origin) && destination==='espana-schengen'){
+      text.textContent=days+' días'+(people>1?' · '+people+' viajeros':'')+' · Consulta precios para el país Schengen elegido.';
+      if(localDisplay && localText){
+        localText.textContent='Las referencias de IATI para rutas entre países Schengen se mostrarán en euros (€). Confirma el precio final y cobertura con IATI.';
+        localDisplay.classList.remove('is-hidden');
+      }
+      return;
+    }
     var broadRoute=['europa-no-schengen','europa','asia','mundial'].indexOf(destination)!==-1;
     if(broadRoute){
       text.textContent=days+' días'+(people>1?' · '+people+' viajeros':'')+' · Consulta las opciones disponibles para '+destinationInfo.label+'.';
