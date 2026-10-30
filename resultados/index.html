@@ -2112,11 +2112,30 @@ function interSchengenUsNote(){
  ? 'Referencia de 15 días y 1 viajero; precio por residencia no verificado'
  : 'Proyección proporcional desde una única referencia de 15 días, no cotizada';
 }
+/* IATI para salida de cualquiera de los 29 países Schengen hacia
+   Estados Unidos o Canadá. Referencia de 15 días / 1 persona: 62,33 EUR.
+   Las otras duraciones son proyecciones matemáticas y no cotizaciones IATI. */
+const IATI_SCHENGEN_US_CANADA_15D_EUR=62.33;
+function isIatiSchengenToUsCanada(){
+  return isSchengenToUs();
+}
+function iatiSchengenUsCanadaTotalPerPerson(days){
+  const n=Math.max(1,Number(days)||1);
+  return n===15?IATI_SCHENGEN_US_CANADA_15D_EUR:
+    Math.round((IATI_SCHENGEN_US_CANADA_15D_EUR*n/15+Number.EPSILON)*100)/100;
+}
+function iatiSchengenUsCanadaPriceNote(){
+  return resultTripDays()===15
+    ? 'Referencia facilitada para 15 días y 1 viajero, no verificada para cada residencia Schengen'
+    : 'Proyección proporcional desde la única referencia de 15 días; esta duración no se ha cotizado';
+}
 function fixedOrientativeRate(key){
   const origin = normalizedOrigin();
   const dest = normalizedDest();
   // Referencias actualizadas el 28/09/2026 a partir de cotizaciones revisadas.
   // Son precios orientativos diarios; el proveedor confirma siempre el precio final.
+  if(key === 'iati' && isIatiSchengenToUsCanada())
+    return iatiSchengenUsCanadaTotalPerPerson(resultTripDays())/resultTripDays();
   if(key === 'intermundial' && isSchengenToUs())return interSchengenUsTotal(resultTripDays())/resultTripDays();
   if(key === 'intermundial' && isSchengenToSchengenRoute()){
     return intermundialIntraSchengenTotalPerPerson(resultTripDays())/resultTripDays();
@@ -2220,6 +2239,8 @@ function resultFormatCurrencyFromEUR(eurAmount,currency){
   }
 }
 function resultTotalEUR(key){
+  if(key==='iati' && isIatiSchengenToUsCanada())
+    return iatiSchengenUsCanadaTotalPerPerson(resultTripDays())*resultTripPeople();
   if(key==='intermundial' && isSchengenToUs())return interSchengenUsTotal(resultTripDays())*resultTripPeople();
   if(key==='intermundial' && isSchengenToSchengenRoute()){
     return intermundialIntraSchengenTotalPerPerson(resultTripDays())*resultTripPeople();
@@ -2338,6 +2359,17 @@ function providerProfile(d){
   const dest=normalizedDest();
   const spainResident=origin==='es';
   if(d.key==='iati'){
+    if(isIatiSchengenToUsCanada())return {
+      plan:'IATI · modalidad a confirmar',eligible:true,
+      eligibility:'Precio orientativo para rutas Schengen → Estados Unidos o Canadá; confirma disponibilidad para tu residencia',
+      medica:'Según modalidad contratada',repatriacion:'Según condiciones',
+      franquicia:'Consultar condiciones',cancelacion:'Según modalidad',
+      equipaje:'Según modalidad',demora:'Según condiciones',
+      tele:false,aventura:false,cancel:false,baggage:false,publicRate:null,
+      coverageRank:80,bestFor:'Viajeros desde países Schengen con destino Estados Unidos o Canadá.',
+      caution:'62,33 € por 15 días y 1 viajero es una referencia facilitada, aplicada de forma orientativa a las 29 residencias Schengen y a ambos destinos. El producto, cobertura y precio real no están verificados para cada ruta. Consulta elegibilidad, límites, exclusiones y prima final con IATI.',
+      source:'IATI · referencia Schengen → Estados Unidos/Canadá facilitada el 30/10/2026'
+    };
     if(isSchengenToSchengenRoute())return {
       plan:'IATI · modalidad a confirmar',eligible:true,
       eligibility:'Consultar en IATI la disponibilidad para tu país de residencia y destino Schengen',
@@ -2501,6 +2533,9 @@ function renderCard(d){
   if(d.key==='iati' && isSchengenToSchengenRoute()){
     price=`<div class="public-price-label">IATI · Schengen → Schengen · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>importe orientativo del viaje</small></div><div class="public-price-sub"><strong>≈ ${destDaily}/persona/día</strong> de media · ${iatiIntraSchengenPriceNote()}. Importes de referencia expresados en EUR, no necesariamente en moneda local del país de salida. Confirma elegibilidad, modalidad y precio final directamente con IATI.</div>`;
   }
+  if(d.key==='iati' && isIatiSchengenToUsCanada()){
+    price=`<div class="public-price-label">IATI · Schengen → Estados Unidos / Canadá · ${resultTripLabel()}</div><div class="public-price">≈ ${euroFixed(totalEUR)} € <small>referencia total en euros</small></div><div class="trip-origin-price">≈ ${destTotal} <span>conversión orientativa a USD</span></div><div class="public-price-sub"><strong>≈ ${euroFixed(fixedRate)} €/persona/día</strong> de media. ${iatiSchengenUsCanadaPriceNote()}. Referencia igual para Estados Unidos y Canadá; confirma modalidad, residencia y precio final directamente con IATI.</div>`;
+  }
   if(d.key==='iati' && isIatiUkLatamRoute()){
     price=`<div class="public-price-label">IATI · Reino Unido · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>total estimado del viaje</small></div><div class="trip-origin-price">≈ ${originTotal} <span>moneda de origen</span></div><div class="public-price-sub"><strong>≈ ${destDaily}/persona/día</strong> de media. <strong>Estimación comparativa (+40 % frente a InterMundial).</strong> ${iatiUkPriceNote()}. No es un precio cotizado por IATI. Confirma cobertura, elegibilidad y precio final en la web oficial.</div>`;
   }
@@ -2591,11 +2626,11 @@ function updateQuickCompare(){
     row('Cancelación',(_,p)=>p.cancelacion),
     row('Equipaje',(_,p)=>p.equipaje),
     row('Total orientativo · '+resultTripLabel(),(d)=>{
-      if(d.key==='intermundial'&&isSchengenToUs())
+      if((d.key==='intermundial'||d.key==='iati')&&isSchengenToUs())
         return '<strong>≈ '+euroFixed(resultTotalEUR(d.key))+' €</strong><div class="matrix-origin-price">≈ '+resultFormatCurrencyFromEUR(resultTotalEUR(d.key),'USD')+' · USD orientativo</div>';
       return '<strong>≈ '+resultFormatCurrencyFromEUR(resultTotalEUR(d.key),resultDestinationCurrency())+'</strong>'+(isSchengenToSchengenRoute()?'<div class="matrix-origin-price">Referencia en EUR, no cotización</div>':'<div class="matrix-origin-price">≈ '+resultFormatCurrencyFromEUR(resultTotalEUR(d.key),resultOriginCurrency())+' origen</div>');
     }),
-    row('Referencia diaria',(d)=>d.key==='intermundial'&&isSchengenToUs()
+    row('Referencia diaria',(d)=>(d.key==='intermundial'||d.key==='iati')&&isSchengenToUs()
       ? '<span>≈ '+euroFixed(fixedOrientativeRate(d.key))+' €/persona/día</span>'
       : '<span>≈ '+resultFormatCurrencyFromEUR(fixedOrientativeRate(d.key),resultDestinationCurrency())+'/persona/día</span>')
   ].join('');
@@ -3061,7 +3096,7 @@ function applyEditSearch(){
     var destinationCode=destinationCurrency();
     el.classList.add('is-visible');
     var regionText=isSchengenToUs()
-      ? 'InterMundial Schengen → Estados Unidos o Canadá: referencia de 67,16 € para 15 días y 1 viajero en ambos destinos. Otras duraciones son estimaciones proporcionales; confirma residencia admitida, cobertura territorial y precio real con InterMundial.'
+      ? 'Para viajes desde países Schengen hacia Estados Unidos o Canadá usamos referencias por 1 viajero y 15 días: IATI 62,33 € e InterMundial 67,16 €. Para otras duraciones son estimaciones proporcionales, no cotizaciones. Confirma precio, residencia admitida y coberturas con cada aseguradora.'
       : isSchengenToSchengenRoute()
       ? 'Viajes entre dos países Schengen distintos: InterMundial 7 días 17,58 €, 14 días 25,80 € y 30 días 44,26 €; IATI 7 días 21,09 €, 14 días 30,43 € y 30 días 50,51 €, para 1 viajero. Referencias iguales para todas las rutas solo a efectos comparativos; confirma productos, elegibilidad y tarifas finales con cada aseguradora.'
       : isIntermundialAsiaLatamRoute()
