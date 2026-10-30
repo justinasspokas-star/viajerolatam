@@ -3059,6 +3059,9 @@ document.addEventListener('click', function(e){
     if(country){
       var exactCurrency=(ORIGIN_INFO[code]&&ORIGIN_INFO[code].currency)||destinationInfo.currency;
       destinationInfo={label:country.label,flag:country.flag,currency:exactCurrency};
+    } else if(destination==='espana-schengen'){
+      // «Zona Schengen» sin país concreto no equivale automáticamente a España.
+      destinationInfo={label:'Zona Schengen',flag:'🌐',currency:'EUR'};
     }
     var originCurrency=originInfo.currency || 'EUR';
     var destinationCurrency=destinationInfo.currency || 'EUR';
@@ -3082,7 +3085,9 @@ document.addEventListener('click', function(e){
     if(broadRoute){
       text.textContent=days+' días'+(people>1?' · '+people+' viajeros':'')+' · Consulta las opciones disponibles para '+destinationInfo.label+'.';
       if(localDisplay && localText){
-        localText.textContent='Los precios para '+destinationInfo.label+' varían según el país exacto, el plan y la residencia. Consulta las condiciones finales en el proveedor.';
+        localText.textContent=country
+          ? 'Los precios para '+destinationInfo.label+' varían según el plan, las fechas y la residencia. Confirma las condiciones en la aseguradora.'
+          : 'Los precios para '+destinationInfo.label+' varían según el país exacto, el plan y la residencia. Consulta las condiciones finales en el proveedor.';
         localDisplay.classList.remove('is-hidden');
       }
       return;
@@ -3090,7 +3095,7 @@ document.addEventListener('click', function(e){
     text.textContent=days+' días'+(people>1?' · '+people+' viajeros':'')+' · Aprox. desde '+originInfo.flag+': '+formatCurrency(min*originRate,originCurrency)+'–'+formatCurrency(max*originRate,originCurrency)+' ('+originCurrency+')';
 
     if(localDisplay && localText){
-      localText.textContent='Destino '+destinationInfo.flag+': aprox. '+formatCurrency(min*destinationRate,destinationCurrency)+'–'+formatCurrency(max*destinationRate,destinationCurrency)+' ('+destinationCurrency+')';
+      localText.textContent='Referencia para '+destinationInfo.flag+' '+destinationInfo.label+': aprox. '+formatCurrency(min*destinationRate,destinationCurrency)+'–'+formatCurrency(max*destinationRate,destinationCurrency)+' (importe orientativo, no necesariamente en moneda local)';
       localDisplay.classList.remove('is-hidden');
     }
   }
