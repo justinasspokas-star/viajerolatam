@@ -1429,6 +1429,7 @@ nav .brand-logo img{height:36px!important;max-width:164px!important;width:auto!i
 </style>
 </link><meta content="Icono de ViajeroLatam con mochila viajera" property="og:image:alt"/>  <link rel="stylesheet" href="/assets/vl-whatsapp.css">
 <link rel="stylesheet" href="/assets/vl-traveller-ages.css">
+<link rel="stylesheet" href="/assets/vl-place-autocomplete.css">
 </head>
 <body>
 <!-- H1 principal movido al bloque de resultados para evitar espacio superior -->
@@ -1687,6 +1688,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
 <option value="ht">🇭🇹 Haití</option>
 <option value="do">🇩🇴 República Dominicana</option>
 </select>
+<input type="hidden" id="ep-pais-destino" value="">
 </div>
 <div>
 <label style="font-size:11px;font-weight:700;color:#8FA4B8;text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:6px">Fecha de ida</label>
@@ -2663,7 +2665,7 @@ function applyEditSearch(){
     return m.flag+' '+m.label;
   }
   function routeText(){
-    return placeText(window.currentSearchOrigin)+' → '+placeText(window.currentSearchDest);
+    return placeText(window.currentSearchOrigin)+' → '+placeText(window.currentSearchDestinationCountry||window.currentSearchDest);
   }
   function destinationKind(value){
     var v=normalizePlace(value);
@@ -2772,7 +2774,7 @@ function applyEditSearch(){
   updatePillsDisplay=function(origen,dest,ida,vuelta,viajeros){
     var values=document.querySelectorAll('.pill-val');
     if(values[0]) values[0].textContent=placeText(origen);
-    if(values[1]) values[1].textContent=placeText(dest);
+    if(values[1]) values[1].textContent=placeText(window.currentSearchDestinationCountry||dest);
     if(values[2]){ var totalDias=daysBetween(ida,vuelta); values[2].textContent=(ida&&vuelta)?fmtDateShort(ida)+' → '+fmtDateShort(vuelta)+' · '+totalDias+' días':totalDias+' días'; }
     if(values[3]) values[3].textContent=viajeros+(parseInt(viajeros,10)===1?' persona':' personas');
   };
@@ -2847,11 +2849,15 @@ function applyEditSearch(){
 
     window.currentSearchOrigin=originValue;
     window.currentSearchDest=destinationValue;
+    var specificCountry=document.getElementById('ep-pais-destino');
+    window.currentSearchDestinationCountry=specificCountry&&PLACE_META[specificCountry.value]?specificCountry.value:'';
     updatePillsDisplay(originValue,destinationValue,ida,vuelta,travelerValue);
 
     var params=new URLSearchParams(location.search);
     params.set('origen',originValue);
     params.set('destino',destinationValue);
+    if(window.currentSearchDestinationCountry)params.set('pais_destino',window.currentSearchDestinationCountry);
+    else params.delete('pais_destino');
     params.set('dias',String(totalDays));
     params.set('personas',String(travelerValue));
     params.set('ida',ida);
@@ -2870,6 +2876,14 @@ function applyEditSearch(){
     var originValue=normalizePlace(params.get('origen')||'co');
     if(!ALLOWED_ORIGINS.has(originValue) && !ROUTE_GROUPS.has(originValue)) originValue='co';
     var destinationValue=normalizeAllowedDestination(params.get('destino')||'espana-schengen');
+    var requestedCountry=String(params.get('pais_destino')||'').toLowerCase();
+    // Las URL pueden editarse manualmente: no mostrar un país incompatible con la región.
+    var schengenCodes=new Set('at be bg hr cz dk ee fi fr de gr hu is it lv li lt lu mt nl no pl pt ro sk si es se ch'.split(' '));
+    var europeOutside=new Set('gb ie cy al ba rs me mk md ua tr ge am az by ru ad mc sm va gi fo im je gg'.split(' '));
+    var asiaCodes=new Set('af bh bd bt bn kh cn hk in id ir iq il jp jo kz kw kg la lb mo my mv mn mm np kp kr om pk ps ph qa sa sg lk sy tw tj th tl tm ae uz vn ye'.split(' '));
+    var countryGroup=schengenCodes.has(requestedCountry)?'espana-schengen':europeOutside.has(requestedCountry)?'europa-no-schengen':
+      (requestedCountry==='us'||requestedCountry==='ca')?'eeuu-canada':asiaCodes.has(requestedCountry)?'asia':'mundial';
+    if(!PLACE_META[requestedCountry] || !(countryGroup===destinationValue || destinationValue==='europa' || destinationValue==='mundial'))requestedCountry='';
     var requestedDays=Math.max(1,parseInt(params.get('dias')||'15',10)||15);
     var travelerValue=Math.max(1,parseInt(params.get('personas')||params.get('viajeros')||'1',10)||1);
     var ida=params.get('ida')||params.get('salida')||'';
@@ -2885,6 +2899,9 @@ function applyEditSearch(){
 
     window.currentSearchOrigin=originValue;
     window.currentSearchDest=destinationValue;
+    window.currentSearchDestinationCountry=requestedCountry;
+    var countryField=document.getElementById('ep-pais-destino');
+    if(countryField)countryField.value=requestedCountry;
 
     var origin=document.getElementById('ep-origen');
     var destination=document.getElementById('ep-destino');
@@ -2989,5 +3006,6 @@ document.addEventListener('keydown', function(e){
 <!-- ViajeroLatam STEP2 comparator verified 2026-08-24 -->
   <script defer src="/assets/vl-whatsapp.js"></script>
 <script defer src="/assets/vl-traveller-ages.js"></script>
+<script defer src="/assets/vl-place-autocomplete.js"></script>
 </body>
 </html>
