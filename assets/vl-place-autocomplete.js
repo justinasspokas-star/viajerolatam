@@ -5,7 +5,7 @@ const COUNTRIES={"af":{"label":"Afganistán","flag":"🇦🇫"},"al":{"label":"A
 const SCHENGEN=new Set('at be bg hr cz dk ee fi fr de gr hu is it lv li lt lu mt nl no pl pt ro sk si es se ch'.split(' '));
 const OTHER_EUROPE=new Set('gb ie cy al ba rs me mk md ua tr ge am az by ru ad mc sm va gi fo im je gg xk'.split(' '));
 const ASIA=new Set('af bh bd bt bn kh cn hk in id ir iq il jp jo kz kw kg la lb mo my mv mn mm np kp kr om pk ps ph qa sa sg lk sy tw tj th tl tm ae uz vn ye'.split(' '));
-const ORIGINS=new Set('co mx ar ve pe cl ec bo br uy py cr pa gt sv hn ni cu ht do es'.split(' '));
+const ORIGINS=new Set('co mx ar ve pe cl ec bo br uy py cr pa gt sv hn ni cu ht do at be bg hr cz dk ee fi fr de gr hu is it lv li lt lu mt nl no pl pt ro sk si es se ch'.split(' '));
 const GROUPS=['espana-schengen','europa-no-schengen','europa','eeuu-canada','asia','mundial'];
 const REGIONS=[['espana-schengen','🇪🇺 España / Schengen'],['europa-no-schengen','🇬🇧 Europa fuera de Schengen'],['europa','🌍 Europa completa (Schengen + otros)'],['eeuu-canada','🇺🇸🇨🇦 Estados Unidos + Canadá'],['asia','🌏 Asia'],['mundial','🌎 Todo el mundo']];
 const ALIASES={
@@ -76,6 +76,14 @@ function attach(select,kind){
  function pick(item){
   const value=mappedValue(select,kind,item);
   if(!value){setError('Esta ruta aún no está disponible.');return false;}
+  if(kind==='destination'&&!item.region&&SCHENGEN.has(item.code)){
+    const originSelect=document.getElementById(isResults?'ep-origen':'sb-origen');
+    const originCode=originSelect&&originSelect.value==='espana-schengen'?'es':originSelect&&originSelect.value;
+    if(originCode===item.code){
+      setError('Elige un país de destino distinto del país desde el que viajas.');
+      return false;
+    }
+  }
   chosen=item;input.value=item.label;select.value=value;
   if(countryField)countryField.value=item.region?'':item.code;
   setError('');close();select.dispatchEvent(new Event('change',{bubbles:true}));return true;
