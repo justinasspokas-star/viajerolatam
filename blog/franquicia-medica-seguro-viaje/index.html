@@ -133,6 +133,15 @@ tbody tr:nth-child(even){background:#FBFDFE}
 .footer-in{max-width:1180px;margin:auto;padding:30px 24px;display:flex;align-items:start;justify-content:space-between;gap:26px}
 .footer p,.footer a{font-size:12px;color:var(--muted)}
 .footer a{margin-right:14px}
+/* Botón flotante para móvil, como en otras guías de ViajeroLatam.
+   La clase mobile-cta permite que WhatsApp se eleve automáticamente. */
+.mobile-cta{display:none}
+@media(max-width:768px){
+  body{padding-bottom:calc(80px + env(safe-area-inset-bottom))}
+  .mobile-cta{display:block;position:fixed;left:13px;right:13px;bottom:calc(13px + env(safe-area-inset-bottom));z-index:90}
+  .mobile-cta .btn{display:flex;width:100%;min-height:52px;padding:13px 17px;background:var(--teal);color:var(--navy);font-weight:800;text-align:center;box-shadow:0 12px 32px rgba(0,91,81,.23);border:1px solid rgba(4,111,94,.25)}
+  .mobile-cta .btn:hover,.mobile-cta .btn:focus-visible{color:var(--navy)}
+}
 @media(max-width:930px){.layout{grid-template-columns:minmax(0,1fr)}.sidebar{position:static;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.hero-inner{grid-template-columns:minmax(0,1fr)}.hero-summary{max-width:560px}}
 @media(max-width:720px){.nav-in{min-height:67px;padding:10px 16px}.brand img{height:auto;max-height:43px;max-width:170px}.navlinks{display:none}.mobilemenu{display:block}.breadcrumb{padding:11px 16px;font-size:11px}.hero-inner{padding:33px 16px 36px;gap:20px}.hero h1{font-size:clamp(31px,8.5vw,44px)}.hero p{font-size:14px}.hero-summary{padding:18px}.layout{padding:20px 13px 45px;gap:8px}.section{padding:20px 17px;border-radius:16px}.section p,.section li{font-size:13px}.compare-cards,.related,.sidebar{grid-template-columns:1fr}.sidebar-card{margin:0 0 10px}.footer-in{flex-direction:column;gap:10px;padding:25px 17px}}
 @media(max-width:440px){.hero-actions .btn{width:100%}.calc{padding:14px}.calc-grid{grid-template-columns:1fr}.calc-results{gap:8px}.calc-result{padding:11px}.calc-result strong{font-size:23px}.section{padding:18px 14px}.table-scroll{margin-left:0;margin-right:0}}
@@ -338,6 +347,9 @@ tbody tr:nth-child(even){background:#FBFDFE}
   });
 })();
 </script>
+<div class="mobile-cta" aria-label="Acceso rápido al comparador">
+  <a class="btn btn-primary" href="/#comparar" data-compare="franquicia_movil">🛡️ Compara seguros gratis →</a>
+</div>
 <script defer src="/assets/vl-whatsapp.js"></script>
 </body>
 </html>
