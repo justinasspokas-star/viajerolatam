@@ -1798,7 +1798,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
 </div>
 </div>
 <div class="currency-note-cop is-visible" id="cop-currency-note">
-    El total orientativo depende de la duración y los viajeros; puede proceder de precios por tramo o referencias diarias. Mostramos moneda de destino y equivalencia aproximada en moneda de origen.
+    El total orientativo depende de la duración y los viajeros; puede proceder de precios por tramo o referencias diarias. Mostramos moneda de referencia y equivalencia aproximada en moneda de origen.
   </div>
 <section aria-label="Cómo leer esta comparación" class="comparison-intro">
 <div class="comparison-intro-icon">✓</div>
@@ -2534,7 +2534,7 @@ function renderCard(d){
   const destTotal=resultFormatCurrencyFromEUR(totalEUR,destCur);
   const originTotal=resultFormatCurrencyFromEUR(totalEUR,originCur);
   const destDaily=resultFormatCurrencyFromEUR(fixedRate,destCur);
-  let price=`<div class="public-price-label">Total orientativo · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>moneda de destino · total viaje</small></div><div class="trip-origin-price">≈ ${originTotal} <span>moneda de origen</span></div><div class="public-price-sub">${destDaily}/persona/día × ${resultTripDays()} día${resultTripDays()===1?'':'s'} × ${resultTripPeople()} viajero${resultTripPeople()===1?'':'s'}. Estimación ViajeroLatam; confirma el precio final con el proveedor.</div>`;
+  let price=`<div class="public-price-label">Total orientativo · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>moneda de referencia · total viaje</small></div><div class="trip-origin-price">≈ ${originTotal} <span>moneda de origen</span></div><div class="public-price-sub">${destDaily}/persona/día × ${resultTripDays()} día${resultTripDays()===1?'':'s'} × ${resultTripPeople()} viajero${resultTripPeople()===1?'':'s'}. Estimación ViajeroLatam; confirma el precio final con el proveedor.</div>`;
   if(d.key==='intermundial' && isGoSchengenLatamRoute()){
     price=`<div class="public-price-label">Go Schengen · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>total del viaje</small></div><div class="trip-origin-price">≈ ${originTotal} <span>moneda de origen</span></div><div class="public-price-sub go-schengen-price-note"><strong>≈ ${destDaily}/persona/día</strong> de media. ${goSchengenPriceNote()}; orientativa para otros orígenes LATAM. Solo Schengen. Confirma el precio final con Intermundial.</div>`;
   }
@@ -2576,13 +2576,13 @@ function renderCard(d){
   }
   if(d.key==='chapka'){
     if(chapkaPlanType()==='schengen'){
-      price=`<div class="public-price-label">Tarifa pública de referencia · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>moneda de destino · total viaje</small></div><div class="trip-origin-price">≈ ${originTotal} <span>moneda de origen</span></div><div class="public-price-sub">Cap Schengen publica precios por tramos. Referencia Zona 2 (LATAM/resto del mundo), 0–60 años. La web oficial anuncia el producto desde 18 €; confirma edad, residencia y precio final.</div>`;
+      price=`<div class="public-price-label">Tarifa pública de referencia · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>moneda de referencia · total viaje</small></div><div class="trip-origin-price">≈ ${originTotal} <span>moneda de origen</span></div><div class="public-price-sub">Cap Schengen publica precios por tramos. Referencia Zona 2 (LATAM/resto del mundo), 0–60 años. La web oficial anuncia el producto desde 18 €; confirma edad, residencia y precio final.</div>`;
     }else{
-      price=`<div class="public-price-label">Tarifa pública de referencia · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>moneda de destino · total viaje</small></div><div class="trip-origin-price">≈ ${originTotal} <span>moneda de origen</span></div><div class="public-price-sub"><strong>Desde 37,50 €/mes (≈ 1,25 €/día)</strong> en la tarifa publicada más baja. Para LATAM usamos como referencia la Zona 2 según duración. Chapka confirma el precio final.</div>`;
+      price=`<div class="public-price-label">Tarifa pública de referencia · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>moneda de referencia · total viaje</small></div><div class="trip-origin-price">≈ ${originTotal} <span>moneda de origen</span></div><div class="public-price-sub"><strong>Desde 37,50 €/mes (≈ 1,25 €/día)</strong> en la tarifa publicada más baja. Para LATAM usamos como referencia la Zona 2 según duración. Chapka confirma el precio final.</div>`;
     }
   }
   if(d.key==='assist365'){
-    price=`<div class="public-price-label">Precio orientativo · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>moneda de destino · total viaje</small></div><div class="trip-origin-price">≈ ${originTotal} <span>moneda de origen</span></div><div class="public-price-sub"><strong>≈ 1,60 €/persona/día*</strong> · 5% de descuento con código <strong>VIAJEROLATAM</strong>. *Estimación orientativa; el precio final puede variar según edad, fechas, duración, residencia y promociones.</div>`;
+    price=`<div class="public-price-label">Precio orientativo · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>moneda de referencia · total viaje</small></div><div class="trip-origin-price">≈ ${originTotal} <span>moneda de origen</span></div><div class="public-price-sub"><strong>≈ 1,60 €/persona/día*</strong> · 5% de descuento con código <strong>VIAJEROLATAM</strong>. *Estimación orientativa; el precio final puede variar según edad, fechas, duración, residencia y promociones.</div>`;
   }
   const availability=unavailable
     ? `<div class="availability-note no">⚠ ${p.eligibility}</div>`
@@ -3175,7 +3175,7 @@ function applyEditSearch(){
     if(priceMinDisplay) priceMinDisplay.textContent=placePriceText(0,window.currentSearchDest);
     if(!slider || !priceDisplay) return;
     var v=parseFloat(slider.value||'10');
-    priceDisplay.textContent='Destino: '+primaryPriceText(v)+'/día · Desde: '+placePriceText(v,window.currentSearchOrigin)+'/día';
+    priceDisplay.textContent='Referencia: '+primaryPriceText(v)+'/día · Desde: '+placePriceText(v,window.currentSearchOrigin)+'/día';
   }
 
   onPriceChange=function(el){
