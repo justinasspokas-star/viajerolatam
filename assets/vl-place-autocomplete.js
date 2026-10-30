@@ -132,14 +132,39 @@ function attach(select,kind){
   }
   chosen=item||null;input.value=item?item.label:(select.options[select.selectedIndex]?.textContent||'');setError('');close();
  }
- sync();instances.push({select,input,autoResolve,sync});
+ sync();instances.push({select,input,autoResolve,sync,setError});
+}
+function validSchengenPair(prefix){
+ const origin=document.getElementById(prefix+'-origen');
+ const destination=document.getElementById(prefix+'-destino');
+ const country=document.getElementById(prefix==='sb'?'vl-pais-destino':'ep-pais-destino');
+ if(!origin||!destination)return true;
+ const source=origin.value==='espana-schengen'?'es':origin.value;
+ if(!SCHENGEN.has(source)||destination.value!=='espana-schengen')return true;
+ const dest=country?country.value:'';
+ const search=instances.find(x=>x.select.id===prefix+'-destino');
+ if(!SCHENGEN.has(dest)){
+   if(search){search.setError('Escribe y selecciona el país Schengen al que viajas.');search.input.focus();}
+   return false;
+ }
+ if(source===dest){
+   if(search){search.setError('Elige otro país Schengen diferente al de salida.');search.input.focus();}
+   return false;
+ }
+ return true;
 }
 function init(){
  [['sb-origen','origin'],['sb-destino','destination'],['ep-origen','origin'],['ep-destino','destination']].forEach(([id,kind])=>attach(document.getElementById(id),kind));
  const form=document.getElementById('vl-search-form');
- if(form)form.addEventListener('submit',e=>{for(const x of instances)if(x.select.id.startsWith('sb-')&&!x.autoResolve()){e.preventDefault();e.stopImmediatePropagation();x.input.focus();return;}},true);
+ if(form)form.addEventListener('submit',e=>{
+   for(const x of instances)if(x.select.id.startsWith('sb-')&&!x.autoResolve()){e.preventDefault();e.stopImmediatePropagation();x.input.focus();return;}
+   if(!validSchengenPair('sb')){e.preventDefault();e.stopImmediatePropagation();}
+ },true);
  const btn=document.querySelector('button[onclick="applyEditSearch()"]');
- if(btn)btn.addEventListener('click',e=>{for(const x of instances)if(x.select.id.startsWith('ep-')&&!x.autoResolve()){e.preventDefault();e.stopImmediatePropagation();x.input.focus();return;}},true);
+ if(btn)btn.addEventListener('click',e=>{
+   for(const x of instances)if(x.select.id.startsWith('ep-')&&!x.autoResolve()){e.preventDefault();e.stopImmediatePropagation();x.input.focus();return;}
+   if(!validSchengenPair('ep')){e.preventDefault();e.stopImmediatePropagation();}
+ },true);
 }
 window.VLPlaceSearch={countries:COUNTRIES,group,validate:(code,category)=>Boolean(COUNTRIES[code]&&(group(code)===category||category==='europa'||category==='mundial')),syncAll:()=>instances.forEach(x=>x.sync()),label:code=>COUNTRIES[code]?COUNTRIES[code].flag+' '+COUNTRIES[code].label:''};
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
