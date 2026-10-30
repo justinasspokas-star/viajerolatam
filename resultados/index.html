@@ -1868,14 +1868,43 @@ function goSchengenPriceNote(){
   if(GO_SCHENGEN_TOTAL_TIERS.some(t=>t[0]===days))return 'Referencia Colombia → España';
   return 'Estimación entre tramos de duración, no cotizada';
 }
+
+/* IATI: referencias facilitadas para 1 viajero y cinco duraciones.
+   Aplicadas únicamente a resultados LATAM -> España/Schengen.
+   No son cotizaciones oficiales verificadas para cada país o plan. */
+const IATI_SCHENGEN_TOTAL_TIERS=Object.freeze([[7,34.68],[14,52.91],[30,85.02],[60,158.75],[90,245.82]]);
+function isIatiSchengenLatamRoute(){
+  return GO_SCHENGEN_LATAM.has(normalizedOrigin()) && normalizedDest()==='europe';
+}
+function iatiSchengenReferenceTotalPerPerson(days){
+  const n=Math.max(1,Number(days)||1);
+  const roundCents=value=>Math.round((value+Number.EPSILON)*100)/100;
+  if(n<IATI_SCHENGEN_TOTAL_TIERS[0][0]){
+    return roundCents(IATI_SCHENGEN_TOTAL_TIERS[0][1]*n/IATI_SCHENGEN_TOTAL_TIERS[0][0]);
+  }
+  for(let i=0;i<IATI_SCHENGEN_TOTAL_TIERS.length;i++){
+    const [length,total]=IATI_SCHENGEN_TOTAL_TIERS[i];
+    if(n===length)return total;
+    const next=IATI_SCHENGEN_TOTAL_TIERS[i+1];
+    if(next && n<next[0]){
+      return roundCents(total+(next[1]-total)*(n-length)/(next[0]-length));
+    }
+  }
+  // Fuera de 7 a 90 dias: solo estimacion, no una tarifa cotizada.
+  return roundCents(IATI_SCHENGEN_TOTAL_TIERS[4][1]*n/90);
+}
+function iatiSchengenPriceNote(){
+  return IATI_SCHENGEN_TOTAL_TIERS.some(t=>t[0]===resultTripDays())
+    ? 'Referencia de precio facilitada para IATI'
+    : 'Estimación matemática según tramos; no cotizada';
+}
 function fixedOrientativeRate(key){
   const origin = normalizedOrigin();
   const dest = normalizedDest();
   // Referencias actualizadas el 28/09/2026 a partir de cotizaciones revisadas.
   // Son precios orientativos diarios; el proveedor confirma siempre el precio final.
-  if(key === 'iati' && dest === 'europe'){
-    if(origin === 'uy') return 2.80;
-    if(origin === 'co') return 2.40;
+  if(key === 'iati' && isIatiSchengenLatamRoute()){
+    return iatiSchengenReferenceTotalPerPerson(resultTripDays())/resultTripDays();
   }
   // Go Schengen: total por tramo, no tarifa plana diaria.
   if(key === 'intermundial' && isGoSchengenLatamRoute()){
@@ -1953,6 +1982,9 @@ function resultFormatCurrencyFromEUR(eurAmount,currency){
   }
 }
 function resultTotalEUR(key){
+  if(key==='iati' && isIatiSchengenLatamRoute()){
+    return iatiSchengenReferenceTotalPerPerson(resultTripDays())*resultTripPeople();
+  }
   if(key==='intermundial' && isGoSchengenLatamRoute()){
     return goSchengenReferenceTotalPerPerson(resultTripDays())*resultTripPeople();
   }
@@ -2136,6 +2168,9 @@ function renderCard(d){
   let price=`<div class="public-price-label">Total orientativo · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>moneda de destino · total viaje</small></div><div class="trip-origin-price">≈ ${originTotal} <span>moneda de origen</span></div><div class="public-price-sub">${destDaily}/persona/día × ${resultTripDays()} día${resultTripDays()===1?'':'s'} × ${resultTripPeople()} viajero${resultTripPeople()===1?'':'s'}. Estimación ViajeroLatam; confirma el precio final con el proveedor.</div>`;
   if(d.key==='intermundial' && isGoSchengenLatamRoute()){
     price=`<div class="public-price-label">Go Schengen · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>total del viaje</small></div><div class="trip-origin-price">≈ ${originTotal} <span>moneda de origen</span></div><div class="public-price-sub go-schengen-price-note"><strong>≈ ${destDaily}/persona/día</strong> de media. ${goSchengenPriceNote()}; orientativa para otros orígenes LATAM. Solo Schengen. Confirma el precio final con Intermundial.</div>`;
+  }
+  if(d.key==='iati' && isIatiSchengenLatamRoute()){
+    price=`<div class="public-price-label">IATI · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>total del viaje</small></div><div class="trip-origin-price">≈ ${originTotal} <span>moneda de origen</span></div><div class="public-price-sub go-schengen-price-note"><strong>≈ ${destDaily}/persona/día</strong> de media. ${iatiSchengenPriceNote()}; referencia orientativa para rutas LATAM → Schengen. Comprueba el plan, la elegibilidad y el precio final en IATI.</div>`;
   }
   if(d.key==='chapka'){
     if(chapkaPlanType()==='schengen'){
