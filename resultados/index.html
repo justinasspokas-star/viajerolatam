@@ -1954,11 +1954,30 @@ function goWorldUkPriceNote(){
     ? 'Referencia de 1 viajero facilitada para Reino Unido; puede variar según residencia y fechas'
     : 'Estimación matemática entre o fuera de las referencias de 7, 14 y 30 días; no cotizada';
 }
+/* IATI UK: simulación editorial de precio, NO cotización IATI.
+   Solo Reino Unido desde las 20 residencias LATAM admitidas por el buscador.
+   Se calcula el total InterMundial por la misma duración y se incrementa 40%.
+   Otros destinos y las referencias originales de IATI Schengen permanecen intactos. */
+const IATI_UK_COMPARATIVE_MULTIPLIER=1.40;
+function isIatiUkLatamRoute(){
+  return isGoWorldUkLatamRoute();
+}
+function iatiUkComparativeTotalPerPerson(days){
+  return Math.round((goWorldUkReferenceTotalPerPerson(days)*IATI_UK_COMPARATIVE_MULTIPLIER+Number.EPSILON)*100)/100;
+}
+function iatiUkPriceNote(){
+  return GO_WORLD_UK_TOTAL_TIERS.some(t=>t[0]===resultTripDays())
+    ? 'Estimación de ViajeroLatam: InterMundial Reino Unido +40 %. No es una cotización ni tarifa publicada por IATI'
+    : 'Estimación de ViajeroLatam: precio InterMundial interpolado o extrapolado +40 %. No es una cotización ni tarifa publicada por IATI';
+}
 function fixedOrientativeRate(key){
   const origin = normalizedOrigin();
   const dest = normalizedDest();
   // Referencias actualizadas el 28/09/2026 a partir de cotizaciones revisadas.
   // Son precios orientativos diarios; el proveedor confirma siempre el precio final.
+  if(key === 'iati' && isIatiUkLatamRoute()){
+    return iatiUkComparativeTotalPerPerson(resultTripDays())/resultTripDays();
+  }
   if(key === 'iati' && isIatiSchengenLatamRoute()){
     return iatiSchengenReferenceTotalPerPerson(resultTripDays())/resultTripDays();
   }
@@ -2045,6 +2064,9 @@ function resultFormatCurrencyFromEUR(eurAmount,currency){
   }
 }
 function resultTotalEUR(key){
+  if(key==='iati' && isIatiUkLatamRoute()){
+    return iatiUkComparativeTotalPerPerson(resultTripDays())*resultTripPeople();
+  }
   if(key==='intermundial' && isGoWorldUkLatamRoute()){
     return goWorldUkReferenceTotalPerPerson(resultTripDays())*resultTripPeople();
   }
@@ -2257,6 +2279,9 @@ function renderCard(d){
   }
   if(d.key==='iati' && isIatiSchengenLatamRoute()){
     price=`<div class="public-price-label">IATI · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>total del viaje</small></div><div class="trip-origin-price">≈ ${originTotal} <span>moneda de origen</span></div><div class="public-price-sub go-schengen-price-note"><strong>≈ ${destDaily}/persona/día</strong> de media. ${iatiSchengenPriceNote()}; referencia orientativa para rutas LATAM → Schengen. Comprueba el plan, la elegibilidad y el precio final en IATI.</div>`;
+  }
+  if(d.key==='iati' && isIatiUkLatamRoute()){
+    price=`<div class="public-price-label">IATI · Reino Unido · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>total estimado del viaje</small></div><div class="trip-origin-price">≈ ${originTotal} <span>moneda de origen</span></div><div class="public-price-sub"><strong>≈ ${destDaily}/persona/día</strong> de media. <strong>Estimación comparativa (+40 % frente a InterMundial).</strong> ${iatiUkPriceNote()}. No es un precio cotizado por IATI. Confirma cobertura, elegibilidad y precio final en la web oficial.</div>`;
   }
   if(d.key==='axa' && isAxaSchengenLatamRoute()){
     price=`<div class="public-price-label">AXA Mini · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>total orientativo del viaje</small></div><div class="trip-origin-price">≈ ${originTotal} <span>moneda de origen</span></div><div class="public-price-sub"><strong>≈ ${destDaily}/persona/día</strong> de media. ${axaMiniSchengenPriceNote()}. Referencia para cualquier origen LATAM únicamente orientativa, sin extras (deportes no incluidos). Confirma la prima final y si puedes contratar desde tu residencia en AXA.</div>`;
@@ -2804,7 +2829,7 @@ function applyEditSearch(){
     var destinationCode=destinationCurrency();
     el.classList.add('is-visible');
     var regionText=isGoWorldUkLatamRoute()
-      ? 'Para InterMundial go World con destino Reino Unido usamos referencias facilitadas de 7, 14 y 30 días por persona; otros días son estimaciones, no cotizaciones.'
+      ? 'Para InterMundial go World con destino Reino Unido usamos referencias facilitadas de 7, 14 y 30 días por persona. IATI muestra una estimación matemática +40 % respecto a esos importes, no una cotización de IATI; otros días también son estimaciones.'
       : isGoSchengenLatamRoute()
         ? 'Para Intermundial Go Schengen usamos referencias por duración; otras opciones pueden usar precios diarios.'
       : (GO_SCHENGEN_LATAM.has(normalizedOrigin()) && normalizedDest()!=='europe')
