@@ -2883,7 +2883,7 @@ function applyEditSearch(){
     var asiaCodes=new Set('af bh bd bt bn kh cn hk in id ir iq il jp jo kz kw kg la lb mo my mv mn mm np kp kr om pk ps ph qa sa sg lk sy tw tj th tl tm ae uz vn ye'.split(' '));
     var countryGroup=schengenCodes.has(requestedCountry)?'espana-schengen':europeOutside.has(requestedCountry)?'europa-no-schengen':
       (requestedCountry==='us'||requestedCountry==='ca')?'eeuu-canada':asiaCodes.has(requestedCountry)?'asia':'mundial';
-    if(!PLACE_META[requestedCountry] || !(countryGroup===destinationValue || destinationValue==='europa' || destinationValue==='mundial'))requestedCountry='';
+    if(!PLACE_META[requestedCountry] || !(countryGroup===destinationValue || requestedCountry===destinationValue || destinationValue==='europa' || destinationValue==='mundial'))requestedCountry='';
     var requestedDays=Math.max(1,parseInt(params.get('dias')||'15',10)||15);
     var travelerValue=Math.max(1,parseInt(params.get('personas')||params.get('viajeros')||'1',10)||1);
     var ida=params.get('ida')||params.get('salida')||'';
