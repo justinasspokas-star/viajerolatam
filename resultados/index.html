@@ -1970,11 +1970,37 @@ function iatiUkPriceNote(){
     ? 'Estimación de ViajeroLatam: InterMundial Reino Unido +40 %. No es una cotización ni tarifa publicada por IATI'
     : 'Estimación de ViajeroLatam: precio InterMundial interpolado o extrapolado +40 %. No es una cotización ni tarifa publicada por IATI';
 }
+/* IATI LATAM → Asia: referencias de 1 persona facilitadas por el usuario.
+   15 días: 52,91 €; 30 días: 85,02 €. No son tarifas verificadas
+   para todas las residencias y destinos de Asia. Otras duraciones son estimaciones. */
+const IATI_ASIA_TOTAL_TIERS=Object.freeze([[15,52.91],[30,85.02]]);
+function isIatiAsiaLatamRoute(){
+  return GO_SCHENGEN_LATAM.has(normalizedOrigin()) &&
+    String(window.currentSearchDest||'').toLowerCase()==='asia';
+}
+function iatiAsiaReferenceTotalPerPerson(days){
+  const n=Math.max(1,Number(days)||1);
+  const cents=value=>Math.round((value+Number.EPSILON)*100)/100;
+  if(n===15)return 52.91;
+  if(n===30)return 85.02;
+  if(n<15)return cents(52.91*n/15);
+  if(n<30)return cents(52.91+(85.02-52.91)*(n-15)/15);
+  // Fuera de las referencias: extrapolación proporcional, no cotización.
+  return cents(85.02*n/30);
+}
+function iatiAsiaPriceNote(){
+  return IATI_ASIA_TOTAL_TIERS.some(t=>t[0]===resultTripDays())
+    ? 'Referencia facilitada para 1 viajero y esta duración'
+    : 'Estimación matemática basada en las referencias de 15 y 30 días; duración no cotizada';
+}
 function fixedOrientativeRate(key){
   const origin = normalizedOrigin();
   const dest = normalizedDest();
   // Referencias actualizadas el 28/09/2026 a partir de cotizaciones revisadas.
   // Son precios orientativos diarios; el proveedor confirma siempre el precio final.
+  if(key === 'iati' && isIatiAsiaLatamRoute()){
+    return iatiAsiaReferenceTotalPerPerson(resultTripDays())/resultTripDays();
+  }
   if(key === 'iati' && isIatiUkLatamRoute()){
     return iatiUkComparativeTotalPerPerson(resultTripDays())/resultTripDays();
   }
@@ -2064,6 +2090,9 @@ function resultFormatCurrencyFromEUR(eurAmount,currency){
   }
 }
 function resultTotalEUR(key){
+  if(key==='iati' && isIatiAsiaLatamRoute()){
+    return iatiAsiaReferenceTotalPerPerson(resultTripDays())*resultTripPeople();
+  }
   if(key==='iati' && isIatiUkLatamRoute()){
     return iatiUkComparativeTotalPerPerson(resultTripDays())*resultTripPeople();
   }
@@ -2282,6 +2311,9 @@ function renderCard(d){
   }
   if(d.key==='iati' && isIatiUkLatamRoute()){
     price=`<div class="public-price-label">IATI · Reino Unido · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>total estimado del viaje</small></div><div class="trip-origin-price">≈ ${originTotal} <span>moneda de origen</span></div><div class="public-price-sub"><strong>≈ ${destDaily}/persona/día</strong> de media. <strong>Estimación comparativa (+40 % frente a InterMundial).</strong> ${iatiUkPriceNote()}. No es un precio cotizado por IATI. Confirma cobertura, elegibilidad y precio final en la web oficial.</div>`;
+  }
+  if(d.key==='iati' && isIatiAsiaLatamRoute()){
+    price=`<div class="public-price-label">IATI · Asia · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>total orientativo del viaje</small></div><div class="trip-origin-price">≈ ${originTotal} <span>moneda de origen</span></div><div class="public-price-sub"><strong>≈ ${destDaily}/persona/día</strong> de media. ${iatiAsiaPriceNote()}. Orientativo para los distintos países de residencia LATAM y destinos de Asia. Confirma prima final, elegibilidad y condiciones directamente con IATI.</div>`;
   }
   if(d.key==='axa' && isAxaSchengenLatamRoute()){
     price=`<div class="public-price-label">AXA Mini · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>total orientativo del viaje</small></div><div class="trip-origin-price">≈ ${originTotal} <span>moneda de origen</span></div><div class="public-price-sub"><strong>≈ ${destDaily}/persona/día</strong> de media. ${axaMiniSchengenPriceNote()}. Referencia para cualquier origen LATAM únicamente orientativa, sin extras (deportes no incluidos). Confirma la prima final y si puedes contratar desde tu residencia en AXA.</div>`;
@@ -2828,8 +2860,10 @@ function applyEditSearch(){
     var originCode=originCurrency();
     var destinationCode=destinationCurrency();
     el.classList.add('is-visible');
-    var regionText=isGoWorldUkLatamRoute()
-      ? 'Para InterMundial go World con destino Reino Unido usamos referencias facilitadas de 7, 14 y 30 días por persona. IATI muestra una estimación matemática +40 % respecto a esos importes, no una cotización de IATI; otros días también son estimaciones.'
+    var regionText=isIatiAsiaLatamRoute()
+      ? 'Para IATI con destino Asia usamos referencias facilitadas para 1 viajero: 15 días 52,91 € y 30 días 85,02 €. Para otras duraciones se muestran estimaciones; la prima final depende de residencia, destino y condiciones.'
+      : isGoWorldUkLatamRoute()
+        ? 'Para InterMundial go World con destino Reino Unido usamos referencias facilitadas de 7, 14 y 30 días por persona. IATI muestra una estimación matemática +40 % respecto a esos importes, no una cotización de IATI; otros días también son estimaciones.'
       : isGoSchengenLatamRoute()
         ? 'Para Intermundial Go Schengen usamos referencias por duración; otras opciones pueden usar precios diarios.'
       : (GO_SCHENGEN_LATAM.has(normalizedOrigin()) && normalizedDest()!=='europe')
