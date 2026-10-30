@@ -2709,9 +2709,12 @@ function render(data){
   const noResults=document.getElementById('no-results');
   const routeProviders=visibleProviders();
   const eligibleCount=routeProviders.filter(d=>providerProfile(d).eligible).length;
-  const countText=(isSchengenToSchengenRoute()||isSchengenToUs())
-    ? `${routeProviders.length} opciones por verificar · ${routeProviders.length} comparadas`
-    : `${eligibleCount} contratables · ${routeProviders.length} comparadas`;
+  const pendingCount=routeProviders.filter(d=>providerProfile(d).reviewable).length;
+  const countText=(isSchengenToUkRoute() && normalizedOrigin()!=='es')
+    ? `${eligibleCount} opción para consultar · ${pendingCount} pendiente de verificar`
+    : (isSchengenToSchengenRoute()||isSchengenToUs())
+      ? `${routeProviders.length} opciones por verificar · ${routeProviders.length} comparadas`
+      : `${eligibleCount} opciones indicadas · ${routeProviders.length} comparadas`;
   (document.getElementById('count-display')||{textContent:''}).textContent=countText;
   (document.getElementById('count-slim')||{textContent:''}).textContent=countText;
   updateQuickCompare();
@@ -2751,7 +2754,9 @@ function applyFilters(){
 function sortData(data,val){
   const d=[...data];
   if(val==='precio-asc') d.sort((a,b)=>{
-    const ra=fixedOrientativeRate(a.key), rb=fixedOrientativeRate(b.key);
+    // Nunca ordenar como barato un precio que no se ha cotizado.
+    const ra=providerProfile(a).reviewable?Infinity:fixedOrientativeRate(a.key);
+    const rb=providerProfile(b).reviewable?Infinity:fixedOrientativeRate(b.key);
     return ra-rb;
   });
   else if(val==='cobertura') d.sort((a,b)=>providerProfile(b).coverageRank-providerProfile(a).coverageRank);
@@ -2783,7 +2788,8 @@ function clearFilters(){resetComparisonFilters();}
 
 function resetComparisonFilters(){
   ['f2','f4','f5','f6'].forEach(id=>{const el=document.getElementById(id);if(el)el.checked=false;});
-  const eligible=document.getElementById('f0');if(eligible)eligible.checked=true;
+  const eligible=document.getElementById('f0');
+  if(eligible)eligible.checked=!(isSchengenToUkRoute() && normalizedOrigin()!=='es');
   applyFilters();
 }
 
@@ -3252,6 +3258,10 @@ function applyEditSearch(){
     window.currentSearchDest=destinationValue;
     var specificCountry=document.getElementById('ep-pais-destino');
     window.currentSearchDestinationCountry=specificCountry&&PLACE_META[specificCountry.value]?specificCountry.value:'';
+    // En Schengen (fuera de España) → UK mostrar también la opción pendiente
+    // de verificación. El usuario puede activar el filtro estricto si quiere.
+    var strict=document.getElementById('f0');
+    if(strict)strict.checked=!(isSchengenToUkRoute() && normalizedOrigin()!=='es');
     updatePillsDisplay(originValue,destinationValue,ida,vuelta,travelerValue);
 
     var params=new URLSearchParams(location.search);
@@ -3301,6 +3311,8 @@ function applyEditSearch(){
     window.currentSearchOrigin=originValue;
     window.currentSearchDest=destinationValue;
     window.currentSearchDestinationCountry=requestedCountry;
+    var strict=document.getElementById('f0');
+    if(strict)strict.checked=!(isSchengenToUkRoute() && normalizedOrigin()!=='es');
     var countryField=document.getElementById('ep-pais-destino');
     if(countryField)countryField.value=requestedCountry;
 
