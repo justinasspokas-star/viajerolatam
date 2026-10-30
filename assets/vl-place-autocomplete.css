@@ -27,10 +27,11 @@
 .vl-place-choice:hover,.vl-place-choice.active,.vl-place-choice:focus-visible{background:#E9F9F3;outline:none}
 .vl-place-choice small{font-weight:600;color:#53768B;font-size:11px;white-space:nowrap}
 .vl-place-error{color:#A63D3D!important;font-size:11px!important;font-weight:600!important;margin:5px 0 0!important;line-height:1.4!important}
+.vl-place-no-results{padding:12px;color:#526A7D;font-size:13px;line-height:1.4;font-weight:500}
 .search-top-row,.search-top-row>.vl-field{overflow:visible!important}
 @media(max-width:700px){
- .vl-place-input{font-size:12px!important;padding:9px 29px 9px 8px;min-height:46px}
+ .vl-place-input{font-size:14px!important;padding:9px 29px 9px 8px;min-height:46px}
  .vl-place-box::after{right:8px}
  .vl-place-choice{font-size:13px}
 }
-@media(max-width:390px){.vl-place-input{font-size:11px!important}}
+@media(max-width:390px){.vl-place-input{font-size:13px!important}}
