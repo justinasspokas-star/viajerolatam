@@ -2072,8 +2072,10 @@ function normalizedDest(){
   return 'other';
 }
 function isExtendedNonSchengenSelection(){
+  // Cambiar solo la selección LATAM: no ocultar AXA internacional para residentes en España.
   const raw=String(window.currentSearchDest||'').toLowerCase();
-  return raw==='europa-no-schengen'||raw==='europa'||raw==='asia';
+  return GO_SCHENGEN_LATAM.has(normalizedOrigin()) &&
+    (raw==='europa-no-schengen'||raw==='europa'||raw==='asia');
 }
 function providerVisible(d){
   // En Europa fuera de Schengen, itinerarios combinados y Asia no mezclar
@@ -2761,7 +2763,9 @@ function applyEditSearch(){
     el.classList.add('is-visible');
     var regionText=isGoSchengenLatamRoute()
       ? 'Para Intermundial Go Schengen usamos referencias por duración; otras opciones pueden usar precios diarios.'
-      : 'Para rutas fuera de Schengen, Intermundial se calcula con la tarifa pública «desde» de go World; otras opciones usan referencias orientativas. Confirma qué países cubre cada póliza.';
+      : (GO_SCHENGEN_LATAM.has(normalizedOrigin()) && normalizedDest()!=='europe')
+        ? 'Para rutas LATAM fuera de Schengen, Intermundial usa la tarifa pública «desde» de go World; otras opciones usan referencias orientativas. Confirma qué países cubre cada póliza.'
+        : 'Los importes son referencias orientativas calculadas según la ruta, duración y viajeros; el precio y la contratación final se confirman con el proveedor.';
     el.innerHTML='<strong>Total orientativo calculado.</strong> '+regionText+' Viaje de <strong>'+resultTripDays()+' día'+(resultTripDays()===1?'':'s')+'</strong> y <strong>'+resultTripPeople()+' viajero'+(resultTripPeople()===1?'':'s')+'</strong>. Monedas aproximadas; confirma siempre el precio final con el proveedor.';
   };
 
