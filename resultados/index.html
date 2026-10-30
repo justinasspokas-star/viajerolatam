@@ -1835,6 +1835,38 @@ function chapkaReferenceTotalPerPerson(){
 function chapkaReferenceTotalEUR(){
   return chapkaReferenceTotalPerPerson()*resultTripPeople();
 }
+// Referencias facilitadas para 1 viajero: Colombia -> España, Intermundial go | schengen.
+// Se muestran como referencias orientativas en rutas LATAM -> espacio Schengen;
+// la cotización definitiva puede variar según residencia, fechas, edad y extras.
+const GO_SCHENGEN_TOTAL_TIERS=Object.freeze([[7,15.39],[14,27.71],[30,53.02],[60,76.63],[90,95.43]]);
+const GO_SCHENGEN_LATAM=new Set(['co','mx','ar','ve','pe','cl','ec','bo','br','uy','py','cr','pa','gt','sv','hn','ni','cu','ht','do']);
+function isGoSchengenLatamRoute(){
+  return GO_SCHENGEN_LATAM.has(normalizedOrigin()) && normalizedDest()==='europe';
+}
+function goSchengenReferenceTotalPerPerson(days){
+  // Importes exactos en 7, 14, 30, 60 y 90 dias. El resto son estimaciones,
+  // interpoladas entre tramos o extrapoladas fuera de los 7-90 dias.
+  const n=Math.max(1,Number(days)||1);
+  const roundCents=value=>Math.round((value+Number.EPSILON)*100)/100;
+  if(n<GO_SCHENGEN_TOTAL_TIERS[0][0]){
+    return roundCents(GO_SCHENGEN_TOTAL_TIERS[0][1]*n/GO_SCHENGEN_TOTAL_TIERS[0][0]);
+  }
+  for(let i=0;i<GO_SCHENGEN_TOTAL_TIERS.length;i++){
+    const [length,total]=GO_SCHENGEN_TOTAL_TIERS[i];
+    if(n===length)return total;
+    const next=GO_SCHENGEN_TOTAL_TIERS[i+1];
+    if(next && n<next[0]){
+      return roundCents(total+(next[1]-total)*(n-length)/(next[0]-length));
+    }
+  }
+  // > 90 dias: proyeccion de referencia, NO una tarifa cotizada.
+  return roundCents(GO_SCHENGEN_TOTAL_TIERS[4][1]*n/90);
+}
+function goSchengenPriceNote(){
+  const days=resultTripDays();
+  if(GO_SCHENGEN_TOTAL_TIERS.some(t=>t[0]===days))return 'Referencia comunicada para Colombia a España';
+  return 'Estimación a partir de los tramos de 7, 14, 30, 60 y 90 días';
+}
 function fixedOrientativeRate(key){
   const origin = normalizedOrigin();
   const dest = normalizedDest();
@@ -1844,10 +1876,9 @@ function fixedOrientativeRate(key){
     if(origin === 'uy') return 2.80;
     if(origin === 'co') return 2.40;
   }
-  // Intermundial: referencias revisadas para Colombia y Uruguay → España/Schengen.
-  if(key === 'intermundial' && dest === 'europe'){
-    if(origin === 'uy') return 1.71;
-    if(origin === 'co') return 1.76;
+  // Go Schengen: total por tramo, no tarifa plana diaria.
+  if(key === 'intermundial' && isGoSchengenLatamRoute()){
+    return goSchengenReferenceTotalPerPerson(resultTripDays())/resultTripDays();
   }
   // Assist 365: referencia revisada para LATAM → España/Europa.
   if(key === 'assist365' && dest === 'europe' && origin !== 'es') return 2.46;
@@ -1921,6 +1952,9 @@ function resultFormatCurrencyFromEUR(eurAmount,currency){
   }
 }
 function resultTotalEUR(key){
+  if(key==='intermundial' && isGoSchengenLatamRoute()){
+    return goSchengenReferenceTotalPerPerson(resultTripDays())*resultTripPeople();
+  }
   if(key==='chapka'){
     if(normalizedOrigin()==='co' && normalizedDest()==='europe') return 1.93*resultTripDays()*resultTripPeople();
     return chapkaReferenceTotalEUR();
@@ -2099,6 +2133,9 @@ function renderCard(d){
   const originTotal=resultFormatCurrencyFromEUR(totalEUR,originCur);
   const destDaily=resultFormatCurrencyFromEUR(fixedRate,destCur);
   let price=`<div class="public-price-label">Total orientativo · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>moneda de destino · total viaje</small></div><div class="trip-origin-price">≈ ${originTotal} <span>moneda de origen</span></div><div class="public-price-sub">${destDaily}/persona/día × ${resultTripDays()} día${resultTripDays()===1?'':'s'} × ${resultTripPeople()} viajero${resultTripPeople()===1?'':'s'}. Estimación ViajeroLatam; confirma el precio final con el proveedor.</div>`;
+  if(d.key==='intermundial' && isGoSchengenLatamRoute()){
+    price=`<div class="public-price-label">Go Schengen · referencia de precio · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>total del viaje · moneda de destino</small></div><div class="trip-origin-price">≈ ${originTotal} <span>moneda de origen</span></div><div class="public-price-sub"><strong>≈ ${destDaily}/persona/día</strong> (promedio del total). ${goSchengenPriceNote()}; aplicada como referencia a rutas LATAM → Schengen. El precio final puede variar según residencia, edad, fechas y coberturas. Solo válido para destinos Schengen.</div>`;
+  }
   if(d.key==='chapka'){
     if(chapkaPlanType()==='schengen'){
       price=`<div class="public-price-label">Tarifa pública de referencia · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>moneda de destino · total viaje</small></div><div class="trip-origin-price">≈ ${originTotal} <span>moneda de origen</span></div><div class="public-price-sub">Cap Schengen publica precios por tramos. Referencia Zona 2 (LATAM/resto del mundo), 0–60 años. La web oficial anuncia el producto desde 18 €; confirma edad, residencia y precio final.</div>`;
