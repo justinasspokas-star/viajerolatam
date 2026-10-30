@@ -1,0 +1,36 @@
+/* ViajeroLatam: autocompletar países y destinos, con fallback al select original. */
+.vl-place-original{display:none!important}
+.vl-place-box{position:relative;width:100%;min-width:0}
+.vl-place-input{
+ width:100%!important;max-width:100%;min-width:0;min-height:45px;
+ padding:10px 34px 10px 12px;border:1.5px solid #DCE7F0;border-radius:11px;
+ background:#fff;color:#0B1F3A;outline:none;font:600 14px/1.45 'Plus Jakarta Sans',Arial,sans-serif;
+ box-sizing:border-box;appearance:none;
+}
+.vl-place-box::after{content:'⌕';position:absolute;top:7px;right:11px;color:#60829A;font-size:21px;pointer-events:none}
+.vl-place-input:focus{border-color:#00A68C;box-shadow:0 0 0 3px rgba(0,196,161,.12)}
+.vl-place-input[aria-invalid=true]{border-color:#BB4C43}
+.vl-place-input::placeholder{color:#8596AA;font-weight:500}
+.vl-place-menu{
+ display:none;position:absolute;top:calc(100% + 5px);left:0;width:min(330px,calc(100vw - 26px));
+ background:#fff;border:1px solid #DDE8F2;border-radius:13px;max-height:290px;overflow-y:auto;
+ box-shadow:0 16px 38px rgba(11,31,58,.16);z-index:9999;-webkit-overflow-scrolling:touch;
+}
+.vl-place-right .vl-place-menu{left:auto;right:0}
+.vl-place-menu.open{display:block}
+.vl-place-choice{
+ display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:43px;
+ text-align:left;padding:10px 12px;cursor:pointer;background:#fff;color:#0B1F3A;
+ border:0;border-bottom:1px solid #F0F3F7;font:600 13px/1.3 'Plus Jakarta Sans',Arial,sans-serif;
+}
+.vl-place-choice:last-child{border-bottom:0}
+.vl-place-choice:hover,.vl-place-choice.active,.vl-place-choice:focus-visible{background:#E9F9F3;outline:none}
+.vl-place-choice small{font-weight:600;color:#53768B;font-size:11px;white-space:nowrap}
+.vl-place-error{color:#A63D3D!important;font-size:11px!important;font-weight:600!important;margin:5px 0 0!important;line-height:1.4!important}
+.search-top-row,.search-top-row>.vl-field{overflow:visible!important}
+@media(max-width:700px){
+ .vl-place-input{font-size:12px!important;padding:9px 29px 9px 8px;min-height:46px}
+ .vl-place-box::after{right:8px}
+ .vl-place-choice{font-size:13px}
+}
+@media(max-width:390px){.vl-place-input{font-size:11px!important}}
