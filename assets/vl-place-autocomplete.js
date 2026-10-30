@@ -116,7 +116,11 @@ function attach(select,kind){
  function sync(){
   let item=null;const val=select.value;
   if(countryField&&countryField.value)item=countries.find(x=>x.code===countryField.value&&mappedValue(select,kind,x)===val);
-  if(!item)item=regions.find(x=>x.code===val)||countries.find(x=>(kind==='origin'&&x.code==='es'?'espana-schengen':x.code)===val);
+  if(!item){
+   // En origen, "espana-schengen" significa España; en destino es una región.
+   if(kind==='origin')item=countries.find(x=>(x.code==='es'?'espana-schengen':x.code)===val);
+   if(!item)item=regions.find(x=>x.code===val)||countries.find(x=>x.code===val);
+  }
   chosen=item||null;input.value=item?item.label:(select.options[select.selectedIndex]?.textContent||'');setError('');close();
  }
  sync();instances.push({select,input,autoResolve,sync});
