@@ -1898,6 +1898,28 @@ function iatiSchengenPriceNote(){
     ? 'Referencia de precio facilitada para IATI'
     : 'Estimación matemática según tramos; no cotizada';
 }
+/* AXA Mini: una cotización facilitada para 01/11/2026–01/12/2026,
+   1 viajero y 130,42 €; son 30 días transcurridos entre las fechas.
+   No se conoce la residencia usada en esa cotización.
+   NO afirmar que este precio ni la elegibilidad se aplican a cada país LATAM. */
+const AXA_MINI_SCHENGEN_REFERENCE_TOTAL=130.42;
+const AXA_MINI_SCHENGEN_REFERENCE_DAYS=30;
+function isAxaSchengenLatamRoute(){
+  const dest=String(window.currentSearchDest||'').toLowerCase();
+  const isSchengen=dest.includes('schengen') || dest.includes('espana') || dest.includes('españa') || dest==='es';
+  return GO_SCHENGEN_LATAM.has(normalizedOrigin()) && isSchengen;
+}
+function axaMiniSchengenReferenceTotalPerPerson(days){
+  const n=Math.max(1,Number(days)||1);
+  // Con solo una referencia, el cálculo fuera de 30 días NO es cotización de AXA.
+  if(n===AXA_MINI_SCHENGEN_REFERENCE_DAYS) return AXA_MINI_SCHENGEN_REFERENCE_TOTAL;
+  return Math.round(AXA_MINI_SCHENGEN_REFERENCE_TOTAL*n/AXA_MINI_SCHENGEN_REFERENCE_DAYS*100)/100;
+}
+function axaMiniSchengenPriceNote(){
+  return resultTripDays()===AXA_MINI_SCHENGEN_REFERENCE_DAYS
+    ? 'Referencia facilitada para 01/11/2026–01/12/2026; 1 viajero, residencia no indicada'
+    : 'Proyección lineal desde una única cotización de referencia (30 días); esta duración no se ha cotizado';
+}
 function fixedOrientativeRate(key){
   const origin = normalizedOrigin();
   const dest = normalizedDest();
@@ -1905,6 +1927,9 @@ function fixedOrientativeRate(key){
   // Son precios orientativos diarios; el proveedor confirma siempre el precio final.
   if(key === 'iati' && isIatiSchengenLatamRoute()){
     return iatiSchengenReferenceTotalPerPerson(resultTripDays())/resultTripDays();
+  }
+  if(key === 'axa' && isAxaSchengenLatamRoute()){
+    return axaMiniSchengenReferenceTotalPerPerson(resultTripDays())/resultTripDays();
   }
   // Go Schengen: total por tramo, no tarifa plana diaria.
   if(key === 'intermundial' && isGoSchengenLatamRoute()){
@@ -1982,6 +2007,9 @@ function resultFormatCurrencyFromEUR(eurAmount,currency){
   }
 }
 function resultTotalEUR(key){
+  if(key==='axa' && isAxaSchengenLatamRoute()){
+    return axaMiniSchengenReferenceTotalPerPerson(resultTripDays())*resultTripPeople();
+  }
   if(key==='iati' && isIatiSchengenLatamRoute()){
     return iatiSchengenReferenceTotalPerPerson(resultTripDays())*resultTripPeople();
   }
@@ -2090,6 +2118,7 @@ function providerProfile(d){
     }
     return {plan:'Cap Schengen / Cap Europa',eligible:false,eligibility:'Estos productos Chapka están orientados a residentes fuera de Schengen que viajan a España o la UE',medica:'Según producto',repatriacion:'Según producto',franquicia:'Según producto',cancelacion:'Según producto',equipaje:'Según producto',demora:'Según producto',tele:false,aventura:false,cancel:false,baggage:false,publicRate:null,coverageRank:0,bestFor:'Viajes desde LATAM a España o Europa.',caution:'Selecciona España/Schengen o Europa como destino para comparar estos productos.',source:'Chapka · web oficial · revisión 08/09/2026'};
   }
+  if(isAxaSchengenLatamRoute()) return {plan:'AXA Mini',eligible:true,eligibility:'Ruta LATAM → España/Schengen: confirma que AXA admite tu país de residencia',medica:'Hasta 50.000 €',repatriacion:'Revisar condiciones',franquicia:'Revisar condiciones',cancelacion:'Revisar modalidad',equipaje:'Hasta 500 €',demora:'Según condiciones',tele:true,aventura:false,cancel:false,baggage:true,publicRate:null,coverageRank:45,bestFor:'Viajeros desde LATAM a España/Schengen que quieren comparar gastos médicos, equipaje y condiciones reales.',caution:'Cotización de referencia: 130,42 € para 01/11–01/12/2026 y 1 viajero, sin seguro deportivo. Deporte opcional (+33,60 € en el ejemplo). No se indica la residencia usada: confirma elegibilidad, garantías, certificado Schengen y precio directamente con AXA.',source:'Captura de cotización AXA Mini · 01/11–01/12/2026 · 1 viajero (aportada el 30/10/2026)'};
   if(!spainResident && dest==='europe') return {plan:'AXA Schengen Mini',eligible:true,eligibility:'Disponible para personas que viven fuera de España y viajan a España o Schengen',medica:'Hasta 30.000 €',repatriacion:'Incluida',franquicia:'Revisar condiciones',cancelacion:'Revisar modalidad',equipaje:'Revisar modalidad',demora:'Según condiciones',tele:true,aventura:false,cancel:false,baggage:false,publicRate:2.66,coverageRank:45,bestFor:'Viajeros LATAM que necesitan una opción Schengen con certificado y respaldo internacional.',caution:'AXA ofrece también Schengen Total con hasta 100.000 € de gastos médicos; esta comparación usa Schengen Mini como referencia de entrada.',source:'AXA Seguro de Viaje Schengen · web oficial 2026'};
   if(spainResident) return {plan:'AXA Seguro de viaje Internacional',eligible:true,eligibility:'Disponible para residentes en España',medica:'Hasta 5.000.000 €',repatriacion:'Incluida',franquicia:'Revisar condiciones',cancelacion:'Disponible en modalidad con cancelación',equipaje:'Hasta 1.500 €',demora:'Según condiciones',tele:true,aventura:false,cancel:true,baggage:true,publicRate:1.48,coverageRank:90,bestFor:'Residentes en España que valoran una marca internacional y asistencia 24/7.',caution:'La referencia de 1,48 €/día corresponde al seguro internacional de entrada; la modalidad con cancelación parte de un precio superior.',source:'AXA Seguro de Viaje Internacional · web oficial · revisión 31/08/2026'};
   return {plan:'AXA Asistencia en Viaje',eligible:false,eligibility:'Para residentes fuera de España, AXA Schengen se aplica a viajes a España/Schengen; revisa otra modalidad para este destino',medica:'Según producto',repatriacion:'Según producto',franquicia:'Revisar condiciones',cancelacion:'Revisar condiciones',equipaje:'Según producto',demora:'Según producto',tele:true,aventura:false,cancel:false,baggage:false,publicRate:null,coverageRank:0,bestFor:'Consulta una modalidad compatible con tu residencia y destino.',caution:'No mostramos como contratable el producto para residentes en España cuando el origen está fuera de España.',source:'AXA · web oficial 2026'};
@@ -2100,6 +2129,7 @@ function providerDifferentiator(d,p){
   if(d.key==='intermundial') return '👤 Tramitador personal para gestionar tu siniestro.';
   if(d.key==='holins') return '📞 WebCall 24/7 sin coste de llamada desde el extranjero.';
   if(d.key==='axa'){
+    if(isAxaSchengenLatamRoute()) return '📱 eSIM gratis anunciada en la cotización de AXA Mini; consulta condiciones de entrega.';
     if(String(p.plan||'').toLowerCase().includes('schengen')) return '📶 Hasta 1 GB de internet incluido en el seguro Schengen.';
     return '🌍 Red internacional AXA y asistencia digital durante el viaje.';
   }
@@ -2171,6 +2201,9 @@ function renderCard(d){
   }
   if(d.key==='iati' && isIatiSchengenLatamRoute()){
     price=`<div class="public-price-label">IATI · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>total del viaje</small></div><div class="trip-origin-price">≈ ${originTotal} <span>moneda de origen</span></div><div class="public-price-sub go-schengen-price-note"><strong>≈ ${destDaily}/persona/día</strong> de media. ${iatiSchengenPriceNote()}; referencia orientativa para rutas LATAM → Schengen. Comprueba el plan, la elegibilidad y el precio final en IATI.</div>`;
+  }
+  if(d.key==='axa' && isAxaSchengenLatamRoute()){
+    price=`<div class="public-price-label">AXA Mini · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>total orientativo del viaje</small></div><div class="trip-origin-price">≈ ${originTotal} <span>moneda de origen</span></div><div class="public-price-sub"><strong>≈ ${destDaily}/persona/día</strong> de media. ${axaMiniSchengenPriceNote()}. Referencia para cualquier origen LATAM únicamente orientativa, sin extras (deportes no incluidos). Confirma la prima final y si puedes contratar desde tu residencia en AXA.</div>`;
   }
   if(d.key==='chapka'){
     if(chapkaPlanType()==='schengen'){
