@@ -1429,7 +1429,7 @@ nav .brand-logo img{height:36px!important;max-width:164px!important;width:auto!i
 </style>
 </link><meta content="Icono de ViajeroLatam con mochila viajera" property="og:image:alt"/>  <link rel="stylesheet" href="/assets/vl-whatsapp.css">
 <link rel="stylesheet" href="/assets/vl-traveller-ages.css">
-<link rel="stylesheet" href="/assets/vl-place-autocomplete.css">
+<link rel="stylesheet" href="/assets/vl-place-autocomplete.css?v=20261030-select-audit">
 </head>
 <body>
 <!-- H1 principal movido al bloque de resultados para evitar espacio superior -->
@@ -1690,7 +1690,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
 <label style="font-size:11px;font-weight:700;color:#8FA4B8;text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:6px">Destino</label>
 <select id="ep-destino" style="width:100%;padding:10px 12px;border:1.5px solid #E4EDF5;border-radius:10px;font-family:inherit;font-size:14px;color:#0B1F3A;background:#fff;outline:none">
 <option value="espana-schengen">🇪🇺 Zona Schengen (varios países)</option>
-<option value="europa-no-schengen">🇬🇧 Europa fuera de Schengen</option>
+<option value="europa-no-schengen">🌍 Europa fuera de Schengen</option>
 <option value="europa">🌍 Europa completa (Schengen + otros)</option>
 <option value="eeuu-canada">🇺🇸🇨🇦 Estados Unidos + Canadá</option>
 <option value="asia">🌏 Asia</option>
@@ -2829,7 +2829,9 @@ function openEditPanel(focusId){
   p.style.display = 'block';
   document.body.style.overflow = window.innerWidth <= 768 ? 'hidden' : '';
   setTimeout(function(){
-    var el = document.getElementById(focusId);
+    // El selector original se oculta al activar el autocompletado.
+    // Enfocar el campo visible para poder escribir desde el móvil.
+    var el = document.getElementById(focusId+'-search') || document.getElementById(focusId);
     if(el){
       try{ el.focus({preventScroll:false}); }catch(e){ el.focus(); }
       if(el.tagName === 'SELECT' && window.innerWidth > 768) el.click();
@@ -3377,6 +3379,6 @@ document.addEventListener('keydown', function(e){
 <!-- ViajeroLatam STEP2 comparator verified 2026-08-24 -->
   <script defer src="/assets/vl-whatsapp.js"></script>
 <script defer src="/assets/vl-traveller-ages.js"></script>
-<script defer src="/assets/vl-place-autocomplete.js?v=20261030-schengen-unique"></script>
+<script defer src="/assets/vl-place-autocomplete.js?v=20261030-select-audit"></script>
 </body>
 </html>
