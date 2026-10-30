@@ -2129,11 +2129,25 @@ function iatiSchengenUsCanadaPriceNote(){
     ? 'Referencia facilitada para 15 días y 1 viajero, no verificada para cada residencia Schengen'
     : 'Proyección proporcional desde la única referencia de 15 días; esta duración no se ha cotizado';
 }
+/* AXA Schengen → EEUU/Canadá: 50,75 € / 14 días / persona; otras duraciones estimadas. */
+const AXA_SCHENGEN_AMERICA_14D=50.75;
+function isAxaSchengenAmerica(){return isSchengenToUs();}
+function axaSchengenAmericaTotal(days){
+ const n=Math.max(1,Number(days)||1);
+ return n===14?AXA_SCHENGEN_AMERICA_14D:
+   Math.round((AXA_SCHENGEN_AMERICA_14D*n/14+Number.EPSILON)*100)/100;
+}
+function axaSchengenAmericaNote(){
+ return resultTripDays()===14
+   ? 'Referencia facilitada para un viajero y 14 días, orientativa para cualquier origen Schengen'
+   : 'Estimación proporcional basada en una única referencia de 14 días, no cotizada';
+}
 function fixedOrientativeRate(key){
   const origin = normalizedOrigin();
   const dest = normalizedDest();
   // Referencias actualizadas el 28/09/2026 a partir de cotizaciones revisadas.
   // Son precios orientativos diarios; el proveedor confirma siempre el precio final.
+  if(key === 'axa' && isAxaSchengenAmerica())return axaSchengenAmericaTotal(resultTripDays())/resultTripDays();
   if(key === 'iati' && isIatiSchengenToUsCanada())
     return iatiSchengenUsCanadaTotalPerPerson(resultTripDays())/resultTripDays();
   if(key === 'intermundial' && isSchengenToUs())return interSchengenUsTotal(resultTripDays())/resultTripDays();
@@ -2239,6 +2253,7 @@ function resultFormatCurrencyFromEUR(eurAmount,currency){
   }
 }
 function resultTotalEUR(key){
+  if(key==='axa' && isAxaSchengenAmerica())return axaSchengenAmericaTotal(resultTripDays())*resultTripPeople();
   if(key==='iati' && isIatiSchengenToUsCanada())
     return iatiSchengenUsCanadaTotalPerPerson(resultTripDays())*resultTripPeople();
   if(key==='intermundial' && isSchengenToUs())return interSchengenUsTotal(resultTripDays())*resultTripPeople();
@@ -2335,7 +2350,7 @@ function providerVisible(d){
   // Si la salida es otro país Schengen, evitar mostrar productos configurados
   // para residencias LATAM/España hasta verificar la disponibilidad contractual.
   if(SCHENGEN_ROUTE_COUNTRIES.has(normalizedOrigin()) && normalizedOrigin()!=='es')
-    return d && (d.key==='iati'||(d.key==='intermundial'&&isSchengenToUs()));
+    return d && (d.key==='iati'||((d.key==='intermundial'||d.key==='axa')&&isSchengenToUs()));
   // En Europa fuera de Schengen, itinerarios combinados y Asia no mezclar
   // productos específicos Schengen cuya cobertura no se ha verificado para esos destinos.
   if(d && isExtendedNonSchengenSelection() && (d.key==='chapka'||d.key==='axa')) return false;
@@ -2431,6 +2446,17 @@ function providerProfile(d){
     }
     return {plan:'Cap Schengen / Cap Europa',eligible:false,eligibility:'Estos productos Chapka están orientados a residentes fuera de Schengen que viajan a España o la UE',medica:'Según producto',repatriacion:'Según producto',franquicia:'Según producto',cancelacion:'Según producto',equipaje:'Según producto',demora:'Según producto',tele:false,aventura:false,cancel:false,baggage:false,publicRate:null,coverageRank:0,bestFor:'Viajes desde LATAM a España o Europa.',caution:'Selecciona España/Schengen o Europa como destino para comparar estos productos.',source:'Chapka · web oficial · revisión 08/09/2026'};
   }
+  if(isAxaSchengenAmerica())return {
+    plan:'AXA · modalidad a confirmar',eligible:true,
+    eligibility:'Referencia para países Schengen con destino Estados Unidos o Canadá; confirma la aceptación de tu residencia',
+    medica:'Según modalidad contratada',repatriacion:'Según condiciones',
+    franquicia:'Consultar condiciones',cancelacion:'Según modalidad',
+    equipaje:'Según modalidad',demora:'Según condiciones',
+    tele:false,aventura:false,cancel:false,baggage:false,publicRate:null,
+    coverageRank:75,bestFor:'Viajes desde países Schengen hacia Estados Unidos o Canadá.',
+    caution:'50,75 € para 14 días y una persona es una referencia facilitada, aplicada orientativamente a 29 países Schengen de origen y ambos destinos. El producto, cobertura y precio final no están confirmados para cada residencia: compruébalos con AXA.',
+    source:'AXA · referencia Schengen → EE. UU./Canadá de 14 días facilitada por el usuario'
+  };
   if(isAxaSchengenLatamRoute()) return {plan:'AXA Mini',eligible:true,eligibility:'Ruta LATAM → España/Schengen: confirma que AXA admite tu país de residencia',medica:'Hasta 50.000 €',repatriacion:'Revisar condiciones',franquicia:'Revisar condiciones',cancelacion:'Revisar modalidad',equipaje:'Hasta 500 €',demora:'Según condiciones',tele:true,aventura:false,cancel:false,baggage:true,publicRate:null,coverageRank:45,bestFor:'Viajeros desde LATAM a España/Schengen que quieren comparar gastos médicos, equipaje y condiciones reales.',caution:'Cotización de referencia: 130,42 € para 01/11–01/12/2026 y 1 viajero, sin seguro deportivo. Deporte opcional (+33,60 € en el ejemplo). No se indica la residencia usada: confirma elegibilidad, garantías, certificado Schengen y precio directamente con AXA.',source:'Captura de cotización AXA Mini · 01/11–01/12/2026 · 1 viajero (aportada el 30/10/2026)'};
   if(!spainResident && dest==='europe') return {plan:'AXA Schengen Mini',eligible:true,eligibility:'Disponible para personas que viven fuera de España y viajan a España o Schengen',medica:'Hasta 30.000 €',repatriacion:'Incluida',franquicia:'Revisar condiciones',cancelacion:'Revisar modalidad',equipaje:'Revisar modalidad',demora:'Según condiciones',tele:true,aventura:false,cancel:false,baggage:false,publicRate:2.66,coverageRank:45,bestFor:'Viajeros LATAM que necesitan una opción Schengen con certificado y respaldo internacional.',caution:'AXA ofrece también Schengen Total con hasta 100.000 € de gastos médicos; esta comparación usa Schengen Mini como referencia de entrada.',source:'AXA Seguro de Viaje Schengen · web oficial 2026'};
   if(spainResident) return {plan:'AXA Seguro de viaje Internacional',eligible:true,eligibility:'Disponible para residentes en España',medica:'Hasta 5.000.000 €',repatriacion:'Incluida',franquicia:'Revisar condiciones',cancelacion:'Disponible en modalidad con cancelación',equipaje:'Hasta 1.500 €',demora:'Según condiciones',tele:true,aventura:false,cancel:true,baggage:true,publicRate:1.48,coverageRank:90,bestFor:'Residentes en España que valoran una marca internacional y asistencia 24/7.',caution:'La referencia de 1,48 €/día corresponde al seguro internacional de entrada; la modalidad con cancelación parte de un precio superior.',source:'AXA Seguro de Viaje Internacional · web oficial · revisión 31/08/2026'};
@@ -2542,6 +2568,9 @@ function renderCard(d){
   if(d.key==='iati' && isIatiAsiaLatamRoute()){
     price=`<div class="public-price-label">IATI · Asia · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>total orientativo del viaje</small></div><div class="trip-origin-price">≈ ${originTotal} <span>moneda de origen</span></div><div class="public-price-sub"><strong>≈ ${destDaily}/persona/día</strong> de media. ${iatiAsiaPriceNote()}. Orientativo para los distintos países de residencia LATAM y destinos de Asia. Confirma prima final, elegibilidad y condiciones directamente con IATI.</div>`;
   }
+  if(d.key==='axa' && isAxaSchengenAmerica()){
+    price=`<div class="public-price-label">AXA · Schengen → Estados Unidos / Canadá · ${resultTripLabel()}</div><div class="public-price">≈ ${euroFixed(totalEUR)} € <small>total orientativo en euros</small></div><div class="trip-origin-price">≈ ${destTotal} <span>conversión aproximada a USD</span></div><div class="public-price-sub"><strong>≈ ${euroFixed(fixedRate)} €/persona/día</strong> de media. ${axaSchengenAmericaNote()}. Confirma producto, cobertura, residencia admitida y prima final con AXA.</div>`;
+  }
   if(d.key==='axa' && isAxaSchengenLatamRoute()){
     price=`<div class="public-price-label">AXA Mini · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>total orientativo del viaje</small></div><div class="trip-origin-price">≈ ${originTotal} <span>moneda de origen</span></div><div class="public-price-sub"><strong>≈ ${destDaily}/persona/día</strong> de media. ${axaMiniSchengenPriceNote()}. Referencia para cualquier origen LATAM únicamente orientativa, sin extras (deportes no incluidos). Confirma la prima final y si puedes contratar desde tu residencia en AXA.</div>`;
   }
@@ -2560,7 +2589,7 @@ function renderCard(d){
     : `<div class="availability-note ok">✓ ${p.eligibility}</div>`;
   const cta=unavailable
     ? `<a class="btn-contract disabled" aria-disabled="true">No disponible para este origen</a>`
-    : `<a class="btn-contract" href="${escAttr(providerCtaUrl(d))}" target="_blank" rel="nofollow sponsored noopener" onclick="trackContract('${escJs(d.name)}','${escJs(p.plan)}')">${(isSchengenToSchengenRoute()||(d.key==='intermundial'&&isSchengenToUs()))?'Confirmar precio y elegibilidad en '+d.name+' →':d.key==='assist365'?'Ver precio con 5% descuento →':'Ver precio en '+d.name+' →'}</a>`;
+    : `<a class="btn-contract" href="${escAttr(providerCtaUrl(d))}" target="_blank" rel="nofollow sponsored noopener" onclick="trackContract('${escJs(d.name)}','${escJs(p.plan)}')">${(isSchengenToSchengenRoute()||((d.key==='intermundial'||d.key==='axa')&&isSchengenToUs()))?'Confirmar precio y elegibilidad en '+d.name+' →':d.key==='assist365'?'Ver precio con 5% descuento →':'Ver precio en '+d.name+' →'}</a>`;
   return `<div class="card ${unavailable?'unavailable':''}" id="card-${d.id}">
     <div class="card-body">
       <div class="card-logo-block">
@@ -2626,11 +2655,11 @@ function updateQuickCompare(){
     row('Cancelación',(_,p)=>p.cancelacion),
     row('Equipaje',(_,p)=>p.equipaje),
     row('Total orientativo · '+resultTripLabel(),(d)=>{
-      if((d.key==='intermundial'||d.key==='iati')&&isSchengenToUs())
+      if((d.key==='intermundial'||d.key==='iati'||d.key==='axa')&&isSchengenToUs())
         return '<strong>≈ '+euroFixed(resultTotalEUR(d.key))+' €</strong><div class="matrix-origin-price">≈ '+resultFormatCurrencyFromEUR(resultTotalEUR(d.key),'USD')+' · USD orientativo</div>';
       return '<strong>≈ '+resultFormatCurrencyFromEUR(resultTotalEUR(d.key),resultDestinationCurrency())+'</strong>'+(isSchengenToSchengenRoute()?'<div class="matrix-origin-price">Referencia en EUR, no cotización</div>':'<div class="matrix-origin-price">≈ '+resultFormatCurrencyFromEUR(resultTotalEUR(d.key),resultOriginCurrency())+' origen</div>');
     }),
-    row('Referencia diaria',(d)=>(d.key==='intermundial'||d.key==='iati')&&isSchengenToUs()
+    row('Referencia diaria',(d)=>(d.key==='intermundial'||d.key==='iati'||d.key==='axa')&&isSchengenToUs()
       ? '<span>≈ '+euroFixed(fixedOrientativeRate(d.key))+' €/persona/día</span>'
       : '<span>≈ '+resultFormatCurrencyFromEUR(fixedOrientativeRate(d.key),resultDestinationCurrency())+'/persona/día</span>')
   ].join('');
@@ -3096,7 +3125,7 @@ function applyEditSearch(){
     var destinationCode=destinationCurrency();
     el.classList.add('is-visible');
     var regionText=isSchengenToUs()
-      ? 'Para viajes desde países Schengen hacia Estados Unidos o Canadá usamos referencias por 1 viajero y 15 días: IATI 62,33 € e InterMundial 67,16 €. Para otras duraciones son estimaciones proporcionales, no cotizaciones. Confirma precio, residencia admitida y coberturas con cada aseguradora.'
+      ? 'Para países Schengen hacia Estados Unidos o Canadá usamos referencias por 1 viajero: AXA 50,75 € (14 días), IATI 62,33 € e InterMundial 67,16 € (15 días). Otras duraciones son estimaciones proporcionales, no cotizaciones; confirma residencia admitida y prima final con cada aseguradora.'
       : isSchengenToSchengenRoute()
       ? 'Viajes entre dos países Schengen distintos: InterMundial 7 días 17,58 €, 14 días 25,80 € y 30 días 44,26 €; IATI 7 días 21,09 €, 14 días 30,43 € y 30 días 50,51 €, para 1 viajero. Referencias iguales para todas las rutas solo a efectos comparativos; confirma productos, elegibilidad y tarifas finales con cada aseguradora.'
       : isIntermundialAsiaLatamRoute()
