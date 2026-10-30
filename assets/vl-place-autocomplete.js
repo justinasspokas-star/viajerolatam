@@ -89,7 +89,7 @@ function attach(select,kind){
  function pick(item){
   const value=mappedValue(select,kind,item);
   if(!value){setError('Esta ruta aún no está disponible.');return false;}
-  if(kind==='destination'&&!item.region&&SCHENGEN.has(item.code)){
+  if(kind==='destination'&&!item.region){
     const originSelect=document.getElementById(isResults?'ep-origen':'sb-origen');
     const originCode=originSelect&&originSelect.value==='espana-schengen'?'es':originSelect&&originSelect.value;
     if(originCode===item.code){
@@ -160,9 +160,14 @@ function validSchengenPair(prefix){
  const country=document.getElementById(prefix==='sb'?'vl-pais-destino':'ep-pais-destino');
  if(!origin||!destination)return true;
  const source=origin.value==='espana-schengen'?'es':origin.value;
- if(!SCHENGEN.has(source)||destination.value!=='espana-schengen')return true;
  const dest=country?country.value:'';
  const search=instances.find(x=>x.select.id===prefix+'-destino');
+ // Nunca comparar un viaje que termina en el mismo país de salida.
+ if(source && dest && source===dest){
+   if(search){search.setError('El origen y el destino deben ser países distintos.');search.input.focus();}
+   return false;
+ }
+ if(!SCHENGEN.has(source)||destination.value!=='espana-schengen')return true;
  if(!SCHENGEN.has(dest)){
    if(search){search.setError('Escribe y selecciona el país Schengen al que viajas.');search.input.focus();}
    return false;
