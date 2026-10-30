@@ -50,7 +50,8 @@ function mappedValue(select,kind,item){
  const allowed=new Set(Array.from(select.options).map(o=>o.value));
  if(item.region)return allowed.has(item.code)?item.code:null;
  if(kind==='origin'){const c=item.code==='es'?'espana-schengen':item.code;return allowed.has(c)?c:null;}
- if(allowed.has(item.code)&&!allowed.has('espana-schengen'))return item.code;
+ // Si el select acepta países específicos (p. ej., búsqueda invertida), conservarlos.
+ if(allowed.has(item.code))return item.code;
  return allowed.has(item.group)?item.group:null;
 }
 const instances=[];
