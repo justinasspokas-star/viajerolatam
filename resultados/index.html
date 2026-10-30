@@ -2337,6 +2337,11 @@ function normalizedDest(){
   if(raw.includes('eeuu')||raw.includes('canada')||raw==='us'||raw==='ca') return 'north-america';
   return 'other';
 }
+function isSchengenToUkRoute(){
+  return SCHENGEN_ROUTE_COUNTRIES.has(normalizedOrigin()) &&
+    String(window.currentSearchDest||'').toLowerCase()==='europa-no-schengen' &&
+    String(window.currentSearchDestinationCountry||'').toLowerCase()==='gb';
+}
 function isExtendedNonSchengenSelection(){
   // Cambiar solo la selección LATAM: no ocultar AXA internacional para residentes en España.
   const raw=String(window.currentSearchDest||'').toLowerCase();
@@ -2347,8 +2352,11 @@ function providerVisible(d){
   // Comparación intra-Schengen: mostrar solo las dos compañías con referencias
   // facilitadas, sin dar por verificada la elegibilidad de ninguna modalidad.
   if(isSchengenToSchengenRoute())return d && (d.key==='iati'||d.key==='intermundial');
-  // Si la salida es otro país Schengen, evitar mostrar productos configurados
-  // para residencias LATAM/España hasta verificar la disponibilidad contractual.
+  // Schengen (excepto España) → Reino Unido: permitir consultar go World,
+  // pero NO afirmar que la contratación desde el enlace afiliado esté confirmada.
+  if(isSchengenToUkRoute() && normalizedOrigin()!=='es')
+    return d && (d.key==='iati'||d.key==='intermundial');
+  // Resto de países Schengen: mantener los límites de elegibilidad actuales.
   if(SCHENGEN_ROUTE_COUNTRIES.has(normalizedOrigin()) && normalizedOrigin()!=='es')
     return d && (d.key==='iati'||((d.key==='intermundial'||d.key==='axa')&&isSchengenToUs()));
   // En Europa fuera de Schengen, itinerarios combinados y Asia no mezclar
@@ -2400,6 +2408,17 @@ function providerProfile(d){
     return {plan:'IATI Estrella',eligible:true,eligibility:'Admite residencia fuera de España según póliza',medica:med,repatriacion:'Incluida según condiciones',franquicia:'Sin franquicia',cancelacion:'Hasta 10.000 € · opcional',equipaje:'Hasta 4.000 €',demora:'Hasta 300–360 € según garantía',tele:true,aventura:true,cancel:true,baggage:true,publicRate:null,coverageRank:100,bestFor:'Cobertura médica alta y viajes con costes sanitarios elevados.',caution:'La anulación es opcional y los límites médicos varían según el ámbito geográfico.',source:'IATI Estrella · ficha y condicionado 2026'};
   }
   if(d.key==='intermundial'){
+    if(isSchengenToUkRoute() && !spainResident)return {
+      plan:'go | world · modalidad por confirmar',eligible:false,reviewable:true,
+      eligibility:'Pendiente confirmar si puedes contratar desde tu país de residencia',
+      medica:'Según póliza',repatriacion:'Según condiciones',
+      franquicia:'Consultar condiciones',cancelacion:'Según modalidad',
+      equipaje:'Según modalidad',demora:'Según condiciones',
+      tele:false,aventura:false,cancel:false,baggage:false,publicRate:null,
+      coverageRank:70,bestFor:'Viajes desde países Schengen al Reino Unido: consulta la modalidad go | world compatible con tu residencia.',
+      caution:'Un condicionado Go World de canal agencias contempla residentes fuera de España, pero exige contratación firmada en España y establece límites temporales. No equivale a confirmar que el enlace afiliado admita este origen. Comprueba producto, residencia, requisitos de emisión, coberturas y precio final en InterMundial.',
+      source:'InterMundial · condicionado Go World de canal agencias, póliza 55-0682313-P; no verificado para venta online en todas las residencias'
+    };
     if(isSchengenToUs())return {
       plan:'InterMundial · modalidad a confirmar',eligible:true,
       eligibility:'Referencia orientativa; confirma aceptación de tu residencia Schengen para Estados Unidos o Canadá',
