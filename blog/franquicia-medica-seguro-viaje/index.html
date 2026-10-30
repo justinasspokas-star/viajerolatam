@@ -100,6 +100,16 @@ td:not(:first-child),th:not(:first-child){font-variant-numeric:tabular-nums}
 tbody tr:last-child td{border-bottom:0}
 tbody tr:nth-child(even){background:#FBFDFE}
 .table-note{font-size:11px!important;color:#718398!important}
+.product-notice{padding:15px 17px;border:1px solid var(--line);border-radius:14px;background:#F7FAFC;margin:15px 0;color:#405873;font-size:13px;line-height:1.65}
+.product-notice strong{color:var(--navy)}
+.product-table th:first-child{min-width:160px}
+.product-table th:nth-child(2){min-width:150px}
+.product-table td a{font-weight:750;font-size:12px}
+.source-links{list-style:none!important;padding:0!important;gap:10px!important}
+.source-links li{padding-bottom:9px;border-bottom:1px solid var(--line)}
+.source-links li:last-child{border-bottom:0}
+.source-links a{font-weight:750}
+
 .calc{background:#F5F9FC;border:1px solid var(--line);padding:21px;border-radius:17px}
 .calc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
 .field label{display:block;font-size:12px;font-weight:800;margin-bottom:7px;color:#38506A}
@@ -212,6 +222,25 @@ tbody tr:nth-child(even){background:#FBFDFE}
       <h3>Ejemplo: consulta de urgencias por 200 €</h3>
       <p>Con una franquicia de 80 €, el asegurado pagaría 80 € y la aseguradora cubriría 120 €. Sin franquicia médica, el asegurado no asumiría esos 80 € y la aseguradora cubriría los 200 € elegibles.</p>
     </section>
+    <section class="section" id="casos-reales">
+      <span class="kicker">Ejemplos de aseguradoras</span>
+      <h2>Cómo aplican la franquicia algunos seguros de viaje</h2>
+      <p>Estas referencias muestran por qué conviene leer las condiciones de <strong>cada producto</strong>, no solo buscar una etiqueta de “sin franquicia”. No constituyen una clasificación de mejores seguros ni una cotización para tu viaje.</p>
+      <div class="table-scroll" role="region" aria-label="Franquicia médica en productos de IATI InterMundial y Chapka" tabindex="0">
+        <table class="product-table">
+          <thead><tr><th>Producto</th><th>Franquicia médica</th><th>Qué comprobar</th></tr></thead>
+          <tbody>
+            <tr><td><strong>IATI Estrella</strong></td><td>Sin franquicia médica, según IATI</td><td>Tratamientos elegibles, exclusiones y procedimiento de asistencia. <a href="https://www.iatiseguros.com/seguros-viaje/" target="_blank" rel="noopener noreferrer">Fuente oficial</a></td></tr>
+            <tr><td><strong>InterMundial go Schengen</strong></td><td>Confirmar en el condicionado de la modalidad contratada</td><td>Para gastos por enfermedad, la información del producto exige hospitalización de al menos una noche. <a href="https://www.intermundial.es/seguros-de-viaje/seguro-go-schengen" target="_blank" rel="noopener noreferrer">Fuente oficial</a></td></tr>
+            <tr><td><strong>Chapka Cap Schengen</strong></td><td>80 € por persona, según Chapka</td><td>Revisar cuándo y cómo se aplica esa franquicia. <a href="https://www.chapkadirect.es/index.php?action=produit&amp;id=930" target="_blank" rel="noopener noreferrer">Fuente oficial</a></td></tr>
+            <tr><td><strong>Chapka Cap Europa</strong></td><td>80 € por persona, según Chapka</td><td>Producto orientado a estancias de 3 a 12 meses; revisar condiciones propias. <a href="https://www.chapkadirect.es/index.php?action=produit&amp;id=931" target="_blank" rel="noopener noreferrer">Fuente oficial</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="table-note">En pantallas pequeñas, desliza la tabla lateralmente. Resumen editorial de información pública consultada el 30/10/2026; verifica siempre el PDF de la modalidad que vas a contratar.</p>
+      <div class="product-notice"><strong>Ejemplo importante:</strong> tener una franquicia médica de 0 € no garantiza que una consulta por fiebre esté cubierta. En la modalidad go Schengen descrita por InterMundial, la garantía por enfermedad está condicionada a una hospitalización de al menos una noche. Si no existe ese ingreso, no debes asumir que la consulta ambulatoria quede cubierta por esa garantía. Consulta posibles ampliaciones y excepciones en tu documentación.</div>
+      <p>Para elegir un producto, compara por separado <strong>franquicia, consultas sin ingreso, hospitalización, límites de gasto, exclusiones y forma de pago</strong>. Esta guía es educativa; si necesitas ver opciones disponibles para tu residencia y destino, utiliza el <a href="/resultados/">comparador de ViajeroLatam</a>.</p>
+    </section>
     <section class="section" id="calculadora">
       <span class="kicker">Calculadora gratuita</span>
       <h2>Calcula cuánto pagarías con una franquicia</h2>
@@ -263,7 +292,16 @@ tbody tr:nth-child(even){background:#FBFDFE}
         <li><span>Si la compañía <strong>paga directamente</strong> o te pide adelantar el importe para un reembolso posterior.</span></li>
         <li><span>Si el seguro es válido para tu <strong>país de residencia y destino</strong>, y si necesitas un certificado para un visado.</span></li>
       </ul>
-      <p>Si viajas de Latinoamérica a Europa, consulta también nuestra <a href="/seguro-viaje/schengen-barato/">guía de seguro Schengen</a>. La franquicia es solo un criterio: también importan el territorio cubierto, las fechas y la repatriación.</p>
+      <p>Si viajas de Latinoamérica a Europa, consulta también nuestra <a href="/seguro-viaje/schengen-barato/">guía de seguro Schengen</a>. La franquicia es solo un criterio: también importan el territorio cubierto, las fechas, la repatriación y <a href="#visado-schengen">los requisitos del consulado si necesitas visado</a>.</p>
+    </section>
+    <section class="section" id="visado-schengen">
+      <span class="kicker">Trámites de viaje a Europa</span>
+      <h2>¿Sirve un seguro con franquicia para solicitar un visado Schengen?</h2>
+      <p>La normativa europea exige, para los solicitantes a los que se aplica, un <strong>seguro médico de viaje adecuado con al menos 30.000 € de cobertura</strong>, válido para el territorio y el período exigidos, que contemple asistencia médica urgente, atención hospitalaria de urgencia y repatriación según el artículo 15 del Código de Visados.</p>
+      <p>Sin embargo, <strong>tener un límite de 30.000 € no garantiza que cualquier póliza sea aceptada</strong>. Debes comprobar los requisitos documentales y las condiciones exigidas por el consulado que tramita tu solicitud.</p>
+      <div class="alert"><strong>Ejemplo oficial:</strong> las instrucciones publicadas por la representación alemana en Estados Unidos indican que, para sus solicitudes, no aceptan pólizas con deducible, copago ni sistema de reembolso. Es un ejemplo de exigencia consular específica, <strong>no una regla que debamos atribuir sin más a todos los consulados Schengen</strong>.</div>
+      <p>Si el plan tiene franquicia —por ejemplo, 80 € por persona—, <strong>consulta antes con el consulado o centro de visados correspondiente</strong> si el certificado es admisible. No confundas un producto comercializado para viajar a Schengen con una garantía automática de aprobación del visado.</p>
+      <p>Consulta el <a href="https://eur-lex.europa.eu/eli/reg/2009/810/2024-06-11/eng" target="_blank" rel="noopener noreferrer">artículo 15 del Código de Visados en EUR-Lex</a> y el <a href="https://www.germany.info/us-en/service/visa/medical-health-insurance-953982" target="_blank" rel="noopener noreferrer">ejemplo de requisitos publicados por Alemania en Estados Unidos</a>. Para las rutas, fechas y límites de cobertura, consulta también nuestra <a href="/seguro-viaje/schengen-barato/">guía sobre seguros Schengen</a>.</p>
     </section>
     <section class="section faq" id="preguntas">
       <span class="kicker">Preguntas frecuentes</span>
@@ -273,6 +311,8 @@ tbody tr:nth-child(even){background:#FBFDFE}
       <details><summary>¿Qué sucede si la factura cuesta menos que mi franquicia?</summary><p>Con una franquicia fija deducible de 80 €, un gasto cubierto de 50 € quedaría íntegramente a tu cargo. No pagarías 80 € adicionales por ese gasto; el ejemplo asume una franquicia que se deduce del importe cubierto.</p></details>
       <details><summary>¿Sin franquicia significa que nunca tengo que adelantar dinero?</summary><p>No. Algunas pólizas operan mediante reembolso: adelantas los gastos y, tras presentar la documentación y aprobarse la cobertura, recibes el importe elegible.</p></details>
       <details><summary>¿La franquicia médica también afecta a equipaje o cancelación?</summary><p>Una misma póliza puede tener franquicias diferentes por cobertura. Revisa por separado asistencia médica, equipaje, cancelación y cualquier prestación adicional.</p></details>
+      <details><summary>¿Un seguro sin franquicia cubre cualquier consulta al médico?</summary><p>No. La ausencia de franquicia solo indica cómo se reparte el coste de un gasto elegible. La póliza puede limitar la asistencia a determinadas circunstancias, exigir autorización o excluir situaciones como revisiones programadas. Lee las condiciones concretas; por ejemplo, go Schengen exige hospitalización en los supuestos de enfermedad contemplados en su garantía médica.</p></details>
+      <details><summary>¿Puedo presentar un seguro con franquicia para un visado Schengen?</summary><p>No debes darlo por válido automáticamente. El Código de Visados establece requisitos de seguro médico, y las instrucciones del consulado competente pueden precisar condiciones adicionales. Consulta al consulado antes de pagar, especialmente si el certificado indica franquicia, copago o reembolso.</p></details>
       <details><summary>¿Qué seguro me conviene: con o sin franquicia?</summary><p>No depende solo de la franquicia. Compara la prima total, las coberturas, límites, exclusiones, asistencia y el importe máximo que estarías dispuesto a asumir si utilizas el seguro.</p></details>
     </section>
     <section class="section" id="fuentes">
@@ -282,6 +322,11 @@ tbody tr:nth-child(even){background:#FBFDFE}
       <ul>
         <li><a href="https://www.dsca.gob.es/es/consumo/preguntas-frecuentes/que-es-franquicia-seguro" target="_blank" rel="noopener noreferrer">Ministerio de Consumo de España — qué es una franquicia en un seguro</a>.</li>
         <li><a href="https://www.comunidad.madrid/consumo/seguros-viaje-proteccion-vacaciones" target="_blank" rel="noopener noreferrer">Comunidad de Madrid — seguros de viaje y aspectos que revisar</a>.</li>
+        <li><a href="https://www.iatiseguros.com/seguros-viaje/" target="_blank" rel="noopener noreferrer">IATI — franquicia y condiciones generales de sus seguros de viaje</a>.</li>
+        <li><a href="https://www.intermundial.es/seguros-de-viaje/seguro-go-schengen" target="_blank" rel="noopener noreferrer">InterMundial — ficha de go Schengen y requisito de hospitalización por enfermedad</a>.</li>
+        <li><a href="https://www.chapkadirect.es/index.php?action=produit&amp;id=930" target="_blank" rel="noopener noreferrer">Chapka — Cap Schengen y franquicia médica</a>; <a href="https://www.chapkadirect.es/index.php?action=produit&amp;id=931" target="_blank" rel="noopener noreferrer">Cap Europa</a>.</li>
+        <li><a href="https://eur-lex.europa.eu/eli/reg/2009/810/2024-06-11/eng" target="_blank" rel="noopener noreferrer">Unión Europea — Código de Visados, artículo 15</a>.</li>
+        <li><a href="https://www.germany.info/us-en/service/visa/medical-health-insurance-953982" target="_blank" rel="noopener noreferrer">Ministerio de Asuntos Exteriores alemán — requisitos médicos para visados tramitados en EE. UU.</a>.</li>
       </ul>
       <p class="table-note">Revisión editorial: 30 de octubre de 2026. ViajeroLatam es un comparador independiente y puede recibir comisiones por algunas contrataciones; <a href="/como-elegimos/">consulta nuestra metodología</a>.</p>
     </section>
@@ -303,10 +348,12 @@ tbody tr:nth-child(even){background:#FBFDFE}
       <a href="#definicion">Qué significa franquicia médica</a>
       <a href="#diferencias">Con y sin franquicia</a>
       <a href="#ejemplos">Ejemplos de gastos</a>
+      <a href="#casos-reales">IATI, InterMundial y Chapka</a>
       <a href="#calculadora">Calcula cuánto pagarías</a>
       <a href="#cuando-se-aplica">Por visita o por siniestro</a>
       <a href="#deducible">Deducible y copago</a>
       <a href="#antes-contratar">Qué revisar</a>
+      <a href="#visado-schengen">Franquicia y visado Schengen</a>
       <a href="#preguntas">Preguntas frecuentes</a>
     </div>
     <div class="sidebar-card"><h2>¿Vas a viajar?</h2><p>Consulta los seguros disponibles para tu país y el precio final directamente en la aseguradora.</p><a href="/resultados/"><strong>Ir al comparador →</strong></a></div>
