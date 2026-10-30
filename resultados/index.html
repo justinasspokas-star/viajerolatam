@@ -2150,6 +2150,8 @@ function fixedOrientativeRate(key){
   if(key === 'axa' && isAxaSchengenAmerica())return axaSchengenAmericaTotal(resultTripDays())/resultTripDays();
   if(key === 'iati' && isIatiSchengenToUsCanada())
     return iatiSchengenUsCanadaTotalPerPerson(resultTripDays())/resultTripDays();
+  if(key === 'intermundial' && isSchengenToUkRoute())
+    return intermundialSchengenUkTotalPerPerson(resultTripDays())/resultTripDays();
   if(key === 'intermundial' && isSchengenToUs())return interSchengenUsTotal(resultTripDays())/resultTripDays();
   if(key === 'intermundial' && isSchengenToSchengenRoute()){
     return intermundialIntraSchengenTotalPerPerson(resultTripDays())/resultTripDays();
@@ -2256,6 +2258,8 @@ function resultTotalEUR(key){
   if(key==='axa' && isAxaSchengenAmerica())return axaSchengenAmericaTotal(resultTripDays())*resultTripPeople();
   if(key==='iati' && isIatiSchengenToUsCanada())
     return iatiSchengenUsCanadaTotalPerPerson(resultTripDays())*resultTripPeople();
+  if(key==='intermundial' && isSchengenToUkRoute())
+    return intermundialSchengenUkTotalPerPerson(resultTripDays())*resultTripPeople();
   if(key==='intermundial' && isSchengenToUs())return interSchengenUsTotal(resultTripDays())*resultTripPeople();
   if(key==='intermundial' && isSchengenToSchengenRoute()){
     return intermundialIntraSchengenTotalPerPerson(resultTripDays())*resultTripPeople();
@@ -2337,10 +2341,24 @@ function normalizedDest(){
   if(raw.includes('eeuu')||raw.includes('canada')||raw==='us'||raw==='ca') return 'north-america';
   return 'other';
 }
+/* Reino Unido (GB) desde cualquiera de los 29 países Schengen.
+   Referencia facilitada por el titular: 17,58 € / 7 días / persona.
+   Otras duraciones: extrapolación proporcional, NO cotizaciones oficiales.
+   La modalidad contratada puede variar según el país de residencia. */
+const INTERMUNDIAL_SCHENGEN_UK_7D_EUR=17.58;
 function isSchengenToUkRoute(){
   return SCHENGEN_ROUTE_COUNTRIES.has(normalizedOrigin()) &&
     String(window.currentSearchDest||'').toLowerCase()==='europa-no-schengen' &&
     String(window.currentSearchDestinationCountry||'').toLowerCase()==='gb';
+}
+function intermundialSchengenUkTotalPerPerson(days){
+  const n=Math.max(1,Number(days)||1);
+  return Math.round((INTERMUNDIAL_SCHENGEN_UK_7D_EUR*n/7+Number.EPSILON)*100)/100;
+}
+function intermundialSchengenUkPriceNote(){
+  return resultTripDays()===7
+    ? 'Referencia facilitada para 7 días y 1 viajero; confirma el importe final al contratar'
+    : 'Proyección proporcional desde 17,58 € / 7 días y 1 viajero, no cotización de la duración seleccionada';
 }
 function isExtendedNonSchengenSelection(){
   // Cambiar solo la selección LATAM: no ocultar AXA internacional para residentes en España.
@@ -2352,10 +2370,10 @@ function providerVisible(d){
   // Comparación intra-Schengen: mostrar solo las dos compañías con referencias
   // facilitadas, sin dar por verificada la elegibilidad de ninguna modalidad.
   if(isSchengenToSchengenRoute())return d && (d.key==='iati'||d.key==='intermundial');
-  // Schengen (excepto España) → Reino Unido: permitir consultar go World,
-  // pero NO afirmar que la contratación desde el enlace afiliado esté confirmada.
+  // Reino Unido desde otros países Schengen: IATI e InterMundial.
+  // La elegibilidad de viajes largos se indica en la ficha, no se oculta al proveedor.
   if(isSchengenToUkRoute() && normalizedOrigin()!=='es')
-    return d && (d.key==='iati'||(d.key==='intermundial'&&resultTripDays()<=120));
+    return d && (d.key==='iati'||d.key==='intermundial');
   // Resto de países Schengen: mantener los límites de elegibilidad actuales.
   if(SCHENGEN_ROUTE_COUNTRIES.has(normalizedOrigin()) && normalizedOrigin()!=='es')
     return d && (d.key==='iati'||((d.key==='intermundial'||d.key==='axa')&&isSchengenToUs()));
@@ -2408,17 +2426,25 @@ function providerProfile(d){
     return {plan:'IATI Estrella',eligible:true,eligibility:'Admite residencia fuera de España según póliza',medica:med,repatriacion:'Incluida según condiciones',franquicia:'Sin franquicia',cancelacion:'Hasta 10.000 € · opcional',equipaje:'Hasta 4.000 €',demora:'Hasta 300–360 € según garantía',tele:true,aventura:true,cancel:true,baggage:true,publicRate:null,coverageRank:100,bestFor:'Cobertura médica alta y viajes con costes sanitarios elevados.',caution:'La anulación es opcional y los límites médicos varían según el ámbito geográfico.',source:'IATI Estrella · ficha y condicionado 2026'};
   }
   if(d.key==='intermundial'){
-    if(isSchengenToUkRoute() && !spainResident)return {
-      plan:'go | world · modalidad por confirmar',eligible:false,reviewable:true,
-      eligibility:'Pendiente confirmar si puedes contratar desde tu país de residencia',
-      medica:'Según póliza',repatriacion:'Según condiciones',
-      franquicia:'Consultar condiciones',cancelacion:'Según modalidad',
-      equipaje:'Según modalidad',demora:'Según condiciones',
-      tele:false,aventura:false,cancel:false,baggage:false,publicRate:null,
-      coverageRank:70,bestFor:'Viajes desde países Schengen al Reino Unido: consulta la modalidad go | world compatible con tu residencia.',
-      caution:'Un condicionado Go World de canal agencias contempla residentes fuera de España, pero exige contratación firmada en España y establece límites temporales. No equivale a confirmar que el enlace afiliado admita este origen. Comprueba producto, residencia, requisitos de emisión, coberturas y precio final en InterMundial.',
-      source:'InterMundial · condicionado Go World de canal agencias, póliza 55-0682313-P; no verificado para venta online en todas las residencias'
-    };
+    if(isSchengenToUkRoute()){
+      // Una modalidad de Go World para residencias fuera de España limita la duración a 120 días.
+      // Para viajes más largos dejamos la consulta visible, sin afirmar que sea contratable.
+      const needsLongStayCheck=!spainResident && resultTripDays()>120;
+      return {
+        plan:spainResident?'Totaltravel · Reino Unido':'go | world · Reino Unido',
+        eligible:!needsLongStayCheck,reviewable:needsLongStayCheck,
+        eligibility:needsLongStayCheck
+          ? 'Viaje de más de 120 días: confirma una modalidad apta para larga estancia'
+          : 'Opción de InterMundial para Reino Unido; confirma la modalidad según residencia antes del pago',
+        medica:'Según modalidad contratada',repatriacion:'Según condiciones',
+        franquicia:'Consultar condiciones',cancelacion:'Según modalidad',
+        equipaje:'Según modalidad',demora:'Según condiciones',
+        tele:false,aventura:false,cancel:false,baggage:false,publicRate:null,
+        coverageRank:78,bestFor:'Viajeros desde cualquier país Schengen hacia Reino Unido.',
+        caution:'Referencia de 17,58 € para 7 días y 1 viajero facilitada por ViajeroLatam, aplicada orientativamente a todos los países Schengen. Otras duraciones se estiman proporcionalmente. No es una cotización oficial para todas las residencias; revisa modalidad, límites, exclusiones, edad y precio final en InterMundial.',
+        source:'Referencia aportada para Schengen → Reino Unido · 17,58 € / 7 días / viajero'
+      };
+    }
     if(isSchengenToUs())return {
       plan:'InterMundial · modalidad a confirmar',eligible:true,
       eligibility:'Referencia orientativa; confirma aceptación de tu residencia Schengen para Estados Unidos o Canadá',
@@ -2561,6 +2587,9 @@ function renderCard(d){
   if(d.key==='intermundial' && isSchengenToSchengenRoute()){
     price=`<div class="public-price-label">InterMundial · Schengen → Schengen · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>importe orientativo del viaje</small></div><div class="public-price-sub"><strong>≈ ${destDaily}/persona/día</strong> de media · ${intermundialIntraSchengenPriceNote()}. Referencias en EUR para cualquier pareja Schengen, no una tarifa universal verificada. Comprueba país de residencia, modalidad, cobertura y precio final directamente con InterMundial.</div>`;
   }
+  if(d.key==='intermundial' && isSchengenToUkRoute()){
+    price=`<div class="public-price-label">InterMundial · Schengen → Reino Unido · ${resultTripLabel()}</div><div class="public-price">≈ ${euroFixed(totalEUR)} € <small>total orientativo en euros</small></div><div class="public-price-sub"><strong>≈ ${euroFixed(fixedRate)} €/persona/día</strong> de media. ${intermundialSchengenUkPriceNote()}. Misma base editorial para los países Schengen; la aseguradora confirma la modalidad, residencia admitida y precio final.</div>`;
+  }
   if(d.key==='intermundial' && isSchengenToUs()){
     price=`<div class="public-price-label">InterMundial · Schengen → Estados Unidos / Canadá · ${resultTripLabel()}</div><div class="public-price">≈ ${euroFixed(totalEUR)} € <small>total orientativo en euros</small></div><div class="trip-origin-price">≈ ${destTotal} <span>conversión orientativa a USD</span></div><div class="public-price-sub"><strong>≈ ${euroFixed(fixedRate)} €/persona/día</strong> de media. ${interSchengenUsNote()}. Referencia igual para Estados Unidos y Canadá. Confirma residencia, cobertura y precio final en InterMundial.</div>`;
   }
@@ -2604,8 +2633,8 @@ function renderCard(d){
   if(d.key==='assist365'){
     price=`<div class="public-price-label">Precio orientativo · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>moneda de referencia · total viaje</small></div><div class="trip-origin-price">≈ ${originTotal} <span>moneda de origen</span></div><div class="public-price-sub"><strong>≈ 1,60 €/persona/día*</strong> · 5% de descuento con código <strong>VIAJEROLATAM</strong>. *Estimación orientativa; el precio final puede variar según edad, fechas, duración, residencia y promociones.</div>`;
   }
-  if(pending){
-    price=`<div class="public-price-label">InterMundial · Reino Unido</div><div class="public-price">Consultar precio <small>sin cotización confirmada para este origen</small></div><div class="public-price-sub">No aplicamos el precio orientativo de otros países a esta ruta. Verifica la residencia admitida, la modalidad y la prima final con InterMundial antes de contratar.</div>`;
+  if(pending && d.key==='intermundial' && isSchengenToUkRoute()){
+    price=`<div class="public-price-label">InterMundial · Reino Unido · larga estancia</div><div class="public-price">Consultar precio <small>duración superior a 120 días</small></div><div class="public-price-sub">Para esta duración no extrapolamos la referencia de 7 días: confirma una modalidad de larga estancia con InterMundial.</div>`;
   }
   const availability=pending
     ? `<div class="availability-note no">⚠ ${p.eligibility}</div>`
@@ -2680,13 +2709,17 @@ function updateQuickCompare(){
     row('Cancelación',(_,p)=>p.cancelacion),
     row('Equipaje',(_,p)=>p.equipaje),
     row('Total orientativo · '+resultTripLabel(),(d)=>{
-      if(providerProfile(d).reviewable)return '<strong>Consultar tarifa</strong><div class="matrix-origin-price">Residencia por verificar</div>';
+      if(providerProfile(d).reviewable)return '<strong>Consultar tarifa</strong><div class="matrix-origin-price">Duración / residencia por verificar</div>';
+      if(d.key==='intermundial'&&isSchengenToUkRoute())
+        return '<strong>≈ '+euroFixed(resultTotalEUR(d.key))+' €</strong><div class="matrix-origin-price">Estimación desde 17,58 € / 7 días</div>';
       if((d.key==='intermundial'||d.key==='iati'||d.key==='axa')&&isSchengenToUs())
         return '<strong>≈ '+euroFixed(resultTotalEUR(d.key))+' €</strong><div class="matrix-origin-price">≈ '+resultFormatCurrencyFromEUR(resultTotalEUR(d.key),'USD')+' · USD orientativo</div>';
       return '<strong>≈ '+resultFormatCurrencyFromEUR(resultTotalEUR(d.key),resultDestinationCurrency())+'</strong>'+(isSchengenToSchengenRoute()?'<div class="matrix-origin-price">Referencia en EUR, no cotización</div>':'<div class="matrix-origin-price">≈ '+resultFormatCurrencyFromEUR(resultTotalEUR(d.key),resultOriginCurrency())+' origen</div>');
     }),
     row('Referencia diaria',(d)=>providerProfile(d).reviewable
       ? '<span>Por confirmar</span>'
+      : d.key==='intermundial'&&isSchengenToUkRoute()
+        ? '<span>≈ '+euroFixed(fixedOrientativeRate(d.key))+' €/persona/día</span>'
       : (d.key==='intermundial'||d.key==='iati'||d.key==='axa')&&isSchengenToUs()
         ? '<span>≈ '+euroFixed(fixedOrientativeRate(d.key))+' €/persona/día</span>'
         : '<span>≈ '+resultFormatCurrencyFromEUR(fixedOrientativeRate(d.key),resultDestinationCurrency())+'/persona/día</span>')
@@ -2711,7 +2744,7 @@ function render(data){
   const eligibleCount=routeProviders.filter(d=>providerProfile(d).eligible).length;
   const pendingCount=routeProviders.filter(d=>providerProfile(d).reviewable).length;
   const countText=(isSchengenToUkRoute() && normalizedOrigin()!=='es')
-    ? `${eligibleCount} opción para consultar · ${pendingCount} pendiente de verificar`
+    ? `${eligibleCount} opciones indicadas · ${pendingCount} pendiente${pendingCount===1?'':'s'} de verificar`
     : (isSchengenToSchengenRoute()||isSchengenToUs())
       ? `${routeProviders.length} opciones por verificar · ${routeProviders.length} comparadas`
       : `${eligibleCount} opciones indicadas · ${routeProviders.length} comparadas`;
@@ -2789,7 +2822,7 @@ function clearFilters(){resetComparisonFilters();}
 function resetComparisonFilters(){
   ['f2','f4','f5','f6'].forEach(id=>{const el=document.getElementById(id);if(el)el.checked=false;});
   const eligible=document.getElementById('f0');
-  if(eligible)eligible.checked=!(isSchengenToUkRoute() && normalizedOrigin()!=='es');
+  if(eligible)eligible.checked=true;
   applyFilters();
 }
 
@@ -3160,10 +3193,10 @@ function applyEditSearch(){
     var originCode=originCurrency();
     var destinationCode=destinationCurrency();
     el.classList.add('is-visible');
-    var regionText=(isSchengenToUkRoute() && normalizedOrigin()!=='es')
-      ? (resultTripDays()>120
-        ? 'Viaje Schengen → Reino Unido de más de 120 días: no mostramos Go World como opción aplicable porque una modalidad consultada limita a 120 días los viajes de residentes fuera de España. Confirma otras pólizas y su duración con cada proveedor.'
-        : 'Viaje desde un país Schengen hacia Reino Unido: IATI puede consultarse para esta ruta. InterMundial se muestra solo como opción por verificar: el condicionado de Go World consultado corresponde al canal de agencias, no confirma que el enlace afiliado permita contratar desde todas las residencias. No mostramos una tarifa InterMundial no cotizada.')
+    var regionText=isSchengenToUkRoute()
+      ? (!['es'].includes(normalizedOrigin()) && resultTripDays()>120
+        ? 'Reino Unido desde países Schengen: para viajes de más de 120 días debes verificar una modalidad InterMundial compatible con tu residencia y duración; no se extrapola el precio de 7 días.'
+        : 'InterMundial: referencia facilitada de 17,58 € para 7 días y 1 viajero desde países Schengen a Reino Unido (≈ 2,51 €/día). Para otras duraciones aplicamos una estimación matemática proporcional, no una cotización. El producto concreto y el precio final dependen de la residencia y el plan contratado.')
       : isSchengenToUs()
       ? 'Para países Schengen hacia Estados Unidos o Canadá usamos referencias por 1 viajero: AXA 50,75 € (14 días), IATI 62,33 € e InterMundial 67,16 € (15 días). Otras duraciones son estimaciones proporcionales, no cotizaciones; confirma residencia admitida y prima final con cada aseguradora.'
       : isSchengenToSchengenRoute()
@@ -3198,8 +3231,8 @@ function applyEditSearch(){
     var side=document.getElementById('sidebar-route');
     if(title) title.textContent='Comparar seguros de viaje: '+route;
     if(summary) summary.innerHTML='<strong>Comparación según residencia y destino</strong> para '+route+'. Primero comprobamos disponibilidad y después coberturas y condiciones.';
-    if(note) note.textContent=(isSchengenToUkRoute() && normalizedOrigin()!=='es')
-      ? 'Reino Unido: compara IATI y consulta InterMundial; la disponibilidad de Go World depende de residencia, contratación y condiciones. Sin tarifa verificada.'
+    if(note) note.textContent=isSchengenToUkRoute()
+      ? 'Reino Unido: InterMundial ≈ 2,51 €/día como referencia de 7 días, extrapolada según duración. Prima y modalidad finales en la aseguradora.'
       : coverageLabel()+' · precios orientativos; confirma precio y elegibilidad final en la aseguradora.';
     if(side) side.textContent=route;
     document.title='Comparar seguros de viaje '+meta(window.currentSearchOrigin).label+' a '+meta(window.currentSearchDest).label+' | ViajeroLatam';
@@ -3267,7 +3300,7 @@ function applyEditSearch(){
     // En Schengen (fuera de España) → UK mostrar también la opción pendiente
     // de verificación. El usuario puede activar el filtro estricto si quiere.
     var strict=document.getElementById('f0');
-    if(strict)strict.checked=!(isSchengenToUkRoute() && normalizedOrigin()!=='es');
+    if(strict)strict.checked=true;
     updatePillsDisplay(originValue,destinationValue,ida,vuelta,travelerValue);
 
     var params=new URLSearchParams(location.search);
@@ -3318,7 +3351,7 @@ function applyEditSearch(){
     window.currentSearchDest=destinationValue;
     window.currentSearchDestinationCountry=requestedCountry;
     var strict=document.getElementById('f0');
-    if(strict)strict.checked=!(isSchengenToUkRoute() && normalizedOrigin()!=='es');
+    if(strict)strict.checked=true;
     var countryField=document.getElementById('ep-pais-destino');
     if(countryField)countryField.value=requestedCountry;
 
