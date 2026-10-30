@@ -122,7 +122,11 @@ function attach(select,kind){
   found.forEach((item,i)=>{
    const el=document.createElement('button');el.type='button';el.id=select.id+'-choice-'+i;el.className='vl-place-choice';el.setAttribute('role','option');el.setAttribute('aria-selected','false');
    const name=document.createElement('span');name.textContent=item.label;el.appendChild(name);
-   if(!item.region&&kind==='destination'){const detail=document.createElement('small');detail.textContent=item.group==='espana-schengen'?'Schengen':item.group==='europa-no-schengen'?'Fuera de Schengen':item.group==='eeuu-canada'?'EE. UU. / Canadá':item.group==='asia'?'Asia':'Mundial';el.appendChild(detail);}
+   if(!item.region&&kind==='destination'){
+    // No mostrar «Mundial» junto a países concretos (Colombia, Perú, etc.).
+    const subtitle=item.group==='espana-schengen'?'Schengen':item.group==='europa-no-schengen'?'Fuera de Schengen':item.group==='eeuu-canada'?'Norteamérica':item.group==='asia'?'Asia':'';
+    if(subtitle){const detail=document.createElement('small');detail.textContent=subtitle;el.appendChild(detail);}
+   }
    el.addEventListener('pointerdown',e=>e.preventDefault());el.addEventListener('click',()=>{pick(item);input.focus();});menu.appendChild(el);
   });
   if(!found.length){
