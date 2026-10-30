@@ -2355,7 +2355,7 @@ function providerVisible(d){
   // Schengen (excepto España) → Reino Unido: permitir consultar go World,
   // pero NO afirmar que la contratación desde el enlace afiliado esté confirmada.
   if(isSchengenToUkRoute() && normalizedOrigin()!=='es')
-    return d && (d.key==='iati'||d.key==='intermundial');
+    return d && (d.key==='iati'||(d.key==='intermundial'&&resultTripDays()<=120));
   // Resto de países Schengen: mantener los límites de elegibilidad actuales.
   if(SCHENGEN_ROUTE_COUNTRIES.has(normalizedOrigin()) && normalizedOrigin()!=='es')
     return d && (d.key==='iati'||((d.key==='intermundial'||d.key==='axa')&&isSchengenToUs()));
