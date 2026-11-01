@@ -2896,7 +2896,7 @@ function renderCard(d){
       : `<div class="availability-note ok">✓ ${p.eligibility}</div>`;
   const cta=unavailable
     ? `<a class="btn-contract disabled" aria-disabled="true">No disponible para este origen</a>`
-    : `<a class="btn-contract" href="${escAttr(providerCtaUrl(d))}" target="_blank" rel="nofollow sponsored noopener" onclick="trackContract('${escJs(d.name)}','${escJs(p.plan)}')">${pending?'Consultar si admite tu residencia en '+d.name+' →':(isSchengenToSchengenRoute()||((d.key==='intermundial'||d.key==='axa')&&isSchengenToUs()))?'Confirmar precio y elegibilidad en '+d.name+' →':d.key==='assist365'?'Ver precio con 5% descuento →':'Ver precio en '+d.name+' →'}</a>`;
+    : `<a class="btn-contract" href="${escAttr(providerCtaUrl(d))}" target="_blank" rel="nofollow sponsored noopener" onclick="trackContract('${escJs(d.name)}','${escJs(p.plan)}')">${d.key==='assist365'?'Ver precio en Assist 365 →':pending?'Consultar si admite tu residencia en '+d.name+' →':(isSchengenToSchengenRoute()||((d.key==='intermundial'||d.key==='axa')&&isSchengenToUs()))?'Confirmar precio y elegibilidad en '+d.name+' →':'Ver precio en '+d.name+' →'}</a>`;
   return `<div class="card ${unavailable?'unavailable':''}" id="card-${d.id}">
     <div class="card-body">
       <div class="card-logo-block">
