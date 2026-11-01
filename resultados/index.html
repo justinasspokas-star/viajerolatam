@@ -1759,8 +1759,8 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
 </div>
 <div class="filter-section">
 <div class="filter-title">Disponibilidad</div>
-<div class="check-item"><input checked="" id="f0" onchange="applyFilters()" type="checkbox"/><label for="f0">Solo opciones contratables según residencia</label></div>
-<div class="filter-helper">Usamos el país de salida como referencia de residencia. Confirma siempre tu residencia real en la aseguradora.</div>
+<div class="check-item" id="availability-eligible-filter"><input checked="" id="f0" onchange="applyFilters()" type="checkbox"/><label for="f0">Solo opciones contratables según residencia</label></div>
+<div class="filter-helper" id="availability-filter-helper">Usamos el país de salida como referencia de residencia. Confirma siempre tu residencia real en la aseguradora.</div>
 </div>
 <div class="filter-section">
 <div class="filter-title">Características</div>
@@ -2958,7 +2958,7 @@ function renderSailyResultsPromo(){
     <div class="saily-results-copy">
       <span class="saily-results-kicker">📱 Extra para tu viaje</span>
       <h2 class="saily-results-title">¿Necesitas internet al llegar?</h2>
-      <p class="saily-results-text">Con una eSIM de Saily puedes tener datos móviles en España y Europa sin cambiar tu SIM física. Revisa cobertura y precio actual antes de contratar.</p>
+      <p class="saily-results-text">Consulta si Saily ofrece un plan de datos para el país al que viajas, sin cambiar tu SIM física. Comprueba cobertura, compatibilidad y precio actual antes de contratar.</p>
     </div>
     <a class="saily-results-btn" href="https://saily.tpx.lv/Bf6yTl42" target="_blank" rel="nofollow sponsored noopener" onclick="if(typeof gtag!=='undefined'){gtag('event','click_saily_resultados',{event_category:'affiliate',affiliate_partner:'saily',placement:'resultados_after_2',page_path:location.pathname,page_location:location.href});}">Ver planes Saily →</a>
   </div>`;
@@ -2999,6 +2999,17 @@ function render(data){
 }
 
 function applyFilters(){
+  // En rutas cuyas referencias todavía requieren verificación contractual,
+  // no enseñar el filtro «Solo opciones contratables» como si certificase
+  // que ambas pólizas se pueden contratar desde cualquier residencia.
+  const referenceOnlyRoute=isUsToSchengenRoute() ||
+    (isWorldToLatamRoute()&&!SCHENGEN_ROUTE_COUNTRIES.has(normalizedOrigin()));
+  const filterItem=document.getElementById('availability-eligible-filter');
+  const helper=document.getElementById('availability-filter-helper');
+  if(filterItem)filterItem.style.display=referenceOnlyRoute?'none':'';
+  if(helper)helper.textContent=referenceOnlyRoute
+    ? 'Estas opciones son referencias para comparar; la elegibilidad y la contratación deben confirmarse directamente con cada aseguradora.'
+    : 'Usamos el país de salida como referencia de residencia. Confirma siempre tu residencia real en la aseguradora.';
   const onlyEligible=document.getElementById('f0')?document.getElementById('f0').checked:true;
   const wantNoFranquicia=document.getElementById('f2')?document.getElementById('f2').checked:false;
   const wantTele=document.getElementById('f5')?document.getElementById('f5').checked:false;
