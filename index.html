@@ -3084,12 +3084,19 @@ document.addEventListener('click', function(e){
     // Destino latinoamericano concreto desde cualquier país: el único resultado
     // será InterMundial go | world, no los estimadores genéricos de la portada.
     if(country && LATAM_CODES.has(code) && normalizedOrigin!==code){
-      var totalGoWorld=Math.round((86.90*days*people/15+Number.EPSILON)*100)/100;
+      // Go | World: 15 días = 86,90 €; 30 días = 156,66 € por persona.
+      // Otros plazos se estiman sin inventar cotizaciones oficiales.
+      var worldDays=Math.max(1,days);
+      var goWorldPerPerson=worldDays===15?86.90:worldDays===30?156.66:
+        worldDays<15?86.90*worldDays/15:
+        worldDays<30?86.90+(156.66-86.90)*(worldDays-15)/15:
+        156.66*worldDays/30;
+      var totalGoWorld=Math.round((goWorldPerPerson*people+Number.EPSILON)*100)/100;
       text.textContent=days+' días'+(people>1?' · '+people+' viajeros':'')+
         ' · InterMundial Go | World: ≈ '+formatCurrency(totalGoWorld,'EUR')+
         ' (referencia, sujeta a confirmación)';
       if(localDisplay && localText){
-        localText.textContent='Referencia de 86,90 € por 15 días y persona; otras duraciones estimadas a 5,7933 €/día. Para '+country.label+', confirma residencia admitida, cobertura y precio final en InterMundial.';
+        localText.textContent='InterMundial Go | World: 86,90 € por 15 días (≈ 5,79 €/día) o 156,66 € por 30 días (≈ 5,22 €/día), por persona. Otras duraciones son estimaciones. Para '+country.label+', confirma residencia admitida, cobertura y precio final en InterMundial.';
         localDisplay.classList.remove('is-hidden');
       }
       return;
