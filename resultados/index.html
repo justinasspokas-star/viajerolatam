@@ -1886,16 +1886,22 @@ function chapkaLatamSchengenTotalPerPerson(days){
     return cents(CHAPKA_LATAM_SCHENGEN_14D_EUR+(CHAPKA_LATAM_SCHENGEN_30D_EUR-CHAPKA_LATAM_SCHENGEN_14D_EUR)*(n-14)/16);
   return cents(CHAPKA_LATAM_SCHENGEN_30D_EUR*n/30);
 }
-// Assist 365, únicamente LATAM → países Schengen: 63 EUR / 30 días y persona.
-// Duraciones distintas: estimación proporcional, no cotización.
+// Assist 365 LATAM → Schengen: 41 EUR / 14 días y 63 EUR / 30 días por persona.
+// Para otras duraciones: conservar cálculo proporcional anterior fuera de 14–30
+// e interpolar entre las dos referencias para 15–29 días (no son cotizaciones).
+const ASSIST365_LATAM_SCHENGEN_14D_EUR=41;
 const ASSIST365_LATAM_SCHENGEN_30D_EUR=63;
 function isAssist365LatamSchengenRoute(){
   return GO_SCHENGEN_LATAM.has(normalizedOrigin()) && normalizedDest()==='europe';
 }
 function assist365LatamSchengenTotalPerPerson(days){
   const n=Math.max(1,Number(days)||1);
-  return n===30?ASSIST365_LATAM_SCHENGEN_30D_EUR:
-    Math.round((ASSIST365_LATAM_SCHENGEN_30D_EUR*n/30+Number.EPSILON)*100)/100;
+  const cents=value=>Math.round((value+Number.EPSILON)*100)/100;
+  if(n===14)return ASSIST365_LATAM_SCHENGEN_14D_EUR;
+  if(n===30)return ASSIST365_LATAM_SCHENGEN_30D_EUR;
+  if(n>14 && n<30)
+    return cents(ASSIST365_LATAM_SCHENGEN_14D_EUR+(ASSIST365_LATAM_SCHENGEN_30D_EUR-ASSIST365_LATAM_SCHENGEN_14D_EUR)*(n-14)/16);
+  return cents(ASSIST365_LATAM_SCHENGEN_30D_EUR*n/30);
 }
 // Referencias facilitadas para 1 viajero: Colombia -> España, Intermundial go | schengen.
 // Se muestran como referencias orientativas en rutas LATAM -> espacio Schengen;
@@ -2721,7 +2727,7 @@ function providerProfile(d){
   if(d.key==='assist365'){
     const latamOrigins=['co','mx','ar','ve','pe','cl','ec','bo','br','uy','py','cr','pa','gt','sv','hn','ni','cu','ht','do'];
     const eligible=latamOrigins.includes(origin) && dest==='europe';
-    if(eligible) return {plan:'Europe Care Base',eligible:true,eligibility:'Opción mostrada para viajeros desde países LATAM con destino España/Europa',medica:'Hasta 30.000 €',repatriacion:'Incluida según condiciones',franquicia:'Revisar condiciones',cancelacion:'No destacada en el plan base',equipaje:'Hasta 300 €',demora:'Sala VIP hasta 50 € por demora de vuelo',tele:false,aventura:false,cancel:false,baggage:true,publicRate:2.10,coverageRank:70,bestFor:'Viajeros LATAM que buscan asistencia para España/Europa con 30.000 € de cobertura médica.',caution:'Referencia facilitada de 63 € por 30 días y persona (≈ 2,10 €/día) para LATAM → Schengen; otras duraciones son estimaciones proporcionales, no cotizaciones. El precio puede variar según edad, fechas, residencia y promociones. Confirma el precio y las condiciones finales con Assist 365.',source:'Assist 365 Europe Care Base · referencia facilitada el 01/11/2026'};
+    if(eligible) return {plan:'Europe Care Base',eligible:true,eligibility:'Opción mostrada para viajeros desde países LATAM con destino España/Europa',medica:'Hasta 30.000 €',repatriacion:'Incluida según condiciones',franquicia:'Revisar condiciones',cancelacion:'No destacada en el plan base',equipaje:'Hasta 300 €',demora:'Sala VIP hasta 50 € por demora de vuelo',tele:false,aventura:false,cancel:false,baggage:true,publicRate:2.10,coverageRank:70,bestFor:'Viajeros LATAM que buscan asistencia para España/Europa con 30.000 € de cobertura médica.',caution:'Referencias facilitadas para LATAM → Schengen: 41 € por 14 días (≈ 2,93 €/día) y 63 € por 30 días (2,10 €/día), por persona. Las otras duraciones se estiman matemáticamente, no son cotizaciones. El precio puede variar según edad, fechas, residencia y promociones. Confirma el precio y las condiciones finales con Assist 365.',source:'Assist 365 Europe Care Base · referencia facilitada el 01/11/2026'};
     return {plan:'Europe Care Base',eligible:false,eligibility:'Se muestra para viajes desde países LATAM a España/Europa',medica:'Hasta 30.000 €',repatriacion:'Según condiciones',franquicia:'Revisar condiciones',cancelacion:'No destacada en el plan base',equipaje:'Hasta 300 €',demora:'Según condiciones',tele:false,aventura:false,cancel:false,baggage:true,publicRate:2.46,coverageRank:0,bestFor:'Viajes desde LATAM a España/Europa.',caution:'Selecciona un origen LATAM y España/Europa como destino para ver esta opción.',source:'Assist 365 · referencia revisada 28/09/2026'};
   }
   if(d.key==='chapka'){
@@ -2887,7 +2893,7 @@ function renderCard(d){
   }
   if(d.key==='assist365'){
     if(isAssist365LatamSchengenRoute()){
-      price=`<div class="public-price-label">Assist 365 · LATAM → Schengen · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>total orientativo del viaje</small></div><div class="trip-origin-price">≈ ${originTotal} <span>moneda de origen</span></div><div class="public-price-sub"><strong>≈ ${destDaily}/persona/día</strong> de media. Referencia de <strong>63 € / 30 días y persona</strong> para cualquier país LATAM → Schengen. Otras duraciones estimadas proporcionalmente; no es una cotización. 5% de descuento con código <strong>VIAJEROLATAM</strong>, sujeto a condiciones. Confirma elegibilidad, prima final y descuentos con Assist 365.</div>`;
+      price=`<div class="public-price-label">Assist 365 · LATAM → Schengen · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>total orientativo del viaje</small></div><div class="trip-origin-price">≈ ${originTotal} <span>moneda de origen</span></div><div class="public-price-sub"><strong>≈ ${destDaily}/persona/día</strong> de media. Referencias de <strong>41 € / 14 días</strong> y <strong>63 € / 30 días</strong> por persona para cualquier país LATAM → Schengen. Otras duraciones son estimaciones matemáticas, no cotizaciones. 5% de descuento con código <strong>VIAJEROLATAM</strong>, sujeto a condiciones. Confirma elegibilidad, prima final y descuentos con Assist 365.</div>`;
     }else{
       price=`<div class="public-price-label">Precio orientativo · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>moneda de referencia · total viaje</small></div><div class="trip-origin-price">≈ ${originTotal} <span>moneda de origen</span></div><div class="public-price-sub"><strong>≈ 1,60 €/persona/día*</strong> · 5% de descuento con código <strong>VIAJEROLATAM</strong>. *Estimación orientativa; el precio final puede variar según edad, fechas, duración, residencia y promociones.</div>`;
     }
