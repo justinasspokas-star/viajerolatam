@@ -1913,6 +1913,27 @@ function isWorldToLatamRoute(){
   const target=WORLD_TO_LATAM_COUNTRIES.has(region)?region:(region==='mundial'?exact:'');
   return /^[a-z]{2}$/.test(origin) && WORLD_TO_LATAM_COUNTRIES.has(target) && origin!==target;
 }
+// Estados Unidos → un país Schengen concreto (no la región genérica).
+// Aplicar estas referencias únicamente a esta dirección de viaje.
+const US_TO_SCHENGEN_MONTHLY_EUR=Object.freeze({intermundial:42.41,iati:85.02});
+function isUsToSchengenRoute(){
+  const region=String(window.currentSearchDest||'').toLowerCase();
+  const exact=String(window.currentSearchDestinationCountry||'').toLowerCase();
+  return normalizedOrigin()==='us' && region==='espana-schengen' &&
+    SCHENGEN_ROUTE_COUNTRIES.has(exact);
+}
+function usToSchengenTotalPerPerson(key,days){
+  const n=Math.max(1,Number(days)||1);
+  const monthly=US_TO_SCHENGEN_MONTHLY_EUR[key];
+  if(!monthly)return null;
+  return n===30?monthly:Math.round((monthly*n/30+Number.EPSILON)*100)/100;
+}
+function usToSchengenPriceNote(key){
+  const reference=key==='intermundial'?'42,41 €':'85,02 €';
+  return resultTripDays()===30
+    ? 'Referencia de '+reference+' por 30 días y una persona desde Estados Unidos a un país Schengen; confirma modalidad, residencia admitida y tarifa final'
+    : 'Estimación proporcional desde '+reference+' por 30 días y persona para Estados Unidos → Schengen; no es un precio cotizado para esta duración';
+}
 function intermundialLatamGoWorldTotalPerPerson(days){
   const n=Math.max(1,Number(days)||1);
   const cents=value=>Math.round((value+Number.EPSILON)*100)/100;
@@ -2244,6 +2265,8 @@ function axaSchengenAmericaNote(){
    : 'Estimación proporcional basada en una única referencia de 14 días, no cotizada';
 }
 function fixedOrientativeRate(key){
+  if((key==='iati'||key==='intermundial') && isUsToSchengenRoute())
+    return usToSchengenTotalPerPerson(key,resultTripDays())/resultTripDays();
   if(key==='iati' && isWorldToLatamRoute())
     return iatiWorldToLatamTotalPerPerson(resultTripDays())/resultTripDays();
   if(key==='intermundial' && isWorldToLatamRoute())
@@ -2364,6 +2387,8 @@ function resultFormatCurrencyFromEUR(eurAmount,currency){
   }
 }
 function resultTotalEUR(key){
+  if((key==='iati'||key==='intermundial') && isUsToSchengenRoute())
+    return usToSchengenTotalPerPerson(key,resultTripDays())*resultTripPeople();
   if(key==='iati' && isWorldToLatamRoute())
     return iatiWorldToLatamTotalPerPerson(resultTripDays())*resultTripPeople();
   if(key==='intermundial' && isWorldToLatamRoute())
@@ -2486,6 +2511,8 @@ function providerVisible(d){
   // Destino LATAM desde cualquier país: InterMundial e IATI, sin mezclar
   // proveedores cuyo producto/eligibilidad no está confirmado para estas rutas.
   if(isWorldToLatamRoute())return !!d && (d.key==='intermundial'||d.key==='iati');
+  // Nueva ruta Estados Unidos → país Schengen concreto; no activar precios en otros destinos.
+  if(isUsToSchengenRoute())return !!d && (d.key==='intermundial'||d.key==='iati');
   // No sugerir ofertas no comprobadas para otras rutas con salida mundial.
   if(!GO_SCHENGEN_LATAM.has(normalizedOrigin()) &&
      !SCHENGEN_ROUTE_COUNTRIES.has(normalizedOrigin()))return false;
@@ -2522,6 +2549,18 @@ function providerProfile(d){
   const dest=normalizedDest();
   const spainResident=origin==='es';
   if(d.key==='iati'){
+    if(isUsToSchengenRoute())return {
+      plan:'IATI · modalidad por confirmar · Estados Unidos → Schengen',
+      eligible:false,reviewable:true,
+      eligibility:'Consulta si IATI admite tu residencia en Estados Unidos y el país Schengen de destino',
+      medica:'Según modalidad',repatriacion:'Según póliza',
+      franquicia:'Consultar condiciones',cancelacion:'Según modalidad',
+      equipaje:'Según póliza',demora:'Según condiciones',
+      tele:false,aventura:false,cancel:false,baggage:false,publicRate:null,
+      coverageRank:78,bestFor:'Comparar seguro para viajes desde Estados Unidos hacia países Schengen.',
+      caution:'85,02 € por 30 días y persona (≈ 2,83 €/día) es una referencia facilitada, no una cotización confirmada para todas las residencias de Estados Unidos y destinos Schengen. Para otras duraciones se muestran cálculos proporcionales. Confirma modalidad, cobertura, residencia admitida, visado si corresponde y precio final con IATI.',
+      source:'Referencia facilitada por el titular · Estados Unidos → Schengen · 01/11/2026'
+    };
     if(isWorldToLatamRoute())return {
       plan:'IATI · modalidad a confirmar · Latinoamérica',
       eligible:false,reviewable:true,
@@ -2560,6 +2599,18 @@ function providerProfile(d){
     return {plan:'IATI Estrella',eligible:true,eligibility:'Admite residencia fuera de España según póliza',medica:med,repatriacion:'Incluida según condiciones',franquicia:'Sin franquicia',cancelacion:'Hasta 10.000 € · opcional',equipaje:'Hasta 4.000 €',demora:'Hasta 300–360 € según garantía',tele:true,aventura:true,cancel:true,baggage:true,publicRate:null,coverageRank:100,bestFor:'Cobertura médica alta y viajes con costes sanitarios elevados.',caution:'La anulación es opcional y los límites médicos varían según el ámbito geográfico.',source:'IATI Estrella · ficha y condicionado 2026'};
   }
   if(d.key==='intermundial'){
+    if(isUsToSchengenRoute())return {
+      plan:'InterMundial · modalidad por confirmar · Estados Unidos → Schengen',
+      eligible:false,reviewable:true,
+      eligibility:'Consulta si InterMundial admite tu residencia en Estados Unidos y el país Schengen de destino',
+      medica:'Según modalidad',repatriacion:'Según póliza',
+      franquicia:'Consultar condiciones',cancelacion:'Según modalidad',
+      equipaje:'Según póliza',demora:'Según condiciones',
+      tele:false,aventura:false,cancel:false,baggage:false,publicRate:null,
+      coverageRank:77,bestFor:'Comparar seguro para viajes desde Estados Unidos hacia países Schengen.',
+      caution:'42,41 € por 30 días y persona (≈ 1,41 €/día) es una referencia facilitada, no una cotización confirmada para todas las residencias de Estados Unidos y destinos Schengen. Para otras duraciones se muestran cálculos proporcionales. Confirma modalidad, cobertura, residencia admitida, visado si corresponde y precio final con InterMundial.',
+      source:'Referencia facilitada por el titular · Estados Unidos → Schengen · 01/11/2026'
+    };
     if(isWorldToLatamRoute())return {
       plan:'go | world · Latinoamérica',eligible:false,reviewable:true,
       eligibility:'Consulta si InterMundial admite tu residencia y el país latinoamericano elegido',
@@ -2750,6 +2801,9 @@ function renderCard(d){
   if(d.key==='intermundial' && isGoWorldUkLatamRoute()){
     price=`<div class="public-price-label">Go World · Reino Unido · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>total orientativo del viaje</small></div><div class="trip-origin-price">≈ ${originTotal} <span>moneda de origen</span></div><div class="public-price-sub"><strong>≈ ${destDaily}/persona/día</strong> de media. ${goWorldUkPriceNote()}. 1 mes equivale a 30 días en esta referencia. No es una tarifa universal: confirma precio final, residencia admitida y condiciones con InterMundial.</div>`;
   }
+  if((d.key==='intermundial'||d.key==='iati') && isUsToSchengenRoute()){
+    price=`<div class="public-price-label">${d.key==='intermundial'?'InterMundial':'IATI'} · Estados Unidos → Schengen · ${resultTripLabel()}</div><div class="public-price">≈ ${euroFixed(totalEUR)} € <small>importe orientativo del viaje en EUR</small></div><div class="public-price-sub"><strong>≈ ${euroFixed(fixedRate)} €/persona/día</strong> de media. ${usToSchengenPriceNote(d.key)}. Contratación y condiciones por verificar con la aseguradora.</div>`;
+  }
   if(d.key==='iati' && isWorldToLatamRoute()){
     price=`<div class="public-price-label">IATI · destino Latinoamérica · ${resultTripLabel()}</div><div class="public-price">≈ ${euroFixed(totalEUR)} € <small>total orientativo en EUR</small></div><div class="public-price-sub"><strong>≈ ${euroFixed(fixedRate)} €/persona/día</strong> de media. ${iatiWorldToLatamPriceNote()}. Confirma residencia admitida, país cubierto, modalidad y prima final directamente con IATI.</div>`;
   }
@@ -2866,6 +2920,8 @@ function updateQuickCompare(){
     row('Cancelación',(_,p)=>p.cancelacion),
     row('Equipaje',(_,p)=>p.equipaje),
     row('Total orientativo · '+resultTripLabel(),(d)=>{
+      if(isUsToSchengenRoute()&&(d.key==='intermundial'||d.key==='iati'))
+        return '<strong>≈ '+euroFixed(resultTotalEUR(d.key))+' €</strong><div class="matrix-origin-price">Estados Unidos → Schengen · referencia, elegibilidad por confirmar</div>';
       if(isWorldToLatamRoute()&&(d.key==='intermundial'||d.key==='iati'))
         return '<strong>≈ '+euroFixed(resultTotalEUR(d.key))+' €</strong><div class="matrix-origin-price">'+(d.key==='iati'?'IATI':'Go | World')+' · importe orientativo, elegibilidad por confirmar</div>';
       if(providerProfile(d).reviewable)return '<strong>Consultar tarifa</strong><div class="matrix-origin-price">Duración / residencia por verificar</div>';
@@ -2875,7 +2931,7 @@ function updateQuickCompare(){
         return '<strong>≈ '+euroFixed(resultTotalEUR(d.key))+' €</strong><div class="matrix-origin-price">≈ '+resultFormatCurrencyFromEUR(resultTotalEUR(d.key),'USD')+' · USD orientativo</div>';
       return '<strong>≈ '+resultFormatCurrencyFromEUR(resultTotalEUR(d.key),resultDestinationCurrency())+'</strong>'+(isSchengenToSchengenRoute()?'<div class="matrix-origin-price">Referencia en EUR, no cotización</div>':'<div class="matrix-origin-price">≈ '+resultFormatCurrencyFromEUR(resultTotalEUR(d.key),resultOriginCurrency())+' origen</div>');
     }),
-    row('Referencia diaria',(d)=>(d.key==='intermundial'||d.key==='iati')&&isWorldToLatamRoute()
+    row('Referencia diaria',(d)=>(d.key==='intermundial'||d.key==='iati')&&(isWorldToLatamRoute()||isUsToSchengenRoute())
       ? '<span>≈ '+euroFixed(fixedOrientativeRate(d.key))+' €/persona/día · orientativo</span>'
       : providerProfile(d).reviewable
       ? '<span>Por confirmar</span>'
@@ -2904,7 +2960,9 @@ function render(data){
   const routeProviders=visibleProviders();
   const eligibleCount=routeProviders.filter(d=>providerProfile(d).eligible).length;
   const pendingCount=routeProviders.filter(d=>providerProfile(d).reviewable).length;
-  const countText=isWorldToLatamRoute()
+  const countText=isUsToSchengenRoute()
+    ? '2 opciones para Estados Unidos → Schengen: InterMundial e IATI · elegibilidad por confirmar'
+    : isWorldToLatamRoute()
     ? '2 opciones (InterMundial e IATI) para comparar · elegibilidad pendiente de confirmar'
     : (isSchengenToUkRoute() && normalizedOrigin()!=='es')
     ? `${eligibleCount} opciones indicadas · ${pendingCount} pendiente${pendingCount===1?'':'s'} de verificar`
@@ -2936,7 +2994,7 @@ function applyFilters(){
   const wantBaggage=document.getElementById('f6')?document.getElementById('f6').checked:false;
   let filtered=visibleProviders().filter(d=>{
     const p=providerProfile(d);
-    if(onlyEligible&&!p.eligible&&!(isWorldToLatamRoute()&&(d.key==='intermundial'||d.key==='iati')&&p.reviewable)) return false;
+    if(onlyEligible&&!p.eligible&&!((isWorldToLatamRoute()||isUsToSchengenRoute())&&(d.key==='intermundial'||d.key==='iati')&&p.reviewable)) return false;
     if(wantNoFranquicia&&!p.franquicia.toLowerCase().includes('sin franquicia')) return false;
     if(wantTele&&!p.tele) return false;
     if(wantCancel&&!p.cancel) return false;
@@ -3356,7 +3414,9 @@ function applyEditSearch(){
     var originCode=originCurrency();
     var destinationCode=destinationCurrency();
     el.classList.add('is-visible');
-    var regionText=isWorldToLatamRoute()
+    var regionText=isUsToSchengenRoute()
+      ? 'Estados Unidos → país Schengen concreto: InterMundial tiene como referencia 42,41 € por 30 días y persona (≈ 1,41 €/día) e IATI 85,02 € por 30 días y persona (≈ 2,83 €/día). Otras duraciones son estimaciones proporcionales, no cotizaciones. Confirma cobertura Schengen, residencia admitida, exclusiones y precio final directamente con cada aseguradora.'
+      : isWorldToLatamRoute()
       ? 'Destino Latinoamérica: IATI usa '+(SCHENGEN_ROUTE_COUNTRIES.has(normalizedOrigin())?'105,93 € por 30 días y persona desde países Schengen (≈ 3,53 €/día)':'65,02 € por 30 días y persona desde países fuera de Schengen (≈ 2,17 €/día)')+'. InterMundial usa '+(SCHENGEN_ROUTE_COUNTRIES.has(normalizedOrigin())?'83,96 € por 30 días y persona desde países Schengen (≈ 2,80 €/día)':'86,90 € por 15 días y 156,66 € por 30 días desde países fuera de Schengen')+'. Las demás duraciones se estiman; ambas compañías deben confirmar disponibilidad, residencia, países cubiertos y precios finales.'
       : isSchengenToUkRoute()
       ? (!['es'].includes(normalizedOrigin()) && resultTripDays()>120
