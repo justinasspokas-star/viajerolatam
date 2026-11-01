@@ -1903,6 +1903,19 @@ function assist365LatamSchengenTotalPerPerson(days){
     return cents(ASSIST365_LATAM_SCHENGEN_14D_EUR+(ASSIST365_LATAM_SCHENGEN_30D_EUR-ASSIST365_LATAM_SCHENGEN_14D_EUR)*(n-14)/16);
   return cents(ASSIST365_LATAM_SCHENGEN_30D_EUR*n/30);
 }
+// Assist 365: referencia exclusiva LATAM → Estados Unidos: 78 € / 30 días/persona.
+// No aplicar a Canadá ni a destinos genéricos sin país seleccionado.
+const ASSIST365_LATAM_US_30D_EUR=78;
+function isAssist365LatamUsRoute(){
+  return GO_SCHENGEN_LATAM.has(normalizedOrigin()) &&
+    String(window.currentSearchDest||'').toLowerCase()==='eeuu-canada' &&
+    String(window.currentSearchDestinationCountry||'').toLowerCase()==='us';
+}
+function assist365LatamUsTotalPerPerson(days){
+  const n=Math.max(1,Number(days)||1);
+  return n===30?ASSIST365_LATAM_US_30D_EUR:
+    Math.round((ASSIST365_LATAM_US_30D_EUR*n/30+Number.EPSILON)*100)/100;
+}
 // Referencias facilitadas para 1 viajero: Colombia -> España, Intermundial go | schengen.
 // Se muestran como referencias orientativas en rutas LATAM -> espacio Schengen;
 // la cotización definitiva puede variar según residencia, fechas, edad y extras.
@@ -2355,6 +2368,8 @@ function fixedOrientativeRate(key){
   // Assist 365: referencia exclusiva LATAM → Schengen de 63 EUR / 30 días.
   if(key === 'assist365' && isAssist365LatamSchengenRoute())
     return assist365LatamSchengenTotalPerPerson(resultTripDays())/resultTripDays();
+  if(key === 'assist365' && isAssist365LatamUsRoute())
+    return assist365LatamUsTotalPerPerson(resultTripDays())/resultTripDays();
   // Intermundial: go | schengen para no residentes que viajan a España/Schengen,
   // go | world para otros destinos y Totaltravel para residentes en España.
   // Referencias públicas; no son cotizaciones.
@@ -2467,6 +2482,8 @@ function resultTotalEUR(key){
   }
   if(key==='assist365' && isAssist365LatamSchengenRoute())
     return assist365LatamSchengenTotalPerPerson(resultTripDays())*resultTripPeople();
+  if(key==='assist365' && isAssist365LatamUsRoute())
+    return assist365LatamUsTotalPerPerson(resultTripDays())*resultTripPeople();
   if(key==='chapka'){
     if(isChapkaLatamSchengenRoute())
       return chapkaLatamSchengenTotalPerPerson(resultTripDays())*resultTripPeople();
@@ -2572,12 +2589,10 @@ function providerVisible(d){
   // Para LATAM → España (y otros orígenes fuera de España) se oculta por completo
   // hasta disponer de confirmación contractual de una modalidad compatible.
   if(d && d.key==='holins' && normalizedOrigin()!=='es') return false;
-  // Assist 365 Europe Care Base: mostramos solo las residencias que Assist 365
-  // confirmó por escrito el 14/09/2026 para viajes a España/Schengen.
-  if(d && d.key==='assist365'){
-    const latamOrigins=['co','mx','ar','ve','pe','cl','ec','bo','br','uy','py','cr','pa','gt','sv','hn','ni','cu','ht','do'];
-    return latamOrigins.includes(normalizedOrigin()) && normalizedDest()==='europe';
-  }
+  // Assist 365: conservar LATAM → Schengen y añadir solo LATAM → Estados Unidos.
+  // Países como Canadá no reciben la nueva referencia estadounidense.
+  if(d && d.key==='assist365')
+    return isAssist365LatamSchengenRoute() || isAssist365LatamUsRoute();
   return true;
 }
 function visibleProviders(){
@@ -2725,6 +2740,18 @@ function providerProfile(d){
     return {plan:'Holins',eligible:false,eligibility:'No mostramos Holins como opción contratable cuando el origen/residencia de referencia está fuera de España',medica:'No aplicable',repatriacion:'No aplicable',franquicia:'No aplicable',cancelacion:'No aplicable',equipaje:'No aplicable',demora:'No aplicable',tele:false,aventura:false,cancel:false,baggage:false,publicRate:null,coverageRank:0,bestFor:'Residentes en España.',caution:'El cotizador público de Holins está orientado a salida/residencia en España. Hasta confirmar por escrito una modalidad LATAM → España compatible, se excluye de esos resultados.',source:'Holins · web y cotizador público · revisión 08/09/2026'};
   }
   if(d.key==='assist365'){
+    if(isAssist365LatamUsRoute())return {
+      plan:'Assist 365 · Estados Unidos · modalidad por confirmar',
+      eligible:false,reviewable:true,
+      eligibility:'Confirma con Assist 365 que admite tu residencia LATAM y una póliza válida para Estados Unidos',
+      medica:'Según modalidad',repatriacion:'Según condiciones',
+      franquicia:'Consultar condiciones',cancelacion:'Según modalidad',
+      equipaje:'Según póliza',demora:'Según condiciones',
+      tele:false,aventura:false,cancel:false,baggage:false,publicRate:null,
+      coverageRank:69,bestFor:'Viajeros desde Latinoamérica con destino Estados Unidos.',
+      caution:'78 € por 30 días y persona (2,60 €/día) es una referencia facilitada para LATAM → Estados Unidos, no una cotización oficial de cada residencia. Otros plazos se calculan proporcionalmente. Confirma producto, ámbito territorial, cobertura médica, exclusiones, elegibilidad y prima final con Assist 365.',
+      source:'Referencia facilitada por el titular · LATAM → Estados Unidos · 01/11/2026'
+    };
     const latamOrigins=['co','mx','ar','ve','pe','cl','ec','bo','br','uy','py','cr','pa','gt','sv','hn','ni','cu','ht','do'];
     const eligible=latamOrigins.includes(origin) && dest==='europe';
     if(eligible) return {plan:'Europe Care Base',eligible:true,eligibility:'Opción mostrada para viajeros desde países LATAM con destino España/Europa',medica:'Hasta 30.000 €',repatriacion:'Incluida según condiciones',franquicia:'Revisar condiciones',cancelacion:'No destacada en el plan base',equipaje:'Hasta 300 €',demora:'Sala VIP hasta 50 € por demora de vuelo',tele:false,aventura:false,cancel:false,baggage:true,publicRate:2.10,coverageRank:70,bestFor:'Viajeros LATAM que buscan asistencia para España/Europa con 30.000 € de cobertura médica.',caution:'Referencias facilitadas para LATAM → Schengen: 41 € por 14 días (≈ 2,93 €/día) y 63 € por 30 días (2,10 €/día), por persona. Las otras duraciones se estiman matemáticamente, no son cotizaciones. El precio puede variar según edad, fechas, residencia y promociones. Confirma el precio y las condiciones finales con Assist 365.',source:'Assist 365 Europe Care Base · referencia facilitada el 01/11/2026'};
@@ -2892,7 +2919,9 @@ function renderCard(d){
     }
   }
   if(d.key==='assist365'){
-    if(isAssist365LatamSchengenRoute()){
+    if(isAssist365LatamUsRoute()){
+      price=`<div class="public-price-label">Assist 365 · LATAM → Estados Unidos · ${resultTripLabel()}</div><div class="public-price">≈ ${euroFixed(totalEUR)} € <small>referencia total en euros</small></div><div class="trip-origin-price">≈ ${originTotal} <span>moneda de origen</span></div><div class="public-price-sub"><strong>≈ ${euroFixed(fixedRate)} €/persona/día</strong> de media. Referencia de <strong>78 € / 30 días y persona</strong> para salidas desde países LATAM a Estados Unidos. Para otras duraciones se calcula proporcionalmente; no es una cotización. Verifica póliza apta para EE. UU., residencia admitida y precio final en Assist 365. Código VIAJEROLATAM sujeto a condiciones del proveedor.</div>`;
+    }else if(isAssist365LatamSchengenRoute()){
       price=`<div class="public-price-label">Assist 365 · LATAM → Schengen · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>total orientativo del viaje</small></div><div class="trip-origin-price">≈ ${originTotal} <span>moneda de origen</span></div><div class="public-price-sub"><strong>≈ ${destDaily}/persona/día</strong> de media. Referencias de <strong>41 € / 14 días</strong> y <strong>63 € / 30 días</strong> por persona para cualquier país LATAM → Schengen. Otras duraciones son estimaciones matemáticas, no cotizaciones. 5% de descuento con código <strong>VIAJEROLATAM</strong>, sujeto a condiciones. Confirma elegibilidad, prima final y descuentos con Assist 365.</div>`;
     }else{
       price=`<div class="public-price-label">Precio orientativo · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>moneda de referencia · total viaje</small></div><div class="trip-origin-price">≈ ${originTotal} <span>moneda de origen</span></div><div class="public-price-sub"><strong>≈ 1,60 €/persona/día*</strong> · 5% de descuento con código <strong>VIAJEROLATAM</strong>. *Estimación orientativa; el precio final puede variar según edad, fechas, duración, residencia y promociones.</div>`;
@@ -2978,6 +3007,8 @@ function updateQuickCompare(){
         return '<strong>≈ '+euroFixed(resultTotalEUR(d.key))+' €</strong><div class="matrix-origin-price">Estados Unidos → Schengen · referencia, elegibilidad por confirmar</div>';
       if(isWorldToLatamRoute()&&(d.key==='intermundial'||d.key==='iati'))
         return '<strong>≈ '+euroFixed(resultTotalEUR(d.key))+' €</strong><div class="matrix-origin-price">'+(d.key==='iati'?'IATI':'Go | World')+(SCHENGEN_ROUTE_COUNTRIES.has(normalizedOrigin())?' · importe orientativo, según condiciones':' · importe orientativo, elegibilidad por confirmar')+'</div>';
+      if(d.key==='assist365'&&isAssist365LatamUsRoute())
+        return '<strong>≈ '+euroFixed(resultTotalEUR(d.key))+' €</strong><div class="matrix-origin-price">LATAM → EE. UU. · referencia, elegibilidad por confirmar</div>';
       if(providerProfile(d).reviewable)return '<strong>Consultar tarifa</strong><div class="matrix-origin-price">Duración / residencia por verificar</div>';
       if(d.key==='intermundial'&&isSchengenToUkRoute())
         return '<strong>≈ '+euroFixed(resultTotalEUR(d.key))+' €</strong><div class="matrix-origin-price">Estimación desde 17,58 € / 7 días</div>';
@@ -2985,7 +3016,9 @@ function updateQuickCompare(){
         return '<strong>≈ '+euroFixed(resultTotalEUR(d.key))+' €</strong><div class="matrix-origin-price">≈ '+resultFormatCurrencyFromEUR(resultTotalEUR(d.key),'USD')+' · USD orientativo</div>';
       return '<strong>≈ '+resultFormatCurrencyFromEUR(resultTotalEUR(d.key),resultDestinationCurrency())+'</strong>'+(isSchengenToSchengenRoute()?'<div class="matrix-origin-price">Referencia en EUR, no cotización</div>':'<div class="matrix-origin-price">≈ '+resultFormatCurrencyFromEUR(resultTotalEUR(d.key),resultOriginCurrency())+' origen</div>');
     }),
-    row('Referencia diaria',(d)=>(d.key==='intermundial'||d.key==='iati')&&(isWorldToLatamRoute()||isUsToSchengenRoute())
+    row('Referencia diaria',(d)=>d.key==='assist365'&&isAssist365LatamUsRoute()
+      ? '<span>≈ '+euroFixed(fixedOrientativeRate(d.key))+' €/persona/día · orientativo</span>'
+      : (d.key==='intermundial'||d.key==='iati')&&(isWorldToLatamRoute()||isUsToSchengenRoute())
       ? '<span>≈ '+euroFixed(fixedOrientativeRate(d.key))+' €/persona/día · orientativo</span>'
       : providerProfile(d).reviewable
       ? '<span>Por confirmar</span>'
@@ -3014,7 +3047,9 @@ function render(data){
   const routeProviders=visibleProviders();
   const eligibleCount=routeProviders.filter(d=>providerProfile(d).eligible).length;
   const pendingCount=routeProviders.filter(d=>providerProfile(d).reviewable).length;
-  const countText=isUsToSchengenRoute()
+  const countText=isAssist365LatamUsRoute()
+    ? `${eligibleCount} opciones indicadas · 1 referencia de Assist 365 para EE. UU. pendiente de verificar · ${routeProviders.length} comparadas`
+    : isUsToSchengenRoute()
     ? '2 opciones para Estados Unidos → Schengen: InterMundial e IATI · elegibilidad por confirmar'
     : isWorldToLatamRoute()
     ? (SCHENGEN_ROUTE_COUNTRIES.has(normalizedOrigin())
@@ -3061,7 +3096,7 @@ function applyFilters(){
   const wantBaggage=document.getElementById('f6')?document.getElementById('f6').checked:false;
   let filtered=visibleProviders().filter(d=>{
     const p=providerProfile(d);
-    if(onlyEligible&&!p.eligible&&!((isWorldToLatamRoute()||isUsToSchengenRoute())&&(d.key==='intermundial'||d.key==='iati')&&p.reviewable)) return false;
+    if(onlyEligible&&!p.eligible&&!((isWorldToLatamRoute()||isUsToSchengenRoute())&&(d.key==='intermundial'||d.key==='iati')&&p.reviewable)&&!(d.key==='assist365'&&isAssist365LatamUsRoute()&&p.reviewable)) return false;
     if(wantNoFranquicia&&!p.franquicia.toLowerCase().includes('sin franquicia')) return false;
     if(wantTele&&!p.tele) return false;
     if(wantCancel&&!p.cancel) return false;
@@ -3078,7 +3113,7 @@ function sortData(data,val){
     // En estas dos rutas se muestran importes numéricos de referencia: ordenar
     // por esos importes aunque la elegibilidad siga pendiente en otras residencias.
     // En el resto de rutas conservar el tratamiento previo de tarifas no cotizadas.
-    const hasRouteReference=isWorldToLatamRoute()||isUsToSchengenRoute();
+    const hasRouteReference=isWorldToLatamRoute()||isUsToSchengenRoute()||isAssist365LatamUsRoute();
     const ra=hasRouteReference?resultTotalEUR(a.key):(providerProfile(a).reviewable?Infinity:fixedOrientativeRate(a.key));
     const rb=hasRouteReference?resultTotalEUR(b.key):(providerProfile(b).reviewable?Infinity:fixedOrientativeRate(b.key));
     return ra-rb;
@@ -3484,7 +3519,9 @@ function applyEditSearch(){
     var originCode=originCurrency();
     var destinationCode=destinationCurrency();
     el.classList.add('is-visible');
-    var regionText=isUsToSchengenRoute()
+    var regionText=isAssist365LatamUsRoute()
+      ? 'Assist 365: referencia de 78 € por 30 días y persona (≈ 2,60 €/día) para LATAM → Estados Unidos. Las demás duraciones son cálculos proporcionales, no cotizaciones. Confirma producto, cobertura en EE. UU., residencia admitida y precio final con Assist 365.'
+      : isUsToSchengenRoute()
       ? 'Estados Unidos → país Schengen concreto: InterMundial tiene como referencia 42,41 € por 30 días y persona (≈ 1,41 €/día) e IATI 85,02 € por 30 días y persona (≈ 2,83 €/día). Otras duraciones son estimaciones proporcionales, no cotizaciones. Confirma cobertura Schengen, residencia admitida, exclusiones y precio final directamente con cada aseguradora.'
       : isWorldToLatamRoute()
       ? 'Destino Latinoamérica: IATI usa '+(SCHENGEN_ROUTE_COUNTRIES.has(normalizedOrigin())?'105,93 € por 30 días y persona desde países Schengen (≈ 3,53 €/día)':'65,02 € por 30 días y persona desde países fuera de Schengen (≈ 2,17 €/día)')+'. InterMundial usa '+(SCHENGEN_ROUTE_COUNTRIES.has(normalizedOrigin())?'83,96 € por 30 días y persona desde países Schengen (≈ 2,80 €/día)':'86,90 € por 15 días y 156,66 € por 30 días desde países fuera de Schengen')+'. Las demás duraciones se estiman; '+(SCHENGEN_ROUTE_COUNTRIES.has(normalizedOrigin())?'ambas compañías ofrecen opciones para esta ruta según condiciones; confirma la modalidad, cobertura y precio final.':'ambas compañías deben confirmar disponibilidad, residencia, países cubiertos y precios finales.')
