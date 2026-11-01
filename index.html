@@ -3094,14 +3094,17 @@ document.addEventListener('click', function(e){
       // Redondear primero el importe de cada viajero, igual que en resultados.
       var goWorldUnit=Math.round((goWorldPerPerson+Number.EPSILON)*100)/100;
       var totalGoWorld=Math.round((goWorldUnit*people+Number.EPSILON)*100)/100;
-      var iatiUnit=worldDays===30?65.02:Math.round((65.02*worldDays/30+Number.EPSILON)*100)/100;
+      // Solo salidas Schengen → LATAM tienen la referencia especial de IATI.
+      // El resto de países mantiene 65,02 € por 30 días.
+      var iatiLatam30=schengenOrigin.has(origin==='espana-schengen'?'es':origin)?105.93:65.02;
+      var iatiUnit=worldDays===30?iatiLatam30:Math.round((iatiLatam30*worldDays/30+Number.EPSILON)*100)/100;
       var totalIati=Math.round((iatiUnit*people+Number.EPSILON)*100)/100;
       text.textContent=days+' días'+(people>1?' · '+people+' viajeros':'')+
         ' · IATI: ≈ '+formatCurrency(totalIati,'EUR')+
         ' · InterMundial Go | World: ≈ '+formatCurrency(totalGoWorld,'EUR')+
         ' (referencias orientativas)';
       if(localDisplay && localText){
-        localText.textContent='IATI: 65,02 € por 30 días (≈ 2,17 €/día) y persona; las demás duraciones se estiman proporcionalmente. InterMundial Go | World: 86,90 € por 15 días o 156,66 € por 30 días y persona. Para '+country.label+', comprueba las modalidades, coberturas, residencia admitida y precios finales con cada compañía.';
+        localText.textContent='IATI: '+(iatiLatam30===105.93?'105,93 € por 30 días desde países Schengen (≈ 3,53 €/día)':'65,02 € por 30 días desde países fuera de Schengen (≈ 2,17 €/día)')+' y persona; las demás duraciones se estiman proporcionalmente. InterMundial Go | World: 86,90 € por 15 días o 156,66 € por 30 días y persona. Para '+country.label+', comprueba las modalidades, coberturas, residencia admitida y precios finales con cada compañía.';
         localDisplay.classList.remove('is-hidden');
       }
       return;
