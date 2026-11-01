@@ -1869,16 +1869,22 @@ function chapkaReferenceTotalPerPerson(){
 function chapkaReferenceTotalEUR(){
   return chapkaReferenceTotalPerPerson()*resultTripPeople();
 }
-// Únicamente Chapka para orígenes LATAM y destinos Schengen:
-// 58 € por 30 días/persona; otros plazos se estiman proporcionalmente.
+// Chapka solo para LATAM → Schengen: 46 € / 14 días y 58 € / 30 días.
+// Para otros plazos se conservan los importes anteriores (<14, >30)
+// o se interpola entre ambas referencias (15–29 días). No son cotizaciones.
+const CHAPKA_LATAM_SCHENGEN_14D_EUR=46;
 const CHAPKA_LATAM_SCHENGEN_30D_EUR=58;
 function isChapkaLatamSchengenRoute(){
   return GO_SCHENGEN_LATAM.has(normalizedOrigin()) && normalizedDest()==='europe';
 }
 function chapkaLatamSchengenTotalPerPerson(days){
   const n=Math.max(1,Number(days)||1);
-  return n===30?CHAPKA_LATAM_SCHENGEN_30D_EUR:
-    Math.round((CHAPKA_LATAM_SCHENGEN_30D_EUR*n/30+Number.EPSILON)*100)/100;
+  const cents=value=>Math.round((value+Number.EPSILON)*100)/100;
+  if(n===14)return CHAPKA_LATAM_SCHENGEN_14D_EUR;
+  if(n===30)return CHAPKA_LATAM_SCHENGEN_30D_EUR;
+  if(n>14 && n<30)
+    return cents(CHAPKA_LATAM_SCHENGEN_14D_EUR+(CHAPKA_LATAM_SCHENGEN_30D_EUR-CHAPKA_LATAM_SCHENGEN_14D_EUR)*(n-14)/16);
+  return cents(CHAPKA_LATAM_SCHENGEN_30D_EUR*n/30);
 }
 // Assist 365, únicamente LATAM → países Schengen: 63 EUR / 30 días y persona.
 // Duraciones distintas: estimación proporcional, no cotización.
@@ -2872,7 +2878,7 @@ function renderCard(d){
   }
   if(d.key==='chapka'){
     if(isChapkaLatamSchengenRoute()){
-      price=`<div class="public-price-label">Chapka · LATAM → Schengen · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>total orientativo del viaje</small></div><div class="trip-origin-price">≈ ${originTotal} <span>moneda de origen</span></div><div class="public-price-sub"><strong>≈ ${destDaily}/persona/día</strong> de media. Referencia de <strong>58 € / 30 días y persona</strong> aplicada a cualquier país LATAM → Schengen. Para otras duraciones se estima proporcionalmente; no es una cotización. Confirma la modalidad (${chapkaPlanType()==='schengen'?'Cap Schengen':'Cap Europa'}), elegibilidad y prima final con Chapka.</div>`;
+      price=`<div class="public-price-label">Chapka · LATAM → Schengen · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>total orientativo del viaje</small></div><div class="trip-origin-price">≈ ${originTotal} <span>moneda de origen</span></div><div class="public-price-sub"><strong>≈ ${destDaily}/persona/día</strong> de media. Referencias de <strong>46 € / 14 días</strong> y <strong>58 € / 30 días</strong> por persona para cualquier país LATAM → Schengen. Otras duraciones son estimaciones calculadas, no cotizaciones. Confirma la modalidad (${chapkaPlanType()==='schengen'?'Cap Schengen':'Cap Europa'}), elegibilidad y prima final con Chapka.</div>`;
     }else if(chapkaPlanType()==='schengen'){
       price=`<div class="public-price-label">Tarifa pública de referencia · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>moneda de referencia · total viaje</small></div><div class="trip-origin-price">≈ ${originTotal} <span>moneda de origen</span></div><div class="public-price-sub">Cap Schengen publica precios por tramos. Referencia Zona 2 (LATAM/resto del mundo), 0–60 años. La web oficial anuncia el producto desde 18 €; confirma edad, residencia y precio final.</div>`;
     }else{
