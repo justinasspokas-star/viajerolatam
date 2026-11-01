@@ -2501,7 +2501,7 @@ function providerProfile(d){
       franquicia:'Consultar condiciones',cancelacion:'Hasta 5.000 € según modalidad',
       equipaje:'Hasta 2.500 € según modalidad',demora:'Según condiciones',
       tele:false,aventura:false,cancel:false,baggage:true,publicRate:null,
-      coverageRank:82,bestFor:'Viajes internacionales con destino a países de Latinoamérica.',
+      coverageRank:82,bestFor:'Protección completa en todo el mundo para viajes con destino a Latinoamérica, según la póliza contratada.',
       caution:'La referencia de 86,90 € corresponde a 15 días y una persona. Las demás duraciones se estiman proporcionalmente. No se ha verificado el importe ni la contratación para cada país de origen o destino: revisa residencia admitida, ámbito territorial, exclusiones, duración y precio final con InterMundial.',
       source:'Referencia facilitada por el titular (01/11/2026); ficha oficial de InterMundial go | world'
     };
@@ -2795,6 +2795,8 @@ function updateQuickCompare(){
     row('Cancelación',(_,p)=>p.cancelacion),
     row('Equipaje',(_,p)=>p.equipaje),
     row('Total orientativo · '+resultTripLabel(),(d)=>{
+      if(d.key==='intermundial'&&isWorldToLatamRoute())
+        return '<strong>≈ '+euroFixed(resultTotalEUR(d.key))+' €</strong><div class="matrix-origin-price">Go | World · importe orientativo, elegibilidad por confirmar</div>';
       if(providerProfile(d).reviewable)return '<strong>Consultar tarifa</strong><div class="matrix-origin-price">Duración / residencia por verificar</div>';
       if(d.key==='intermundial'&&isSchengenToUkRoute())
         return '<strong>≈ '+euroFixed(resultTotalEUR(d.key))+' €</strong><div class="matrix-origin-price">Estimación desde 17,58 € / 7 días</div>';
@@ -2802,7 +2804,9 @@ function updateQuickCompare(){
         return '<strong>≈ '+euroFixed(resultTotalEUR(d.key))+' €</strong><div class="matrix-origin-price">≈ '+resultFormatCurrencyFromEUR(resultTotalEUR(d.key),'USD')+' · USD orientativo</div>';
       return '<strong>≈ '+resultFormatCurrencyFromEUR(resultTotalEUR(d.key),resultDestinationCurrency())+'</strong>'+(isSchengenToSchengenRoute()?'<div class="matrix-origin-price">Referencia en EUR, no cotización</div>':'<div class="matrix-origin-price">≈ '+resultFormatCurrencyFromEUR(resultTotalEUR(d.key),resultOriginCurrency())+' origen</div>');
     }),
-    row('Referencia diaria',(d)=>providerProfile(d).reviewable
+    row('Referencia diaria',(d)=>d.key==='intermundial'&&isWorldToLatamRoute()
+      ? '<span>≈ '+euroFixed(fixedOrientativeRate(d.key))+' €/persona/día · orientativo</span>'
+      : providerProfile(d).reviewable
       ? '<span>Por confirmar</span>'
       : d.key==='intermundial'&&isSchengenToUkRoute()
         ? '<span>≈ '+euroFixed(fixedOrientativeRate(d.key))+' €/persona/día</span>'
