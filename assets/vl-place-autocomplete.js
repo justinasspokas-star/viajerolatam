@@ -5,7 +5,9 @@ const COUNTRIES={"af":{"label":"Afganistán","flag":"🇦🇫"},"al":{"label":"A
 const SCHENGEN=new Set('at be bg hr cz dk ee fi fr de gr hu is it lv li lt lu mt nl no pl pt ro sk si es se ch'.split(' '));
 const OTHER_EUROPE=new Set('gb ie cy al ba rs me mk md ua tr ge am az by ru ad mc sm va gi fo im je gg xk'.split(' '));
 const ASIA=new Set('af bh bd bt bn kh cn hk in id ir iq il jp jo kz kw kg la lb mo my mv mn mm np kp kr om pk ps ph qa sa sg lk sy tw tj th tl tm ae uz vn ye'.split(' '));
-const ORIGINS=new Set('co mx ar ve pe cl ec bo br uy py cr pa gt sv hn ni cu ht do at be bg hr cz dk ee fi fr de gr hu is it lv li lt lu mt nl no pl pt ro sk si es se ch'.split(' '));
+const LEGACY_ORIGINS=new Set('co mx ar ve pe cl ec bo br uy py cr pa gt sv hn ni cu ht do at be bg hr cz dk ee fi fr de gr hu is it lv li lt lu mt nl no pl pt ro sk si es se ch'.split(' '));
+const ORIGINS=new Set(Object.keys(COUNTRIES).filter(code=>code.length===2));
+const WORLD_TO_LATAM_COUNTRIES=new Set('ag ar bb bo br bs bz cl co cr cu dm do ec gd gt gy hn ht jm kn lc mx ni pa pe pr py sr sv tt uy vc ve'.split(' '));
 const GROUPS=['espana-schengen','europa-no-schengen','europa','eeuu-canada','asia','mundial'];
 const REGIONS=[['espana-schengen','🌐 Zona Schengen (varios países)'],['europa-no-schengen','🌍 Europa fuera de Schengen'],['europa','🌍 Europa completa (Schengen + otros)'],['eeuu-canada','🇺🇸🇨🇦 Estados Unidos + Canadá'],['asia','🌏 Asia'],['mundial','🌎 Todo el mundo']];
 const ALIASES={
@@ -54,6 +56,10 @@ function options(select,kind){
  // porque para esa ruta el usuario necesita elegir un país de llegada concreto.
  const origin=document.getElementById(select.id==='ep-destino'?'ep-origen':'sb-origen');
  const originCode=origin&&origin.value==='espana-schengen'?'es':origin&&origin.value;
+ // Los orígenes añadidos solo ofrecen la ruta de comparación a países LATAM.
+ // No prometer resultados para destinos internacionales todavía no configurados.
+ if(originCode && !LEGACY_ORIGINS.has(originCode))
+   return countries.filter(x=>WORLD_TO_LATAM_COUNTRIES.has(x.code));
  const shownRegions=SCHENGEN.has(originCode)?regions.filter(x=>x.code!=='espana-schengen'):regions;
  return shownRegions.concat(countries);
 }
@@ -182,7 +188,23 @@ function validSchengenPair(prefix){
  }
  return true;
 }
+function expandOriginChoices(select){
+ if(!select)return;
+ const present=new Set(Array.from(select.options).map(option=>option.value));
+ for(const country of countries){
+   const value=country.code==='es'?'espana-schengen':country.code;
+   if(present.has(value))continue;
+   const option=document.createElement('option');
+   option.value=value;
+   option.textContent=country.label;
+   select.appendChild(option);
+   present.add(value);
+ }
+}
 function init(){
+ // Permitir cualquier país reconocido como salida en inicio y editar búsqueda.
+ expandOriginChoices(document.getElementById('sb-origen'));
+ expandOriginChoices(document.getElementById('ep-origen'));
  [['sb-origen','origin'],['sb-destino','destination'],['ep-origen','origin'],['ep-destino','destination']].forEach(([id,kind])=>attach(document.getElementById(id),kind));
  const form=document.getElementById('vl-search-form');
  if(form)form.addEventListener('submit',e=>{
