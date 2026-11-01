@@ -3081,6 +3081,26 @@ document.addEventListener('click', function(e){
       }
       return;
     }
+    // Estados Unidos → un país Schengen concreto: dos referencias específicas.
+    // No aplicar estas cifras a Schengen → Estados Unidos ni a otros países.
+    if(normalizedOrigin==='us' && country && schengenOrigin.has(code) && destination==='espana-schengen'){
+      var usSchengenDays=Math.max(1,days);
+      var intermundialUnit=usSchengenDays===30?42.41:
+        Math.round((42.41*usSchengenDays/30+Number.EPSILON)*100)/100;
+      var iatiUsSchengenUnit=usSchengenDays===30?85.02:
+        Math.round((85.02*usSchengenDays/30+Number.EPSILON)*100)/100;
+      var intermundialTotal=Math.round((intermundialUnit*people+Number.EPSILON)*100)/100;
+      var iatiUsSchengenTotal=Math.round((iatiUsSchengenUnit*people+Number.EPSILON)*100)/100;
+      text.textContent=days+' días'+(people>1?' · '+people+' viajeros':'')+
+        ' · InterMundial: ≈ '+formatCurrency(intermundialTotal,'EUR')+
+        ' · IATI: ≈ '+formatCurrency(iatiUsSchengenTotal,'EUR')+
+        ' (referencias orientativas)';
+      if(localDisplay && localText){
+        localText.textContent='Desde Estados Unidos hacia '+country.label+': InterMundial 42,41 € por 30 días (≈ 1,41 €/día) e IATI 85,02 € por 30 días (≈ 2,83 €/día), por persona. Otras duraciones son estimaciones proporcionales. Confirma elegibilidad, cobertura Schengen y precio final con las aseguradoras.';
+        localDisplay.classList.remove('is-hidden');
+      }
+      return;
+    }
     // Destino latinoamericano concreto desde cualquier país: resultados de
     // IATI e InterMundial con sus referencias propias, no estimadores genéricos.
     if(country && LATAM_CODES.has(code) && normalizedOrigin!==code){
