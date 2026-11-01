@@ -1879,6 +1879,9 @@ const GO_SCHENGEN_LATAM=new Set(['co','mx','ar','ve','pe','cl','ec','bo','br','u
 // La disponibilidad para cada residencia y destino se confirma en InterMundial.
 const WORLD_TO_LATAM_COUNTRIES=new Set('ag ar bb bo br bs bz cl co cr cu dm do ec gd gt gy hn ht jm kn lc mx ni pa pe pr py sr sv tt uy vc ve'.split(' '));
 const INTERMUNDIAL_LATAM_GO_WORLD_TIERS=Object.freeze([[15,86.90],[30,156.66]]);
+// InterMundial Schengen → Latinoamérica: 83,96 EUR / 30 días y persona.
+// No modificar las referencias Go World para orígenes fuera de Schengen.
+const INTERMUNDIAL_SCHENGEN_TO_LATAM_30D_EUR=83.96;
 // IATI con destino LATAM: el origen Schengen tiene una referencia específica.
 // Schengen → LATAM: 105,93 EUR / 30 días; resto del mundo → LATAM: 65,02 EUR / 30 días.
 // Son referencias para una persona; los demás plazos son estimaciones proporcionales.
@@ -1912,9 +1915,14 @@ function isWorldToLatamRoute(){
 }
 function intermundialLatamGoWorldTotalPerPerson(days){
   const n=Math.max(1,Number(days)||1);
-  const [[firstDays,firstPrice],[monthDays,monthPrice]]=INTERMUNDIAL_LATAM_GO_WORLD_TIERS;
   const cents=value=>Math.round((value+Number.EPSILON)*100)/100;
-  // Preservar las dos referencias exactas; las demás duraciones son estimaciones.
+  // Únicamente Schengen → LATAM: referencia 83,96 € / 30 días.
+  if(SCHENGEN_ROUTE_COUNTRIES.has(normalizedOrigin())){
+    return n===30?INTERMUNDIAL_SCHENGEN_TO_LATAM_30D_EUR:
+      cents(INTERMUNDIAL_SCHENGEN_TO_LATAM_30D_EUR*n/30);
+  }
+  // Fuera de Schengen → LATAM: conservar 86,90 € / 15 días y 156,66 € / 30 días.
+  const [[firstDays,firstPrice],[monthDays,monthPrice]]=INTERMUNDIAL_LATAM_GO_WORLD_TIERS;
   if(n===firstDays)return firstPrice;
   if(n===monthDays)return monthPrice;
   if(n<firstDays)return cents(firstPrice*n/firstDays);
@@ -1923,6 +1931,11 @@ function intermundialLatamGoWorldTotalPerPerson(days){
 }
 function intermundialLatamGoWorldPriceNote(){
   const n=resultTripDays();
+  if(SCHENGEN_ROUTE_COUNTRIES.has(normalizedOrigin())){
+    return n===30
+      ? 'Referencia para salidas desde Schengen hacia Latinoamérica: 83,96 € por 30 días y una persona (≈ 2,80 €/día); confirma la tarifa final'
+      : 'Estimación proporcional desde 83,96 € por 30 días y persona para Schengen → Latinoamérica; no es una cotización de esta duración';
+  }
   if(n===15)return 'Referencia de 86,90 € por 15 días y una persona; confirma la tarifa final';
   if(n===30)return 'Referencia de 156,66 € por 30 días y una persona (≈ 5,22 €/día); confirma la tarifa final';
   return n<15
@@ -2555,7 +2568,9 @@ function providerProfile(d){
       equipaje:'Hasta 2.500 € según modalidad',demora:'Según condiciones',
       tele:false,aventura:false,cancel:false,baggage:true,publicRate:null,
       coverageRank:82,bestFor:'Protección completa en todo el mundo para viajes con destino a Latinoamérica, según la póliza contratada.',
-      caution:'Referencias de 86,90 € para 15 días y 156,66 € para 30 días por persona. Las duraciones distintas se estiman con interpolación o proyección diaria. No se ha verificado el importe ni la contratación para cada país de origen o destino: revisa residencia admitida, ámbito territorial, exclusiones, duración y precio final con InterMundial.',
+      caution: SCHENGEN_ROUTE_COUNTRIES.has(normalizedOrigin())
+        ? 'Referencia de 83,96 € por 30 días y persona para salidas desde Schengen con destino Latinoamérica (≈ 2,80 €/día). Otras duraciones se estiman proporcionalmente; confirma residencia admitida, ámbito territorial, exclusiones, duración y precio final con InterMundial.'
+        : 'Referencias de 86,90 € para 15 días y 156,66 € para 30 días por persona desde países fuera de Schengen. Las duraciones distintas se estiman con interpolación o proyección diaria. No se ha verificado el importe ni la contratación para cada país de origen o destino: revisa residencia admitida, ámbito territorial, exclusiones, duración y precio final con InterMundial.',
       source:'Referencia facilitada por el titular (01/11/2026); ficha oficial de InterMundial go | world'
     };
     if(isSchengenToUkRoute()){
@@ -3342,7 +3357,7 @@ function applyEditSearch(){
     var destinationCode=destinationCurrency();
     el.classList.add('is-visible');
     var regionText=isWorldToLatamRoute()
-      ? 'Destino Latinoamérica: IATI usa '+(SCHENGEN_ROUTE_COUNTRIES.has(normalizedOrigin())?'105,93 € por 30 días y persona desde países Schengen (≈ 3,53 €/día)':'65,02 € por 30 días y persona desde países fuera de Schengen (≈ 2,17 €/día)')+'. Otros días se estiman proporcionalmente. InterMundial go | world conserva 86,90 € por 15 días y 156,66 € por 30 días; las demás duraciones se estiman. Ambas compañías deben confirmar disponibilidad, residencia admitida, países cubiertos y precios finales.'
+      ? 'Destino Latinoamérica: IATI usa '+(SCHENGEN_ROUTE_COUNTRIES.has(normalizedOrigin())?'105,93 € por 30 días y persona desde países Schengen (≈ 3,53 €/día)':'65,02 € por 30 días y persona desde países fuera de Schengen (≈ 2,17 €/día)')+'. InterMundial usa '+(SCHENGEN_ROUTE_COUNTRIES.has(normalizedOrigin())?'83,96 € por 30 días y persona desde países Schengen (≈ 2,80 €/día)':'86,90 € por 15 días y 156,66 € por 30 días desde países fuera de Schengen')+'. Las demás duraciones se estiman; ambas compañías deben confirmar disponibilidad, residencia, países cubiertos y precios finales.'
       : isSchengenToUkRoute()
       ? (!['es'].includes(normalizedOrigin()) && resultTripDays()>120
         ? 'Reino Unido desde países Schengen: para viajes de más de 120 días debes verificar una modalidad InterMundial compatible con tu residencia y duración; no se extrapola el precio de 7 días.'
