@@ -2741,15 +2741,15 @@ function providerProfile(d){
   }
   if(d.key==='assist365'){
     if(isAssist365LatamUsRoute())return {
-      plan:'Assist 365 · Estados Unidos · modalidad por confirmar',
-      eligible:false,reviewable:true,
-      eligibility:'Confirma con Assist 365 que admite tu residencia LATAM y una póliza válida para Estados Unidos',
+      plan:'Assist 365 · Estados Unidos',
+      eligible:true,
+      eligibility:'Opción para viajeros desde países LATAM a Estados Unidos, según condiciones de Assist 365',
       medica:'Según modalidad',repatriacion:'Según condiciones',
       franquicia:'Consultar condiciones',cancelacion:'Según modalidad',
       equipaje:'Según póliza',demora:'Según condiciones',
       tele:false,aventura:false,cancel:false,baggage:false,publicRate:null,
       coverageRank:69,bestFor:'Viajeros desde Latinoamérica con destino Estados Unidos.',
-      caution:'78 € por 30 días y persona (2,60 €/día) es una referencia facilitada para LATAM → Estados Unidos, no una cotización oficial de cada residencia. Otros plazos se calculan proporcionalmente. Confirma producto, ámbito territorial, cobertura médica, exclusiones, elegibilidad y prima final con Assist 365.',
+      caution:'78 € por 30 días y persona (2,60 €/día) es una referencia facilitada para LATAM → Estados Unidos, no una cotización oficial de cada residencia. Otros plazos se calculan proporcionalmente. Consulta la modalidad, los límites de cobertura médica, las exclusiones y el precio final en Assist 365.',
       source:'Referencia facilitada por el titular · LATAM → Estados Unidos · 01/11/2026'
     };
     const latamOrigins=['co','mx','ar','ve','pe','cl','ec','bo','br','uy','py','cr','pa','gt','sv','hn','ni','cu','ht','do'];
@@ -2920,7 +2920,7 @@ function renderCard(d){
   }
   if(d.key==='assist365'){
     if(isAssist365LatamUsRoute()){
-      price=`<div class="public-price-label">Assist 365 · LATAM → Estados Unidos · ${resultTripLabel()}</div><div class="public-price">≈ ${euroFixed(totalEUR)} € <small>referencia total en euros</small></div><div class="trip-origin-price">≈ ${originTotal} <span>moneda de origen</span></div><div class="public-price-sub"><strong>≈ ${euroFixed(fixedRate)} €/persona/día</strong> de media. Referencia de <strong>78 € / 30 días y persona</strong> para salidas desde países LATAM a Estados Unidos. Para otras duraciones se calcula proporcionalmente; no es una cotización. Verifica póliza apta para EE. UU., residencia admitida y precio final en Assist 365. Código VIAJEROLATAM sujeto a condiciones del proveedor.</div>`;
+      price=`<div class="public-price-label">Assist 365 · LATAM → Estados Unidos · ${resultTripLabel()}</div><div class="public-price">≈ ${euroFixed(totalEUR)} € <small>referencia total en euros</small></div><div class="trip-origin-price">≈ ${originTotal} <span>moneda de origen</span></div><div class="public-price-sub"><strong>≈ ${euroFixed(fixedRate)} €/persona/día</strong> de media. Referencia de <strong>78 € / 30 días y persona</strong> para salidas desde países LATAM a Estados Unidos. Para otras duraciones se calcula proporcionalmente; no es una cotización. Consulta las coberturas, exclusiones y el precio final en Assist 365. Código VIAJEROLATAM sujeto a condiciones del proveedor.</div>`;
     }else if(isAssist365LatamSchengenRoute()){
       price=`<div class="public-price-label">Assist 365 · LATAM → Schengen · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>total orientativo del viaje</small></div><div class="trip-origin-price">≈ ${originTotal} <span>moneda de origen</span></div><div class="public-price-sub"><strong>≈ ${destDaily}/persona/día</strong> de media. Referencias de <strong>41 € / 14 días</strong> y <strong>63 € / 30 días</strong> por persona para cualquier país LATAM → Schengen. Otras duraciones son estimaciones matemáticas, no cotizaciones. 5% de descuento con código <strong>VIAJEROLATAM</strong>, sujeto a condiciones. Confirma elegibilidad, prima final y descuentos con Assist 365.</div>`;
     }else{
@@ -3008,7 +3008,7 @@ function updateQuickCompare(){
       if(isWorldToLatamRoute()&&(d.key==='intermundial'||d.key==='iati'))
         return '<strong>≈ '+euroFixed(resultTotalEUR(d.key))+' €</strong><div class="matrix-origin-price">'+(d.key==='iati'?'IATI':'Go | World')+(SCHENGEN_ROUTE_COUNTRIES.has(normalizedOrigin())?' · importe orientativo, según condiciones':' · importe orientativo, elegibilidad por confirmar')+'</div>';
       if(d.key==='assist365'&&isAssist365LatamUsRoute())
-        return '<strong>≈ '+euroFixed(resultTotalEUR(d.key))+' €</strong><div class="matrix-origin-price">LATAM → EE. UU. · referencia, elegibilidad por confirmar</div>';
+        return '<strong>≈ '+euroFixed(resultTotalEUR(d.key))+' €</strong><div class="matrix-origin-price">LATAM → EE. UU. · precio de referencia, según condiciones</div>';
       if(providerProfile(d).reviewable)return '<strong>Consultar tarifa</strong><div class="matrix-origin-price">Duración / residencia por verificar</div>';
       if(d.key==='intermundial'&&isSchengenToUkRoute())
         return '<strong>≈ '+euroFixed(resultTotalEUR(d.key))+' €</strong><div class="matrix-origin-price">Estimación desde 17,58 € / 7 días</div>';
@@ -3048,7 +3048,7 @@ function render(data){
   const eligibleCount=routeProviders.filter(d=>providerProfile(d).eligible).length;
   const pendingCount=routeProviders.filter(d=>providerProfile(d).reviewable).length;
   const countText=isAssist365LatamUsRoute()
-    ? `${eligibleCount} opciones indicadas · 1 referencia de Assist 365 para EE. UU. pendiente de verificar · ${routeProviders.length} comparadas`
+    ? `${eligibleCount} opciones indicadas · ${routeProviders.length} comparadas`
     : isUsToSchengenRoute()
     ? '2 opciones para Estados Unidos → Schengen: InterMundial e IATI · elegibilidad por confirmar'
     : isWorldToLatamRoute()
@@ -3096,7 +3096,7 @@ function applyFilters(){
   const wantBaggage=document.getElementById('f6')?document.getElementById('f6').checked:false;
   let filtered=visibleProviders().filter(d=>{
     const p=providerProfile(d);
-    if(onlyEligible&&!p.eligible&&!((isWorldToLatamRoute()||isUsToSchengenRoute())&&(d.key==='intermundial'||d.key==='iati')&&p.reviewable)&&!(d.key==='assist365'&&isAssist365LatamUsRoute()&&p.reviewable)) return false;
+    if(onlyEligible&&!p.eligible&&!((isWorldToLatamRoute()||isUsToSchengenRoute())&&(d.key==='intermundial'||d.key==='iati')&&p.reviewable)) return false;
     if(wantNoFranquicia&&!p.franquicia.toLowerCase().includes('sin franquicia')) return false;
     if(wantTele&&!p.tele) return false;
     if(wantCancel&&!p.cancel) return false;
