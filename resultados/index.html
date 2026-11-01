@@ -1874,6 +1874,27 @@ function chapkaReferenceTotalEUR(){
 // la cotización definitiva puede variar según residencia, fechas, edad y extras.
 const GO_SCHENGEN_TOTAL_TIERS=Object.freeze([[7,15.39],[14,27.71],[30,53.02],[60,76.63],[90,95.43]]);
 const GO_SCHENGEN_LATAM=new Set(['co','mx','ar','ve','pe','cl','ec','bo','br','uy','py','cr','pa','gt','sv','hn','ni','cu','ht','do']);
+// Destinos latinoamericanos / Caribe: go | world con una sola referencia de 15 dias.
+// La disponibilidad para cada residencia y destino debe confirmarse en InterMundial.
+const WORLD_TO_LATAM_COUNTRIES=new Set('ag ar bb bo br bs bz cl co cr cu dm do ec gd gt gy hn ht jm kn lc mx ni pa pe pr py sr sv tt uy vc ve'.split(' '));
+const INTERMUNDIAL_LATAM_GO_WORLD_15D_EUR=86.90;
+function isWorldToLatamRoute(){
+  const origin=normalizedOrigin();
+  const region=String(window.currentSearchDest||'').toLowerCase();
+  const exact=String(window.currentSearchDestinationCountry||'').toLowerCase();
+  const target=WORLD_TO_LATAM_COUNTRIES.has(region)?region:(region==='mundial'?exact:'');
+  return /^[a-z]{2}$/.test(origin) && WORLD_TO_LATAM_COUNTRIES.has(target) && origin!==target;
+}
+function intermundialLatamGoWorldTotalPerPerson(days){
+  const n=Math.max(1,Number(days)||1);
+  return n===15?INTERMUNDIAL_LATAM_GO_WORLD_15D_EUR:
+    Math.round((INTERMUNDIAL_LATAM_GO_WORLD_15D_EUR*n/15+Number.EPSILON)*100)/100;
+}
+function intermundialLatamGoWorldPriceNote(){
+  return resultTripDays()===15
+    ? 'Referencia aportada para 15 días y una persona; no es una cotización para todas las residencias'
+    : 'Estimación proporcional a partir de 86,90 € por 15 días y persona; no es una tarifa cotizada para esta duración';
+}
 function isGoSchengenLatamRoute(){
   return GO_SCHENGEN_LATAM.has(normalizedOrigin()) && normalizedDest()==='europe';
 }
@@ -2174,6 +2195,8 @@ function axaSchengenAmericaNote(){
    : 'Estimación proporcional basada en una única referencia de 14 días, no cotizada';
 }
 function fixedOrientativeRate(key){
+  if(key==='intermundial' && isWorldToLatamRoute())
+    return intermundialLatamGoWorldTotalPerPerson(resultTripDays())/resultTripDays();
   const origin = normalizedOrigin();
   const dest = normalizedDest();
   // Referencias actualizadas el 28/09/2026 a partir de cotizaciones revisadas.
@@ -2290,6 +2313,8 @@ function resultFormatCurrencyFromEUR(eurAmount,currency){
   }
 }
 function resultTotalEUR(key){
+  if(key==='intermundial' && isWorldToLatamRoute())
+    return intermundialLatamGoWorldTotalPerPerson(resultTripDays())*resultTripPeople();
   if(key==='axa' && isAxaSchengenAmerica())return axaSchengenAmericaTotal(resultTripDays())*resultTripPeople();
   if(key==='iati' && isIatiSchengenToUsCanada())
     return iatiSchengenUsCanadaTotalPerPerson(resultTripDays())*resultTripPeople();
@@ -2405,6 +2430,11 @@ function isExtendedNonSchengenSelection(){
     (raw==='europa-no-schengen'||raw==='europa'||raw==='asia');
 }
 function providerVisible(d){
+  // Destino LATAM desde cualquier país: solo InterMundial go | world.
+  if(isWorldToLatamRoute())return !!d && d.key==='intermundial';
+  // No sugerir ofertas no comprobadas para otras rutas con salida mundial.
+  if(!GO_SCHENGEN_LATAM.has(normalizedOrigin()) &&
+     !SCHENGEN_ROUTE_COUNTRIES.has(normalizedOrigin()))return false;
   // Comparación intra-Schengen: mostrar solo las dos compañías con referencias
   // facilitadas, sin dar por verificada la elegibilidad de ninguna modalidad.
   if(isSchengenToSchengenRoute())return d && (d.key==='iati'||d.key==='intermundial');
@@ -2464,6 +2494,17 @@ function providerProfile(d){
     return {plan:'IATI Estrella',eligible:true,eligibility:'Admite residencia fuera de España según póliza',medica:med,repatriacion:'Incluida según condiciones',franquicia:'Sin franquicia',cancelacion:'Hasta 10.000 € · opcional',equipaje:'Hasta 4.000 €',demora:'Hasta 300–360 € según garantía',tele:true,aventura:true,cancel:true,baggage:true,publicRate:null,coverageRank:100,bestFor:'Cobertura médica alta y viajes con costes sanitarios elevados.',caution:'La anulación es opcional y los límites médicos varían según el ámbito geográfico.',source:'IATI Estrella · ficha y condicionado 2026'};
   }
   if(d.key==='intermundial'){
+    if(isWorldToLatamRoute())return {
+      plan:'go | world · Latinoamérica',eligible:false,reviewable:true,
+      eligibility:'Consulta si InterMundial admite tu residencia y el país latinoamericano elegido',
+      medica:'Hasta 500.000 € según póliza',repatriacion:'Según condiciones',
+      franquicia:'Consultar condiciones',cancelacion:'Hasta 5.000 € según modalidad',
+      equipaje:'Hasta 2.500 € según modalidad',demora:'Según condiciones',
+      tele:false,aventura:false,cancel:false,baggage:true,publicRate:null,
+      coverageRank:82,bestFor:'Viajes internacionales con destino a países de Latinoamérica.',
+      caution:'La referencia de 86,90 € corresponde a 15 días y una persona. Las demás duraciones se estiman proporcionalmente. No se ha verificado el importe ni la contratación para cada país de origen o destino: revisa residencia admitida, ámbito territorial, exclusiones, duración y precio final con InterMundial.',
+      source:'Referencia facilitada por el titular (01/11/2026); ficha oficial de InterMundial go | world'
+    };
     if(isSchengenToUkRoute()){
       // Una modalidad de Go World para residencias fuera de España limita la duración a 120 días.
       // Para viajes más largos dejamos la consulta visible, sin afirmar que sea contratable.
@@ -2641,6 +2682,9 @@ function renderCard(d){
   if(d.key==='intermundial' && isGoWorldUkLatamRoute()){
     price=`<div class="public-price-label">Go World · Reino Unido · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>total orientativo del viaje</small></div><div class="trip-origin-price">≈ ${originTotal} <span>moneda de origen</span></div><div class="public-price-sub"><strong>≈ ${destDaily}/persona/día</strong> de media. ${goWorldUkPriceNote()}. 1 mes equivale a 30 días en esta referencia. No es una tarifa universal: confirma precio final, residencia admitida y condiciones con InterMundial.</div>`;
   }
+  if(d.key==='intermundial' && isWorldToLatamRoute()){
+    price=`<div class="public-price-label">Go | World · destino Latinoamérica · ${resultTripLabel()}</div><div class="public-price">≈ ${euroFixed(totalEUR)} € <small>total orientativo en EUR</small></div><div class="public-price-sub"><strong>≈ ${euroFixed(fixedRate)} €/persona/día</strong> de media. ${intermundialLatamGoWorldPriceNote()}. Protección mundial según la modalidad contratada; consulta país cubierto, residencia y prima final con InterMundial.</div>`;
+  }
   if(d.key==='intermundial' && isIntermundialAsiaLatamRoute()){
     price=`<div class="public-price-label">Go World · Asia · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>total orientativo del viaje</small></div><div class="trip-origin-price">≈ ${originTotal} <span>moneda de origen</span></div><div class="public-price-sub"><strong>≈ ${destDaily}/persona/día</strong> de media. ${intermundialAsiaPriceNote()}. Referencia orientativa para los distintos países LATAM y destinos asiáticos. Confirma la prima, elegibilidad y cobertura territorial con InterMundial.</div>`;
   }
@@ -2716,7 +2760,7 @@ function renderCard(d){
         <div class="detail-item"><div class="detail-label">Franquicia</div><div class="detail-val">${p.franquicia}</div><div class="detail-sub">Revisa exclusiones y supuestos · <a href="/blog/franquicia-medica-seguro-viaje/" aria-label="Entender qué es la franquicia médica">¿Qué significa?</a></div></div>
         <div class="detail-item"><div class="detail-label">Cancelación</div><div class="detail-val">${p.cancelacion}</div><div class="detail-sub">Puede ser opcional o exigir contratación temprana</div></div>
         <div class="detail-item"><div class="detail-label">Equipaje</div><div class="detail-val">${p.equipaje}</div><div class="detail-sub">Límites y sublímites dependen del plan</div></div>
-        <div class="detail-item"><div class="detail-label">Elegibilidad</div><div class="detail-val">${p.eligible?'Compatible con origen seleccionado':'No compatible según oferta enlazada'}</div><div class="detail-sub">Confirma país de residencia real antes de pagar</div></div>
+        <div class="detail-item"><div class="detail-label">Elegibilidad</div><div class="detail-val">${p.reviewable?'Por confirmar con la aseguradora':p.eligible?'Compatible con origen seleccionado':'No compatible según oferta enlazada'}</div><div class="detail-sub">Confirma país de residencia real antes de pagar</div></div>
       </div>
       <div class="detail-source">Fuente de comparación: ${p.source}. Revisión ViajeroLatam: 31/08/2026. La póliza y el precio mostrados por la aseguradora en el momento de contratar prevalecen sobre este resumen.</div>
     </div>
@@ -2785,7 +2829,9 @@ function render(data){
   const routeProviders=visibleProviders();
   const eligibleCount=routeProviders.filter(d=>providerProfile(d).eligible).length;
   const pendingCount=routeProviders.filter(d=>providerProfile(d).reviewable).length;
-  const countText=(isSchengenToUkRoute() && normalizedOrigin()!=='es')
+  const countText=isWorldToLatamRoute()
+    ? '1 opción de InterMundial para consultar · elegibilidad pendiente de confirmar'
+    : (isSchengenToUkRoute() && normalizedOrigin()!=='es')
     ? `${eligibleCount} opciones indicadas · ${pendingCount} pendiente${pendingCount===1?'':'s'} de verificar`
     : (isSchengenToSchengenRoute()||isSchengenToUs())
       ? `${routeProviders.length} opciones por verificar · ${routeProviders.length} comparadas`
@@ -2815,7 +2861,7 @@ function applyFilters(){
   const wantBaggage=document.getElementById('f6')?document.getElementById('f6').checked:false;
   let filtered=visibleProviders().filter(d=>{
     const p=providerProfile(d);
-    if(onlyEligible&&!p.eligible) return false;
+    if(onlyEligible&&!p.eligible&&!(isWorldToLatamRoute()&&d.key==='intermundial'&&p.reviewable)) return false;
     if(wantNoFranquicia&&!p.franquicia.toLowerCase().includes('sin franquicia')) return false;
     if(wantTele&&!p.tele) return false;
     if(wantCancel&&!p.cancel) return false;
@@ -3096,7 +3142,7 @@ function applyEditSearch(){
 
   var PLACE_META = {"af": {"label": "Afganistán", "flag": "🇦🇫"}, "al": {"label": "Albania", "flag": "🇦🇱"}, "de": {"label": "Alemania", "flag": "🇩🇪"}, "ad": {"label": "Andorra", "flag": "🇦🇩"}, "ao": {"label": "Angola", "flag": "🇦🇴"}, "ai": {"label": "Anguila", "flag": "🇦🇮"}, "ag": {"label": "Antigua y Barbuda", "flag": "🇦🇬"}, "aq": {"label": "Antártida", "flag": "🇦🇶"}, "sa": {"label": "Arabia Saudí", "flag": "🇸🇦"}, "dz": {"label": "Argelia", "flag": "🇩🇿"}, "ar": {"label": "Argentina", "flag": "🇦🇷"}, "am": {"label": "Armenia", "flag": "🇦🇲"}, "aw": {"label": "Aruba", "flag": "🇦🇼"}, "au": {"label": "Australia", "flag": "🇦🇺"}, "at": {"label": "Austria", "flag": "🇦🇹"}, "az": {"label": "Azerbaiyán", "flag": "🇦🇿"}, "bs": {"label": "Bahamas", "flag": "🇧🇸"}, "bd": {"label": "Bangladés", "flag": "🇧🇩"}, "bb": {"label": "Barbados", "flag": "🇧🇧"}, "bh": {"label": "Baréin", "flag": "🇧🇭"}, "bz": {"label": "Belice", "flag": "🇧🇿"}, "bj": {"label": "Benín", "flag": "🇧🇯"}, "bm": {"label": "Bermudas", "flag": "🇧🇲"}, "by": {"label": "Bielorrusia", "flag": "🇧🇾"}, "bo": {"label": "Bolivia", "flag": "🇧🇴"}, "ba": {"label": "Bosnia y Herzegovina", "flag": "🇧🇦"}, "bw": {"label": "Botsuana", "flag": "🇧🇼"}, "br": {"label": "Brasil", "flag": "🇧🇷"}, "bn": {"label": "Brunéi", "flag": "🇧🇳"}, "bg": {"label": "Bulgaria", "flag": "🇧🇬"}, "bf": {"label": "Burkina Faso", "flag": "🇧🇫"}, "bi": {"label": "Burundi", "flag": "🇧🇮"}, "bt": {"label": "Bután", "flag": "🇧🇹"}, "be": {"label": "Bélgica", "flag": "🇧🇪"}, "cv": {"label": "Cabo Verde", "flag": "🇨🇻"}, "kh": {"label": "Camboya", "flag": "🇰🇭"}, "cm": {"label": "Camerún", "flag": "🇨🇲"}, "ca": {"label": "Canadá", "flag": "🇨🇦"}, "bq": {"label": "Caribe neerlandés", "flag": "🇧🇶"}, "qa": {"label": "Catar", "flag": "🇶🇦"}, "td": {"label": "Chad", "flag": "🇹🇩"}, "cz": {"label": "Chequia", "flag": "🇨🇿"}, "cl": {"label": "Chile", "flag": "🇨🇱"}, "cn": {"label": "China", "flag": "🇨🇳"}, "cy": {"label": "Chipre", "flag": "🇨🇾"}, "va": {"label": "Ciudad del Vaticano", "flag": "🇻🇦"}, "co": {"label": "Colombia", "flag": "🇨🇴"}, "km": {"label": "Comoras", "flag": "🇰🇲"}, "cg": {"label": "Congo", "flag": "🇨🇬"}, "kp": {"label": "Corea del Norte", "flag": "🇰🇵"}, "kr": {"label": "Corea del Sur", "flag": "🇰🇷"}, "cr": {"label": "Costa Rica", "flag": "🇨🇷"}, "hr": {"label": "Croacia", "flag": "🇭🇷"}, "cu": {"label": "Cuba", "flag": "🇨🇺"}, "cw": {"label": "Curazao", "flag": "🇨🇼"}, "ci": {"label": "Côte d’Ivoire", "flag": "🇨🇮"}, "dk": {"label": "Dinamarca", "flag": "🇩🇰"}, "dm": {"label": "Dominica", "flag": "🇩🇲"}, "ec": {"label": "Ecuador", "flag": "🇪🇨"}, "eg": {"label": "Egipto", "flag": "🇪🇬"}, "sv": {"label": "El Salvador", "flag": "🇸🇻"}, "ae": {"label": "Emiratos Árabes Unidos", "flag": "🇦🇪"}, "er": {"label": "Eritrea", "flag": "🇪🇷"}, "sk": {"label": "Eslovaquia", "flag": "🇸🇰"}, "si": {"label": "Eslovenia", "flag": "🇸🇮"}, "es": {"label": "España", "flag": "🇪🇸"}, "us": {"label": "Estados Unidos", "flag": "🇺🇸"}, "ee": {"label": "Estonia", "flag": "🇪🇪"}, "sz": {"label": "Esuatini", "flag": "🇸🇿"}, "et": {"label": "Etiopía", "flag": "🇪🇹"}, "ph": {"label": "Filipinas", "flag": "🇵🇭"}, "fi": {"label": "Finlandia", "flag": "🇫🇮"}, "fj": {"label": "Fiyi", "flag": "🇫🇯"}, "fr": {"label": "Francia", "flag": "🇫🇷"}, "ga": {"label": "Gabón", "flag": "🇬🇦"}, "gm": {"label": "Gambia", "flag": "🇬🇲"}, "ge": {"label": "Georgia", "flag": "🇬🇪"}, "gh": {"label": "Ghana", "flag": "🇬🇭"}, "gi": {"label": "Gibraltar", "flag": "🇬🇮"}, "gd": {"label": "Granada", "flag": "🇬🇩"}, "gr": {"label": "Grecia", "flag": "🇬🇷"}, "gl": {"label": "Groenlandia", "flag": "🇬🇱"}, "gp": {"label": "Guadalupe", "flag": "🇬🇵"}, "gu": {"label": "Guam", "flag": "🇬🇺"}, "gt": {"label": "Guatemala", "flag": "🇬🇹"}, "gf": {"label": "Guayana Francesa", "flag": "🇬🇫"}, "gg": {"label": "Guernesey", "flag": "🇬🇬"}, "gn": {"label": "Guinea", "flag": "🇬🇳"}, "gq": {"label": "Guinea Ecuatorial", "flag": "🇬🇶"}, "gw": {"label": "Guinea-Bisáu", "flag": "🇬🇼"}, "gy": {"label": "Guyana", "flag": "🇬🇾"}, "ht": {"label": "Haití", "flag": "🇭🇹"}, "hn": {"label": "Honduras", "flag": "🇭🇳"}, "hu": {"label": "Hungría", "flag": "🇭🇺"}, "in": {"label": "India", "flag": "🇮🇳"}, "id": {"label": "Indonesia", "flag": "🇮🇩"}, "iq": {"label": "Irak", "flag": "🇮🇶"}, "ie": {"label": "Irlanda", "flag": "🇮🇪"}, "ir": {"label": "Irán", "flag": "🇮🇷"}, "bv": {"label": "Isla Bouvet", "flag": "🇧🇻"}, "im": {"label": "Isla de Man", "flag": "🇮🇲"}, "cx": {"label": "Isla de Navidad", "flag": "🇨🇽"}, "nf": {"label": "Isla Norfolk", "flag": "🇳🇫"}, "is": {"label": "Islandia", "flag": "🇮🇸"}, "ax": {"label": "Islas Aland", "flag": "🇦🇽"}, "ky": {"label": "Islas Caimán", "flag": "🇰🇾"}, "cc": {"label": "Islas Cocos", "flag": "🇨🇨"}, "ck": {"label": "Islas Cook", "flag": "🇨🇰"}, "fo": {"label": "Islas Feroe", "flag": "🇫🇴"}, "gs": {"label": "Islas Georgia del Sur y Sandwich del Sur", "flag": "🇬🇸"}, "hm": {"label": "Islas Heard y McDonald", "flag": "🇭🇲"}, "fk": {"label": "Islas Malvinas", "flag": "🇫🇰"}, "mp": {"label": "Islas Marianas del Norte", "flag": "🇲🇵"}, "mh": {"label": "Islas Marshall", "flag": "🇲🇭"}, "um": {"label": "Islas menores alejadas de EE. UU.", "flag": "🇺🇲"}, "pn": {"label": "Islas Pitcairn", "flag": "🇵🇳"}, "sb": {"label": "Islas Salomón", "flag": "🇸🇧"}, "tc": {"label": "Islas Turcas y Caicos", "flag": "🇹🇨"}, "vg": {"label": "Islas Vírgenes Británicas", "flag": "🇻🇬"}, "vi": {"label": "Islas Vírgenes de EE. UU.", "flag": "🇻🇮"}, "il": {"label": "Israel", "flag": "🇮🇱"}, "it": {"label": "Italia", "flag": "🇮🇹"}, "jm": {"label": "Jamaica", "flag": "🇯🇲"}, "jp": {"label": "Japón", "flag": "🇯🇵"}, "je": {"label": "Jersey", "flag": "🇯🇪"}, "jo": {"label": "Jordania", "flag": "🇯🇴"}, "kz": {"label": "Kazajistán", "flag": "🇰🇿"}, "ke": {"label": "Kenia", "flag": "🇰🇪"}, "kg": {"label": "Kirguistán", "flag": "🇰🇬"}, "ki": {"label": "Kiribati", "flag": "🇰🇮"}, "kw": {"label": "Kuwait", "flag": "🇰🇼"}, "la": {"label": "Laos", "flag": "🇱🇦"}, "ls": {"label": "Lesoto", "flag": "🇱🇸"}, "lv": {"label": "Letonia", "flag": "🇱🇻"}, "lr": {"label": "Liberia", "flag": "🇱🇷"}, "ly": {"label": "Libia", "flag": "🇱🇾"}, "li": {"label": "Liechtenstein", "flag": "🇱🇮"}, "lt": {"label": "Lituania", "flag": "🇱🇹"}, "lu": {"label": "Luxemburgo", "flag": "🇱🇺"}, "lb": {"label": "Líbano", "flag": "🇱🇧"}, "mk": {"label": "Macedonia del Norte", "flag": "🇲🇰"}, "mg": {"label": "Madagascar", "flag": "🇲🇬"}, "my": {"label": "Malasia", "flag": "🇲🇾"}, "mw": {"label": "Malaui", "flag": "🇲🇼"}, "mv": {"label": "Maldivas", "flag": "🇲🇻"}, "ml": {"label": "Mali", "flag": "🇲🇱"}, "mt": {"label": "Malta", "flag": "🇲🇹"}, "ma": {"label": "Marruecos", "flag": "🇲🇦"}, "mq": {"label": "Martinica", "flag": "🇲🇶"}, "mu": {"label": "Mauricio", "flag": "🇲🇺"}, "mr": {"label": "Mauritania", "flag": "🇲🇷"}, "yt": {"label": "Mayotte", "flag": "🇾🇹"}, "fm": {"label": "Micronesia", "flag": "🇫🇲"}, "md": {"label": "Moldavia", "flag": "🇲🇩"}, "mn": {"label": "Mongolia", "flag": "🇲🇳"}, "me": {"label": "Montenegro", "flag": "🇲🇪"}, "ms": {"label": "Montserrat", "flag": "🇲🇸"}, "mz": {"label": "Mozambique", "flag": "🇲🇿"}, "mm": {"label": "Myanmar (Birmania)", "flag": "🇲🇲"}, "mx": {"label": "México", "flag": "🇲🇽"}, "mc": {"label": "Mónaco", "flag": "🇲🇨"}, "na": {"label": "Namibia", "flag": "🇳🇦"}, "nr": {"label": "Nauru", "flag": "🇳🇷"}, "np": {"label": "Nepal", "flag": "🇳🇵"}, "ni": {"label": "Nicaragua", "flag": "🇳🇮"}, "ng": {"label": "Nigeria", "flag": "🇳🇬"}, "nu": {"label": "Niue", "flag": "🇳🇺"}, "no": {"label": "Noruega", "flag": "🇳🇴"}, "nc": {"label": "Nueva Caledonia", "flag": "🇳🇨"}, "nz": {"label": "Nueva Zelanda", "flag": "🇳🇿"}, "ne": {"label": "Níger", "flag": "🇳🇪"}, "om": {"label": "Omán", "flag": "🇴🇲"}, "pk": {"label": "Pakistán", "flag": "🇵🇰"}, "pw": {"label": "Palaos", "flag": "🇵🇼"}, "pa": {"label": "Panamá", "flag": "🇵🇦"}, "pg": {"label": "Papúa Nueva Guinea", "flag": "🇵🇬"}, "py": {"label": "Paraguay", "flag": "🇵🇾"}, "nl": {"label": "Países Bajos", "flag": "🇳🇱"}, "pe": {"label": "Perú", "flag": "🇵🇪"}, "pf": {"label": "Polinesia Francesa", "flag": "🇵🇫"}, "pl": {"label": "Polonia", "flag": "🇵🇱"}, "pt": {"label": "Portugal", "flag": "🇵🇹"}, "pr": {"label": "Puerto Rico", "flag": "🇵🇷"}, "hk": {"label": "RAE de Hong Kong (China)", "flag": "🇭🇰"}, "mo": {"label": "RAE de Macao (China)", "flag": "🇲🇴"}, "gb": {"label": "Reino Unido", "flag": "🇬🇧"}, "cf": {"label": "República Centroafricana", "flag": "🇨🇫"}, "cd": {"label": "República Democrática del Congo", "flag": "🇨🇩"}, "do": {"label": "República Dominicana", "flag": "🇩🇴"}, "re": {"label": "Reunión", "flag": "🇷🇪"}, "rw": {"label": "Ruanda", "flag": "🇷🇼"}, "ro": {"label": "Rumanía", "flag": "🇷🇴"}, "ru": {"label": "Rusia", "flag": "🇷🇺"}, "ws": {"label": "Samoa", "flag": "🇼🇸"}, "as": {"label": "Samoa Americana", "flag": "🇦🇸"}, "bl": {"label": "San Bartolomé", "flag": "🇧🇱"}, "kn": {"label": "San Cristóbal y Nieves", "flag": "🇰🇳"}, "sm": {"label": "San Marino", "flag": "🇸🇲"}, "mf": {"label": "San Martín", "flag": "🇲🇫"}, "pm": {"label": "San Pedro y Miquelón", "flag": "🇵🇲"}, "vc": {"label": "San Vicente y las Granadinas", "flag": "🇻🇨"}, "sh": {"label": "Santa Elena", "flag": "🇸🇭"}, "lc": {"label": "Santa Lucía", "flag": "🇱🇨"}, "st": {"label": "Santo Tomé y Príncipe", "flag": "🇸🇹"}, "sn": {"label": "Senegal", "flag": "🇸🇳"}, "rs": {"label": "Serbia", "flag": "🇷🇸"}, "sc": {"label": "Seychelles", "flag": "🇸🇨"}, "sl": {"label": "Sierra Leona", "flag": "🇸🇱"}, "sg": {"label": "Singapur", "flag": "🇸🇬"}, "sx": {"label": "Sint Maarten", "flag": "🇸🇽"}, "sy": {"label": "Siria", "flag": "🇸🇾"}, "so": {"label": "Somalia", "flag": "🇸🇴"}, "lk": {"label": "Sri Lanka", "flag": "🇱🇰"}, "za": {"label": "Sudáfrica", "flag": "🇿🇦"}, "sd": {"label": "Sudán", "flag": "🇸🇩"}, "ss": {"label": "Sudán del Sur", "flag": "🇸🇸"}, "se": {"label": "Suecia", "flag": "🇸🇪"}, "ch": {"label": "Suiza", "flag": "🇨🇭"}, "sr": {"label": "Surinam", "flag": "🇸🇷"}, "sj": {"label": "Svalbard y Jan Mayen", "flag": "🇸🇯"}, "eh": {"label": "Sáhara Occidental", "flag": "🇪🇭"}, "th": {"label": "Tailandia", "flag": "🇹🇭"}, "tw": {"label": "Taiwán", "flag": "🇹🇼"}, "tz": {"label": "Tanzania", "flag": "🇹🇿"}, "tj": {"label": "Tayikistán", "flag": "🇹🇯"}, "io": {"label": "Territorio Británico del Océano Índico", "flag": "🇮🇴"}, "tf": {"label": "Territorios Australes Franceses", "flag": "🇹🇫"}, "ps": {"label": "Territorios Palestinos", "flag": "🇵🇸"}, "tl": {"label": "Timor-Leste", "flag": "🇹🇱"}, "tg": {"label": "Togo", "flag": "🇹🇬"}, "tk": {"label": "Tokelau", "flag": "🇹🇰"}, "to": {"label": "Tonga", "flag": "🇹🇴"}, "tt": {"label": "Trinidad y Tobago", "flag": "🇹🇹"}, "tm": {"label": "Turkmenistán", "flag": "🇹🇲"}, "tr": {"label": "Turquía", "flag": "🇹🇷"}, "tv": {"label": "Tuvalu", "flag": "🇹🇻"}, "tn": {"label": "Túnez", "flag": "🇹🇳"}, "ua": {"label": "Ucrania", "flag": "🇺🇦"}, "ug": {"label": "Uganda", "flag": "🇺🇬"}, "uy": {"label": "Uruguay", "flag": "🇺🇾"}, "uz": {"label": "Uzbekistán", "flag": "🇺🇿"}, "vu": {"label": "Vanuatu", "flag": "🇻🇺"}, "ve": {"label": "Venezuela", "flag": "🇻🇪"}, "vn": {"label": "Vietnam", "flag": "🇻🇳"}, "wf": {"label": "Wallis y Futuna", "flag": "🇼🇫"}, "ye": {"label": "Yemen", "flag": "🇾🇪"}, "dj": {"label": "Yibuti", "flag": "🇩🇯"}, "zm": {"label": "Zambia", "flag": "🇿🇲"}, "zw": {"label": "Zimbabue", "flag": "🇿🇼"}, "espana-schengen": {"label": "Zona Schengen (varios países)", "flag": "🌐"}, "europa-no-schengen": {"label": "Europa fuera de Schengen", "flag": "🌍"}, "europa": {"label": "Europa completa (Schengen + otros)", "flag": "🌍"}, "eeuu-canada": {"label": "Estados Unidos + Canadá", "flag": "🇺🇸🇨🇦"}, "asia": {"label": "Asia", "flag": "🌏"}, "mundial": {"label": "Todo el mundo", "flag": "🌎"}};
   var ALIASES = {"colombia": "co", "mexico": "mx", "méxico": "mx", "argentina": "ar", "venezuela": "ve", "peru": "pe", "perú": "pe", "chile": "cl", "ecuador": "ec", "bolivia": "bo", "paraguay": "py", "uruguay": "uy", "brasil": "br", "brazil": "br", "costa-rica": "cr", "costa rica": "cr", "panama": "pa", "panamá": "pa", "guatemala": "gt", "el-salvador": "sv", "el salvador": "sv", "honduras": "hn", "nicaragua": "ni", "republica-dominicana": "do", "república dominicana": "do", "cuba": "cu", "haiti": "ht", "haití": "ht", "puerto-rico": "pr", "puerto rico": "pr", "estados-unidos": "us", "estados unidos": "us", "eeuu": "us", "usa": "us", "espana": "es", "españa": "es", "espana-schengen": "espana-schengen", "europa-no-schengen": "europa-no-schengen", "eeuu-canada": "eeuu-canada", "asia": "asia", "mundial": "mundial", "europa": "europa"};
-  var ALLOWED_ORIGINS = new Set(["co", "mx", "ar", "ve", "pe", "cl", "ec", "bo", "br", "uy", "py", "cr", "pa", "gt", "sv", "hn", "ni", "cu", "ht", "do", "at", "be", "bg", "hr", "cz", "dk", "ee", "fi", "fr", "de", "gr", "hu", "is", "it", "lv", "li", "lt", "lu", "mt", "nl", "no", "pl", "pt", "ro", "sk", "si", "se", "ch"]);
+  var ALLOWED_ORIGINS = new Set(Object.keys(PLACE_META).filter(function(code){return /^[a-z]{2}$/.test(code);}));
   var CURRENCY_BY_ORIGIN = {"co": "COP", "mx": "MXN", "ar": "ARS", "ve": "VES", "pe": "PEN", "cl": "CLP", "ec": "USD", "bo": "BOB", "br": "BRL", "uy": "UYU", "py": "PYG", "cr": "CRC", "pa": "PAB", "gt": "GTQ", "sv": "USD", "hn": "HNL", "ni": "NIO", "cu": "CUP", "ht": "HTG", "do": "DOP", "espana-schengen": "EUR", "europa-no-schengen": "EUR", "europa": "EUR", "eeuu-canada": "USD", "asia": "EUR", "mundial": "EUR"};
   var ROUTE_GROUPS = new Set(["espana-schengen","europa-no-schengen","europa","eeuu-canada","asia","mundial"]);
   var FALLBACK_RATES = {"EUR": 1, "USD": 1.08, "XCD": 2.92, "ARS": 1600, "BSD": 1.08, "BBD": 2.16, "BZD": 2.16, "BOB": 7.5, "BRL": 6.3, "CLP": 1080, "COP": 4300, "CRC": 565, "CUP": 26, "DOP": 69, "GTQ": 8.3, "GYD": 225, "HTG": 142, "HNL": 27, "JMD": 170, "MXN": 21, "NIO": 40, "PAB": 1.08, "PYG": 8500, "PEN": 4.1, "SRD": 40, "TTD": 7.3, "UYU": 47, "VES": 200};
@@ -3162,7 +3208,7 @@ function applyEditSearch(){
     if(window.currentSearchDest==='europa')return 'Itinerario combinado Schengen + fuera de Schengen; verifica todos los países';
     if(window.currentSearchDest==='asia')return 'Cobertura para Asia; confirma países y exclusiones';
     if(kind==='europe') return 'Cobertura para Europa / Schengen';
-    if(kind==='latam') return 'Cobertura para Latinoamérica';
+    if(kind==='latam' || isWorldToLatamRoute()) return 'Cobertura para Latinoamérica (confirma país cubierto)';
     if(kind==='world') return 'Cobertura mundial';
     return 'Cobertura para la ruta seleccionada';
   }
@@ -3235,7 +3281,9 @@ function applyEditSearch(){
     var originCode=originCurrency();
     var destinationCode=destinationCurrency();
     el.classList.add('is-visible');
-    var regionText=isSchengenToUkRoute()
+    var regionText=isWorldToLatamRoute()
+      ? 'InterMundial go | world: referencia de 86,90 € por 15 días y 1 viajero con destino Latinoamérica, desde cualquier origen seleccionado. Para otras duraciones aplicamos una proyección proporcional de 5,7933 €/persona/día. Comprueba residencia, países cubiertos, exclusiones y tarifa final en InterMundial.'
+      : isSchengenToUkRoute()
       ? (!['es'].includes(normalizedOrigin()) && resultTripDays()>120
         ? 'Reino Unido desde países Schengen: para viajes de más de 120 días debes verificar una modalidad InterMundial compatible con tu residencia y duración; no se extrapola el precio de 7 días.'
         : 'InterMundial: referencia facilitada de 17,58 € para 7 días y 1 viajero desde países Schengen a Reino Unido (≈ 2,51 €/día). Para otras duraciones aplicamos una estimación matemática proporcional, no una cotización. El producto concreto y el precio final dependen de la residencia y el plan contratado.')
