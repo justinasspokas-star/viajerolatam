@@ -1879,6 +1879,19 @@ const GO_SCHENGEN_LATAM=new Set(['co','mx','ar','ve','pe','cl','ec','bo','br','u
 // La disponibilidad para cada residencia y destino se confirma en InterMundial.
 const WORLD_TO_LATAM_COUNTRIES=new Set('ag ar bb bo br bs bz cl co cr cu dm do ec gd gt gy hn ht jm kn lc mx ni pa pe pr py sr sv tt uy vc ve'.split(' '));
 const INTERMUNDIAL_LATAM_GO_WORLD_TIERS=Object.freeze([[15,86.90],[30,156.66]]);
+// IATI: referencia editorial aportada para viajes internacionales con destino LATAM.
+// 65,02 EUR por 30 días y una persona; otras duraciones son estimaciones.
+const IATI_WORLD_TO_LATAM_30D_EUR=65.02;
+function iatiWorldToLatamTotalPerPerson(days){
+  const n=Math.max(1,Number(days)||1);
+  return n===30?IATI_WORLD_TO_LATAM_30D_EUR:
+    Math.round((IATI_WORLD_TO_LATAM_30D_EUR*n/30+Number.EPSILON)*100)/100;
+}
+function iatiWorldToLatamPriceNote(){
+  return resultTripDays()===30
+    ? 'Referencia de 65,02 € por 30 días y una persona; precio y elegibilidad por confirmar con IATI'
+    : 'Estimación proporcional a partir de 65,02 € por 30 días y una persona; no es una cotización de esta duración';
+}
 function isWorldToLatamRoute(){
   const origin=normalizedOrigin();
   const region=String(window.currentSearchDest||'').toLowerCase();
@@ -2207,6 +2220,8 @@ function axaSchengenAmericaNote(){
    : 'Estimación proporcional basada en una única referencia de 14 días, no cotizada';
 }
 function fixedOrientativeRate(key){
+  if(key==='iati' && isWorldToLatamRoute())
+    return iatiWorldToLatamTotalPerPerson(resultTripDays())/resultTripDays();
   if(key==='intermundial' && isWorldToLatamRoute())
     return intermundialLatamGoWorldTotalPerPerson(resultTripDays())/resultTripDays();
   const origin = normalizedOrigin();
@@ -2325,6 +2340,8 @@ function resultFormatCurrencyFromEUR(eurAmount,currency){
   }
 }
 function resultTotalEUR(key){
+  if(key==='iati' && isWorldToLatamRoute())
+    return iatiWorldToLatamTotalPerPerson(resultTripDays())*resultTripPeople();
   if(key==='intermundial' && isWorldToLatamRoute())
     return intermundialLatamGoWorldTotalPerPerson(resultTripDays())*resultTripPeople();
   if(key==='axa' && isAxaSchengenAmerica())return axaSchengenAmericaTotal(resultTripDays())*resultTripPeople();
@@ -2442,8 +2459,9 @@ function isExtendedNonSchengenSelection(){
     (raw==='europa-no-schengen'||raw==='europa'||raw==='asia');
 }
 function providerVisible(d){
-  // Destino LATAM desde cualquier país: solo InterMundial go | world.
-  if(isWorldToLatamRoute())return !!d && d.key==='intermundial';
+  // Destino LATAM desde cualquier país: InterMundial e IATI, sin mezclar
+  // proveedores cuyo producto/eligibilidad no está confirmado para estas rutas.
+  if(isWorldToLatamRoute())return !!d && (d.key==='intermundial'||d.key==='iati');
   // No sugerir ofertas no comprobadas para otras rutas con salida mundial.
   if(!GO_SCHENGEN_LATAM.has(normalizedOrigin()) &&
      !SCHENGEN_ROUTE_COUNTRIES.has(normalizedOrigin()))return false;
@@ -2480,6 +2498,18 @@ function providerProfile(d){
   const dest=normalizedDest();
   const spainResident=origin==='es';
   if(d.key==='iati'){
+    if(isWorldToLatamRoute())return {
+      plan:'IATI · modalidad a confirmar · Latinoamérica',
+      eligible:false,reviewable:true,
+      eligibility:'Consulta con IATI si admite tu residencia y el país latinoamericano seleccionado',
+      medica:'Según modalidad contratada',repatriacion:'Según condiciones',
+      franquicia:'Consultar condiciones',cancelacion:'Según modalidad',
+      equipaje:'Según modalidad',demora:'Según condiciones',
+      tele:false,aventura:false,cancel:false,baggage:false,publicRate:null,
+      coverageRank:80,bestFor:'Comparar una opción IATI para viajes internacionales con destino a Latinoamérica.',
+      caution:'65,02 € para 30 días y 1 persona es la referencia facilitada para comparar. Las duraciones diferentes se calculan proporcionalmente (≈ 2,17 €/día). No se ha confirmado un plan IATI ni esta tarifa para cada residencia y destino: comprueba la póliza, ámbito territorial, exclusiones y precio final en IATI.',
+      source:'Referencia facilitada por el titular · 01/11/2026; modalidad y precio sujetos a confirmación en IATI'
+    };
     if(isIatiSchengenToUsCanada())return {
       plan:'IATI · modalidad a confirmar',eligible:true,
       eligibility:'Precio orientativo para rutas Schengen → Estados Unidos o Canadá; confirma disponibilidad para tu residencia',
@@ -2694,6 +2724,9 @@ function renderCard(d){
   if(d.key==='intermundial' && isGoWorldUkLatamRoute()){
     price=`<div class="public-price-label">Go World · Reino Unido · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>total orientativo del viaje</small></div><div class="trip-origin-price">≈ ${originTotal} <span>moneda de origen</span></div><div class="public-price-sub"><strong>≈ ${destDaily}/persona/día</strong> de media. ${goWorldUkPriceNote()}. 1 mes equivale a 30 días en esta referencia. No es una tarifa universal: confirma precio final, residencia admitida y condiciones con InterMundial.</div>`;
   }
+  if(d.key==='iati' && isWorldToLatamRoute()){
+    price=`<div class="public-price-label">IATI · destino Latinoamérica · ${resultTripLabel()}</div><div class="public-price">≈ ${euroFixed(totalEUR)} € <small>total orientativo en EUR</small></div><div class="public-price-sub"><strong>≈ ${euroFixed(fixedRate)} €/persona/día</strong> de media. ${iatiWorldToLatamPriceNote()}. Confirma residencia admitida, país cubierto, modalidad y prima final directamente con IATI.</div>`;
+  }
   if(d.key==='intermundial' && isWorldToLatamRoute()){
     price=`<div class="public-price-label">Go | World · destino Latinoamérica · ${resultTripLabel()}</div><div class="public-price">≈ ${euroFixed(totalEUR)} € <small>total orientativo en EUR</small></div><div class="public-price-sub"><strong>≈ ${euroFixed(fixedRate)} €/persona/día</strong> de media. ${intermundialLatamGoWorldPriceNote()}. Protección mundial según la modalidad contratada; consulta país cubierto, residencia y prima final con InterMundial.</div>`;
   }
@@ -2807,8 +2840,8 @@ function updateQuickCompare(){
     row('Cancelación',(_,p)=>p.cancelacion),
     row('Equipaje',(_,p)=>p.equipaje),
     row('Total orientativo · '+resultTripLabel(),(d)=>{
-      if(d.key==='intermundial'&&isWorldToLatamRoute())
-        return '<strong>≈ '+euroFixed(resultTotalEUR(d.key))+' €</strong><div class="matrix-origin-price">Go | World · importe orientativo, elegibilidad por confirmar</div>';
+      if(isWorldToLatamRoute()&&(d.key==='intermundial'||d.key==='iati'))
+        return '<strong>≈ '+euroFixed(resultTotalEUR(d.key))+' €</strong><div class="matrix-origin-price">'+(d.key==='iati'?'IATI':'Go | World')+' · importe orientativo, elegibilidad por confirmar</div>';
       if(providerProfile(d).reviewable)return '<strong>Consultar tarifa</strong><div class="matrix-origin-price">Duración / residencia por verificar</div>';
       if(d.key==='intermundial'&&isSchengenToUkRoute())
         return '<strong>≈ '+euroFixed(resultTotalEUR(d.key))+' €</strong><div class="matrix-origin-price">Estimación desde 17,58 € / 7 días</div>';
@@ -2816,7 +2849,7 @@ function updateQuickCompare(){
         return '<strong>≈ '+euroFixed(resultTotalEUR(d.key))+' €</strong><div class="matrix-origin-price">≈ '+resultFormatCurrencyFromEUR(resultTotalEUR(d.key),'USD')+' · USD orientativo</div>';
       return '<strong>≈ '+resultFormatCurrencyFromEUR(resultTotalEUR(d.key),resultDestinationCurrency())+'</strong>'+(isSchengenToSchengenRoute()?'<div class="matrix-origin-price">Referencia en EUR, no cotización</div>':'<div class="matrix-origin-price">≈ '+resultFormatCurrencyFromEUR(resultTotalEUR(d.key),resultOriginCurrency())+' origen</div>');
     }),
-    row('Referencia diaria',(d)=>d.key==='intermundial'&&isWorldToLatamRoute()
+    row('Referencia diaria',(d)=>(d.key==='intermundial'||d.key==='iati')&&isWorldToLatamRoute()
       ? '<span>≈ '+euroFixed(fixedOrientativeRate(d.key))+' €/persona/día · orientativo</span>'
       : providerProfile(d).reviewable
       ? '<span>Por confirmar</span>'
@@ -2846,7 +2879,7 @@ function render(data){
   const eligibleCount=routeProviders.filter(d=>providerProfile(d).eligible).length;
   const pendingCount=routeProviders.filter(d=>providerProfile(d).reviewable).length;
   const countText=isWorldToLatamRoute()
-    ? '1 opción de InterMundial para consultar · elegibilidad pendiente de confirmar'
+    ? '2 opciones (InterMundial e IATI) para comparar · elegibilidad pendiente de confirmar'
     : (isSchengenToUkRoute() && normalizedOrigin()!=='es')
     ? `${eligibleCount} opciones indicadas · ${pendingCount} pendiente${pendingCount===1?'':'s'} de verificar`
     : (isSchengenToSchengenRoute()||isSchengenToUs())
@@ -2877,7 +2910,7 @@ function applyFilters(){
   const wantBaggage=document.getElementById('f6')?document.getElementById('f6').checked:false;
   let filtered=visibleProviders().filter(d=>{
     const p=providerProfile(d);
-    if(onlyEligible&&!p.eligible&&!(isWorldToLatamRoute()&&d.key==='intermundial'&&p.reviewable)) return false;
+    if(onlyEligible&&!p.eligible&&!(isWorldToLatamRoute()&&(d.key==='intermundial'||d.key==='iati')&&p.reviewable)) return false;
     if(wantNoFranquicia&&!p.franquicia.toLowerCase().includes('sin franquicia')) return false;
     if(wantTele&&!p.tele) return false;
     if(wantCancel&&!p.cancel) return false;
@@ -3298,7 +3331,7 @@ function applyEditSearch(){
     var destinationCode=destinationCurrency();
     el.classList.add('is-visible');
     var regionText=isWorldToLatamRoute()
-      ? 'InterMundial go | world con destino Latinoamérica: referencias de 86,90 € por 15 días (≈ 5,79 €/día) y 156,66 € por 30 días (≈ 5,22 €/día) para una persona. Entre ambos tramos interpolamos el total; fuera de ellos calculamos estimaciones proporcionales. Comprueba residencia, países cubiertos, exclusiones y tarifa final en InterMundial.'
+      ? 'Destino Latinoamérica desde cualquier origen: IATI usa una referencia de 65,02 € por 30 días y una persona (≈ 2,17 €/día); otros días se estiman proporcionalmente. InterMundial go | world conserva 86,90 € por 15 días y 156,66 € por 30 días; las demás duraciones se estiman. Ambas compañías deben confirmar disponibilidad, residencia admitida, países cubiertos y precios finales.'
       : isSchengenToUkRoute()
       ? (!['es'].includes(normalizedOrigin()) && resultTripDays()>120
         ? 'Reino Unido desde países Schengen: para viajes de más de 120 días debes verificar una modalidad InterMundial compatible con tu residencia y duración; no se extrapola el precio de 7 días.'
