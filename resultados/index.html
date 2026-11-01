@@ -1902,9 +1902,10 @@ function iatiWorldToLatamPriceNote(){
   const isSchengen=SCHENGEN_ROUTE_COUNTRIES.has(normalizedOrigin());
   const reference=isSchengen?'105,93 €':'65,02 €';
   const route=isSchengen?'desde un país Schengen hacia Latinoamérica':'desde otros países hacia Latinoamérica';
-  return resultTripDays()===30
-    ? 'Referencia de '+reference+' por 30 días y una persona '+route+'; precio y elegibilidad por confirmar con IATI'
-    : 'Estimación proporcional a partir de '+reference+' por 30 días y una persona '+route+'; no es una cotización de esta duración';
+  if(resultTripDays()===30)
+    return 'Referencia de '+reference+' por 30 días y una persona '+route+
+      (isSchengen?'; opción disponible según condiciones; confirma modalidad y precio final con IATI':'; consulta elegibilidad y precio final con IATI');
+  return 'Estimación proporcional a partir de '+reference+' por 30 días y una persona '+route+'; no es una cotización de esta duración';
 }
 function isWorldToLatamRoute(){
   const origin=normalizedOrigin();
@@ -3019,9 +3020,12 @@ function applyFilters(){
 function sortData(data,val){
   const d=[...data];
   if(val==='precio-asc') d.sort((a,b)=>{
-    // Nunca ordenar como barato un precio que no se ha cotizado.
-    const ra=providerProfile(a).reviewable?Infinity:fixedOrientativeRate(a.key);
-    const rb=providerProfile(b).reviewable?Infinity:fixedOrientativeRate(b.key);
+    // En estas dos rutas se muestran importes numéricos de referencia: ordenar
+    // por esos importes aunque la elegibilidad siga pendiente en otras residencias.
+    // En el resto de rutas conservar el tratamiento previo de tarifas no cotizadas.
+    const hasRouteReference=isWorldToLatamRoute()||isUsToSchengenRoute();
+    const ra=hasRouteReference?resultTotalEUR(a.key):(providerProfile(a).reviewable?Infinity:fixedOrientativeRate(a.key));
+    const rb=hasRouteReference?resultTotalEUR(b.key):(providerProfile(b).reviewable?Infinity:fixedOrientativeRate(b.key));
     return ra-rb;
   });
   else if(val==='cobertura') d.sort((a,b)=>providerProfile(b).coverageRank-providerProfile(a).coverageRank);
