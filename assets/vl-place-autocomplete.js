@@ -200,6 +200,12 @@ function expandOriginChoices(select){
    select.appendChild(option);
    present.add(value);
  }
+ // La página de resultados inicializa el estado antes de que cargue este script.
+ // Conservar orígenes internacionales recibidos por URL al poblar el selector.
+ if(select.id==='ep-origen'){
+   const requested=String(window.currentSearchOrigin||'').toLowerCase();
+   if(present.has(requested))select.value=requested;
+ }
 }
 function init(){
  // Permitir cualquier país reconocido como salida en inicio y editar búsqueda.
