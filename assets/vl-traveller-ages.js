@@ -19,6 +19,19 @@
     input.required = true;
     input.value = value === undefined ? '' : String(value);
     input.setAttribute('aria-label', 'Edad del viajero ' + (index + 1));
+    // Chrome puede mostrar mensajes nativos en inglés según el idioma del navegador.
+    // Personalizamos únicamente la validación de edades para mostrarla en castellano.
+    input.addEventListener('invalid', () => {
+      if (input.validity.valueMissing) {
+        input.setCustomValidity('Por favor, introduce la edad del viajero ' + (index + 1) + '.');
+      } else if (input.validity.rangeUnderflow || input.validity.rangeOverflow) {
+        input.setCustomValidity('Introduce una edad entre 0 y 100 años.');
+      } else if (input.validity.stepMismatch || input.validity.badInput) {
+        input.setCustomValidity('Introduce una edad válida en años completos.');
+      }
+    });
+    // Limpiar el aviso cuando el usuario edita el campo; evita errores persistentes.
+    input.addEventListener('input', () => input.setCustomValidity(''));
     label.append(input);
     return label;
   }
