@@ -1874,10 +1874,11 @@ function chapkaReferenceTotalEUR(){
 // la cotización definitiva puede variar según residencia, fechas, edad y extras.
 const GO_SCHENGEN_TOTAL_TIERS=Object.freeze([[7,15.39],[14,27.71],[30,53.02],[60,76.63],[90,95.43]]);
 const GO_SCHENGEN_LATAM=new Set(['co','mx','ar','ve','pe','cl','ec','bo','br','uy','py','cr','pa','gt','sv','hn','ni','cu','ht','do']);
-// Destinos latinoamericanos / Caribe: go | world con una sola referencia de 15 dias.
-// La disponibilidad para cada residencia y destino debe confirmarse en InterMundial.
+// Destinos latinoamericanos / Caribe: go | world para 1 viajero.
+// Referencias editoriales: 15 días 86,90 EUR y 30 días 156,66 EUR.
+// La disponibilidad para cada residencia y destino se confirma en InterMundial.
 const WORLD_TO_LATAM_COUNTRIES=new Set('ag ar bb bo br bs bz cl co cr cu dm do ec gd gt gy hn ht jm kn lc mx ni pa pe pr py sr sv tt uy vc ve'.split(' '));
-const INTERMUNDIAL_LATAM_GO_WORLD_15D_EUR=86.90;
+const INTERMUNDIAL_LATAM_GO_WORLD_TIERS=Object.freeze([[15,86.90],[30,156.66]]);
 function isWorldToLatamRoute(){
   const origin=normalizedOrigin();
   const region=String(window.currentSearchDest||'').toLowerCase();
@@ -1887,13 +1888,24 @@ function isWorldToLatamRoute(){
 }
 function intermundialLatamGoWorldTotalPerPerson(days){
   const n=Math.max(1,Number(days)||1);
-  return n===15?INTERMUNDIAL_LATAM_GO_WORLD_15D_EUR:
-    Math.round((INTERMUNDIAL_LATAM_GO_WORLD_15D_EUR*n/15+Number.EPSILON)*100)/100;
+  const [[firstDays,firstPrice],[monthDays,monthPrice]]=INTERMUNDIAL_LATAM_GO_WORLD_TIERS;
+  const cents=value=>Math.round((value+Number.EPSILON)*100)/100;
+  // Preservar las dos referencias exactas; las demás duraciones son estimaciones.
+  if(n===firstDays)return firstPrice;
+  if(n===monthDays)return monthPrice;
+  if(n<firstDays)return cents(firstPrice*n/firstDays);
+  if(n<monthDays)return cents(firstPrice+(monthPrice-firstPrice)*(n-firstDays)/(monthDays-firstDays));
+  return cents(monthPrice*n/monthDays);
 }
 function intermundialLatamGoWorldPriceNote(){
-  return resultTripDays()===15
-    ? 'Referencia aportada para 15 días y una persona; no es una cotización para todas las residencias'
-    : 'Estimación proporcional a partir de 86,90 € por 15 días y persona; no es una tarifa cotizada para esta duración';
+  const n=resultTripDays();
+  if(n===15)return 'Referencia de 86,90 € por 15 días y una persona; confirma la tarifa final';
+  if(n===30)return 'Referencia de 156,66 € por 30 días y una persona (≈ 5,22 €/día); confirma la tarifa final';
+  return n<15
+    ? 'Estimación proporcional desde la referencia de 15 días; no es una cotización'
+    : n<30
+      ? 'Estimación interpolada entre 15 y 30 días; no es una cotización'
+      : 'Estimación proporcional usando 156,66 € / 30 días (≈ 5,22 €/día); no es una cotización';
 }
 function isGoSchengenLatamRoute(){
   return GO_SCHENGEN_LATAM.has(normalizedOrigin()) && normalizedDest()==='europe';
@@ -2502,7 +2514,7 @@ function providerProfile(d){
       equipaje:'Hasta 2.500 € según modalidad',demora:'Según condiciones',
       tele:false,aventura:false,cancel:false,baggage:true,publicRate:null,
       coverageRank:82,bestFor:'Protección completa en todo el mundo para viajes con destino a Latinoamérica, según la póliza contratada.',
-      caution:'La referencia de 86,90 € corresponde a 15 días y una persona. Las demás duraciones se estiman proporcionalmente. No se ha verificado el importe ni la contratación para cada país de origen o destino: revisa residencia admitida, ámbito territorial, exclusiones, duración y precio final con InterMundial.',
+      caution:'Referencias de 86,90 € para 15 días y 156,66 € para 30 días por persona. Las duraciones distintas se estiman con interpolación o proyección diaria. No se ha verificado el importe ni la contratación para cada país de origen o destino: revisa residencia admitida, ámbito territorial, exclusiones, duración y precio final con InterMundial.',
       source:'Referencia facilitada por el titular (01/11/2026); ficha oficial de InterMundial go | world'
     };
     if(isSchengenToUkRoute()){
@@ -3286,7 +3298,7 @@ function applyEditSearch(){
     var destinationCode=destinationCurrency();
     el.classList.add('is-visible');
     var regionText=isWorldToLatamRoute()
-      ? 'InterMundial go | world: referencia de 86,90 € por 15 días y 1 viajero con destino Latinoamérica, desde cualquier origen seleccionado. Para otras duraciones aplicamos una proyección proporcional de 5,7933 €/persona/día. Comprueba residencia, países cubiertos, exclusiones y tarifa final en InterMundial.'
+      ? 'InterMundial go | world con destino Latinoamérica: referencias de 86,90 € por 15 días (≈ 5,79 €/día) y 156,66 € por 30 días (≈ 5,22 €/día) para una persona. Entre ambos tramos interpolamos el total; fuera de ellos calculamos estimaciones proporcionales. Comprueba residencia, países cubiertos, exclusiones y tarifa final en InterMundial.'
       : isSchengenToUkRoute()
       ? (!['es'].includes(normalizedOrigin()) && resultTripDays()>120
         ? 'Reino Unido desde países Schengen: para viajes de más de 120 días debes verificar una modalidad InterMundial compatible con tu residencia y duración; no se extrapola el precio de 7 días.'
