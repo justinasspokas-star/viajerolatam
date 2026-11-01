@@ -3081,6 +3081,19 @@ document.addEventListener('click', function(e){
       }
       return;
     }
+    // Destino latinoamericano concreto desde cualquier país: el único resultado
+    // será InterMundial go | world, no los estimadores genéricos de la portada.
+    if(country && LATAM_CODES.has(code) && normalizedOrigin!==code){
+      var totalGoWorld=Math.round((86.90*days*people/15+Number.EPSILON)*100)/100;
+      text.textContent=days+' días'+(people>1?' · '+people+' viajeros':'')+
+        ' · InterMundial Go | World: ≈ '+formatCurrency(totalGoWorld,'EUR')+
+        ' (referencia, sujeta a confirmación)';
+      if(localDisplay && localText){
+        localText.textContent='Referencia de 86,90 € por 15 días y persona; otras duraciones estimadas a 5,7933 €/día. Para '+country.label+', confirma residencia admitida, cobertura y precio final en InterMundial.';
+        localDisplay.classList.remove('is-hidden');
+      }
+      return;
+    }
     var broadRoute=['europa-no-schengen','europa','asia','mundial'].indexOf(destination)!==-1;
     if(broadRoute){
       text.textContent=days+' días'+(people>1?' · '+people+' viajeros':'')+' · Consulta las opciones disponibles para '+destinationInfo.label+'.';
