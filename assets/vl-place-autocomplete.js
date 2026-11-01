@@ -56,8 +56,11 @@ function options(select,kind){
  // porque para esa ruta el usuario necesita elegir un país de llegada concreto.
  const origin=document.getElementById(select.id==='ep-destino'?'ep-origen':'sb-origen');
  const originCode=origin&&origin.value==='espana-schengen'?'es':origin&&origin.value;
- // Los orígenes añadidos solo ofrecen la ruta de comparación a países LATAM.
- // No prometer resultados para destinos internacionales todavía no configurados.
+ // Estados Unidos admite ahora destinos LATAM y países Schengen concretos.
+ // No exponer otras regiones sin referencias de precio verificables.
+ if(originCode==='us')
+   return countries.filter(x=>WORLD_TO_LATAM_COUNTRIES.has(x.code)||SCHENGEN.has(x.code));
+ // Resto de orígenes mundiales sin rutas Schengen configuradas: solo LATAM.
  if(originCode && !LEGACY_ORIGINS.has(originCode))
    return countries.filter(x=>WORLD_TO_LATAM_COUNTRIES.has(x.code));
  const shownRegions=SCHENGEN.has(originCode)?regions.filter(x=>x.code!=='espana-schengen'):regions;
@@ -177,7 +180,9 @@ function validSchengenPair(prefix){
    if(search){search.setError('El origen y el destino deben ser países distintos.');search.input.focus();}
    return false;
  }
- if(!SCHENGEN.has(source)||destination.value!=='espana-schengen')return true;
+ // Para Estados Unidos → Schengen también exigir país concreto de llegada.
+ // Las rutas intra-Schengen siguen con la misma validación previa.
+ if(!(SCHENGEN.has(source)||source==='us')||destination.value!=='espana-schengen')return true;
  if(!SCHENGEN.has(dest)){
    if(search){search.setError('Escribe y selecciona el país Schengen al que viajas.');search.input.focus();}
    return false;
