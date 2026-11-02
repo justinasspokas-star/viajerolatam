@@ -3660,6 +3660,8 @@ function applyEditSearch(){
     if(!ALLOWED_ORIGINS.has(originValue) && !ROUTE_GROUPS.has(originValue)) originValue='co';
     var destinationValue=normalizeAllowedDestination(params.get('destino')||'espana-schengen');
     var requestedCountry=String(params.get('pais_destino')||'').toLowerCase();
+    // El enlace directo Uruguay → España sin destino explícito selecciona España, no el grupo Schengen.
+    if(originValue==='uy' && !params.has('destino') && !params.has('pais_destino')) requestedCountry='es';
     // Las URL pueden editarse manualmente: no mostrar un país incompatible con la región.
     var schengenCodes=new Set('at be bg hr cz dk ee fi fr de gr hu is it lv li lt lu mt nl no pl pt ro sk si es se ch'.split(' '));
     var europeOutside=new Set('gb ie cy al ba rs me mk md ua tr ge am az by ru ad mc sm va gi fo im je gg'.split(' '));
