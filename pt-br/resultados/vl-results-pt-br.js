@@ -240,7 +240,7 @@ function track(name){var c=consent();if(!c||!c.analytics||typeof gtag!=='functio
  route_origin:'brasil',route_destination:'espanha',page_path:location.pathname,trip_days:t&&t.days,traveler_count:t&&t.people,transport_type:'beacon'})}
 function init(){var a=el('ep-ida'),b=el('ep-vuelta'),c=el('ep-viajeros');
  if(a){a.min=now();a.value=valid(params.get('ida'))&&params.get('ida')>=now()?params.get('ida'):now(1)}
- if(b){b.min=a?a.value:now();b.value=valid(params.get('vuelta'))&&params.get('vuelta')>=b.min?params.get('vuelta'):now(15)}
+ if(b){b.min=a?a.value:now();b.value=valid(params.get('vuelta'))&&params.get('vuelta')>=b.min?params.get('vuelta'):now(16)}
  if(c){var n=parseInt(params.get('personas')||'1',10);c.value=n>=1&&n<=8?String(n):'1'}
  if(a)a.addEventListener('change',function(){if(b){b.min=a.value;if(b.value<a.value)b.value=a.value}pills()});
  if(b)b.addEventListener('change',pills);if(c)c.addEventListener('change',pills);
