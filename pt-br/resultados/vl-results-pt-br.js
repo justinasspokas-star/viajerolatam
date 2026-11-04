@@ -13,8 +13,55 @@ function valid(x){if(!/^\d{4}-\d{2}-\d{2}$/.test(x||''))return false;var d=new D
 function h(s){return String(s||'').replace(/[&<>"']/g,function(x){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]})}
 function trip(){var a=el('ep-ida'),b=el('ep-vuelta'),c=el('ep-viajeros'),start=a&&a.value,end=b&&b.value;
  if(!valid(start)||!valid(end)||end<start)return null;
- return {start:start,end:end,people:Number(c&&c.value||1)||1,days:Math.round((Date.parse(end+'T00:00:00Z')-Date.parse(start+'T00:00:00Z'))/86400000)+1}}
+ return {start:start,end:end,people:Number(c&&c.value||1)||1,days:Math.max(1,Math.round((Date.parse(end+'T00:00:00Z')-Date.parse(start+'T00:00:00Z'))/86400000))}}
 function formatted(s){try{return new Intl.DateTimeFormat('pt-BR',{day:'2-digit',month:'short'}).format(new Date(s+'T12:00:00'))}catch(e){return s}}
+
+// MESMA REGRA de preços da rota LATAM → Schengen em /resultados/.
+// Valores em euros por pessoa: InterMundial/IATI seguem tramos de 7,14,30,60,90 dias.
+// Chapka tem tramos de 14/30 dias: a estimativa para outras durações é proporcional
+// abaixo de 14 ou acima de 30; de 15 a 29 dias é interpolada, igual ao original.
+// BRL é conversão meramente aproximada da referência editorial (1 EUR ≈ 6,30 BRL).
+var PT_PRICING_TIERS=Object.freeze({
+  intermundial:Object.freeze([[7,15.39],[14,27.71],[30,53.02],[60,76.63],[90,95.43]]),
+  iati:Object.freeze([[7,34.68],[14,52.91],[30,85.02],[60,158.75],[90,245.82]])
+});
+var CHAPKA_SCHENGEN_14D_EUR=46,CHAPKA_SCHENGEN_30D_EUR=58,EUR_TO_BRL_REFERENCE=6.3;
+function roundCents(value){return Math.round((value+Number.EPSILON)*100)/100}
+function tierPrice(tiers,days){
+  var n=Math.max(1,Number(days)||1);
+  if(n<tiers[0][0])return roundCents(tiers[0][1]*n/tiers[0][0]);
+  for(var i=0;i<tiers.length;i++){
+    var duration=tiers[i][0],price=tiers[i][1],next=tiers[i+1];
+    if(n===duration)return price;
+    if(next&&n<next[0])return roundCents(price+(next[1]-price)*(n-duration)/(next[0]-duration));
+  }
+  return roundCents(tiers[tiers.length-1][1]*n/tiers[tiers.length-1][0]);
+}
+function referencePerPerson(key,days){
+  var n=Math.max(1,Number(days)||1);
+  if(key==='chapka'){
+    if(n===14)return CHAPKA_SCHENGEN_14D_EUR;
+    if(n===30)return CHAPKA_SCHENGEN_30D_EUR;
+    if(n>14&&n<30)return roundCents(CHAPKA_SCHENGEN_14D_EUR+
+      (CHAPKA_SCHENGEN_30D_EUR-CHAPKA_SCHENGEN_14D_EUR)*(n-14)/16);
+    return roundCents(CHAPKA_SCHENGEN_30D_EUR*n/30);
+  }
+  return tierPrice(PT_PRICING_TIERS[key],n);
+}
+function isReferenceDuration(key,days){
+  return key==='chapka'?(days===14||days===30):
+    PT_PRICING_TIERS[key].some(function(tier){return tier[0]===days});
+}
+function formatEUR(amount){return new Intl.NumberFormat('pt-BR',{style:'currency',currency:'EUR',minimumFractionDigits:2,maximumFractionDigits:2}).format(amount)}
+function formatBRL(amount){return new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL',minimumFractionDigits:2,maximumFractionDigits:2}).format(amount)}
+function priceFor(key){
+  var t=trip(),days=t?t.days:15,people=t?t.people:1;
+  var perPerson=referencePerPerson(key,days);
+  var total=roundCents(perPerson*people);
+  return {days:days,people:people,perPerson:perPerson,total:total,daily:perPerson/days,
+    totalBRL:roundCents(total*EUR_TO_BRL_REFERENCE),
+    exactTier:isReferenceDuration(key,days)};
+}
 function pills(){var v=document.querySelectorAll('.pill-val'),t=trip();if(v[0])v[0].textContent='Brasil 🇧🇷';if(v[1])v[1].textContent='Espanha 🇪🇸';
  if(v[2])v[2].textContent=t?formatted(t.start)+' → '+formatted(t.end)+' · '+t.days+' dias':'Informe as datas';
  if(v[3])v[3].textContent=t?t.people+' '+(t.people===1?'pessoa':'pessoas'):'1 pessoa';
@@ -80,7 +127,7 @@ var cardCopy={
 };
 function card(x){
  var t=trip(),duration=t?t.days+' '+(t.days===1?'dia':'dias')+' · '+t.people+' '+(t.people===1?'pessoa':'pessoas'):'datas a definir';
- var name=h(x.name),c=cardCopy[x.key];
+ var name=h(x.name),c=cardCopy[x.key],price=priceFor(x.key);
  if(!c)return '';
  var medicalIcon='<svg class="cov-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>';
  var repatIcon='<svg class="cov-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>';
@@ -111,21 +158,24 @@ function card(x){
  '<div class="coverage-row">'+baggageIcon+'Bagagem: <span class="cov-val">&nbsp;'+h(c.baggage)+'</span></div>'+
  '<div class="card-fit"><strong>Melhor para:</strong> '+h(c.bestFor)+'</div></div>'+
  '<div class="card-price-block">'+
- '<div class="public-price-label">Cotação oficial · '+duration+'</div>'+
- '<div class="public-price">Consultar preço <small>valor no site da seguradora</small></div>'+
- '<div class="trip-origin-price">Preço final na cotação oficial</div>'+
- '<div class="public-price-sub">Valores de cobertura de referência: confirme a modalidade, as condições e os limites oferecidos antes do pagamento.</div>'+
+ '<div class="public-price-label">Total estimado · '+duration+'</div>'+
+ '<div class="public-price">≈ '+formatEUR(price.total)+' <small>total da viagem · referência em euros</small></div>'+
+ '<div class="trip-origin-price">≈ '+formatBRL(price.totalBRL)+' <span>conversão aproximada para reais</span></div>'+
+ '<div class="public-price-sub"><strong>≈ '+formatEUR(price.daily)+'/pessoa/dia</strong> × '+price.days+' '+(price.days===1?'dia':'dias')+' × '+price.people+' '+(price.people===1?'viajante':'viajantes')+
+ '. '+(price.exactTier?'Referência de duração informada no comparador original.':'Estimativa matemática entre/fora dos tramos de referência; não é cotação desta duração.')+
+ ' 1 € ≈ R$ 6,30 apenas como referência de conversão. Confirme os preços, limites e as condições na seguradora.</div>'+
  '<a class="btn-contract pt-affiliate" data-partner="'+h(x.key)+'" href="'+h(x.url)+'" target="_blank" rel="nofollow sponsored noopener noreferrer">Ver preço na '+name+' →</a>'+
  '<button class="btn-details" type="button" onclick="toggleDetails('+x.id+')" id="btn-det-'+x.id+'">Ver detalhes comparados</button>'+
  '</div></div>'+
  '<div class="card-details" id="det-'+x.id+'"><div class="details-grid">'+details+'</div>'+
- '<div class="detail-source">Fonte: informações de referência da modalidade exibida no comparador ViajeroLatam. '+h(c.note)+
+ '<div class="detail-source">Fonte: valores editoriais para LATAM → Schengen, estimados por duração e por viajante; não são cotações. '+h(c.note)+
  ' O certificado, as condições da apólice e os valores do checkout prevalecem.</div></div></div>'
 }
 function list(){var selected=filters.filter(function(id){return el(id)&&el(id).checked}).map(function(id){return keys[id]});
  var items=selected.length?insurers.filter(function(x){return selected.indexOf(x.key)>=0}):insurers.slice();
  var sort=el('sort-select')&&el('sort-select').value;
  if(sort==='alfabetica')items.sort(function(a,b){return a.name.localeCompare(b.name,'pt-BR')});
+ if(sort==='precio-asc')items.sort(function(a,b){return priceFor(a.key).total-priceFor(b.key).total});
  return items}
 function compare(){
  var head=el('quick-compare-head'),body=el('quick-compare-body');
@@ -142,11 +192,11 @@ function compare(){
    ['Franquia',function(c){return c.franchise}],
    ['Cancelamento',function(c){return c.cancellation}],
    ['Bagagem',function(c){return c.baggage}],
-   ['Preço',function(){return 'Consultar cotação oficial'}]
+   ['Total estimado · viagem',function(c,x){return formatEUR(priceFor(x.key).total)}]
  ];
  body.innerHTML=specs.map(function(spec){
    return '<tr><td class="matrix-label">'+h(spec[0])+'</td>'+
-    active.map(function(x){return '<td>'+h(spec[1](cardCopy[x.key]))+'</td>'}).join('')+'</tr>';
+    active.map(function(x){return '<td>'+h(spec[1](cardCopy[x.key],x))+'</td>'}).join('')+'</tr>';
  }).join('');
 }
 function render(){active=list();var message=active.length+' '+(active.length===1?'seguradora':'seguradoras')+' para comparar · confira os planos';
