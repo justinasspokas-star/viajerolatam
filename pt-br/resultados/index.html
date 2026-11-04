@@ -272,6 +272,10 @@
       function displayDate(s){var d=new Date(s+'T12:00:00');return new Intl.DateTimeFormat('pt-BR',{day:'2-digit',month:'short',year:'numeric'}).format(d);}
       function showSummary(){
         var start=id.value,end=back.value;
+        if(!validDate(start)||!validDate(end)||end<start){
+          document.getElementById('summary-dates').textContent='Selecione datas válidas';
+          return;
+        }
         var inclusive=Math.round((Date.parse(end+'T00:00:00Z')-Date.parse(start+'T00:00:00Z'))/86400000)+1;
         document.getElementById('summary-dates').textContent=displayDate(start)+' → '+displayDate(end)+' · '+inclusive+' '+(inclusive===1?'dia':'dias');
         document.getElementById('summary-travelers').textContent=persons.value+' '+(persons.value==='1'?'pessoa':'pessoas');
