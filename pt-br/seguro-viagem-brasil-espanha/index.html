@@ -87,11 +87,12 @@
     main section.content{padding:66px 0}
     .section-intro{max-width:735px;color:var(--muted);margin:0 0 27px;font-size:1.02rem}
     .section-tag{display:inline-block;color:var(--teal);font-size:.76rem;letter-spacing:.075em;font-weight:800;text-transform:uppercase;margin-bottom:11px}
-    .cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
-    .card{padding:28px;display:flex;flex-direction:column;min-width:0}
-    .card-top{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:48px}
+    .cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+    .card{padding:25px;display:flex;flex-direction:column;min-width:0}
+    .card-top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;min-height:48px}
     .logo-im{width:min(185px,100%);max-height:48px;object-fit:contain;object-position:left center}
     .logo-iati{font-size:2rem;font-weight:900;letter-spacing:-.055em;color:#e94c4a}
+    .logo-chapka{width:min(155px,100%);max-height:46px;object-fit:contain;object-position:left center}
     .card-badge{font-size:.73rem;color:#2c7289;background:#eaf5f8;border-radius:50px;padding:5px 10px;font-weight:800;white-space:nowrap}
     .card p{color:#4b6476;margin:11px 0}
     .features{padding:0;list-style:none;margin:12px 0 22px}
@@ -138,6 +139,7 @@
     .cookie-buttons{display:flex;gap:7px}
     .cookie-buttons button{cursor:pointer;border:1px solid var(--line);border-radius:10px;padding:10px 13px;white-space:nowrap;font-weight:800;background:#f6fbff;color:var(--navy)}
     .cookie-buttons .agree{background:var(--teal);border-color:var(--teal);color:#fff}
+    @media(max-width:1020px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
     @media(max-width:880px){.navlinks{gap:14px}.navlinks a:not(.btn){display:none}.hero-grid{grid-template-columns:1fr;gap:28px}.hero-panel{max-width:650px}.info-grid{grid-template-columns:1fr 1fr}.cta-panel{align-items:start;flex-direction:column}}
     @media(max-width:650px){
       html{scroll-padding-top:66px}.container{width:min(100% - 30px,1140px)}
@@ -248,8 +250,20 @@
             <a class="btn affiliate-link" data-partner="iati" href="https://www.iatiseguros.pt/?r=84208681926165" target="_blank" rel="nofollow sponsored noopener noreferrer" aria-label="Ver cotação na IATI, abre em nova aba">Ver cotação na IATI ↗</a>
             <p class="fine-print">Link de afiliado fornecido pela ViajeroLatam. Preço e contratação no site da seguradora.</p>
           </article>
+          <article class="card">
+            <div class="card-top"><img class="logo-chapka" src="/assets/chapka-logo-oficial.png" alt="Chapka Seguros" loading="lazy" width="155" height="46"><span class="card-badge">Cotação externa</span></div>
+            <h3>Chapka Seguros</h3>
+            <p>Confira as condições do seguro para viagens à Espanha e outros países do Espaço Schengen, conforme o produto escolhido.</p>
+            <ul class="features">
+              <li>Consulte despesas médicas e assistência em viagem</li>
+              <li>Verifique repatriação, limites e exclusões</li>
+              <li>Confirme se aceita residentes no Brasil</li>
+            </ul>
+            <a class="btn btn--blue affiliate-link" data-partner="chapka" href="https://www.chapkadirect.pt/index.php?action=produit&amp;id=930&amp;app=ViajeroLATAM" target="_blank" rel="nofollow sponsored noopener noreferrer" aria-label="Ver cotação na Chapka, abre em nova aba">Ver cotação na Chapka ↗</a>
+            <p class="fine-print">Link de afiliado fornecido pela ViajeroLatam. Preço e condições finais no site da seguradora.</p>
+          </article>
         </div>
-        <div class="note"><strong>Atenção para residentes no Brasil:</strong> os links acima abrem páginas de Portugal (<code>.pt</code>). Antes de pagar, confirme expressamente que a apólice escolhida aceita o <strong>Brasil como país de residência e origem da viagem</strong> e cobre a Espanha e os demais destinos do roteiro. Um link de afiliado não comprova, por si só, essa elegibilidade.</div>
+        <div class="note"><strong>Atenção para residentes no Brasil:</strong> os três links acima abrem páginas de Portugal (<code>.pt</code>). Antes de pagar, confirme expressamente que a apólice escolhida aceita o <strong>Brasil como país de residência e origem da viagem</strong> e cobre a Espanha e os demais destinos do roteiro. Um link de afiliado não comprova, por si só, essa elegibilidade.</div>
         <p class="disclosure"><strong>Transparência:</strong> podemos receber uma comissão se você contratar usando um desses links. Isso não altera o preço final necessariamente nem substitui a conferência das condições na seguradora. A escolha é sua.</p>
       </div>
     </section>
@@ -323,7 +337,7 @@
       <div class="container">
         <div class="cta-panel">
           <div><h2>Vai viajar do Brasil para a Espanha?</h2><p>Compare as opções e confira as condições antes de contratar.</p></div>
-          <a class="btn" href="#comparar">Ver InterMundial e IATI ↑</a>
+          <a class="btn" href="#comparar">Ver InterMundial, IATI e Chapka ↑</a>
         </div>
       </div>
     </section>
