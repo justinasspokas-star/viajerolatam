@@ -1,0 +1,9 @@
+# Evitar scripts de precios obsoletos en el comparador pt-BR.
+/pt-br/resultados/
+  Cache-Control: public, max-age=0, must-revalidate
+
+/pt-br/resultados/index.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/pt-br/resultados/vl-results-pt-br.js
+  Cache-Control: public, max-age=0, must-revalidate
