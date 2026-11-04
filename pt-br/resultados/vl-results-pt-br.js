@@ -25,18 +25,18 @@ function logo(x,where){var size=where==='table'?'insurer-logo-table':'insurer-lo
  '<span class="insurer-logo-fallback" style="display:'+(x.logo?'none':'flex')+';color:#246c8c">'+x.initial+'</span></span>'}
 function card(x){var t=trip(),duration=t?t.days+' dias · '+t.people+' '+(t.people===1?'pessoa':'pessoas'):'datas a definir',name=h(x.name);
  var icon='<svg class="cov-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>';
- var details=[['Assistência médica','Limites e exclusões de cada plano'],['Repatriação','Conforme as condições oficiais'],['Franquia','Verifique se existe e qual o valor'],['Cancelamento','Confira se está disponível'],['Bagagem','Confira limites e restrições'],['Residência no Brasil','Confirme que a seguradora aceita residentes brasileiros']];
+ var details=[['Assistência médica','Limites e exclusões de cada plano'],['Repatriação','Conforme as condições oficiais'],['Franquia','Verifique se existe e qual o valor'],['Cancelamento','Confira se está disponível'],['Bagagem','Confira limites e restrições'],['País de residência','Informe o Brasil como residência na cotação']];
  return '<div class="card" id="card-'+x.id+'"><div class="card-body">'+
  '<div class="card-logo-block">'+logo(x,'card')+'<div class="card-logo-meta"><div class="card-name">'+name+'</div>'+
- '<div class="card-plan-under-logo">Plano e condições a confirmar</div><div class="card-verified">⚠ Elegibilidade para residentes no Brasil por confirmar</div></div></div>'+
+ '<div class="card-plan-under-logo">Plano e condições a confirmar</div><div class="card-verified">Consulte os detalhes do plano na seguradora</div></div></div>'+
  '<div class="card-coverage"><div class="coverage-pills"><span class="cpill cpill-green">Consultar seguro viagem</span>'+
  '<span class="cpill cpill-navy">Espanha / Schengen</span></div>'+
- '<div class="provider-differentiator"><span class="diff-label">✨ Atenção</span><span class="diff-text">Consulte as condições e a residência admitida</span></div>'+
+ '<div class="provider-differentiator"><span class="diff-label">✨ Atenção</span><span class="diff-text">Compare coberturas, limites e condições</span></div>'+
  '<div class="coverage-row">'+icon+'Assistência médica: <span class="cov-val">&nbsp;Verificar limites</span></div>'+
  '<div class="coverage-row">'+icon+'Repatriação: <span class="cov-val">&nbsp;Verificar condições</span></div>'+
  '<div class="coverage-row">'+icon+'Bagagem: <span class="cov-val">&nbsp;Verificar cobertura</span></div>'+
  '<div class="card-fit"><strong>O que comparar:</strong> assistência, repatriação, franquia e cobertura geográfica.</div></div>'+
- '<div class="card-price-block"><div class="availability-note no">⚠ Confirme se aceita residentes no Brasil</div>'+
+ '<div class="card-price-block">'+
  '<div class="public-price-label">Cotação oficial · '+duration+'</div>'+
  '<div class="public-price">Consultar preço <small>valor no site da seguradora</small></div>'+
  '<div class="trip-origin-price">Sem tarifa brasileira confirmada</div>'+
@@ -45,7 +45,7 @@ function card(x){var t=trip(),duration=t?t.days+' dias · '+t.people+' '+(t.peop
  '<button class="btn-details" type="button" onclick="toggleDetails('+x.id+')" id="btn-det-'+x.id+'">Ver cobertura completa</button></div></div>'+
  '<div class="card-details" id="det-'+x.id+'"><div class="details-grid">'+
  details.map(function(d){return '<div class="detail-item"><div class="detail-label">'+d[0]+'</div><div class="detail-val">A confirmar</div><div class="detail-sub">'+d[1]+'</div></div>'}).join('')+
- '</div><div class="detail-source">Fonte: informações fornecidas na cotação oficial. Sites .pt não garantem disponibilidade para brasileiros. Verifique antes de pagar.</div></div></div>'}
+ '</div><div class="detail-source">Fonte: informações fornecidas na cotação oficial. Confira coberturas, datas e condições antes de pagar.</div></div></div>'}
 function list(){var selected=filters.filter(function(id){return el(id)&&el(id).checked}).map(function(id){return keys[id]});
  var items=selected.length?insurers.filter(function(x){return selected.indexOf(x.key)>=0}):insurers.slice();
  var sort=el('sort-select')&&el('sort-select').value;
@@ -54,7 +54,7 @@ function list(){var selected=filters.filter(function(id){return el(id)&&el(id).c
 function compare(){var head=el('quick-compare-head'),body=el('quick-compare-body');if(!head||!body)return;
  head.innerHTML='<tr><th class="feature-head">Comparativo</th>'+active.map(function(x){return '<th><div class="matrix-brand">'+logo(x,'table')+
  '<div class="matrix-brand-name">'+h(x.name)+'</div><div class="matrix-plan">Brasil → Espanha</div></div></th>'}).join('')+'</tr>';
- var rows=[['Contratação para residentes no Brasil','Por confirmar'],['Assistência médica','Verificar limites'],
+ var rows=[['Condições de contratação','Verificar na seguradora'],['Assistência médica','Verificar limites'],
  ['Repatriação','Verificar apólice'],['Franquia','Conferir condições'],['Bagagem','Verificar cobertura'],
  ['Cancelamento','Consultar disponibilidade'],['Preço','Cotação na seguradora']];
  body.innerHTML=rows.map(function(x){return '<tr><td class="matrix-label">'+x[0]+'</td>'+
