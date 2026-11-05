@@ -80,6 +80,42 @@ footer{background:#0b1f3a;color:#e2eaf0;padding:25px 22px}footer .inner{max-widt
   .hero h1{font-size:clamp(26px,7.7vw,30px);line-height:1.12}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* WinterSports sticky price CTA; scoped to this article */
+.vl-ws-floating{
+  position:fixed;left:22px;bottom:20px;z-index:110;
+  display:flex;flex-direction:column;gap:5px;
+  width:min(345px,calc(100vw - 124px));
+  padding:11px;background:rgba(255,255,255,.98);
+  border:1px solid #d5e7eb;border-radius:18px;
+  box-shadow:0 9px 32px rgba(4,28,50,.21);
+  font-family:var(--font);
+}
+.vl-ws-floating a{
+  min-height:48px;padding:12px 16px;border-radius:12px;
+  background:var(--teal);color:#082b38;text-decoration:none;
+  font-size:14px;line-height:1.3;font-weight:800;
+  display:flex;align-items:center;justify-content:center;
+  gap:8px;text-align:center;
+}
+.vl-ws-floating a:hover{background:#00ad91}
+.vl-ws-floating a:focus-visible{outline:3px solid #123452;outline-offset:3px}
+.vl-ws-floating .vl-ws-eligibility{
+  color:#40596b;font-size:11px;line-height:1.4;
+  font-weight:600;text-align:center;
+}
+@media(max-width:768px){
+  .vl-ws-floating{
+    left:0;right:0;bottom:0;width:100%;
+    padding:9px 14px calc(10px + env(safe-area-inset-bottom));
+    border:0;border-top:1px solid #d5e7eb;
+    border-radius:14px 14px 0 0;gap:4px;
+    box-shadow:0 -7px 22px rgba(7,26,45,.13);
+  }
+  .vl-ws-floating a{font-size:15px;min-height:46px;padding:10px 12px}
+  .vl-ws-floating .vl-ws-eligibility{font-size:10px}
+  footer{padding-bottom:calc(106px + env(safe-area-inset-bottom))}
+}
 </style>
 </head>
 <body>
@@ -198,5 +234,10 @@ gtag('event','click_affiliate_intermundial',{event_category:'affiliate',affiliat
 }
 });
 </script>
+
+<div class="mobile-affiliate-bar vl-ws-floating" role="region" aria-label="Cotizar seguro WinterSports">
+  <a class="outbound-winter" data-product="wintersports" href="https://www.intermundial.es/seguros-deportivos/seguro-wintersports?utm_source=Affiliates&amp;utm_content=kbnnqvpvcy490&amp;utm_medium=bc64ccb0" target="_blank" rel="nofollow sponsored noopener">⛷️ Calcula tu seguro WinterSports ↗</a>
+  <span class="vl-ws-eligibility">Precio en Intermundial · Solo residentes en España</span>
+</div>
 <script defer src="/assets/vl-whatsapp.js"></script>
 </body></html>
