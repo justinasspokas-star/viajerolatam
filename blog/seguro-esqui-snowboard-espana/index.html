@@ -46,7 +46,39 @@ h2{font:400 clamp(28px,3vw,40px)/1.17 'DM Serif Display',Georgia,serif;margin:48
 .sources{padding:20px;border:1px solid var(--line);border-radius:16px;background:var(--bg);margin-top:34px}.sources h2{font:700 19px var(--font);margin:0 0 10px}.sources li{font-size:14px}
 aside{align-self:start;position:sticky;top:25px}.sidebox{padding:22px;border:1px solid var(--line);border-radius:18px;margin-bottom:15px;background:var(--bg)}.sidebox h2{font:800 18px var(--font);margin:0 0 12px}.sidebox p{font-size:14px}.sidebox a{font-size:14px;font-weight:700}
 footer{background:#0b1f3a;color:#e2eaf0;padding:25px 22px}footer .inner{max-width:1110px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap}footer a{color:#e1fff4}footer p{color:#dfebf2;font-size:13px}
-@media(max-width:800px){nav{padding:12px 18px}nav img{height:43px}.links a:not(.link-blog){display:none}.shell{display:block;padding:24px 18px 70px}.hero{padding:40px 18px 46px;min-height:490px;background:linear-gradient(90deg,rgba(7,23,44,.95) 0%,rgba(8,25,47,.90) 48%,rgba(9,34,58,.72) 100%),url('/assets/wintersports-hero.svg') 69% center/cover no-repeat,#0b1f3a}.hero p{font-size:16px}aside{position:static;margin-top:38px}.toc ul{grid-template-columns:1fr}.cols{grid-template-columns:1fr}.buttons{flex-direction:column}.btn{width:100%;text-align:center}table{font-size:13px}.quick{padding:18px}.sidebox{padding:18px}}
+@media(max-width:800px){
+  nav{padding:12px 18px}
+  nav img{height:43px}
+  .links a:not(.link-blog){display:none}
+  .shell{display:block;padding:24px 18px 70px}
+  .hero{
+    padding:28px 18px 34px;
+    min-height:0;
+    display:block;
+    background:linear-gradient(90deg,rgba(7,23,44,.96) 0%,rgba(8,25,47,.91) 50%,rgba(9,34,58,.79) 100%),url('/assets/wintersports-hero.svg') 76% center/cover no-repeat,#0b1f3a;
+  }
+  .hero-inner{width:100%;max-width:100%;margin:0}
+  .hero .crumbs{font-size:12px;line-height:1.45;margin-bottom:8px}
+  .hero .eyebrow{display:block;font-size:11px;line-height:1.5;letter-spacing:.035em;margin-bottom:12px}
+  .hero h1{font-size:clamp(27px,7.7vw,34px);line-height:1.12;letter-spacing:-.025em;max-width:100%;margin:0 0 16px;text-wrap:balance}
+  .hero p{font-size:14px;line-height:1.65;max-width:100%;margin:0 0 16px}
+  .hero .updated{font-size:12px;line-height:1.55;max-width:100%}
+  aside{position:static;margin-top:38px}
+  .toc ul{grid-template-columns:1fr}
+  .cols{grid-template-columns:1fr}
+  .buttons{flex-direction:column}
+  .btn{width:100%;text-align:center}
+  table{font-size:13px}
+  .quick{padding:18px}
+  .sidebox{padding:18px}
+}
+@media(max-width:420px){
+  .hero{
+    padding:25px 16px 30px;
+    background:linear-gradient(90deg,rgba(7,23,44,.97) 0%,rgba(8,25,47,.93) 54%,rgba(9,34,58,.82) 100%),url('/assets/wintersports-hero.svg') 80% center/cover no-repeat,#0b1f3a;
+  }
+  .hero h1{font-size:clamp(26px,7.7vw,30px);line-height:1.12}
+}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
 </head>
