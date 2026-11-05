@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 760" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Paisaje de montaña nevada con esquiador">
+<defs>
+<linearGradient id="sky" x1="0" y1="0" x2=".85" y2="1"><stop stop-color="#0C1B34"/><stop offset=".52" stop-color="#163659"/><stop offset="1" stop-color="#477C91"/></linearGradient>
+<radialGradient id="glow" cx="85%" cy="46%" r="75%"><stop stop-color="#7CB0BE" stop-opacity=".33"/><stop offset=".57" stop-color="#2B6886" stop-opacity=".12"/><stop offset="1" stop-color="#122640" stop-opacity="0"/></radialGradient>
+<linearGradient id="backMount" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#7297A9"/><stop offset=".28" stop-color="#3D6681"/><stop offset="1" stop-color="#183857"/></linearGradient>
+<linearGradient id="midMount" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#86ADBD"/><stop offset=".35" stop-color="#426986"/><stop offset="1" stop-color="#143A5A"/></linearGradient>
+<linearGradient id="slope" x1="0" y1="0" x2=".9" y2="1"><stop stop-color="#376985"/><stop offset=".45" stop-color="#75A4B8"/><stop offset="1" stop-color="#163E5F"/></linearGradient>
+<linearGradient id="snow" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#D2E9EF" stop-opacity=".91"/><stop offset="1" stop-color="#91BCCB" stop-opacity=".35"/></linearGradient>
+<linearGradient id="front" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#A5C9D8"/><stop offset=".6" stop-color="#4F829E"/><stop offset="1" stop-color="#173E5D"/></linearGradient>
+<radialGradient id="mist" cx=".66" cy=".6" r=".7"><stop stop-color="#82B4C0" stop-opacity=".28"/><stop offset="1" stop-color="#79A9BD" stop-opacity="0"/></radialGradient>
+<g id="fir" fill="#163955" opacity=".84"><path d="M0-70L-16-39H-9L-26-8H-16L-33 23H33L16-8H26L9-39H16Z"/><rect x="-3.5" y="20" width="7" height="15" rx="2" fill="#14304D"/></g>
+<g id="flake" stroke="#C8EAF1" stroke-width="1.5" stroke-linecap="round" opacity=".53"><path d="M-14 0H14M0-14V14M-10-10L10 10M-10 10L10-10"/><path d="M-14 0l4-4m-4 4l4 4M14 0l-4-4m4 4l-4 4M0-14l-4 4m4-4l4 4M0 14l-4-4m4 4l4-4"/></g>
+<filter id="blur"><feGaussianBlur stdDeviation="20"/></filter>
+</defs>
+<path fill="url(#sky)" d="M0 0h1600v760H0z"/><path fill="url(#glow)" d="M0 0h1600v760H0z"/>
+<path fill="#729BB0" opacity=".09" d="M0 302Q400 280 810 332T1600 256V590H0z"/>
+<!-- Alpine peaks behind the typography, concentrated on the right -->
+<path fill="url(#backMount)" opacity=".78" d="M605 421l90-75 40 32 81-99 57 33 98-120 56 52 52-28 117-106 68 76 35-17 145 120 72-29 80 67 34-20v291H605z"/>
+<path fill="#E3F1F3" opacity=".57" d="M971 192l56 52 52-28 117-106 68 76-43-12-28 13-24-25-21 39-29-5-29 45-30-30-38 27-29-17z"/>
+<path fill="#D5EAF0" opacity=".65" d="M1196 110l68 76-34-15-29-23-25 13-33 12z"/>
+<path fill="#B5D6E2" opacity=".54" d="M815 279l57 33 98-120-44 70-33-24-27 54-25-10z"/>
+<path fill="#123451" opacity=".77" d="M640 455L820 337l82 50 104-130 74 33 94-68 82 62 74-23 125 99 145-62V624H640z"/>
+<path fill="url(#midMount)" opacity=".78" d="M720 434l125-96 55 45 100-123 63 31 97-73 75 69 48-28 121 100 78-22 118 87V650H720z"/>
+<path fill="#B9D6E1" opacity=".51" d="M999 260l62 31 97-73 75 69-44-16-29-29-18 13-35 4-38 47-42-23-31 8z"/>
+<path fill="#DDEEF2" opacity=".4" d="M848 338l53 45 99-123-54 106-26-20-27 32z"/>
+<!-- layered pine forest and distant haze -->
+<path fill="#163D58" opacity=".9" d="M0 558Q260 516 450 521T830 495Q1050 445 1270 472T1600 452V760H0z"/>
+<path fill="url(#mist)" d="M0 400h1600v245H0z" filter="url(#blur)"/>
+<g opacity=".65">
+<use href="#fir" transform="translate(812 538) scale(1.04)"/><use href="#fir" transform="translate(857 536) scale(.68)"/><use href="#fir" transform="translate(916 517) scale(1.17)"/>
+<use href="#fir" transform="translate(1010 505) scale(.76)"/><use href="#fir" transform="translate(1070 516) scale(1.1)"/>
+<use href="#fir" transform="translate(1501 492) scale(.72)"/><use href="#fir" transform="translate(1544 501) scale(1.04)"/><use href="#fir" transform="translate(1595 511) scale(1.35)"/>
+</g>
+<!-- foreground snow slope -->
+<path fill="url(#slope)" d="M0 724Q210 713 429 666T836 603Q1095 549 1318 472T1600 388V760H0z"/>
+<path fill="url(#snow)" opacity=".57" d="M668 639Q914 597 1170 527T1600 388v37q-229 48-434 115T668 639z"/>
+<path fill="#183F5F" opacity=".2" d="M0 748Q334 719 646 669T1270 546Q1486 501 1600 488v272H0z"/>
+<!-- fine wind sculpted lines -->
+<g fill="none" stroke="#B3DFE7" stroke-opacity=".30" stroke-width="2">
+<path d="M18 734Q374 722 680 663T1270 530"/>
+<path d="M460 725Q822 675 1044 614T1569 460"/>
+<path d="M897 745Q1097 680 1274 644T1559 605"/>
+</g>
+<!-- subtle tracks curling across the slope -->
+<path d="M1045 757Q1272 665 1296 623T1370 575Q1414 553 1404 535" fill="none" stroke="#D7EFF1" stroke-width="3.7" stroke-opacity=".68"/>
+<path d="M1061 760Q1287 669 1310 633T1384 585Q1425 564 1419 545" fill="none" stroke="#B8DDE8" stroke-width="2.8" stroke-opacity=".51"/>
+<!-- skier at right third, travelling downhill -->
+<g transform="translate(1424 516) rotate(13)" stroke-linecap="round" stroke-linejoin="round">
+<path d="M-66 53Q-8 52 69 49M-54 60Q12 58 65 57" stroke="#B8DDE9" stroke-opacity=".95" stroke-width="3" fill="none"/>
+<path d="M-6 24l-25 23 13 2 25-22m0 0 27 17 14-1-33-23" stroke="#163C58" stroke-width="8" fill="none"/>
+<path d="M-1-26l14 10 9 27-16 17-14-10 6-27-11-8z" fill="#1D5674" stroke="#0E314F" stroke-width="3"/>
+<path d="M4-19l-23 17-29 9M15-12l25 16 16 19" stroke="#173B55" stroke-width="7" fill="none"/>
+<path d="M-48 2l-12 55M55 19l27 44" stroke="#C4E2EB" stroke-opacity=".73" stroke-width="2.5" fill="none"/>
+<circle cx="-5" cy="-38" r="10" fill="#13324D"/>
+<path d="M-17-42q11-14 24 1" fill="none" stroke="#9FC9DA" stroke-width="3"/>
+<path d="M-10-38h12" stroke="#AED9DF" stroke-width="3"/>
+</g>
+<g opacity=".83"><use href="#fir" transform="translate(1532 456) scale(.8)"/><use href="#fir" transform="translate(1576 460) scale(1.17)"/><use href="#fir" transform="translate(1490 481) scale(.55)"/></g>
+<!-- open sky snow -->
+<g opacity=".46"><use href="#flake" transform="translate(1103 123) scale(1.1)"/><use href="#flake" transform="translate(1481 142) scale(.85)"/><use href="#flake" transform="translate(1376 336) scale(1.15)"/><use href="#flake" transform="translate(873 92) scale(.65)"/><use href="#flake" transform="translate(773 575) scale(.72)"/><use href="#flake" transform="translate(492 648) scale(.92)"/></g>
+<g fill="#E4F5F6" opacity=".37"><circle cx="971" cy="72" r="2"/><circle cx="1257" cy="81" r="1.5"/><circle cx="1319" cy="135" r="1"/><circle cx="1510" cy="252" r="1.6"/><circle cx="1087" cy="380" r="1.5"/><circle cx="1205" cy="312" r="1"/><circle cx="874" cy="245" r="1.6"/><circle cx="1494" cy="71" r="1.5"/><circle cx="1175" cy="176" r="1.5"/><circle cx="1385" cy="80" r="1.5"/><circle cx="1460" cy="356" r="1.6"/><circle cx="1134" cy="425" r="1.2"/><circle cx="844" cy="622" r="1.3"/><circle cx="970" cy="691" r="1"/><circle cx="1050" cy="566" r="1.5"/><circle cx="559" cy="608" r="1.6"/><circle cx="168" cy="515" r="1"/></g>
+</svg>
