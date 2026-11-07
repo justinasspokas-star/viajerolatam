@@ -2078,19 +2078,9 @@ nav .logo img{
   color:#287963;
   line-height:1.35;
 }
-#sb-local-price-display{
-  display:block;
-  margin-top:4px;
-  font-size:12px;
-  font-weight:800;
-  color:#0B1F3A;
-  line-height:1.35;
-}
-#sb-local-price-display.is-hidden{display:none!important}
 @media(max-width:560px){
   #sb-duracion-display{padding:8px 9px!important}
   #sb-duracion-main{font-size:11.5px}
-  #sb-local-price-display{font-size:11px}
 }
 </style>
 </link><meta content="Icono de ViajeroLatam con mochila viajera" property="og:image:alt"/>  <link rel="stylesheet" href="/assets/vl-whatsapp.css">
@@ -2402,7 +2392,6 @@ section.how::before{
 }
 </style>
 <link rel="stylesheet" href="/assets/vl-place-autocomplete.css?v=20261030-select-audit">
-<script src="/assets/vl-exchange-rates.js?v=20261107"></script>
 </head>
 <body>
 <!-- HOME COMPARADOR PRINCIPAL · 2026-09-07 -->
@@ -2675,8 +2664,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
 <input type="hidden" id="vl-ages-param" name="edades" value="">
 <input id="sb-dias" name="dias" type="hidden" value="15"/>
 <div id="sb-duracion-display">
-<div id="sb-duracion-main">📅 <span id="sb-duracion-text">15 días · Calculando precio...</span></div>
-<div id="sb-local-price-display">💱 <span id="sb-local-price-text">Conversión a moneda local...</span></div>
+<div id="sb-duracion-main">📅 Duración total: <span id="sb-duracion-text">15 días</span></div>
 </div>
 <button class="sb-btn vl-submit" type="submit">
 <svg fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
@@ -3031,143 +3019,15 @@ document.addEventListener('click', function(e){
     var display=document.getElementById('sb-duracion-display');
     var text=document.getElementById('sb-duracion-text');
     var diasInput=document.getElementById('sb-dias');
-    if(!ida||!vuelta||!ida.value||!vuelta.value) return;
+    if(!ida||!vuelta||!ida.value||!vuelta.value||!display||!text||!diasInput) return;
 
     var d1=new Date(ida.value+'T00:00:00');
     var d2=new Date(vuelta.value+'T00:00:00');
     if(d2<=d1){ d2=new Date(d1); d2.setDate(d2.getDate()+1); vuelta.value=iso(d2); }
     var days=Math.max(1,Math.round((d2-d1)/86400000));
     diasInput.value=String(days);
+    text.textContent=days+' días';
     display.style.display='block';
-
-    var origin=document.getElementById('sb-origen').value;
-    var destination=document.getElementById('sb-destino').value;
-    var people=parseInt(document.getElementById('sb-personas').value,10)||1;
-    var range=dailyRange(destination);
-    var min=range[0]*days*people;
-    var max=range[1]*days*people;
-    var localDisplay=document.getElementById('sb-local-price-display');
-    var localText=document.getElementById('sb-local-price-text');
-    var normalizedOrigin=normalizeOrigin(origin);
-    var normalizedDestination=normalizeOrigin(destination);
-    var originInfo=ORIGIN_INFO[normalizedOrigin] || {label:normalizedOrigin.toUpperCase(),flag:'🌍',currency:CURRENCY_BY_ORIGIN[normalizedOrigin]||'EUR'};
-    var destinationInfo=ORIGIN_INFO[normalizedDestination] || {label:normalizedDestination.toUpperCase(),flag:'🌍',currency:CURRENCY_BY_ORIGIN[normalizedDestination]||'EUR'};
-    // Mostrar el país elegido y su bandera, no «Todo el mundo» o «España»
-    // cuando el destino concreto es Colombia, Francia, Japón, etc.
-    var specificDestination=document.getElementById('vl-pais-destino');
-    var code=specificDestination&&specificDestination.value;
-    var country=code&&window.VLPlaceSearch&&window.VLPlaceSearch.countries[code];
-    if(country){
-      var exactCurrency=(ORIGIN_INFO[code]&&ORIGIN_INFO[code].currency)||destinationInfo.currency;
-      destinationInfo={label:country.label,flag:country.flag,currency:exactCurrency};
-    } else if(destination==='espana-schengen'){
-      // «Zona Schengen» sin país concreto no equivale automáticamente a España.
-      destinationInfo={label:'Zona Schengen',flag:'🌐',currency:'EUR'};
-    }
-    var originCurrency=originInfo.currency || 'EUR';
-    var destinationCurrency=destinationInfo.currency || 'EUR';
-    var fx=window.VLExchangeRates;
-    var originRate=fx ? fx.rate(originCurrency) : (originCurrency==="EUR" ? 1 : null);
-    var destinationRate=fx ? fx.rate(destinationCurrency) : (destinationCurrency==="EUR" ? 1 : null);
-
-    // Los nuevos ámbitos amplios no deben mostrar precios diarios genéricos como si
-    // fueran cotizaciones válidas para todos los países de su región.
-    // Las tarifas Schengen→Schengen dependen de países específicos y la póliza
-    // elegida: evitar el estimador genérico LATAM en el encabezado.
-    var schengenOrigin=new Set('at be bg hr cz dk ee fi fr de gr hu is it lv li lt lu mt nl no pl pt ro sk si es se ch'.split(' '));
-    if(schengenOrigin.has(origin==='espana-schengen'?'es':origin) && destination==='espana-schengen'){
-      text.textContent=days+' días'+(people>1?' · '+people+' viajeros':'')+' · Consulta precios para el país Schengen elegido.';
-      if(localDisplay && localText){
-        localText.textContent='Las referencias de IATI para rutas entre países Schengen se mostrarán en euros (€). Confirma el precio final y cobertura con IATI.';
-        localDisplay.classList.remove('is-hidden');
-      }
-      return;
-    }
-    // Estados Unidos → un país Schengen concreto: dos referencias específicas.
-    // No aplicar estas cifras a Schengen → Estados Unidos ni a otros países.
-    if(normalizedOrigin==='us' && country && schengenOrigin.has(code) && destination==='espana-schengen'){
-      var usSchengenDays=Math.max(1,days);
-      var intermundialUnit=usSchengenDays===30?42.41:
-        Math.round((42.41*usSchengenDays/30+Number.EPSILON)*100)/100;
-      var iatiUsSchengenUnit=usSchengenDays===30?85.02:
-        Math.round((85.02*usSchengenDays/30+Number.EPSILON)*100)/100;
-      var intermundialTotal=Math.round((intermundialUnit*people+Number.EPSILON)*100)/100;
-      var iatiUsSchengenTotal=Math.round((iatiUsSchengenUnit*people+Number.EPSILON)*100)/100;
-      text.textContent=days+' días'+(people>1?' · '+people+' viajeros':'')+
-        ' · InterMundial: ≈ '+formatCurrency(intermundialTotal,'EUR')+
-        ' · IATI: ≈ '+formatCurrency(iatiUsSchengenTotal,'EUR')+
-        ' (referencias orientativas)';
-      if(localDisplay && localText){
-        localText.textContent='Desde Estados Unidos hacia '+country.label+': InterMundial 42,41 € por 30 días (≈ 1,41 €/día) e IATI 85,02 € por 30 días (≈ 2,83 €/día), por persona. Otras duraciones son estimaciones proporcionales. Confirma elegibilidad, cobertura Schengen y precio final con las aseguradoras.';
-        localDisplay.classList.remove('is-hidden');
-      }
-      return;
-    }
-    // Destino latinoamericano concreto desde cualquier país: resultados de
-    // IATI e InterMundial con sus referencias propias, no estimadores genéricos.
-    if(country && LATAM_CODES.has(code) && normalizedOrigin!==code){
-      // InterMundial Schengen → LATAM: 83,96 € / 30 días y persona.
-      // Para otros orígenes mantener 86,90 € / 15 días y 156,66 € / 30 días.
-      var worldDays=Math.max(1,days);
-      var goWorldSchengenOrigin=schengenOrigin.has(origin==='espana-schengen'?'es':origin);
-      var goWorldPerPerson=goWorldSchengenOrigin
-        ? (worldDays===30?83.96:83.96*worldDays/30)
-        : worldDays===15?86.90:worldDays===30?156.66:
-          worldDays<15?86.90*worldDays/15:
-          worldDays<30?86.90+(156.66-86.90)*(worldDays-15)/15:
-          156.66*worldDays/30;
-      // Redondear primero el importe de cada viajero, igual que en resultados.
-      var goWorldUnit=Math.round((goWorldPerPerson+Number.EPSILON)*100)/100;
-      var totalGoWorld=Math.round((goWorldUnit*people+Number.EPSILON)*100)/100;
-      // Solo salidas Schengen → LATAM tienen la referencia especial de IATI.
-      // El resto de países mantiene 65,02 € por 30 días.
-      var iatiLatam30=schengenOrigin.has(origin==='espana-schengen'?'es':origin)?105.93:65.02;
-      var iatiUnit=worldDays===30?iatiLatam30:Math.round((iatiLatam30*worldDays/30+Number.EPSILON)*100)/100;
-      var totalIati=Math.round((iatiUnit*people+Number.EPSILON)*100)/100;
-      text.textContent=days+' días'+(people>1?' · '+people+' viajeros':'')+
-        ' · IATI: ≈ '+formatCurrency(totalIati,'EUR')+
-        ' · InterMundial Go | World: ≈ '+formatCurrency(totalGoWorld,'EUR')+
-        ' (referencias orientativas)';
-      if(localDisplay && localText){
-        localText.textContent='IATI: '+(iatiLatam30===105.93?'105,93 € por 30 días desde países Schengen (≈ 3,53 €/día)':'65,02 € por 30 días desde países fuera de Schengen (≈ 2,17 €/día)')+' y persona. InterMundial Go | World: '+(goWorldSchengenOrigin?'83,96 € por 30 días desde Schengen (≈ 2,80 €/día)':'86,90 € por 15 días o 156,66 € por 30 días desde fuera de Schengen')+' y persona. Las demás duraciones son estimaciones; para '+country.label+', comprueba modalidades, coberturas, residencia admitida y precios finales con cada compañía.';
-        localDisplay.classList.remove('is-hidden');
-      }
-      return;
-    }
-    var broadRoute=['europa-no-schengen','europa','asia','mundial'].indexOf(destination)!==-1;
-    if(broadRoute){
-      text.textContent=days+' días'+(people>1?' · '+people+' viajeros':'')+' · Consulta las opciones disponibles para '+destinationInfo.label+'.';
-      if(localDisplay && localText){
-        localText.textContent=country
-          ? 'Los precios para '+destinationInfo.label+' varían según el plan, las fechas y la residencia. Confirma las condiciones en la aseguradora.'
-          : 'Los precios para '+destinationInfo.label+' varían según el país exacto, el plan y la residencia. Consulta las condiciones finales en el proveedor.';
-        localDisplay.classList.remove('is-hidden');
-      }
-      return;
-    }
-    var summary=days+' días'+(people>1?' · '+people+' viajeros':'');
-    if(originRate===null){
-      text.textContent=summary+' · Consulta importes en euros; cambio local no disponible.';
-    } else {
-      text.textContent=summary+' · Aprox. desde '+originInfo.flag+': '+formatCurrency(min*originRate,originCurrency)+'–'+formatCurrency(max*originRate,originCurrency)+' ('+originCurrency+')';
-    }
-    if(localDisplay && localText){
-      if(destinationRate===null){
-        localText.textContent='Referencia para '+destinationInfo.flag+' '+destinationInfo.label+': consulta los importes en euros; no hay tasa local verificada.';
-      } else {
-        var fxDate=fx && fx.date(destinationCurrency);
-        localText.textContent='Referencia para '+destinationInfo.flag+' '+destinationInfo.label+': aprox. '+formatCurrency(min*destinationRate,destinationCurrency)+'–'+formatCurrency(max*destinationRate,destinationCurrency)+' (importe orientativo'+(fxDate?', cambio de '+fxDate:'')+'; precio final en la aseguradora)';
-      }
-      localDisplay.classList.remove('is-hidden');
-    }
-  }
-
-  function loadRates(){
-    if(window.VLExchangeRates){
-      window.VLExchangeRates.load().then(update);
-    }else{
-      update();
-    }
   }
 
   document.addEventListener('DOMContentLoaded',function(){
@@ -3228,7 +3088,6 @@ document.addEventListener('click', function(e){
       }
     });
     update();
-    loadRates();
   });
 })();
 </script>
