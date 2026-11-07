@@ -75,95 +75,202 @@ function mappedValue(select,kind,item){
  return allowed.has(item.group)?item.group:null;
 }
 const instances=[];
+const ORIGIN_FAVORITES=['co','ve','mx','ar','pe','ec','uy','es','br','cl'];
+const DESTINATION_FAVORITES=['es','us','gb','fr','it','pt','ca','espana-schengen','europa','mx','co'];
 function attach(select,kind){
  if(!select||select.dataset.placeEnhanced)return;
  const isResults=select.id.startsWith('ep-');
  const countryField=kind==='destination'?document.getElementById(isResults?'ep-pais-destino':'vl-pais-destino'):null;
- const box=document.createElement('div');box.className='vl-place-box '+(kind==='destination'?'vl-place-right':'vl-place-left');
- const input=document.createElement('input');input.type='text';input.id=select.id+'-search';input.className='vl-place-input';
- input.autocomplete='off';input.spellcheck=false;input.placeholder=kind==='origin'?'Escribe tu país':'¿A dónde viajas?';
- input.setAttribute('role','combobox');input.setAttribute('aria-autocomplete','list');input.setAttribute('aria-expanded','false');
- const menu=document.createElement('div');menu.className='vl-place-menu';menu.id=select.id+'-choices';menu.setAttribute('role','listbox');
+ const box=document.createElement('div');
+ box.className='vl-place-box '+(kind==='destination'?'vl-place-right':'vl-place-left');
+ const input=document.createElement('input');
+ input.type='text';input.id=select.id+'-search';input.className='vl-place-input';
+ input.autocomplete='off';input.spellcheck=false;
+ input.placeholder=kind==='origin'?'Escribe o elige país':'Escribe o elige destino';
+ input.setAttribute('role','combobox');
+ input.setAttribute('aria-autocomplete','list');
+ input.setAttribute('aria-expanded','false');
+ const menu=document.createElement('div');
+ menu.className='vl-place-menu';menu.id=select.id+'-choices';
+ menu.setAttribute('role','listbox');
+ menu.setAttribute('aria-label',kind==='origin'?'Seleccionar país de salida':'Seleccionar destino');
  input.setAttribute('aria-controls',menu.id);
- const error=document.createElement('p');error.className='vl-place-error';error.hidden=true;error.setAttribute('role','status');
- select.parentNode.insertBefore(box,select);box.append(input,menu,error);
+ const toggle=document.createElement('button');
+ toggle.type='button';toggle.className='vl-place-toggle';
+ toggle.setAttribute('aria-label',kind==='origin'?'Elegir país de origen':'Elegir destino');
+ toggle.setAttribute('aria-controls',menu.id);
+ toggle.setAttribute('aria-expanded','false');
+ const error=document.createElement('p');
+ error.className='vl-place-error';error.hidden=true;error.setAttribute('role','status');
+ select.parentNode.insertBefore(box,select);
+ box.append(input,toggle,menu,error);
  select.classList.add('vl-place-original');select.dataset.placeEnhanced='1';select.tabIndex=-1;
- // Validate the visible text input; native validation cannot focus the hidden select.
- select.required=false;input.required=true;
+ // Only the visible control participates in native validation.
+ select.required=false;input.required=select.id.startsWith('sb-');
  const label=document.querySelector('label[for="'+select.id+'"]');
- if(label)label.htmlFor=input.id;else input.setAttribute('aria-label',kind==='origin'?'Voy desde':'Destino');
+ if(label)label.htmlFor=input.id;
+ else input.setAttribute('aria-label',kind==='origin'?'Voy desde':'Destino');
  let chosen=null,found=[],active=-1;
- function setError(t){error.textContent=t;error.hidden=!t;input.setAttribute('aria-invalid',t?'true':'false');}
- function close(){menu.replaceChildren();menu.classList.remove('open');input.setAttribute('aria-expanded','false');input.removeAttribute('aria-activedescendant');found=[];active=-1;}
+ function setError(message){
+  error.textContent=message;error.hidden=!message;input.setAttribute('aria-invalid',message?'true':'false');
+ }
+ function close(){
+  menu.classList.remove('open');box.classList.remove('is-open');
+  input.setAttribute('aria-expanded','false');toggle.setAttribute('aria-expanded','false');
+  input.removeAttribute('aria-activedescendant');found=[];active=-1;
+  menu.replaceChildren();
+ }
+ function allowedChoices(){
+  const sourceSelect=document.getElementById(isResults?'ep-origen':'sb-origen');
+  const source=sourceSelect?(sourceSelect.value==='espana-schengen'?'es':sourceSelect.value):'';
+  return options(select,kind).filter(item=>
+   Boolean(mappedValue(select,kind,item))&&
+   (kind!=='destination'||item.region||item.code!==source)
+  );
+ }
  function pick(item){
   const value=mappedValue(select,kind,item);
   if(!value){setError('Esta ruta aún no está disponible.');return false;}
   if(kind==='destination'&&!item.region){
-    const originSelect=document.getElementById(isResults?'ep-origen':'sb-origen');
-    const originCode=originSelect&&originSelect.value==='espana-schengen'?'es':originSelect&&originSelect.value;
-    if(originCode===item.code){
-      setError('Elige un país de destino distinto del país desde el que viajas.');
-      return false;
-    }
+   const sourceSelect=document.getElementById(isResults?'ep-origen':'sb-origen');
+   const source=sourceSelect&&sourceSelect.value==='espana-schengen'?'es':sourceSelect&&sourceSelect.value;
+   if(source===item.code){
+    setError('El origen y el destino deben ser diferentes.');return false;
+   }
   }
   chosen=item;input.value=item.label;select.value=value;
   if(countryField)countryField.value=item.region?'':item.code;
-  setError('');close();select.dispatchEvent(new Event('change',{bubbles:true}));return true;
+  setError('');close();
+  select.dispatchEvent(new Event('change',{bubbles:true}));
+  return true;
  }
  function matches(){
-  const q=norm(input.value);const raw=options(select,kind).map(item=>({item,points:score(item,q)})).filter(x=>x.points>=0);
-  raw.sort((a,b)=>b.points-a.points||a.item.label.localeCompare(b.item.label,'es'));
-  return raw.slice(0,7);
+  const q=norm(input.value);
+  if(!q)return [];
+  const ranked=allowedChoices().map(item=>({item,points:score(item,q)})).filter(x=>x.points>=0);
+  ranked.sort((a,b)=>b.points-a.points||a.item.label.localeCompare(b.item.label,'es'));
+  return ranked.slice(0,8).map(x=>x.item);
  }
  function autoResolve(){
   if(chosen&&norm(chosen.label)===norm(input.value))return true;
-  const q=norm(input.value),ranked=matches();
-  const exact=ranked.find(x=>x.item.aliases.includes(q));
-  if(exact)return pick(exact.item);
-  if(q.length>=4&&ranked.length&&ranked[0].points>=30&&(!ranked[1]||ranked[0].points>ranked[1].points+3))return pick(ranked[0].item);
-  setError('Selecciona un país o una sugerencia de la lista.');return false;
- }
- function highlight(n){active=Math.min(Math.max(0,n),found.length-1);Array.from(menu.children).forEach((el,i)=>{el.classList.toggle('active',i===active);el.setAttribute('aria-selected',String(i===active));});if(found.length)input.setAttribute('aria-activedescendant',select.id+'-choice-'+active);}
- function open(){
-  // La lista solo aparece al escribir; evita una larga lista de regiones y países sin contexto.
-  if(!norm(input.value)){close();return;}
-  found=matches().map(x=>x.item);menu.replaceChildren();
-  found.forEach((item,i)=>{
-   const el=document.createElement('button');el.type='button';el.id=select.id+'-choice-'+i;el.className='vl-place-choice';el.setAttribute('role','option');el.setAttribute('aria-selected','false');
-   const name=document.createElement('span');name.textContent=item.label;el.appendChild(name);
-   if(!item.region&&kind==='destination'){
-    // No mostrar «Mundial» junto a países concretos (Colombia, Perú, etc.).
-    const subtitle=item.group==='espana-schengen'?'Schengen':item.group==='europa-no-schengen'?'Fuera de Schengen':item.group==='eeuu-canada'?'Norteamérica':item.group==='asia'?'Asia':'';
-    if(subtitle){const detail=document.createElement('small');detail.textContent=subtitle;el.appendChild(detail);}
-   }
-   el.addEventListener('pointerdown',e=>e.preventDefault());el.addEventListener('click',()=>{pick(item);input.focus();});menu.appendChild(el);
-  });
-  if(!found.length){
-   const hint=document.createElement('div');hint.className='vl-place-no-results';hint.setAttribute('role','status');
-   hint.textContent=kind==='origin'?'No hay rutas disponibles desde ese país por ahora.':'No encontramos ese destino. Comprueba el nombre.';
-   menu.appendChild(hint);
+  const q=norm(input.value);
+  if(!q){setError('Elige un país de la lista o escribe su nombre.');return false;}
+  const ranked=matches();
+  const exact=ranked.find(x=>x.aliases.includes(q));
+  if(exact)return pick(exact);
+  if(q.length>=4&&ranked.length){
+   const first=ranked[0],second=ranked[1];
+   if(score(first,q)>=30&&(!second||score(first,q)>score(second,q)+3))return pick(first);
   }
-  active=-1;menu.classList.add('open');input.setAttribute('aria-expanded','true');
+  setError('Elige un país o una sugerencia de la lista.');return false;
  }
- input.addEventListener('focus',()=>{input.select();});
- input.addEventListener('input',()=>{chosen=null;setError('');open();});
- input.addEventListener('keydown',e=>{
-  if(e.key==='ArrowDown'){e.preventDefault();if(!found.length)open();if(found.length)highlight(active+1);}
-  if(e.key==='ArrowUp'){e.preventDefault();if(found.length)highlight(active<=0?0:active-1);}
-  if(e.key==='Enter'&&found.length){e.preventDefault();pick(found[active>=0?active:0]);}
-  if(e.key==='Escape')close();
-  if(e.key==='Tab'&&found.length&&active>=0)pick(found[active]);
+ function highlight(index){
+  active=Math.max(0,Math.min(index,found.length-1));
+  const buttons=menu.querySelectorAll('.vl-place-choice');
+  buttons.forEach((el,i)=>{el.classList.toggle('active',i===active);el.setAttribute('aria-selected',String(i===active));});
+  if(found[active]){
+   const id=select.id+'-choice-'+active;
+   input.setAttribute('aria-activedescendant',id);
+   buttons[active].scrollIntoView({block:'nearest'});
+  }
+ }
+ function addHeading(text){
+  const heading=document.createElement('div');
+  heading.className='vl-place-menu-heading';heading.setAttribute('role','presentation');heading.textContent=text;
+  menu.appendChild(heading);
+ }
+ function addChoice(item){
+  const index=found.length;found.push(item);
+  const el=document.createElement('button');
+  el.type='button';el.tabIndex=-1;el.className='vl-place-choice';
+  el.id=select.id+'-choice-'+index;
+  el.setAttribute('role','option');el.setAttribute('aria-selected','false');
+  const name=document.createElement('span');name.textContent=item.label;name.className='vl-place-choice-name';el.appendChild(name);
+  if(!item.region&&kind==='destination'){
+   const subtitle=item.group==='espana-schengen'?'Schengen':item.group==='europa-no-schengen'?'Fuera de Schengen':item.group==='eeuu-canada'?'Norteamérica':item.group==='asia'?'Asia':'';
+   if(subtitle){const detail=document.createElement('small');detail.textContent=subtitle;el.appendChild(detail);}
+  }
+  el.addEventListener('pointerdown',event=>event.preventDefault());
+  el.addEventListener('click',()=>{pick(item);});
+  menu.appendChild(el);
+ }
+ function open(showAll){
+  menu.replaceChildren();found=[];active=-1;input.removeAttribute('aria-activedescendant');
+  const searching=!showAll&&Boolean(norm(input.value));
+  if(searching){
+   const results=matches();
+   if(results.length){results.forEach(addChoice);}
+   else{
+    const empty=document.createElement('div');empty.className='vl-place-no-results';empty.setAttribute('role','status');
+    empty.textContent=kind==='origin'?'No encontramos ese país. Prueba otro nombre.':'No encontramos ese destino. Revisa el nombre.';
+    menu.appendChild(empty);
+   }
+  }else{
+   // A list appears even before typing: frequent options first, all available choices below.
+   const available=allowedChoices();
+   const preferred=kind==='origin'?ORIGIN_FAVORITES:DESTINATION_FAVORITES;
+   const favorites=preferred.map(code=>available.find(item=>item.code===code)).filter(Boolean);
+   const common=new Set(favorites.map(item=>item.code));
+   const rest=available.filter(item=>!common.has(item.code)).sort((a,b)=>a.label.localeCompare(b.label,'es'));
+   if(favorites.length){
+    addHeading(kind==='origin'?'Países frecuentes':'Destinos frecuentes');
+    favorites.forEach(addChoice);
+   }
+   if(rest.length){
+    addHeading(kind==='origin'?'Todos los países':'Todos los destinos');
+    rest.forEach(addChoice);
+   }
+   if(!available.length){
+    const empty=document.createElement('div');empty.className='vl-place-no-results';
+    empty.textContent='No hay destinos disponibles para esta ruta.';menu.appendChild(empty);
+   }
+  }
+  menu.scrollTop=0;
+  menu.classList.add('open');box.classList.add('is-open');
+  input.setAttribute('aria-expanded','true');toggle.setAttribute('aria-expanded','true');
+ }
+ input.addEventListener('focus',()=>{input.select();open(true);});
+ input.addEventListener('click',()=>{if(!menu.classList.contains('open'))open(true);});
+ input.addEventListener('input',()=>{chosen=null;setError('');open(false);});
+ input.addEventListener('keydown',event=>{
+  if(event.key==='ArrowDown'){
+   event.preventDefault();if(!menu.classList.contains('open'))open(true);
+   if(found.length)highlight(active+1);
+  }else if(event.key==='ArrowUp'){
+   event.preventDefault();if(!menu.classList.contains('open'))open(true);
+   if(found.length)highlight(active<=0?found.length-1:active-1);
+  }else if(event.key==='Enter'&&menu.classList.contains('open')&&found.length){
+   event.preventDefault();pick(found[active>=0?active:0]);
+  }else if(event.key==='Escape'&&menu.classList.contains('open')){
+   event.preventDefault();event.stopPropagation();close();
+  }else if(event.key==='Tab'&&menu.classList.contains('open')){
+   if(active>=0&&found[active])pick(found[active]);else close();
+  }
  });
- input.addEventListener('blur',()=>setTimeout(()=>{if(!box.contains(document.activeElement)){if(!chosen&&input.value.trim())autoResolve();close();}},100));
+ toggle.addEventListener('pointerdown',event=>event.preventDefault());
+ toggle.addEventListener('click',()=>{
+  if(menu.classList.contains('open')){close();return;}
+  if(document.activeElement!==input)input.focus();
+  open(true);
+ });
+ input.addEventListener('blur',()=>setTimeout(()=>{
+  if(!box.contains(document.activeElement)){
+   if(!chosen&&input.value.trim())autoResolve();
+   close();
+  }
+ },120));
+ document.addEventListener('pointerdown',event=>{
+  if(menu.classList.contains('open')&&!box.contains(event.target))close();
+ });
  function sync(){
   let item=null;const val=select.value;
   if(countryField&&countryField.value)item=countries.find(x=>x.code===countryField.value&&mappedValue(select,kind,x)===val);
   if(!item){
-   // En origen, "espana-schengen" significa España; en destino es una región.
    if(kind==='origin')item=countries.find(x=>(x.code==='es'?'espana-schengen':x.code)===val);
    if(!item)item=regions.find(x=>x.code===val)||countries.find(x=>x.code===val);
   }
-  chosen=item||null;input.value=val?(item?item.label:(select.options[select.selectedIndex]?.textContent||'')):'';setError('');close();
+  chosen=item||null;input.value=val?(item?item.label:(select.options[select.selectedIndex]?.textContent||'')):'';
+  setError('');close();
  }
  sync();instances.push({select,input,autoResolve,sync,setError});
 }
