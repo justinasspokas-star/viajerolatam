@@ -1,37 +1,89 @@
-/* ViajeroLatam: autocompletar países y destinos, con fallback al select original. */
+/* ViajeroLatam — buscador híbrido: escribir o elegir país, web y móvil. */
 .vl-place-original{display:none!important}
 .vl-place-box{position:relative;width:100%;min-width:0}
 .vl-place-input{
- width:100%!important;max-width:100%;min-width:0;min-height:45px;
- padding:10px 34px 10px 12px;border:1.5px solid #DCE7F0;border-radius:11px;
- background:#fff;color:#0B1F3A;outline:none;font:600 14px/1.45 'Plus Jakarta Sans',Arial,sans-serif;
- box-sizing:border-box;appearance:none;
+ width:100%!important;max-width:100%;min-width:0;min-height:48px;
+ padding:11px 49px 11px 13px;border:1.5px solid #DCE7F0;border-radius:12px;
+ background:#fff;color:#0B1F3A;outline:none;
+ font:600 14px/1.45 'Plus Jakarta Sans',Arial,sans-serif;
+ box-sizing:border-box;appearance:none;-webkit-appearance:none;cursor:text;
 }
-.vl-place-box::after{content:'⌕';position:absolute;top:7px;right:11px;color:#60829A;font-size:21px;pointer-events:none}
-.vl-place-input:focus{border-color:#00A68C;box-shadow:0 0 0 3px rgba(0,196,161,.12)}
+.vl-place-input::placeholder{color:#738BA0;font-weight:500;opacity:1}
+.vl-place-input:focus,.vl-place-box.is-open .vl-place-input{
+ border-color:#00A68C;box-shadow:0 0 0 3px rgba(0,196,161,.13)
+}
 .vl-place-input[aria-invalid=true]{border-color:#BB4C43}
-.vl-place-input::placeholder{color:#8596AA;font-weight:500}
+.vl-place-toggle{
+ position:absolute;right:2px;top:2px;width:44px;height:44px;
+ border:0;border-left:1px solid #E9EFF4;border-radius:0 10px 10px 0;
+ background:transparent;color:#54758B;cursor:pointer;
+ display:flex;align-items:center;justify-content:center;
+}
+.vl-place-toggle::before{
+ content:'';width:8px;height:8px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;
+ transform:translateY(-2px) rotate(45deg);transition:transform .15s ease;
+}
+.vl-place-box.is-open .vl-place-toggle::before{transform:translateY(2px) rotate(225deg)}
+.vl-place-toggle:hover{background:#F0FAF7;color:#087A67}
+.vl-place-toggle:focus-visible{outline:2px solid #00A68C;outline-offset:1px}
 .vl-place-menu{
- display:none;position:absolute;top:calc(100% + 5px);left:0;width:min(330px,calc(100vw - 26px));
- background:#fff;border:1px solid #DDE8F2;border-radius:13px;max-height:290px;overflow-y:auto;
- box-shadow:0 16px 38px rgba(11,31,58,.16);z-index:9999;-webkit-overflow-scrolling:touch;
+ display:none;position:absolute;top:calc(100% + 6px);left:0;
+ width:max(100%,280px);max-width:min(420px,calc(100vw - 24px));
+ max-height:min(340px,48vh);overflow-y:auto;overscroll-behavior:contain;
+ background:#fff;border:1px solid #DDE8F2;border-radius:14px;
+ box-shadow:0 16px 42px rgba(11,31,58,.19);z-index:9999;
+ -webkit-overflow-scrolling:touch;box-sizing:border-box;
 }
 .vl-place-right .vl-place-menu{left:auto;right:0}
 .vl-place-menu.open{display:block}
+.vl-place-menu-heading{
+ position:sticky;top:0;z-index:1;padding:10px 13px 7px;
+ background:#F5F9FB;color:#5F778B;font:800 10px/1.4 'Plus Jakarta Sans',Arial,sans-serif;
+ letter-spacing:.07em;text-transform:uppercase;border-bottom:1px solid #E8F0F5;
+}
 .vl-place-choice{
- display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:43px;
- text-align:left;padding:10px 12px;cursor:pointer;background:#fff;color:#0B1F3A;
- border:0;border-bottom:1px solid #F0F3F7;font:600 13px/1.3 'Plus Jakarta Sans',Arial,sans-serif;
+ display:flex;align-items:center;justify-content:space-between;gap:9px;
+ width:100%;min-height:46px;padding:11px 13px;text-align:left;cursor:pointer;
+ border:0;border-bottom:1px solid #EFF3F7;background:#fff;color:#0B1F3A;
+ font:600 13px/1.35 'Plus Jakarta Sans',Arial,sans-serif;
 }
-.vl-place-choice:last-child{border-bottom:0}
+.vl-place-choice-name{flex:1;min-width:0;overflow-wrap:anywhere}
 .vl-place-choice:hover,.vl-place-choice.active,.vl-place-choice:focus-visible{background:#E9F9F3;outline:none}
-.vl-place-choice small{font-weight:600;color:#53768B;font-size:11px;white-space:nowrap}
-.vl-place-error{color:#A63D3D!important;font-size:11px!important;font-weight:600!important;margin:5px 0 0!important;line-height:1.4!important}
-.vl-place-no-results{padding:12px;color:#526A7D;font-size:13px;line-height:1.4;font-weight:500}
+.vl-place-choice small{font-weight:600;color:#58788D;font-size:11px;white-space:nowrap}
+.vl-place-no-results{padding:14px;color:#526A7D;font-size:13px;line-height:1.45;font-weight:500}
+.vl-place-error{color:#A63D3D!important;font-size:12px!important;font-weight:600!important;margin:5px 0 0!important;line-height:1.4!important}
 .search-top-row,.search-top-row>.vl-field{overflow:visible!important}
+#edit-panel .vl-place-box{min-width:0}
+#edit-panel .vl-place-menu{width:100%;min-width:min(280px,100%);max-width:min(420px,calc(100vw - 32px))}
 @media(max-width:700px){
- .vl-place-input{font-size:14px!important;padding:9px 29px 9px 8px;min-height:46px}
- .vl-place-box::after{right:8px}
- .vl-place-choice{font-size:13px}
+ /* One full-width field per row avoids cramped country names on narrow phones. */
+ #vl-search-form .search-top-row{
+  grid-template-columns:minmax(0,1fr)!important;gap:8px!important;align-items:stretch!important;
+ }
+ #vl-search-form .search-top-row .vl-field{width:100%!important}
+ #vl-search-form .search-top-row .sb-label{
+  text-align:left!important;font-size:12px!important;line-height:1.4!important;margin-bottom:5px!important;
+ }
+ #vl-search-form .search-top-row .vl-swap-wrap{
+  width:100%!important;justify-content:center!important;align-items:center!important;
+  height:28px!important;padding:0!important;margin:-2px 0!important;
+ }
+ #vl-search-form .search-top-row .vl-swap-btn{
+  width:34px!important;height:34px!important;border-radius:12px!important;
+ }
+ #vl-search-form .search-top-row .vl-swap-btn svg{transform:rotate(90deg)}
+ #vl-search-form .search-top-row .vl-place-input{
+  min-height:48px!important;height:48px!important;font-size:16px!important;
+  padding:10px 52px 10px 14px!important;border-radius:12px!important;
+ }
+ .vl-place-toggle{height:44px;width:48px}
+ .vl-place-menu,.vl-place-right .vl-place-menu{
+  left:0;right:0;width:100%;max-width:100%;max-height:min(320px,42vh);
+ }
+ .vl-place-choice{min-height:48px;font-size:14px;padding:12px 14px}
+ #edit-panel .vl-place-input{font-size:16px!important}
+ #edit-panel .vl-place-menu{width:100%;max-width:100%}
 }
-@media(max-width:390px){.vl-place-input{font-size:13px!important}}
+@media(prefers-reduced-motion:reduce){
+ .vl-place-toggle::before{transition:none}
+}
