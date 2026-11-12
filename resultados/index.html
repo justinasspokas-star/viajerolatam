@@ -3078,6 +3078,16 @@ function euroFixed(v){
   return Number(v||0).toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2});
 }
 
+// Ejemplo inicial: 90 días exclusivamente para salidas LATAM hacia España, Schengen o Europa.
+// Cualquier ?dias=... o fechas de ida/vuelta seleccionadas por el viajero tienen prioridad.
+function resultDefaultDays(params){
+  const origin=String(params.get('origen')||'colombia').trim().toLowerCase();
+  const destination=String(params.get('destino')||'espana-schengen').trim().toLowerCase();
+  const latinCodes=new Set('co mx ar ve pe cl ec bo br uy py cr pa gt sv hn ni cu ht do'.split(' '));
+  const latinNames=new Set(['colombia','mexico','méxico','argentina','venezuela','peru','perú','chile','ecuador','bolivia','brasil','brazil','uruguay','paraguay','costa-rica','costa rica','panama','panamá','guatemala','el-salvador','el salvador','honduras','nicaragua','cuba','haiti','haití','republica-dominicana','república-dominicana','república dominicana']);
+  const europeanDestinations=new Set(['espana-schengen','schengen','europa','europa-no-schengen']);
+  return (latinCodes.has(origin)||latinNames.has(origin))&&europeanDestinations.has(destination) ? 90 : 15;
+}
 // Precio total orientativo = tarifa editorial diaria × días de viaje × viajeros.
 /* Los resultados usan las mismas tasas dinámicas que la portada. */
 const RESULT_ORIGIN_CURRENCY = Object.freeze({
@@ -3091,7 +3101,7 @@ const RESULT_ORIGIN_CURRENCY = Object.freeze({
 function resultTripDays(){
   const el=document.getElementById('ep-dias');
   const q=new URLSearchParams(window.location.search);
-  return Math.max(1,parseInt((el&&el.value)||q.get('dias')||'15',10)||15);
+  return Math.max(1,parseInt((el&&el.value)||q.get('dias')||String(resultDefaultDays(q)),10)||resultDefaultDays(q));
 }
 function resultTripPeople(){
   const el=document.getElementById('ep-viajeros');
@@ -4044,7 +4054,7 @@ function applyEditSearch(){
   const params = new URLSearchParams(window.location.search);
   const origen = (params.get('origen') || 'colombia').toLowerCase();
   const destinoRaw = (params.get('destino') || 'espana-schengen').toLowerCase();
-  const diasParam = parseInt(params.get('dias') || '15') || 15;
+  const diasParam = parseInt(params.get('dias') || String(resultDefaultDays(params)),10) || resultDefaultDays(params);
   const personasParam = parseInt(params.get('personas') || params.get('viajeros') || '1') || 1;
 
   var ida = params.get('ida') || params.get('salida') || '';
@@ -4167,7 +4177,7 @@ function applyEditSearch(){
   }
   function days(){
     var el=document.getElementById('ep-dias');
-    return Math.max(1,parseInt(el&&el.value||'15',10)||15);
+    return Math.max(1,parseInt(el&&el.value||String(resultDefaultDays(new URLSearchParams(location.search))),10)||resultDefaultDays(new URLSearchParams(location.search)));
   }
   function people(){
     var el=document.getElementById('ep-viajeros');
@@ -4403,7 +4413,7 @@ function applyEditSearch(){
     var countryGroup=schengenCodes.has(requestedCountry)?'espana-schengen':europeOutside.has(requestedCountry)?'europa-no-schengen':
       (requestedCountry==='us'||requestedCountry==='ca')?'eeuu-canada':asiaCodes.has(requestedCountry)?'asia':'mundial';
     if(!PLACE_META[requestedCountry] || !(countryGroup===destinationValue || requestedCountry===destinationValue || destinationValue==='europa' || destinationValue==='mundial'))requestedCountry='';
-    var requestedDays=Math.max(1,parseInt(params.get('dias')||'15',10)||15);
+    var requestedDays=Math.max(1,parseInt(params.get('dias')||String(resultDefaultDays(params)),10)||resultDefaultDays(params));
     var travelerValue=Math.max(1,parseInt(params.get('personas')||params.get('viajeros')||'1',10)||1);
     var ida=params.get('ida')||params.get('salida')||'';
     var vuelta=params.get('vuelta')||params.get('regreso')||'';
