@@ -2269,6 +2269,39 @@ nav .brand-logo img{height:36px!important;max-width:164px!important;width:auto!i
   #cards-container>.card .details-grid{grid-template-columns:minmax(0,1fr)!important}
 }
 </style>
+<style id="vl-results-intermundial-bestseller-20261112">
+/* Destacado únicamente para InterMundial, sin afectar a precios ni enlaces. */
+#cards-container>.card.vl-bestseller-card{
+  border:2px solid #69C1A3!important;
+  box-shadow:0 5px 20px rgba(55,139,111,.12)!important;
+}
+#cards-container>.card.vl-bestseller-card:hover{
+  border-color:#69C1A3!important;
+  box-shadow:0 8px 24px rgba(55,139,111,.18)!important;
+}
+#cards-container>.card.vl-bestseller-card .vl-bestseller-label{
+  box-sizing:border-box;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  width:100%;
+  padding:8px 14px;
+  background:#69C1A3;
+  color:#0B1F3A;
+  font-size:12px;
+  font-weight:800;
+  line-height:1.35;
+  letter-spacing:.01em;
+  text-align:center;
+}
+@media(max-width:600px){
+  #cards-container>.card.vl-bestseller-card .vl-bestseller-label{
+    padding:7px 12px;
+    font-size:11px;
+  }
+}
+</style>
 <script>
 function openMobMenu(){var d=document.getElementById('mob-drawer'),o=document.getElementById('mob-overlay'),b=document.querySelector('.mob-btn');if(!d)return;d.style.display='flex';o.style.display='block';requestAnimationFrame(function(){d.classList.add('is-open');if(b)b.classList.add('is-open');});document.body.style.overflow='hidden';}
 function closeMobMenu(){var d=document.getElementById('mob-drawer'),o=document.getElementById('mob-overlay'),b=document.querySelector('.mob-btn');if(!d)return;d.classList.remove('is-open');if(b)b.classList.remove('is-open');document.body.style.overflow='';setTimeout(function(){d.style.display='none';o.style.display='none';},280);}
@@ -3642,7 +3675,9 @@ function renderCard(d){
   const cta=unavailable
     ? `<a class="btn-contract disabled" aria-disabled="true">No disponible para este origen</a>`
     : `<a class="btn-contract" href="${escAttr(providerCtaUrl(d))}" target="_blank" rel="nofollow sponsored noopener" onclick="trackContract('${escJs(d.name)}','${escJs(p.plan)}')">${d.key==='assist365'?'Ver precio en Assist 365 →':pending?'Consultar si admite tu residencia en '+d.name+' →':(isSchengenToSchengenRoute()||((d.key==='intermundial'||d.key==='axa')&&isSchengenToUs()))?'Confirmar precio y elegibilidad en '+d.name+' →':'Ver precio en '+d.name+' →'}</a>`;
-  return `<div class="card ${unavailable?'unavailable':''}" id="card-${d.id}">
+  const isBestseller=d.key==='intermundial';
+  return `<div class="card ${unavailable?'unavailable':''}${isBestseller?' vl-bestseller-card':''}" id="card-${d.id}">
+    ${isBestseller?'<div class="vl-bestseller-label"><span aria-hidden="true">★</span> Opción más vendida</div>':''}
     <div class="card-body">
       <div class="card-logo-block">
         ${insurerLogoMarkup(d,'card')}
