@@ -9,6 +9,7 @@
     if(!/^(venezuela|colombia|peru|argentina|ecuador)$/.test(origin))return;
     var buttons=Array.prototype.slice.call(section.querySelectorAll('.vl-duration-button'));
     var price=section.querySelector('[data-vl-duration-price]');
+    var priceLabel=section.querySelector('.vl-duration-price-label');
     var link=section.querySelector('[data-vl-duration-link]');
     var warning=section.querySelector('.vl-duration-schengen-note');
     if(!price||!link||buttons.length!==3)return;
@@ -19,6 +20,7 @@
       selected=days;
       buttons.forEach(function(b){b.setAttribute('aria-pressed',String(Number(b.getAttribute('data-days'))===days));});
       price.textContent=new Intl.NumberFormat('es-ES',{style:'currency',currency:'EUR'}).format(referenceEUR[days]);
+      if(priceLabel)priceLabel.textContent='InterMundial · referencia para '+days+' días';
       link.textContent='Comparar seguros para '+days+' días';
       link.href='/resultados/?origen='+encodeURIComponent(origin)+'&destino=espana-schengen&pais_destino=es&dias='+days+'&personas=1';
       link.setAttribute('aria-label','Comparar seguros de viaje '+origin+' a España para '+days+' días y 1 viajero');
