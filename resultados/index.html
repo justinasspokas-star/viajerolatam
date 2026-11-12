@@ -3308,7 +3308,7 @@ function renderCard(d){
     <div class="card-body">
       <div class="card-logo-block">
         ${insurerLogoMarkup(d,'card')}
-        <div class="card-logo-meta"><div class="card-name">${d.name}</div><div class="card-plan-under-logo">${p.plan}</div><div class="card-verified">${pending?'⚠ Elegibilidad por confirmar':'Referencia orientativa · verifica póliza'}</div></div>
+        <div class="card-logo-meta"><div class="card-name">${d.name}</div><div class="card-plan-under-logo">${p.plan}</div>${pending?'<div class="card-verified">⚠ Elegibilidad por confirmar</div>':''}</div>
       </div>
       <div class="card-coverage">
         <div class="coverage-pills">${pills}</div>
