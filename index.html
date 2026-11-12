@@ -2662,9 +2662,9 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
  <p class="vl-ages-error" id="vl-ages-error" role="alert" hidden></p>
 </div>
 <input type="hidden" id="vl-ages-param" name="edades" value="">
-<input id="sb-dias" name="dias" type="hidden" value="15"/>
+<input id="sb-dias" name="dias" type="hidden" value=""/>
 <div id="sb-duracion-display">
-<div id="sb-duracion-main">📅 Duración total: <span id="sb-duracion-text">15 días</span></div>
+<div id="sb-duracion-main">📅 Duración total: <span id="sb-duracion-text">Selecciona tus fechas</span></div>
 </div>
 <button class="sb-btn vl-submit" type="submit">
 <svg fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
@@ -3019,11 +3019,29 @@ document.addEventListener('click', function(e){
     var display=document.getElementById('sb-duracion-display');
     var text=document.getElementById('sb-duracion-text');
     var diasInput=document.getElementById('sb-dias');
-    if(!ida||!vuelta||!ida.value||!vuelta.value||!display||!text||!diasInput) return;
+    if(!ida||!vuelta||!display||!text||!diasInput) return;
 
+    // El usuario escoge ambas fechas; nunca preseleccionar 15 días ni completar la vuelta.
+    diasInput.value='';
+    vuelta.setCustomValidity('');
+    if(ida.value){
+      var nextDay=new Date(ida.value+'T12:00:00');
+      nextDay.setDate(nextDay.getDate()+1);
+      vuelta.min=iso(nextDay);
+    }
+    if(!ida.value||!vuelta.value){
+      text.textContent='Selecciona tus fechas';
+      display.style.display='block';
+      return;
+    }
     var d1=new Date(ida.value+'T00:00:00');
     var d2=new Date(vuelta.value+'T00:00:00');
-    if(d2<=d1){ d2=new Date(d1); d2.setDate(d2.getDate()+1); vuelta.value=iso(d2); }
+    if(d2<=d1){
+      text.textContent='Revisa las fechas';
+      vuelta.setCustomValidity('La fecha de vuelta debe ser posterior a la fecha de ida.');
+      display.style.display='block';
+      return;
+    }
     var days=Math.max(1,Math.round((d2-d1)/86400000));
     diasInput.value=String(days);
     text.textContent=days+' días';
@@ -3040,10 +3058,8 @@ document.addEventListener('click', function(e){
     if(!form||!origin||!destination||!swap||!ida||!vuelta) return;
 
     var today=new Date();
-    var back=new Date(); back.setDate(today.getDate()+15);
     ida.min=iso(today); vuelta.min=iso(today);
-    if(!ida.value) ida.value=iso(today);
-    if(!vuelta.value) vuelta.value=iso(back);
+    // Sin fechas elegidas al abrir la página: las selecciona cada viajero.
 
     swap.addEventListener('click',function(){
       // Solo intercambiar países reales. Intercambiar regiones completas convertía
