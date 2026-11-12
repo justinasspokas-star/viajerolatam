@@ -1883,6 +1883,9 @@ function chapkaLatamSchengenTotalPerPerson(days){
   const cents=value=>Math.round((value+Number.EPSILON)*100)/100;
   if(n===14)return CHAPKA_LATAM_SCHENGEN_14D_EUR;
   if(n===30)return CHAPKA_LATAM_SCHENGEN_30D_EUR;
+  // A partir de 90 días se muestra Cap Europa, no Cap Schengen.
+  // Usar su referencia por meses para que precio y enlace al producto 931 coincidan.
+  if(n>=90) return chapkaReferenceTotalPerPerson();
   if(n>14 && n<30)
     return cents(CHAPKA_LATAM_SCHENGEN_14D_EUR+(CHAPKA_LATAM_SCHENGEN_30D_EUR-CHAPKA_LATAM_SCHENGEN_14D_EUR)*(n-14)/16);
   return cents(CHAPKA_LATAM_SCHENGEN_30D_EUR*n/30);
@@ -2038,7 +2041,7 @@ function goSchengenReferenceTotalPerPerson(days){
 }
 function goSchengenPriceNote(){
   const days=resultTripDays();
-  if(GO_SCHENGEN_TOTAL_TIERS.some(t=>t[0]===days))return 'Referencia Colombia → España';
+  if(GO_SCHENGEN_TOTAL_TIERS.some(t=>t[0]===days))return 'Referencia LATAM → España/Schengen';
   return 'Estimación entre tramos de duración, no cotizada';
 }
 
