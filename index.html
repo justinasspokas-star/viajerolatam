@@ -2392,6 +2392,68 @@ section.how::before{
 }
 </style>
 <link rel="stylesheet" href="/assets/vl-place-autocomplete.css?v=20261107-hybrid-selector">
+<style id="vl-home-mobile-date-field-frames-20261112">
+/* Solo UI móvil: dar marcos visibles a las fechas sin alterar su selección ni cálculo. */
+@media(max-width:768px){
+  .search-box .search-dates-row{
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+    gap:10px!important;
+    align-items:stretch!important;
+  }
+  .search-box .search-dates-row > .vl-field:nth-child(-n+2){
+    min-width:0!important;
+    padding:10px!important;
+    background:#fff!important;
+    border:1.5px solid #d9e5ee!important;
+    border-radius:14px!important;
+    box-shadow:0 2px 8px rgba(11,31,58,.05)!important;
+  }
+  .search-box .search-dates-row > .vl-field:nth-child(-n+2) > .sb-label{
+    display:block!important;
+    text-align:left!important;
+    margin:0 0 8px!important;
+    font-size:10px!important;
+    line-height:1.25!important;
+    font-weight:800!important;
+    letter-spacing:.04em!important;
+    color:#6a8096!important;
+  }
+  .search-box .search-dates-row input[type="date"]{
+    display:block!important;
+    box-sizing:border-box!important;
+    width:100%!important;
+    min-width:0!important;
+    max-width:100%!important;
+    height:48px!important;
+    min-height:48px!important;
+    margin:0!important;
+    padding:9px 8px!important;
+    background:#f8fafc!important;
+    border:1.5px solid #dde8f1!important;
+    border-radius:10px!important;
+    font-family:inherit!important;
+    font-size:14px!important;
+    font-weight:600!important;
+    color:#0b1f3a!important;
+    box-shadow:none!important;
+    color-scheme:light;
+  }
+  .search-box .search-dates-row input[type="date"]:focus{
+    outline:none!important;
+    border-color:#00c4a1!important;
+    background:#fff!important;
+    box-shadow:0 0 0 3px rgba(0,196,161,.15)!important;
+  }
+  .search-box .search-dates-row input[type="date"]::-webkit-calendar-picker-indicator{
+    opacity:.8;
+    cursor:pointer;
+  }
+  #sb-duracion-display{
+    border:1px solid #d2ede5!important;
+    border-radius:12px!important;
+  }
+}
+</style>
 </head>
 <body>
 <!-- HOME COMPARADOR PRINCIPAL · 2026-09-07 -->
