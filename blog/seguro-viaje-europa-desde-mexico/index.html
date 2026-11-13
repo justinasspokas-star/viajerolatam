@@ -176,6 +176,17 @@ body{padding-bottom:calc(90px + env(safe-area-inset-bottom, 0px));}
 }
 </style>
 </link><meta content="Seguro de viaje para Europa desde México: guía Schengen" name="twitter:title"/><meta content="Cómo elegir un seguro para Europa desde México: países cubiertos, fechas, certificado Schengen, tarjeta bancaria y exclusiones que revisar antes de contratar." name="twitter:description"/><meta content="https://viajerolatam.com/og-mochila-viajerolatam.png?v=2" name="twitter:image"/><meta content="Icono de ViajeroLatam con mochila viajera" property="og:image:alt"/>  <link rel="stylesheet" href="/assets/vl-whatsapp.css">
+
+<style id="vl-blog-mobile-home-compare-css">
+/* Botón móvil exclusivo de estas guías. Abre el buscador de la portada. */
+#vl-blog-mobile-home-compare{display:none}
+@media(max-width:768px){
+  html body{padding-bottom:calc(90px + env(safe-area-inset-bottom))!important}
+  #vl-blog-mobile-home-compare{display:block!important;position:fixed;bottom:calc(10px + env(safe-area-inset-bottom));left:12px;right:12px;z-index:1000;max-width:680px;margin-inline:auto}
+  #vl-blog-mobile-home-compare a{display:flex;align-items:center;justify-content:center;min-height:52px;width:100%;padding:12px 16px;background:#00C4A1;color:#0B1F3A;border-radius:999px;font:800 15px/1.3 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-decoration:none;text-align:center;box-shadow:0 7px 22px rgba(11,31,58,.22);-webkit-tap-highlight-color:transparent}
+  #vl-blog-mobile-home-compare a:focus-visible{outline:3px solid #0B1F3A;outline-offset:3px}
+}
+</style>
 </head><body><nav>
 <a class="logo" href="/"><img alt="ViajeroLatam" src="/logo-vl-original-20260528.png"/></a>
 <a class="mobile-nav-cta vl-compare-link" href="/resultados/?origen=mexico&amp;destino=espana-schengen">Comparar</a>
@@ -230,4 +241,6 @@ body{padding-bottom:calc(90px + env(safe-area-inset-bottom, 0px));}
   }
 });
 </script>  <script defer src="/assets/vl-whatsapp.js"></script>
+
+<div class="mobile-cta" id="vl-blog-mobile-home-compare" aria-label="Acceso al comparador principal"><a href="/#comparar">🔍 Comparar seguros gratis</a></div>
 </body></html>
