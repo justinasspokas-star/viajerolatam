@@ -127,7 +127,7 @@ li{margin:8px 0}
 footer{background:var(--navy);color:rgba(255,255,255,.72);padding:34px 5%;margin-top:40px}
 .footer-inner{max-width:1180px;margin:auto;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
 .footer-inner a{color:rgba(255,255,255,.82);text-decoration:none;margin-right:14px}
-.mobile-sticky{display:none}
+
 .mobile-nav-cta{display:none;text-decoration:none;background:var(--teal);color:var(--navy);border-radius:999px;padding:9px 13px;font-weight:900;font-size:13px}
 @media(max-width:900px){
   nav{padding:8px 16px} .logo img{height:44px} .nav-links{display:none}.mobile-nav-cta{display:inline-flex}
@@ -138,8 +138,8 @@ footer{background:var(--navy);color:rgba(255,255,255,.72);padding:34px 5%;margin
   .table div{border-right:0}
   .table .th:nth-child(2),.table .th:nth-child(3){display:none}
   .side-card{position:static;margin-bottom:18px}
-  .mobile-sticky{display:block;position:fixed;left:14px;right:14px;bottom:14px;z-index:100;text-align:center}
-  .mobile-sticky .btn{width:100%;box-shadow:0 16px 40px rgba(0,196,161,.35)}
+  
+  
 }
 </style>
 <style id="vl-mexico-post-polish">
@@ -163,11 +163,11 @@ main{align-items:start}
   .toc,.route-links{grid-template-columns:1fr}.side-card{display:none!important}
   .compare-table{display:block;overflow-x:auto;white-space:normal}
 }
-@media(max-width:420px){h1{font-size:34px!important}h2{font-size:28px!important}.mobile-sticky{left:10px!important;right:10px!important;bottom:10px!important}}
+@media(max-width:420px){h1{font-size:34px!important}h2{font-size:28px!important}}
 </style>
 <style>
 @media(max-width:900px){
-.mobile-sticky{bottom:calc(14px + env(safe-area-inset-bottom, 0px));}
+
 body{padding-bottom:calc(90px + env(safe-area-inset-bottom, 0px));}
 }
 </style>
@@ -392,7 +392,7 @@ body{padding-bottom:calc(90px + env(safe-area-inset-bottom, 0px));}
 </div>
 </aside>
 </main>
-<div class="mobile-sticky"><a class="btn btn-primary vl-compare-link" href="/#comparar">Compara seguros gratis</a></div>
+
 <footer>
 <div class="footer-inner">
 <div>© ViajeroLatam · Comparador independiente</div>
