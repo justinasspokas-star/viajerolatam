@@ -3167,8 +3167,14 @@ function resultFormatCurrencyFromEUR(eurAmount,currency){
     return c+' '+Math.round(amount).toLocaleString('es');
   }
 }
-// USD aproximados para salidas de EE. UU. hacia países Schengen.
+// USD aproximados para salidas de EE. UU. y de Cuba hacia Europa/Schengen.
  // Reutiliza el conversor dinámico compartido; nunca inventa un tipo de cambio.
+function isCubaToEuropeRoute(){
+  const dest=String(window.currentSearchDest||'').toLowerCase();
+  return normalizedOrigin()==='cu' && (
+    normalizedDest()==='europe' || dest==='europa'
+  );
+}
 function resultUSDApproxMarkup(eurAmount,forMatrix){
   const fx=window.VLExchangeRates;
   const rate=fx&&fx.rate('USD');
@@ -3688,6 +3694,12 @@ function renderCard(d){
   if(pending && d.key==='intermundial' && isSchengenToUkRoute()){
     price=`<div class="public-price-label">InterMundial · Reino Unido · larga estancia</div><div class="public-price">Consultar precio <small>duración superior a 120 días</small></div><div class="public-price-sub">Para esta duración no extrapolamos la referencia de 7 días: confirma una modalidad de larga estancia con InterMundial.</div>`;
   }
+  // En Cuba → España, Schengen y Europa completa, añadir USD debajo del importe
+  // principal sin alterar las referencias EUR ni la equivalencia CUP existente.
+  if(isCubaToEuropeRoute() && /<div class="public-price">\s*≈/.test(price)){
+    price=price.replace(/(<div class="public-price">[\s\S]*?<\/div>)/,
+      '$1'+resultUSDApproxMarkup(totalEUR,false));
+  }
   const availability=((d.key==='iati'||d.key==='intermundial')&&isUsToSchengenRoute())
     ? ''
     : pending
@@ -3779,7 +3791,7 @@ function updateQuickCompare(){
       var originLabel=localRate===null
         ? 'Equivalencia local no disponible; ver precio en EUR'
         : '≈ '+resultFormatCurrencyFromEUR(resultTotalEUR(d.key),resultOriginCurrency())+' origen';
-      return '<strong>≈ '+resultFormatCurrencyFromEUR(resultTotalEUR(d.key),resultDestinationCurrency())+'</strong>'+(isSchengenToSchengenRoute()?'<div class="matrix-origin-price">Referencia en EUR, no cotización</div>':'<div class="matrix-origin-price">'+originLabel+'</div>');
+      return '<strong>≈ '+resultFormatCurrencyFromEUR(resultTotalEUR(d.key),resultDestinationCurrency())+'</strong>'+(isCubaToEuropeRoute()?resultUSDApproxMarkup(resultTotalEUR(d.key),true):'')+(isSchengenToSchengenRoute()?'<div class="matrix-origin-price">Referencia en EUR, no cotización</div>':'<div class="matrix-origin-price">'+originLabel+'</div>');
     }),
     row('Referencia diaria',(d)=>d.key==='assist365'&&isAssist365LatamUsRoute()
       ? '<span>≈ '+euroFixed(fixedOrientativeRate(d.key))+' €/persona/día · orientativo</span>'
