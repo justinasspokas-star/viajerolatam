@@ -3688,7 +3688,7 @@ function renderCard(d){
   if(pending && d.key==='intermundial' && isSchengenToUkRoute()){
     price=`<div class="public-price-label">InterMundial · Reino Unido · larga estancia</div><div class="public-price">Consultar precio <small>duración superior a 120 días</small></div><div class="public-price-sub">Para esta duración no extrapolamos la referencia de 7 días: confirma una modalidad de larga estancia con InterMundial.</div>`;
   }
-  const availability=(d.key==='iati'&&isUsToSchengenRoute())
+  const availability=((d.key==='iati'||d.key==='intermundial')&&isUsToSchengenRoute())
     ? ''
     : pending
     ? `<div class="availability-note no">⚠ ${p.eligibility}</div>`
@@ -3697,7 +3697,7 @@ function renderCard(d){
       : `<div class="availability-note ok">✓ ${p.eligibility}</div>`;
   const cta=unavailable
     ? `<a class="btn-contract disabled" aria-disabled="true">No disponible para este origen</a>`
-    : `<a class="btn-contract" href="${escAttr(providerCtaUrl(d))}" target="_blank" rel="nofollow sponsored noopener" onclick="trackContract('${escJs(d.name)}','${escJs(p.plan)}')">${d.key==='assist365'?'Ver precio en Assist 365 →':(d.key==='iati'&&isUsToSchengenRoute())?'Ver precio en IATI Seguros →':pending?'Consultar si admite tu residencia en '+d.name+' →':(isSchengenToSchengenRoute()||((d.key==='intermundial'||d.key==='axa')&&isSchengenToUs()))?'Confirmar precio y elegibilidad en '+d.name+' →':'Ver precio en '+d.name+' →'}</a>`;
+    : `<a class="btn-contract" href="${escAttr(providerCtaUrl(d))}" target="_blank" rel="nofollow sponsored noopener" onclick="trackContract('${escJs(d.name)}','${escJs(p.plan)}')">${d.key==='assist365'?'Ver precio en Assist 365 →':(d.key==='iati'&&isUsToSchengenRoute())?'Ver precio en IATI Seguros →':(d.key==='intermundial'&&isUsToSchengenRoute())?'Ver precio en InterMundial →':pending?'Consultar si admite tu residencia en '+d.name+' →':(isSchengenToSchengenRoute()||((d.key==='intermundial'||d.key==='axa')&&isSchengenToUs()))?'Confirmar precio y elegibilidad en '+d.name+' →':'Ver precio en '+d.name+' →'}</a>`;
   const isBestseller=d.key==='intermundial';
   return `<div class="card ${unavailable?'unavailable':''}${isBestseller?' vl-bestseller-card':''}" id="card-${d.id}">
     ${isBestseller?'<div class="vl-bestseller-label"><span aria-hidden="true">★</span> Opción más vendida</div>':''}
