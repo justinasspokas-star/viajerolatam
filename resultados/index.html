@@ -3226,7 +3226,7 @@ function resultTripLabel(){
   return d+' día'+(d===1?'':'s')+' · '+p+' viajero'+(p===1?'':'s');
 }
 
-const EUR_TO_COP_APPROX = 4300; // Ajuste aproximado para mostrar referencia en COP.
+// La equivalencia COP utiliza exclusivamente la tasa reciente del conversor compartido.
 window.currentSearchOrigin = (new URLSearchParams(window.location.search).get('origen') || 'colombia').toLowerCase();
 window.currentSearchDest = (new URLSearchParams(window.location.search).get('destino') || 'espana-schengen').toLowerCase();
 
@@ -3237,7 +3237,9 @@ function shouldShowCOP(){
 }
 
 function formatCOPApprox(eurAmount){
-  const amount = Math.round((Number(eurAmount) || 0) * EUR_TO_COP_APPROX / 100) * 100;
+  const rate = window.VLExchangeRates ? window.VLExchangeRates.rate('COP') : null;
+  if(rate === null || !Number.isFinite(rate)) return 'equivalencia COP no disponible';
+  const amount = Math.round((Number(eurAmount) || 0) * rate / 100) * 100;
   return '$' + amount.toLocaleString('es-CO') + ' COP';
 }
 
@@ -3246,7 +3248,10 @@ function updateCOPNote(){
   if(!el) return;
   if(shouldShowCOP()){
     el.classList.add('is-visible');
-    el.innerHTML = 'También mostramos referencia aproximada en pesos colombianos: <strong>1 € ≈ $4.300 COP</strong>. Los importes son orientativos; el proveedor calcula el precio final.';
+    const rate = window.VLExchangeRates ? window.VLExchangeRates.rate('COP') : null;
+    el.textContent = rate === null || !Number.isFinite(rate)
+      ? 'Equivalencia COP no disponible; consulta el importe en euros. El proveedor calcula el precio final.'
+      : 'También mostramos una referencia aproximada en pesos colombianos: 1 € ≈ $' + Math.round(rate).toLocaleString('es-CO') + ' COP. El proveedor calcula el precio final.';
   } else {
     el.classList.remove('is-visible');
   }
