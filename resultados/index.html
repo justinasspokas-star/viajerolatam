@@ -3167,6 +3167,22 @@ function resultFormatCurrencyFromEUR(eurAmount,currency){
     return c+' '+Math.round(amount).toLocaleString('es');
   }
 }
+// USD aproximados para salidas de EE. UU. hacia países Schengen.
+ // Reutiliza el conversor dinámico compartido; nunca inventa un tipo de cambio.
+function resultUSDApproxMarkup(eurAmount,forMatrix){
+  const fx=window.VLExchangeRates;
+  const rate=fx&&fx.rate('USD');
+  const available=Number.isFinite(rate)&&rate>0;
+  const date=available&&fx.date('USD');
+  if(forMatrix){
+    return '<div class="matrix-origin-price">'+(available
+      ? '≈ '+resultFormatCurrencyFromEUR(eurAmount,'USD')+' · USD aprox.'+(date?' · cambio '+date:'')
+      : 'Conversión USD temporalmente no disponible · precio en EUR')+'</div>';
+  }
+  return available
+    ? `<div class="trip-origin-price">≈ ${resultFormatCurrencyFromEUR(eurAmount,'USD')} <span>USD aprox. · total del viaje${date?' · cambio '+date:''}</span></div>`
+    : '<div class="trip-origin-price">Conversión USD temporalmente no disponible <span>Consulta el total orientativo en euros</span></div>';
+}
 function resultTotalEUR(key){
   if((key==='iati'||key==='intermundial') && isUsToSchengenRoute())
     return usToSchengenTotalPerPerson(key,resultTripDays())*resultTripPeople();
@@ -3619,7 +3635,7 @@ function renderCard(d){
     price=`<div class="public-price-label">Go World · Reino Unido · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>total orientativo del viaje</small></div>${originPriceMarkup}<div class="public-price-sub"><strong>≈ ${destDaily}/persona/día</strong> de media. ${goWorldUkPriceNote()}. 1 mes equivale a 30 días en esta referencia. No es una tarifa universal: confirma precio final, residencia admitida y condiciones con InterMundial.</div>`;
   }
   if((d.key==='intermundial'||d.key==='iati') && isUsToSchengenRoute()){
-    price=`<div class="public-price-label">${d.key==='intermundial'?'InterMundial':'IATI'} · Estados Unidos → Schengen · ${resultTripLabel()}</div><div class="public-price">≈ ${euroFixed(totalEUR)} € <small>importe orientativo del viaje en EUR</small></div><div class="public-price-sub"><strong>≈ ${euroFixed(fixedRate)} €/persona/día</strong> de media. ${usToSchengenPriceNote(d.key)}. Contratación y condiciones por verificar con la aseguradora.</div>`;
+    price=`<div class="public-price-label">${d.key==='intermundial'?'InterMundial':'IATI'} · Estados Unidos → Schengen · ${resultTripLabel()}</div><div class="public-price">≈ ${euroFixed(totalEUR)} € <small>importe orientativo del viaje en EUR</small></div>${resultUSDApproxMarkup(totalEUR,false)}<div class="public-price-sub"><strong>≈ ${euroFixed(fixedRate)} €/persona/día</strong> de media. ${usToSchengenPriceNote(d.key)}. Contratación y condiciones por verificar con la aseguradora.</div>`;
   }
   if(d.key==='iati' && isWorldToLatamRoute()){
     price=`<div class="public-price-label">IATI · destino Latinoamérica · ${resultTripLabel()}</div><div class="public-price">≈ ${euroFixed(totalEUR)} € <small>total orientativo en EUR</small></div><div class="public-price-sub"><strong>≈ ${euroFixed(fixedRate)} €/persona/día</strong> de media. ${iatiWorldToLatamPriceNote()}. Confirma residencia admitida, país cubierto, modalidad y prima final directamente con IATI.</div>`;
@@ -3672,14 +3688,16 @@ function renderCard(d){
   if(pending && d.key==='intermundial' && isSchengenToUkRoute()){
     price=`<div class="public-price-label">InterMundial · Reino Unido · larga estancia</div><div class="public-price">Consultar precio <small>duración superior a 120 días</small></div><div class="public-price-sub">Para esta duración no extrapolamos la referencia de 7 días: confirma una modalidad de larga estancia con InterMundial.</div>`;
   }
-  const availability=pending
+  const availability=(d.key==='iati'&&isUsToSchengenRoute())
+    ? ''
+    : pending
     ? `<div class="availability-note no">⚠ ${p.eligibility}</div>`
     : unavailable
       ? `<div class="availability-note no">⚠ ${p.eligibility}</div>`
       : `<div class="availability-note ok">✓ ${p.eligibility}</div>`;
   const cta=unavailable
     ? `<a class="btn-contract disabled" aria-disabled="true">No disponible para este origen</a>`
-    : `<a class="btn-contract" href="${escAttr(providerCtaUrl(d))}" target="_blank" rel="nofollow sponsored noopener" onclick="trackContract('${escJs(d.name)}','${escJs(p.plan)}')">${d.key==='assist365'?'Ver precio en Assist 365 →':pending?'Consultar si admite tu residencia en '+d.name+' →':(isSchengenToSchengenRoute()||((d.key==='intermundial'||d.key==='axa')&&isSchengenToUs()))?'Confirmar precio y elegibilidad en '+d.name+' →':'Ver precio en '+d.name+' →'}</a>`;
+    : `<a class="btn-contract" href="${escAttr(providerCtaUrl(d))}" target="_blank" rel="nofollow sponsored noopener" onclick="trackContract('${escJs(d.name)}','${escJs(p.plan)}')">${d.key==='assist365'?'Ver precio en Assist 365 →':(d.key==='iati'&&isUsToSchengenRoute())?'Ver precio en IATI Seguros →':pending?'Consultar si admite tu residencia en '+d.name+' →':(isSchengenToSchengenRoute()||((d.key==='intermundial'||d.key==='axa')&&isSchengenToUs()))?'Confirmar precio y elegibilidad en '+d.name+' →':'Ver precio en '+d.name+' →'}</a>`;
   const isBestseller=d.key==='intermundial';
   return `<div class="card ${unavailable?'unavailable':''}${isBestseller?' vl-bestseller-card':''}" id="card-${d.id}">
     ${isBestseller?'<div class="vl-bestseller-label"><span aria-hidden="true">★</span> Opción más vendida</div>':''}
@@ -3747,7 +3765,7 @@ function updateQuickCompare(){
     row('Equipaje',(_,p)=>p.equipaje),
     row('Total orientativo · '+resultTripLabel(),(d)=>{
       if(isUsToSchengenRoute()&&(d.key==='intermundial'||d.key==='iati'))
-        return '<strong>≈ '+euroFixed(resultTotalEUR(d.key))+' €</strong><div class="matrix-origin-price">Estados Unidos → Schengen · referencia, elegibilidad por confirmar</div>';
+        return '<strong>≈ '+euroFixed(resultTotalEUR(d.key))+' €</strong>'+resultUSDApproxMarkup(resultTotalEUR(d.key),true)+'<div class="matrix-origin-price">Estados Unidos → Schengen · referencia, elegibilidad por confirmar</div>';
       if(isWorldToLatamRoute()&&(d.key==='intermundial'||d.key==='iati'))
         return '<strong>≈ '+euroFixed(resultTotalEUR(d.key))+' €</strong><div class="matrix-origin-price">'+(d.key==='iati'?'IATI':'Go | World')+(SCHENGEN_ROUTE_COUNTRIES.has(normalizedOrigin())?' · importe orientativo, según condiciones':' · importe orientativo, elegibilidad por confirmar')+'</div>';
       if(d.key==='assist365'&&isAssist365LatamUsRoute())
