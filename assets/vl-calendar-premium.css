@@ -33,7 +33,7 @@ input.vl-calendar-native{
   display:none;position:fixed;width:min(356px,calc(100vw - 24px));box-sizing:border-box;
   padding:0 0 13px;background:#fff;color:#0b1f3a;border:1px solid #dfebed;
   border-radius:22px;box-shadow:0 22px 65px rgba(9,28,52,.22),0 4px 16px rgba(9,28,52,.08);
-  z-index:2147483001;font-family:inherit;overflow:hidden
+  z-index:2147483001;font-family:inherit;max-height:calc(100dvh - 24px);overflow-y:auto
 }
 .vl-cal-pop.is-open{display:block}
 .vl-cal-top{
