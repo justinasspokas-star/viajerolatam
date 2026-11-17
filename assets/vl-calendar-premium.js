@@ -7,6 +7,7 @@
   var fields={};
   var active=null;
   var cursor=null;
+  var overflowBeforeCalendar=null;
   var popup=null;
   var scrim=null;
   var week=['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'];
@@ -116,6 +117,7 @@
     scrim.classList.remove('is-open');
     popup.setAttribute('aria-hidden','true');
     previous.trigger.setAttribute('aria-expanded','false');
+    if(overflowBeforeCalendar!==null){document.body.style.overflow=overflowBeforeCalendar;overflowBeforeCalendar=null;}
     if(restoreFocus!==false&&previous.trigger.isConnected){
       try{previous.trigger.focus({preventScroll:true});}catch(e){previous.trigger.focus();}
     }
@@ -126,6 +128,10 @@
     if(active&&active.input.id===id){close(true);return;}
     if(active)close(false);
     active=field;
+    if(window.matchMedia('(max-width:768px)').matches){
+      overflowBeforeCalendar=document.body.style.overflow;
+      document.body.style.overflow='hidden';
+    }
     var value=parse(field.input.value);
     var min=minFor(field.input);
     var shown=value&&(!min||value>=min)?value:min||noon(new Date());
