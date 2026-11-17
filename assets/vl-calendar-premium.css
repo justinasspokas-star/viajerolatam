@@ -25,6 +25,7 @@ input.vl-calendar-native{
 .vl-cal-trigger-icon{flex:none;width:20px;height:20px;color:#078b80}
 .vl-cal-trigger-copy{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .vl-cal-placeholder{font-weight:550;color:#6e8296}
+.vl-cal-label-mobile{display:none}
 .vl-cal-chevron{flex:none;width:15px;height:15px;color:#718a9c}
 .vl-cal-error-msg{font-size:11px;line-height:1.35;color:#be3c3c;margin:5px 0 0}
 .vl-cal-scrim{display:none;position:fixed;inset:0;background:rgba(8,27,46,.44);z-index:2147483000;backdrop-filter:blur(2px)}
@@ -81,7 +82,9 @@ input.vl-calendar-native{
 .vl-cal-today:hover:not(:disabled){background:#d5f4e9}
 .vl-cal-today:disabled{opacity:.4;cursor:not-allowed}
 @media(max-width:768px){
- .vl-cal-trigger{min-height:48px;padding:10px 9px;font-size:12px;gap:6px}
+ .vl-cal-trigger{min-height:48px;padding:10px 9px;font-size:13px;gap:6px}
+ .vl-cal-label-full{display:none}
+ .vl-cal-label-mobile{display:inline}
  .vl-cal-trigger-icon{width:17px;height:17px}
  .vl-cal-chevron{width:12px;height:12px}
  .vl-cal-pop{left:0!important;right:0!important;top:auto!important;bottom:0!important;width:100%;
