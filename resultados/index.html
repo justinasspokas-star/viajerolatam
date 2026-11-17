@@ -1431,6 +1431,7 @@ nav .brand-logo img{height:36px!important;max-width:164px!important;width:auto!i
 <link rel="stylesheet" href="/assets/vl-traveller-ages.css">
 <link rel="stylesheet" href="/assets/vl-place-autocomplete.css?v=20261107-hybrid-selector">
 <script src="/assets/vl-exchange-rates.js?v=20261107"></script>
+<link rel="stylesheet" href="/assets/vl-calendar-premium.css?v=20261117-es-v1">
 </head>
 <body>
 <!-- H1 principal movido al bloque de resultados para evitar espacio superior -->
@@ -4001,6 +4002,10 @@ function openEditPanel(focusId){
   setTimeout(function(){
     // El selector original se oculta al activar el autocompletado.
     // Enfocar el campo visible para poder escribir desde el móvil.
+    if((focusId==='ep-ida'||focusId==='ep-vuelta')&&window.VLCalendarPremium){
+      window.VLCalendarPremium.openFor(focusId);
+      return;
+    }
     var el = document.getElementById(focusId+'-search') || document.getElementById(focusId);
     if(el){
       try{ el.focus({preventScroll:false}); }catch(e){ el.focus(); }
@@ -4009,6 +4014,7 @@ function openEditPanel(focusId){
   }, 80);
 }
 function closeEditPanel(){
+  if(window.VLCalendarPremium) window.VLCalendarPremium.close(false);
   var p = document.getElementById('edit-panel');
   if(!p) return;
   p.style.display = 'none';
@@ -4596,7 +4602,7 @@ document.addEventListener('click', function(e){
   if(e.target === panel) closeEditPanel();
 });
 document.addEventListener('keydown', function(e){
-  if(e.key === 'Escape') closeEditPanel();
+  if(e.key === 'Escape' && !(window.VLCalendarPremium && window.VLCalendarPremium.isOpen())) closeEditPanel();
 });
 </script>
 <!-- ViajeroLatam STEP2 comparator verified 2026-08-24 -->
@@ -4605,5 +4611,6 @@ document.addEventListener('keydown', function(e){
 <script defer src="/assets/vl-place-autocomplete.js?v=20261107-hybrid-selector"></script>
 <script defer src="/assets/vl-blog-funnel.js"></script>
 <script defer src="/assets/vl-affiliate-tracking-v2.js"></script>
+<script defer src="/assets/vl-calendar-premium.js?v=20261117-es-v1"></script>
 </body>
 </html>
