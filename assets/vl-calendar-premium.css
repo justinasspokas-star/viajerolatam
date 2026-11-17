@@ -13,7 +13,7 @@ input.vl-calendar-native{
   min-height:49px;display:flex;align-items:center;gap:10px;text-align:left;
   background:linear-gradient(180deg,#fff 0%,#f9fcfd 100%);color:#0b1f3a;
   border:1.5px solid #d9e5ed;border-radius:12px;padding:10px 12px;
-  font:600 14px/1.35 inherit;cursor:pointer;
+  font-family:inherit;font-weight:600;font-size:14px;line-height:1.35;cursor:pointer;
   box-shadow:0 3px 12px rgba(11,31,58,.045);
   transition:border-color .16s,box-shadow .16s,background .16s
 }
@@ -59,7 +59,7 @@ input.vl-calendar-native{
 .vl-cal-weekdays span{text-align:center;color:#7c91a4;font-size:11px;font-weight:800}
 .vl-cal-day{
   border:1px solid transparent;background:transparent;border-radius:11px;
-  height:40px;min-width:0;color:#18364e;font:700 13px/1 inherit;
+  height:40px;min-width:0;color:#18364e;font-family:inherit;font-weight:700;font-size:13px;line-height:1;
   cursor:pointer;position:relative;transition:background .12s,border-color .12s,transform .12s
 }
 .vl-cal-day:hover:not(:disabled){background:#e6f7f2;border-color:#b4e7db}
@@ -77,7 +77,7 @@ input.vl-calendar-native{
  margin:13px 16px 0;padding-top:11px}
 .vl-cal-hint{font-size:11px;color:#6c8295;line-height:1.35}
 .vl-cal-today{border:1px solid #bee6dc;background:#edfaf5;color:#087a70;padding:8px 12px;
- border-radius:10px;font:800 12px/1 inherit;cursor:pointer;flex:none}
+ border-radius:10px;font-family:inherit;font-weight:800;font-size:12px;line-height:1;cursor:pointer;flex:none}
 .vl-cal-today:hover:not(:disabled){background:#d5f4e9}
 .vl-cal-today:disabled{opacity:.4;cursor:not-allowed}
 @media(max-width:768px){
