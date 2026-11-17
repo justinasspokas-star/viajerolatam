@@ -48,6 +48,31 @@
  font:600 13px/1.35 'Plus Jakarta Sans',Arial,sans-serif;
 }
 .vl-place-choice-name{flex:1;min-width:0;overflow-wrap:anywhere}
+/* Banderas PNG reales solo en escritorio: evita códigos CO/VE/MX en Windows. */
+.vl-place-flag-desktop,.vl-place-selected-flag{display:none}
+@media(min-width:701px){
+ .vl-place-choice-name{display:flex;align-items:center;gap:10px}
+ .vl-place-flag-desktop{
+  display:block;flex:0 0 24px;width:24px;height:18px;object-fit:cover;
+  border-radius:3px;box-shadow:0 0 0 1px rgba(11,31,58,.10)
+ }
+ .vl-place-country-name{display:inline}
+ .vl-place-flag-mobile{display:none}
+ .vl-place-box.vl-place-has-selected-flag:not(.vl-place-flag-unavailable) .vl-place-selected-flag{
+  display:block;position:absolute;left:13px;top:15px;z-index:2;pointer-events:none;
+  width:24px;height:18px;object-fit:cover;border-radius:3px;
+  box-shadow:0 0 0 1px rgba(11,31,58,.10)
+ }
+ #vl-search-form .vl-place-box.vl-place-has-selected-flag:not(.vl-place-flag-unavailable) .vl-place-input,
+ #edit-panel .vl-place-box.vl-place-has-selected-flag:not(.vl-place-flag-unavailable) .vl-place-input{
+  padding-left:47px!important
+ }
+}
+@media(max-width:700px){
+ .vl-place-country-name{display:none}
+ .vl-place-flag-mobile{display:inline}
+ .vl-place-flag-desktop,.vl-place-selected-flag{display:none!important}
+}
 .vl-place-choice:hover,.vl-place-choice.active,.vl-place-choice:focus-visible{background:#E9F9F3;outline:none}
 .vl-place-choice small{font-weight:600;color:#58788D;font-size:11px;white-space:nowrap}
 .vl-place-no-results{padding:14px;color:#526A7D;font-size:13px;line-height:1.45;font-weight:500}
