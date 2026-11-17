@@ -121,7 +121,7 @@ function attach(select,kind){
   if(!item)return '';
   // Windows puede mostrar los emoji de banderas como letras (CO, VE, MX).
   // En escritorio se muestra el nombre, acompañado por la bandera PNG.
-  return !item.region&&window.matchMedia('(min-width:701px)').matches&&COUNTRIES[item.code]
+  return !item.region&&window.matchMedia('(min-width:769px)').matches&&COUNTRIES[item.code]
    ?COUNTRIES[item.code].label:item.label;
  }
  function syncFlag(item){
@@ -368,9 +368,9 @@ function init(){
  expandOriginChoices(document.getElementById('sb-origen'));
  expandOriginChoices(document.getElementById('ep-origen'));
  [['sb-origen','origin'],['sb-destino','destination'],['ep-origen','origin'],['ep-destino','destination']].forEach(([id,kind])=>attach(document.getElementById(id),kind));
- let desktopFlagsMode=window.matchMedia('(min-width:701px)').matches;
+ let desktopFlagsMode=window.matchMedia('(min-width:769px)').matches;
  window.addEventListener('resize',()=>{
-  const next=window.matchMedia('(min-width:701px)').matches;
+  const next=window.matchMedia('(min-width:769px)').matches;
   if(next===desktopFlagsMode)return;
   desktopFlagsMode=next;
   instances.forEach(x=>x.refreshFlag());
