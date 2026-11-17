@@ -50,7 +50,7 @@
 .vl-place-choice-name{flex:1;min-width:0;overflow-wrap:anywhere}
 /* Banderas PNG reales solo en escritorio: evita códigos CO/VE/MX en Windows. */
 .vl-place-flag-desktop,.vl-place-selected-flag{display:none}
-@media(min-width:701px){
+@media(min-width:769px){
  .vl-place-choice-name{display:flex;align-items:center;gap:10px}
  .vl-place-flag-desktop{
   display:block;flex:0 0 24px;width:24px;height:18px;object-fit:cover;
@@ -68,7 +68,7 @@
   padding-left:47px!important
  }
 }
-@media(max-width:700px){
+@media(max-width:768px){
  .vl-place-country-name{display:none}
  .vl-place-flag-mobile{display:inline}
  .vl-place-flag-desktop,.vl-place-selected-flag{display:none!important}
