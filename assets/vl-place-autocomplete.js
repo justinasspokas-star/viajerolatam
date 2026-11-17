@@ -101,7 +101,7 @@ function attach(select,kind){
  toggle.setAttribute('aria-controls',menu.id);
  toggle.setAttribute('aria-expanded','false');
  const error=document.createElement('p');
- error.className='vl-place-error';error.hidden=true;error.setAttribute('role','status');
+ error.className='vl-place-error';error.id=select.id+'-error';error.hidden=true;error.setAttribute('role','status');
  select.parentNode.insertBefore(box,select);
  box.append(input,toggle,menu,error);
  select.classList.add('vl-place-original');select.dataset.placeEnhanced='1';select.tabIndex=-1;
@@ -229,6 +229,14 @@ function attach(select,kind){
   menu.classList.add('open');box.classList.add('is-open');
   input.setAttribute('aria-expanded','true');toggle.setAttribute('aria-expanded','true');
  }
+ // Validación accesible en castellano: evita el aviso nativo en inglés sin omitir la obligatoriedad.
+ input.addEventListener('invalid',event=>{
+  event.preventDefault();
+  setError(kind==='origin'
+   ?'Por favor, escribe o selecciona tu país de origen.'
+   :'Por favor, escribe o selecciona tu destino.');
+  input.setAttribute('aria-describedby',error.id);
+ });
  input.addEventListener('focus',()=>{input.select();open(true);});
  input.addEventListener('click',()=>{if(!menu.classList.contains('open'))open(true);});
  input.addEventListener('input',()=>{chosen=null;setError('');open(false);});
