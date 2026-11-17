@@ -83,6 +83,12 @@ function attach(select,kind){
  const countryField=kind==='destination'?document.getElementById(isResults?'ep-pais-destino':'vl-pais-destino'):null;
  const box=document.createElement('div');
  box.className='vl-place-box '+(kind==='destination'?'vl-place-right':'vl-place-left');
+ const selectedFlag=document.createElement('img');
+ selectedFlag.className='vl-place-selected-flag';
+ selectedFlag.width=24;selectedFlag.height=18;selectedFlag.alt='';
+ selectedFlag.setAttribute('aria-hidden','true');
+ selectedFlag.decoding='async';
+ selectedFlag.addEventListener('error',()=>{box.classList.add('vl-place-flag-unavailable');});
  const input=document.createElement('input');
  input.type='text';input.id=select.id+'-search';input.className='vl-place-input';
  input.autocomplete='off';input.spellcheck=false;
@@ -103,7 +109,7 @@ function attach(select,kind){
  const error=document.createElement('p');
  error.className='vl-place-error';error.id=select.id+'-error';error.hidden=true;error.setAttribute('role','status');
  select.parentNode.insertBefore(box,select);
- box.append(input,toggle,menu,error);
+ box.append(selectedFlag,input,toggle,menu,error);
  select.classList.add('vl-place-original');select.dataset.placeEnhanced='1';select.tabIndex=-1;
  // Only the visible control participates in native validation.
  select.required=false;input.required=select.id.startsWith('sb-');
@@ -111,6 +117,20 @@ function attach(select,kind){
  if(label)label.htmlFor=input.id;
  else input.setAttribute('aria-label',kind==='origin'?'Voy desde':'Destino');
  let chosen=null,found=[],active=-1;
+ function displayLabel(item){
+  if(!item)return '';
+  // Windows puede mostrar los emoji de banderas como letras (CO, VE, MX).
+  // En escritorio se muestra el nombre, acompañado por la bandera PNG.
+  return !item.region&&window.matchMedia('(min-width:701px)').matches&&COUNTRIES[item.code]
+   ?COUNTRIES[item.code].label:item.label;
+ }
+ function syncFlag(item){
+  const country=!!(item&&!item.region&&COUNTRIES[item.code]);
+  box.classList.toggle('vl-place-has-selected-flag',country);
+  box.classList.remove('vl-place-flag-unavailable');
+  if(country)selectedFlag.src='https://flagcdn.com/24x18/'+item.code+'.png';
+  else selectedFlag.removeAttribute('src');
+ }
  function setError(message){
   error.textContent=message;error.hidden=!message;input.setAttribute('aria-invalid',message?'true':'false');
  }
@@ -138,7 +158,7 @@ function attach(select,kind){
     setError('El origen y el destino deben ser diferentes.');return false;
    }
   }
-  chosen=item;input.value=item.label;select.value=value;
+  chosen=item;input.value=displayLabel(item);syncFlag(item);select.value=value;
   if(countryField)countryField.value=item.region?'':item.code;
   setError('');close();
   select.dispatchEvent(new Event('change',{bubbles:true}));
@@ -185,7 +205,21 @@ function attach(select,kind){
   el.type='button';el.tabIndex=-1;el.className='vl-place-choice';
   el.id=select.id+'-choice-'+index;
   el.setAttribute('role','option');el.setAttribute('aria-selected','false');
-  const name=document.createElement('span');name.textContent=item.label;name.className='vl-place-choice-name';el.appendChild(name);
+  const name=document.createElement('span');name.className='vl-place-choice-name';
+  if(!item.region&&COUNTRIES[item.code]){
+   const realFlag=document.createElement('img');
+   realFlag.className='vl-place-flag-desktop';
+   realFlag.src='https://flagcdn.com/24x18/'+item.code+'.png';
+   realFlag.width=24;realFlag.height=18;realFlag.alt='';
+   realFlag.loading='lazy';realFlag.decoding='async';
+   realFlag.addEventListener('error',()=>{realFlag.style.display='none';});
+   const mobileName=document.createElement('span');
+   mobileName.className='vl-place-flag-mobile';mobileName.textContent=item.label;
+   const desktopName=document.createElement('span');
+   desktopName.className='vl-place-country-name';desktopName.textContent=COUNTRIES[item.code].label;
+   name.append(realFlag,desktopName,mobileName);
+  }else name.textContent=item.label;
+  el.appendChild(name);
   if(!item.region&&kind==='destination'){
    const subtitle=item.group==='espana-schengen'?'Schengen':item.group==='europa-no-schengen'?'Fuera de Schengen':item.group==='eeuu-canada'?'Norteamérica':item.group==='asia'?'Asia':'';
    if(subtitle){const detail=document.createElement('small');detail.textContent=subtitle;el.appendChild(detail);}
@@ -239,7 +273,7 @@ function attach(select,kind){
  });
  input.addEventListener('focus',()=>{input.select();open(true);});
  input.addEventListener('click',()=>{if(!menu.classList.contains('open'))open(true);});
- input.addEventListener('input',()=>{chosen=null;setError('');open(false);});
+ input.addEventListener('input',()=>{chosen=null;syncFlag(null);setError('');open(false);});
  input.addEventListener('keydown',event=>{
   if(event.key==='ArrowDown'){
    event.preventDefault();if(!menu.classList.contains('open'))open(true);
@@ -277,10 +311,12 @@ function attach(select,kind){
    if(kind==='origin')item=countries.find(x=>(x.code==='es'?'espana-schengen':x.code)===val);
    if(!item)item=regions.find(x=>x.code===val)||countries.find(x=>x.code===val);
   }
-  chosen=item||null;input.value=val?(item?item.label:(select.options[select.selectedIndex]?.textContent||'')):'';
-  setError('');close();
+  chosen=item||null;input.value=val?(item?displayLabel(item):(select.options[select.selectedIndex]?.textContent||'')):'';
+  syncFlag(chosen);setError('');close();
  }
- sync();instances.push({select,input,autoResolve,sync,setError});
+ sync();instances.push({select,input,autoResolve,sync,setError,refreshFlag:function(){
+   if(chosen&&norm(input.value)===norm(chosen.label)){input.value=displayLabel(chosen);syncFlag(chosen);}
+  }});
 }
 function validSchengenPair(prefix){
  const origin=document.getElementById(prefix+'-origen');
@@ -332,6 +368,13 @@ function init(){
  expandOriginChoices(document.getElementById('sb-origen'));
  expandOriginChoices(document.getElementById('ep-origen'));
  [['sb-origen','origin'],['sb-destino','destination'],['ep-origen','origin'],['ep-destino','destination']].forEach(([id,kind])=>attach(document.getElementById(id),kind));
+ let desktopFlagsMode=window.matchMedia('(min-width:701px)').matches;
+ window.addEventListener('resize',()=>{
+  const next=window.matchMedia('(min-width:701px)').matches;
+  if(next===desktopFlagsMode)return;
+  desktopFlagsMode=next;
+  instances.forEach(x=>x.refreshFlag());
+ },{passive:true});
  const form=document.getElementById('vl-search-form');
  if(form)form.addEventListener('submit',e=>{
    for(const x of instances)if(x.select.id.startsWith('sb-')&&!x.autoResolve()){e.preventDefault();e.stopImmediatePropagation();x.input.focus();return;}
