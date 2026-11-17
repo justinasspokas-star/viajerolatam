@@ -13,6 +13,7 @@
   var week=['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'];
   var fullDateFormatter=new Intl.DateTimeFormat('es-ES',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
   var shortDateFormatter=new Intl.DateTimeFormat('es-ES',{day:'numeric',month:'long',year:'numeric'});
+  var mobileDateFormatter=new Intl.DateTimeFormat('es-ES',{day:'numeric',month:'short',year:'numeric'});
   var monthFormatter=new Intl.DateTimeFormat('es-ES',{month:'long',year:'numeric'});
   var icon='<svg class="vl-cal-trigger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2.5"></rect><path d="M7 3v4M17 3v4M3 10h18"></path><path d="m9 15 2 2 4-4"></path></svg>';
   var arrow='<svg class="vl-cal-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="m7 10 5 5 5-5"></path></svg>';
@@ -48,7 +49,8 @@
       if(!field) return;
       var date=parse(field.input.value);
       var label=date?shortDateFormatter.format(date):'Selecciona una fecha';
-      field.label.textContent=label;
+      field.full.textContent=label;
+      field.mobile.textContent=date?mobileDateFormatter.format(date).replace(/\./g,''):'Elegir fecha';
       field.label.classList.toggle('vl-cal-placeholder',!date);
       field.trigger.setAttribute('aria-label',(id.endsWith('ida')?'Fecha de ida: ':'Fecha de vuelta: ')+label+'. Abrir calendario');
       if(date){
@@ -195,7 +197,7 @@
       trigger.setAttribute('aria-haspopup','dialog');
       trigger.setAttribute('aria-expanded','false');
       trigger.setAttribute('aria-controls','vl-calendar-premium');
-      trigger.innerHTML=icon+'<span class="vl-cal-trigger-copy"></span>'+arrow;
+      trigger.innerHTML=icon+'<span class="vl-cal-trigger-copy"><span class="vl-cal-label-full"></span><span class="vl-cal-label-mobile"></span></span>'+arrow;
       input.insertAdjacentElement('afterend',trigger);
       var error=document.createElement('p');
       error.className='vl-cal-error-msg';
@@ -206,7 +208,7 @@
       input.classList.add('vl-calendar-native');
       input.tabIndex=-1;
       input.setAttribute('aria-hidden','true');
-      fields[input.id]={input:input,trigger:trigger,label:trigger.querySelector('.vl-cal-trigger-copy'),error:error};
+      fields[input.id]={input:input,trigger:trigger,label:trigger.querySelector('.vl-cal-trigger-copy'),full:trigger.querySelector('.vl-cal-label-full'),mobile:trigger.querySelector('.vl-cal-label-mobile'),error:error};
       trigger.addEventListener('click',function(){openFor(input.id);});
       input.addEventListener('input',refresh);
       input.addEventListener('change',refresh);
