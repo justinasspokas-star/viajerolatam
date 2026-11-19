@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<script id="vl-consent-bootstrap">
+window.dataLayer=window.dataLayer||[];
+window.gtag=window.gtag||function(){window.dataLayer.push(arguments);};
+(function(){
+  var analytics='denied';
+  var marketing='denied';
+  try{
+    var raw=localStorage.getItem('vl_cookie_consent_v1');
+    if(raw){
+      var saved=JSON.parse(raw);
+      if(saved&&saved.version===1&&saved.expiresAt>Date.now()){
+        analytics=saved.analytics?'granted':'denied';
+        marketing=saved.marketing?'granted':'denied';
+      }else{
+        localStorage.removeItem('vl_cookie_consent_v1');
+      }
+    }
+  }catch(error){}
+  gtag('consent','default',{
+    analytics_storage:analytics,
+    ad_storage:marketing,
+    ad_user_data:marketing,
+    ad_personalization:marketing,
+    wait_for_update:500
+  });
+})();
+</script>
+<link href="/assets/vl-cookie-consent.css" rel="stylesheet"/>
+<script defer="" src="/assets/vl-cookie-consent.js"></script>
+<link as="image" href="/hero-bg.webp" rel="preload" type="image/webp">
+<meta charset="utf-8"/>
+<meta content="fnxi-_Liw22SOQakruhikIUAjmf3u6mdT79inMc9x9A" name="google-site-verification"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<!-- Favicon / browser tab icon -->
+<link href="/favicon.ico" rel="icon" sizes="any"/>
+<link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png"/>
+<link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/>
+<link href="/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
+<link href="/site.webmanifest" rel="manifest"/>
+<meta content="#0B1F3A" name="theme-color"/>
+<title>Seguro de viaje para padres que visitan España: cómo contratarlo desde aquí | ViajeroLatam</title>
+<meta content="¿Tus padres viajan de Latinoamérica a España? Cómo contratar su seguro desde España, comparar coberturas, revisar límites de edad y evitar errores." name="description"/>
+<meta content="index, follow" name="robots"/>
+<link href="https://viajerolatam.com/blog/seguro-viaje-padres-visitan-espana/" rel="canonical"/>
+<meta content="article" property="og:type"/>
+<meta content="Seguro de viaje para padres que visitan España: cómo contratarlo desde aquí" property="og:title"/>
+<meta content="¿Tus padres viajan de Latinoamérica a España? Cómo contratar su seguro desde España, comparar coberturas, revisar límites de edad y evitar errores." property="og:description"/>
+<meta content="https://viajerolatam.com/blog/seguro-viaje-padres-visitan-espana/" property="og:url"/>
+<meta content="https://viajerolatam.com/og-mochila-viajerolatam.png?v=2" property="og:image"/>
+<meta content="ViajeroLatam" property="og:site_name"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-P1Q2TSMVNJ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-P1Q2TSMVNJ');</script>
+<script id="vl-ga4-affiliate-normalizer">
+(function(){
+  if (window.vlGa4AffiliateNormalizerInstalled) return;
+  window.vlGa4AffiliateNormalizerInstalled = true;
+
+  function getClickId(){
+    try {
+      var key = 'vl_affiliate_click_id';
+      var id = sessionStorage.getItem(key);
+      if (!id) {
+        id = 'vl_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 10);
+        sessionStorage.setItem(key, id);
+      }
+      return id;
+    } catch(e) {
+      return 'vl_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 10);
+    }
+  }
+
+  function cleanPartner(partner){
+    return String(partner || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9_]+/g, '_')
+      .replace(/^_+|_+$/g, '');
+  }
+
+  function partnerFromEvent(eventName, params){
+    var partner = '';
+    if (eventName.indexOf('click_affiliate_') === 0) {
+      partner = eventName.replace('click_affiliate_', '');
+    }
+    if (!partner && params && params.affiliate_partner) partner = params.affiliate_partner;
+    return cleanPartner(partner || 'unknown');
+  }
+
+  function install(){
+    if (typeof window.gtag !== 'function') {
+      window.setTimeout(install, 50);
+      return;
+    }
+    if (window.gtag.vlAffiliateNormalized) return;
+
+    var originalGtag = window.gtag;
+    function normalizedGtag(){
+      var args = Array.prototype.slice.call(arguments);
+
+      if (args[0] === 'event' && typeof args[1] === 'string') {
+        var originalEventName = args[1];
+        var eventName = originalEventName.toLowerCase();
+
+        if (eventName !== originalEventName) {
+          args[1] = eventName;
+        }
+
+        if (eventName.indexOf('click_affiliate_') === 0) {
+          var params = args[2] && typeof args[2] === 'object' ? args[2] : {};
+          var partner = partnerFromEvent(eventName, params);
+          var clickId = params.affiliate_click_id || getClickId();
+
+          params.event_category = params.event_category || 'affiliate';
+          params.affiliate_partner = partner;
+          params.affiliate_click_id = clickId;
+          params.page_path = window.location.pathname;
+          params.page_location = params.page_location || window.location.href;
+          params.outbound_url = params.outbound_url || params.event_label || params.link_url || '';
+          params.link_text = params.link_text || '';
+
+          args[2] = params;
+
+          originalGtag.apply(window, args);
+
+          originalGtag('event', 'affiliate_outbound_click', {
+            event_category: 'affiliate',
+            affiliate_partner: partner,
+            affiliate_click_id: clickId,
+            source_event: eventName,
+            outbound_url: params.outbound_url,
+            page_path: window.location.pathname,
+            page_location: window.location.href
+          });
+          return;
+        }
+      }
+
+      return originalGtag.apply(window, args);
+    }
+
+    normalizedGtag.vlAffiliateNormalized = true;
+    window.gtag = normalizedGtag;
+  }
+
+  install();
+})();
+</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://viajerolatam.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://viajerolatam.com/blog/"},{"@type":"ListItem","position":3,"name":"Seguro para padres que visitan España","item":"https://viajerolatam.com/blog/seguro-viaje-padres-visitan-espana/"}]},{"@type":"Article","headline":"Seguro de viaje para padres que visitan España: cómo contratarlo desde aquí","description":"¿Tus padres viajan de Latinoamérica a España? Cómo contratar su seguro desde España, comparar coberturas, revisar límites de edad y evitar errores.","datePublished":"2026-11-19","dateModified":"2026-11-19","inLanguage":"es","author":{"@type":"Organization","name":"ViajeroLatam","url":"https://viajerolatam.com/sobre-nosotros/"},"publisher":{"@type":"Organization","name":"ViajeroLatam","url":"https://viajerolatam.com/"},"mainEntityOfPage":"https://viajerolatam.com/blog/seguro-viaje-padres-visitan-espana/","image":"https://viajerolatam.com/og-mochila-viajerolatam.png?v=2"},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Puedo contratar desde España un seguro para mis padres?","acceptedAnswer":{"@type":"Answer","text":"En determinados productos sí. Comprueba que se permita un tomador o pagador diferente y declara la residencia habitual real, edad, origen y fechas de los asegurados."}},{"@type":"Question","name":"¿Sirve el seguro de viaje para mis padres mayores de 70 años?","acceptedAnswer":{"@type":"Answer","text":"Depende de los límites de edad y condiciones de la póliza. Compara asistencia médica, franquicia, preexistencias y duración."}},{"@type":"Question","name":"¿Es obligatorio un seguro médico para cualquier padre que visite España?","acceptedAnswer":{"@type":"Answer","text":"No para todos los casos por igual. En las solicitudes de visado Schengen correspondientes se exige un seguro de viaje con al menos 30.000 euros de cobertura, conforme al Código de Visados."}},{"@type":"Question","name":"¿Qué diferencia hay entre seguro de viaje y seguro para residencia?","acceptedAnswer":{"@type":"Answer","text":"El seguro de viaje cubre contingencias de estancias temporales según su póliza. Para trámites de residencia o reagrupación familiar puede necesitarse otro tipo de cobertura."}},{"@type":"Question","name":"¿Desde qué país debo contratar si yo vivo en España y mis padres en Colombia?","acceptedAnswer":{"@type":"Answer","text":"Indica la residencia real de los padres en Colombia y España como destino, si el producto admite esa ruta. No selecciones España como residencia solo porque pagas desde allí."}}]}]}</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{max-width:100%;overflow-x:hidden}
+:root{--navy:#0B1F3A;--teal:#00C4A1;--mint:#75D8BC;--sand:#F5F0E8;--border:#EAE3D5;--muted:#4A647E;--display:'DM Serif Display',Georgia,serif;--body:'Plus Jakarta Sans',Arial,sans-serif}
+body{font-family:var(--body);color:var(--navy);background:#fff;line-height:1.75}
+nav{position:sticky;top:0;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:10px 5%;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+nav img{height:58px;width:auto;display:block;object-fit:contain}.nav-links{display:flex;gap:22px;align-items:center}.nav-links a{text-decoration:none;color:var(--muted);font-weight:800;font-size:14px}.nav-cta{background:var(--navy);color:#fff!important;padding:10px 18px;border-radius:999px}
+.hero{background:url('/hero-bg.jpg') center center/cover no-repeat;color:#fff;padding:76px 5% 66px;position:relative;overflow:hidden}.hero:before{content:"";position:absolute;inset:0;background:rgba(5,12,40,.68)}.hero-inner{position:relative;max-width:1060px;margin:0 auto}.eyebrow{display:inline-flex;background:rgba(117,216,188,.12);border:1px solid rgba(117,216,188,.28);color:var(--mint);border-radius:999px;padding:7px 15px;font-size:13px;font-weight:900;margin-bottom:18px}h1{font-family:var(--display);font-size:clamp(38px,5.7vw,68px);line-height:1.05;margin-bottom:18px;max-width:900px}h1 em{font-style:italic;color:var(--mint)}.hero p{color:rgba(255,255,255,.78);font-size:18px;max-width:790px;margin-bottom:22px}.btn-row{display:flex;gap:12px;flex-wrap:wrap}.btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 20px;border-radius:999px;text-decoration:none!important;font-weight:900}.btn-primary{background:var(--teal);color:var(--navy)!important}.btn-secondary{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.24);color:#fff!important}.btn-dark{background:var(--navy);color:#fff!important}
+main{padding:58px 5%}.wrap{max-width:1060px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) 310px;gap:34px;align-items:start}article{min-width:0}article h2{font-family:var(--display);font-size:clamp(30px,4vw,46px);line-height:1.15;margin:42px 0 14px;color:var(--navy)}article h3{font-size:23px;line-height:1.25;margin:26px 0 10px;color:var(--navy)}article p{color:var(--muted);margin-bottom:16px}article ul, article ol{color:var(--muted);margin:12px 0 18px;padding-left:22px}article li{margin:8px 0}
+.answer-box,.note,.source-box{background:var(--sand);border:1px solid var(--border);border-radius:24px;padding:24px;margin:28px 0}.note{background:rgba(0,196,161,.08);border-left:4px solid var(--teal)}.source-box a{color:var(--navy);font-weight:800}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:22px 0}.card{background:#fff;border:1px solid var(--border);border-radius:20px;padding:18px}.card strong{display:block;color:var(--navy);margin-bottom:6px}.cta-card{background:linear-gradient(135deg,var(--navy),#17365A);color:#fff;border-radius:26px;padding:26px;margin:34px 0}.cta-card h2,.cta-card h3{color:#fff;margin-top:0}.cta-card p{color:rgba(255,255,255,.74)}.cta-card .btn-secondary{background:rgba(255,255,255,.08)}
+.table{display:grid;grid-template-columns:1.1fr 1.3fr 1.3fr;border:1px solid var(--border);border-radius:22px;overflow:hidden;margin:24px 0}.table div{padding:14px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);color:var(--muted);font-size:14px}.table .th{background:var(--navy);color:#fff;font-weight:900}.table div:nth-child(3n){border-right:0}
+aside{position:sticky;top:92px}.side-card{background:var(--sand);border:1px solid var(--border);border-radius:24px;padding:22px;margin-bottom:18px}.side-card h3{font-size:20px;margin-bottom:10px}.side-card p{color:var(--muted);font-size:14px;margin-bottom:12px}.side-card .btn{width:100%;margin-top:8px}
+.related{margin:30px 0;padding:18px 20px;border-radius:20px;background:var(--sand);border:1px solid var(--border)}.related strong{display:block;color:var(--navy);margin-bottom:8px}.related .links{display:flex;flex-wrap:wrap;gap:10px}.related a{color:var(--navy)!important;font-weight:900;text-decoration:underline}
+.site-footer{background:var(--navy);color:rgba(255,255,255,.72);padding:34px 5% 24px;margin-top:44px}.site-footer .footer-inner{max-width:1060px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap}.site-footer .footer-brand{max-width:520px}.site-footer p{margin:0;color:rgba(255,255,255,.72)}.site-footer .disclosure{margin-top:8px;font-size:12px;color:rgba(255,255,255,.58)}.site-footer .footer-links{display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center}.site-footer .footer-links a,.site-footer a{color:#fff;text-decoration:none;font-weight:700;font-size:14px}
+.mobile-affiliate-bar{position:fixed;left:12px;right:12px;bottom:12px;z-index:999;display:none;gap:8px;padding:9px;border-radius:999px;background:rgba(11,31,58,.94);box-shadow:0 18px 45px rgba(0,0,0,.24);backdrop-filter:blur(12px)}.mobile-affiliate-bar a{flex:1;display:inline-flex;align-items:center;justify-content:center;min-height:42px;border-radius:999px;text-decoration:none!important;font-weight:900;font-size:13px}.ma-primary{background:var(--teal);color:var(--navy)!important}.ma-secondary{background:#fff;color:var(--navy)!important}
+@media(max-width:860px){.nav-links a:not(.nav-cta){display:none}nav{padding:8px 16px;min-height:68px}nav img{height:44px;max-width:205px}.nav-cta{font-size:13px;padding:10px 14px}.hero{padding:56px 16px 42px;text-align:center}.hero p{font-size:15px}.wrap{grid-template-columns:1fr;gap:18px}main{padding:34px 16px}aside{display:none}.grid{grid-template-columns:1fr}.table{grid-template-columns:1fr}.table .th{display:none}.table div{border-right:0}.btn-row{display:grid;grid-template-columns:1fr}.btn{width:100%;padding:12px 16px}.related .links{display:grid;grid-template-columns:1fr}.related a{text-decoration:none!important;padding:10px 12px;border-radius:12px;background:#fff;border:1px solid var(--border);display:flex;width:100%}.site-footer{padding:24px 16px 96px}.site-footer .footer-inner{display:grid;grid-template-columns:1fr;gap:14px}.site-footer .footer-links{display:grid;grid-template-columns:1fr 1fr;gap:10px}.site-footer .footer-links a{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);padding:10px 12px;border-radius:12px;text-align:center}body{padding-bottom:74px}.mobile-affiliate-bar{display:flex}}
+@media(max-width:480px){h1{font-size:33px}.site-footer .footer-links{grid-template-columns:1fr}.mobile-affiliate-bar a{font-size:12px}}
+</style>
+<style id="vl-single-compare-cta-style">
+
+/* Mobile sticky CTA — one clean compare button */
+.mobile-affiliate-bar.single-compare-cta,
+.mobile-affiliate-bar.vl-single-compare-cta{
+  background:rgba(255,255,255,.96)!important;
+  border:1px solid #E4EDF5!important;
+  border-radius:22px!important;
+  padding:10px 12px 9px!important;
+  flex-direction:column!important;
+  gap:6px!important;
+  box-shadow:0 16px 45px rgba(11,31,58,.18)!important;
+}
+.mobile-affiliate-bar.single-compare-cta .ma-big,
+.mobile-affiliate-bar.vl-single-compare-cta .ma-big{
+  width:100%!important;
+  min-height:52px!important;
+  border-radius:999px!important;
+  background:#69C7AD!important;
+  color:#0B1F3A!important;
+  font-size:15px!important;
+  font-weight:900!important;
+  box-shadow:0 10px 22px rgba(0,196,161,.24)!important;
+}
+.mobile-affiliate-bar.single-compare-cta span,
+.mobile-affiliate-bar.vl-single-compare-cta span{
+  display:block;
+  text-align:center;
+  font-size:11px;
+  line-height:1.25;
+  color:#8FA4B8;
+  font-weight:600;
+}
+@media(max-width:480px){
+  .mobile-affiliate-bar.single-compare-cta .ma-big,
+  .mobile-affiliate-bar.vl-single-compare-cta .ma-big{font-size:14px!important}
+  .mobile-affiliate-bar.single-compare-cta span,
+  .mobile-affiliate-bar.vl-single-compare-cta span{font-size:10.5px}
+}
+
+</style>
+</link><meta content="¿El seguro de viaje cubre medicamentos? Guía práctica" name="twitter:title"/><meta content="Descubre cuándo un seguro de viaje puede cubrir medicamentos, recetas por una urgencia, tratamientos previos, límites y qué llevar al viajar a España." name="twitter:description"/><meta content="https://viajerolatam.com/og-mochila-viajerolatam.png?v=2" name="twitter:image"/><meta content="Icono de ViajeroLatam con mochila viajera" property="og:image:alt"/>  <link rel="stylesheet" href="/assets/vl-whatsapp.css">
+<style>.vl-toc,.vl-chkl,.vl-price-note{background:#f5f8fa;border:1px solid #dde8eb;border-radius:20px;padding:18px 22px;margin:22px 0}.vl-toc a{font-weight:750;color:#0b5360}.vl-toc li{margin:5px 0}.vl-pills{display:flex;flex-wrap:wrap;gap:9px;margin:20px 0}.vl-pills a{padding:9px 13px;border:1px solid #c6e8e0;border-radius:999px;background:#eef9f6;color:#0b1f3a;font-size:14px;text-decoration:none;font-weight:800}.vl-pills a:hover{background:#d5f3eb}.vl-table{overflow-x:auto;margin:22px 0}.vl-table table{border-collapse:collapse;width:100%;min-width:570px;font-size:14px}.vl-table th{background:#0b1f3a;color:#fff;text-align:left;padding:13px}.vl-table td{border-bottom:1px solid #dde8eb;color:#4a647e;padding:13px;vertical-align:top}.vl-table tr:nth-child(even){background:#f6f9fa}.vl-lastupdate{font-size:13px;color:#547084}.vl-textlink{font-weight:800;color:#0b5265}@media(max-width:640px){.vl-pills a{flex:1 1 43%;text-align:center}}</style>
+</head>
+<body>
+<nav><a class="brand-logo" href="/"><img alt="ViajeroLatam" src="/logo-vl-original-20260528.png"/></a><div class="nav-links"><a href="/resultados/">Comparador</a><a href="/visa-schengen/">Visa Schengen</a><a href="/blog/">Artículos</a><a class="nav-cta" href="/#comparar">Comparar ahora</a></div></nav>
+<header class="hero"><div class="hero-inner"><div class="eyebrow">👨‍👩‍👧 Seguros para familiares · Guía 2026/2027</div><h1>Seguro médico de viaje para <em>padres que visitan España</em></h1><p>¿Vives en España y tus padres vienen de Colombia, Venezuela, Perú u otro país latinoamericano? Aprende a contratar su seguro desde aquí, comparar coberturas y evitar errores si son mayores de 65 o 70 años.</p><div class="btn-row"><a class="btn btn-primary" href="/#comparar">Comparar seguro para mis padres</a><a class="btn btn-secondary" href="#pasos">Ver pasos de contratación</a></div></div></header>
+<main><div class="wrap"><article>
+<p class="vl-lastupdate">Actualizado el 19 de noviembre de 2026 · Lectura estimada: 8 minutos</p>
+<div class="answer-box"><p><strong>Respuesta rápida:</strong> en determinados productos <strong>sí puedes comprar y pagar desde España un seguro de viaje para tus padres que viven en Latinoamérica</strong>. Para hacerlo bien, declara a tus padres como asegurados y confirma con el proveedor que permite que un hijo actúe como tomador o pagador. <strong>El país donde tú pagas no cambia la residencia habitual de tus padres.</strong> La cobertura y la elegibilidad dependen de cada póliza.</p></div>
+<div class="vl-toc"><strong>Qué encontrarás aquí</strong><ol><li><a href="#comprar">¿Puedo comprarlo desde España?</a></li><li><a href="#pasos">Cómo contratar paso a paso</a></li><li><a href="#edad">Si tienen más de 65, 70 u 80 años</a></li><li><a href="#coberturas">Coberturas imprescindibles para comparar</a></li><li><a href="#precio">Precio de 15, 30, 60 o 90 días</a></li><li><a href="#visado">Visado y seguro Schengen</a></li><li><a href="#faq">Preguntas frecuentes</a></li></ol></div>
+
+<h2 id="comprar">¿Puedo contratar desde España el seguro de mis padres?</h2>
+<p>Imagina que tú vives en Valencia y tu madre reside en Bogotá. Ella viaja a España durante un mes y quieres ayudarla con la contratación. Es posible que un producto permita que tú gestiones la compra desde España, pero antes debes comprobar <strong>quién figura como tomador, quién paga y quién está asegurado</strong>. No todas las aseguradoras ofrecen las mismas condiciones para contratantes y asegurados de distintos países.</p>
+<p>Si el asegurado vive habitualmente en Colombia, el formulario debe reflejar su <strong>residencia real en Colombia</strong>, su edad, España como destino y sus fechas de viaje, siempre según los campos y criterios del producto. Seleccionar «España» como país de residencia porque tú estás pagando puede provocar problemas de elegibilidad o cobertura.</p>
+<div class="note"><strong>Consejo práctico:</strong> antes de pagar, pregunta expresamente a la aseguradora «¿puedo contratar desde España y pagar una póliza para mi madre de 73 años, residente en Colombia, que viene de visita 30 días?». Pide confirmación sobre residencia admitida, edad, fecha de efecto y enfermedades previas.</div>
+
+<h2 id="pasos">Cómo contratar un seguro para un familiar desde España: paso a paso</h2>
+<ol><li><strong>Confirma país de residencia y salida:</strong> dónde viven realmente tus padres y desde dónde inicia el viaje.</li><li><strong>Indica España como destino</strong> y las fechas completas, también tránsito si la aseguradora lo exige.</li><li><strong>Comprueba edad y número de asegurados:</strong> puede haber condiciones diferentes para cada padre.</li><li><strong>Compara asistencia médica, hospitalización y repatriación:</strong> revisa límites, franquicias y exclusiones.</li><li><strong>Informa de enfermedades preexistentes cuando corresponda:</strong> no presupongas que están cubiertas.</li><li><strong>Confirma cómo contratar por un tercero:</strong> quién debe figurar como tomador y quién puede realizar el pago.</li><li><strong>Revisa nombre, residencia, fechas y cobertura</strong> en la póliza antes de finalizar.</li><li><strong>Envía a tus padres el certificado y el teléfono de asistencia</strong> para que puedan utilizarlos durante el viaje.</li></ol>
+<div class="cta-card"><h2>¿Tus padres vienen de Latinoamérica a España?</h2><p>Compara seguros por país de residencia, destino, fechas y número de viajeros. El precio definitivo y las condiciones se comprueban siempre con la aseguradora.</p><a class="btn btn-primary" href="/#comparar">Comparar seguros para mis padres →</a><p style="font-size:12px;margin:14px 0 0">Comparación gratuita. ViajeroLatam puede recibir una comisión de afiliación sin coste adicional para ti.</p></div>
+
+<h2>Seguros por país de origen: Colombia, Venezuela, Perú y más</h2>
+<p>La ruta de viaje importa porque las aseguradoras pueden establecer criterios de residencia y cobertura. Si tus padres viajan a España desde uno de estos países, consulta primero la página de la ruta y después verifica los términos del proveedor elegido.</p>
+<div class="vl-pills"><a href="/seguro-viaje/colombia-a-espana/">Colombia → España</a><a href="/seguro-viaje/venezuela-a-espana/">Venezuela → España</a><a href="/seguro-viaje/peru-a-espana/">Perú → España</a><a href="/seguro-viaje/argentina-a-espana/">Argentina → España</a><a href="/seguro-viaje/mexico-a-espana/">México → España</a><a href="/seguro-viaje/ecuador-a-espana/">Ecuador → España</a><a href="/seguro-viaje/cuba-a-espana/">Cuba → España</a><a href="/seguro-viaje/republica-dominicana-a-espana/">R. Dominicana → España</a></div>
+<p>Estas guías por país están orientadas a comparar seguros para la ruta concreta. Este artículo, en cambio, responde a <strong>cómo comprar el seguro a distancia para tus padres</strong> y a qué debes revisar al hacerlo, evitando duplicar el contenido comercial de cada ruta.</p>
+
+<h2 id="edad">Seguro médico para padres mayores de 65, 70 u 80 años</h2>
+<p>En viajeros mayores, el seguro más económico no siempre es el más adecuado. Los límites de edad, los importes de cobertura, la franquicia y las condiciones sobre enfermedades preexistentes pueden variar de manera importante entre pólizas.</p>
+<ul><li><strong>Edad máxima admitida:</strong> pregunta si el producto admite la edad que tendrá tu padre o madre al comenzar el viaje.</li><li><strong>Hospitalización y urgencias:</strong> revisa los límites y cómo se contacta con asistencia antes de acudir a un centro médico.</li><li><strong>Preexistencias:</strong> comprueba si existen exclusiones o coberturas limitadas para enfermedades ya conocidas.</li><li><strong>Medicamentos crónicos:</strong> no asumas que el seguro paga tratamientos o recetas habituales.</li><li><strong>Repatriación sanitaria:</strong> revisa cuándo procede y quién la gestiona.</li><li><strong>Duración máxima:</strong> confirma que los 30, 60 o 90 días de visita entran en las condiciones.</li></ul>
+<p>Más información específica en <a class="vl-textlink" href="/seguro-viaje/mayores-70/">seguros de viaje para mayores de 70 años</a> y <a class="vl-textlink" href="/seguro-viaje/enfermedades-preexistentes/">enfermedades preexistentes y seguros de viaje</a>.</p>
+
+<h2 id="coberturas">Qué debe cubrir el seguro de viaje para padres que visitan España</h2>
+<div class="vl-table"><table><thead><tr><th>Cobertura</th><th>Qué revisar</th><th>Por qué importa</th></tr></thead><tbody>
+<tr><td><strong>Asistencia médica</strong></td><td>Urgencias, límite económico y atención disponible.</td><td>Una enfermedad inesperada puede necesitar asistencia durante la estancia.</td></tr>
+<tr><td><strong>Hospitalización</strong></td><td>Límite, autorización y pago directo o reembolso.</td><td>Una hospitalización puede implicar gastos elevados.</td></tr>
+<tr><td><strong>Repatriación</strong></td><td>Traslado sanitario y retorno en supuestos cubiertos.</td><td>Ayuda ante determinados incidentes graves.</td></tr>
+<tr><td><strong>Preexistencias</strong></td><td>Exclusiones y atención por agravamiento.</td><td>No todas las enfermedades previas están cubiertas.</td></tr>
+<tr><td><strong>Franquicia</strong></td><td>Cantidad que debe asumir el asegurado.</td><td>Dos pólizas con precio similar pueden tener distintos costes reales.</td></tr>
+<tr><td><strong>Periodo de cobertura</strong></td><td>Inicio, fin, tránsito y límites de días consecutivos.</td><td>La póliza debe ser válida para toda la visita.</td></tr>
+</tbody></table></div>
+<p>Es importante distinguir entre <strong>una urgencia médica inesperada</strong> y tratamientos programados o enfermedades anteriores. El seguro temporal de viaje no equivale a un seguro privado de salud general.</p>
+
+<h2 id="precio">¿Cuánto cuesta un seguro para padres que visitan España 15, 30, 60 o 90 días?</h2>
+<p>El precio varía por <strong>edad, país de residencia habitual, duración, número de personas, destino y coberturas</strong>. No hay una tarifa única que pueda aplicarse a todos los padres, especialmente cuando tienen más de 70 años.</p>
+<div class="grid"><div class="card"><strong>Viajes de 15 a 30 días</strong><p>Compara el coste total, la franquicia y la asistencia médica, no solo un precio anunciado «desde».</p></div><div class="card"><strong>Viajes de 60 a 90 días</strong><p>Confirma la duración máxima permitida por la póliza y revisa por separado los requisitos migratorios.</p></div></div>
+<p>Para conocer precios orientativos según el viaje real, visita el <a class="vl-textlink" href="/#comparar">comparador de seguros de viaje</a>. El precio final se valida en la web del proveedor.</p>
+
+<h2 id="visado">¿Es obligatorio un seguro médico para mis padres al viajar a España?</h2>
+<p><strong>No existe una obligación idéntica para todos los visitantes de Latinoamérica.</strong> Depende de su nacionalidad, situación documental y tipo de viaje. Para determinadas <strong>solicitudes de visado Schengen de corta estancia</strong>, el artículo 15 del Código de Visados exige un seguro médico de viaje válido en el espacio Schengen, con atención médica urgente, hospitalización y repatriación, y una cobertura mínima de <strong>30.000 €</strong>.</p>
+<p>Si tus padres son viajeros exentos de visado para una visita corta, ese requisito de póliza de 30.000 € no debe presentarse como una obligación universal. En cualquier caso, un seguro de viaje puede ayudarles frente a gastos médicos inesperados, sujeto a sus condiciones.</p>
+<p><strong>¿Vienen para vivir en España o por reagrupación familiar?</strong> Entonces la situación es distinta: un seguro de viaje turístico puede no cumplir los requisitos de seguro sanitario del procedimiento de residencia correspondiente. Verifica las condiciones oficiales de ese trámite antes de contratar.</p>
+<div class="source-box"><strong>Fuentes oficiales</strong><p><a href="https://eur-lex.europa.eu/eli/reg/2009/810/2024-06-28/spa" target="_blank" rel="noopener noreferrer">Código de Visados de la Unión Europea (artículo 15)</a> y <a href="https://www.exteriores.gob.es/es/ServiciosAlCiudadano/Paginas/Servicios-consulares.aspx" target="_blank" rel="noopener noreferrer">Ministerio de Asuntos Exteriores: servicios consulares y visados</a>. Verifica siempre las reglas del consulado y país aplicables.</p></div>
+
+<h2>Errores habituales al contratar para tus padres</h2>
+<ul><li>Seleccionar España como residencia cuando los padres viven en otro país.</li><li>Comprar sin comprobar la edad máxima admitida.</li><li>Confundir enfermedades preexistentes con urgencias cubiertas.</li><li>Contratar después del inicio del viaje sin revisar carencias y fecha de efecto.</li><li>Olvidar enviar el certificado o teléfono de asistencia a los viajeros.</li><li>Usar un seguro de viaje para un trámite de residencia sin comprobar requisitos.</li></ul>
+
+<h2 id="faq">Preguntas frecuentes sobre seguros para padres que visitan España</h2>
+<h3>¿Puedo contratar desde España un seguro para mis padres?</h3><p>En determinados productos sí. Comprueba que se permita un tomador o pagador diferente y declara la residencia habitual real, edad, origen y fechas de los asegurados.</p><h3>¿Sirve el seguro de viaje para mis padres mayores de 70 años?</h3><p>Depende de los límites de edad y condiciones de la póliza. Compara asistencia médica, franquicia, preexistencias y duración.</p><h3>¿Es obligatorio un seguro médico para cualquier padre que visite España?</h3><p>No para todos los casos por igual. En las solicitudes de visado Schengen correspondientes se exige un seguro de viaje con al menos 30.000 euros de cobertura, conforme al Código de Visados.</p><h3>¿Qué diferencia hay entre seguro de viaje y seguro para residencia?</h3><p>El seguro de viaje cubre contingencias de estancias temporales según su póliza. Para trámites de residencia o reagrupación familiar puede necesitarse otro tipo de cobertura.</p><h3>¿Desde qué país debo contratar si yo vivo en España y mis padres en Colombia?</h3><p>Indica la residencia real de los padres en Colombia y España como destino, si el producto admite esa ruta. No selecciones España como residencia solo porque pagas desde allí.</p>
+<div class="cta-card"><h2>Compara con los datos reales de tus padres</h2><p>Selecciona su país de residencia, España como destino, las fechas y el número de personas. Revisa las coberturas antes de contratar.</p><a class="btn btn-primary" href="/#comparar">Comparar seguros de viaje →</a><p style="font-size:12px;margin:14px 0 0">ViajeroLatam informa y compara opciones. No emite pólizas; la contratación se realiza con cada proveedor.</p></div>
+<div class="related"><strong>También puede interesarte</strong><div class="links"><a href="/seguro-viaje/mayores-70/">Seguro para mayores de 70</a><a href="/seguro-viaje/colombia-a-espana/">Colombia → España</a><a href="/seguro-viaje/venezuela-a-espana/">Venezuela → España</a><a href="/blog/documentos-viajar-espana-desde-colombia-2026/">Documentos para viajar</a></div></div>
+</article><aside><div class="side-card"><h3>¿Tus padres vienen a España?</h3><p>Empieza con el país donde viven tus padres, sus edades y fechas.</p><a class="btn btn-primary" href="/#comparar">Comparar seguros</a></div><div class="side-card"><h3>¿Son mayores de 70?</h3><p>Revisa edad máxima y coberturas.</p><a class="btn btn-dark" href="/seguro-viaje/mayores-70/">Guía mayores de 70</a></div></aside></div></main>
+<footer class="site-footer"><div class="footer-inner"><div class="footer-brand"><p><strong>© ViajeroLatam</strong> · Comparador independiente para viajeros latinoamericanos.</p><p class="disclosure">Podemos recibir una comisión si contratas desde nuestros enlaces afiliados, sin coste adicional para ti.</p></div><div class="footer-links"><a href="/">Inicio</a><a href="/resultados/">Comparar</a><a href="/visa-schengen/">Visa Schengen</a><a href="/blog/">Artículos</a><a href="/como-elegimos/">Cómo elegimos</a><a href="/contacto/">Contacto</a></div></div></footer>
+<div aria-label="Comparar seguros gratis" class="mobile-affiliate-bar vl-single-compare-cta"><a class="ma-primary ma-big" href="/resultados/">🔍 Comparar seguros gratis</a><span>Compara coberturas, límites y condiciones antes de contratar</span></div>
+<script>document.addEventListener('click',function(e){var link=e.target.closest('a');if(!link||typeof gtag!=='function')return;var href=link.getAttribute('href')||'';if(href.indexOf('/resultados/')!==-1)gtag('event','click_comparar_seguros_gratis',{event_category:'lead',event_label:href,page_location:window.location.href});});</script>  <script defer src="/assets/vl-whatsapp.js"></script>
+</body>
+</html>
