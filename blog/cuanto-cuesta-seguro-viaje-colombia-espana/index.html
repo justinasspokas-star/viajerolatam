@@ -785,6 +785,201 @@ img, video, iframe, svg {
 .price-cop-table div:not(.th)::before{font-weight:800}
 }
 </style>
+<style id="vl-colombia-price-mobile-ux-2026-11-21">
+/* Ajustes exclusivos de móvil en este artículo. No modifican la versión escritorio. */
+@media screen and (max-width: 768px) {
+  body > nav:first-of-type {
+    height: 60px !important;
+    min-height: 60px !important;
+    padding: 6px 18px !important;
+  }
+  body > nav:first-of-type .brand-logo img {
+    height: 40px !important;
+    max-width: 156px !important;
+  }
+
+  header.hero {
+    padding: 34px 18px 32px !important;
+    min-height: 0 !important;
+    text-align: center !important;
+    background-image: linear-gradient(180deg, rgba(8,24,53,.78), rgba(8,24,53,.92)), url('/hero-bg.webp') !important;
+    background-size: cover !important;
+    background-position: center center !important;
+  }
+  header.hero::before { opacity: .25; }
+  header.hero .hero-inner {
+    max-width: 540px !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+  }
+  header.hero .eyebrow {
+    display: inline-block;
+    max-width: 100%;
+    font-size: 11.5px;
+    line-height: 1.5;
+    text-align: center;
+    padding: 8px 12px;
+    border-radius: 16px;
+    margin: 0 0 14px;
+    background: rgba(10,45,67,.74);
+    color: #B7F5E2;
+  }
+  header.hero h1 {
+    max-width: 520px !important;
+    font-size: clamp(24px, 6.8vw, 32px) !important;
+    line-height: 1.15 !important;
+    margin: 0 auto 16px !important;
+    text-wrap: balance;
+  }
+  header.hero p {
+    max-width: 490px !important;
+    font-size: 14px !important;
+    line-height: 1.65 !important;
+    color: rgba(255,255,255,.9) !important;
+    margin: 0 auto 20px !important;
+  }
+  header.hero .btn-row {
+    display: grid !important;
+    grid-template-columns: minmax(0,1fr) !important;
+    gap: 10px !important;
+    width: 100% !important;
+  }
+  header.hero .btn-row .btn {
+    width: 100% !important;
+    min-height: 48px !important;
+    padding: 12px 14px !important;
+    border-radius: 14px !important;
+    font-size: 14px !important;
+    line-height: 1.35 !important;
+  }
+  header.hero .btn-secondary {
+    background: rgba(12,32,62,.7) !important;
+    border-color: rgba(255,255,255,.28) !important;
+  }
+
+  main {
+    padding: 22px 16px 42px !important;
+  }
+  main > .wrap {
+    display: block !important;
+    width: 100% !important;
+    max-width: 640px !important;
+    padding: 0 !important;
+    margin: 0 auto !important;
+  }
+  main article h2 {
+    font-size: clamp(22px, 5.7vw, 28px) !important;
+    line-height: 1.22 !important;
+    margin-top: 30px !important;
+  }
+  main article h3 {
+    font-size: 18px !important;
+    line-height: 1.35 !important;
+  }
+  main article p, main article li {
+    font-size: 14px !important;
+    line-height: 1.65 !important;
+  }
+  main article .vl-intent-box {
+    margin: 0 0 20px !important;
+    padding: 18px !important;
+    border-radius: 18px !important;
+    box-shadow: 0 8px 26px rgba(11,31,58,.07) !important;
+  }
+  main article .vl-intent-box h2 {
+    margin: 0 0 10px !important;
+    font-size: clamp(22px, 5.7vw, 26px) !important;
+  }
+  main article .vl-intent-grid {
+    gap: 10px !important;
+    margin: 14px 0 16px !important;
+  }
+  main article .vl-intent-mini {
+    padding: 14px !important;
+    border-radius: 14px !important;
+  }
+  main article .vl-intent-actions { gap: 10px !important; }
+  main article .vl-intent-actions a {
+    width: 100% !important;
+    min-height: 46px !important;
+    padding: 12px 14px !important;
+    border-radius: 14px !important;
+  }
+  main article .answer-box {
+    padding: 18px !important;
+    margin: 20px 0 !important;
+    border-radius: 18px !important;
+  }
+  main article .mini-cta,
+  main article .cta-card,
+  main article .vl-seo-cta {
+    padding: 18px !important;
+    border-radius: 18px !important;
+  }
+
+  /* Sin duplicar la llamada a la acción mientras se ve la portada. */
+  .mobile-affiliate-bar.vl-single-compare-cta {
+    left: 12px !important;
+    right: 12px !important;
+    bottom: calc(10px + env(safe-area-inset-bottom)) !important;
+    padding: 8px 10px !important;
+    gap: 4px !important;
+    border-radius: 18px !important;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(14px);
+    transition: opacity .18s ease, transform .18s ease, visibility .18s;
+  }
+  html.vl-blog-cta-visible .mobile-affiliate-bar.vl-single-compare-cta {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+  .mobile-affiliate-bar.vl-single-compare-cta .ma-big {
+    min-height: 46px !important;
+    font-size: 14px !important;
+    border-radius: 14px !important;
+    box-shadow: none !important;
+  }
+  .mobile-affiliate-bar.vl-single-compare-cta span {
+    font-size: 11px !important;
+    line-height: 1.4 !important;
+  }
+  /* WhatsApp nunca invade el CTA inferior; al volver a la portada baja. */
+  html.vl-whatsapp-has-sticky .vl-whatsapp-float {
+    bottom: calc(18px + env(safe-area-inset-bottom)) !important;
+  }
+  html.vl-blog-cta-visible.vl-whatsapp-has-sticky .vl-whatsapp-float {
+    bottom: calc(110px + env(safe-area-inset-bottom)) !important;
+  }
+  body {
+    padding-bottom: calc(112px + env(safe-area-inset-bottom)) !important;
+  }
+  header.hero a:focus-visible,
+  main article a:focus-visible,
+  .mobile-affiliate-bar a:focus-visible {
+    outline: 3px solid #2A9D8F;
+    outline-offset: 3px;
+  }
+}
+@media screen and (max-width: 380px) {
+  header.hero h1 { font-size: 24px !important; }
+  header.hero .eyebrow { font-size: 11px; }
+  main { padding-left: 14px !important; padding-right: 14px !important; }
+}
+@media screen and (max-width: 768px) and (orientation: landscape) and (max-height: 500px) {
+  .mobile-affiliate-bar.vl-single-compare-cta { display: none !important; }
+  html.vl-blog-cta-visible.vl-whatsapp-has-sticky .vl-whatsapp-float {
+    bottom: 18px !important;
+  }
+  body { padding-bottom: 0 !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mobile-affiliate-bar.vl-single-compare-cta { transition: none !important; }
+}
+</style>
 </head>
 <body>
 <nav>
@@ -1030,5 +1225,26 @@ document.addEventListener('click', function(e){
   <script defer src="/assets/vl-whatsapp.js"></script>
 <script defer src="/assets/vl-exchange-rates.js"></script>
 <script defer src="/assets/vl-price-fx-inline.js"></script>
+<script id="vl-price-mobile-sticky-trigger">
+/* Muestra el CTA móvil solo cuando la portada deja de verse. */
+(function(){
+  var hero = document.querySelector('header.hero');
+  var bar = document.querySelector('.mobile-affiliate-bar.vl-single-compare-cta');
+  if(!hero || !bar) return;
+  var root = document.documentElement;
+  var media = window.matchMedia('(max-width: 768px)');
+  function updateSticky(){
+    var show = media.matches && hero.getBoundingClientRect().bottom <= 90;
+    root.classList.toggle('vl-blog-cta-visible', show);
+  }
+  if('IntersectionObserver' in window){
+    var observer = new IntersectionObserver(updateSticky, { threshold: 0 });
+    observer.observe(hero);
+  }
+  window.addEventListener('scroll', updateSticky, {passive:true});
+  window.addEventListener('resize', updateSticky);
+  updateSticky();
+})();
+</script>
 </body>
 </html>
