@@ -476,20 +476,20 @@ img, video, iframe, svg {
 <link href="/site.webmanifest" rel="manifest"/>
 <meta content="#0B1F3A" name="theme-color"/>
 <title>Comparar seguros de viaje para España y Schengen | ViajeroLatam</title>
-<meta content="Compara seguros de viaje para España y Europa. Revisa precio, cobertura médica, repatriación, equipaje y condiciones de IATI, Intermundial, Holins, AXA, Chapka y Assist 365." name="description"/>
+<meta content="Compara seguros de viaje para España y Europa. Revisa precio, cobertura médica, repatriación, equipaje y condiciones de IATI, Intermundial, AXA, Chapka y Assist 365." name="description"/>
 <meta content="noindex, follow" name="robots"/>
 <link href="https://viajerolatam.com/resultados/" rel="canonical"/>
 <!-- Open Graph -->
 <meta content="website" property="og:type"/>
 <meta content="https://viajerolatam.com/resultados/" property="og:url"/>
 <meta content="Comparar seguros de viaje para España y Schengen | ViajeroLatam" property="og:title"/>
-<meta content="Compara seguros de viaje para España y Europa. Revisa precio, cobertura médica, repatriación, equipaje y condiciones de IATI, Intermundial, Holins, AXA, Chapka y Assist 365." property="og:description"/>
+<meta content="Compara seguros de viaje para España y Europa. Revisa precio, cobertura médica, repatriación, equipaje y condiciones de IATI, Intermundial, AXA, Chapka y Assist 365." property="og:description"/>
 <meta content="https://viajerolatam.com/og-mochila-viajerolatam.png?v=2" property="og:image"/>
 <meta content="ViajeroLatam" property="og:site_name"/>
 <!-- Twitter Card -->
 <meta content="summary_large_image" name="twitter:card"/>
 <meta content="Comparar seguros de viaje para España y Schengen | ViajeroLatam" name="twitter:title"/>
-<meta content="Compara seguros de viaje para España y Europa. Revisa precio, cobertura médica, repatriación, equipaje y condiciones de IATI, Intermundial, Holins, AXA, Chapka y Assist 365." name="twitter:description"/>
+<meta content="Compara seguros de viaje para España y Europa. Revisa precio, cobertura médica, repatriación, equipaje y condiciones de IATI, Intermundial, AXA, Chapka y Assist 365." name="twitter:description"/>
 <meta content="https://viajerolatam.com/og-mochila-viajerolatam.png?v=2" name="twitter:image"/>
 <!-- Schema: página de comparación dinámica (sin valoraciones ni precios estructurados no verificables) -->
 <script type="application/ld+json">
@@ -2552,7 +2552,6 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
 const DATA = [
   {id:2,key:'iati',logo:'IA',logoColor:'#FFF5EA',logoText:'#F58220',logoUrl:'https://www.iatiseguros.com/favicon.ico',logoAlt:'IATI Seguros',name:'IATI Seguros',guideUrl:'/seguros/iati/',ctaUrl:'https://www.iatiseguros.com?r=84208681926165'},
   {id:3,key:'intermundial',logo:'IM',logoColor:'#F0F8FF',logoText:'#1976D2',logoUrl:'/assets/intermundial-logo-oficial.png',logoAlt:'Intermundial',name:'Intermundial',guideUrl:'/seguros/intermundial/',ctaUrl:'https://www.intermundial.es/afiliados/seguros-de-viaje-recomendado?utm_source=Affiliates&utm_medium=Affiliates&utm_campaign=General&utm_term=kbnnqvpvcy490&utm_content=kbnnqvpvcy490&coupon=VIAJEROLATAM&vl_site=viajerolatam&vl_partner=intermundial&vl_page=resultados&vl_link=2'},
-  {id:4,key:'holins',logo:'HO',logoColor:'#F2FBF8',logoText:'#137A70',logoUrl:'/assets/holins-logo-oficial.png',logoAlt:'Holins',name:'Holins',guideUrl:'/seguros/holins/',ctaUrl:'https://clk.tradedoubler.com/click?p=301095&a=3485639'},
   {id:5,key:'axa',logo:'AX',logoColor:'#EEF2FF',logoText:'#1B3A8A',logoUrl:'/assets/axa-logo-oficial.png',logoAlt:'AXA Assistance',name:'AXA',guideUrl:'/seguros/axa/',ctaUrl:'https://clk.tradedoubler.com/click?p=343758&a=3485639'},
   {id:6,key:'chapka',logo:'CH',logoColor:'#FFFFFF',logoText:'#37344F',logoUrl:'/assets/chapka-logo-oficial.png',logoAlt:'Chapka',name:'Chapka',guideUrl:'',ctaUrl:'https://www.chapkadirect.es/index.php?action=produit&id=930&app=ViajeroLATAM'},
   {id:7,key:'assist365',logo:'365',logoColor:'#FFFFFF',logoText:'#3C63C3',logoUrl:'/assets/assist365-logo-oficial.png',logoAlt:'Assist 365',name:'Assist 365',guideUrl:'',ctaUrl:'https://assist-365.com?voucher=VIAJEROLATAM'}
@@ -2562,7 +2561,6 @@ const DATA = [
 const FIXED_ORIENTATIVE_RATES = Object.freeze({
   iati: 2.20,
   intermundial: 1.85,
-  holins: 1.36,
   axa: 1.48,
   assist365: 2.46
 });
@@ -3099,9 +3097,8 @@ function fixedOrientativeRate(key){
     if(dest === 'europe') return 0.88;
     return 5.10;
   }
-  // Productos Schengen específicos de Holins y AXA para no residentes en España.
+  // Productos Schengen específicos de AXA para no residentes en España.
   if(origin !== 'es' && dest === 'europe'){
-    if(key === 'holins') return 2.00;
     if(key === 'axa') return 2.66;
     if(key === 'chapka') return chapkaReferenceTotalPerPerson()/Math.max(1,resultTripDays());
   }
@@ -3343,10 +3340,6 @@ function providerVisible(d){
   // En Europa fuera de Schengen, itinerarios combinados y Asia no mezclar
   // productos específicos Schengen cuya cobertura no se ha verificado para esos destinos.
   if(d && isExtendedNonSchengenSelection() && (d.key==='chapka'||d.key==='axa')) return false;
-  // Holins se muestra solo cuando la salida/residencia de referencia es España.
-  // Para LATAM → España (y otros orígenes fuera de España) se oculta por completo
-  // hasta disponer de confirmación contractual de una modalidad compatible.
-  if(d && d.key==='holins' && normalizedOrigin()!=='es') return false;
   // Assist 365: conservar LATAM → Schengen y añadir solo LATAM → Estados Unidos.
   // Países como Canadá no reciben la nueva referencia estadounidense.
   if(d && d.key==='assist365')
@@ -3493,10 +3486,6 @@ function providerProfile(d){
     }
     return {plan:'Totaltravel',eligible:true,eligibility:'Disponible para residentes en España',medica:'Hasta 5.000.000 €',repatriacion:'Ilimitada',franquicia:'Sin franquicia médica',cancelacion:'Hasta 5.000 € · opcional',equipaje:'Hasta 2.500 €',demora:'Según condiciones',tele:true,aventura:false,cancel:true,baggage:true,publicRate:1.85,coverageRank:92,bestFor:'Residentes en España que buscan cobertura médica alta, equipaje, asistencia digital y cancelación disponible.',caution:'Para residentes en España mantenemos Totaltravel. El precio y las garantías exactas dependen de la modalidad elegida.',source:'Intermundial Totaltravel · web oficial · revisión 31/08/2026'};
   }
-  if(d.key==='holins'){
-    if(spainResident) return {plan:'Holins Viaje',eligible:true,eligibility:'Disponible para residentes en España',medica:'Hasta 5.000.000 €',repatriacion:'Incluida según modalidad',franquicia:'Sin franquicia médica',cancelacion:'Hasta 4.000 € según modalidad',equipaje:'Incluido según modalidad',demora:'Según modalidad',tele:false,aventura:false,cancel:true,baggage:true,publicRate:1.36,coverageRank:88,bestFor:'Residentes en España que buscan seguro médico y equipaje configurable.',caution:'La cobertura y el precio final dependen de la modalidad seleccionada.',source:'Holins · web y condiciones 2026'};
-    return {plan:'Holins',eligible:false,eligibility:'No mostramos Holins como opción contratable cuando el origen/residencia de referencia está fuera de España',medica:'No aplicable',repatriacion:'No aplicable',franquicia:'No aplicable',cancelacion:'No aplicable',equipaje:'No aplicable',demora:'No aplicable',tele:false,aventura:false,cancel:false,baggage:false,publicRate:null,coverageRank:0,bestFor:'Residentes en España.',caution:'El cotizador público de Holins está orientado a salida/residencia en España. Hasta confirmar por escrito una modalidad LATAM → España compatible, se excluye de esos resultados.',source:'Holins · web y cotizador público · revisión 08/09/2026'};
-  }
   if(d.key==='assist365'){
     if(isAssist365LatamUsRoute())return {
       plan:'Assist 365 · Estados Unidos',
@@ -3543,7 +3532,6 @@ function providerDifferentiator(d,p){
   if(!d||!p) return '';
   if(d.key==='iati') return '✈️ AirHelp opcional: reclaman por ti hasta 600 € por incidencias aéreas elegibles.';
   if(d.key==='intermundial') return '👤 Tramitador personal para gestionar tu siniestro.';
-  if(d.key==='holins') return '📞 WebCall 24/7 sin coste de llamada desde el extranjero.';
   if(d.key==='axa'){
     if(isAxaSchengenLatamRoute()) return '📱 eSIM gratis anunciada en la cotización de AXA Mini; consulta condiciones de entrega.';
     if(String(p.plan||'').toLowerCase().includes('schengen')) return '📶 Hasta 1 GB de internet incluido en el seguro Schengen.';
@@ -3564,7 +3552,6 @@ function trackContract(name, plan){
     var low = String(name || '').toLowerCase();
     if(low.indexOf('iati') !== -1) gtag('event','click_affiliate_iati',{event_category:'affiliate',event_label:plan,page_location:window.location.href});
     if(low.indexOf('inter') !== -1) gtag('event','click_affiliate_intermundial',{event_category:'affiliate',event_label:plan,page_location:window.location.href});
-    if(low.indexOf('holins') !== -1) gtag('event','click_affiliate_holins',{event_category:'affiliate',event_label:plan,page_location:window.location.href});
     if(low.indexOf('axa') !== -1) gtag('event','click_affiliate_axa',{event_category:'affiliate',event_label:plan,page_location:window.location.href});
     if(low.indexOf('chapka') !== -1) gtag('event','click_affiliate_chapka',{event_category:'affiliate',event_label:plan,affiliate_product:plan,page_location:window.location.href});
     if(low.indexOf('assist 365') !== -1 || low.indexOf('assist365') !== -1) gtag('event','click_affiliate_assist365',{event_category:'affiliate',event_label:plan,affiliate_product:plan,coupon:'VIAJEROLATAM',page_location:window.location.href});
@@ -3944,7 +3931,6 @@ function contractClick(name, plan) {
   var url = '/resultados/';
   if(low.indexOf('iati') !== -1) url = 'https://www.iatiseguros.com?r=84208681926165';
   else if(low.indexOf('inter') !== -1) url = intermundialCtaUrl();
-  else if(low.indexOf('holins') !== -1) url = 'https://clk.tradedoubler.com/click?p=301095&a=3485639';
   else if(low.indexOf('axa') !== -1) url = 'https://clk.tradedoubler.com/click?p=343758&a=3485639';
   else if(low.indexOf('chapka') !== -1) url = chapkaCtaUrl();
   trackContract(name, plan);
