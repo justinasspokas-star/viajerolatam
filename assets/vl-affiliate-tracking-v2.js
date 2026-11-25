@@ -105,7 +105,6 @@
     var h = String(href || '').toLowerCase();
     if (h.indexOf('iatiseguros.com') !== -1) return 'iati';
     if (h.indexOf('intermundial.es') !== -1) return 'intermundial';
-    if (h.indexOf('tradedoubler.com') !== -1 && h.indexOf('301095') !== -1) return 'holins';
     if (h.indexOf('tradedoubler.com') !== -1 && h.indexOf('343758') !== -1) return 'axa';
     if (h.indexOf('saily.com') !== -1) return 'saily';
     return '';
