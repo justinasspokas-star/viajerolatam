@@ -2555,7 +2555,8 @@ const DATA = [
   {id:5,key:'axa',logo:'AX',logoColor:'#EEF2FF',logoText:'#1B3A8A',logoUrl:'/assets/axa-logo-oficial.png',logoAlt:'AXA Assistance',name:'AXA',guideUrl:'/seguros/axa/',ctaUrl:'https://clk.tradedoubler.com/click?p=343758&a=3485639'},
   {id:6,key:'chapka',logo:'CH',logoColor:'#FFFFFF',logoText:'#37344F',logoUrl:'/assets/chapka-logo-oficial.png',logoAlt:'Chapka',name:'Chapka',guideUrl:'',ctaUrl:'https://www.chapkadirect.es/index.php?action=produit&id=930&app=ViajeroLATAM'},
   {id:7,key:'assist365',logo:'365',logoColor:'#FFFFFF',logoText:'#3C63C3',logoUrl:'/assets/assist365-logo-oficial.png',logoAlt:'Assist 365',name:'Assist 365',guideUrl:'',ctaUrl:'https://assist-365.com?voucher=VIAJEROLATAM'},
-  {id:8,key:'ergo',logo:'ERGO',logoColor:'#FFFFFF',logoText:'#A32630',logoUrl:'/assets/ergo-logo-oficial.webp',logoAlt:'ERGO Seguros de Viaje',name:'ERGO',guideUrl:'',ctaUrl:'https://www.awin1.com/cread.php?awinmid=114654&awinaffid=3123928'}
+  {id:8,key:'ergo',logo:'ERGO',logoColor:'#FFFFFF',logoText:'#A32630',logoUrl:'/assets/ergo-logo-oficial.webp',logoAlt:'ERGO Seguros de Viaje',name:'ERGO',guideUrl:'',ctaUrl:'https://www.awin1.com/cread.php?awinmid=114654&awinaffid=3123928'},
+  {id:9,key:'fit2trip',logo:'F2T',logoColor:'#FFFFFF',logoText:'#447BAF',logoUrl:'/assets/fit2trip-logo-oficial.webp',logoAlt:'Fit2Trip',name:'Fit2Trip',guideUrl:'',ctaUrl:'https://clk.tradedoubler.com/click?p=362997&a=3485639'}
 ];
 
 // Precios editoriales fijos de referencia. No son cotizaciones ni tarifas garantizadas.
@@ -3034,6 +3035,7 @@ function axaSchengenAmericaNote(){
    : 'Estimación proporcional basada en una única referencia de 14 días, no cotizada';
 }
 function fixedOrientativeRate(key){
+  if(key==='fit2trip') return fixedOrientativeRate('intermundial');
   if((key==='iati'||key==='intermundial') && isUsToSchengenRoute())
     return usToSchengenTotalPerPerson(key,resultTripDays())/resultTripDays();
   if(key==='iati' && isWorldToLatamRoute())
@@ -3190,6 +3192,7 @@ function resultUSDApproxMarkup(eurAmount,forMatrix){
     : '<div class="trip-origin-price">Conversión USD temporalmente no disponible <span>Consulta el total orientativo en euros</span></div>';
 }
 function resultTotalEUR(key){
+  if(key==='fit2trip') return resultTotalEUR('intermundial');
   if((key==='iati'||key==='intermundial') && isUsToSchengenRoute())
     return usToSchengenTotalPerPerson(key,resultTripDays())*resultTripPeople();
   if(key==='iati' && isWorldToLatamRoute())
@@ -3321,6 +3324,7 @@ function isExtendedNonSchengenSelection(){
     (raw==='europa-no-schengen'||raw==='europa'||raw==='asia');
 }
 function providerVisible(d){
+  if(d && d.key==='fit2trip') return normalizedOrigin()==='es';
   // ERGO: referencia editorial visible para cualquier origen y destino.
   if(d && d.key==='ergo') return true;
   // Destino LATAM desde cualquier país: InterMundial e IATI, sin mezclar
@@ -3354,6 +3358,20 @@ function visibleProviders(){
   return DATA.filter(providerVisible);
 }
 function providerProfile(d){
+  if(d.key==='fit2trip'){
+    const raw=String(window.currentSearchDest||'').toLowerCase();
+    const country=String(window.currentSearchDestinationCountry||'').toLowerCase();
+    const domestic=['es','espana','españa','spain'].includes(country)||(!country&&['es','espana','españa','spain'].includes(raw));
+    const grouped=!country&&['espana-schengen','schengen'].includes(raw);
+    return {plan:'Multirriesgo Estándar · referencia',eligible:false,reviewable:true,
+      eligibility:'Producto para residentes en España; consulta destino, duración y condiciones de contratación.',
+      medica:domestic?'Hasta 50.000 €':grouped?'50.000 € en España / 1.000.000 € fuera':'Hasta 1.000.000 €',
+      repatriacion:'Hasta 2.000.000 €',franquicia:'100 € en gastos médicos',cancelacion:'Hasta 3.000 €',
+      equipaje:'Hasta 2.000 €',demora:'Hasta 120 € por retraso del viaje',tele:false,aventura:false,cancel:true,baggage:true,
+      publicRate:null,coverageRank:0,bestFor:'Residentes en España que buscan asistencia en viaje y opción de declarar enfermedades preexistentes para solicitar cobertura.',
+      caution:'El precio es una estimación comparativa basada en InterMundial, no una tarifa de Fit2Trip; las coberturas corresponden a la modalidad Estándar publicada.',
+      source:'<a href="https://www.fit2trip.es/media/1329/fit-2-trip-espa%C3%B1a-condiciones-generales-es-60.pdf" target="_blank" rel="noopener noreferrer">Fit2Trip · condicionado oficial, tabla multirriesgo Estándar, páginas 3–4</a>'};
+  }
   if(d.key==='ergo'){
     // Garantías publicadas de Select: referencia del producto, no cotización
     // asociada a los 2,50 EUR/día ni confirmación de elegibilidad.
@@ -3567,6 +3585,7 @@ function providerDifferentiator(d,p){
     if(String(p.plan||'').toLowerCase().includes('europa')) return '📅 Cambio de fecha hasta el día anterior a la salida, según condiciones.';
     return '🛂 Certificado Schengen por email tras la contratación.';
   }
+  if(d.key==='fit2trip') return 'Posibilidad de solicitar cobertura de enfermedades preexistentes declaradas, sujeta a aceptación y condiciones.';
   if(d.key==='ergo') return 'Asistencia por vídeo o presencial con Air Doctor fuera de España, según modalidad Select.';
   if(d.key==='assist365') return '📅 Flexibilidad para cancelar o cambiar las fechas de tu asistencia sin coste, según condiciones.';
   return '';
@@ -3580,6 +3599,7 @@ function trackContract(name, plan){
     if(low.indexOf('iati') !== -1) gtag('event','click_affiliate_iati',{event_category:'affiliate',event_label:plan,page_location:window.location.href});
     if(low.indexOf('inter') !== -1) gtag('event','click_affiliate_intermundial',{event_category:'affiliate',event_label:plan,page_location:window.location.href});
     if(low.indexOf('axa') !== -1) gtag('event','click_affiliate_axa',{event_category:'affiliate',event_label:plan,page_location:window.location.href});
+    if(low==='fit2trip') gtag('event','click_affiliate_fit2trip',{event_category:'affiliate',affiliate_partner:'fit2trip',event_label:plan,page_location:window.location.href});
     if(low==='ergo') gtag('event','click_affiliate_ergo',{event_category:'affiliate',affiliate_partner:'ergo',event_label:plan,page_location:window.location.href});
     if(low.indexOf('chapka') !== -1) gtag('event','click_affiliate_chapka',{event_category:'affiliate',event_label:plan,affiliate_product:plan,page_location:window.location.href});
     if(low.indexOf('assist 365') !== -1 || low.indexOf('assist365') !== -1) gtag('event','click_affiliate_assist365',{event_category:'affiliate',event_label:plan,affiliate_product:plan,coupon:'VIAJEROLATAM',page_location:window.location.href});
@@ -3635,6 +3655,9 @@ function renderCard(d){
     : '<div class="trip-origin-price">Equivalencia local no disponible <span>Consulta el precio en euros</span></div>';
   const destDaily=resultFormatCurrencyFromEUR(fixedRate,destCur);
   let price=`<div class="public-price-label">Total orientativo · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>moneda de referencia · total viaje</small></div>${originPriceMarkup}<div class="public-price-sub">${destDaily}/persona/día × ${resultTripDays()} día${resultTripDays()===1?'':'s'} × ${resultTripPeople()} viajero${resultTripPeople()===1?'':'s'}. Estimación ViajeroLatam; confirma el precio final con el proveedor.</div>`;
+  if(d.key==='fit2trip'){
+    price=`<div class="public-price-label">Total orientativo · ${resultTripLabel()}</div><div class="public-price">≈ ${euroFixed(totalEUR)} € <small>total del viaje</small></div>${destCur!=='EUR'?`<div class="trip-origin-price">≈ ${destTotal} <span>moneda de destino</span></div>`:''}<div class="public-price-sub"><strong>≈ ${euroFixed(fixedRate)} €/persona/día</strong> de media. Estimación comparativa basada en InterMundial; no es una cotización de Fit2Trip ni una tarifa asociada al plan Estándar.</div>`;
+  }
   if(d.key==='ergo'){
     price=`<div class="public-price-label">Total orientativo · ${resultTripLabel()}</div><div class="public-price">≈ ${euroFixed(totalEUR)} € <small>total del viaje</small></div>${destCur!=='EUR'?`<div class="trip-origin-price">≈ ${destTotal} <span>moneda de destino</span></div>`:''}${originCur!==destCur&&originCur!=='EUR'?originPriceMarkup:''}<div class="public-price-sub"><strong>2,50 €/persona/día</strong> × ${resultTripDays()} día${resultTripDays()===1?'':'s'} × ${resultTripPeople()} viajero${resultTripPeople()===1?'':'s'}. Estimación editorial independiente de la tarifa de Select. ${p.eligibility}</div>`;
   }
@@ -3719,7 +3742,7 @@ function renderCard(d){
     price=price.replace(/(<div class="public-price">[\s\S]*?<\/div>)/,
       '$1'+resultUSDApproxMarkup(totalEUR,false));
   }
-  const availability=(d.key==='ergo'||((d.key==='iati'||d.key==='intermundial')&&isUsToSchengenRoute()))
+  const availability=(d.key==='fit2trip'||d.key==='ergo'||((d.key==='iati'||d.key==='intermundial')&&isUsToSchengenRoute()))
     ? ''
     : pending
     ? `<div class="availability-note no">⚠ ${p.eligibility}</div>`
@@ -3728,14 +3751,14 @@ function renderCard(d){
       : `<div class="availability-note ok">✓ ${p.eligibility}</div>`;
   const cta=unavailable
     ? `<a class="btn-contract disabled" aria-disabled="true">No disponible para este origen</a>`
-    : `<a class="btn-contract" href="${escAttr(providerCtaUrl(d))}" target="_blank" rel="nofollow sponsored noopener" onclick="trackContract('${escJs(d.name)}','${escJs(p.plan)}')">${d.key==='ergo'?'Ver precio en ERGO →':d.key==='assist365'?'Ver precio en Assist 365 →':(d.key==='iati'&&isUsToSchengenRoute())?'Ver precio en IATI Seguros →':(d.key==='intermundial'&&isUsToSchengenRoute())?'Ver precio en InterMundial →':pending?'Consultar si admite tu residencia en '+d.name+' →':(isSchengenToSchengenRoute()||((d.key==='intermundial'||d.key==='axa')&&isSchengenToUs()))?'Confirmar precio y elegibilidad en '+d.name+' →':'Ver precio en '+d.name+' →'}</a>`;
+    : `<a class="btn-contract" href="${escAttr(providerCtaUrl(d))}" target="_blank" rel="nofollow sponsored noopener" onclick="trackContract('${escJs(d.name)}','${escJs(p.plan)}')">${d.key==='fit2trip'?'Ver precio en Fit2Trip →':d.key==='ergo'?'Ver precio en ERGO →':d.key==='assist365'?'Ver precio en Assist 365 →':(d.key==='iati'&&isUsToSchengenRoute())?'Ver precio en IATI Seguros →':(d.key==='intermundial'&&isUsToSchengenRoute())?'Ver precio en InterMundial →':pending?'Consultar si admite tu residencia en '+d.name+' →':(isSchengenToSchengenRoute()||((d.key==='intermundial'||d.key==='axa')&&isSchengenToUs()))?'Confirmar precio y elegibilidad en '+d.name+' →':'Ver precio en '+d.name+' →'}</a>`;
   const isBestseller=d.key==='intermundial';
   return `<div class="card ${unavailable?'unavailable':''}${isBestseller?' vl-bestseller-card':''}" id="card-${d.id}">
     ${isBestseller?'<div class="vl-bestseller-label"><span aria-hidden="true">★</span> Opción más vendida</div>':''}
     <div class="card-body">
       <div class="card-logo-block">
         ${insurerLogoMarkup(d,'card')}
-        <div class="card-logo-meta"><div class="card-name">${d.name}</div><div class="card-plan-under-logo">${p.plan}</div>${pending&&d.key!=='ergo'?'<div class="card-verified">⚠ Elegibilidad por confirmar</div>':''}</div>
+        <div class="card-logo-meta"><div class="card-name">${d.name}</div><div class="card-plan-under-logo">${p.plan}</div>${pending&&d.key!=='ergo'&&d.key!=='fit2trip'?'<div class="card-verified">⚠ Elegibilidad por confirmar</div>':''}</div>
       </div>
       <div class="card-coverage">
         <div class="coverage-pills">${pills}</div>
@@ -3762,7 +3785,7 @@ function renderCard(d){
         <div class="detail-item"><div class="detail-label">Equipaje</div><div class="detail-val">${p.equipaje}</div><div class="detail-sub">Límites y sublímites dependen del plan</div></div>
         <div class="detail-item"><div class="detail-label">Elegibilidad</div><div class="detail-val">${p.reviewable?'Por confirmar con la aseguradora':p.eligible?'Compatible con origen seleccionado':'No compatible según oferta enlazada'}</div><div class="detail-sub">Confirma país de residencia real antes de pagar</div></div>
       </div>
-      <div class="detail-source">Fuente de comparación: ${p.source}. Revisión ViajeroLatam: ${d.key==='ergo'?'27/11/2026':'31/08/2026'}. La póliza y el precio mostrados por la aseguradora en el momento de contratar prevalecen sobre este resumen.</div>
+      <div class="detail-source">Fuente de comparación: ${p.source}. Revisión ViajeroLatam: ${(d.key==='ergo'||d.key==='fit2trip')?'27/11/2026':'31/08/2026'}. La póliza y el precio mostrados por la aseguradora en el momento de contratar prevalecen sobre este resumen.</div>
     </div>
   </div>`;
 }
@@ -3801,6 +3824,7 @@ function updateQuickCompare(){
         return '<strong>≈ '+euroFixed(resultTotalEUR(d.key))+' €</strong><div class="matrix-origin-price">'+(d.key==='iati'?'IATI':'Go | World')+(SCHENGEN_ROUTE_COUNTRIES.has(normalizedOrigin())?' · importe orientativo, según condiciones':' · importe orientativo, elegibilidad por confirmar')+'</div>';
       if(d.key==='assist365'&&isAssist365LatamUsRoute())
         return '<strong>≈ '+euroFixed(resultTotalEUR(d.key))+' €</strong><div class="matrix-origin-price">LATAM → EE. UU. · precio de referencia, según condiciones</div>';
+      if(d.key==='fit2trip')return '<strong>≈ '+euroFixed(resultTotalEUR(d.key))+' €</strong><div class="matrix-origin-price">Estimación basada en InterMundial, no cotización</div>';
       if(d.key==='ergo')return '<strong>≈ '+euroFixed(resultTotalEUR(d.key))+' €</strong><div class="matrix-origin-price">Estimación editorial independiente de la tarifa de Select</div>';
       if(providerProfile(d).reviewable)return '<strong>Consultar tarifa</strong><div class="matrix-origin-price">Duración / residencia por verificar</div>';
       if(d.key==='intermundial'&&isSchengenToUkRoute())
@@ -3813,7 +3837,9 @@ function updateQuickCompare(){
         : '≈ '+resultFormatCurrencyFromEUR(resultTotalEUR(d.key),resultOriginCurrency())+' origen';
       return '<strong>≈ '+resultFormatCurrencyFromEUR(resultTotalEUR(d.key),resultDestinationCurrency())+'</strong>'+(isCubaToEuropeRoute()?resultUSDApproxMarkup(resultTotalEUR(d.key),true):'')+(isSchengenToSchengenRoute()?'<div class="matrix-origin-price">Referencia en EUR, no cotización</div>':'<div class="matrix-origin-price">'+originLabel+'</div>');
     }),
-    row('Referencia diaria',(d)=>d.key==='ergo'
+    row('Referencia diaria',(d)=>d.key==='fit2trip'
+      ? '<span>≈ '+euroFixed(fixedOrientativeRate(d.key))+' €/persona/día · estimado</span>'
+      : d.key==='ergo'
       ? '<span>≈ 2,50 €/persona/día · orientativo</span>'
       : d.key==='assist365'&&isAssist365LatamUsRoute()
       ? '<span>≈ '+euroFixed(fixedOrientativeRate(d.key))+' €/persona/día · orientativo</span>'
@@ -3895,7 +3921,7 @@ function applyFilters(){
   const wantBaggage=document.getElementById('f6')?document.getElementById('f6').checked:false;
   let filtered=visibleProviders().filter(d=>{
     const p=providerProfile(d);
-    if(onlyEligible&&!p.eligible&&d.key!=='ergo'&&!((isWorldToLatamRoute()||isUsToSchengenRoute())&&(d.key==='intermundial'||d.key==='iati')&&p.reviewable)) return false;
+    if(onlyEligible&&!p.eligible&&d.key!=='ergo'&&d.key!=='fit2trip'&&!((isWorldToLatamRoute()||isUsToSchengenRoute())&&(d.key==='intermundial'||d.key==='iati')&&p.reviewable)) return false;
     if(wantNoFranquicia&&!p.franquicia.toLowerCase().includes('sin franquicia')) return false;
     if(wantTele&&!p.tele) return false;
     if(wantCancel&&!p.cancel) return false;
@@ -3913,8 +3939,8 @@ function sortData(data,val){
     // por esos importes aunque la elegibilidad siga pendiente en otras residencias.
     // En el resto de rutas conservar el tratamiento previo de tarifas no cotizadas.
     const hasRouteReference=isWorldToLatamRoute()||isUsToSchengenRoute()||isAssist365LatamUsRoute();
-    const ra=hasRouteReference?resultTotalEUR(a.key):(providerProfile(a).reviewable&&a.key!=='ergo'?Infinity:fixedOrientativeRate(a.key));
-    const rb=hasRouteReference?resultTotalEUR(b.key):(providerProfile(b).reviewable&&b.key!=='ergo'?Infinity:fixedOrientativeRate(b.key));
+    const ra=hasRouteReference?resultTotalEUR(a.key):(providerProfile(a).reviewable&&a.key!=='ergo'&&a.key!=='fit2trip'?Infinity:fixedOrientativeRate(a.key));
+    const rb=hasRouteReference?resultTotalEUR(b.key):(providerProfile(b).reviewable&&b.key!=='ergo'&&b.key!=='fit2trip'?Infinity:fixedOrientativeRate(b.key));
     return ra-rb;
   });
   else if(val==='cobertura') d.sort((a,b)=>providerProfile(b).coverageRank-providerProfile(a).coverageRank);
