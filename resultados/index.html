@@ -3697,7 +3697,7 @@ function renderCard(d){
     price=price.replace(/(<div class="public-price">[\s\S]*?<\/div>)/,
       '$1'+resultUSDApproxMarkup(totalEUR,false));
   }
-  const availability=((d.key==='iati'||d.key==='intermundial')&&isUsToSchengenRoute())
+  const availability=(d.key==='ergo'||((d.key==='iati'||d.key==='intermundial')&&isUsToSchengenRoute()))
     ? ''
     : pending
     ? `<div class="availability-note no">⚠ ${p.eligibility}</div>`
