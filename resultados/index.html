@@ -2477,7 +2477,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobMenu
 </div>
 <div class="filter-section">
 <div class="filter-title">Disponibilidad</div>
-<div class="check-item" id="availability-eligible-filter"><input checked="" id="f0" onchange="applyFilters()" type="checkbox"/><label for="f0">Solo opciones contratables según residencia</label></div>
+<div class="check-item" id="availability-eligible-filter"><input checked="" id="f0" onchange="applyFilters()" type="checkbox"/><label for="f0">Ocultar opciones no compatibles</label></div>
 <div class="filter-helper" id="availability-filter-helper">Usamos el país de salida como referencia de residencia. Confirma siempre tu residencia real en la aseguradora.</div>
 </div>
 <div class="filter-section">
@@ -2554,7 +2554,8 @@ const DATA = [
   {id:3,key:'intermundial',logo:'IM',logoColor:'#F0F8FF',logoText:'#1976D2',logoUrl:'/assets/intermundial-logo-oficial.png',logoAlt:'Intermundial',name:'Intermundial',guideUrl:'/seguros/intermundial/',ctaUrl:'https://www.intermundial.es/afiliados/seguros-de-viaje-recomendado?utm_source=Affiliates&utm_medium=Affiliates&utm_campaign=General&utm_term=kbnnqvpvcy490&utm_content=kbnnqvpvcy490&coupon=VIAJEROLATAM&vl_site=viajerolatam&vl_partner=intermundial&vl_page=resultados&vl_link=2'},
   {id:5,key:'axa',logo:'AX',logoColor:'#EEF2FF',logoText:'#1B3A8A',logoUrl:'/assets/axa-logo-oficial.png',logoAlt:'AXA Assistance',name:'AXA',guideUrl:'/seguros/axa/',ctaUrl:'https://clk.tradedoubler.com/click?p=343758&a=3485639'},
   {id:6,key:'chapka',logo:'CH',logoColor:'#FFFFFF',logoText:'#37344F',logoUrl:'/assets/chapka-logo-oficial.png',logoAlt:'Chapka',name:'Chapka',guideUrl:'',ctaUrl:'https://www.chapkadirect.es/index.php?action=produit&id=930&app=ViajeroLATAM'},
-  {id:7,key:'assist365',logo:'365',logoColor:'#FFFFFF',logoText:'#3C63C3',logoUrl:'/assets/assist365-logo-oficial.png',logoAlt:'Assist 365',name:'Assist 365',guideUrl:'',ctaUrl:'https://assist-365.com?voucher=VIAJEROLATAM'}
+  {id:7,key:'assist365',logo:'365',logoColor:'#FFFFFF',logoText:'#3C63C3',logoUrl:'/assets/assist365-logo-oficial.png',logoAlt:'Assist 365',name:'Assist 365',guideUrl:'',ctaUrl:'https://assist-365.com?voucher=VIAJEROLATAM'},
+  {id:8,key:'ergo',logo:'ERGO',logoColor:'#FFFFFF',logoText:'#A32630',logoUrl:'/assets/ergo-logo-oficial.webp',logoAlt:'ERGO Seguros de Viaje',name:'ERGO',guideUrl:'',ctaUrl:'https://www.awin1.com/cread.php?awinmid=114654&awinaffid=3123928'}
 ];
 
 // Precios editoriales fijos de referencia. No son cotizaciones ni tarifas garantizadas.
@@ -2562,7 +2563,8 @@ const FIXED_ORIENTATIVE_RATES = Object.freeze({
   iati: 2.20,
   intermundial: 1.85,
   axa: 1.48,
-  assist365: 2.46
+  assist365: 2.46,
+  ergo: 2.50
 });
 function chapkaPlanType(){
   // Cap Schengen: estancia corta. Cap Europa: larga estancia (3–12 meses).
@@ -3319,6 +3321,8 @@ function isExtendedNonSchengenSelection(){
     (raw==='europa-no-schengen'||raw==='europa'||raw==='asia');
 }
 function providerVisible(d){
+  // ERGO: referencia editorial visible para cualquier origen y destino.
+  if(d && d.key==='ergo') return true;
   // Destino LATAM desde cualquier país: InterMundial e IATI, sin mezclar
   // proveedores cuyo producto/eligibilidad no está confirmado para estas rutas.
   if(isWorldToLatamRoute())return !!d && (d.key==='intermundial'||d.key==='iati');
@@ -3350,6 +3354,7 @@ function visibleProviders(){
   return DATA.filter(providerVisible);
 }
 function providerProfile(d){
+  if(d.key==='ergo') return {plan:'Seguro de viaje · modalidad por confirmar',eligible:false,reviewable:true,eligibility:'Confirma si ERGO admite tu residencia, destino y duración',medica:'Por confirmar',repatriacion:'Según póliza',franquicia:'Por confirmar',cancelacion:'Por confirmar',equipaje:'Según póliza',demora:'Por confirmar',tele:false,aventura:false,cancel:false,baggage:false,publicRate:null,coverageRank:0,bestFor:'Consultar una alternativa adicional de seguro de viaje.',caution:'2,50 € por persona y día es una estimación de ViajeroLatam, no una cotización de ERGO. Confirma disponibilidad y garantías con el proveedor.',source:'Referencia editorial ViajeroLatam (27/11/2026); garantías pendientes de confirmar'};
   const origin=normalizedOrigin();
   const dest=normalizedDest();
   const spainResident=origin==='es';
@@ -3553,6 +3558,7 @@ function trackContract(name, plan){
     if(low.indexOf('iati') !== -1) gtag('event','click_affiliate_iati',{event_category:'affiliate',event_label:plan,page_location:window.location.href});
     if(low.indexOf('inter') !== -1) gtag('event','click_affiliate_intermundial',{event_category:'affiliate',event_label:plan,page_location:window.location.href});
     if(low.indexOf('axa') !== -1) gtag('event','click_affiliate_axa',{event_category:'affiliate',event_label:plan,page_location:window.location.href});
+    if(low==='ergo') gtag('event','click_affiliate_ergo',{event_category:'affiliate',affiliate_partner:'ergo',event_label:plan,page_location:window.location.href});
     if(low.indexOf('chapka') !== -1) gtag('event','click_affiliate_chapka',{event_category:'affiliate',event_label:plan,affiliate_product:plan,page_location:window.location.href});
     if(low.indexOf('assist 365') !== -1 || low.indexOf('assist365') !== -1) gtag('event','click_affiliate_assist365',{event_category:'affiliate',event_label:plan,affiliate_product:plan,coupon:'VIAJEROLATAM',page_location:window.location.href});
   }
@@ -3587,7 +3593,7 @@ function renderCard(d){
   const unavailable=!p.eligible&&!pending;
   const pill=(txt,cls='cpill-navy')=>`<span class="cpill ${cls}">${txt}</span>`;
   const pills=[
-    pill(p.medica,'cpill-green'),
+    d.key==='ergo'?pill('Coberturas por confirmar','cpill-navy'):pill(p.medica,'cpill-green'),
     p.franquicia.toLowerCase().includes('sin franquicia')?pill('Sin franquicia','cpill-green'):'',
     p.tele?pill('Asistencia digital','cpill-navy'):'',
     p.cancel?pill('Cancelación disponible','cpill-amber'):''
@@ -3607,6 +3613,9 @@ function renderCard(d){
     : '<div class="trip-origin-price">Equivalencia local no disponible <span>Consulta el precio en euros</span></div>';
   const destDaily=resultFormatCurrencyFromEUR(fixedRate,destCur);
   let price=`<div class="public-price-label">Total orientativo · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>moneda de referencia · total viaje</small></div>${originPriceMarkup}<div class="public-price-sub">${destDaily}/persona/día × ${resultTripDays()} día${resultTripDays()===1?'':'s'} × ${resultTripPeople()} viajero${resultTripPeople()===1?'':'s'}. Estimación ViajeroLatam; confirma el precio final con el proveedor.</div>`;
+  if(d.key==='ergo'){
+    price=`<div class="public-price-label">Total orientativo · ${resultTripLabel()}</div><div class="public-price">≈ ${euroFixed(totalEUR)} € <small>total del viaje</small></div>${destCur!=='EUR'?`<div class="trip-origin-price">≈ ${destTotal} <span>moneda de destino</span></div>`:''}${originCur!==destCur&&originCur!=='EUR'?originPriceMarkup:''}<div class="public-price-sub"><strong>2,50 €/persona/día</strong> × ${resultTripDays()} día${resultTripDays()===1?'':'s'} × ${resultTripPeople()} viajero${resultTripPeople()===1?'':'s'}. Estimación de ViajeroLatam; no es una cotización de ERGO.</div>`;
+  }
   if(d.key==='intermundial' && isGoSchengenLatamRoute()){
     price=`<div class="public-price-label">Go Schengen · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>total del viaje</small></div>${originPriceMarkup}<div class="public-price-sub go-schengen-price-note"><strong>≈ ${destDaily}/persona/día</strong> de media. ${goSchengenPriceNote()}; orientativa para otros orígenes LATAM. Solo Schengen. Confirma el precio final con Intermundial.</div>`;
   }
@@ -3697,7 +3706,7 @@ function renderCard(d){
       : `<div class="availability-note ok">✓ ${p.eligibility}</div>`;
   const cta=unavailable
     ? `<a class="btn-contract disabled" aria-disabled="true">No disponible para este origen</a>`
-    : `<a class="btn-contract" href="${escAttr(providerCtaUrl(d))}" target="_blank" rel="nofollow sponsored noopener" onclick="trackContract('${escJs(d.name)}','${escJs(p.plan)}')">${d.key==='assist365'?'Ver precio en Assist 365 →':(d.key==='iati'&&isUsToSchengenRoute())?'Ver precio en IATI Seguros →':(d.key==='intermundial'&&isUsToSchengenRoute())?'Ver precio en InterMundial →':pending?'Consultar si admite tu residencia en '+d.name+' →':(isSchengenToSchengenRoute()||((d.key==='intermundial'||d.key==='axa')&&isSchengenToUs()))?'Confirmar precio y elegibilidad en '+d.name+' →':'Ver precio en '+d.name+' →'}</a>`;
+    : `<a class="btn-contract" href="${escAttr(providerCtaUrl(d))}" target="_blank" rel="nofollow sponsored noopener" onclick="trackContract('${escJs(d.name)}','${escJs(p.plan)}')">${d.key==='ergo'?'Ver precio en ERGO →':d.key==='assist365'?'Ver precio en Assist 365 →':(d.key==='iati'&&isUsToSchengenRoute())?'Ver precio en IATI Seguros →':(d.key==='intermundial'&&isUsToSchengenRoute())?'Ver precio en InterMundial →':pending?'Consultar si admite tu residencia en '+d.name+' →':(isSchengenToSchengenRoute()||((d.key==='intermundial'||d.key==='axa')&&isSchengenToUs()))?'Confirmar precio y elegibilidad en '+d.name+' →':'Ver precio en '+d.name+' →'}</a>`;
   const isBestseller=d.key==='intermundial';
   return `<div class="card ${unavailable?'unavailable':''}${isBestseller?' vl-bestseller-card':''}" id="card-${d.id}">
     ${isBestseller?'<div class="vl-bestseller-label"><span aria-hidden="true">★</span> Opción más vendida</div>':''}
@@ -3724,14 +3733,14 @@ function renderCard(d){
     </div>
     <div class="card-details" id="det-${d.id}">
       <div class="details-grid">
-        <div class="detail-item"><div class="detail-label">Gastos médicos</div><div class="detail-val">${p.medica}</div><div class="detail-sub">Límite publicado para la modalidad mostrada</div></div>
+        <div class="detail-item"><div class="detail-label">Gastos médicos</div><div class="detail-val">${p.medica}</div><div class="detail-sub">${d.key==='ergo'?'Consulta el límite en ERGO':'Límite publicado para la modalidad mostrada'}</div></div>
         <div class="detail-item"><div class="detail-label">Repatriación</div><div class="detail-val">${p.repatriacion}</div><div class="detail-sub">Sujeta a condiciones de la póliza</div></div>
         <div class="detail-item"><div class="detail-label">Franquicia</div><div class="detail-val">${p.franquicia}</div><div class="detail-sub">Revisa exclusiones y supuestos · <a href="/blog/franquicia-medica-seguro-viaje/" aria-label="Entender qué es la franquicia médica">¿Qué significa?</a></div></div>
         <div class="detail-item"><div class="detail-label">Cancelación</div><div class="detail-val">${p.cancelacion}</div><div class="detail-sub">Puede ser opcional o exigir contratación temprana</div></div>
         <div class="detail-item"><div class="detail-label">Equipaje</div><div class="detail-val">${p.equipaje}</div><div class="detail-sub">Límites y sublímites dependen del plan</div></div>
         <div class="detail-item"><div class="detail-label">Elegibilidad</div><div class="detail-val">${p.reviewable?'Por confirmar con la aseguradora':p.eligible?'Compatible con origen seleccionado':'No compatible según oferta enlazada'}</div><div class="detail-sub">Confirma país de residencia real antes de pagar</div></div>
       </div>
-      <div class="detail-source">Fuente de comparación: ${p.source}. Revisión ViajeroLatam: 31/08/2026. La póliza y el precio mostrados por la aseguradora en el momento de contratar prevalecen sobre este resumen.</div>
+      <div class="detail-source">Fuente de comparación: ${p.source}. Revisión ViajeroLatam: ${d.key==='ergo'?'27/11/2026':'31/08/2026'}. La póliza y el precio mostrados por la aseguradora en el momento de contratar prevalecen sobre este resumen.</div>
     </div>
   </div>`;
 }
@@ -3770,6 +3779,7 @@ function updateQuickCompare(){
         return '<strong>≈ '+euroFixed(resultTotalEUR(d.key))+' €</strong><div class="matrix-origin-price">'+(d.key==='iati'?'IATI':'Go | World')+(SCHENGEN_ROUTE_COUNTRIES.has(normalizedOrigin())?' · importe orientativo, según condiciones':' · importe orientativo, elegibilidad por confirmar')+'</div>';
       if(d.key==='assist365'&&isAssist365LatamUsRoute())
         return '<strong>≈ '+euroFixed(resultTotalEUR(d.key))+' €</strong><div class="matrix-origin-price">LATAM → EE. UU. · precio de referencia, según condiciones</div>';
+      if(d.key==='ergo')return '<strong>≈ '+euroFixed(resultTotalEUR(d.key))+' €</strong><div class="matrix-origin-price">Estimación editorial · elegibilidad por confirmar</div>';
       if(providerProfile(d).reviewable)return '<strong>Consultar tarifa</strong><div class="matrix-origin-price">Duración / residencia por verificar</div>';
       if(d.key==='intermundial'&&isSchengenToUkRoute())
         return '<strong>≈ '+euroFixed(resultTotalEUR(d.key))+' €</strong><div class="matrix-origin-price">Estimación desde 17,58 € / 7 días</div>';
@@ -3781,7 +3791,9 @@ function updateQuickCompare(){
         : '≈ '+resultFormatCurrencyFromEUR(resultTotalEUR(d.key),resultOriginCurrency())+' origen';
       return '<strong>≈ '+resultFormatCurrencyFromEUR(resultTotalEUR(d.key),resultDestinationCurrency())+'</strong>'+(isCubaToEuropeRoute()?resultUSDApproxMarkup(resultTotalEUR(d.key),true):'')+(isSchengenToSchengenRoute()?'<div class="matrix-origin-price">Referencia en EUR, no cotización</div>':'<div class="matrix-origin-price">'+originLabel+'</div>');
     }),
-    row('Referencia diaria',(d)=>d.key==='assist365'&&isAssist365LatamUsRoute()
+    row('Referencia diaria',(d)=>d.key==='ergo'
+      ? '<span>≈ 2,50 €/persona/día · orientativo</span>'
+      : d.key==='assist365'&&isAssist365LatamUsRoute()
       ? '<span>≈ '+euroFixed(fixedOrientativeRate(d.key))+' €/persona/día · orientativo</span>'
       : (d.key==='intermundial'||d.key==='iati')&&(isWorldToLatamRoute()||isUsToSchengenRoute())
       ? '<span>≈ '+euroFixed(fixedOrientativeRate(d.key))+' €/persona/día · orientativo</span>'
@@ -3815,16 +3827,16 @@ function render(data){
   const countText=isAssist365LatamUsRoute()
     ? `${eligibleCount} opciones indicadas · ${routeProviders.length} comparadas`
     : isUsToSchengenRoute()
-    ? '2 opciones para Estados Unidos → Schengen: InterMundial e IATI · elegibilidad por confirmar'
+    ? `${routeProviders.length} opciones para Estados Unidos → Schengen · elegibilidad por confirmar`
     : isWorldToLatamRoute()
     ? (SCHENGEN_ROUTE_COUNTRIES.has(normalizedOrigin())
-      ? '2 opciones disponibles para Schengen → Latinoamérica · según condiciones'
-      : '2 opciones (InterMundial e IATI) para comparar · elegibilidad pendiente de confirmar')
+      ? `${eligibleCount} opciones indicadas · ${pendingCount} por confirmar`
+      : `${routeProviders.length} opciones para comparar · elegibilidad pendiente de confirmar`)
     : (isSchengenToUkRoute() && normalizedOrigin()!=='es')
     ? `${eligibleCount} opciones indicadas · ${pendingCount} pendiente${pendingCount===1?'':'s'} de verificar`
     : (isSchengenToSchengenRoute()||isSchengenToUs())
       ? `${routeProviders.length} opciones por verificar · ${routeProviders.length} comparadas`
-      : `${eligibleCount} opciones indicadas · ${routeProviders.length} comparadas`;
+      : `${eligibleCount} opciones indicadas · ${pendingCount} por confirmar · ${routeProviders.length} comparadas`;
   (document.getElementById('count-display')||{textContent:''}).textContent=countText;
   (document.getElementById('count-slim')||{textContent:''}).textContent=countText;
   updateQuickCompare();
@@ -3861,7 +3873,7 @@ function applyFilters(){
   const wantBaggage=document.getElementById('f6')?document.getElementById('f6').checked:false;
   let filtered=visibleProviders().filter(d=>{
     const p=providerProfile(d);
-    if(onlyEligible&&!p.eligible&&!((isWorldToLatamRoute()||isUsToSchengenRoute())&&(d.key==='intermundial'||d.key==='iati')&&p.reviewable)) return false;
+    if(onlyEligible&&!p.eligible&&d.key!=='ergo'&&!((isWorldToLatamRoute()||isUsToSchengenRoute())&&(d.key==='intermundial'||d.key==='iati')&&p.reviewable)) return false;
     if(wantNoFranquicia&&!p.franquicia.toLowerCase().includes('sin franquicia')) return false;
     if(wantTele&&!p.tele) return false;
     if(wantCancel&&!p.cancel) return false;
@@ -3879,8 +3891,8 @@ function sortData(data,val){
     // por esos importes aunque la elegibilidad siga pendiente en otras residencias.
     // En el resto de rutas conservar el tratamiento previo de tarifas no cotizadas.
     const hasRouteReference=isWorldToLatamRoute()||isUsToSchengenRoute()||isAssist365LatamUsRoute();
-    const ra=hasRouteReference?resultTotalEUR(a.key):(providerProfile(a).reviewable?Infinity:fixedOrientativeRate(a.key));
-    const rb=hasRouteReference?resultTotalEUR(b.key):(providerProfile(b).reviewable?Infinity:fixedOrientativeRate(b.key));
+    const ra=hasRouteReference?resultTotalEUR(a.key):(providerProfile(a).reviewable&&a.key!=='ergo'?Infinity:fixedOrientativeRate(a.key));
+    const rb=hasRouteReference?resultTotalEUR(b.key):(providerProfile(b).reviewable&&b.key!=='ergo'?Infinity:fixedOrientativeRate(b.key));
     return ra-rb;
   });
   else if(val==='cobertura') d.sort((a,b)=>providerProfile(b).coverageRank-providerProfile(a).coverageRank);

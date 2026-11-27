@@ -106,6 +106,7 @@
     if (h.indexOf('iatiseguros.com') !== -1) return 'iati';
     if (h.indexOf('intermundial.es') !== -1) return 'intermundial';
     if (h.indexOf('tradedoubler.com') !== -1 && h.indexOf('343758') !== -1) return 'axa';
+    if (h.indexOf('awin1.com/cread.php') !== -1 && /[?&]awinmid=114654(?:&|$)/.test(h)) return 'ergo';
     if (h.indexOf('saily.com') !== -1) return 'saily';
     return '';
   }
