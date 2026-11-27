@@ -3035,6 +3035,12 @@ function axaSchengenAmericaNote(){
    : 'Estimación proporcional basada en una única referencia de 14 días, no cotizada';
 }
 function fixedOrientativeRate(key){
+  if(key==='ergo'){
+    const country=String(window.currentSearchDestinationCountry||'').toLowerCase();
+    const raw=String(window.currentSearchDest||'').toLowerCase();
+    const target=country||raw;
+    return SCHENGEN_ROUTE_COUNTRIES.has(normalizedOrigin()) && ['us','usa','eeuu','estados-unidos','estados unidos','gb','uk','reino-unido','reino unido','united-kingdom'].includes(target) ? 5 : FIXED_ORIENTATIVE_RATES.ergo;
+  }
   if(key==='fit2trip') return fixedOrientativeRate('intermundial');
   if((key==='iati'||key==='intermundial') && isUsToSchengenRoute())
     return usToSchengenTotalPerPerson(key,resultTripDays())/resultTripDays();
@@ -3374,7 +3380,7 @@ function providerProfile(d){
   }
   if(d.key==='ergo'){
     // Garantías publicadas de Select: referencia del producto, no cotización
-    // asociada a los 2,50 EUR/día ni confirmación de elegibilidad.
+    // asociada a la referencia diaria editorial ni confirmación de elegibilidad.
     const raw=String(window.currentSearchDest||'').toLowerCase();
     const country=String(window.currentSearchDestinationCountry||'').toLowerCase();
     const fromSpain=normalizedOrigin()==='es';
@@ -3391,7 +3397,7 @@ function providerProfile(d){
       demora:'Hasta 400 € por retraso de salida',
       tele:fromSpain&&!toSpain,aventura:false,cancel:fromSpain||toSpain,baggage:fromSpain||toSpain,
       publicRate:null,coverageRank:0,bestFor:'Viajes con asistencia sanitaria, transporte de regreso y protección del equipaje.',
-      caution:routeNote+' La estimación de 2,50 €/persona/día no corresponde a una tarifa publicada de Select.',
+      caution:routeNote+' La estimación diaria no corresponde a una tarifa publicada de Select.',
       source:'<a href="https://www.ergo-segurosdeviaje.es/seguro-de-viaje-internacional/" target="_blank" rel="noopener noreferrer">ERGO Select · garantías publicadas</a>. '+routeNote};
   }
   const origin=normalizedOrigin();
@@ -3659,7 +3665,7 @@ function renderCard(d){
     price=`<div class="public-price-label">Total orientativo · ${resultTripLabel()}</div><div class="public-price">≈ ${euroFixed(totalEUR)} € <small>total del viaje</small></div>${destCur!=='EUR'?`<div class="trip-origin-price">≈ ${destTotal} <span>moneda de destino</span></div>`:''}<div class="public-price-sub"><strong>≈ ${euroFixed(fixedRate)} €/persona/día</strong> de media. Estimación comparativa basada en InterMundial; no es una cotización de Fit2Trip ni una tarifa asociada al plan Estándar.</div>`;
   }
   if(d.key==='ergo'){
-    price=`<div class="public-price-label">Total orientativo · ${resultTripLabel()}</div><div class="public-price">≈ ${euroFixed(totalEUR)} € <small>total del viaje</small></div>${destCur!=='EUR'?`<div class="trip-origin-price">≈ ${destTotal} <span>moneda de destino</span></div>`:''}${originCur!==destCur&&originCur!=='EUR'?originPriceMarkup:''}<div class="public-price-sub"><strong>2,50 €/persona/día</strong> × ${resultTripDays()} día${resultTripDays()===1?'':'s'} × ${resultTripPeople()} viajero${resultTripPeople()===1?'':'s'}. Estimación editorial independiente de la tarifa de Select. ${p.eligibility}</div>`;
+    price=`<div class="public-price-label">Total orientativo · ${resultTripLabel()}</div><div class="public-price">≈ ${euroFixed(totalEUR)} € <small>total del viaje</small></div>${destCur!=='EUR'?`<div class="trip-origin-price">≈ ${destTotal} <span>moneda de destino</span></div>`:''}${originCur!==destCur&&originCur!=='EUR'?originPriceMarkup:''}<div class="public-price-sub"><strong>${euroFixed(fixedRate)} €/persona/día</strong> × ${resultTripDays()} día${resultTripDays()===1?'':'s'} × ${resultTripPeople()} viajero${resultTripPeople()===1?'':'s'}. Estimación editorial independiente de la tarifa de Select. ${p.eligibility}</div>`;
   }
   if(d.key==='intermundial' && isGoSchengenLatamRoute()){
     price=`<div class="public-price-label">Go Schengen · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>total del viaje</small></div>${originPriceMarkup}<div class="public-price-sub go-schengen-price-note"><strong>≈ ${destDaily}/persona/día</strong> de media. ${goSchengenPriceNote()}; orientativa para otros orígenes LATAM. Solo Schengen. Confirma el precio final con Intermundial.</div>`;
@@ -3840,7 +3846,7 @@ function updateQuickCompare(){
     row('Referencia diaria',(d)=>d.key==='fit2trip'
       ? '<span>≈ '+euroFixed(fixedOrientativeRate(d.key))+' €/persona/día · estimado</span>'
       : d.key==='ergo'
-      ? '<span>≈ 2,50 €/persona/día · orientativo</span>'
+      ? '<span>≈ '+euroFixed(fixedOrientativeRate(d.key))+' €/persona/día · orientativo</span>'
       : d.key==='assist365'&&isAssist365LatamUsRoute()
       ? '<span>≈ '+euroFixed(fixedOrientativeRate(d.key))+' €/persona/día · orientativo</span>'
       : (d.key==='intermundial'||d.key==='iati')&&(isWorldToLatamRoute()||isUsToSchengenRoute())
