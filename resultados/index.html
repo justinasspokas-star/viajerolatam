@@ -3034,7 +3034,12 @@ function axaSchengenAmericaNote(){
    ? 'Referencia facilitada para un viajero y 14 días, orientativa para cualquier origen Schengen'
    : 'Estimación proporcional basada en una única referencia de 14 días, no cotizada';
 }
+function isAxaSchengenUsUkRate(){
+  const target=String(window.currentSearchDestinationCountry||window.currentSearchDest||'').toLowerCase();
+  return SCHENGEN_ROUTE_COUNTRIES.has(normalizedOrigin()) && ['us','usa','eeuu','estados-unidos','estados unidos','gb','uk','reino-unido','reino unido','united-kingdom'].includes(target);
+}
 function fixedOrientativeRate(key){
+  if(key==='axa' && isAxaSchengenUsUkRate()) return 7;
   if(key==='ergo'){
     const country=String(window.currentSearchDestinationCountry||'').toLowerCase();
     const raw=String(window.currentSearchDest||'').toLowerCase();
@@ -3198,6 +3203,7 @@ function resultUSDApproxMarkup(eurAmount,forMatrix){
     : '<div class="trip-origin-price">Conversión USD temporalmente no disponible <span>Consulta el total orientativo en euros</span></div>';
 }
 function resultTotalEUR(key){
+  if(key==='axa' && isAxaSchengenUsUkRate()) return fixedOrientativeRate(key)*resultTripDays()*resultTripPeople();
   if(key==='fit2trip') return resultTotalEUR('intermundial');
   if((key==='iati'||key==='intermundial') && isUsToSchengenRoute())
     return usToSchengenTotalPerPerson(key,resultTripDays())*resultTripPeople();
@@ -3330,6 +3336,7 @@ function isExtendedNonSchengenSelection(){
     (raw==='europa-no-schengen'||raw==='europa'||raw==='asia');
 }
 function providerVisible(d){
+  if(d && d.key==='axa' && isAxaSchengenUsUkRate()) return true;
   if(d && d.key==='fit2trip') return normalizedOrigin()==='es';
   // ERGO: referencia editorial visible para cualquier origen y destino.
   if(d && d.key==='ergo') return true;
@@ -3562,6 +3569,17 @@ function providerProfile(d){
     }
     return {plan:'Cap Schengen / Cap Europa',eligible:false,eligibility:'Estos productos Chapka están orientados a residentes fuera de Schengen que viajan a España o la UE',medica:'Según producto',repatriacion:'Según producto',franquicia:'Según producto',cancelacion:'Según producto',equipaje:'Según producto',demora:'Según producto',tele:false,aventura:false,cancel:false,baggage:false,publicRate:null,coverageRank:0,bestFor:'Viajes desde LATAM a España o Europa.',caution:'Selecciona España/Schengen o Europa como destino para comparar estos productos.',source:'Chapka · web oficial · revisión 08/09/2026'};
   }
+  if(d.key==='axa' && isAxaSchengenUsUkRate())return {
+    plan:'AXA · modalidad a confirmar',eligible:false,reviewable:true,
+    eligibility:'Referencia para salidas Schengen hacia Estados Unidos o Reino Unido; confirma la aceptación de tu residencia',
+    medica:'Según modalidad contratada',repatriacion:'Según condiciones',
+    franquicia:'Consultar condiciones',cancelacion:'Según modalidad',
+    equipaje:'Según modalidad',demora:'Según condiciones',
+    tele:false,aventura:false,cancel:false,baggage:false,publicRate:null,
+    coverageRank:75,bestFor:'Viajes desde países Schengen hacia Estados Unidos o Reino Unido.',
+    caution:'7 € por persona y día es una estimación editorial, no una cotización de AXA. Confirma residencia, cobertura y precio final.',
+    source:'AXA · referencia editorial ViajeroLatam (27/11/2026)'
+  };
   if(isAxaSchengenAmerica())return {
     plan:'AXA · modalidad a confirmar',eligible:true,
     eligibility:'Referencia para países Schengen con destino Estados Unidos o Canadá; confirma la aceptación de tu residencia',
@@ -3715,7 +3733,9 @@ function renderCard(d){
   if(d.key==='iati' && isIatiAsiaLatamRoute()){
     price=`<div class="public-price-label">IATI · Asia · ${resultTripLabel()}</div><div class="public-price">≈ ${destTotal} <small>total orientativo del viaje</small></div>${originPriceMarkup}<div class="public-price-sub"><strong>≈ ${destDaily}/persona/día</strong> de media. ${iatiAsiaPriceNote()}. Orientativo para los distintos países de residencia LATAM y destinos de Asia. Confirma prima final, elegibilidad y condiciones directamente con IATI.</div>`;
   }
-  if(d.key==='axa' && isAxaSchengenAmerica()){
+  if(d.key==='axa' && isAxaSchengenUsUkRate()){
+    price=`<div class="public-price-label">AXA · ${resultTripLabel()}</div><div class="public-price">≈ ${euroFixed(totalEUR)} € <small>total orientativo en euros</small></div>${destCur!=='EUR'?'<div class="trip-origin-price">≈ '+destTotal+' <span>moneda de destino</span></div>':''}<div class="public-price-sub"><strong>${euroFixed(fixedRate)} €/persona/día</strong> × ${resultTripDays()} día${resultTripDays()===1?'':'s'} × ${resultTripPeople()} viajero${resultTripPeople()===1?'':'s'}. Estimación editorial, no cotización de AXA. Confirma producto, cobertura y precio final.</div>`;
+  }else if(d.key==='axa' && isAxaSchengenAmerica()){
     price=`<div class="public-price-label">AXA · Schengen → Estados Unidos / Canadá · ${resultTripLabel()}</div><div class="public-price">≈ ${euroFixed(totalEUR)} € <small>total orientativo en euros</small></div><div class="trip-origin-price">≈ ${destTotal} <span>${usdLabel}</span></div><div class="public-price-sub"><strong>≈ ${euroFixed(fixedRate)} €/persona/día</strong> de media. ${axaSchengenAmericaNote()}. Confirma producto, cobertura, residencia admitida y prima final con AXA.</div>`;
   }
   if(d.key==='axa' && isAxaSchengenLatamRoute()){
@@ -3832,6 +3852,7 @@ function updateQuickCompare(){
         return '<strong>≈ '+euroFixed(resultTotalEUR(d.key))+' €</strong><div class="matrix-origin-price">LATAM → EE. UU. · precio de referencia, según condiciones</div>';
       if(d.key==='fit2trip')return '<strong>≈ '+euroFixed(resultTotalEUR(d.key))+' €</strong><div class="matrix-origin-price">Estimación basada en InterMundial, no cotización</div>';
       if(d.key==='ergo')return '<strong>≈ '+euroFixed(resultTotalEUR(d.key))+' €</strong><div class="matrix-origin-price">Estimación editorial independiente de la tarifa de Select</div>';
+      if(d.key==='axa'&&isAxaSchengenUsUkRate())return '<strong>≈ '+euroFixed(resultTotalEUR(d.key))+' €</strong><div class="matrix-origin-price">Estimación editorial · elegibilidad por confirmar</div>';
       if(providerProfile(d).reviewable)return '<strong>Consultar tarifa</strong><div class="matrix-origin-price">Duración / residencia por verificar</div>';
       if(d.key==='intermundial'&&isSchengenToUkRoute())
         return '<strong>≈ '+euroFixed(resultTotalEUR(d.key))+' €</strong><div class="matrix-origin-price">Estimación desde 17,58 € / 7 días</div>';
@@ -3845,7 +3866,7 @@ function updateQuickCompare(){
     }),
     row('Referencia diaria',(d)=>d.key==='fit2trip'
       ? '<span>≈ '+euroFixed(fixedOrientativeRate(d.key))+' €/persona/día · estimado</span>'
-      : d.key==='ergo'
+      : (d.key==='ergo'||(d.key==='axa'&&isAxaSchengenUsUkRate()))
       ? '<span>≈ '+euroFixed(fixedOrientativeRate(d.key))+' €/persona/día · orientativo</span>'
       : d.key==='assist365'&&isAssist365LatamUsRoute()
       ? '<span>≈ '+euroFixed(fixedOrientativeRate(d.key))+' €/persona/día · orientativo</span>'
@@ -3927,7 +3948,7 @@ function applyFilters(){
   const wantBaggage=document.getElementById('f6')?document.getElementById('f6').checked:false;
   let filtered=visibleProviders().filter(d=>{
     const p=providerProfile(d);
-    if(onlyEligible&&!p.eligible&&d.key!=='ergo'&&d.key!=='fit2trip'&&!((isWorldToLatamRoute()||isUsToSchengenRoute())&&(d.key==='intermundial'||d.key==='iati')&&p.reviewable)) return false;
+    if(onlyEligible&&!p.eligible&&d.key!=='ergo'&&d.key!=='fit2trip'&&!(d.key==='axa'&&isAxaSchengenUsUkRate())&&!((isWorldToLatamRoute()||isUsToSchengenRoute())&&(d.key==='intermundial'||d.key==='iati')&&p.reviewable)) return false;
     if(wantNoFranquicia&&!p.franquicia.toLowerCase().includes('sin franquicia')) return false;
     if(wantTele&&!p.tele) return false;
     if(wantCancel&&!p.cancel) return false;
@@ -3945,8 +3966,8 @@ function sortData(data,val){
     // por esos importes aunque la elegibilidad siga pendiente en otras residencias.
     // En el resto de rutas conservar el tratamiento previo de tarifas no cotizadas.
     const hasRouteReference=isWorldToLatamRoute()||isUsToSchengenRoute()||isAssist365LatamUsRoute();
-    const ra=hasRouteReference?resultTotalEUR(a.key):(providerProfile(a).reviewable&&a.key!=='ergo'&&a.key!=='fit2trip'?Infinity:fixedOrientativeRate(a.key));
-    const rb=hasRouteReference?resultTotalEUR(b.key):(providerProfile(b).reviewable&&b.key!=='ergo'&&b.key!=='fit2trip'?Infinity:fixedOrientativeRate(b.key));
+    const ra=hasRouteReference?resultTotalEUR(a.key):(providerProfile(a).reviewable&&a.key!=='ergo'&&a.key!=='fit2trip'&&!(a.key==='axa'&&isAxaSchengenUsUkRate())?Infinity:fixedOrientativeRate(a.key));
+    const rb=hasRouteReference?resultTotalEUR(b.key):(providerProfile(b).reviewable&&b.key!=='ergo'&&b.key!=='fit2trip'&&!(b.key==='axa'&&isAxaSchengenUsUkRate())?Infinity:fixedOrientativeRate(b.key));
     return ra-rb;
   });
   else if(val==='cobertura') d.sort((a,b)=>providerProfile(b).coverageRank-providerProfile(a).coverageRank);
@@ -4388,7 +4409,7 @@ function applyEditSearch(){
         ? 'Reino Unido desde países Schengen: para viajes de más de 120 días debes verificar una modalidad InterMundial compatible con tu residencia y duración; no se extrapola el precio de 7 días.'
         : 'InterMundial: referencia facilitada de 17,58 € para 7 días y 1 viajero desde países Schengen a Reino Unido (≈ 2,51 €/día). Para otras duraciones aplicamos una estimación matemática proporcional, no una cotización. El producto concreto y el precio final dependen de la residencia y el plan contratado.')
       : isSchengenToUs()
-      ? 'Para países Schengen hacia Estados Unidos o Canadá usamos referencias por 1 viajero: AXA 50,75 € (14 días), IATI 62,33 € e InterMundial 67,16 € (15 días). Otras duraciones son estimaciones proporcionales, no cotizaciones; confirma residencia admitida y prima final con cada aseguradora.'
+      ? 'Para países Schengen hacia Estados Unidos o Canadá usamos referencias por 1 viajero: AXA '+(isAxaSchengenUsUkRate()?'7 €/día':'50,75 € (14 días)')+', IATI 62,33 € e InterMundial 67,16 € (15 días). Otras duraciones son estimaciones proporcionales, no cotizaciones; confirma residencia admitida y prima final con cada aseguradora.'
       : isSchengenToSchengenRoute()
       ? 'Viajes entre dos países Schengen distintos: InterMundial 7 días 17,58 €, 14 días 25,80 € y 30 días 44,26 €; IATI 7 días 21,09 €, 14 días 30,43 € y 30 días 50,51 €, para 1 viajero. Referencias iguales para todas las rutas solo a efectos comparativos; confirma productos, elegibilidad y tarifas finales con cada aseguradora.'
       : isIntermundialAsiaLatamRoute()
